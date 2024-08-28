@@ -1,0 +1,585 @@
+
+% ----------------------------------------------------------
+% Apêndices
+% ----------------------------------------------------------
+
+% ---
+% Inicia os apêndices
+% ---
+\begin{apendicesenv}
+
+    \chapter{Prova Formal da Transferência de Completude pela Fusão de Lógicas Modais}
+        \label{app:ProvaTransferenciaCompletude}
+
+        \begin{proof}[Prova do Teorema~\ref{teo:TransCompletude}]
+            Sendo \(\Gamma \subseteq \Theta\) um conjunto \Mathcali{L}{12}-consistente, devemos provar que \GAMMA é verdadeiro em algum mundo de um 12-modelo baseado
+            em um 12-frame para \Mathcali{L}{12}. Como \GAMMA é \Mathcali{L}{12}-consistente, \GAMMA também é \Mathcali{L}{1}-consistente e \Mathcali{L}{2}-consistente. Ademais, como
+            \(\Gamma \subseteq \Theta \subseteq \funcao{DC}_{\pi}(\Theta)\), existe um \PImodelo, baseado em um \PIframe para \Mathcali{L}{\pi}, onde \GAMMA é verdadeiro em
+            algum mundo (devido à premissa de completude de \Mathcali{L}{1} e \Mathcali{L}{2}). Este \PImodelo será chamado de \textit{modelo inicial}, e será apresentado
+            formalmente à frente.
+
+            Inicialmente, devemos definir formalmente os conceitos de \PI-teorias, modelos etiquetados e elementos de modelos.
+            \begin{definicao}[\PI-Teorias, \PIMODELOS Etiquetados e \PI-Elementos de Modelos]
+                \label{def:Definicao1}
+                \phantom{a}
+                \begin{enumerate}[label=\textnormal{\ref{def:Definicao1}.\arabic*}]
+                    \item Sendo \DDELTA um conjunto de fórmulas, a \textit{\PI-teoria de \DDELTA} é definida como, onde \(\mathcal{L}_{12}\) é uma lógica bimodal:\label{caso:Definicao1-1}
+                    \[
+                        \funcao{T}_{\pi}(\Delta) = \{\Box^{n}_{\pi} \delta \ | \ \delta \in \funcao{B}(\funcao{S}_{\pi}(\Delta)) \cap \mathcal{L}_{12} \text{ e }
+                            \funcao{d}_\pi(\Box^{n}_{\pi} \delta) \leq \funcao{d}_\pi(\Delta) \}
+                    \]
+
+                    \item Um \textit{\PImodelo etiquetado} é uma tripla \(\langle \mathcal{M}, \mundobase, \Sigma(\mathcal{M}) \rangle\), onde \(\mathcal{M} = \langle \mathcal{W},
+                    \mathcal{R}_{\pi}, \mathcal{V}_{\pi} \rangle\) e:
+                    \begin{enumerate}[label=(\roman*)] \label{caso:Definicao1-2}
+                        \item \Mathcal{M} é um \PImodelo para \(\mathcal{L}_{\pi}\);
+                        \item \(\mundobase \in \mathcal{W}\);
+                        \item \(\Sigma(\mathcal{M})\) é um conjunto de elementos (fórmulas interpretadas como átomos), fechado para a operação de sub-elementos sobre
+                            elementos; \label{caso:Definicao1-2-3}
+                        \item \(\funcao{T}_{\pi}(\Sigma(\mathcal{M}))\) é verdadeiro em \Mundobase em \Mathcal{M}. \label{caso:Definicao1-2-4}
+                    \end{enumerate}
+
+                    \item Dado um \PImodelo etiquetado \(\mathcal{E} = \langle \mathcal{M}, \mundobase, \Sigma(\mathcal{M}) \rangle\) onde
+                    \(\mathcal{M} = \langle \mathcal{W}, \mathcal{R}_{\pi}, \mathcal{V}_{\pi} \rangle\), para cada mundo \(w \in \mathcal{W}\) \textit{o conjunto de elementos
+                    \(\Sigma_{\mathcal{M}}(w)\) de w} é definido indutivamente como:
+                        \begin{enumerate}[label=(\roman*)] \label{caso:Definicao1-3}
+                            \item \(\Sigma_{\mathcal{M}}(\mundobase) = \Sigma(\mathcal{M})\); \label{caso:Definicao1-3-1}
+                            \item Sendo \(w_i, w_j \in \mathcal{W}\), se \(w_i \mathcal{R}_{\pi} w_j\) e \(\Box_\pi \phi \in \Sigma_{\mathcal{M}}(w_i)\),
+                                    então \(\funcao{SC}(\phi) \in \Sigma_{\mathcal{M}}(w_j)\). \label{caso:Definicao1-3-2} \qed
+                        \end{enumerate}
+                \end{enumerate}
+            \end{definicao}
+
+            O mundo \Mundobase é chamado de mundo base do modelo \Mathcal{M}, \(\Sigma(\mathcal{M})\) é chamado de conjunto de elementos do modelo \Mathcal{M} e
+            \(\Sigma_{\mathcal{M}}(w)\) é o conjunto de elementos de \textit{w} em \Mathcal{M}.
+            Sendo \(\mathcal{E} = \langle \mathcal{M}, \mundobase, \Sigma(\mathcal{M}) \rangle\) um modelo etiquetado, escreveremos \(w \in \mathcal{E}\)
+            para indicar que \(w \in \mathcal{W}\), sendo \(\mathcal{M} = \langle \mathcal{W}, \mathcal{R}, \mathcal{V} \rangle\).
+            % No restante da prova, usaremos o termo ``(\(\pi\)-) modelo'' para referir-se a modelos etiquetados, a não ser quando explicitado ao contrário.
+
+            Com isso, podemos definir formalmente os conceitos de modelo e mundo iniciais, a partir de algum conjunto de fórmulas \GAMMA que deve ser satisfeito.
+
+            \begin{definicao}[Modelo Inicial e Mundo Inicial]
+                É chamado de \textit{modelo inicial} o \PImodelo etiquetado:
+                \[
+                    \modeloinicial = \langle \mathcal{I}, \mundoinicial, \funcao{SC}(\Gamma) \rangle
+                \]
+                onde o mundo base \Mundoinicial deste modelo é chamado de \textit{mundo inicial}. O modelo \(\mathcal{I}\) é o modelo que satisfaz
+                \GAMMA e o mundo \Mundoinicial é um mundo onde \GAMMA é verdadeiro.
+            \end{definicao}
+
+            Podemos então provar o seguinte resultado auxiliar:
+
+            \begin{lema}
+                \label{teo:Lema1}
+                Sendo \(\mathcal{E} = \langle \mathcal{M}, \mundobase, \Sigma(\mathcal{M}) \rangle\) um modelo etiquetado e \(w_i \in \mathcal{E}\), então:
+                \begin{enumerate}[label=\textnormal{\ref{teo:Lema1}.\arabic*}]
+                    \item \textnormal{Se \(\Sigma_{\mathcal{M}}(w_i) \neq \emptyset\) então \(\funcao{d}_{\pi}(\Sigma_{\mathcal{M}}(w_i)) = (\funcao{d}_{\pi}(\Sigma(\mathcal{M})) - \funcao{dist}(\mundobase, w_i))\);}\label{caso:Lema1-1}
+                    \item \textnormal{Sendo \(w_i \neq \mundobase\), \(\Sigma_{\mathcal{M}}(w_i) = \emptyset\) sse \(\funcao{dist}(\mundobase, w_i) > \funcao{d}_{\pi}(\Sigma(\mathcal{M}))\).}\label{caso:Lema1-2} \qed
+                \end{enumerate}
+            \end{lema}
+
+            \begin{proof}[Prova do Lema~\ref{teo:Lema1}]
+                Temos dois casos, um para~\ref{caso:Lema1-1} outro para~\ref{caso:Lema1-2}:
+                \begin{description}
+                    \item[Caso~\ref{caso:Lema1-1}] Prova-se por indução em \(\funcao{dist}(\mundobase, w_j)\):
+                        \begin{description}
+                            \item[Base:] Pela definição de \(\funcao{dist}\), temos que \(\mundobase = w_j\), logo, \(\funcao{d}_{\pi}(\Sigma_{\mathcal{M}}(\mundobase)) = \funcao{d}_{\pi}(\Sigma(\mathcal{M}))\),
+                            pela definição de \(\Sigma_{\mathcal{M}}\), temos \(\funcao{d}_{\pi}(\Sigma(\mathcal{M})) = \funcao{d}_{\pi}(\Sigma(\mathcal{M}))\).
+
+                            \item[Hipotese:] Assumindo \(\forall w_k, \funcao{dist}(\mundobase, w_k) = k\),
+                                temos que \(\funcao{d}_{\pi}(\Sigma_{\mathcal{M}}(w_k)) = \funcao{d}_{\pi}(\Sigma(\mathcal{M})) - \funcao{dist}(\mundobase, w_k)\).
+
+                            \item[Passo:] Pelas definições de \(\Sigma_{\mathcal{M}}\) e \(\funcao{d}_{\pi}\), temos que \(\forall w_a, w_b,\) onde \(w_a \mathcal{R} w_b,
+                                \funcao{d}_{\pi}(\Sigma_{\mathcal{M}}(w_a)) = \funcao{d}_{\pi}(\Sigma_{\mathcal{M}}(w_b)) + 1\).
+                                Assumindo que \(\funcao{dist}(\mundobase, w_j) = k+1\), sabemos que existe algum \(w_x\) onde \(w_x \mathcal{R} w_j\) e \(\funcao{dist}(\mundobase, w_x) = k\).
+                                Logo, pela hipótese podemos concluir que:
+                                \[
+                                    \funcao{d}_{\pi}(\Sigma(w_x)) = \funcao{d}_{\pi}(\Sigma(\mathcal{M})) - \funcao{dist}(\mundobase, w_x)
+                                \]
+                                Mais ainda, temos:
+                                \begin{itemize}
+                                    \item Pela definição de \(\Sigma_{\mathcal{M}}\): \(\Sigma(\mathcal{M}) = \Sigma_{\mathcal{M}}(\mundobase)\)
+                                    \item Pelas conclusões anteriores: \(\funcao{d}_{\pi}(\Sigma_{\mathcal{M}}(w_x)) = \funcao{d}_{\pi}(\Sigma_{\mathcal{M}}(w_j)) + 1\)
+                                \end{itemize}
+                                Portanto temos:
+                                \[
+                                    \funcao{d}_{\pi}(\Sigma(w_j))+1 = \funcao{d}_{\pi}(\Sigma_{\mathcal{M}}(\mundobase)) - \funcao{dist}(\mundobase, w_x)
+                                \]
+                                Ou seja:
+                                \[
+                                    \funcao{d}_{\pi}(\Sigma(w_j)) = \funcao{d}_{\pi}(\Sigma_{\mathcal{M}}(\mundobase)) - (\funcao{dist}(\mundobase, w_x) + 1)
+                                \]
+                                Logo:
+                                \[
+                                    \funcao{d}_{\pi}(\Sigma(w_j)) = \funcao{d}_{\pi}(\Sigma_{\mathcal{M}}(\mundobase)) - \funcao{dist}(\mundobase, w_j)
+                                \]
+                        \end{description}
+
+                    \item[Caso~\ref{caso:Lema1-2}] Consequência imediata do caso anterior e da definição de \(\Sigma_{\mathcal{M}}\). \qedhere
+                \end{description}
+            \end{proof}
+            Este lema demonstra que, dado \(\funcao{d}_{\pi}(\Sigma(\mathcal{M}))\) finito, \(\funcao{d}_{\pi}(\Sigma_{\mathcal{M}}(w_j))\) irá diminuir com o aumento de \(\funcao{dist}(\mundobase, w_j)\) até
+            \(\Sigma_{\mathcal{M}}(w_j)\) se tornar vazio, ou seja, o conjunto de elementos de um dado mundo em um modelo depende da distância do mundo até o mundo base do modelo.
+
+            Com isso, podemos formalmente enunciar o conceito de ancoramento de modelos:
+
+            \begin{definicao}[Ancoramento de Modelos]
+                \label{def:Definicao2}
+                Sendo \(\mathcal{E}_{0} = \langle \mathcal{M}, w_{\mathcal{M}}, \Sigma(\mathcal{M}) \rangle\) e \(\mathcal{E}_{1} = \langle \mathcal{N}, w_{\mathcal{N}}, \Sigma(\mathcal{N}) \rangle\)
+                modelos etiquetados, onde \Mathcali{E}{0} tem tipo \PI, é dito que \textit{\Mathcali{E}{1} está ancorado em \Mathcali{E}{0}} se, e somente se:
+
+                \begin{enumerate}[label=\textnormal{\ref{def:Definicao2}.\arabic*}]
+                    \item \Mathcali{E}{1} tem tipo \OPI; \label{caso:Definicao2-1}
+
+                    \item Sendo \(\mathcal{M} = \langle \mathcal{W}_{m}, \mathcal{R}_{m}, \mathcal{V}_{m} \rangle\) e
+                    \(\mathcal{N} = \langle \mathcal{W}_{n}, \mathcal{R}_{n}, \mathcal{V}_{n} \rangle\) então,
+                    \(\mathcal{W}_{m} \cap \mathcal{W}_{n} = \{w_{\mathcal{N}}\}\) e \(\mathcal{E}_{0} = \modeloinicial\) ou \(w_{\mathcal{N}}\)
+                    não é o mundo base de \Mathcali{E}{0}; \label{caso:Definicao2-2}
+
+                    \item \(\Sigma(\mathcal{N}) = \funcao{S}_{\pi}(\Sigma_{\mathcal{M}}(w_{\mathcal{N}}))\); \label{caso:Definicao2-3}
+
+                    \item Para todo \(\phi \in \Sigma(\mathcal{N}): \mathcal{M}, w_{\mathcal{N}} \Vdash \phi\) sse \(\mathcal{N}, w_{\mathcal{N}} \Vdash \phi\) \label{caso:Definicao2-4} \qed
+                \end{enumerate}
+            \end{definicao}
+
+            É fácil de observar que a definição de ancoramento é irreflexiva e antissimétrica, mais ainda, se \Mathcali{E}{1} está ancorado em \Mathcali{E}{0} e \textit{w} é o mundo base de
+            \Mathcali{E}{1}, é dito que \textit{\Mathcali{E}{1} está ancorando em \Mathcali{E}{0} no mundo w}. Para cada \PImodelo \Mathcali{E}{0} e mundo \(w \in \mathcal{E}_{0}\),
+            o conjunto \(\funcao{S}_{\pi}(\Sigma_{\mathcal{M}}(w))\) é chamado de conjunto de concordância de \textit{w} em \Mathcali{E}{0} pois, para cada \OPImodelo \Mathcali{E}{1} ancorado
+            em \textit{w}, \Mathcali{E}{0} e \Mathcali{E}{1} devem concordar com a valoração deste conjunto em \textit{w}.
+
+            Intuitivamente, podemos interpretar a operação de ancoramento de modelos como uma forma de ``alternar o contexto'' durante a valoração de uma fórmula que contenha múltiplas
+            modalidades, pois permite que fórmulas com modalidades de um tipo sejam valoradas em um modelos de outro tipo.
+
+            \begin{definicao}[Diagramas]
+                \label{def:Diagramas}
+                Para cada conjunto \Mathcali{L}{\pi}-consistente \DDELTA, \PImodelo \Mathcal{M} e mundo \textit{w} em \Mathcal{M}, o \textit{diagrama de \DDELTA em \Mathcal{M}
+                no mundo w}, denotado por \(\funcao{DG}(\Delta)\) é dado por
+                \[
+                    \funcao{DG}(\Delta) = \{\delta \ | \ \delta \in \Delta \text{ e } \mathcal{M}, w \Vdash \delta\} \cup \{\neg \delta \ | \ \delta \in \Delta \text{ e } \mathcal{M}, w \nVdash \delta\}
+                \]
+                O \textit{diagrama de concordância \(\funcao{D}_{\mathcal{M}}(w)\) do mundo w em \Mathcal{M}} é definido como
+                \(\funcao{D}_{\mathcal{M}}(w) = \funcao{DG}(\funcao{S}_{\pi}(\Sigma_{\mathcal{M}}(w)))\). \qed
+            \end{definicao}
+
+            É fácil observar que a condição~\ref{caso:Definicao2-4} é equivalente à impor a restrição que \(\funcao{D}_{\mathcal{M}}(w_{\mathcal{N}})\) seja verdadeiro
+            no mundo \(w_{\mathcal{N}}\) no modelo \Mathcal{N}. Uma importante propriedade de \PImodelos etiquetados é a seguinte:
+
+            \begin{lema}
+                \label{teo:Lema2}
+                Para todo \PImodelo etiquetado \Mathcal{E} e \(w \in \mathcal{E}\), \(\funcao{D}_{\mathcal{M}}(w)\) é \Mathcali{L}{12}-consistente. \qed
+            \end{lema}
+
+            \begin{proof}[Prova do Lema~\ref{teo:Lema2}]
+                Inicialmente, devemos assumir que \(\funcao{D}_{\mathcal{M}}(w)\) é \Mathcali{L}{12}-inconsistente,
+                para algum \(w \in \mathcal{E}\). Então, existe um conjunto finito e não vazio \(\Delta \subseteq \funcao{D}_{\mathcal{M}}(w)\) onde
+                \(\neg \bigwedge \Delta \in \mathcal{L}_{12}\)\footnote{Onde \(\bigwedge \Delta = (\delta_1 \land \dots \land \delta_n)\).}, ou seja,
+                existe algum \(\delta_i\) tal que \(\delta_i \in \Delta \text{ e } \neg\delta_i \in \mathcal{L}_{12}\).
+
+                Assumindo que \(\funcao{dist}(w_{\mathcal{M}}, w) = k\). Sabemos que, pela definição de \(\funcao{D}_{\mathcal{M}}\), todo \(\delta \in \Delta\)
+                é da forma \PHI ou \(\neg \phi\), sendo \(\phi \in \funcao{S}_{\pi}(\Sigma_{\mathcal{M}}(w))\).
+                Portanto \(\phi \in \funcao{S}_{\pi}(\Sigma(\mathcal{M}))\) e \(\Delta \subseteq \funcao{B}(\funcao{S}_{\pi}(\Sigma(\mathcal{M})))\),
+                mais ainda \(\funcao{d}_{\pi}(\phi) \leq \funcao{d}_{\pi}(\Sigma(\mathcal{M})) - k\) e, portanto, \(\funcao{d}_{\pi}(\Delta) \leq \funcao{d}_{\pi}(\Sigma(\mathcal{M})) - k\)
+                (isso se dá pelo Lema~\ref{caso:Lema1-1}, no caso \(\Sigma_{\mathcal{M}} \neq \emptyset \text{, pois } \Delta \neq \emptyset\)).
+
+                Temos então que \(\Box^{k}_{\pi} \neg \bigwedge \Delta \in \funcao{T}_{\pi}(\Sigma(\mathcal{M}))\) (pela Definição~\ref{caso:Definicao1-1}),
+                onde \(\Box^{k}_{\pi} \neg \bigwedge \Delta\) é verdadeiro no mundo \Mundobase em \Mathcal{E}
+                (pela Definição~\SubCaso{caso:Definicao1-2}{caso:Definicao1-2-4}). Isso implica que \(\neg \bigwedge \Delta\) é verdadeiro no mundo \textit{w}
+                em \Mathcal{E}, contradizendo o fato que \(\bigwedge \Delta\) é também verdadeiro em \Mathcal{E} (pela Definição~\ref{def:Diagramas}).
+
+                Portanto, \(\funcao{D}_{\mathcal{M}}(w)\) não pode ser \Mathcali{L}{12}-inconsistente.
+            \end{proof}
+
+            \begin{definicao}[Ancoramento Indireto]
+                \label{def:AncoramenteoInidireto}
+                Sendo \(\mathbf{E}\) um conjunto de \PImodelos e \OPImodelos etiquetados e sendo \(\mathcal{E}_{0}, \mathcal{E}_{1} \in \mathbf{E}\). A relação de ancoramento indireto,
+                dita ``\textit{\Mathcali{E}{1} está indiretamente ancorado em \Mathcali{E}{0}}'', é definida indutivamente como:
+                \begin{enumerate}[label=\textnormal{\ref{def:AncoramenteoInidireto}.\arabic*}]
+                    \item Se \Mathcali{E}{1} está ancorado em \Mathcali{E}{0}, então \Mathcali{E}{1} está indiretamente ancorado em \Mathcali{E}{0};
+
+                    \item Se, para algum \(\mathcal{E}_{2} \in \mathbf{E}\), onde \Mathcali{E}{2} está ancorado em \Mathcali{E}{0} e \Mathcali{E}{1} está indiretamente ancorado
+                        em \Mathcali{E}{2}, então \Mathcali{E}{1} está indiretamente ancorado em \Mathcali{E}{0}. \qed
+                \end{enumerate}
+            \end{definicao}
+
+            Com essa definição, podemos apresentar um dos conceitos mais importantes para a prova:
+
+            \begin{definicao}[Brotos]
+                \label{def:Definicao3}
+                Um \textit{broto de \Modeloinicial} é qualquer conjunto \textbf{B} de \PImodelos e \OPImodelos etiquetados tal que:
+                \begin{enumerate}[label=\textnormal{\ref{def:Definicao3}.\arabic*}]
+                    \item \(\modeloinicial \in \mathbf{B}\) e \Modeloinicial não está ancorado em nada em \textbf{B}; \label{caso:Definicao3-1}
+
+                    \item Para todo \PImodelo etiquetado \(\mathcal{E} \in \mathbf{B}, \text{ se } \mathcal{E} \neq \modeloinicial\) então \(\mathcal{E}\)
+                        está indiretamente ancorado em \Modeloinicial; \label{caso:Definicao3-2}
+
+                    \item Para cada \(\mathcal{E}_{0}, \mathcal{E}_{1} \in \mathbf{B}\), onde \(\mathcal{E}_{0} \neq \mathcal{E}_{1}\), \Mathcali{E}{0} e \Mathcali{E}{1} só compartilham
+                        um mundo se um está ancorado no outro. \label{caso:Definicao3-3} \qed
+                \end{enumerate}
+            \end{definicao}
+
+            Um broto pode ser entendido como um conjunto de modelos de tipos alternados, ancorados dois a dois, que inicia em \Modeloinicial e cujo intuito é
+            permitir a valoração de fórmulas com múltiplas modalidades distintas. Podemos então demonstrar algumas propriedades sobre brotos.
+
+            \begin{lema}
+                \label{teo:Lema3}
+                Sendo \textnormal{\textbf{B}} um broto de \Modeloinicial, então:
+                \begin{enumerate}[label=\textnormal{\ref{teo:Lema3}.\arabic*}]
+                    \item \textnormal{Para todo \(\mathcal{E}_{0} \in \mathbf{B}\) e \(w \in \mathcal{E}_{0}\), no máximo um \(\mathcal{E}_{1} \in \mathbf{B}\) está
+                        ancorado em \Mathcal{E} no mundo \textit{w} \label{caso:Lema3-1};}
+
+                    \item \textnormal{Para todo \(\mathcal{E}_{0} \in \mathbf{B}, \text{ se } \mathcal{E}_{0} \neq \modeloinicial\) então, \Mathcali{E}{0} está ancorado em exatamente um
+                    \(\mathcal{E}_{1} \in \mathbf{B}\); \label{caso:Lema3-2}}
+
+                    \item \textnormal{Todo \PImodelo etiquetado em \textbf{B} tem conjunto de mundos
+                        disjuntos\footnote{Ou seja, apenas modelos etiquetados de tipos diferentes compartilham mundos.};}\label{caso:Lema3-3}
+
+                    \item \textnormal{É chamada de \textit{cadeia de ancoramentos em \Mathcal{E} de comprimento n} a sequência finita \(\langle \mathcal{E}_{i} \ | \ i \leq n, n \geq 1 \rangle\)
+                    de modelos etiquetados em \textbf{B} iniciando com \Modeloinicial e terminando com \Mathcal{E} onde, para cada \(1 < i \leq n\), \Mathcali{E}{i} está
+                    ancorado em \Mathcali{E}{i-1}. Para todo \(\mathcal{E} \in \mathbf{B}\), existe exatamente uma cadeia de ancoramentos em \Mathcal{E} onde os elementos são
+                    disjuntos dois a dois;}\label{caso:Lema3-4}
+
+                    \item \textnormal{Se \(\mathcal{E}_{1} \in \mathbf{B}\) está ancorado em \(\mathcal{E}_{0} \in \mathbf{B}\) em \textit{w} e \(w \neq \mundoinicial\),
+                    então \textit{w} não é o mundo base de \Mathcali{E}{0};}\label{caso:Lema3-5}
+
+                    \item \textnormal{Para todo \PImodelo etiquetado \(\mathcal{E}_{0} = \langle \mathcal{M}, \mundobase, \Sigma(\mathcal{M}) \rangle \in \mathbf{B}\) e \(w \in \mathcal{E}_{0}\):}\label{caso:Lema3-6}
+                    \begin{enumerate}[label=\textnormal{(\roman*)}]
+                        \item \textnormal{Se \Mathcali{E}{0} está ancorado em \(\mathcal{E}_{1} = \langle \mathcal{N}, w_{\mathcal{N}}, \Sigma(\mathcal{N}) \rangle\)
+                            então \(\Sigma(\mathcal{M}) \subseteq \Sigma(\mathcal{N})\);} \label{caso:Lema3-6-1}
+
+                        \item \textnormal{\(\Sigma(\mathcal{M}) \subseteq \Sigma(\mathcal{\modeloinicial}) \subseteq \Theta\);} \label{caso:Lema3-6-2}
+
+                        \item \textnormal{\(\funcao{D}_{\mathcal{M}}(w) \subseteq \Theta\);} \label{caso:Lema3-6-3}
+
+                        \item \textnormal{\(\funcao{T}_{\pi}(\Sigma(\mathcal{M})) \subseteq \funcao{DC}_{\pi}(\Theta)\).} \label{caso:Lema3-6-4} \qed
+                    \end{enumerate}
+                \end{enumerate}
+            \end{lema}
+
+            \begin{proof}[Prova do Lema~\ref{teo:Lema3}]
+                \phantom{a}
+                \begin{description}
+                    \item[Caso~\ref{caso:Lema3-1}] Pela Definição~\ref{caso:Definicao2-1}, sabemos que só podemos ancorar um modelo etiquetado de tipo \PI/\OPI em
+                    um modelo etiquetado de tipo \OPI/\PI, pela Definição~\ref{caso:Definicao2-2} sabemos que estes dois modelos etiquetados compartilham apenas um mundo e,
+                    pela Definição~\ref{caso:Definicao3-3} sabemos que dois modelos etiquetados distinto compartilham mundos apenas quando um está ancorado no outro.
+                    Logo, concluímos que, para um mundo \(w \in \mathcal{E}_{0}\), há no máximo um modelo etiquetado \Mathcali{E}{1} em \textbf{B} ancorado neste mundo;
+
+                    \item[Caso~\ref{caso:Lema3-2}] Pela Definição~\ref{caso:Definicao3-2} sabemos que todo \PImodelo etiquetado diferente de \Modeloinicial está indiretamente
+                    ancorado em \(\modeloinicial\), esse fato, juntamente com as Definições~\ref{caso:Definicao3-3} e~\ref{caso:Definicao2-1}, nos diz que
+                    todo modelo etiquetado em \textbf{B} diferente de \Modeloinicial está ancorado em exatamente um outro modelo etiquetado em \textbf{B};
+
+                    \item[Caso~\ref{caso:Lema3-3}] Pelas Definições~\ref{caso:Definicao3-3} e~\ref{caso:Definicao2-1}, temos que todo par de modelos etiquetados de mesmo tipo
+                    tem conjuntos de mundos disjuntos;
+
+                    \item[Caso~\ref{caso:Lema3-4}] Pela definição indutiva de ancoramento indireto (Definição~\ref{def:AncoramenteoInidireto}) e pela
+                    Definição~\ref{caso:Definicao3-2}, sabemos que essa cadeia de ancoramentos existe. Pelo Lema~\ref{caso:Lema3-2}, sabemos que todo modelo etiquetado diferente
+                    de \Modeloinicial na cadeia tem exatamente um predecessor e, pela Definição~\ref{caso:Definicao3-1}, que nos diz que \Modeloinicial não está ancorado
+                    em nenhum modelo etiquetado, sabemos que \Modeloinicial não tem predecessor na cadeia, portanto, pode haver apenas uma cadeia de ancoramentos em \Mathcal{E};
+
+                    \item[Caso~\ref{caso:Lema3-5}] Decorre diretamente da Definição~\ref{caso:Definicao2-2};
+
+                    \item[Caso~\textnormal{\SubCaso{caso:Lema3-6}{caso:Lema3-6-1}}] Decorre da Definição~\ref{caso:Definicao2-3}:
+                    \(\Sigma(\mathcal{N}) = \funcao{S}_{\pi}(\Sigma_{\mathcal{M}}(w_{\mathcal{N}}))\) e do fato que \(\Sigma_{\mathcal{M}}(w) \subseteq \Sigma(\mathcal{M})\);
+
+                    \item[Caso~\textnormal{\SubCaso{caso:Lema3-6}{caso:Lema3-6-2}}] Pelos Lemas~\ref{caso:Lema3-4} e~\SubCaso{caso:Lema3-6}{caso:Lema3-6-1} concluímos que
+                    \(\Sigma(\mathcal{M}) \subseteq \Sigma(\modeloinicial)\), o que é suficiente para provar o caso, pois \(\Sigma(\modeloinicial) = \funcao{SC}(\Gamma) \subseteq \Theta\);
+
+                    \item[Caso~\textnormal{\SubCaso{caso:Lema3-6}{caso:Lema3-6-3}}] Pelo Lema~\SubCaso{caso:Lema3-6}{caso:Lema3-6-2} e pelos fatos que
+                    \(\funcao{D}_{\mathcal{M}}(w) \subseteq \funcao{B}(\Sigma_{\mathcal{M}}(w))\) e \(\Theta\) é fechado para \(\funcao{B}\), pela Definição~\ref{def:EspacoFormula};
+
+                    \item[Caso~\textnormal{\SubCaso{caso:Lema3-6}{caso:Lema3-6-4}}] Pelo Lema~\SubCaso{caso:Lema3-6}{caso:Lema3-6-2} e o fato que \(\Theta\) é fechado
+                    para \(\funcao{B}\), podemos concluir que \(\funcao{DC}_{\pi}(\funcao{B}(\Sigma({\mathcal{M}}))) \subseteq \funcao{DC}_{\pi}(\Theta)\) e, pela
+                    Definição~\SubCaso{caso:Definicao1-2}{caso:Definicao1-2-4}, que nos diz que \(\funcao{T}_{\pi}(\Sigma(\mathcal{M}))\) é verdadeiro em \Mundobase,
+                    temos que \(\funcao{T}_{\pi}(\Sigma(\mathcal{M})) \subseteq \funcao{DC}_{\pi}(\funcao{B}(\Sigma_{\mathcal{M}}))\). \qedhere
+
+                \end{description}
+            \end{proof}
+
+            Tendo apresentado estas propriedades, é possível observar que um broto de \Modeloinicial pode ser visto como uma árvore, cuja raiz é \Modeloinicial e
+            uma cadeia de ancoramentos para algum modelo etiquetado \Mathcal{E} é um ramo na árvore, partindo da raiz e indo até a folha \Mathcal{E}.
+
+            \begin{definicao}[Função de Seleção de Modelos]
+                \label{def:FuncaoSelecaoModelos}
+                Uma \textit{função de seleção de modelo f} é uma função que associa, para cada \PI e para cada conjunto \(\mathcal{L}_{\pi}\)-consistente de fórmulas
+                \(\Delta \subseteq \funcao{DC}_{\pi}(\Theta)\), um conjunto não vazio \(f_{\pi}(\Delta)\) de pares da forma \(\langle \mathcal{E}, w \rangle\) tal que \Mathcal{E} é
+                um modelo etiquetado para \(\mathcal{L}_{\pi}\) que satisfaz \DDELTA em \textit{w}. Para uma dada função de seleção \textit{f}, definimos:
+                \begin{itemize}
+                    \item \(\mathbb{M}_{f} = \{ \mathcal{E} \ | \ \langle \mathcal{E}, w \rangle \in f_{\pi}(\Delta), \Delta \subseteq \mathsf{LM}_{12} \text{ e \DDELTA é }
+                            \mathcal{L}_{\pi} \text{-consistente} \}\)
+
+                    \item \(\mathbb{W}_{f} = \bigcup \{\mathcal{W} \ | \ \mathcal{W} \in \mathcal{M}, \mathcal{M} \in \mathcal{E}, \mathcal{E} \in \mathbb{M}_{f} \}\)
+
+                    \item \(\aleph_{f} = max\{ \aleph_{0}, sup\left(\{|\mathcal{W}| \ | \ \mathcal{M} = \langle \mathcal{W}, \mathcal{R}, \mathcal{V} \rangle \in \mathbb{M}_{f}\}\right) \}\)
+                \end{itemize}
+                As funções de seleção de modelos analisadas respeitam as seguintes propriedades:
+                \begin{enumerate}%[label=\textnormal{\ref{def:FuncaoSelecaoModelos}.\arabic*}]
+                    \item \Mathbbi{W}{f} é um conjunto e \(|\mathbb{W}_{f}| > \aleph_{f}\);
+
+                    \item Para cada conjunto \Mathcali{L}{12}-consistente \(\Delta \subseteq \funcao{DC}_{\pi}(\Theta)\), \(f_{\pi}(\Delta)\) é fechado para isomorfismo
+                    em (ou seja, entre objetos de) \Mathbbi{W}{f}. \qed
+                \end{enumerate}
+            \end{definicao}
+
+            Para uma dada função \textit{f}, iremos assumir que \(\langle \modeloinicial, \mundoinicial \rangle \in f_{\pi}(\Gamma \cup \funcao{T}_{\pi}(\Sigma(\modeloinicial)))\)
+            e que os mundos de todos os brotos de \Modeloinicial estarão contidos no conjunto \Mathbbi{W}{f}.
+
+            \begin{definicao}[Conjunto de Brotos]
+                \label{def:ConjuntoBrotos}
+                Um broto de \Modeloinicial é chamado de um \textit{f-broto} de \Modeloinicial se, para cada \PImodelo etiquetado no broto,
+                \(\langle \mathcal{E}, \mundobase \rangle \in f_{\pi}(\funcao{DG}(\Sigma(\mathcal{M}) \cup \funcao{T}_{\pi}(\Sigma(\mathcal{M}))))\).
+
+                Para cada \textit{f}, chamaremos de \textit{\(\mathfrak{B}_{f}\) o conjunto de todos os \textit{f}-brotos de \(\modeloinicial\)}. \qed
+            \end{definicao}
+
+            É importante ressaltar que \Mathfraki{B}{f} é um conjunto de conjuntos de modelos etiquetados, em específico, é um conjunto de conjuntos que satisfazem as
+            Definição~\ref{def:Definicao3} e~\ref{def:ConjuntoBrotos}.
+
+            \begin{lema}
+                \label{teo:Lema4}
+                Para cada \textit{f}, o conjunto \Mathfraki{B}{f} tem um elemento máximo. \qed
+            \end{lema}
+
+            \begin{proof}[Prova do Lema~\ref{teo:Lema4}]
+                O Lema de Zorn~\cite{zorn1935remark} nos diz que, sendo \textit{X} um conjunto parcialmente ordenado (por alguma relação de ordenamento <), se todo
+                subconjunto totalmente ordenado de \textit{X} tem um limite superior, então \textit{X} tem um elemento máximo (com relação a <).
+
+                Considerando \Mathfraki{B}{f} parcialmente ordenado por \(\subseteq\) e sendo \textit{C} um subconjunto\footnote{Note que \textit{C} é um conjunto de conjuntos.}
+                totalmente ordenado de \Mathfraki{B}{f}. O conjunto \(\bigcup C\) é um limite superior de \textit{C} pois \(S \subseteq C\), para todo broto \(S \in C\).
+                Mais ainda, \(\bigcup C\) satisfaz todas as condições para ser um \textit{f}-broto (é fácil observar que a operação \(\cup\) preserva as
+                propriedades~\ref{caso:Definicao3-1} --~\ref{caso:Definicao3-3} e~\ref{def:ConjuntoBrotos}).
+
+                Portanto, \Mathfraki{B}{f} tem um elemento máximo.
+            \end{proof}
+
+            É importante esclarecer o que significa \Mathfraki{B}{f} ter um elemento máximo; como \Mathfraki{B}{f} é um conjunto de brotos e cada broto pode ser entendido
+            como uma árvore cuja raiz é \Modeloinicial, o elemento máximo de \Mathfraki{B}{f} é a maior árvore no conjunto, ou seja,
+            a maior sequência de modelos ancorados dois a dois partindo do modelo inicial. A importância de \Mathfraki{B}{f} ter um elemento máximo ficará clara a frente.
+
+            O elemento máximo de \Mathfraki{B}{f} respeita a seguinte importante propriedade:
+
+            \begin{lema}
+                \label{teo:Lema5}
+                Sendo \MathcalI{S}{+} um elemento máximo de \Mathfraki{B}{f}, então, para todo \(\mathcal{E}_{0} \neq \modeloinicial \in \mathcal{S}^{+}\) e mundo não base
+                \(w \in \mathcal{E}_{0}\), então existe um \(\mathcal{E}_{1} \in \mathcal{S}^{+}\) ancorado em \Mathcali{E}{0} no mundo \textit{w}. \qed
+            \end{lema}
+
+            \begin{proof}[Prova do Lema~\ref{teo:Lema5}]
+                Assumindo que \MathcalI{S}{+} é um elemento máximo de \Mathfraki{B}{f} e assumindo que \(\mathcal{E}_{0} \neq \modeloinicial \in \mathcal{S}^{+}\)
+                é um \PImodelo etiquetado, \(w \in \mathcal{E}_{0}\) um mundo não base de \Mathcali{E}{0} e que não há qualquer
+                \(\mathcal{E}_{1} \in \mathcal{S}^{+}\) ancorado em \Mathcali{E}{0} no mundo \textit{w}.
+
+                Pelo Lema~\ref{teo:Lema2}, sabemos que o diagrama de concordância \(\funcao{D}_{\mathcal{M}}(w)\) de \textit{w} em \Mathcali{E}{0} é
+                \Mathcali{L}{12}-consistente. Como \(\funcao{T}_{\mOPI}(\funcao{S}_{\pi}(\Sigma_{\mathcal{M}}(w)))\) é o um conjunto de teoremas de \Mathcali{L}{12},
+                sabemos que \(\funcao{D}_{\mathcal{M}}(w) \cup \funcao{T}_{\mOPI}(\funcao{S}_{\pi}(\Sigma_{\mathcal{M}}(w)))\) é
+                \Mathcali{L}{12}-consistente e, portanto, \Mathcali{L}{\mOPI}-consistente.
+
+                Como \(\funcao{D}_{\mathcal{M}}(w) \cup \funcao{T}_{\mOPI}(\Sigma(\mathcal{M})) \subseteq \funcao{DC}_{\mOPI}(\Theta)\) (pelo Lema~\ref{caso:Lema3-6}) sabemos que
+                \(\funcao{D}_{\mathcal{M}}(w) \cup \funcao{T}_{\mOPI}(\funcao{S}_{\pi}(\Sigma_{\mathcal{M}}(w)))\) é verdadeiro em algum mundo \(w_i\) de um \OPImodelo etiquetado \Mathcali{E}{1}
+                tal que \(\langle \mathcal{E}_{1}, w_i \rangle \in f_{\pi}(\funcao{D}_{\mathcal{M}}(w) \cup \funcao{T}_{\mOPI}(\funcao{S}_{\pi}(\Sigma_{\mathcal{M}}(w))))\).
+                Portanto, sendo \Mathcal{N} um modelo onde \(\mathcal{N} \in \mathcal{E}_{1}\) e \(\mathcal{W}_{\mathcal{N}} \in \mathcal{N}\), temos que
+                \(\mathcal{W}_{\mathcal{N}} \subseteq \mathbb{W}_f\) e \(|\mathcal{W}_{\mathcal{N}}| \leq \aleph_{f}\).
+
+                Como \textit{f} é fechado sob isomorfismo em \(\mathbb{W}_f\), podemos tomar \(w_i\) como sendo \textit{w}, declarar \textit{w} como o mundo
+                base de \Mathcali{E}{1} e tomar \(\Sigma(\mathcal{N}) = \funcao{S}_{\pi}(\Sigma_{\mathcal{M}}(w))\)
+                (portanto \(\funcao{D}_{\mathcal{M}(w)} = \funcao{DG}(\Sigma(\mathcal{N}))\)).
+
+                Como \(\mathcal{S}^{+} \in \mathfrak{B}_{f}\), todo modelo etiquetado em \MathcalI{S}{+} tem, no máximo, cardinalidade\footnote{A cardinalidade de um modelo etiquetado
+                se refere a cardinalidade do conjunto de mundos do modelo associado ao modelo etiquetado.} \(\aleph_{f}\).
+                Pelo fato que \MathcalI{S}{+} tem uma estrutura de árvore, sabemos que \MathcalI{S}{+} contém, no máximo, \((\aleph_{f})^{n-1} = \aleph_{f}\)
+                modelos etiquetados com cadeias de ancoramento de comprimento \textit{n}. Portanto, \MathcalI{S}{+} é um união contável de conjuntos de modelos etiquetados cuja
+                cardinalidade é no máximo \(\aleph_{f}\), ou seja, \(|\mathcal{S}^{+}| \leq \aleph_{f}\).
+
+                Portanto, sendo \(\mathcal{X} = \bigcup \{\mathcal{W} \ | \ \mathcal{W} \in \mathcal{M}, \mathcal{M} \in \mathcal{E}, \mathcal{E} \in \mathcal{S}^{+} \}\), temos
+                \(|\mathcal{X}| \leq \aleph_{f} < |\mathbb{W}_{f}|\), adicionalmente \(|\mathcal{W}_{\mathcal{N}}| \leq \aleph_{f} < |\mathbb{W}_{f}|\).
+                Como \(f_{\mOPI}(\funcao{DG}(\Sigma(\mathcal{N}) \cup \funcao{T}_{\mOPI}(\Sigma(\mathcal{N}))))\) é fechado sob isomorfismo em \(\mathbb{W}_{f}\),
+                podemos assumir que todos os mundos não base de \Mathcali{E}{1} são elementos do conjunto \(\mathbb{W}_{f}-\mathcal{X}\).
+
+                Assim, temos que \Mathcali{E}{1} satisfaz todas as condições para ser um \OPImodelo etiquetado ancorado em \Mathcali{E}{0} no mundo \textit{w}
+                e que \Mathcali{E}{1} está indiretamente ancorado em \Modeloinicial (Definição~\ref{def:AncoramenteoInidireto}).
+                Os mundos não base de \Mathcali{E}{1} são disjuntos do conjunto \(\mathcal{X}\) e \Mathcali{E}{1} não compartilha o mundo \textit{w}
+                com qualquer outro modelo diferente de \Mathcali{E}{0} em \MathcalI{S}{+} (Definição~\ref{caso:Definicao3-1} e hipótese), portanto
+                \(\mathcal{S}^{+} \cup \{\mathcal{E}_{1}\}\) é um \textit{f}-broto que contém \MathcalI{S}{+}, ou seja, \MathcalI{S}{+} não é máximo,
+                o que é contraditório.
+            \end{proof}
+
+            Note que essa prova não afirma que \MathcalI{S}{+} será necessariamente infinito. Considere, por exemplo a cadeia de ancoramentos
+            \(\modeloinicial, \dots, \mathcal{A}, \mathcal{B}\) e considere \(\mathcal{W}_{\mathcal{A}(\mathcal{B})}\) o conjunto de mundos do modelo
+            associado ao modelo etiquetado \(\mathcal{A}(\mathcal{B})\), sendo \(\mathcal{W}_{\mathcal{A}} = \{w_{\mathcal{A}}, w_{\mathcal{B}}\}\),
+            \(\mathcal{W}_{\mathcal{B}} = \{w_{\mathcal{B}}\}\) e \(\modeloinicial, \dots, \mathcal{A}, \mathcal{B} \in \mathcal{S}^{+}\). Portanto, existe um
+            modelo etiquetado ancorado em um mundo não base de \Mathcal{A} onde não há nenhum outro modelo ancorado, pois seu único mundo é o mundo base.
+
+            \begin{definicao}[Modelos Máximos]
+                \label{def:Definicao4}
+                Para cada elemento máximo \MathcalI{S}{+} em \Mathfraki{B}{f}, definimos o seu 12-modelo correspondente \(\mathcal{M}(\mathcal{S}^{+})\),
+                sendo \(\mathcal{E} = \langle \mathcal{M}, \mundobase, \Sigma(\mathcal{M}) \rangle \in \mathcal{S}^{+}\) um modelo etiquetado qualquer, como:
+                \begin{alignat*}{3}
+                    &\mathcal{W}_{\mathcal{M}(\mathcal{S}^{+})}\ &=&\  \bigcup\{\mathcal{W} \ | \ \mathcal{W} \in \mathcal{M}\} \\
+                    &\mathcal{R}_{\pi, \mathcal{M}(\mathcal{S}^{+})}\ &=&\  \bigcup\{\mathcal{R}_{\pi} \ | \ \mathcal{R}_{\pi} \in \mathcal{M}
+                        \text{ e } \mathcal{M} \text{ é do tipo \PI}\} \\
+                    &\mathcal{V}_{\mathcal{M}(\mathcal{S}^{+})}(p)\ &=&\  \bigcup\{\mathcal{V}_{\pi}(p) \ | \ \mathcal{V}_{\pi} \in \mathcal{M}\}
+                \end{alignat*}
+                Este modelo é chamado de \textit{modelo \Mathfraki{B}{f}-máximo} ou simplesmente \textit{modelo máximo}. \qed
+            \end{definicao}
+
+            Com essa definição, temos a seguinte propriedade importante:
+
+            \begin{lema}
+                \label{teo:Lema6}
+                Sendo \(\mathcal{M}(\mathcal{S}^{+}) = \langle \mathcal{W}, \mathcal{R}_{1}, \mathcal{R}_2, \mathcal{V} \rangle\) um modelo máximo, então:
+                \begin{enumerate}[label=\textnormal{\ref{teo:Lema6}.\arabic*}]
+                    \item \textnormal{Todo \(w \in \mathcal{W}\) pertence exatamente a um modelo \(\mathcal{M}^{1}(w)\), este que pertence a um 1-modelo etiquetado
+                    \(\mathcal{E}_{0} \in \elementomaximo\), e a um modelo \(\mathcal{M}^{2}(w)\), este que pertence a um 2-modelo etiquetado \(\mathcal{E}_{1} \in \elementomaximo\),
+                    onde \(\mathcal{E}_{0}/\mathcal{E}_{1}\) está ancorado em \(\mathcal{E}_{1}/\mathcal{E}_{0}\) no mundo \textit{w};} \label{caso:Lema6-1}
+
+                    \item \textnormal{O \PI-frame \(\langle \mathcal{W}, \mathcal{R}_{\pi} \rangle\) é a união disjunta de todos os \PI-frames
+                    \(\langle \mathcal{W}, \mathcal{R}_{\pi} \rangle \in \mathcal{M}\) onde \(\mathcal{M} \in \mathcal{E} \text{ e } \mathcal{E} \in \elementomaximo\).} \label{caso:Lema6-2} \qed
+                \end{enumerate}
+            \end{lema}
+
+            \begin{proof}[Prova do Lema~\ref{teo:Lema6}]
+                \phantom{a}
+                \begin{description}
+                    \item[Caso~\ref{caso:Lema6-1}] Pela definição de \(\mathcal{M}(\elementomaximo)\), sabemos que \textit{w} está em algum \PImodelo \(\mathcal{M}_{\pi}(w)\).
+                    Então temos dois casos para considerar:
+                    \begin{enumerate}[label=(\roman*)]
+                        \item \(w = \mundoinicial\) ou \(w \neq \mundoinicial\) e \textit{w} não é o mundo base de \(\mathcal{M}_{\pi}(w)\).\\
+                            Nesse caso, temos que \textit{w} está em algum \OPImodelo \(\mathcal{M}_{\mOPI}(w)\) que está ancorado em \(\mathcal{M}_{\pi}(w)\)
+                            no mundo \textit{w}, pelo Lema~\ref{teo:Lema5}.
+
+                        \item \(w \neq \mundoinicial\) e \textit{w} é o mundo base de \(\mathcal{M}_{\pi}(w)\) (portanto \(\mathcal{M}_{\pi}(w) \neq \modeloinicial\)).\\
+                            Nesse caso, \textit{w} está em algum \OPImodelo \(\mathcal{M}_{\mOPI}(w)\) tal que \(\mathcal{M}_{\pi}(w)\) está ancorado em \(\mathcal{M}_{\mOPI}(w)\)
+                            no mundo \textit{w}, pelo Lema~\ref{caso:Lema3-2}.
+                    \end{enumerate}
+                    Em ambos os casos, temos que \textit{w} está em pelo menos um \(\mathcal{M}^{1}(w)\) e um \(\mathcal{M}^{2}(w)\), um ancorado no outro em \textit{w}.
+                    A unicidade de \(\mathcal{M}^{1}(w)\) e \(\mathcal{M}^{2}(w)\) é consequência direta do Lema~\ref{caso:Lema3-3};
+
+                    \item[Caso~\ref{caso:Lema6-2}] Pelo Lema~\ref{caso:Lema6-1}, sabemos que \(\mathcal{W} = \bigcup\{\mathcal{W} \ | \ \mathcal{M} \in \mathcal{E}, \mathcal{E} \in \mathcal{S}^{+}
+                    \text{ e \Mathcal{M} é do tipo \PI}\}\) é valido para \(\pi \in \{1,2\}\), já o Lema~\ref{caso:Lema3-3} nos diz que os conjuntos de mundos de \PImodelos são mutuamente disjuntos.
+                    \qedhere
+                \end{description}
+            \end{proof}
+
+            Os principais resultados relacionados ao modelo \(\mathcal{M}(\elementomaximo)\) são o \textit{Lema de Concordância} e o \textit{Lema do Frame}.
+            O Lema da Concordância nos diz que o modelo ``grande'' \(\mathcal{M}(\elementomaximo)\) concorda com todos os modelos ``pequenos'' \(\mathcal{M}_{\pi}(w)\) na valoração
+            de todos os componentes booleanos de elementos em \(\Sigma_{\mathcal{M}_{\pi}(w)}(w)\) (lembre-se das Definições~\ref{def:FragmentosMonomodais} e~\ref{def:FuncoesElementos}).
+            No que segue, escrevemos \(\mathcal{M}_{\pi}\) ao invés de \(\mathcal{M}_{\pi}(w)\) quando não for necessário indicar \textit{w}.
+
+            \begin{lema}[Lema de Concondância]
+                \label{teo:Lema7}
+                Sendo \(\mathcal{M} = \langle \mathcal{W}, \mathcal{R}_{1}, \mathcal{R}_{2}, \mathcal{V} \rangle\) um modelo máximo. Então, para cada \(w \in \mathcal{W}\) e
+                \(\phi \in \funcao{B}(\Sigma_{\mathcal{M}_{\pi}}(w))\), \PHI será verdadeiro em \textit{w} no \PImodelo
+                \(\mathcal{M}_{\pi} = \langle \mathcal{W}_{\pi}, \mathcal{S}_{\pi}, \mathcal{V}_{\pi} \rangle\) se, e somente se, \PHI for verdadeiro em \textit{w} no 12-modelo \Mathcal{M}.
+            \end{lema}
+
+            \begin{proof}[Prova do Lema~\ref{teo:Lema7}]
+                Provaremos por indução em \PHI:
+                \begin{description}
+                    \item[\textnormal{Caso Base \(\phi := p, p \in \mathbb{P}\):}] Dividimos essa prova em dois casos:
+                    \begin{itemize}
+                        \item[(\(\Rightarrow\))] Como \(\mathcal{M}_{\pi}, w \Vdash p\) temos que \(w \in \mathcal{V}_{\pi}(p)\), logo \(w \in \mathcal{V}(p)\)
+                            pela Definição~\ref{def:Definicao4};
+
+                        \item[(\(\Leftarrow\))] Como \(\mathcal{M}, w \Vdash p\) sabemos que \(w \in \mathcal{V}(p)\), logo temos que \(w \in \mathcal{V}_{\pi}^{1}(p)\)
+                            para algum \(\mathcal{N} = \langle \mathcal{W}_{\pi}^{1}, \mathcal{S}_{\pi}^{1}, \mathcal{V}_{\pi}^{1} \rangle \in \elementomaximo\),
+                            pela Definição~\ref{def:Definicao4}, onde \(\mathcal{N}\) deve ser o modelo \(\mathcal{M}^{1}(w)\) ou o modelo \(\mathcal{M}^{2}(w)\) no Lema~\ref{caso:Lema6-1}.
+                            O Lema~\ref{caso:Lema6-1} também nos diz que um modelo deve estar ancorado no outro no mundo \textit{w} e, qualquer que seja o caso, temos que
+                            \(p \in \Sigma_{\mathcal{M}^{1}}(w)\) e \(p \in \Sigma_{\mathcal{M}^{2}}(w)\), pela Definição~\ref{caso:Definicao2-3}.
+                            A Definição~\ref{caso:Definicao2-4} nos diz que \(\mathcal{M}^{1}, w \Vdash p\) sse \(\mathcal{M}^{2}, w \Vdash p\), ou seja,
+                            temos \(\mathcal{M}_{\pi}, w \Vdash p\).
+                    \end{itemize}
+
+                    \item[\textnormal{Caso \(\phi := \neg \psi\) e \(\phi := \psi \lor \gamma\):}] Decorrem diretamente da hipótese de indução.
+                    % Temos a seguinte hipótese de indução:
+                    %     \[
+                    %         \forall w, \psi, \psi \in \funcao{B}(\Sigma_{\mathcal{M}_{\pi}}(w)) \land \mathcal{M}_{\pi}, w \Vdash \psi \Leftrightarrow \mathcal{M}, w \Vdash \psi
+                    %     \]
+                    %     Queremos provar \(\mathcal{M}_{\pi}, w \Vdash \neg \psi \Leftrightarrow \mathcal{M}, w \Vdash \neg \psi\), o que é logicamente equivalente
+                    %     a hipótese de indução.
+
+                    % \item[\textnormal{Caso \(\phi := \psi \lor \gamma\):}] Temos a seguinte hipótese de indução:
+                    %     \begin{equation}
+                    %         \forall w, \psi, \psi \in \funcao{B}(\Sigma_{\mathcal{M}_{\pi}}(w)) \land \mathcal{M}_{\pi}, w \Vdash \psi \Leftrightarrow \mathcal{M}, w \Vdash \psi
+                    %     \end{equation}
+                    %     Dividiremos a prova em dois casos:
+                    %     \begin{itemize}
+                    %         \item[(\(\Rightarrow\))] Como \(\mathcal{M}_{\pi}, w \Vdash \psi \lor \gamma\), temos dois casos disjuntos:
+
+                    %         \begin{enumerate}[label=(\roman*)]
+                    %             \item \(\mathcal{M}_{\pi}, w \Vdash \psi\), nesse caso, temos pela hipótese que \(\mathcal{M}, w \Vdash \psi\)
+
+                    %             \item \(\mathcal{M}_{\pi}, w \Vdash \gamma\), nesse caso, temos pela hipótese que \(\mathcal{M}, w \Vdash \gamma\)
+                    %         \end{enumerate}
+                    %         Portanto, concluímos que \(\mathcal{M}, w \Vdash \psi \lor \gamma\).
+
+                    %         \item[(\(\Leftarrow\))] Prova análoga ao caso anterior.
+                    %     \end{itemize}
+
+                    \item[\textnormal{Caso \(\phi := \Box_{\pi} \psi\):}] Temos a seguinte hipótese de indução:
+                    \[
+                        \forall w, \psi, \psi \in \funcao{B}(\Sigma_{\mathcal{M}_{\pi}}(w)) \land \mathcal{M}_{\pi}, w \Vdash \psi \Leftrightarrow \mathcal{M}, w \Vdash \psi
+                    \]
+                    Sabemos que \(\mathcal{M}_{\pi}, w \Vdash \Box_{\pi} \psi\) será válido sse \(\forall v, w \mathcal{S}_{\pi} v \to \mathcal{M}_{\pi}, v \Vdash \psi\) e,
+                    pelo Lema~\ref{caso:Lema6-2}, sabemos que isso será válido sse \(\forall v, w \mathcal{R}_{\pi} v \to \mathcal{M}_{\pi}, v \Vdash \psi\)\footnote{Note que
+                    \(\mathcal{R}_{\pi}\) se refere às relações \(\mathcal{R}_{1}\) e \(\mathcal{R}_{2}\) do modelo \(\mathcal{M}\).} for válido.
+                    Pelo Lema~\ref{caso:Lema6-1}, sabemos que caso \(w \mathcal{R}_{\pi} v\) então \(\mathcal{M}_{\pi} = \mathcal{M}_{\pi}(w) = \mathcal{M}_{\pi}(v)\), ou seja,
+                    \textit{w} e \textit{v} estão no mesmo \PImodelo.
+
+                    Ademais, temos que \(\psi \in \funcao{B}(\Sigma_{\mathcal{M}_{\pi}}(v))\) pois \(\funcao{TC}(\psi) \subseteq \Sigma(\mathcal{M}_{\pi}(v))\)
+                    (no caso onde \(w \neq v\), isso é devido a Definição~\SubCaso{caso:Definicao1-3}{caso:Definicao1-3-2}, já no caso onde \(w = v\), isso é devido as
+                    Definições~\SubCaso{caso:Definicao1-2}{caso:Definicao1-2-3} e~\SubCaso{caso:Definicao1-3}{caso:Definicao1-3-1}).
+                    Como \(\psi \in \funcao{B}(\Sigma_{\mathcal{M}_{\pi}}(v))\), podemos aplicar a hipótese de indução em \(\mathcal{M}_{\pi}, v \Vdash \psi\), portanto, temos:
+                    \(\forall v, w \mathcal{R}_{\pi} v \to \mathcal{M}, v \Vdash \psi\), que será verdadeiro apenas se \(\mathcal{M}, w \Vdash \Box_{\pi} \psi\), portanto
+                    provamos o caso.
+
+                    \item[\textnormal{Caso \(\phi := \Box_{\mOPI} \psi\):}] Temos a seguinte hipótese de indução:
+                    \[
+                        \forall w, \psi, \psi \in \funcao{B}(\Sigma_{\mathcal{M}_{\pi}}(w)) \land \mathcal{M}_{\pi}, w \Vdash \psi \Leftrightarrow \mathcal{M}, w \Vdash \psi
+                    \]
+                    Vamos assumir que \(\Box_{\mOPI} \psi \in \Sigma_{\mathcal{M}_{\pi}}(w)\). Temos que ou \(\mathcal{M}_{\pi}\) está ancorado em
+                    \(\mathcal{M}_{\mOPI}\) em \textit{w} ou vice versa. Em ambos os casos, o fato que \(\Box_{\mOPI} \psi \in \Sigma_{\mathcal{M}_{\mOPI}}(w)\) decorre da
+                    Definição~\ref{caso:Definicao2-3} (no primeiro caso, pelo Lema~\SubCaso{caso:Lema3-6}{caso:Lema3-6-1}, no segundo caso pelo fato que \(\Box_{\mOPI} \psi\) é um \PI-elemento).
+                    Pela Definição~\ref{caso:Definicao2-4} temos que \(\mathcal{M}_{\pi}, w \Vdash \Box_{\mOPI} \psi\) sse \(\mathcal{M}_{\mOPI}, w \Vdash \Box_{\mOPI} \psi\),
+                    sendo que \(\mathcal{M}_{\mOPI}, w \Vdash \Box_{\mOPI} \psi\) será verdadeiro sse \(\mathcal{M}, w \Vdash \Box_{\mOPI} \psi\), o que pode ser provado de forma análoga ao
+                    caso anterior, se substituirmos \(\Box_{\pi}\) por \(\Box_{\mOPI}\). \qedhere
+                \end{description}
+            \end{proof}
+
+            \begin{definicao}[Condição de Frame]
+                \label{def:CondicaoFrame}
+                Uma função \textit{f satisfaz a condição de frame} se, para cada conjunto de fórmulas \Mathcali{L}{\pi}-consistente \(\Delta \subseteq \funcao{DC}_{\pi}(\Theta)\),
+                os modelos em \(f_{\pi}(\Delta)\) são baseados em frames para \(\mathcal{L}_{\pi}\).\qed
+            \end{definicao}
+
+            Uma função \textit{f} que satisfaz a condição de frame existe quando \Mathcali{L}{1} e \Mathcali{L}{2} são completas com relação à \(\funcao{DC}_{\pi}(\Theta)\).
+            A existência dessa função se dá pela completude de \Mathcali{L}{1} e \Mathcali{L}{2} - como \(\mathcal{L}_{\pi}\) é completa, temos que todo
+            \(\Delta \subseteq \funcao{DC}_{\pi}(\Theta)\) é satisfazível em algum modelo baseado num frame para \(\mathcal{L}_{\pi}\), logo, pela definição de função de seleção de
+            modelos, sabemos que todos os modelos em \(f_{\pi}(\Delta)\) são baseados em frames para \(\mathcal{L}_{\pi}\).
+
+            \begin{lema}[Lema do Frame]
+                \label{teo:Lema8}
+                Sendo \(\mathcal{M} = \langle \mathcal{W}, \mathcal{R}_{1}, \mathcal{R}_{2}, \mathcal{V} \rangle\) um modelo \Mathfraki{B}{f}-máximo onde \textit{f} satisfaz
+                a Definição~\ref{def:CondicaoFrame}. Então \(\langle \mathcal{W}, \mathcal{R}_{1}, \mathcal{R}_{2}\rangle\) é um 12-frame para \(\mathcal{L}_{12}\) \qed
+            \end{lema}
+
+            \begin{proof}[Prova do Lema~\ref{teo:Lema8}]
+                Sabemos, pela definição de união disjunta e pela definição de frames, que conjuntos de frames são fechados para a operação de união
+                disjunta\footnote{Por exemplo: \(\mathcal{F}_{1} = \langle \{w_{0}, w_{1}\}, \{\langle w_{0}, w_{1} \rangle, \langle w_{0}, w_{0} \rangle,
+                \langle w_{1}, w_{1} \rangle\} \rangle\) e \(\mathcal{F}_{2} = \langle \{w_{2}, w_{3}\}, \{\langle w_{2}, w_{3} \rangle\} \rangle\), sua união disjunta será
+                o frame \(\mathcal{F}_{12} = \langle \{w_{{0}_{1}}, w_{{1}_{1}}, w_{{2}_{2}}, w_{{3}_{2}}\}, \{\langle w_{{0}_{1}}, w_{{1}_{1}} \rangle, \langle w_{{0}_{1}}, w_{{0}_{1}} \rangle,
+                \langle w_{{1}_{1}}, w_{{1}_{1}} \rangle, \langle w_{{2}_{2}}, w_{{3}_{2}} \rangle\} \rangle\).}.
+                Com isso e o Lema~\ref{caso:Lema6-2}, temos que o par \(\langle \mathcal{W}, \mathcal{R}_{1} \rangle\) descreve um frame para a lógica \(\mathcal{L}_{1}\) e o par
+                \(\langle \mathcal{W}, \mathcal{R}_{2} \rangle\) descreve um frame para a lógica \(\mathcal{L}_{2}\). Pela definição de 12-frames e pelo Teorema~\ref{teo:TransCorretude},
+                concluímos a prova.
+            \end{proof}
+
+            Como \(\Gamma \subseteq \funcao{B}(\Sigma_{\modeloinicial}(\mundoinicial))\) é verdadeiro em \Mundoinicial no modelo \(\modeloinicial = \mathcal{M}^{1}(\mundoinicial)\), o
+            Lema~\ref{teo:Lema7} nos diz que \GAMMA é verdadeiro em \Mundoinicial no 12-modelo \Mathcal{M}. Como \Mathcali{L}{1} e \Mathcali{L}{2} são completas, podemos assumir
+            alguma função de seleção de modelos \textit{f} que satisfaz a Definição~\ref{def:CondicaoFrame}; portanto, o frame que define \(\mathcal{M}\) é um frame para
+            \Mathcali{L}{12}, pelo Lema~\ref{teo:Lema8}.
+
+            Portanto, com este método conseguimos construir um modelo que satisfaz todo subconjunto \(\mathcal{L}_{12}-\)consistente do espaço de fórmulas \(\Theta\).
+            Assim, concluímos a prova do Teorema~\ref{teo:TransCompletude}.
+        \end{proof}
+
+
+\end{apendicesenv}
+% ---

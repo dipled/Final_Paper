@@ -1,0 +1,527 @@
+\providecommand{\abntreprintinfo}[1]{%
+ \citeonline{#1}}
+\setlength{\labelsep}{0pt}\begin{thebibliography}{}
+\providecommand{\abntrefinfo}[3]{}
+\providecommand{\abntbstabout}[1]{}
+\abntbstabout{v-1.9.7 }
+
+\bibitem[Appel e Haken 1976]{appel1976every}
+\abntrefinfo{Appel e Haken}{APPEL; HAKEN}{1976}
+{APPEL, Kenneth; HAKEN, Wolfgang. Every planar map is four colorable.
+\textbf{Bulletin of the American mathematical Society}, American Mathematical
+  Society, v.~82, n.~5, p. 711--712, 1976.}
+
+\bibitem[Appel, Haken e Koch 1977]{appel1977every}
+\abntrefinfo{Appel, Haken e Koch}{APPEL; HAKEN; KOCH}{1977}
+{APPEL, Kenneth; HAKEN, Wolfgang; KOCH, John. Every planar map is four
+  colorable. part ii: Reducibility.
+\textbf{Illinois Journal of Mathematics}, Duke University Press, v.~21, n.~3,
+  p. 491--567, 1977.}
+
+\bibitem[Appel e Haken 1989]{appel1989every}
+\abntrefinfo{Appel e Haken}{APPEL; HAKEN}{1989}
+{APPEL, Kenneth~I; HAKEN, Wolfgang. \textbf{Every planar map is four
+  colorable}. Washington: American Mathematical Society, 1989. v.~98.}
+
+\bibitem[Avigad, Moura e Kong 2017]{avigad2017theorem}
+\abntrefinfo{Avigad, Moura e Kong}{AVIGAD; MOURA; KONG}{2017}
+{AVIGAD, Jeremy; MOURA, Leonardo de; KONG, Soonho. Theorem proving in lean.
+\textbf{Online at
+  \url{https://leanprover.github.io/theorem_proving_in_lean/theorem_proving_in_lean.pdf}},
+  2017.}
+
+\bibitem[Azurat e Prasetya 2002]{azurat2002survey}
+\abntrefinfo{Azurat e Prasetya}{AZURAT; PRASETYA}{2002}
+{AZURAT, Ade; PRASETYA, Wishnu. \textbf{A Survey on Embedding Programming
+  Logics in a Theorem Prover}.
+Utrecht, 2002.}
+
+\bibitem[Barendregt 1991]{barendregt1991introduction}
+\abntrefinfo{Barendregt}{BARENDREGT}{1991}
+{BARENDREGT, Henk. Introduction to generalized type systems.
+\textbf{Journal of Functional Programming}, Cambridge University Press, v.~1,
+  n.~2, p. 125--154, 1991.}
+
+\bibitem[Barendregt e Geuvers 2001]{barendregt2001proof}
+\abntrefinfo{Barendregt e Geuvers}{BARENDREGT; GEUVERS}{2001}
+{BARENDREGT, Henk; GEUVERS, Herman. Proof-assistants using dependent type
+  systems. In:  \textbf{Handbook of Automated Reasoning}. NLD: Elsevier Science
+  Publishers B. V., 2001. v.~2, p. 1149--1238.
+ISBN 0444508120.}
+
+\bibitem[Benzm{\"u}ller 2010]{benzmuller2010combining}
+\abntrefinfo{Benzm{\"u}ller}{BENZM{\"U}LLER}{2010}
+{BENZM{\"U}LLER, Christoph. Combining logics in simple type theory. In:
+  SPRINGER. \textbf{International Workshop on Computational Logic in
+  Multi-Agent Systems}. Berlin, 2010. p. 33--48.}
+
+\bibitem[Blackburn, Rijke e Venema 2001]{blackburn2001modal}
+\abntrefinfo{Blackburn, Rijke e Venema}{BLACKBURN; RIJKE; VENEMA}{2001}
+{BLACKBURN, Patrick; RIJKE, Maarten De; VENEMA, Yde. \textbf{Modal logic}.
+  Cambridge: Cambridge University Press, 2001. v.~53.}
+
+\bibitem[Bruijn 1980]{debruijn1980survey}
+\abntrefinfo{Bruijn}{BRUIJN}{1980}
+{BRUIJN, Nicolaas~Govert De. A survey of the project automath. In:
+  \textbf{Studies in Logic and the Foundations of Mathematics}. Amsterdam:
+  Elsevier, 1980. v.~133, p. 141--161.}
+
+\bibitem[Carnap 1942]{carnap1942introduction}
+\abntrefinfo{Carnap}{CARNAP}{1942}
+{CARNAP, Rudolf. \textbf{Introduction to Semantics}. Cambridge: Harvard
+  University Press, 1942.}
+
+\bibitem[Carnielli et al. 2008]{carnielli2008analysis}
+\abntrefinfo{Carnielli et al.}{CARNIELLI et al.}{2008}
+{CARNIELLI, Walter et al. \textbf{Analysis and Synthesis of Logics: how to cut
+  and paste reasoning systems}. Netherlands: Springer Science \& Business
+  Media, 2008. v.~35.}
+
+\bibitem[Carnielli e Coniglio 2020]{sep-logic-combining}
+\abntrefinfo{Carnielli e Coniglio}{CARNIELLI; CONIGLIO}{2020}
+{CARNIELLI, Walter; CONIGLIO, Marcelo~Esteban. {Combining Logics}. In:  ZALTA,
+  Edward~N. (Ed.). \textbf{The {Stanford} Encyclopedia of Philosophy}. {F}all
+  2020. Stanford: Metaphysics Research Lab, Stanford University, 2020.}
+
+\bibitem[Chellas 1980]{chellas1980modal}
+\abntrefinfo{Chellas}{CHELLAS}{1980}
+{CHELLAS, Brian~F. \textbf{Modal Logic: An Introduction}. Cambridge: Cambridge
+  University Press, 1980.}
+
+\bibitem[Church 1940]{church1940formulation}
+\abntrefinfo{Church}{CHURCH}{1940}
+{CHURCH, Alonzo. A formulation of the simple theory of types.
+\textbf{The journal of symbolic logic}, Cambridge University Press, v.~5, n.~2,
+  p. 56--68, 1940.}
+
+\bibitem[Coquand 2022]{sep-type-theory}
+\abntrefinfo{Coquand}{COQUAND}{2022}
+{COQUAND, Thierry. {Type Theory}. In:  ZALTA, Edward~N.; NODELMAN, Uri (Ed.).
+  \textbf{The {Stanford} Encyclopedia of Philosophy}. {F}all 2022. Stanford:
+  Metaphysics Research Lab, Stanford University, 2022.}
+
+\bibitem[Coquand e Huet 1985]{coquand1985constructions}
+\abntrefinfo{Coquand e Huet}{COQUAND; HUET}{1985}
+{COQUAND, Thierry; HUET, Gerard. Constructions: A higher order proof system for
+  mechanizing mathematics. In:  SPRINGER. \textbf{European Conference on
+  Computer Algebra}. Rocquencourt, 1985. p. 151--184.}
+
+\bibitem[Coquand e Paulin 1988]{coquand1988inductively}
+\abntrefinfo{Coquand e Paulin}{COQUAND; PAULIN}{1988}
+{COQUAND, Thierry; PAULIN, Christine. Inductively defined types. In:  SPRINGER.
+  \textbf{International Conference on Computer Logic}. Tallinn, 1988. p.
+  50--66.}
+
+\bibitem[Crosilla 2017]{crosilla2017predicativity}
+\abntrefinfo{Crosilla}{CROSILLA}{2017}
+{CROSILLA, Laura. Predicativity and feferman.
+\textbf{Feferman on foundations: Logic, mathematics, philosophy}, Springer, p.
+  423--447, 2017.}
+
+\bibitem[Curry e Feys 1958]{curry1958combinatory}
+\abntrefinfo{Curry e Feys}{CURRY; FEYS}{1958}
+{CURRY, Haskell~Brooks; FEYS, Robert. \textbf{Combinatory logic}. Amsterdam:
+  North-Holland Amsterdam, 1958. v.~1.}
+
+\bibitem[Dybjer e Palmgren 2023]{sep-type-theory-intuitionistic}
+\abntrefinfo{Dybjer e Palmgren}{DYBJER; PALMGREN}{2023}
+{DYBJER, Peter; PALMGREN, Erik. {Intuitionistic Type Theory}. In:  ZALTA,
+  Edward~N.; NODELMAN, Uri (Ed.). \textbf{The {Stanford} Encyclopedia of
+  Philosophy}. {S}pring 2023. Stanford: Metaphysics Research Lab, Stanford
+  University, 2023.}
+
+\bibitem[Emerson 1990]{emerson1990temporal}
+\abntrefinfo{Emerson}{EMERSON}{1990}
+{EMERSON, E.~Allen. Temporal and modal logic. In:  {VAN LEEUWEN}, JAN (Ed.).
+  \textbf{Formal Models and Semantics}. Amsterdam: Elsevier, 1990,  (Handbook
+  of Theoretical Computer Science). p. 995--1072.
+ISBN 978-0-444-88074-1.
+Dispon{\'\i}vel em:
+  \url{https://www.sciencedirect.com/science/article/pii/B9780444880741500214}.}
+
+\bibitem[Fagin et al. 1995]{fagin2004reasoning}
+\abntrefinfo{Fagin et al.}{FAGIN et al.}{1995}
+{FAGIN, Ronald et al. \textbf{Reasoning about knowledge}. Cambridge: MIT press,
+  1995.}
+
+\bibitem[Fine e Schurz 1996]{fine1996transfer}
+\abntrefinfo{Fine e Schurz}{FINE; SCHURZ}{1996}
+{FINE, Kit; SCHURZ, Gerhard. Transfer theorems for multimodal logics.
+\textbf{Logic and reality: essays on the legacy of Arthur Prior}, Oxford
+  University Press Oxford, p. 169--213, 1996.}
+
+\bibitem[Fitting 1969]{fitting1969logics}
+\abntrefinfo{Fitting}{FITTING}{1969}
+{FITTING, Melvin. Logics with several modal operators.
+\textbf{Theoria}, Blackwell Publishing Ltd Oxford, UK, v.~35, n.~3, p.
+  259--266, 1969.}
+
+\bibitem[Fuenmayor e Benzm{\"u}ller 2019]{fuenmayor2019mechanised}
+\abntrefinfo{Fuenmayor e Benzm{\"u}ller}{FUENMAYOR; BENZM{\"U}LLER}{2019}
+{FUENMAYOR, David; BENZM{\"U}LLER, Christoph. Mechanised assessment of complex
+  natural-language arguments using expressive logic combinations. In:
+  SPRINGER. \textbf{International Symposium on Frontiers of Combining Systems}.
+  London, 2019. p. 112--128.}
+
+\bibitem[Gabbay 2003]{gabbay2003many}
+\abntrefinfo{Gabbay}{GABBAY}{2003}
+{GABBAY, D.M. \textbf{Many-dimensional Modal Logics: Theory and Applications}.
+  Amsterdam: North Holland Publishing Company, 2003.  (Studies in logic and the
+  foundations of mathematics).
+ISSN 0049-237X.
+ISBN 9780444508263.}
+
+\bibitem[Geuvers 2009]{geuvers2009proof}
+\abntrefinfo{Geuvers}{GEUVERS}{2009}
+{GEUVERS, H. Proof assistants: History, ideas and future.
+\textbf{Sadhana}, Springer Science and Business Media {LLC}, v.~34, n.~1, p.
+  3--25, feb 2009.
+Dispon{\'\i}vel em: \url{https://doi.org/10.1007/s12046-009-0001-5}.}
+
+\bibitem[Gilbert et al. 2019]{gilbert2019definitional}
+\abntrefinfo{Gilbert et al.}{GILBERT et al.}{2019}
+{GILBERT, Ga\"{e}tan et al. Definitional proof-irrelevance without k.
+\textbf{Proceedings of the ACM on Programming Languages}, Association for
+  Computing Machinery, New York, NY, USA, v.~3, n.~POPL, jan 2019.
+Dispon{\'\i}vel em: \url{https://doi.org/10.1145/3290316}.}
+
+\bibitem[Girard 1971]{girard1971extension}
+\abntrefinfo{Girard}{GIRARD}{1971}
+{GIRARD, Jean-Yves. Une extension de l'interpretation de g{\"o}del a l'analyse,
+  et son application a l'elimination des coupures dans l'analyse et la theorie
+  des types. In:  \textbf{Studies in Logic and the Foundations of Mathematics}.
+  Oslo: Elsevier, 1971. v.~63, p. 63--92.}
+
+\bibitem[Girard 1972]{girard1972interpretation}
+\abntrefinfo{Girard}{GIRARD}{1972}
+{GIRARD, Jean-Yves.
+\textbf{Interpr{\'e}tation fonctionnelle et {\'e}limination des coupures de
+  l'arithm{\'e}tique d'ordre sup{\'e}rieur}.
+Tese (Doutorado) --- {\'E}diteur inconnu, 1972.}
+
+\bibitem[Girard, Taylor e Lafont 1989]{girard1989proofs}
+\abntrefinfo{Girard, Taylor e Lafont}{GIRARD; TAYLOR; LAFONT}{1989}
+{GIRARD, Jean-Yves; TAYLOR, Paul; LAFONT, Yves. \textbf{Proofs and types}.
+  Cambridge: Cambridge University Press, 1989. v.~7.}
+
+\bibitem[G{\"o}del 1986]{godel1986interpretation}
+\abntrefinfo{G{\"o}del}{G{\"O}DEL}{1986}
+{G{\"O}DEL, Kurt. An interpretation of the intuitionistic propositional
+  calculus.
+\textbf{Collected Works}, Oxford University Press New York, v.~1, p. 301--303,
+  1986.}
+
+\bibitem[Goldblatt 1993]{goldblatt1993mathematics}
+\abntrefinfo{Goldblatt}{GOLDBLATT}{1993}
+{GOLDBLATT, Robert. \textbf{Mathematics of Modality}. Stanford: Center for the
+  Study of Language and Information Publications, 1993.}
+
+\bibitem[Gonthier 2005]{gonthier2005computer}
+\abntrefinfo{Gonthier}{GONTHIER}{2005}
+{GONTHIER, Georges. \textbf{A computer-checked proof of the four colour
+  theorem}.
+Cambridge, 2005.}
+
+\bibitem[Harper, Honsell e Plotkin 1993]{harper1993framework}
+\abntrefinfo{Harper, Honsell e Plotkin}{HARPER; HONSELL; PLOTKIN}{1993}
+{HARPER, Robert; HONSELL, Furio; PLOTKIN, Gordon. A framework for defining
+  logics.
+\textbf{Journal of the ACM (JACM)}, ACM New York, NY, USA, v.~40, n.~1, p.
+  143--184, 1993.}
+
+\bibitem[Harrison, Urban e Wiedijk 2014]{harrison2014history}
+\abntrefinfo{Harrison, Urban e Wiedijk}{HARRISON; URBAN; WIEDIJK}{2014}
+{HARRISON, John; URBAN, Josef; WIEDIJK, Freek. History of interactive theorem
+  proving. In:  \textbf{Computational Logic}. Amsterdam: [s.n.], 2014. v.~9, p.
+  135--214.}
+
+\bibitem[Heijenoort 2002]{van2002frege}
+\abntrefinfo{Heijenoort}{HEIJENOORT}{2002}
+{HEIJENOORT, Jean Van. \textbf{From Frege to G{\"o}del: a source book in
+  mathematical logic, 1879-1931}. Cambridge: Harvard University Press, 2002.}
+
+\bibitem[Hintikka 1962]{hintikka1962knowledge}
+\abntrefinfo{Hintikka}{HINTIKKA}{1962}
+{HINTIKKA, Kaarlo Jaakko~Juhani. \textbf{Knowledge and Belief: An Introduction
+  to the Logic of the Two Notions}. Ithaca: Cornell University Press, 1962.}
+
+\bibitem[Howard 1980]{howard1980formulae}
+\abntrefinfo{Howard}{HOWARD}{1980}
+{HOWARD, William~Alvin. The formulae-as-types notion of construction. In:
+  CURRY, Haskell et al. (Ed.). \textbf{To H. B. Curry: Essays on Combinatory
+  Logic, Lambda Calculus, and Formalism}. Chicago: Academic Press, 1980.}
+
+\bibitem[Huet 1990]{huet1990logical}
+\abntrefinfo{Huet}{HUET}{1990}
+{HUET, G{\'e}rard. \textbf{Logical foundations of functional programming}.
+  Austin: Addison-Wesley Longman Publishing Co., Inc., 1990.}
+
+\bibitem[Klein et al. 2010]{klein2010sel4}
+\abntrefinfo{Klein et al.}{KLEIN et al.}{2010}
+{KLEIN, Gerwin et al. Sel4: Formal verification of an operating-system kernel.
+\textbf{Commun. ACM}, Association for Computing Machinery, New York, NY, USA,
+  v.~53, n.~6, p. 107–115, jun 2010.
+ISSN 0001-0782.
+Dispon{\'\i}vel em: \url{https://doi.org/10.1145/1743546.1743574}.}
+
+\bibitem[Kracht e Wolter 1991]{kracht1991properties}
+\abntrefinfo{Kracht e Wolter}{KRACHT; WOLTER}{1991}
+{KRACHT, Marcus; WOLTER, Frank. Properties of independently axiomatizable
+  bimodal logics.
+\textbf{The Journal of Symbolic Logic}, Cambridge University Press, v.~56,
+  n.~4, p. 1469--1485, 1991.}
+
+\bibitem[Kripke 1959]{kripke1959completeness}
+\abntrefinfo{Kripke}{KRIPKE}{1959}
+{KRIPKE, Saul~A. A completeness theorem in modal logic.
+\textbf{The journal of symbolic logic}, Cambridge University Press, v.~24,
+  n.~1, p. 1--14, 1959.}
+
+\bibitem[Kripke 1963]{kripke1963semantical}
+\abntrefinfo{Kripke}{KRIPKE}{1963}
+{KRIPKE, Saul~A. Semantical analysis of modal logic i normal modal
+  propositional calculi.
+\textbf{Mathematical Logic Quarterly}, WILEY-VCH Verlag Berlin GmbH Berlin,
+  v.~9, n.~5-6, p. 67--96, 1963.}
+
+\bibitem[Lamport 1983]{lamport1983specifying}
+\abntrefinfo{Lamport}{LAMPORT}{1983}
+{LAMPORT, Leslie. Specifying concurrent program modules.
+\textbf{ACM Transactions on Programming Languages and Systems (TOPLAS)}, ACM
+  New York, NY, USA, v.~5, n.~2, p. 190--222, 1983.}
+
+\bibitem[Lamport 1994]{lamport1994temporal}
+\abntrefinfo{Lamport}{LAMPORT}{1994}
+{LAMPORT, Leslie. The temporal logic of actions.
+\textbf{ACM Transactions on Programming Languages and Systems (TOPLAS)}, ACM
+  New York, NY, USA, v.~16, n.~3, p. 872--923, 1994.}
+
+\bibitem[Lamport 2002]{lamport2002specifying}
+\abntrefinfo{Lamport}{LAMPORT}{2002}
+{LAMPORT, Leslie. \textbf{Specifying Systems: The TLA+ Language and Tools for
+  Hardware and Software Engineers}. USA: Addison-Wesley Longman Publishing Co.,
+  Inc., 2002.
+ISBN 032114306X.}
+
+\bibitem[Leroy 2021]{leroy2021compcert}
+\abntrefinfo{Leroy}{LEROY}{2021}
+{LEROY, Xavier.
+\textbf{The CompCert C verified compiler: Documentation and user's manual}.
+Tese (Doutorado) --- Inria, 2021.}
+
+\bibitem[Lescanne 2004]{lescanne2004mechanizing}
+\abntrefinfo{Lescanne}{LESCANNE}{2004}
+{LESCANNE, Pierre. Mechanizing epistemic logic with coq.
+Citeseer, 2004.}
+
+\bibitem[Lescanne e Puiss{\'e}gur 2007]{lescanne2007dynamic}
+\abntrefinfo{Lescanne e Puiss{\'e}gur}{LESCANNE; PUISS{\'E}GUR}{2007}
+{LESCANNE, Pierre; PUISS{\'E}GUR, J{\'e}r{\^o}me. Dynamic logic of common
+  knowledge in a proof assistant.
+\textbf{arXiv preprint arXiv:0712.3146}, 2007.}
+
+\bibitem[Lewis 1918]{lewis1918survey}
+\abntrefinfo{Lewis}{LEWIS}{1918}
+{LEWIS, Clarence~Irving. \textbf{A survey of symbolic logic}. Berkeley:
+  University of California press, 1918.}
+
+\bibitem[Lewis, Langford e Lamprecht 1959]{lewis1959symbolic}
+\abntrefinfo{Lewis, Langford e Lamprecht}{LEWIS; LANGFORD; LAMPRECHT}{1959}
+{LEWIS, Clarence~Irving; LANGFORD, Cooper~Harold; LAMPRECHT, P.
+  \textbf{Symbolic logic}. New York: Dover Publications New York, 1959.
+  v.~170.}
+
+\bibitem[Martin-L{\"o}f 1975]{martin1975intuitionistic}
+\abntrefinfo{Martin-L{\"o}f}{MARTIN-L{\"O}F}{1975}
+{MARTIN-L{\"O}F, Per. An intuitionistic theory of types: Predicative part. In:
+  \textbf{Studies in Logic and the Foundations of Mathematics}. Stockholm:
+  Elsevier, 1975. v.~80, p. 73--118.}
+
+\bibitem[Martin-L{\"o}f e Sambin 1984]{martin1984intuitionistic}
+\abntrefinfo{Martin-L{\"o}f e Sambin}{MARTIN-L{\"O}F; SAMBIN}{1984}
+{MARTIN-L{\"O}F, Per; SAMBIN, Giovanni. \textbf{Intuitionistic type theory}.
+  Naples: Bibliopolis Naples, 1984. v.~9. Notas de Aula.}
+
+\bibitem[Moura et al. 2015]{demoura2015lean}
+\abntrefinfo{Moura et al.}{MOURA et al.}{2015}
+{MOURA, Leonardo de et al. The lean theorem prover (system description). In:
+  FELTY, Amy~P.; MIDDELDORP, Aart (Ed.). \textbf{Automated Deduction -
+  CADE-25}. Cham: Springer International Publishing, 2015. p. 378--388.
+ISBN 978-3-319-21401-6.}
+
+\bibitem[Orlov 1928]{orlov1928calculus}
+\abntrefinfo{Orlov}{ORLOV}{1928}
+{ORLOV, Ivan~E. The calculus of compatibility of propositions.
+\textbf{Mathematics of the USSR, Sbornik}, v.~35, p. 263--286, 1928.}
+
+\bibitem[Paiva e Caleiro 1998]{paiva1998temporal}
+\abntrefinfo{Paiva e Caleiro}{PAIVA; CALEIRO}{1998}
+{PAIVA, Nuno; CALEIRO, Carlos.
+\textbf{Temporal logic in Coq}.
+Disserta\c{c}\~{a}o (Projeto de Diplomação) --- Licenciatura em Matemática
+  Aplicada e Computa{\c{c}}{\~a}o -- Instituto Superior T{\'e}cnico, 1998.}
+
+\bibitem[Paulin-Mohring 2012]{paulinmohring2012introduction}
+\abntrefinfo{Paulin-Mohring}{PAULIN-MOHRING}{2012}
+{PAULIN-MOHRING, Christine. Introduction to the coq proof-assistant for
+  practical software verification.
+In:  \underline{\ \ \ \ \ \ \ \ }. \textbf{Tools for Practical Software
+  Verification: LASER, International Summer School 2011, Elba Island, Italy,
+  Revised Tutorial Lectures}. Berlin, Heidelberg: Springer Berlin Heidelberg,
+  2012. p. 45--95.
+ISBN 978-3-642-35746-6.}
+
+\bibitem[Paulin-Mohring 2015]{paulinmohring2015introduction}
+\abntrefinfo{Paulin-Mohring}{PAULIN-MOHRING}{2015}
+{PAULIN-MOHRING, Christine. {Introduction to the Calculus of Inductive
+  Constructions}. In:  PALEO, Bruno~Woltzenlogel; DELAHAYE, David (Ed.).
+  \textbf{{All about Proofs, Proofs for All}}. London: {College Publications},
+  2015,  (Studies in Logic (Mathematical logic and foundations), v.~55).}
+
+\bibitem[Pierce 2002]{pierce2002types}
+\abntrefinfo{Pierce}{PIERCE}{2002}
+{PIERCE, Benjamin~C. \textbf{Types and programming languages}. Cambridge: MIT
+  press, 2002.}
+
+\bibitem[Pierce et al. 2021]{pierce2021software}
+\abntrefinfo{Pierce et al.}{PIERCE et al.}{2021}
+{PIERCE, Benjamin~C. et al. \textbf{Logical Foundations}. Pennsylvania:
+  Electronic textbook, 2021. v.~1.  (Software Foundations, v.~1). Version 6.1,
+  \url{http://softwarefoundations.cis.upenn.edu}.}
+
+\bibitem[Pnueli 1977]{pnueli1977temporal}
+\abntrefinfo{Pnueli}{PNUELI}{1977}
+{PNUELI, Amir. The temporal logic of programs. In:  IEEE. \textbf{18th Annual
+  Symposium on Foundations of Computer Science (sfcs 1977)}. USA, 1977. p.
+  46--57.}
+
+\bibitem[Priest 2008]{priest2008nonclassical}
+\abntrefinfo{Priest}{PRIEST}{2008}
+{PRIEST, Graham. \textbf{An Introduction to Non-Classical Logic: From If to
+  Is}. 2. ed. Cambridge: Cambridge University Press, 2008.  (Cambridge
+  Introductions to Philosophy).}
+
+\bibitem[Prior 1957]{prior1957time}
+\abntrefinfo{Prior}{PRIOR}{1957}
+{PRIOR, Arthur~N. \textbf{Time and modality: Being the John Locke Lectures for
+  1955-6 Delivered in the University of Oxford}. Oxford: Claredon Press, 1957.}
+
+\bibitem[Prior 1967]{prior1967past}
+\abntrefinfo{Prior}{PRIOR}{1967}
+{PRIOR, Arthur~N. \textbf{Past, Present and Future}. Oxford: Clarendon Press,
+  1967.}
+
+\bibitem[Rabe 2017]{rabe2017identify}
+\abntrefinfo{Rabe}{RABE}{2017}
+{RABE, Florian. How to identify, translate and combine logics?
+\textbf{Journal of Logic and Computation}, Oxford University Press, v.~27,
+  n.~6, p. 1753--1798, 2017.}
+
+\bibitem[Ramsey 1931]{ramsey1931general}
+\abntrefinfo{Ramsey}{RAMSEY}{1931}
+{RAMSEY, Frank~Plumpton. General propositions and causality.
+Kegan Paul, Trench \& Trubner, 1931.}
+
+\bibitem[Reynolds 1974]{reynolds1974towards}
+\abntrefinfo{Reynolds}{REYNOLDS}{1974}
+{REYNOLDS, John~C. Towards a theory of type structure. In:  SPRINGER.
+  \textbf{Programming Symposium: Proceedings, Colloque sur la Programmation
+  Paris, April 9--11, 1974}. Paris, 1974. p. 408--425.}
+
+\bibitem[Robertson et al. 1997]{robertson1997four}
+\abntrefinfo{Robertson et al.}{ROBERTSON et al.}{1997}
+{ROBERTSON, Neil et al. The four-colour theorem.
+\textbf{journal of combinatorial theory, Series B}, Elsevier, v.~70, n.~1, p.
+  2--44, 1997.}
+
+\bibitem[Roggia 2012]{roggia2012fusion}
+\abntrefinfo{Roggia}{ROGGIA}{2012}
+{ROGGIA, Karina~Girardi.
+\textbf{Fusion of General Modal Logics Labelled with Truth Values}.
+Tese (Doutorado) --- INSTITUTO SUPERIOR T{\'E}CNICO, 2012.}
+
+\bibitem[Russell 1903]{russell1903principles}
+\abntrefinfo{Russell}{RUSSELL}{1903}
+{RUSSELL, Bertrand. \textbf{Principles of Mathematics}. Cambridge: Cambridge
+  University Press, 1903.}
+
+\bibitem[Russell 1908]{russell1908mathematical}
+\abntrefinfo{Russell}{RUSSELL}{1908}
+{RUSSELL, Bertrand. Mathematical logic as based on the theory of types.
+\textbf{American Journal of Mathematics}, JSTOR, v.~30, n.~3, p. 222--262,
+  1908.}
+
+\bibitem[Silva 2019]{silva2019certificacao}
+\abntrefinfo{Silva}{SILVA}{2019}
+{SILVA, Rafael Castro~Goncalves.
+\textbf{Uma certifica{\c{c}}{\~a}o em COQ do algoritmo W mon{\'a}dico}.
+Disserta\c{c}\~{a}o (Disserta{\c{c}}{\~a}o) --- Universidade do Estado de Santa
+  Catarina, Programa de Pós Gradua{\c{c}}{\~a}o em Computa{\c{c}}{\~a}o
+  Aplicada, 2019.}
+
+\bibitem[Silveira et al. 2022]{silveira2022sound}
+\abntrefinfo{Silveira et al.}{SILVEIRA et al.}{2022}
+{SILVEIRA, Ariel~Agne Da et al. A sound deep embedding of arbitrary normal
+  modal logics in coq. In:  \textbf{XXVI Brazilian Symposium on Programming
+  Languages}. New York, NY, USA: Association for Computing Machinery, 2022.
+  (SBLP 2022), p.~1--7.
+ISBN 9781450397445. Dispon{\'\i}vel em:
+  \url{https://doi.org/10.1145/3561320.3561329}.}
+
+\bibitem[Silveira 2020]{silveira2020implementacao}
+\abntrefinfo{Silveira}{SILVEIRA}{2020}
+{SILVEIRA, Ariel~Agne da.
+\textbf{Implementação de uma biblioteca de lógica modal em Coq}.
+Disserta\c{c}\~{a}o (Projeto de Diplomação) --- Bacharelado em Ci{\^e}ncia da
+  Computa{\c{c}}{\~a}o--Centro de Ciências Tecnológicas, UDESC, Joinville,
+  2020.}
+
+\bibitem[Tait 1967]{tait1967intensional}
+\abntrefinfo{Tait}{TAIT}{1967}
+{TAIT, William~W. Intensional interpretations of functionals of finite type i.
+\textbf{The journal of symbolic logic}, Cambridge University Press, v.~32,
+  n.~2, p. 198--212, 1967.}
+
+\bibitem[Team 2022]{coqteam2022manual}
+\abntrefinfo{Team}{TEAM}{2022}
+{TEAM, The Coq~Development. \textbf{The Coq Reference Manual}.
+France, 2022.}
+
+\bibitem[Thomason 1984]{thomason1984combinations}
+\abntrefinfo{Thomason}{THOMASON}{1984}
+{THOMASON, Richmond~H. Combinations of tense and modality. In:
+  \textbf{Handbook of philosophical logic}. Dordrecht: Springer, 1984. p.
+  135--165.}
+
+\bibitem[Wadler 2015]{wadler2015propositions}
+\abntrefinfo{Wadler}{WADLER}{2015}
+{WADLER, Philip. Propositions as types.
+\textbf{Communications of the ACM}, Association for Computing Machinery, New
+  York, NY, USA, v.~58, n.~12, p. 75--84, nov 2015.
+ISSN 0001-0782.
+Dispon{\'\i}vel em: \url{https://doi.org/10.1145/2699407}.}
+
+\bibitem[Wind 2001]{dewind2001modal}
+\abntrefinfo{Wind}{WIND}{2001}
+{WIND, Paulien de.
+\textbf{Modal logic in coq}.
+Disserta\c{c}\~{a}o (Dissertação) --- Vrije Universiteit, 2001.}
+
+\bibitem[Wright 1951]{vonwright1951essay}
+\abntrefinfo{Wright}{WRIGHT}{1951}
+{WRIGHT, Georg~Henrik von. \textbf{An Essay in Modal Logic}. Amsterdam:
+  North-Holland Amsterdam, 1951.}
+
+\bibitem[Zalta 1995]{zalta1995basic}
+\abntrefinfo{Zalta}{ZALTA}{1995}
+{ZALTA, Edward~N. \textbf{Basic Concepts In Modal Logic}. Center for the Study
+  of Language and Information Stanford University, 1995. Dispon{\'\i}vel em:
+  \url{http://mally.stanford.edu/notes.pdf}.}
+
+\bibitem[Zorn 1935]{zorn1935remark}
+\abntrefinfo{Zorn}{ZORN}{1935}
+{ZORN, Max. A remark on method in transfinite algebra.
+\textbf{Bulletin of the American Mathematical Society}, v.~41, n.~10, p.
+  667--670, 1935.}
+
+\end{thebibliography}

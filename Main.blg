@@ -1,0 +1,82 @@
+This is BibTeX, Version 0.99d (TeX Live 2022/dev/Debian)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Main.aux
+A level-1 auxiliary file: PreTextuais/Capa.aux
+A level-1 auxiliary file: PreTextuais/FolhadeRosto.aux
+A level-1 auxiliary file: PreTextuais/FolhadeAprovacao.aux
+A level-1 auxiliary file: PreTextuais/Agradecimentos.aux
+A level-1 auxiliary file: PreTextuais/Epigrafe.aux
+A level-1 auxiliary file: PreTextuais/Resumo.aux
+A level-1 auxiliary file: PreTextuais/Abstract.aux
+A level-1 auxiliary file: PreTextuais/Listas.aux
+A level-1 auxiliary file: PreTextuais/Sumario.aux
+A level-1 auxiliary file: Textuais/Introducao.aux
+A level-1 auxiliary file: Textuais/LogicaModal.aux
+A level-1 auxiliary file: Textuais/FusoesLogicas.aux
+A level-1 auxiliary file: Textuais/AssistentesProvas.aux
+A level-1 auxiliary file: Textuais/Implementacao.aux
+A level-1 auxiliary file: Textuais/Conclusao.aux
+A level-1 auxiliary file: PosTextuais/Apendices.aux
+The style file: abntex2-alf.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+Reallocated field_info (elt_size=4) to 11003 items from 5000.
+Database file #1: abntex2-options.bib
+Database file #2: Referencias.bib
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated glb_str_ptr (elt_size=4) to 20 items from 10.
+Reallocated global_strs (elt_size=200001) to 20 items from 10.
+Reallocated glb_str_end (elt_size=4) to 20 items from 10.
++---------------------------------------------------------+
+| Estilo bibliográfico abntex2-alf.bst versão v-1.9.7           |
+| Em caso de dúvidas ou problemas com este estilo procure |
+| http://www.abntex.net.br/                               |
++---------------------------------------------------------+
+You've used 87 entries,
+            6714 wiz_defined-function locations,
+            1738 strings with 22895 characters,
+and the built_in function-call counts, 71300 in all, are:
+= -- 5915
+> -- 2062
+< -- 430
++ -- 1090
+- -- 633
+* -- 4893
+:= -- 9484
+add.period$ -- 337
+call.type$ -- 87
+change.case$ -- 758
+chr.to.int$ -- 208
+cite$ -- 84
+duplicate$ -- 4330
+empty$ -- 5456
+format.name$ -- 3014
+if$ -- 16507
+int.to.chr$ -- 2
+int.to.str$ -- 0
+missing$ -- 1536
+newline$ -- 405
+num.names$ -- 427
+pop$ -- 1861
+preamble$ -- 1
+purify$ -- 306
+quote$ -- 0
+skip$ -- 4419
+stack$ -- 1
+substring$ -- 2937
+swap$ -- 1976
+text.length$ -- 103
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 33
+warning$ -- 0
+while$ -- 630
+width$ -- 0
+write$ -- 1375

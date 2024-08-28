@@ -1,0 +1,116 @@
+\chapter{Introdução}
+\label{cap:Introducao}
+	Lógica modal é uma família de lógicas não clássicas com diversas aplicações, tanto na filosofia quanto na computação e na matemática.
+	A primeira formulação da lógica modal surge dentro da filosofia com os trabalhos de Lewis, de acordo com~\citeshort{gabbay2003many}.
+	Lewis definiu um conjunto de axiomas com modalidades para representar o conceito de implicação de forma mais próxima àquela da
+	linguagem natural, porém sua interpretação filosófica e seus axiomas para implicação foram substituídos por outras interpretações
+	e conjuntos de axiomas voltados à matemática, como é o caso de Gödel~\cite{godel1986interpretation}, que lidou com a
+	representabilidade da lógica intuicionista dentro da lógica clássica. Apesar disso, dois dos sistemas semânticos definidos por Lewis,
+	os sistemas S4 e S5, ainda são estudados até hoje.
+
+	Apenas com os trabalhos de Carnap~\cite{carnap1942introduction} e Kripke~\cite{kripke1959completeness,kripke1963semantical} que
+	uma interpretação semântica da lógica modal foi definida. Carnap definiu uma semântica baseada em descrições de estados,
+	porém, como apresentado por~\citeshort{zalta1995basic}, a maneira que Carnap definiu a semântica faz com que repetições de modalidades
+	não tenham efeito na interpretação semântica da fórmula. A semântica definida por Kripke é baseada no conceito de mundos possíveis
+	e relações entre mundos, essa é a apresentação semântica mais utilizada atualmente, de acordo com~\citeshort{zalta1995basic}.
+
+	Ainda nos primeiros anos de estudo da lógica modal, outras interpretações de modalidades surgiram, por exemplo, com os trabalhos
+	de Prior~\cite{prior1957time,prior1967past}, que estudou como representar o conceito de temporalidade dentro de linguagens modais e com
+	os trabalhos de von Wright e Hintikka~\cite{vonwright1951essay,hintikka1962knowledge}, que estudaram como representar os conceito de
+	conhecimento e crença dentro de linguagens modais. Ambas interpretações de lógica modal têm importância na computação: a lógica temporal
+	é muito usada como um formalismo para especificar e verificar corretude de programas, como inicialmente proposto por~\citeshort{pnueli1977temporal}
+	e mais recentemente estudado por~\citeshort{lamport2002specifying}; já a lógica epistêmica é usada como um formalismo para especificar sistemas
+	multiagentes e sistemas distribuídos, como apresentado em~\citeshort{fagin2004reasoning}.
+
+	Linguagens modais já eram ferramentas bem estabelecidas quando \citeshort{thomason1984combinations} apresentou uma formalização
+	de uma lógica que continha dois operadores modais distintos. Apesar de não ser o primeiro trabalho a tratar deste assunto (o primeiro sendo
+	~\citeshort{fitting1969logics} de acordo com~\citeshort{roggia2012fusion}), o método de \citeauthoronline{thomason1984combinations} foi o primeiro
+	método genérico de combinações de lógicas, segundo~\citeshort{sep-logic-combining}, já que o autor apresentou
+	um algoritmo para combinar as linguagens lógicas descritas de forma sintática e semântica.
+
+	Paralelo aos desenvolvimentos em lógica modal, a teoria de tipos surgiu como uma alternativa à teoria de conjuntos como uma fundação para
+	a matemática. Inicialmente proposta por Russell~\cite{russell1903principles} como tentativa de lidar com paradoxos da teoria de conjuntos,
+	a teoria de tipos foi adotada pela ciência da computação desde os primórdios da mesma, com trabalhos como \citeshort{church1940formulation}
+	que formulou a teoria de tipos com a sintaxe do \CalcLambda, \citeshort{curry1958combinatory} que
+	apontaram uma correspondência entre axiomas de um fragmento de lógica proposicional e combinadores do \CalcLambda, e \citeshort{howard1980formulae}
+	que generalizou a correspondência de Curry para toda a lógica intuicionista e todo o \CalcLambda, dando surgimento ao que hoje é chamado
+	de Correspondência de Curry-Howard.
+
+	Estes e muitos outros avanços em computação e teoria de tipos proporcionaram, durante os anos de 1960 e 1970, o surgimento de softwares chamados
+	assistentes de provas~\cite{harrison2014history}. Estes são sistemas computacionais que permitem usuários definirem, raciocinarem e provarem
+	propriedades sobre teorias e objetos matemáticos, segundo~\citeshort{geuvers2009proof}. O assistente Automath~\cite{debruijn1980survey} foi,
+	segundo~\citeshort{harrison2014history}, o primeiro assistente que usou a Correspondência de Curry-Howard para codificar provas,
+	algo que é feito até os dias de hoje.
+
+	\sloppy
+	Com avanços na teoria de tipos provenientes de trabalhos como os de Martin-Löf~\cite{martin1975intuitionistic,martin1984intuitionistic} e sua
+	Teoria de Tipos Intuicionista se tornou possível o desenvolvimento de assistentes de provas mais complexos, como Coq, Lean e Isabelle.
+	Destes sistemas, é de interesse deste trabalho o Coq, que é um assistente desenvolvido pelo instituto francês INRIA desde 1984 e é
+	baseado em um sistema de tipos chamado de Cálculo de Construções Indutivas~\cite{coqteam2022manual}.
+
+	O Coq é comumente usado como uma ferramenta para formalizar e verificar sistemas lógicos e computacionais~\cite{paulinmohring2012introduction}.
+	Diversos resultados significativos foram obtidos com Coq, dentre eles podem ser destacados: a certificação de um compilador para a linguagem
+	C~\cite{leroy2021compcert}, a verificação do \textit{kernel} do sistema operacional seL4~\cite{klein2010sel4} e uma formalização de uma prova do
+	Teorema das 4 Cores~\cite{gonthier2005computer}.
+
+	Com isso, a proposta deste trabalho é continuar a biblioteca de lógica modal em Coq desenvolvida em~\citeshort{silveira2020implementacao}
+	e~\citeshort{silveira2022sound}. A biblioteca será expandida para representar sistemas lógicos modais resultantes da fusão de sistemas modais mais simples, o código
+	desenvolvido está disponível em um repositório do GitHub no endereço \url{https://github.com/funcao/LML/tree/Fusao}.
+
+	\section{Objetivo Geral}
+		O objetivo geral deste trabalho é modelar, no assistente Coq, sistemas de lógicas multimodais resultantes da fusão de lógicas modais mais simples,
+		preservando propriedades das lógicas combinadas.
+
+	\section{Objetivos Específicos}
+		Com base no objetivo geral, os seguintes objetivos específicos são definidos:
+		\begin{enumerate}
+			\item Estudar os principais conceitos de combinações de lógicas, em especial, a fusão;
+			\item Realizar um estudo de caso de fusões de lógicas modais no Coq;
+			\item Modelar, de forma paramétrica, sistemas de lógicas multimodais resultantes de fusão de lógicas modais em Coq.
+			% \item Modelar os sistemas sintáticos e semânticos de lógicas multimodais resultantes de fusão de lógicas modais em Coq;
+			% \item Provar, no sistema desenvolvido, a preservação de propriedades de corretude e completude de lógicas resultantes de fusão;
+			% \item Modelar algum problema de combinações de lógicas como estudo de caso.
+		\end{enumerate}
+
+	\section{Trabalhos Relacionados}
+		A partir de um levantamento da literatura, foram identificados quatro trabalhos semelhantes ao presente trabalho, estes são:
+		\citeauthoronline{benzmuller2010combining} (\citeyear{benzmuller2010combining}) onde o autor apresenta uma modelagem de lógica modal normal
+		com quantificadores, lógica intuicionista, lógica de controle de acesso e lógica de raciocínio espacial em \CalcLambda Simplesmente Tipado,
+		apresentando também como é possível combinar as lógicas descritas, algumas derivações dentro das lógicas combinadas, algumas propriedades da lógica modal quantificada
+		e uma implementação dos sistemas lógicos discutidos em provadores automáticos de teoremas e assistentes de provas, em específico, em
+		LEO-\MakeUppercase{\romannumeral 2}\footnote{\url{https://page.mi.fu-berlin.de/cbenzmueller/leo/}}, TPS\footnote{\url{https://gtps.math.cmu.edu/tps.html}}
+		e Isabelle\footnote{\url{https://isabelle.in.tum.de/}}.
+		\citeauthoronline{fuenmayor2019mechanised} (\citeyear{fuenmayor2019mechanised}) onde os autores utilizam
+		o assistente de provas Isabelle para modelar, por meio de \textit{Shallow Embeddings}\footnote{Veja \cite{azurat2002survey} ou o Capítulo~\ref{cap:Implementacao} deste trabalho},
+		linguagens multimodais resultantes de combinações de linguagens modais mais simples, em específico, modelam uma lógica diádica deôntica (um tipo de lógica de obrigatoriedade)
+		com modalidades aléticas e quantificadores e uma semântica bidimensional para a lógica, descrevem exemplos de problemas em linguagem natural e um problema ético
+		que podem ser expressos dentro do sistema lógico modelado.
+		\citeauthoronline{lescanne2007dynamic} (\citeyear{lescanne2007dynamic}) onde os autores utilizam o assistente
+		de provas Coq para modelar a lógica dinâmica do conhecimento comum, que é uma lógica resultante da combinação da lógica dinâmica com a lógica de conhecimento
+		comum (um tipo de lógica epistêmica), descrevem um sistema axiomático de Hilbert para a lógica e apresentam como exemplo de aplicação o problema das crianças
+		enlameadas\footnote{Descrição e solução do problema em inglês: \url{https://plato.stanford.edu/entries/dynamic-epistemic/appendix-B-solutions.html\#muddy}}.
+		\citeauthoronline{rabe2017identify} (\citeyear{rabe2017identify}), onde o autor apresenta uma modelagem de diversos sistemas lógicos dentro de uma linguagem
+		de representação de fatos matemáticos baseada em teoria de tipos chamada M\textsubscript{MT}, lógicas são descritas sintática e semanticamente e uma apresentação
+		categorial e em teoria de tipos de sistemas lógicos é dada, é descrito o conceito de combinação de lógicas a partir de uma perspectiva categorial e são dados
+		alguns exemplos de lógicas combinadas dentro da linguagem descrita.
+
+		Os trabalhos levantados não tratam de algum método específico de combinação de lógicas, porém todos exceto \citeauthoronline{rabe2017identify} (\citeyear{rabe2017identify})
+		apresentam combinações de lógicas modais por um método semelhante à fusão, descrita no Capítulo~\ref{cap:FusoesLogicasModais}, e apenas \citeshort{rabe2017identify}
+		apresenta combinações de quaisquer duas lógicas, porém usando um formalismo que não foi encontrado em outros trabalhos na literatura, exceto em trabalhos
+		publicados pelo mesmo autor.
+
+	\section{Metodologia}
+		O desenvolvimento deste trabalho se iniciou com um levantamento da literatura sobre lógicas modais, combinações de lógicas e sobre o método de fusão de lógicas modais,
+		após, foi feito um levantamento da literatura sobre teoria de tipos e assistentes de provas, com um foco no assistente Coq. Paralelamente a isso, foram buscados trabalhos
+		relacionados ao presente trabalho.
+
+		Com a finalização dessa etapa, foi iniciada a escrita do texto e a implementação de lógicas multimodais no Coq. Inicialmente foi implementado o estudo de caso, para verificar
+		a possibilidade de se atingir os objetivos propostos, então foi implementado o sistema multimodal e a fusão de sistemas modais.
+
+	\section{Estrutura do Trabalho}
+		O trabalho está organizado da seguinte forma: no Capítulo~\ref{cap:LogicaModal} é apresentada a lógica modal e multimodal e algumas propriedades de ambas
+		são descritas, no Capítulo~\ref{cap:FusoesLogicasModais} é apresentado o conceito de fusão de lógicas modais e alguns resultados importantes referentes à preservação
+		de propriedades, no Capítulo~\ref{cap:AssistentesProvas} é apresentado o conceito de assistentes de provas e o assistente Coq é descrito com alguns detalhes,
+		no Capítulo~\ref{cap:Implementacao} é descrita a implementação da biblioteca de lógica modal que serve de base para este trabalho, de uma prova de conceito feita para
+		demonstrar a possibilidade de atingir os objetivos deste trabalho e da modelagem paramétrica de lógicas multimodais resultantes de fusão e, por fim,
+		no Capítulo~\ref{cap:Conclusao} são apresentadas as conclusões deste trabalho.

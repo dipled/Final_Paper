@@ -1,0 +1,870 @@
+\chapter{Lógica Modal}
+    \label{cap:LogicaModal}
+
+    Lógica modal é a lógica que trata do conceito de \textit{modalidades}, estes são operadores lógicos que qualificam
+    verdades sobre proposições, segundo~\citeshort{goldblatt1993mathematics}.
+    Por exemplo, podemos afirmar que uma certa sentença \textit{deve} ser verdadeira, \textit{pode} ser verdadeira,
+    \textit{sempre será} verdadeira, dentre muitos outros. De acordo com~\citeauthoronline{zalta1995basic} (\citeyear{zalta1995basic}) os operadores de necessidade e possibilidade são chamados de
+    ``modais'' pois eles especificam o modo como as subsequentes proposições devem ser interpretadas.
+    Já~\citeshort{blackburn2001modal} afirmam que, se perguntar para três lógicos o que é lógica modal, os três darão respostas diferentes.
+
+    Segundo~\citeshort{gabbay2003many}, o início do estudo de lógicas modais se dá com os estudos de Lewis~\cite{lewis1918survey,lewis1959symbolic},
+    na tentativa dos autores de definir o conceito de \textit{implicação estrita}, esta
+    seria uma implicação cuja interpretação é mais próxima da noção de linguagem natural do que da noção matemática. A implicação matemática, ou booleana
+    (chamadas de implicação material pelo autor), ``se \PHI então \PSI'' seria substituída por ``é necessário que, se \PHI então \PSI'', seu
+    objetivo com isso era resolver certos paradoxos que a implicação material traz. Por exemplo, a frase ``Se a Lua é feita de queijo, então \(2 \times 2 = 4\)''
+    é uma implicação material correta, visto que \(2 \times 2\) de fato é igual a 4, apesar da frase ``A Lua é feita de queijo'' ser absurda. Já a frase
+    ``É necessário que, se a Lua é feita de queijo então \(2 \times 2 = 4\)'' não é uma implicação estrita correta, visto que é fato que \(2 \times 2 = 4\)
+    apesar da Lua não ser feita de queijo\footnote{Podemos representar essa frase na notação que será apresentada à frente da seguinte forma:
+    \(\Box(p \to q)\), onde \(p \mapsto \text{``A lua é feita de queijo''}, q \mapsto ``2 \times 2 = 4\text{''}\).}.
+
+    Para estudar implicação estrita, Lewis definiu cinco sistemas axiomáticos S1,\ldots,S5 independentemente de outros matemáticos contemporâneos.
+    Destes, os sistemas S4 e S5 tornaram-se amplamente conhecidos dentro da lógica modal, não por causa dos trabalhos de Lewis, mas sim pelos trabalhos
+    de~\citeshort{godel1986interpretation} e~\citeshort{orlov1928calculus}, em que ambos tentavam interpretar a lógica intuicionista dentro da lógica clássica.
+    O estudo da semântica da lógica modal se iniciou com Carnap~\cite{carnap1942introduction}, porém, de acordo com~\citeshort{zalta1995basic}, havia
+    um erro na definição de Carnap, em específico, repetições de modalidades não afetavam a interpretação semântica de uma fórmula. Por exemplo, a fórmula
+    ``Necessariamente necessariamente \PHI'' seria semanticamente equivalente a ``Necessariamente \PHI''.
+
+    Foi apenas com Kripke~\cite{kripke1959completeness,kripke1963semantical} que se obteve uma formulação definitiva da semântica da lógica modal.
+    A semântica definida (conhecida como semântica de Kripke, ou semântica de Mundos Possíveis) lida com mundos e relações de acessibilidade entre eles.
+    Nessa definição semântica, a validade de fórmulas depende de mundos. Em específico, fórmulas que não envolvem modalidades dependem apenas de um
+    mundo ``local'', já fórmulas que contêm modalidades dependem dos mundos acessíveis pelo mundo local.
+
+    A lógica modal que contém apenas as modalidades duais de necessidade (representada por \BOX) e possibilidade (representada por \DIA)
+    é chamada de lógica modal alética. Essas não são as únicas modalidades que podem ser expressas em lógicas modais, conceitos como tempo,
+    moralidade e conhecimento também podem ser expressos em uma linguagem modal.
+    Caso uma linguagem modal contenha várias modalidades não duais, ela é chamada de lógica multimodal. Por exemplo uma lógica alética
+    com as modalidades \BOXi{1}, \BOXi{2} e \BOXi{3} e suas respectivas duais \DIAi{1}, \DIAi{2} e \DIAi{3} ou uma lógica que contém as
+    modalidades \DIA alética e a modalidade \(\mathbf{O}\) de obrigatoriedade da lógica modal deôntica.
+
+    Uma lógica pode ser entendida como uma tripla \(\mathcal{L} = \langle \mathsf{A}, \vDash_{\mathsf{A}}, \vdash_{\mathsf{A}} \rangle\)
+    onde \(\mathsf{A}\) é a linguagem (conjunto de todas as fórmulas bem formadas) de \Mathcal{L}, \(\vDash_{\mathsf{A}}\) é uma relação de consequência
+    semântica definida sobre \(\mathsf{A}\) e \(\vdash_{\mathsf{A}}\) é uma relação de consequência sintática definida sobre \(\mathsf{A}\).
+    Podemos omitir o subscrito \(\mathsf{A}\) por simplicidade. Relações de consequência permitem estabelecer uma noção de consequência (ou derivação) entre conjuntos
+    (possivelmente vazios) de fórmulas e fórmulas, com base em certas regras semânticas ou sintáticas. Está definição é semelhante à definição apresentada
+    por~\citeshort{carnielli2008analysis}.
+
+    Neste capítulo, será apresentada a lógica modal normal, de forma sucinta, focando na lógica monomodal alética, que será simplesmente chamada de lógica modal.
+    Na Seção~\ref{sec:LM-Linguagem} será definida a linguagem da lógica modal, na Seção~\ref{sec:LM-Semantica} será definida a semântica de mundos possíveis e
+    algumas propriedades desta serão descritas, na Seção~\ref{sec:LM-Axiomatizacao} será descrita uma axiomatização para a lógica modal, na
+    Seção~\ref{sec:LM-Correspondencia} são apresentados outros sistemas de lógica modal, assim como o conceito de correspondência de frames, na
+    Seção~\ref{sec:LM-MetaPropriedades} serão apresentadas algumas meta propriedades de lógicas modais, na Seção~\ref{sec:LM-Multimodais} será apresentado o conceito
+    de lógicas multimodais, sua linguagem, semântica e axiomatização, na Seção~\ref{sec:LM-OutrasModais} serão descritas outras lógicas modais e, por fim, na
+    Seção~\ref{sec:LM-LogicaComoConjunto} será apresentado o conceito de lógica modal visto como um conjunto de fórmulas.
+
+    No que segue, usaremos letras gregas minúsculas \(\gamma, \phi, \psi, \dots\) para representar fórmulas bem formadas de uma linguagem e letras gregas maiúsculas
+    \(\Gamma, \Delta, \Sigma, \dots\) para representar conjuntos de fórmulas.
+
+    \section{Linguagem}
+        \label{sec:LM-Linguagem}
+        A linguagem \(\mathsf{LM}\) da lógica modal apresentada é baseada nas definições de~\citeshort{gabbay2003many} e~\citeshort{chellas1980modal},
+        onde \(\mathbb{P} = \{p_0, p_1, \dots\}\) é um conjunto contável de átomos, \(\top\) é a constante lógica de verdade,
+        \(\bot\) é a constante lógica de falsidade e a linguagem é definida sobre a assinatura (conjunto de conectivos)
+        \(\mathsf{C} = \{\Box, \Diamond, \neg, \land, \lor, \to\}\).
+        Temos então a seguinte definição:
+
+        \begin{definicao}[Linguagem da Lógica Modal]
+            \label{def:LinguagemModal}
+            A \textit{linguagem da lógica modal} é definida indutivamente como o menor conjunto que satisfaz as seguintes regras:
+            \begin{align*}
+                & \top, \bot \in \mathsf{LM}  \\
+                & \mathbb{P} \subseteq \mathsf{LM} \\
+                & \text{Se } \phi \in \mathsf{LM} \text{, então } \circ \phi \in \mathsf{LM}, \text{ sendo } \circ \in \{\Box, \Diamond, \neg\} \\
+                & \text{Se } \phi, \psi \in \mathsf{LM} \text{, então } \phi \circ \psi \in \mathsf{LM}, \text{ sendo } \circ \in \{\land, \lor, \to\} \tag*\qed
+            \end{align*}
+        \end{definicao}
+
+        Podemos utilizar uma assinatura mais simples para a lógica, onde outros conectivos podem ser representados a partir da seguintes
+        dualidades:
+
+        \begin{definicao}[Dualidades entre Conectivos]
+            \label{def:Dualidade}
+            Os conectivos apresentados anteriormente respeitam as seguintes dualidades:\\
+
+            \begin{tabular}[htpb]{>{$}l<{$} >{$}c<{$} >{$}l<{$} >{$}c<{$} l}
+                \Diamond \phi   & \eqdef & \neg \Box \neg \phi & \qquad \qquad        & Dualidade \BOX e \DIA \\
+                \phi \to \psi   & \eqdef & \neg \phi \lor \psi &                      & Dualidade \(\to\) e \(\lor\) \\
+                \neg \phi       & \eqdef & \phi \to \bot       & \qquad \qquad \qquad & Dualidade \(\neg\) e \(\bot\) \\
+                \phi \land \psi & \eqdef & \neg (\neg \phi \lor \neg \psi) &          & Dualidade \(\land\) e \(\lor\)
+            \end{tabular}
+            \qed
+        \end{definicao}
+
+        Segundo~\citeshort{chellas1980modal}, o conjunto de subfórmulas de uma dada fórmula \PHI é o conjunto de todas as fórmulas \PSI que compõe \PHI.
+        Temos então a seguinte definição:
+
+        \begin{definicao}[Subfórmulas]
+            O conjunto de \textit{subfórmulas} de uma fórmula \PHI, denotado por \(\funcao{Sub}(\phi)\), é definido indutivamente por:
+            \begin{align*}
+                &\funcao{Sub}(p_i) = \{p_i\}, p_i \in \mathbb{P} \\
+                &\funcao{Sub}(\top) = \{\top\} \\
+                &\funcao{Sub}(\bot) = \{\bot\} \\
+                &\funcao{Sub}(\circ \phi) = \{\circ \phi\} \cup \funcao{Sub}(\phi), \circ \in \{\Box, \Diamond, \neg\} \\
+                &\funcao{Sub}(\phi \circ \psi) = \{\phi \circ \psi\} \cup \funcao{Sub}(\phi) \cup \funcao{Sub}(\psi), \circ \in \{\land, \lor, \to\} \tag*\qed
+            \end{align*}
+        \end{definicao}
+
+    \section{Semântica}
+        \label{sec:LM-Semantica}
+        Semanticamente, a lógica modal pode ser apresentada de forma algébrica, como em~\citeshort{roggia2012fusion} e~\citeshort{blackburn2001modal}, ou
+        de forma relacional pela Semântica de Mundos Possíveis, como em~\citeshort{chellas1980modal},~\citeshort{zalta1995basic} e~\citeshort{gabbay2003many}.
+        No presente trabalho usaremos a semântica de mundos possíveis. De acordo com~\citeshort{dewind2001modal}, o conceito de mundos possíveis que Kripke
+        definiu vêm de ideias de Leibniz, que distinguia verdades em nosso mundo e verdades em todos os mundos possíveis de serem criados. Nessa linha de pensamento,
+        para alguma proposição ser dita necessariamente verdadeira ela deve ser verdadeira em \textit{todos} os mundos possíveis. %A noção
+        % de Kripke é levemente diferente, os mundos de Kripke estão relacionados entre si, logo, uma proposição é dita necessariamente
+        % verdadeira, em um dado mundo \textit{x}, se essa proposição é verdadeira em todos os mundos que estão relacionados com \textit{x}.
+
+        Formalmente, sendo \Mathcal{W} um conjunto de mundos e \Mathcal{R} uma relação binária definida sobre \Mathcal{W} denominada relação de acessibilidade,
+        isto é \(\mathcal{R} \subseteq \mathcal{W} \times \mathcal{W}\). Dados \(w_0, w_1 \in \mathcal{W}\),
+        a expressão \(w_0 \mathcal{R} w_1\) é lida como ``\(w_0\) está relacionado com \(w_1\)''. Outras interpretações podem chamar \Mathcal{R}
+        de relação de alternatividade, relatividade ou vizinhança. %O par \(\langle \mathcal{W}, \mathcal{R} \rangle\) formam uma estrutura chamada de frame.
+
+        \begin{definicao}[Frames]
+            \textit{Um frame é um par} \(\mathcal{F} = \langle \mathcal{W}, \mathcal{R} \rangle\), onde \(\mathcal{W} \neq \emptyset\) e
+            \(\mathcal{R} \subseteq \mathcal{W} \times \mathcal{W}\). \qed
+        \end{definicao}
+
+        Para atribuir valores verdade a fórmulas em mundos, devemos definir outra estrutura chamada de modelo\footnote{Alguns autores
+        chama essa estrutura de ``Modelos de Kripke''.}, que associa frames a funções de valoração.
+
+        \sloppy
+        \begin{definicao}[Modelos]
+            \textit{Modelos são pares de frames e funções de valoração} da forma
+            \({\mathcal{M} = \langle \mathcal{F}, \mathcal{V} \rangle}\), onde \Mathcal{F} é um frame e \Mathcal{V} é uma função total binária
+            definida por \(\mathcal{V}: \mathbb{P} \to 2^{\mathcal{W}}\), sendo \(2^{\mathcal{W}}\) o conjunto
+            das partes de \Mathcal{W}. Caso não seja necessário explicitar o frame de um modelo, podemos apresentar modelos como
+            \(\mathcal{M} = \langle \mathcal{W}, \mathcal{R}, \mathcal{V} \rangle\). \qed
+        \end{definicao}
+
+        A função \Mathcal{V} descreve o conjunto de mundos onde um dado átomo é interpretado como verdadeiro. Por exemplo,
+        sendo \(\mathcal{W} = \{w_0, \dots, w_{10}\}\), \(\mathcal{V}(p_0) = \{w_0, w_1, w_{10}\}\) indica que o átomo \(p_0\) é verdadeiro
+        nos mundos \(w_0, w_1 \text{ e } w_{10}\), já \(\mathcal{V}(p_1) = \emptyset\) indica que o átomo \(p_1\) não é verdadeiro em qualquer mundo.
+
+        \begin{exemplo}[Frames, Modelos e Classes]
+            \label{exe:FramesModelosClasses}
+            Sendo \(\mathcal{W} = \langle w_0, w_1 \rangle\) um conjunto de mundos e \(\mathcal{R} = \{ \langle w_0, w_0 \rangle, \langle w_0, w_1 \rangle\}\)
+            uma relação de acessibilidade definida sobre \Mathcal{W}. Podemos definir um frame
+            \(\mathcal{F} = \langle \mathcal{W}, \mathcal{R} \rangle\) e uma função de valoração \Mathcal{V} como
+            \(\mathcal{V}(p_0) = \{w_0, w_1\}, \mathcal{V}(p_1) = \{w_1\}, \mathcal{V}(p_i) = \emptyset, i \geq 3 \), logo, podemos
+            construir um modelo \(\mathcal{M} = \langle \mathcal{F}, \mathcal{V} \rangle\).
+
+            Podemos definir uma classe de frames \MathfrakI{F}{2} como a classe de todos os frames \(\langle \mathcal{W}, \mathcal{R} \rangle\) onde
+            \(|\mathcal{W}| = 2\), logo \(\mathcal{F} \in \mathfrak{F}^2\). Também podemos definir uma classe de modelos \MathfrakI{M}{2} como
+            a classe de todos os modelos \(\langle \mathcal{F}', \mathcal{V}' \rangle\) onde \(\mathcal{F}' \in \mathfrak{F}^2\), logo
+            \(\mathcal{M} \in \mathfrak{M}^2\). \qed
+        \end{exemplo}
+
+        Podemos então definir valoração de fórmulas em mundos de um dado modelo, como apresentado em~\citeshort{chellas1980modal}.
+
+        \begin{definicao}[Valoração de Fórmulas]
+            Sendo \(\mathcal{M} = \langle \mathcal{W}, \mathcal{R}, \mathcal{V} \rangle\) e \(w_0 \in \mathcal{W}\),
+            denotaremos por \(\mathcal{M}, w_0 \Vdash \phi\) ou \(w_0 \Vdash_\mathcal{M} \phi\) o fato que a fórmula \PHI é válida
+            no mundo \(w_0\) do modelo \Mathcal{M} e definiremos por:
+            \begingroup
+            \allowdisplaybreaks
+            \begin{align*}
+                \mathcal{M}, w_0 & \Vdash \top  \\
+                \mathcal{M}, w_0 & \nVdash \bot \\
+                \mathcal{M}, w_0 & \Vdash p_i \text{ sse } w_0 \in \mathcal{V}(p_i), \text{ para } p_i \in \mathbb{P} \\
+                \mathcal{M}, w_0 & \Vdash \neg \phi \text{ sse } \mathcal{M}, w_0 \nVdash \phi \\
+                \mathcal{M}, w_0 & \Vdash \phi \land \psi \text{ sse } (\mathcal{M}, w_0 \Vdash \phi \text{ e } \mathcal{M}, w_0 \Vdash \psi) \\
+                \mathcal{M}, w_0 & \Vdash \phi \lor \psi \text{ sse } (\mathcal{M}, w_0 \Vdash \phi \text{ ou } \mathcal{M}, w_0 \Vdash \psi) \\
+                \mathcal{M}, w_0 & \Vdash \phi \to \psi \text{ sse } (\mathcal{M}, w_0 \nVdash \phi \text{ ou } \mathcal{M}, w_0 \Vdash \psi) \\
+                \mathcal{M}, w_0 & \Vdash \Box \phi \text{ sse } \forall w_1 \in \mathcal{W}, (w_0 \mathcal{R} w_1 \to
+                                 \mathcal{M}, w_1 \Vdash \phi ) \\
+                \mathcal{M}, w_0 & \Vdash \Diamond \phi \text{ sse } \exists w_1 \in \mathcal{W}, (w_0 \mathcal{R} w_1 \land
+                                 \mathcal{M}, w_1 \Vdash \phi ) \tag*\qed
+            \end{align*}
+            \endgroup
+        \end{definicao}
+
+        Podemos estender a noção de validade de fórmulas para (classes de) frames e modelos, como definido em~\citeshort{dewind2001modal}.
+
+        \begin{definicao}[Validade em Modelo]
+            \label{def:ValidadeModelo}
+            Uma fórmula \PHI é dita \textit{válida em um modelo} \(\mathcal{M} = \langle \mathcal{W}, \mathcal{R}, \mathcal{V} \rangle\),
+            denotado por \(\mathcal{M} \Vdash \phi\), se, e somente se, \(\forall w \in \mathcal{W}, \ \mathcal{M}, w \Vdash \phi\). \qed
+        \end{definicao}
+
+        \begin{definicao}[Validade em Classes de Modelos]
+            \label{def:ValidadeClasseModelo}
+            Uma fórmula \PHI é dita \textit{válida em uma classe de modelos} \(\mathfrak{M}\),
+            denotado por \(\mathfrak{M} \Vdash \phi\), se, e somente se, \(\forall \mathcal{M} \in \mathfrak{M}, \ \mathcal{M} \Vdash \phi\). \qed
+        \end{definicao}
+
+        \begin{definicao}[Validade em Frame]
+            \label{def:ValidadeFrame}
+            Uma fórmula \PHI é dita \textit{válida em um frame} \(\mathcal{F} = \langle \mathcal{W}, \mathcal{R} \rangle\),
+            denotado por \(\mathcal{F} \Vdash \phi\), se, e somente se, \(\forall \mathcal{M} = \langle \mathcal{F}, \mathcal{V} \rangle,
+            \ \mathcal{M} \Vdash \phi\). \qed
+        \end{definicao}
+
+        \begin{definicao}[Validade em Classes de Frames]
+            \label{def:ValidadeClasseFrame}
+            Uma fórmula \PHI é dita \textit{válida em uma classe de frames} \(\mathfrak{F}\),
+            denotado por \(\mathfrak{F} \Vdash \phi\), se, e somente se, \(\forall \mathcal{F} \in \mathfrak{F}, \ \mathcal{F} \Vdash \phi\). \qed
+        \end{definicao}
+
+        As definições de satisfazibilidade de fórmulas em estruturas são análogas as definições de validade, mas com alterações na quantificação, então, por exemplo,
+        uma fórmula é dita satisfeita em um modelo se ela é verdadeira em algum mundo do modelo, já uma fórmula é dita satisfeita numa classe de modelos se é satisfeita
+        em algum modelo da classe. Um conjunto de fórmulas é dito satisfeito/válido em alguma estrutura se toda fórmula deste conjunto é satisfeita/válida nesta estrutura.
+
+        \begin{definicao}[Fórmulas Válidas]
+            \label{def:FormulaValida}
+            Uma \textit{fórmula \PHI é dita válida}, denotado por \(\Vdash \phi\), se, e somente se, \({\mathcal{F} \Vdash \phi}\) para qualquer frame \Mathcal{F}. \qed
+        \end{definicao}
+
+        % \begin{exemplo}[Valorações em Frames, Modelos e Classes]
+        %     \label{exe:ValoracaoFrameModeloClasse}
+        %    Para esse exemplo, usaremos as estruturas definidas no Exemplo~\ref{exe:FramesModelosClasses}. No modelo \Mathcal{M}, algumas valorações e validades
+        %    corretas são: \(\mathcal{M}, w_0 \Vdash p_0 \lor p_3; \mathcal{M}, w_0 \Vdash \neg \Box p_3; \mathcal{M}, w_1 \Vdash \Box p_{10};
+        %    \mathcal{M} \Vdash \Box p_0\).
+        % \end{exemplo}
+
+        Por fim, temos a consequência semântica, como descrito em~\citeshort{dewind2001modal}:
+
+        \begin{definicao}[Relação de Consequência Semântica]
+            Sendo \Mathcal{S} uma relação definida sobre \(2^{\mathsf{LM}} \times \mathsf{LM}\) e sendo \Mathfrak{M} uma classe de modelos,
+            \Mathcal{S} será dita uma relação de consequência semântica onde, para todo \(\Gamma \subseteq \mathsf{LM}\) e \(\phi \in \mathsf{LM}\),
+            \(\langle \Gamma, \phi \rangle \in \mathord{\mathcal{S}}\) se, e somente se,
+            se para todo \(\gamma \in \Gamma, \mathcal{M} \Vdash \gamma\), então \(\mathcal{M} \Vdash \phi\), em qualquer modelo \(\mathcal{M} \in \mathfrak{M}\).
+            Denotaremos consequências por \(\Gamma \vDash \phi\) ou \(\Gamma \vDash_{\mathfrak{M}} \phi\).
+            Caso \(\Gamma = \emptyset\) escreveremos \(\vDash \phi\) ou \(\vDash_{\mathfrak{M}} \phi\) e \PHI será dita uma tautologia na classe \Mathfrak{M}. \qed
+        \end{definicao}
+
+        % No que segue, usaremos as notações \(\mathcal{S} \vDash \phi\) e \(\vDash_\mathcal{S} \phi\) para denotar validade/consequência semântica
+        % em alguma estrutura \Mathcal{S}.
+        % Por fim, temos o conceito de sistema semântico:
+        % \begin{definicao}[Sistema Semântico]
+        %     \label{def:SistemaSemantico}
+        %     Um sistema semântico \(\vDash\) para uma lógica modal definida sobre a linguagem \textit{LM}, cuja classe de modelos é \Mathfrak{M},
+        %     pode ser representado como a função \(\vDash_{\mathfrak{M}}\) de validade (valoração) em classes de modelos
+        % \end{definicao}
+
+    \section{Axiomatização}
+        \label{sec:LM-Axiomatizacao}
+        Existem, na literatura, diversos sistemas dedutivos para a lógica modal, dentre eles sistemas de dedução natural, como é o caso de~\citeshort{dewind2001modal},
+        sistemas de \textit{tableaux}, como é o caso de~\citeshort{priest2008nonclassical} ou sistemas axiomáticos de Hilbert, como é o caso de
+        ~\citeshort{chellas1980modal},~\citeshort{gabbay2003many} e~\citeshort{zalta1995basic}. O presente trabalho apresentará um sistema axiomático no modelo de Hilbert.
+
+        De acordo com~\citeshort{gabbay2003many}, um sistema axiomático de Hilbert é composto de um conjunto possivelmente finito de fórmulas
+        e de um conjunto finito de regras de inferência. Este conjunto de fórmulas é chamado de conjunto de axiomas da lógica em questão e
+        a lógica é dita axiomatizável pelo conjunto.
+
+        Uma derivação de uma fórmula \PHI em um sistema de Hilbert é uma sequência finita de fórmulas \(\psi_0,\dots,\psi_n,\phi\),
+        onde toda fórmula é uma instância de um axioma ou o resultado da aplicação de regras de inferência em fórmulas anteriores
+        na sequência. Instâncias de fórmulas são obtidas a partir da substituição de proposições em fórmulas, como descrito abaixo:
+
+        \begin{definicao}[Substituição]
+            \label{def:Substituicao}
+            Sendo \PHI e \PSI fórmulas, a substituição em \PHI de \(p_i\) por \PSI, denotada por \(\phi\{p_i \mapsto \psi\}\) é definida como:
+            \begin{align*}
+                &p_i\{p_i \mapsto \psi\} = \psi \\
+                &p_j\{p_i \mapsto \psi\} = p_j, \text{ caso } i \neq j \\
+                &(\circ\phi)\{p_i \mapsto \psi\} = \circ(\phi\{p_i \mapsto \psi\}), \circ \in \{\Box\ \Diamond, \neg\} \\
+                &(\phi_0 \circ \phi_1)\{p_i \mapsto \psi\} = (\phi_0\{p_i \mapsto \psi\} \circ \phi_1\{p_i \mapsto \psi\}), \circ \in \{\land, \lor, \to\} \tag*\qed
+            \end{align*}
+        \end{definicao}
+
+        Temos o seguinte conjunto de regras de inferência:
+
+        \begin{definicao}[Regras de Inferência]
+            \label{def:RegrasInferencia}
+            A lógica modal pode ser descrita pelas regras de Necessitação \((\funcao{Nec})\) e Modus Ponens \(\funcao{MP}\): \\
+
+            \begin{minipage}{.45\textwidth}
+                \begin{prooftree}
+                    \AxiomC{$\Gamma \vdash \phi$}
+                    \RightLabel{Nec}
+                    \UnaryInfC{$\Gamma \vdash \Box \phi$}
+                \end{prooftree}
+            \end{minipage}%
+            \begin{minipage}{.45\textwidth}
+                \begin{prooftree}
+                    \AxiomC{$\Gamma \vdash \phi \to \psi$}
+                    \AxiomC{$\Gamma \vdash \phi$}
+                    \RightLabel{MP}
+                    \BinaryInfC{$\Gamma \vdash \psi$}
+                \end{prooftree}
+            \end{minipage}
+            \qed
+        \end{definicao}
+
+        E o seguinte conjunto de axiomas, como apresentado em~\citeshort{silveira2020implementacao}. É de interesse ressaltar que este conjunto não é mínimo nem máximo,
+        é possível apresentar uma axiomatização com menos axiomas, assim como com mais axiomas:
+
+        \begin{definicao}[Axiomas da Lógica Modal]
+            \label{def:AxiomaisModais}
+            A lógica modal pode ser descrita pelo seguinte conjunto \LAMBDAlm de axiomas:
+            \begingroup
+            \allowdisplaybreaks
+            \begin{align*}
+                &p_0 \to (p_1 \to p_0) \tag{Ax1} \\
+                &(p_0 \to (p_1 \to p_2)) \to ((p_0 \to p_1) \to (p_0 \to p_2)) \tag{Ax2} \\
+                &(\neg p_1 \to \neg p_0) \to (p_0 \to p_1) \tag{Ax3} \\
+                &p_0 \to (p_1 \to (p_0 \land p_1)) \tag{Ax4} \\
+                &(p_0 \land p_1) \to p_0 \tag{Ax5} \\
+                &(p_0 \land p_1) \to p_1 \tag{Ax6} \\
+                &p_0 \to (p_0 \lor p_1) \tag{Ax7} \\
+                &p_1 \to (p_0 \lor p_1) \tag{Ax8} \\
+                &(p_0 \to p_2) \to ((p_1 \to p_2) \to (p_0 \lor p_1) \to p_2) \tag{Ax9} \\
+                &\neg \neg p_0 \to p_0 \tag{Ax10} \\
+                &\Box (p_0 \to p_1) \to (\Box p_0 \to \Box p_1) \tag{K} \label{Ax:K} \\
+                &\Diamond (p_0 \lor p_1) \to (\Diamond p_0 \lor \Diamond p_1) \tag*{(Possibilidade) \ \qed} \label{Ax:Poss}
+            \end{align*}
+            \endgroup
+        \end{definicao}
+        Dados dois axiomas \PHI e \PSI, caso \(\phi \vdash \psi\) ou \(\psi \vdash \phi\), \PHI e \PSI são ditos dependentes, caso contrário são ditos independentes.
+        Dois conjuntos de axiomas \(\Phi\) e \(\Psi\) são dito dependentes caso exista \(\phi_i \in \Phi\) e \(\psi_i \in \Psi\) onde \(\phi_i\) e \(\psi_i\) são dependentes,
+        e são ditos independentes caso contrário. Dados conjuntos de axiomas \GAMMA e \SIGMA, escreveremos \(\Gamma \Oplus \Sigma\) para denotar o menor
+        conjunto de axiomas independentes definido sobre \(\Gamma \cup \Sigma\), como apresentado em~\citeshort{gabbay2003many}. Caso \(\Sigma = \{\phi\}\), escreveremos \(\Gamma \Oplus \phi\).
+
+        Com essas definições, podemos então apresentar o conceito de axiomatização para a lógica modal, como apresentado por~\citeshort{chellas1980modal}:
+
+        \begin{definicao}[Axiomatização da Lógica Modal]
+            Uma axiomatização é um par \(\langle\Sigma, \mathfrak{R}\rangle\), onde \SIGMA é um conjunto de axiomas e \Mathfrak{R} é um conjunto
+            de regras de derivação. Caso \SIGMA seja finito, então a lógica axiomatizada por \SIGMA é dita \textit{finitamente axiomatizável}. \qed
+        \end{definicao}
+
+        Toda lógica monomodal normal pode ser axiomatizada pelo par \(\langle\Lambda_{\mathsf{LM}} \Oplus \Gamma, \{\funcao{Nec}, \funcao{MP}\}\rangle\),
+        onde \GAMMA é um conjunto possivelmente vazio de axiomas adicionais. Caso \(\mathfrak{R} = \{\funcao{Nec}, \funcao{MP}\}\),
+        podemos omitir \Mathfrak{R} da apresentação da axiomatização desta lógica.% Podemos então definir um sistema dedutivo para uma lógica modal:
+
+        \begin{definicao}[Relação de Consequência Sintática]
+            Sendo \Mathcal{S} uma relação definida sobre \(2^{\mathsf{LM}} \times \mathsf{LM}\) e sendo \(\langle \Sigma, \mathfrak{R}\rangle\) uma axiomatização,
+            \Mathcal{S} será dita uma relação de consequência sintática onde, para todo \(\Gamma \subseteq \mathsf{LM}\) e \(\phi \in \mathsf{LM}\),
+            \(\langle \Gamma, \phi \rangle \in \mathord{\mathcal{S}}\) se, e somente se, exista uma derivação de \PHI a partir das fórmulas
+            do conjunto \(\Gamma \Oplus \Sigma\) usando as regras em \Mathfrak{R}.
+            Denotaremos consequências por \(\Gamma \vdash \phi\). Caso \(\Gamma = \emptyset\) escrevemos \(\vdash \phi\) e
+            \PHI será dito um teorema. \qed
+        \end{definicao}
+
+        % \begin{definicao}[Sistema Dedutivo]
+        %     \label{def:SistemaSintatico}
+        %     Um sistema dedutivo \(\vdash\) para uma lógica modal definida sobre a linguagem \textit{LM}, com um conjunto \SIGMA de axiomas adicionais,
+        %     pode ser representado como uma axiomatização \(\vdash_{\langle\Lambda_{LM} \Oplus \Sigma\rangle}\), ou simplesmente
+        %     \(\vdash_{\Sigma}\).
+        % \end{definicao}
+
+    \section{Sistemas de Lógica Modal e Correspondência de Frames}
+        \label{sec:LM-Correspondencia}
+
+        Como apresentado em~\citeshort{chellas1980modal} e~\citeshort{gabbay2003many}, a imposição de restrições sobre a relação de acessibilidade
+        de um frame torna certos esquemas de fórmulas válidos nestes frames. Estes esquemas de fórmulas são ditos correspondentes
+        aos frames que respeitam a restrição, por exemplo, o esquema \(\Box \phi \to \phi\) corresponde a frames cuja relação de acessibilidade
+        respeita a propriedade de reflexividade, como apresentado na Tabela~\ref{tab:relacoesFrames}. O axioma \textrm{K}, apresentado
+        na Seção~\ref{sec:LM-Axiomatizacao}, é correspondente a todos os frames. Se o frame de um modelo respeita uma dada restrição, então
+        é dito que este modelo também respeita esta restrição, por exemplo, modelos de frames reflexivos são ditos (modelos) reflexivos.
+        Algumas restrições notáveis e suas correspondentes fórmulas encontram-se na Tabela~\ref{tab:relacoesFrames}.
+        \begin{table}[htpb]
+            \centering
+            \begin{tabular}{|l|l|l|c|}
+
+                \hline Tipo de Relação & Condição no Frame & Esquema\\
+
+                \hline Reflexiva & $\forall w \in \mathcal{W}, w\mathcal{R}w$  & \textit{T}: $\Box \phi \rightarrow \phi$\\
+
+                \hline Transitiva & $\forall w_0,w_1,w_2 \in \mathcal{W},$ & \textit{4}: $\Box \phi \to \Box \Box \phi$\\
+                    & \((w_0\mathcal{R}w_1 \land w_1\mathcal{R}w_2) \to w_0\mathcal{R}w_2\) &\\
+
+                \hline Euclidiana & $\forall w_0,w_1,w_2 \in \mathcal{W}$, & \textit{5}: $\Diamond \phi \rightarrow \Box \Diamond \phi$\\
+                    & $(w_0\mathcal{R}w_1 \land w_0\mathcal{R}w_2)$ $\to w_1\mathcal{R}w_2$ &\\
+
+                \hline Simétrica & $\forall w_0,w_1 \in \mathcal{W}$, & \textit{B}: $\phi \to \Box \Diamond \phi$\\
+                    &  $w_0\mathcal{R}w_1 \to w_1\mathcal{R}w_0$ &\\
+
+                \hline Convergente & $\forall w_0,w_1,w_2, \exists w_3 \in \mathcal{W}$, & \textit{C}: $\Diamond \Box \phi \rightarrow \Box \Diamond \phi$\\
+                    & $(w_0\mathcal{R}w_1 \land w_0\mathcal{R}w_2) \to (w_1\mathcal{R}w_3 \land w_2\mathcal{R}w_3)$ &\\
+
+                \hline Serial & $\forall w_0, \exists w_1 \in \mathcal{W}, w_0\mathcal{R}w_1$ & \textit{D}: $\Box \phi \rightarrow \Diamond \phi$\\
+
+                \hline Funcional & $\forall w_0,w_1,w_2 \in \mathcal{W}$, & \textit{CD}: $\Diamond \phi \rightarrow \Box \phi$\\
+                    & $(w_0\mathcal{R}w_1 \land w_0\mathcal{R}w_2) \to w_1 = w_2$ &\\
+
+                \hline Densa & $\forall w_0,w_1, \exists w_2 \in \mathcal{W}$, & \textit{C4}: $\Box \Box \phi \rightarrow \Box \phi$\\
+                    & $w_0\mathcal{R}w_1 \to (w_0\mathcal{R}w_2 \land w_2\mathcal{R}w_1)$ &\\
+
+                \hline
+
+            \end{tabular}
+            \caption{Relações e axiomas correspondentes}
+            \small{Fonte: Adaptado de~\citeshort{silveira2020implementacao}.}
+            \label{tab:relacoesFrames}
+        \end{table}
+
+        O sistema de lógica modal mais simples (também pode ser chamado de sistema básico da lógica modal) chama-se K, em homenagem à Saul Kripke.
+        O sistema K é definido sobre todos os frames \(\langle \mathcal{W}, \mathcal{R} \rangle\), sem qualquer restrição sobre \Mathcal{R}.
+        Sua relação de consequência semântica é descrita por uma relação \VDDASH definida sobre a classe
+        \Mathfrak{M} de todos os modelos cuja relação de acessibilidade do frame não é restrita, e sua relação de
+        consequência sintática é descrita por uma relação \VDASH definida sobre a axiomatização \(\langle\Lambda_{\mathsf{LM}}, \{\funcao{Nec}, \funcao{MP}\}\rangle\).
+        Representaremos a lógica definida sobre o sistema K por \(\mathcal{L}_{\textbf{K}} = \langle \mathsf{LM}, \vDash_{\mathfrak{M}}, \vdash_{\textnormal{K}} \rangle \),
+        ou simplesmente por \(\textbf{K} = \langle \mathsf{LM}, \vDash, \vdash \rangle\).
+
+        A imposição de restrições sobre a relação de acessibilidade de frames dá surgimento a outros sistemas de lógica modal, distintos
+        do sistema básico \textbf{K}. Sendo \(\mathcal{F}_x = \langle \mathcal{W}, \mathcal{R} \rangle\) um frame qualquer pertencente a uma classe de frames \Mathfraki{F}{x},
+        onde a relação \Mathcal{R} de todo frame desta classe respeita alguma restrição \textit{X}. Como \Mathcal{R} é restrito, cada frame \Mathcali{F}{x} de \Mathfraki{F}{x}
+        descreve uma classe de modelos \(\mathfrak{M}_x\) menor que a classe de todos os modelos sem restrição.
+        Já uma axiomatização para \Mathcali{F}{x} será definida pelo par \(\langle\Lambda_{\mathsf{LM}} \Oplus \Xi, \{\funcao{Nec}, \funcao{MP}\}\rangle\),
+        onde \(\Xi\) é o conjunto de axiomas correspondentes à \textit{X}. Portanto, a classe \Mathfraki{F}{x} gera o sistema
+        \(\mathcal{L}_{\mathfrak{F}_x} = \langle \mathsf{LM}, \vDash_{\mathfrak{M}_x}, \vdash_\Xi \rangle\), ou simplesmente
+        \({\mathbf{F}_x = \langle \mathsf{LM}, \vDash_{\mathbf{F}_x}, \vdash_{\mathbf{F}_x} \rangle}\).
+
+        Sistemas de lógica modal geralmente são nomeados de acordo com os nomes de seus axiomas correspondentes (apresentados na Tabela~\ref{tab:relacoesFrames}), por
+        exemplo, é chamado de sistema \textbf{KT} o sistema definido sobre a classe de modelos reflexivos\footnote{Lembre que o axioma \textit{K} é correspondente
+        a todos os frames.}, já o sistema definido sobre a classe de modelos reflexivos e transitivos é chamado de \textbf{KT4}. Podemos omitir o \textbf{K} em nomes
+        de sistemas. São exceções à essa regra os sistemas \textbf{S4} e \textbf{S5}, descritos no exemplo a seguir.
+
+        \begin{exemplo}[Sistemas de Lógica Modal]
+            \label{exe:SistemasModal}
+            A partir do que foi apresentado na Tabela~\ref{tab:relacoesFrames}, podemos descrever outros sistemas lógicos, como apresentado abaixo
+            (para evitar repetições, a linguagem \(\mathsf{LM}\) foi omitida das definições):
+
+            \begin{itemize}
+                \item \(\mathbf{T} = \langle \vDash_{\mathfrak{M}_{\mathcal{T}}}, \vdash_{\textit{T}} \rangle\), onde \(\mathfrak{M}_{\mathcal{T}}\) é a classe de
+                modelos reflexivos;
+
+                \item \(\mathbf{4} = \langle \vDash_{\mathfrak{M}_4}, \vdash_{\textit{4}} \rangle\), onde \(\mathfrak{M}_4\) é a classe de
+                modelos transitivos;
+
+                \item \(\mathbf{S4} = \langle \vDash_{\mathfrak{M}_{\mathcal{T}4}}, \vdash_{\textit{T}\Oplus\textit{4}} \rangle\), onde \(\mathfrak{M}_{\mathcal{T}4}\)
+                é a classe de modelos reflexivos e transitivos;
+
+                \item \(\mathbf{S5} = \langle \vDash_{\mathfrak{M}_{\mathcal{TB}4}}, \vdash_{\textit{T}\Oplus\textit{B}\Oplus\textit{4}} \rangle\),
+                onde \(\mathfrak{M}_{\mathcal{TB}4}\) é a classe de modelos reflexivos, simétricos e transitivos. Alternativamente, podemos definir \textbf{S5} por:
+                \begin{itemize}
+                    \item \(\mathbf{S5} = \langle \vDash_{\mathfrak{M}_{\mathcal{TB}4}}, \vdash_{\mathbf{S4}\Oplus\textit{B}} \rangle\), onde
+                    \(\mathbf{S4}\Oplus\textit{B}\) denota o menor conjunto de axiomas definido pelo conjunto de axiomas do sistema \textbf{S4} e o axioma \textit{B};
+
+                    \item \(\mathbf{S5} = \langle \vDash_{\mathfrak{M}_{\mathcal{T}5}}, \vdash_{\textit{T}\Oplus 5} \rangle\), onde \(\mathfrak{M}_{\mathcal{T}5}\)
+                    é a classe de modelos reflexivos e euclideanos. \qed
+                \end{itemize}
+            \end{itemize}
+        \end{exemplo}
+        Para denotar valoração de fórmulas ou validade em sistemas específicos de lógica modal usaremos a notação \(\mathcal{S}, w \Vdash_{\mathbf{X}} \phi\) ou
+        \(w \Vdash_{\mathbf{X}, \mathcal{S}} \phi\), onde \Mathcal{S} é alguma estrutura (modelo, frame, classe de frames, classe de modelos)
+        e \textbf{X} é um sistema. Omitiremos o \textbf{X} subscrito caso não seja necessário
+        explicitar o sistema que está sendo discutido. Análogo para \VDDASH e \VDASH.
+
+        Por fim, usaremos os termos ``sistema de lógica modal'', ``lógica modal'' e ``lógica'' como sinônimos no restante do texto.
+
+    \section{Algumas Meta Propriedades}
+        \label{sec:LM-MetaPropriedades}
+        Sistemas de lógica modal são, assim como muitos outros sistemas lógicos, corretos e completos como foi demonstrado por
+        ~\citeshort{silveira2020implementacao}, ~\citeshort{chellas1980modal} e~\citeshort{blackburn2001modal}, e também possuem outras propriedades interessantes,
+        como decidibilidade e propriedade de modelos finitos, como demonstrado por~\citeshort{gabbay2003many}.
+        Provar essas propriedades é uma tarefa grande, complexa e que se encontra fora do escopo do presente trabalho.
+        Apesar disso, estas propriedades serão enunciadas, brevemente explicadas e provas delas na literatura serão indicadas.
+
+        O problema de demonstrar corretude e completude de sistemas lógicos se resume a demonstrar que há uma correspondência entre suas relações
+        de consequência sintática e semântica. Caso uma lógica seja correta então toda fórmula sintaticamente derivável também é semanticamente
+        derivável, caso uma lógica seja completa toda fórmula semanticamente derivável também é sintaticamente derivável. Logo, as relações de
+        consequência sintática e semântica de uma lógica correta e completa são igualmente expressivas.
+        % Segundo~\cite{blackburn2001modal}, o problema de demonstrar corretude e completude de lógicas se resume a responder as seguintes perguntas:
+        % ``Dada uma lógica especificada semanticamente, é possível dar uma especificação sintática para ela e, se sim, como?'' e ``Dada uma lógica
+        % especificada sintaticamente, é possível dar uma especificação semântica para ela e, se sim, como?''.
+        % O problema fica mais evidente se considerarmos os conjuntos \Mathcali{T}{1} e \Mathcali{T}{2} descritos abaixo.
+
+        % O problema de correção e completude se torna mais evidente se considerarmos \(\mathcal{T}^{\mathbf{X}}_{1} = \{\phi \ | \ \vdash_{\mathbf{X}} \phi\}\)
+        % como o conjunto de todos os teoremas de um sistema de lógica modal \textbf{X} e \(\mathcal{T}^{\mathbf{X}}_{2} = \{\phi \ | \ \mathfrak{M} \vDash_{\mathbf{X}} \phi\}\)
+        % como sendo o conjunto de todas as fórmulas válidas na classe de modelos \Mathfrak{M} correspondente à \textbf{X}. Demonstrar a corretude de \textbf{X} se resume a demonstrar que
+        % \(\mathcal{T}_1 \subseteq \mathcal{T}_2\), já demonstrar a completude fraca de \textbf{X} se resume a demonstrar que \(\mathcal{T}_2 \subseteq \mathcal{T}_1\).
+        % Logo, se \textbf{X} for correta e completa, temos que \(\mathcal{T}_1 = \mathcal{T}_2\), isto é, os sistemas semânticos e sintáticos de \textbf{X} são igualmente
+        % expressivos\footnote{Toda lógica fortemente completa também é fracamente completa, logo, basta provar que uma lógica é fracamente completa e correta para demonstrar
+        % que seus sistemas sintáticos e semânticos são igualmente expressivos.}.
+
+        As definições de completude e corretude abaixo foram retiradas de~\citeshort{blackburn2001modal}.
+
+        \subsection{Corretude}
+            \label{subsec:Corretude}
+
+            \sloppy
+            \begin{definicao}[Corretude]
+                \label{def:Corretude}
+                Uma lógica modal \Mathcal{L} é dita \textit{correta com respeito a} uma classe de frames (modelos) \Mathfrak{S}
+                se, para qualquer fórmula \PHI e qualquer frame (modelo) \(\mathcal{S} \in \mathfrak{S}\), se \(\vdash_{\mathcal{L}} \phi\)
+                então \(\mathcal{S} \vDash_{\mathcal{L}} \phi\). \qed
+            \end{definicao}
+
+            \begin{teorema}[Corretude da Lógica Modal \textbf{K}]
+                \label{teo:CorretudeLogicaModal}
+                A lógica modal \textbf{K} é correta para a classe de todos os frames.
+            \end{teorema}
+
+            \begin{proof}[Ideia da Prova do Teorema~\ref{teo:CorretudeLogicaModal}]
+                Provas de corretude de lógicas modais se resumem a provar que os axiomas que axiomatizam uma lógica são corretos,
+                isto é, são fórmulas válidas, e que as regras de derivação preservam validade, isto é, demonstrar que, ao aplicar uma
+                regra de derivação em um conjunto de fórmulas válidas, teremos como resultado outra fórmula válida.
+
+                Em particular, para provar a corretude da lógica modal \textbf{K} como apresentada neste trabalho,
+                basta provar que os axiomas descritos na Seção~\ref{sec:LM-Axiomatizacao} são válidos e que as regras de derivação
+                de Necessitação e Modus Ponens preservam validade.
+                Como \textbf{K} é correta para a classe de todos os frames, qualquer outro sistema da lógica modal ``herda'' a corretude
+                das regras de derivação e axiomas que axiomatizam \textbf{K}. Para provar a corretude de outros sistemas modais, basta provar
+                que seu(s) axioma(s) correspondente(s) é(são) válido(s) na sua respectiva classe de frames.
+
+                Provas de corretude podem ser encontradas em~\citeshort{silveira2020implementacao}, ~\citeshort{chellas1980modal} e~\citeshort{zalta1995basic}.
+            \end{proof}
+
+        \subsection{Completude}
+            \label{subsec:Completude}
+
+            \begin{definicao}[Completude]
+                Sendo \Mathfrak{S} uma classe de frames (modelos), uma lógica \Mathcal{L} é dita \textit{fortemente completa} com respeito a \Mathfrak{S} se,
+                para qualquer conjunto de fórmulas \GAMMA e qualquer fórmula \PHI, se \(\Gamma \vDash_{\mathfrak{S},\mathcal{L}} \phi\)
+                então \(\Gamma \vdash_{\mathcal{L}} \phi\).
+
+                Sendo \Mathfrak{S} uma classe de frames (modelos), uma lógica \Mathcal{L} é dita \textit{fracamente completa} com respeito à \Mathfrak{S} se,
+                para qualquer fórmula \PHI, se \(\mathfrak{S} \vDash_{\mathcal{L}} \phi\) então \(\vdash_{\mathcal{L}} \phi\). \qed
+            \end{definicao}
+
+            \begin{teorema}[Completude da Lógica Modal \textbf{K}]
+                \label{teo:CompletudeLogicaModal}
+                A lógica modal \textbf{K} é fortemente completa para a classe de todos os frames.
+            \end{teorema}
+
+            Antes de apresentar a ideia da prova, é necessário definir o conceito de consistência de um conjunto de fórmulas:
+
+            \sloppy
+            \begin{definicao}[Consistência]
+                Sendo \GAMMA um conjunto de fórmulas, \GAMMA é dito consistente se não existe fórmula \PHI tal que \({\phi \in \Gamma \text{ e } \neg \phi \in \Gamma}\). \qed
+            \end{definicao}
+
+            \begin{proof}[Ideia da Prova do Teorema~\ref{teo:CompletudeLogicaModal}]
+                Ao contrário da corretude, provas de completude para lógica modal são consideravelmente complexas e, de acordo com~\citeshort{blackburn2001modal},
+                são essencialmente teoremas sobre a existência de modelos, pois para demonstrar completude de uma dada lógica modal \Mathcal{L} com relação
+                à uma dada classe de estruturas \Mathfrak{S}, é demonstrado que todo subconjunto consistente do conjunto de todos os teoremas de \Mathcal{L}
+                é satisfazível em algum modelo.
+
+                Então o problema se torna: ``como construir estes modelos?''. A resposta é: construindo modelos canônicos. Modelos canônicos são uma classe
+                específica de modelos que estão intimamente relacionados com o conceito de conjuntos maximais consistentes de fórmulas, estes são os ``maiores''
+                conjuntos de fórmulas consistentes. Este método de prova é bastante complexo e não há muito mais que possa ser explicado sobre sem antes abordar
+                detalhes técnicos fora do escopo deste trabalho.~\citeshort{blackburn2001modal},~\citeshort{chellas1980modal} e~\citeshort{silveira2020implementacao} apresentam provas de
+                completude.
+            \end{proof}
+
+    \section{Lógicas Multimodais}
+        \label{sec:LM-Multimodais}
+        Lógicas multimodais são uma extensão intuitiva do conceito de lógicas modais com apenas uma modalidade (ou um par de modalidades duais, como é o caso da lógica
+        alética apresentada), que contém diversas modalidades distintas.
+        %Por exemplo, podemos extender a lógica monomodal alética com \textit{n} operadores unários \BOXi{1},\ldots,\BOXi{n} e seus respectivos duais \DIAi{1},\ldots,\DIAi{n}.
+
+        \subsection{Linguagem}
+            \label{subsec:MultimodaisLinguagem}
+            A linguagem \(\mathsf{LM}_{n}\) da lógica \textit{n}-modal é uma simples extensão da linguagem da lógica modal apresentada na Seção~\ref{sec:LM-Linguagem},
+            onde, ao invés de termos apenas a modalidade \BOX e sua dual \DIA, temos \textit{n} modalidades \BOXi{1},\ldots,\BOXi{n} e suas duais \DIAi{1},\ldots,\DIAi{n}.
+            O conceito de subfórmulas é estendido para lidar com as novas modalidades. Temos a seguinte definição de \textit{profundidade modal}, como
+            apresentado por~\citeshort{gabbay2003many}, que será utilizado posteriormente na prova de transferência de completude pela fusão de lógicas modais:
+
+            \sloppy
+            \begin{definicao}[Profundidade Modal]
+                A \textit{profundidade de uma fórmula} \PHI, denotada por \(\funcao{d}(\phi)\), é definida indutivamente por:
+                \begin{align*}
+                    &\funcao{d}(\phi) = \ 0, \text{ caso } \phi \in \mathbb{P} \cup \{\top,\bot\} \\
+                    &\funcao{d}(\neg\phi) = \ \funcao{d}(\phi) \\
+                    &\funcao{d}(\phi \circ \psi) = \ \funcao{max}(\funcao{d}(\phi), \funcao{d}(\psi)), \circ \in \{\land, \lor, \to\} \\
+                    &\funcao{d}(\circ \phi) = \ \funcao{d}(\phi) + 1, \circ \in \{\Box_1,\dots,\Box_n,\Diamond_1,\dots,\Diamond_n\}
+                \end{align*}
+                Onde max é a função de máximo entre dois números. \qed
+            \end{definicao}
+
+        \subsection{Semântica e Axiomatização}
+            \label{subsec:MultimodaisSemAx}
+            Estender a semântica de mundos possíveis para lidar com diversas modalidades é também intuitivo, basta estender o conceito de frames para \textit{n-frames},
+            como apresentado por~\citeshort{gabbay2003many}.
+
+            \begin{definicao}[n-frames]
+                \sloppy
+                Um \textit{n-frame é uma n-upla} \({\mathcal{F}_n = \langle \mathcal{W}, \mathcal{R}_1,\dots,\mathcal{R}_n \rangle}\), onde \(\mathcal{W} \neq \emptyset\) e
+                \(\mathcal{R}_i \subseteq \mathcal{W} \times \mathcal{W}, 1 \leq i \leq n\). \qed
+            \end{definicao}
+
+            \begin{definicao}[n-modelos]
+                Um \textit{n-modelo é um par de n-frame e uma função de valoração} da forma
+                \(\mathcal{M}_n = \langle \mathcal{F}_n, \mathcal{V} \rangle\), onde \Mathcal{V} é uma função total binária
+                definida por \(\mathcal{V}: \mathbb{P} \to 2^{\mathcal{W}}\).
+                Os n-modelos também podem ser apresentados como \({\mathcal{M}_n = \langle \mathcal{W}, \mathcal{R}_1,\dots,\mathcal{R}_n, \mathcal{V} \rangle}\). \qed
+            \end{definicao}
+
+            A definição de valoração de fórmulas em lógicas \textit{n}-modais é uma generalização do caso monomodal, onde os casos para \BOX e \DIA são substituídos por:
+            \begin{align*}
+                \mathcal{M}_n, w_0 & \Vdash \Box_i \phi \text{ sse } \forall w_1 \in \mathcal{W}, (w_0 \mathcal{R}_i w_1 \to
+                                 \mathcal{M}_n, w_1 \Vdash \phi), 1 \leq i \leq n \\
+                \mathcal{M}_n, w_0 & \Vdash \Diamond_i \phi \text{ sse } \exists w_1 \in \mathcal{W}, (w_0 \mathcal{R}_i w_1 \land
+                                 \mathcal{M}_n, w_1 \Vdash \phi), 1 \leq i \leq n
+            \end{align*}
+
+            As definições de outros conceitos semânticos são estendidas da maneira intuitiva.
+
+            \begin{definicao}[Axiomatização Multimodal]
+                \label{def:AxiomatizacaoMultimodal}
+                O conjunto de axiomas \(\Lambda_{\mathsf{LM}_n}\) de uma lógica \textit{n}-modal é uma generalização do conjunto \LAMBDAlm monomodal, onde o axioma
+                \textit{K} é substituído por \textit{n} instâncias de:
+                \[
+                    \Box_i (p_0 \to p_1) \to (\Box_i p_0 \to \Box_i p_1), 1 \leq i \leq n \tag{K\textsubscript{i}} \label{Ax:Kn}
+                \]
+                e o conjunto de regras de derivação é uma generalização do caso monomodal, com \textit{n} instâncias da regra \(\funcao{Nec}\),
+                ou seja, \(\mathfrak{R} = \{\funcao{Nec}_1, \dots, \funcao{Nec}_n, \funcao{MP}\}\). Logo, uma lógica n-modal pode ser axiomatizada pelo par
+                \(\langle\Lambda_{\mathsf{LM}_n} \Oplus \Gamma, \{\funcao{Nec}_1, \dots, \funcao{Nec}_n, \funcao{MP}\}\rangle\), onde \GAMMA é um
+                conjunto possivelmente vazio de axiomas adicionais. \qed
+            \end{definicao}
+
+            A mesma generalização pode ser aplicada para outros axiomas, como apresentado no exemplo abaixo.
+
+            \begin{exemplo}[Esquemas Multimodais]
+                Considerando os esquemas de fórmulas descritos na Tabela~\ref{tab:relacoesFrames}, temos as seguintes generalizações multimodais para alguns deles:
+                \begin{align*}
+                    \mathit{T}_i&: \ \Box_i \phi \rightarrow \phi \\
+                    \mathit{4}_i&: \ \Box_i \phi \to \Box_i \Box_i \phi \\
+                    \mathit{5}_i&: \ \Diamond_i \phi \rightarrow \Box_i \Diamond_i \phi \\
+                    \mathit{B}_i&: \ \phi \to \Box_i \Diamond_i \phi \tag*\qed
+                \end{align*}
+            \end{exemplo}
+
+            Relações de consequência sintática e semântica são estendidos de modo intuitivo.
+            O sistema \textit{n}-modal básico \(\textbf{K}_n\) é definido sobre todos os n-frames sem restrições, de forma análoga ao sistema \textbf{K} monomodal.
+
+            \begin{exemplo}[Sistemas Multimodais]
+                \label{exe:SistemasMultiModal}
+                Apresentaremos aqui as versões multimodais dos sistemas de lógica modal apresentados no Exemplo~\ref{exe:SistemasModal}.
+                Para evitar repetições, a linguagem \(\mathsf{LM}_{n}\) foi omitida das definições:
+
+                \begin{itemize}
+                    \item \(\mathbf{T}_n = \langle \vDash_{\mathfrak{M}_{\mathcal{T}n}}, \vdash_{\mathit{T_i}} \rangle\), onde \(\mathfrak{M}_{\mathcal{T}n}\) é a classe de
+                    n-modelos reflexivos;
+
+                    \item \(\mathbf{4}_n = \langle \vDash_{\mathfrak{M}_{4n}}, \vdash_{\mathit{4_i}} \rangle\), onde \(\mathfrak{M}_{4n}\) é a classe dos
+                    n-modelos transitivos;
+
+                    \item \(\mathbf{S4}_n = \langle \vDash_{\mathfrak{M}_{\mathcal{T}4n}}, \vdash_{\mathit{T_i}\Oplus\mathit{4_i}} \rangle\), onde \(\mathfrak{M}_{\mathcal{T}4n}\)
+                    é a classe dos n-modelos reflexivos e transitivos;
+
+                    \item \(\mathbf{S5}_n = \langle \vDash_{\mathfrak{M}_{\mathcal{TB}4n}}, \vdash_{\mathit{T_i}\Oplus\mathit{B_i}\Oplus\mathit{4_i}} \rangle\),
+                    onde \(\mathfrak{M}_{\mathcal{TB}4n}\) é a classe dos n-modelos reflexivos, simétricos e transitivos. Alternativamente, podemos definir \textbf{S5}\textsubscript{n} por:
+                    \begin{itemize}
+                        \item \(\mathbf{S5}_n = \langle \vDash_{\mathfrak{M}_{\mathcal{TB}4n}}, \vdash_{\mathbf{S4}_n\Oplus\mathit{B_i}} \rangle\), onde
+                        \(\mathbf{S4}_n\Oplus\mathit{B_i}\) denota o menor conjunto de axiomas definido pelo conjunto de axiomas do sistema \textbf{S4}\textsubscript{n} e o
+                        axioma \textit{B}\textsubscript{\textit{i}};
+
+                        \item \(\mathbf{S5}_n = \langle \vDash_{\mathfrak{M}_{\mathcal{T}5n}}, \vdash_{\mathit{T_i}\Oplus 5_i} \rangle\), onde \(\mathfrak{M}_{\mathcal{T}5n}\)
+                        é a classe dos n-modelos reflexivos e euclideanos. \qed
+                    \end{itemize}
+                \end{itemize}
+            \end{exemplo}
+
+            Um n-modelo \({\mathcal{M}_n = \langle \mathcal{W}, \mathcal{R}_1,\dots,\mathcal{R}_n, \mathcal{V} \rangle}\) é dito respeitar uma restrição se cada \Mathcali{R}{i}
+            respeita a restrição, por exemplo, se toda \Mathcali{R}{i} é uma relação reflexiva, então o n-modelo é dito reflexivo. Alternativamente, um sistema descrito pela
+            classe de n-modelos que respeitam uma dada propriedade \Mathcal{X} pode ser visto como o sistema onde cada modalidade \BOXi{i} se comporta como a modalidade \BOX do sistema monomodal
+            que respeita a mesma propriedade \Mathcal{X}, como apresentado por~\citeshort{gabbay2003many}.
+
+    \section{Outros Tipos de Lógicas Modais}
+        \label{sec:LM-OutrasModais}
+        Como afirmado no início deste capítulo, a lógica modal não lida apenas com conceito de \textit{necessidade} e \textit{possibilidade},
+        de fato, linguagens modais são uma excelente ferramenta para raciocinar sobre estruturas relacionais, de acordo com~\citeshort{blackburn2001modal}.
+        Estruturas relacionais estão presentes em diversas áreas do conhecimento, por exemplo, sistemas de transição para programas de computador,
+        redes semânticas para representação de conhecimento ou estruturas linguísticas de atributo e valor, de acordo com~\citeshort{gabbay2003many}.
+
+        Para raciocinar sobre estas e outras estruturas relacionais, é necessário especializar a lógica modal que foi apresentada até então, onde os conectivos
+        \BOX e \DIA de necessidade e possibilidade são substituídos por outros conectivos modais que representam os conceitos desejados de modo mais preciso.
+        Ademais, sistemas modais mais complexos podem ser construídos a partir da \textit{combinação} de sistemas modais mais simples~\cite{roggia2012fusion},
+        algo que será visto mais à frente.
+
+        Nesta seção, serão brevemente apresentadas as lógicas modais temporal, epistêmica e temporal epistêmica, com alguns exemplos de suas aplicações em computação.
+
+        \subsection{Lógica Temporal}
+            \label{subsec:LogicaTemporal}
+            De acordo com~\citeshort{emerson1990temporal}, lógica temporal é um tipo especial de lógica modal que define um sistema para descrever e raciocinar sobre
+            como a veracidade de afirmações mudam com o tempo. Já~\citeshort{gabbay2003many} define como uma aplicação natural e intuitiva da lógica modal. Mais ainda,
+            \citeshort{emerson1990temporal} apresenta uma classificação de lógicas temporais, onde estas se dividem em: proposicional ou primeira ordem, global ou composicional,
+            tempo ramificável ou linear, pontos de tempo ou intervalos de tempo, tempo discreto ou contínuo, passado ou futuro.
+
+            \citeshort{gabbay2003many} apresenta cinco modalidades para lógica temporal, ``sempre no passado/futuro'', ``desde'', ``até'' e ``no próximo instante''.
+            Já~\citeshort{emerson1990temporal} apresenta quatro modalidades para a lógica temporal linear, ``eventualmente'', ``sempre'', ``no próximo instante'' e ``até''.
+            % representadas por \BOXi{P}, \BOXi{F}, \Mathcal{S}, \Mathcal{U} e \(\circ\), respectivamente, onde \BOXi{P} e \BOXi{F} tem as duais \DIAi{P} e \DIAi{F}, que
+            % representam ``algum momento no passado/futuro'', respectivamente.
+
+            % A frase ``sempre no passado/futuro \PHI'' (ou \(\Box_F/\Box_P \phi\) significa ``\PHI sempre foi/será verdade'',
+            % ``\PHI desde \PSI'' (ou \(\phi \mathcal{S} \psi\) significa ``\PHI é verdade desde o momento em que \PSI é verdade'', a frase ``\PHI até \PSI''
+            % (ou \(\phi \mathcal{U} \psi\) significa ``\PHI será verdade até \PSI for verdade'', por fim, a frase ``no próximo instante \PHI''
+            % significa``no próximo instante de tempo, \PHI será verdadeiro''
+
+            % Os dois últimos tem a mesma interpretação que a de~\cite{gabbay2003many}, já
+            % ``eventualmente \PHI'' significa ``há algum instante de tempo futuro onde \PHI é verdadeiro'',
+            % e ``sempre \PHI'' significa ``\PHI sempre foi e sempre será verdadeiro''.
+
+            De acordo com~\citeshort{emerson1990temporal},~\citeshort{pnueli1977temporal} foi o primeiro a descrever a lógica temporal como formalismo para
+            verificação de programas sequenciais e concorrentes. %, pois lógicas temporais são capazes de expressar fatos como programas (sequenciais ou paralelos) que operam continuamente.
+            Extensões da lógica temporal também são muito usadas para formalizar e verificar programas, por exemplo~\citeshort{lamport1983specifying} descreve um formalismo
+            baseado em lógica temporal para especificar programas concorrentes, este foi estendido em~\citeshort{lamport1994temporal} com a descrição de um sistema lógico, baseado em lógica temporal,
+            chamado de TLA (\textit{Temporal Logic of Actions}\footnote{Lógica Temporal das Ações.}) para formalizar e raciocinar sobre programas concorrentes,
+            por fim~\citeshort{lamport2002specifying} estende o sistema TLA gerando então o sistema \(\mathrm{TLA}^{+}\).
+
+        \subsection{Lógica Epistêmica}
+            \label{subsec:LogicaEpistemica}
+            Segundo~\citeshort{fagin2004reasoning}, a lógica epistêmica é a lógica que estuda o conhecimento, de um ou mais agentes.
+            \citeshort{gabbay2003many} afirma que a lógica epistêmica é relevante para diversas disciplinas, dentre elas: teoria dos jogos, inteligência artificial e sistemas
+            multiagentes.
+
+            \citeshort{gabbay2003many} apresenta uma formalização da lógica epistêmica como uma lógica multimodal com diversas modalidades \BOX, onde cada \BOXi{i} indica
+            o conhecimento de um agente \textit{i} sobre uma dada fórmula ou proposição. Já~\citeshort{lescanne2004mechanizing} apresenta como uma lógica multimodal com
+            três modalidades, \textit{K}\textsubscript{i}, \textit{E}\textsubscript{G} e \textit{C} que representam, respectivamente, conhecimento de um agente \textit{i},
+            conhecimento de todos os agentes num grupo \textit{G} e conhecimento comum a todos os agentes.
+
+            Por fim,~\citeshort{gabbay2003many} define que a lógica epistêmica pode ser interpretada em sistemas multimodais aléticos, caso o operador \BOX
+            seja interpretado de forma epistêmica, onde cada sistema impõe restrições sobre o conhecimento de um agente. Por exemplo, em um interpretação epistêmica de
+            \textbf{T}\textsubscript{n}, é imposta a restrição que tudo que um agente sabe é verdadeiro.
+
+            \citeshort{gabbay2003many} descreve uma aplicação de lógica epistêmica no problema dos três homens sábios e os chapéus, apresentado como o problema pode ser modelado
+            dentro de um sistema lógico epistêmico e descrevendo como o problema é usualmente resolvido.
+
+        \subsection{Lógica Temporal Epistêmica}
+            \label{subsec:LogicaTemporalEpistemica}
+            Lógica Temporal Epistêmica é uma família de lógicas que foi construída com o intuito de formalizar o comportamento de agentes em sistemas
+            multiagentes~\cite{gabbay2003many}.~\citeshort{fagin2004reasoning} afirma que a combinação de operadores epistêmicos e temporais numa única linguagem
+            possibilita que afirmações sobre o desenvolvimento do conhecimento no sistema sejam feitas.
+
+            A sua linguagem incorpora elementos da linguagem da lógica temporal e da lógica epistêmica para poder
+            representar afirmações sobre o conhecimento de agentes com relação ao tempo, por exemplo ``O agente \textit{i} sempre soube \PHI''~\cite{fagin2004reasoning}.
+
+            Em~\citeshort{fagin2004reasoning} é apresentada, como exemplo de uma lógica temporal epistêmica para sistemas multiagentes, a formalização de um sistema
+            de transmissão de bits entre agentes.
+
+    \section{Outra Forma de Definir Lógicas}
+        \label{sec:LM-LogicaComoConjunto}
+        A interpretação de lógicas (modais) como sistemas que contém uma linguagem e uma (ou mais) relação(ões) de consequência definida(s) sobre essa linguagem
+        apresentada no começo deste capítulo não é a única definição possível do conceito de lógica. A forma utilizada por~\citeshort{blackburn2001modal},~\citeshort{gabbay2003many} e~\citeshort{fine1996transfer}
+        por exemplo, é apresentando lógicas como conjuntos (usualmente infinitos) de fórmulas fechados para algum operador de consequência.
+        Esta apresentação de lógica é útil para demonstrar meta propriedades de sistemas lógicos, como completude e corretude.
+
+        Nesta interpretação, é definido um conjunto base de fórmulas, usualmente um conjunto de axiomas, como o apresentado na Definição~\ref{def:AxiomaisModais},
+        ou o conjunto de todas as tautologias, e é definida uma operação de consequência (sintática ou semântica) sob a qual este conjunto deve ser fechado.
+        O conceito de teoremas/tautologias/consequências é definido a partir do fato da fórmula pertencer ao conjunto, dependendo da relação sobre a qual o conjunto é construído.
+
+        Diferentes autores apresentam definições levemente diferentes uma da outra, variando a assinatura utilizada ou o conjunto de axiomas base, porém todas
+        seguem a forma geral descrita anteriormente. Por exemplo~\citeshort{blackburn2001modal} define lógica modal sobre a assinatura \(\{\neg, \Diamond, \lor\}\) utilizando
+        o conjunto de todas as tautologias proposicionais juntamente com o axioma~\ref{Ax:K} e a fórmula \(\Diamond \phi \tofrom \neg \Box \neg \phi\),
+        já~\citeshort{gabbay2003many} define lógica modal sobre a assinatura \(\{\neg, \Box, \Diamond, \land, \lor, \to\}\) utilizando um conjunto de axiomas
+        semelhante ao apresentado na Definição~\ref{def:AxiomaisModais}.
+
+        Para a definição abaixo, vamos considerar a linguagem \linguagem{} apresentada na Definição~\ref{def:LinguagemModal},
+        o conjunto \LAMBDAlm apresentado na Definição~\ref{def:AxiomaisModais}, a regra de Substituição apresentada na Definição~\ref{def:Substituicao} e as
+        regras de \textit{Modus Ponens} e Necessitação apresentadas na Definição~\ref{def:RegrasInferencia}.
+
+        \begin{definicao}[Lógica Modal como Conjunto]
+            \label{def:LogicaConjunto}
+            Uma lógica modal definida sobre uma teoria \GAMMA é o menor conjunto \(\mathcal{L}\) tal que \(\Gamma \subseteq \mathcal{L}\), \(\Lambdalm \subseteq \mathcal{L}\)
+            e \(\mathcal{L}\) é fechado para a regras de Substituição, \textit{Modus Ponens} e Necessitação. Se \(\phi \in \mathcal{L}\) então \PHI é dito um \textit{teorema}
+            e escrevemos \(\vdash_{\mathcal{L}} \phi\), caso contrário escrevemos \(\nvdash_{\mathcal{L}} \phi\). \qed
+        \end{definicao}
+
+        Os sistemas modais apresentados na Seção~\ref{sec:LM-Correspondencia} podem também ser descritos com essa definição de lógica. O sistema \textbf{K}
+        é definido a partir de \(\Gamma = \emptyset\), o Sistema \textbf{T} é definido a partir de \(\Gamma = \{\Box \phi \to \phi\}\), já o Sistema \textbf{S5}
+        pode ser definido a partir de \(\Gamma = \{\Box \phi \rightarrow \phi, \Box \phi \to \Box \Box \phi, \phi \to \Box \Diamond \phi\}\) ou
+        \(\Gamma = \{\Box \phi \rightarrow \phi, \Diamond \phi \rightarrow \Box \Diamond \phi\}\).
+
+        Lógicas multimodais são definidas de forma análoga. Podemos usar a notação \(\vdash_{\mathcal{L}} \phi\) para indicar que \(\phi \in \mathcal{L}\),
+        e \(\nvdash_{\mathcal{L}} \phi\) para indicar que \(\phi \notin \mathcal{L}\). Tendo apresentado o conceito de lógica como conjunto, podemos apresentar
+        o conceito de dedutibilidade em lógicas vistas como conjuntos, como apresentado em~\citeshort{blackburn2001modal}:
+
+        \begin{definicao}[Dedutibilidade]
+            Sendo \GAMMA um conjunto de fórmulas, \PHI uma fórmula e \Mathcal{L} uma lógica, é dito que \textit{\PHI é dedutível em \Mathcal{L} a partir de \GAMMA} se
+            \(\vdash_{\mathcal{L}} \phi\), ou existem fórmulas \(\gamma_0, \dots, \gamma_n \in \Gamma\) tal que:
+            \[
+                \vdash_{\mathcal{L}} (\gamma_0 \land \dots \land \gamma_n) \to \phi
+            \]
+            Caso \PHI seja dedutível em \Mathcal{L} a partir de \GAMMA, escrevemos \(\Gamma \vdash_{\mathcal{L}} \phi\), caso não seja, escrevemos
+            \(\Gamma \nvdash_{\mathcal{L}} \phi\). \qed
+        \end{definicao}
+
+        Segundo~\citeshort{blackburn2001modal}, todas as lógicas são fechadas sob a operação de dedução: se \PHI é dedutível a partir das premissas
+        \(\psi_0, \dots, \psi_n\), então \(\vdash \psi_0 \text{ e } \dots \text{ e } \vdash \psi_n\) implica que \(\vdash \phi\).
+
+        Note que esta é uma apresentação sintática do conceito de lógica, porém ela não é muito diferente de uma apresentação semântica do conceito:
+        considere \Mathfrak{F} uma classe de frames, a lógica definida por essa classe será dada pelo conjunto
+        \(\mathcal{L}_{\mathfrak{F}} = \{\phi \ | \ \phi \in \mathsf{LM} \text{ e } \mathfrak{F} \Vdash \phi \}\).
+
+        Não é difícil de observar que essa definição de lógicas modais é equivalente à definição apresentada antes neste capítulo.
+        Considere, por exemplo, a lógica modal \textbf{K} apresentada na Seção~\ref{sec:LM-Correspondencia}, ela pode ser igualmente definida
+        pelos conjuntos \(T_{\vdash} = \{\phi \ | \ \phi \in \mathsf{LM} \text{ e } \vdash_{\textnormal{K}} \phi \} \cup \{ (\gamma_0 \land \dots \land \gamma_n) \to \phi \ | \
+        \phi, \gamma_0, \dots, \gamma_n \in \mathsf{LM} \text{ e } \gamma_0, \dots, \gamma_n \vdash_{\textnormal{K}} \phi \}\) e
+        \(T_{\vDash} = \{\phi \ | \ \phi \in \mathsf{LM} \text{ e } \mathfrak{F} \Vdash \phi \} \cup \{ (\gamma_0 \land \dots \land \gamma_n) \to \phi \ | \
+        \phi, \gamma_0, \dots, \gamma_n \in \mathsf{LM} \text{ e } \gamma_0, \dots, \gamma_n \vDash_{\mathfrak{M}} \phi \}\) (sendo \Mathfrak{F} a classe de frames irrestritos e
+        \Mathfrak{M} a classe de modelos construídos com frames em \Mathfrak{F}), que representam, respectivamente, todas as fórmulas
+        semântica e sintaticamente deriváveis no sistema \textbf{K}.
+
+        Naturalmente, é possível expressar meta propriedades de lógicas apresentadas como conjuntos tal e qual é possível expressar para lógicas apresentadas como
+        sistemas. As definições abaixo foram retiradas de~\citeshort{blackburn2001modal}.
+
+        \begin{definicao}[Corretude como Conjunto]
+            \label{def:CorretudeConjunto}
+            Uma lógica \Mathcal{L} é dita \textit{correta com relação a uma classe de frames (modelos) \Mathfrak{S}} se, e somente se, se \(\phi \in \mathcal{L}\) então
+            \(\mathfrak{S} \Vdash \phi\). Ou seja, \(\mathcal{L} \subseteq \mathcal{L}_{\mathfrak{S}}\) \qed
+        \end{definicao}
+
+        \begin{definicao}[Completude como Conjunto]
+            \label{def:CompletudeConjunto}
+            Sendo \Mathfrak{S} uma classe de frames (modelos), uma lógica \Mathcal{L} é dita \textit{fortemente completa} com respeito a \Mathfrak{S} se,
+            para qualquer conjunto de fórmulas \GAMMA e qualquer fórmula \PHI, se \(\Gamma \vDash_{\mathfrak{S}} \phi\)
+            então \(\Gamma \vdash \phi\).
+
+            Sendo \Mathfrak{S} uma classe de frames (modelos), uma lógica \Mathcal{L} é dita \textit{fracamente completa} com respeito à \Mathfrak{S} se,
+            para qualquer fórmula \PHI, se \(\mathfrak{S} \Vdash \phi\) então \(\vdash_{\mathcal{L}} \phi\). Ou seja, \(\mathcal{L}_{\mathfrak{S}} \subseteq \mathcal{L}\). \qed
+        \end{definicao}
+
+        % Podemos observar que na definição de lógicas como conjuntos, demonstrar corretude/completude de uma lógica com relação a alguma classe de estruturas
+        % se resume a demonstrar que as fórmulas deriváveis nesta classe contém/estão contidas na própria lógica.
+        Provar a completude e a corretude para lógicas vistas como conjuntos pode ser entendido como provar que as definições sintáticas e semânticas desta lógica são
+        equivalentes, como afirmado por~\citeshort{blackburn2001modal}. Considerando \(\mathcal{L}\) uma lógica descrita sintaticamente, como apresentado anteriormente,
+        e \(\mathcal{L}_{\mathfrak{F}}\) sua correspondente semântica com relação à alguma classe de frames \Mathfrak{F}. Caso \(\mathcal{L}\) seja correta para a classe \Mathfrak{F},
+        então \(\mathcal{L} \subseteq \mathcal{L}_{\mathfrak{F}}\), caso \(\mathcal{L}\) seja completa, então \(\mathcal{L}_{\mathfrak{F}} \subseteq \mathcal{L}\),
+        portanto, caso \(\mathcal{L}\) seja correta e completa temos que \(\mathcal{L} = \mathcal{L}_{\mathfrak{F}}\).
+
+        Podemos então apresentar a seguinte definição, retirada de~\citeshort{blackburn2001modal}, cuja importância será vista a frente.
+
+        \begin{definicao}[Consistência com Respeito a Conjunto]
+            Sendo \GAMMA e \DDELTA conjuntos de fórmulas, \textit{\GAMMA é dito consistente com respeito a \DDELTA, ou \DDELTA-consistente}, se, e somente se,
+            não existe \(\gamma\) tal que \(\gamma \in \Gamma \text{ e }\neg \gamma \in \Delta\).
+            Uma \textit{fórmula \PHI é dita \DDELTA-consistente} se \(\{\phi\}\) é \DDELTA-consistente. \qed
+        \end{definicao}
+
+        Na definição anterior, caso \DDELTA seja uma lógica, \GAMMA será dito consistente com respeito a \DDELTA se \(\Gamma \nvdash_{\Delta} \bot\), pois
+        \(\Gamma \vdash_{\Delta} \bot\) implica que existem fórmulas \(\gamma_0, \dots, \gamma_n \in \Gamma\) tal que
+        \(\vdash_{\Delta} (\gamma_0 \land \dots \land \gamma_n) \to \bot\), ou seja, \(\vdash_{\Delta} \neg (\gamma_0 \land \dots \land \gamma_n) \lor \bot\).
+        Isto é, existe pelo menos um \(\gamma_i\) que pertence à \GAMMA mas não pertence à \DDELTA ou \(\bot \in \Delta\).
+        Caso \(\bot \in \Delta\), \DDELTA é dita uma lógica inconsistente e todo conjunto é inconsistente com respeito à \DDELTA.
+
+        Por fim, temos o seguinte resultado auxiliar referente à completude, retirado de~\citeshort{blackburn2001modal}, cuja importância também será vista a frente:
+
+        \begin{proposicao}
+            \label{prop:CompletudeAlternativa}
+            Uma lógica \Mathcal{L} é dita \textit{fortemente completa para uma classe de frames \Mathfrak{F}}, se, e somente se, todo conjunto de fórmulas
+            \Mathcal{L}-consistente é satisfazível em algum frame de \Mathfrak{F}.
+            Uma lógica \Mathcal{L} é dita \textit{fracamente completa para uma classe de frames \Mathfrak{F}}, se, e somente se, toda fórmula
+            \Mathcal{L}-consistente é satisfazível em algum frame de \Mathfrak{F}.
+        \end{proposicao}
+
+        Satisfazibilidade em um frame pode ser entendida como satisfazibilidade em ao menos um modelo construído com aquele frame. Analogamente para classes de frames.
+
+        \begin{proof}[Prova da Proposição~\ref{prop:CompletudeAlternativa}]
+            A prova para completude fraca é um caso particular para o caso da completude forte, onde \(\Gamma = \emptyset\), logo, provaremos apenas o caso
+            da completude forte. A prova é dividida em dois casos; no primeiro caso é provado que se uma lógica é fortemente completa
+            então todo conjunto consistente é satisfazível, já no segundo caso é provado que se todo conjunto consistente é satisfazível então uma lógica
+            é fortemente completa. Ambos os casos serão provados por contraposição.
+
+            \begin{description}
+                \item[Caso 1] Supondo algum conjunto de fórmulas \GAMMA e alguma fórmula \PHI tal que \(\Gamma \cup \{\phi\}\) é
+                \Mathcal{L}-consistente e insatisfazível em \Mathfrak{F}.
+                Como \(\Gamma \cup \{\phi\}\) é insatisfazível, temos, pela definição de \(\vDash\), que \(\Gamma \cup \{\phi\} \vDash_{\mathcal{M}} \bot\)\footnote{A definição de \(\vDash\)
+                nos diz que ``Caso o antecedente é satisfazível em todos os mundos de algum modelo \Mathcal{M}, então o consequente também será'' Como \(\Gamma \cup \{\phi\}\) é insatisfazível em
+                todos os mundos de qualquer modelo \Mathcal{M} construído com qualquer frame da classe \Mathfrak{F}, temos que qualquer fórmula é consequência semântica de \(\Gamma \cup \{\phi\}\).},
+                em algum modelo \(\mathcal{M} = \langle \mathcal{F}, \mathcal{V} \rangle\) onde \(\mathcal{F} \in \mathfrak{F}\).
+                Como \(\Gamma \cup \{\phi\}\) é \Mathcal{L}-consistente, temos que \(\Gamma \cup \{\phi\} \nvdash_{\mathcal{L}} \bot\).
+                Portanto, \Mathcal{L} não é fortemente completo para \Mathfrak{F}.
+
+                \item[Caso 2] Supondo que \Mathcal{L} não é fortemente completa com relação à \Mathfrak{F}. Logo, existe um conjunto
+                de fórmulas \GAMMA e uma fórmula \PHI tal que \(\Gamma \vDash_{\mathfrak{F}} \phi\), porém \(\Gamma \nvdash_{\mathcal{L}} \phi\).
+                Logo, o conjunto \(\Gamma \cup \{\neg \phi\}\) é \Mathcal{L}-consistente, porém não é satisfazível em qualquer frame da classe \Mathfrak{F}.\qedhere
+            \end{description}
+        \end{proof}
+
+        Note que a Proposição~\ref{prop:CompletudeAlternativa} indica que há uma correspondência entre o conceito de completude com alguma classe de frames
+        e satisfazibilidade de conjuntos \Mathcal{L}-consistente nesta classe.
