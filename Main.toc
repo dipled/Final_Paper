@@ -6,55 +6,12 @@
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
 \setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {1}\MakeTextUppercase {Introdução}}{11}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Objetivo Geral}{12}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Objetivos Específicos}{12}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Trabalhos Relacionados}{13}{section.1.3}%
-\contentsline {section}{\numberline {1.4}Metodologia}{14}{section.1.4}%
-\contentsline {section}{\numberline {1.5}Estrutura do Trabalho}{14}{section.1.5}%
-\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {2}\MakeTextUppercase {Lógica Modal}}{15}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Linguagem}{16}{section.2.1}%
-\contentsline {section}{\numberline {2.2}Semântica}{17}{section.2.2}%
-\contentsline {section}{\numberline {2.3}Axiomatização}{19}{section.2.3}%
-\contentsline {section}{\numberline {2.4}Sistemas de Lógica Modal e Correspondência de Frames}{21}{section.2.4}%
-\contentsline {section}{\numberline {2.5}Algumas Meta Propriedades}{23}{section.2.5}%
-\contentsline {subsection}{\numberline {2.5.1}Corretude}{23}{subsection.2.5.1}%
-\contentsline {subsection}{\numberline {2.5.2}Completude}{24}{subsection.2.5.2}%
-\contentsline {section}{\numberline {2.6}Lógicas Multimodais}{25}{section.2.6}%
-\contentsline {subsection}{\numberline {2.6.1}Linguagem}{25}{subsection.2.6.1}%
-\contentsline {subsection}{\numberline {2.6.2}Semântica e Axiomatização}{25}{subsection.2.6.2}%
-\contentsline {section}{\numberline {2.7}Outros Tipos de Lógicas Modais}{27}{section.2.7}%
-\contentsline {subsection}{\numberline {2.7.1}Lógica Temporal}{27}{subsection.2.7.1}%
-\contentsline {subsection}{\numberline {2.7.2}Lógica Epistêmica}{28}{subsection.2.7.2}%
-\contentsline {subsection}{\numberline {2.7.3}Lógica Temporal Epistêmica}{28}{subsection.2.7.3}%
-\contentsline {section}{\numberline {2.8}Outra Forma de Definir Lógicas}{29}{section.2.8}%
-\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {3}\MakeTextUppercase {Fusões de Lógicas Modais}}{33}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Preservação de Propriedades}{34}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Preservação de Corretude}{35}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Preservação de Completude}{36}{subsection.3.1.2}%
-\contentsline {section}{\numberline {3.2}O Sistema Bimodal \(\textbf {KT} \mathbin {\odot }\textbf {K4}\)\xspace }{44}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Linguagem, Semântica e Axiomatização}{44}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Corretude e Completude}{45}{subsection.3.2.2}%
-\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {4}\MakeTextUppercase {Assistentes de Provas}}{46}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Uma Breve Apresentação de Teoria de Tipos}{47}{section.4.1}%
-\contentsline {section}{\numberline {4.2}O Assistente Coq}{51}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Automação em Coq}{55}{subsection.4.2.1}%
-\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {5}\MakeTextUppercase {Implementação}}{59}{chapter.5}%
-\contentsline {section}{\numberline {5.1}A Biblioteca em Coq}{59}{section.5.1}%
-\contentsline {section}{\numberline {5.2}O Sistema Bimodal \(\textbf {KT} \mathbin {\odot }\textbf {K4}\)\xspace em Coq}{61}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Lógicas Multimodais}{66}{section.5.3}%
-\contentsline {section}{\numberline {5.4}Dificuldades na Implementação}{73}{section.5.4}%
-\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\contentsline {chapter}{\chapternumberline {6}\MakeTextUppercase {Conclusões}}{76}{chapter.6}%
+\contentsline {chapter}{\chapternumberline {1}\MakeTextUppercase {Introdução}}{10}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Objetivo Geral}{10}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Objetivos Específicos}{10}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Trabalhos Relacionados}{10}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Metodologia}{10}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Estrutura do Trabalho}{10}{section.1.5}%
 \vspace {\cftbeforechapterskip }
 \setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
-\contentsline {chapter}{\MakeTextUppercase {Refer\^encias}}{78}{section*.20}%
-\renewcommand *{\cftappendixname }{AP\^ENDICE \space }
-\setlength {\cftchapterindent }{0em} \setlength {\cftchapternumwidth }{\cftlastnumwidth }
-\setlength {\cftchapterindent }{\cftlastnumwidth } \setlength {\cftchapternumwidth }{2em}
-\cftinsert {A}
-\contentsline {appendix}{\chapternumberline {A}\MakeTextUppercase {Prova Formal da Transferência de Completude pela Fusão de Lógicas Modais}}{84}{appendix.A}%
+\contentsline {chapter}{\MakeTextUppercase {Refer\^encias}}{11}{section*.13}%
