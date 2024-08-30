@@ -1,6 +1,7 @@
-FLAGS  = -f -pdf -pv
+FLAGS  = -f -pdf -pv -quiet
 CLEANFLAG = -c
 TARGET = Main.tex
+EXTRACLEAN = *.maf *.mtc* *.tdo *.nls *.nlo
 
 all: 
 	latexmk ${FLAGS} ${TARGET}
@@ -11,4 +12,4 @@ changevar:
 	$(eval CLEANFLAG=-C -bibtex)
 
 clean:
-	latexmk ${CLEANFLAG}; cd PreTextuais/; latexmk ${CLEANFLAG}; cd ../PosTextuais/; latexmk ${CLEANFLAG}; cd ../Textuais/; latexmk ${CLEANFLAG}; cd ..
+	latexmk ${CLEANFLAG}; rm ${EXTRACLEAN}; cd PreTextuais/; latexmk ${CLEANFLAG}; cd ../PosTextuais/; latexmk ${CLEANFLAG}; cd ../Textuais/; latexmk ${CLEANFLAG}; cd ..
