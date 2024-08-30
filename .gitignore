@@ -67,3 +67,5 @@ CoqMakefile.conf
 *.tdo
 *.nlo
 *.nls
+.vscode
+.latexmkrc
