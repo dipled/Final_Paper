@@ -1,15 +1,15 @@
 \documentclass[
-	12pt,					% tamanho da fonte
-	openright,				% capítulos começam em pág ímpar (insere página vazia caso preciso)
-	oneside,				% para impressão em recto e verso (twoside). Oposto a (oneside)
-	a4paper,				% tamanho do papel.
-	chapter=TITLE,			% títulos de capítulos convertidos em letras maiúsculas
-	section=TITLE,			% títulos de seções convertidos em letras maiúsculas
-	sumario=abnt-6027-2012,
-	english,				% idioma adicional para hifenização
-	brazil,					% o último idioma é o principal do documento
-	fleqn,					% equações alinhadas a esquerda (UDESC/CCT)+
-	]{abntex2}
+    12pt,					% tamanho da fonte
+    openright,				% capítulos começam em pág ímpar (insere página vazia caso preciso)
+    oneside,				% para impressão em recto e verso (twoside). Oposto a (oneside)
+    a4paper,				% tamanho do papel.
+    chapter=TITLE,			% títulos de capítulos convertidos em letras maiúsculas
+    section=TITLE,			% títulos de seções convertidos em letras maiúsculas
+    sumario=abnt-6027-2012, %
+    english,				% idioma adicional para hifenização
+    brazil,					% o último idioma é o principal do documento
+    fleqn,					% equações alinhadas a esquerda (UDESC/CCT)+
+    ]{abntex2}
 
 \input{Pacotes}	% Inclui pacotes básicos
 
@@ -74,8 +74,7 @@ como parte dos requisitos para a obtenção do grau de Bacharel em Ciência da C
 % \AtEndEnvironment{exemplo}  {\qed}%
 
 %% Grego
-\newcommand{\uglyphi}{\phi} % mantendo o \phi velho
-\renewcommand \phi{\varphi}
+
 
 % Grego Minúsculo
 \newcommand{\PHI}{\(\phi\)\xspace}
@@ -97,8 +96,6 @@ como parte dos requisitos para a obtenção do grau de Bacharel em Ciência da C
 \newcommand{\Lambdalm}{\Lambda_{\mathsf{LM}}}
 
 % Modalidades e símbolos matemáticos
-\let \emptyset \varnothing
-
 
 \newcommand{\VVDASH}{\(\Vdash\)\xspace}
 \newcommand{\VDDASH}{\(\vDash\)\xspace}
@@ -145,7 +142,7 @@ como parte dos requisitos para a obtenção do grau de Bacharel em Ciência da C
 \newcommand{\Otimes}{\mathbin{\otimes}}
 
 % Abreviações
-\newcommand{\Ltac}{\Mathcal{L}\unskip tac}
+\newcommand{\Ltac}{\Mathcal{L}\unskip~tac}
 \newcommand{\CalcLambda}{Cálculo-\(\lambda\)\xspace}
 \newcommand{\CalcsLambda}{Cálculos-\(\lambda\)\xspace}
 \newcommand{\SisT}{\(\textbf{KT} \Odot \textbf{K4}\)\xspace}

@@ -1,4 +1,20 @@
+% --------------------------- OTHER ---------------------------
+@techreport{gonthier2005computer,
+    title  ={A computer-checked proof of the four colour theorem},
+    author ={Gonthier, Georges},
+    publisher ={Microsoft Research},
+    address = {Cambridge},
+    year ={2005}
+}
 
+@manual{TEAM_2024,
+    title    = {The Coq Reference Manual},
+    author   = {The Coq Development Team},
+    address  = {France},
+    year     = {2024},
+    language = {English},
+    version  = {8.19.0}
+}
 
 
 % --------------------------- BOOK ---------------------------
@@ -25,8 +41,49 @@
     year={2016}
 } 
 
+@book{russell1903principles,
+    author = {Bertrand Russell},
+    title = {Principles of Mathematics},
+    year = {1903},
+    address={Cambridge},
+    publisher = {Cambridge University Press}
+}
+
+@book{martin1984intuitionistic,
+    title={Intuitionistic type theory},
+    author={Martin-L{\"o}f, Per and Sambin, Giovanni},
+    volume={9},
+    year={1984},
+    address={Naples},
+    publisher={Bibliopolis Naples},
+    note={Notas de Aula}
+}
 
 % --------------------------- INCOLLECTION ---------------------------
+
+@incollection{debruijn1980survey,
+    title={A survey of the project AUTOMATH},
+    author={De Bruijn, Nicolaas Govert},
+    booktitle={Studies in Logic and the Foundations of Mathematics},
+    address={Amsterdam},
+    volume={133},
+    pages={141--161},
+    year={1980},
+    publisher={Elsevier}
+}
+
+@incollection{martin1975intuitionistic,
+    title={An intuitionistic theory of types: Predicative part},
+    author={Martin-L{\"o}f, Per},
+    booktitle={Studies in Logic and the Foundations of Mathematics},
+    volume={80},
+    pages={73--118},
+    year={1975},
+    address={Stockholm},
+    publisher={Elsevier}
+}
+
+
 @incollection{paulinmohring:hal-01094195,
     author = {Christine Paulin-Mohring},
     title = {Introduction to the Calculus of Inductive Constructions},
@@ -56,9 +113,58 @@
     publisher    =	{Metaphysics Research Lab, Stanford University}
 }
 
+@InCollection{sep-type-theory,
+	author       =	{Coquand, Thierry},
+	title        =	{{Type Theory}},
+	booktitle    =	{The {Stanford} Encyclopedia of Philosophy},
+	editor       =	{Edward N. Zalta and Uri Nodelman},
+	howpublished =	{\url{https://plato.stanford.edu/archives/fall2022/entries/type-theory/}},
+	year         =	{2022},
+	edition      =	{{F}all 2022},
+	publisher    =	{Metaphysics Research Lab, Stanford University}
+}
+
+@incollection{howard1980formulae,
+    title = {The Formulae-as-Types Notion of Construction},
+    editor = {Haskell Curry and Hindley B. and Seldin J. Roger and P. Jonathan},
+    booktitle = {To H. B. Curry: Essays on Combinatory Logic, Lambda Calculus, and Formalism},
+    publisher = {Academic Press},
+    address = {Chicago},
+    author = {William Alvin Howard},
+    year = {1980}
+}
 
 
 % --------------------------- INPROCEEDINGS ---------------------------
+
+@inproceedings{harrison2014history,
+	title={History of Interactive Theorem Proving},
+	author={Harrison, John and Urban, Josef and Wiedijk, Freek},
+	booktitle={Computational Logic},
+    address = {Amsterdam},
+	volume={9},
+	pages={135--214},
+	year={2014}
+}
+
+@inproceedings{union-find,
+    author = {Conchon, Sylvain and Filli\^{A}tre, Jean-Christophe},
+    title = {A persistent union-find data structure},
+    year = {2007},
+    isbn = {9781595936769},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    url = {https://doi.org/10.1145/1292535.1292541},
+    doi = {10.1145/1292535.1292541},
+    abstract = {The problem of disjoint sets, also known as union-find, consists in maintaining a partition of a finite set within a data structure. This structure provides two operations: a function find returning the class of an element and a function union merging two classes. An optimal and imperative solution is known since 1975. However, the imperative nature of this data structure may be a drawback when it is used in a backtracking algorithm. This paper details the implementation of a persistent union-find data structure as efficient as its imperative counterpart. To achieve this result, our solution makes heavy use of imperative features and thus it is a significant example of a data structure whose side effects are safely hidden behind a persistent interface. To strengthen this last claim, we also detail a formalization using the Coq proof assistant which shows both the correctness of our solution and its observational persistence.},
+    booktitle = {Proceedings of the 2007 Workshop on Workshop on ML},
+    pages = {37–46},
+    numpages = {10},
+    keywords = {formal verification, persistence, union-find},
+    location = {Freiburg, Germany},
+    series = {ML '07}
+}
+
 
 
 % --------------------------- INBOOK ---------------------------
@@ -90,7 +196,114 @@
 
 % --------------------------- THESIS ---------------------------
 
+@mastersthesis{silveira2020implementacao,
+    address={Joinville},
+    author={Ariel Agne da Silveira},
+    school={Bacharelado em Ci{\^e}ncia da Computa{\c{c}}{\~a}o--Centro de Ciências Tecnológicas, UDESC},
+    title={Implementação de uma biblioteca de lógica modal em Coq},
+    type={Projeto de Diplomação},
+    year={2020}
+}
+
+@mastersthesis{nunes2023,
+    address={Joinville},
+    author={Miguel Alfredo Nunes},
+    school={Bacharelado em Ci{\^e}ncia da Computa{\c{c}}{\~a}o--Centro de Ciências Tecnológicas, UDESC},
+    title={Fusão de lógicas modais no assistente de provas Coq},
+    type={Projeto de Diplomação},
+    year={2023}
+}
+
+@phdthesis{leroy2021compcert,
+    title={The CompCert C verified compiler: Documentation and user's manual},
+    author={Leroy, Xavier},
+    year={2021},
+    school={Inria}
+}
+
 % --------------------------- ARTICLE ---------------------------
+@article{Russell1908-RUSMLA,
+	author = {Bertrand Russell},
+	doi = {10.2307/2272708},
+	journal = {American Journal of Mathematics},
+	number = {3},
+	pages = {222--262},
+	publisher = {Association for Symbolic Logic},
+	title = {Mathematical Logic as Based on the Theory of Types},
+	volume = {30},
+	year = {1908}
+}
+
+@article{appel1976every,
+  title={Every Planar Map is Four Colorable},
+  author={APPEL, K and HAKEN, W},
+  journal={American Mathematical Society},
+  volume={82},
+  number={5},
+  year={1976}
+}
+
+@article{geuvers2009proof,
+  title={Proof assistants: History, ideas and future},
+  author={Geuvers, Herman},
+  journal={Sadhana},
+  volume={34},
+  pages={3--25},
+  year={2009},
+  publisher={Springer}
+}
+
+@article{klein2010sel4,
+    author = {Klein, Gerwin and Andronick, June and Elphinstone, Kevin and Heiser, Gernot and Cock, David and Derrin, Philip and Elkaduwe, Dhammika and Engelhardt, Kai and Kolanski, Rafal and Norrish, Michael and Sewell, Thomas and T
+uch, Harvey and Winwood, Simon},
+    title = {SeL4: Formal Verification of an Operating-System Kernel},
+    year = {2010},
+    issue_date = {June 2010},
+    publisher = {Association for Computing Machinery},
+    address = {New York, NY, USA},
+    volume = {53},
+    number = {6},
+    issn = {0001-0782},
+    url = {https://doi.org/10.1145/1743546.1743574},
+    doi = {10.1145/1743546.1743574},
+    journal = {Commun. ACM},
+    month = {jun},
+    pages = {107–115},
+    numpages = {9}
+}
+
+@article{martin1984constructive,
+    title={Constructive mathematics and computer programming},
+    author={Martin-Lof, Per},
+    journal={Philosophical Transactions of the Royal Society of London. Series A, Mathematical and Physical Sciences},
+    volume={312},
+    number={1522},
+    pages={501--518},
+    year={1984},
+    address={London},
+    publisher={The Royal Society London}
+}
+
+@article{church1940formulation,
+    title={A formulation of the simple theory of types},
+    author={Church, Alonzo},
+    journal={The journal of symbolic logic},
+    volume={5},
+    number={2},
+    pages={56--68},
+    year={1940},
+    publisher={Cambridge University Press}
+}
+
+@book{curry1958combinatory,
+    title={Combinatory logic},
+    author={Curry, Haskell Brooks and Feys, Robert},
+    volume={1},
+    year={1958},
+    address={Amsterdam},
+    publisher={North-Holland Amsterdam}
+}
+
 @article{Brown2015-BROCAP-9,
     author = {M. Bryson Brown and Graham Priest},
     doi = {10.1007/s13194-014-0104-7},
@@ -185,7 +398,7 @@
 }
 
 
-@article{10.1145/362384.362685,
+@article{Codd,
     author = {Codd, E. F.},
     title = {A relational model of data for large shared data banks},
     year = {1970},
