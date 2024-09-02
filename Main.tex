@@ -25,7 +25,7 @@
 % -----------------------------------------------------------------
 % Informações de dados para CAPA e FOLHA DE ROSTO
 % -----------------------------------------------------------------
-\titulo{Implementação de uma biblioteca da Lógica de Inconsistência Formal LFI1 em CoqImplementação de uma biblioteca da Lógica de Inconsistência Formal LFI1 em Coq}%
+\titulo{Implementação de uma biblioteca da Lógica de Inconsistência Formal LFI1 em Coq}%
 
 
 \autor{Helena Vargas {}Tannuri}%
@@ -128,7 +128,8 @@ como parte dos requisitos para a obtenção do grau de Bacharel em Ciência da C
 \newcommand{\cortar}[1]{\textcolor{red}{\sout{#1}}}
 \newcommand{\ignore}[1]{\textcolor{blue}{\textbf{IGNOREM:} #1}}
 \newcommand{\helena}[1]{\textcolor{green}{\textbf{HELENA:} #1}}
-\newcommand{\migs}[1]{\textcolor{violet}{\textbf{MIGs:} #1}}
+\newcommand{\migs}[1]{\textcolor{violet}{\textbf{MIGS:} #1}}
+\newcommand{\migscortar}[2]{\textcolor{violet}{\textbf{MIGS:} \sout{#1}{#2}}}
 \newcommand{\kaqui}[1]{\textcolor{magenta}{\textbf{KAQUI:} #1}}
 
 % Outros
@@ -187,8 +188,9 @@ como parte dos requisitos para a obtenção do grau de Bacharel em Ciência da C
 \newcommand{\SubCaso}[2]{\ref{#1}.\ref{#2}}
 
 % Citações
-\newcommand{\cciteshort}[2]{\citeshort{#1} e~\citeshort{#2}}
-\newcommand{\ccciteshort}[3]{\citeshort{#1},~\citeshort{#2} e~\citeshort{#3}}
+% MIGUEL: Esses comandos nunca funcionaram, eu deixei pois um dia pretendia arrumar, nunca arrumei lmao
+% \newcommand{\cciteshort}[2]{\citeshort{#1} e~\citeshort{#2}}
+% \newcommand{\ccciteshort}[3]{\citeshort{#1},~\citeshort{#2} e~\citeshort{#3}} 
 
 \frenchspacing
 
