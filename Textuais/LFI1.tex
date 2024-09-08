@@ -3,9 +3,8 @@
 BLABLABLABLABLA introduz um textinho
 
     
-    \subsection{Linguagem}
-    A lógica \textbf{LFI1}\footnote{Por mais que existam extensões de primeira ordem da \textbf{LFI1}, o presente trabalho trata somente do fragmento proposicional desta.} aqui apresentada é definida com base nos trabalhos de Carnielli, Coniglio e Marcos~\cite{carnielli2000formal,carnielli2007,Carnielli_Coniglio_2016} como uma estrutura da forma $\langle \mathcal{S}, \Vdash \rangle$, onde $\mathcal{S}$ é a sua linguagem (seu conjunto de fórmulas) e $\Vdash$ é uma relação de consequência de conclusão única definida como $\Vdash \;\subseteq \text{Pow}(\mathcal{S})\times \mathcal{S}$.
-    A linguagem\footnote{A linguagem da \textbf{LFI1} pode ser definida de maneira equivalente utilizando-se tanto o operador de consistência (representado por $\circ$) quanto o operador de inconsistência (representado por $\bullet$), respeitando a equivalência $\circ \alpha \eqdef \neg \bullet \alpha$.} $\mathcal{S}$ da \textbf{LFI1} é definida sobre um conjunto enumerável de átomos $\mathcal{P} = \{p_{n} \:|\: n \in \omega\}$ e uma assinatura $\Sigma = \{\land, \lor, \rightarrow, \neg, \bullet\}$ da seguinte forma:
+    \section{Linguagem}
+    A lógica \textbf{LFI1}\footnote{Por mais que existam extensões de primeira ordem da \textbf{LFI1}, como a \textbf{LFI1*}, definida em~\cite{carnielli2000formal}, o presente trabalho trata somente do fragmento proposicional desta.} aqui apresentada é definida com base nos trabalhos de Carnielli, Coniglio, Marcos e Amo~\cite{carnielli2000formal, possible-translation, carnielli2007,Carnielli_Coniglio_2016} como uma estrutura da forma $\langle \mathcal{S}, \Vdash \rangle$, onde $\mathcal{S}$ é a sua linguagem (seu conjunto de fórmulas) e $\Vdash$ é uma relação de consequência de conclusão única definida como $\Vdash \;\subseteq \wp(\mathcal{S})\times\mathcal{S}$. A linguagem\footnote{A linguagem da \textbf{LFI1} pode ser definida de maneira equivalente utilizando-se o operador de consistência (representado por $\circ$), seguindo a definição $\circ \alpha \eqdef \neg \bullet \alpha$.} $\mathcal{S}$ da \textbf{LFI1} é definida sobre um conjunto enumerável de átomos $\mathcal{P} = \{p_{n} \;|\; n \in \omega\}$ e uma assinatura $\Sigma = \{\land, \lor, \rightarrow, \neg, \bullet\}$ da seguinte forma:
 
     \begin{definicao}[Linguagem da \textbf{LFI1}]
         \label{def:lang}
@@ -16,3 +15,14 @@ BLABLABLABLABLA introduz um textinho
             & \text{Se } \varphi, \psi \in \mathcal{S}, \text{então } \varphi \otimes \psi \in \mathcal{S}, \text{com } \otimes \in \{\land, \lor, \rightarrow\} \tag*\qed
         \end{align*}
     \end{definicao}
+
+    \begin{definicao}[Subfórmulas]
+        \label{def:subf}
+        O conjunto Sub$(\varphi)$ de subfórmulas de uma fórmula $\varphi$ é definido indutivamente por:
+        \begin{align*}
+            & \text{Sub}(p_{i}) = \{p_{i}\}, \; p_{i} \in \mathcal{P}\\
+            & \text{Sub}(\triangle \varphi) = \{\triangle \varphi\} \; \cup \;\text{Sub}(\varphi), \; \triangle \in \{\neg, \bullet\}\\
+            & \text{Sub}(\varphi \otimes \psi) = \{\varphi \otimes \psi\} \; \cup \;\text{Sub}(\varphi) \; \cup \;\text{Sub}(\psi), \; \otimes \in \{\land, \lor, \rightarrow\} \tag*\qed
+        \end{align*}
+    \end{definicao}
+
