@@ -1,0 +1,40 @@
+\chapter{Lógicas de Inconsistência Formal}
+\label{cap:LFIs}
+Neste capítulo são apresentadas algumas definições necessárias para caracterizar as lógicas de inconsistência formal, baseadas no trabalho de~\citeshort{Carnielli_Coniglio_2016}. Antes de definir as \textbf{LFI}s, entretanto, é preciso apresentar alguns conceitos acerca de sistemas lógicos paraconsistentes.
+
+    \section{Paraconsistência}
+    Uma lógica $\mathcal{L}$ é definida como uma dupla $\mathcal{L} = \langle \pazocal{L},\vdash \rangle$, onde $\pazocal{L}$ é sua linguagem (seu conjunto de fórmulas) e $\vdash$ é uma relação de consequência de conclusão única, definida como $\vdash \;\subseteq \wp(\pazocal{S})\times\pazocal{S}$.
+
+    \begin{definicao}[Lógica proposicional]
+        Um sistema lógico $\mathcal{L}$, definido sobre uma linguagem $\pazocal{L}$ é dito proposicional caso $\pazocal{L}$ seja definida a partir de um conjunto enumerável de átomos $\pazocal{P} = \{p_{i} \;| \; i \in \omega \}$ e uma assinatura proposicional $\Theta$, consistindo em um conjunto de conectivos lógicos com a informação acerca da aridade de cada um destes. Uma linguagem $\pazocal{L}$ definida sobre uma assinatura proposicional é chamada de linguagem proposicional.\qed{}
+    \end{definicao}
+
+    \begin{definicao}[Lógica padrão]
+        Uma lógica $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$ é dita \textit{Tarskiana} caso satisfaça as seguintes propriedades para todo $\Gamma \cup \Delta \cup \{\alpha\} \subseteq \pazocal{L}$:
+        \begin{align*}
+            &\text{~~(i) Se } \alpha \in \Gamma \text{ então } \Gamma \vdash \alpha;\\
+            &\text{~(ii) Se } \Delta \vdash \alpha \text{ e } \Delta \subseteq \Gamma \text{ então } \Gamma \vdash \alpha;\\
+            &\text{(iii) Se } \Delta \vdash \alpha \text{ e } \Gamma \vdash \beta \text{ para todo } \beta \in \Delta \text{ então } \Gamma \vdash \alpha.
+        \end{align*}
+        Uma lógica $\mathcal{L}$ é dita \textit{finitária} caso satisfaça o seguinte:
+        \begin{align*}
+            &\text{~(iv) Se } \Gamma \vdash \alpha \text{ então existe um subconjunto finito } \Gamma_{0} \text{ de } \Gamma \text{ tal que } \Gamma_{0} \vdash \alpha.
+        \end{align*}
+        Uma lógica $\mathcal{L}$ definida sobre uma linguagem proposicional $\pazocal{L}$ é dita \textit{estrutural} caso respeite a seguinte condição:
+        \begin{align*}
+            &\text{~~(v) Se } \Gamma \vdash \alpha \text{ então } \sigma [\Gamma] \vdash \sigma(\alpha) \text{, para toda substituição } \sigma \text{ de fórmulas por variáveis.}
+        \end{align*}
+        Por fim, uma lógica $\mathcal{L}$ é dita \textit{padrão} caso ela seja Tarskiana, finitária e estrutural.\qed
+    \end{definicao}
+    Com isto, é possível definir formalmente a \textit{paraconsistência} para lógicas Tarskianas.
+    
+    \begin{definicao}[Lógica Tarskiana paraconsistente]
+        Uma lógica Tarskiana $\mathcal{L}$ é dita \textit{paraconsistente} se ela possuir uma negação $\neg$ (primitiva ou definida) tal que $\alpha, \neg \alpha \nvdash \beta$ para algumas fórmulas $\alpha$ e $\beta$ na sua linguagem.\qed{}
+    \end{definicao}
+
+    Caso a linguagem de $\mathcal{L}$ possua uma implicação $\rightarrow$ que respeite o metateorema da dedução\footnote{Definido como $\Gamma, \alpha \vdash \beta \Longleftrightarrow \Gamma\vdash \alpha \rightarrow \beta$.}, então $\mathcal{L}$ é paraconsistente somente se a fórmula $\alpha \rightarrow (\neg \alpha \rightarrow \beta)$ não for válida. Ou seja, o Princípio da explosão, em relação a negação $\neg$, é inválido e, portanto, $\neg$ é uma negação não-explosiva.
+
+    \section{Inconsistência}
+    A motivação para o desenvolvimento das \textbf{LFI}s é possuir sistemas lógicos paraconsistentes nos quais é possível resgatar, de maneira \textit{controlada}, o Princípio da Explosão.
+
+
