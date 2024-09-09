@@ -29,9 +29,10 @@ Uma lógica $\mathcal{L}$ é definida como uma dupla $\mathcal{L} = \langle \paz
     \begin{align*}
          & \text{~(iv) Se } \Gamma \vdash \alpha \text{ então existe conjunto finito } \Gamma_{0} \subseteq \Gamma \text{ tal que } \Gamma_{0} \vdash \alpha.
     \end{align*}
-    Uma lógica $\mathcal{L}$ definida sobre uma linguagem proposicional $\pazocal{L}$ é dita \textit{estrutural} caso respeite a seguinte condição: \helena{Definir substituição $\sigma$.}
+    Uma lógica $\mathcal{L}$ definida sobre uma linguagem proposicional $\pazocal{L}$ é dita \textit{estrutural} caso respeite a seguinte condição:
     \begin{align*}
-         & \text{~~(v) Se } \Gamma \vdash \alpha \text{ então } \sigma [\Gamma] \vdash \sigma(\alpha) \text{, para toda substituição } \sigma \text{ de fórmulas por variáveis.}
+         & \text{~~(v) Se } \Gamma \vdash \alpha \text{ então } \sigma [\Gamma] \vdash \sigma(\alpha) \text{, para toda substituição } \sigma \text{ de fórmulas por variáveis.}\\
+        & \text{\helena{Ou seriam variáveis por fórmulas????}}
     \end{align*}
     Por fim, uma lógica $\mathcal{L}$ é dita \textit{padrão} caso ela seja Tarskiana, finitária e estrutural.\qed
 \end{definicao}
@@ -50,7 +51,7 @@ A motivação para o desenvolvimento das \textbf{LFI}s é possuir sistemas lógi
 \begin{definicao}[Lógica de Inconsistência Formal]
     \label{def:lfi}
     Seja $\mathcal{L} = \langle \pazocal{L}_{\Sigma}, \vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Sigma$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \textit{Lógica de Inconsistência Formal} (\textbf{LFI}) (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições (considerando $\bigcirc(\varphi) = \{\psi(\varphi) \; | \; \psi(p) \in \bigcirc(p)\}$) \helena{Parando pra pensar não entendi isso direito ainda.}
-    
+
 
 
 \end{definicao}
