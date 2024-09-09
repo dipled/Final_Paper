@@ -31,10 +31,10 @@ Uma lógica $\mathcal{L}$ é definida como uma dupla $\mathcal{L} = \langle \paz
     \end{align*}
     Uma lógica $\mathcal{L}$ definida sobre uma linguagem proposicional $\pazocal{L}$ é dita \textit{estrutural} caso respeite a seguinte condição:
     \begin{align*}
-         & \text{~~(v) Se } \Gamma \vdash \alpha \text{ então } \sigma [\Gamma] \vdash \sigma(\alpha) \text{, para toda substituição } \sigma \text{ de fórmulas por variáveis.}\\
-        & \text{\helena{Ou seriam variáveis por fórmulas????}}
+         & \text{~~(v) Se } \Gamma \vdash \alpha \text{ então } \sigma [\Gamma] \vdash \sigma(\alpha) \text{, para toda substituição } \sigma \text{ de fórmulas por variáveis.}
     \end{align*}
-    Por fim, uma lógica $\mathcal{L}$ é dita \textit{padrão} caso ela seja Tarskiana, finitária e estrutural.\qed
+    \helena{ou seriam variáveis por fórmulas?? pq tipo fui nas referências do carnielli e lá tá dizendo variável por fórmula... serase mandar email pra ele?}
+    Por fim, uma lógica $\mathcal{L}$ é dita \textit{padrão} caso ela seja Tarskiana, finitária e estrutural.\qed{}
 \end{definicao}
 Com isto, é possível definir formalmente a \textit{paraconsistência} para lógicas Tarskianas.
 
@@ -50,7 +50,10 @@ A motivação para o desenvolvimento das \textbf{LFI}s é possuir sistemas lógi
 
 \begin{definicao}[Lógica de Inconsistência Formal]
     \label{def:lfi}
-    Seja $\mathcal{L} = \langle \pazocal{L}_{\Sigma}, \vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Sigma$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \textit{Lógica de Inconsistência Formal} (\textbf{LFI}) (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições (considerando $\bigcirc(\varphi) = \{\psi(\varphi) \; | \; \psi(p) \in \bigcirc(p)\}$) \helena{Ainda tá meio doidera isso, mas acho que tá dizendo que a função $\bigcirc$ aplicada a qualquer fórmula $\varphi$ pode ser descrita como um conjunto de aplições de uma substituição $\psi$ à própria fórmula $\varphi$ de forma que $\varphi$ aplicada a $p$ não faz com que ela dependa de outra variável que não ela mesma, ou seja, $\varphi(p)$ continua pertencendo ao conjunto $\bigcirc(p)$}.
+    Seja $\mathcal{L} = \langle \pazocal{L}_{\Sigma}, \vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Sigma$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \textit{Lógica de Inconsistência Formal} (\textbf{LFI}) (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições (considerando $\bigcirc(\varphi) = \{\psi(\varphi) \; | \; \psi(p) \in \bigcirc(p)\}$) \helena{Ainda tá meio doidera isso, mas acho que tá dizendo que {-} dado um conjunto $\bigcirc(p)$ de fórmulas dependentes somente do átomo $p$ {-} a função $\bigcirc$ aplicada a qualquer fórmula $\varphi$ pode ser descrita como um conjunto de aplições de uma substituição $\psi$ à própria fórmula $\varphi$ de forma que $\psi$ aplicada a $p$ não faz com que ela dependa de outra variável que não ela mesma, ou seja, $\psi(p)$ continua pertencendo ao conjunto $\bigcirc(p)$}.
+    \begin{align*}
+        & \text{~(i)}
+    \end{align*}
 
 
 
