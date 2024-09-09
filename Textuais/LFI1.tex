@@ -2,26 +2,26 @@
 \label{cap:LFI1}
 BLABLABLABLABLA introduz um textinho % MIGS: Grande introdução 🔥
 
-    \section{Linguagem}
-    A lógica \textbf{LFI1}\footnote{Por mais que existam extensões de primeira ordem da \textbf{LFI1}, como a \textbf{LFI1*}, definida em~\citeshort{carnielli2000formal}, o presente trabalho trata somente do fragmento proposicional desta.} aqui apresentada é definida com base nos trabalhos de~\citeshort{Carnielli_Coniglio_2016} como uma estrutura da forma $\langle \pazocal{S}, \Vdash \rangle$, onde $\pazocal{S}$ é a sua linguagem \migs{Pq aqui a linguagem é S, sendo que antes era L?} (seu conjunto de fórmulas \migs{Esse comentário é redundante, você já falou isso no capítulo anterior}) e $\Vdash$ é uma relação de consequência de conclusão única definida como $\Vdash \;\subseteq \wp(\pazocal{S})\times\pazocal{S}$ \migs{Como que essa relação de consequência é diferente da relação do capítulo anterior? Você não deveria usar símbolos diferentes pare representar a mesma coisa, análogamente, se são relações diferentes você deveria deixar isso claro quando introduz o símbolo}. A linguagem\footnote{A linguagem da \textbf{LFI1} pode ser definida de maneira equivalente utilizando-se o operador de consistência (representado por $\circ$), seguindo a definição $\circ \alpha \eqdef \neg \bullet \alpha$.} $\pazocal{S}$ da \textbf{LFI1} é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \omega\}$ e uma assinatura $\Sigma = \{\land, \lor, \rightarrow, \neg, \bullet\}$ da seguinte forma:
+%     \section{Linguagem}
+% % %     A lógica \textbf{LFI1}\footnote{Por mais que existam extensões de primeira ordem da \textbf{LFI1}, como a \textbf{LFI1*}, definida em~\citeshort{carnielli2000formal}, o presente trabalho trata somente do fragmento proposicional desta.} aqui apresentada é definida com base nos trabalhos de~\citeshort{Carnielli_Coniglio_2016} como uma estrutura da forma $\langle \pazocal{S}, \Vdash \rangle$, onde $\pazocal{S}$ é a sua linguagem (seu conjunto de fórmulas) e $\Vdash$ é uma relação de consequência de conclusão única definida como $\Vdash \;\subseteq \wp(\pazocal{S})\times\pazocal{S}$. A linguagem\footnote{A linguagem da \textbf{LFI1} pode ser definida de maneira equivalente utilizando-se o operador de consistência (representado por $\circ$), seguindo a definição $\circ \alpha \eqdef \neg \bullet \alpha$.} $\pazocal{S}$ da \textbf{LFI1} é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \omega\}$ e uma assinatura $\Sigma = \{\land, \lor, \rightarrow, \neg, \bullet\}$ da seguinte forma:
 
-    \begin{definicao}[Linguagem da \textbf{LFI1}]
-        \label{def:lang}
-        A linguagem $\pazocal{S}$ da \textbf{LFI1} é definida indutivamente como o menor conjunto \migscortar{a partir das}{ que respeita as} seguintes regras:
-        \begin{align*}
-            & \pazocal{P} \subseteq \pazocal{S}\\
-            & \text{Se } \varphi \in \pazocal{S}, \text{então } \triangle  \varphi \in \pazocal{S}, \text{com } \triangle \in \{\neg, \bullet\}\\
-            & \text{Se } \varphi, \psi \in \pazocal{S}, \text{então } \varphi \otimes \psi \in \pazocal{S}, \text{com } \otimes \in \{\land, \lor, \rightarrow\} \tag*\qed
-        \end{align*}
-    \end{definicao}
+%     \begin{definicao}[Linguagem da \textbf{LFI1}]
+%         \label{def:lang}
+%         A linguagem $\pazocal{S}$ da \textbf{LFI1} é definida indutivamente como o menor conjunto a que respeita as seguintes regras:
+%         \begin{align*}
+%             & \pazocal{P} \subseteq \pazocal{S}\\
+%             & \text{Se } \varphi \in \pazocal{S}, \text{então } \triangle  \varphi \in \pazocal{S}, \text{com } \triangle \in \{\neg, \bullet\}\\
+%             & \text{Se } \varphi, \psi \in \pazocal{S}, \text{então } \varphi \otimes \psi \in \pazocal{S}, \text{com } \otimes \in \{\land, \lor, \rightarrow\} \tag*\qed
+%         \end{align*}
+%     \end{definicao}
 
-    \begin{definicao}[Subfórmulas]
-        \label{def:subf}
-        O conjunto Sub$(\varphi)$ de subfórmulas de uma fórmula $\varphi$ é definido indutivamente por:
-        \begin{align*}
-            & \text{Sub}(p_{i}) = \{p_{i}\}, \; p_{i} \in \pazocal{P}\\
-            & \text{Sub}(\triangle \varphi) = \{\triangle \varphi\} \; \cup \;\text{Sub}(\varphi), \; \triangle \in \{\neg, \bullet\}\\
-            & \text{Sub}(\varphi \otimes \psi) = \{\varphi \otimes \psi\} \; \cup \;\text{Sub}(\varphi) \; \cup \;\text{Sub}(\psi), \; \otimes \in \{\land, \lor, \rightarrow\} \tag*\qed
-        \end{align*}
-    \end{definicao}
+%     \begin{definicao}[Subfórmulas]
+%         \label{def:subf}
+%         O conjunto Sub$(\varphi)$ de subfórmulas de uma fórmula $\varphi$ é definido indutivamente por:
+%         \begin{align*}
+%             & \text{Sub}(p_{i}) = \{p_{i}\}, \; p_{i} \in \pazocal{P}\\
+%             & \text{Sub}(\triangle \varphi) = \{\triangle \varphi\} \; \cup \;\text{Sub}(\varphi), \; \triangle \in \{\neg, \bullet\}\\
+%             & \text{Sub}(\varphi \otimes \psi) = \{\varphi \otimes \psi\} \; \cup \;\text{Sub}(\varphi) \; \cup \;\text{Sub}(\psi), \; \otimes \in \{\land, \lor, \rightarrow\} \tag*\qed
+%         \end{align*}
+%     \end{definicao}
 
