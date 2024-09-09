@@ -4,26 +4,26 @@ Neste capítulo são apresentadas algumas definições necessárias para caracte
 
 \section{Paraconsistência}
 \label{def:paracons}
-Uma lógica $\mathcal{L}$ é definida como uma dupla $\mathcal{L} = \langle \pazocal{L},\vdash \rangle$, onde $\pazocal{L}$ é sua linguagem (seu conjunto de fórmulas) e $\vdash$ é uma relação de consequência de conclusão única, definida como $\vdash \;\subseteq \wp(\pazocal{S})\times\pazocal{S}$.
+Uma lógica $\mathcal{L}$ é definida como uma dupla $\mathcal{L} = \langle \pazocal{L},\vdash \rangle$, onde $\pazocal{L}$ é sua linguagem (seu conjunto de fórmulas) e $\vdash$ é uma relação de consequência de conclusão única, definida como $\vdash \;\subseteq \wp(\pazocal{S})\times\pazocal{S}$. \migs{O que é esse $\pazocal{S}$?}
 
 \begin{definicao}[Lógica proposicional]
     \label{def:proposicional}
-    Um sistema lógico $\mathcal{L}$, definido sobre uma linguagem $\pazocal{L}$ é dito proposicional caso $\pazocal{L}$ seja definida a partir de um conjunto enumerável de átomos $\pazocal{P} = \{p_{i} \;| \; i \in \omega \}$ e uma assinatura proposicional $\Theta$, consistindo em um conjunto de conectivos lógicos com a informação acerca da aridade de cada um destes. Uma linguagem $\pazocal{L}$ definida sobre uma assinatura proposicional é chamada de linguagem proposicional.\qed{}
+    Um sistema lógico $\mathcal{L}$, definido sobre uma linguagem $\pazocal{L}$ é dito proposicional caso $\pazocal{L}$ seja definida a partir de um conjunto enumerável de átomos $\pazocal{P} = \{p_{i} \;| \; i \in \omega \}$ e uma assinatura proposicional $\Theta$, consistindo em um conjunto de conectivos lógicos com a informação acerca da aridade de cada um destes. Uma linguagem $\pazocal{L}$ definida sobre uma assinatura proposicional é chamada de linguagem proposicional.\migs{Acho que seria interessante definir uma assinatura proposicional e dar um exemplo de assinatura} \qed
 \end{definicao}
 
 \begin{definicao}[Lógica padrão]
     \label{def:padrao}
     Uma lógica $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$ é dita \textit{Tarskiana} caso satisfaça as seguintes propriedades para todo $\Gamma \cup \Delta \cup \{\alpha\} \subseteq \pazocal{L}$:
     \begin{align*}
-         & \text{~~(i) Se } \alpha \in \Gamma \text{ então } \Gamma \vdash \alpha;                                                                       \\
+         & \text{~~(i) Se } \gamma \in \Gamma \text{ então } \Gamma \vdash \gamma;                                                                       \\
          & \text{~(ii) Se } \Delta \vdash \alpha \text{ e } \Delta \subseteq \Gamma \text{ então } \Gamma \vdash \alpha;                                 \\
-         & \text{(iii) Se } \Delta \vdash \alpha \text{ e } \Gamma \vdash \beta \text{ para todo } \beta \in \Delta \text{ então } \Gamma \vdash \alpha.
+         & \text{(iii) Se } \Delta \vdash \alpha \text{ e } \Gamma \vdash \delta \text{ para todo } \delta \in \Delta \text{ então } \Gamma \vdash \alpha.
     \end{align*}
     Uma lógica $\mathcal{L}$ é dita \textit{finitária} caso satisfaça o seguinte:
     \begin{align*}
-         & \text{~(iv) Se } \Gamma \vdash \alpha \text{ então existe um subconjunto finito } \Gamma_{0} \text{ de } \Gamma \text{ tal que } \Gamma_{0} \vdash \alpha.
+         & \text{~(iv) Se } \Gamma \vdash \alpha \text{ então existe conjunto finito } \Gamma_{0} \subseteq \Gamma \text{ tal que } \Gamma_{0} \vdash \alpha.
     \end{align*}
-    Uma lógica $\mathcal{L}$ definida sobre uma linguagem proposicional $\pazocal{L}$ é dita \textit{estrutural} caso respeite a seguinte condição:
+    Uma lógica $\mathcal{L}$ definida sobre uma linguagem proposicional $\pazocal{L}$ é dita \textit{estrutural} caso respeite a seguinte condição: \migs{Acho que seria interessante definir o que é uma substituição}
     \begin{align*}
          & \text{~~(v) Se } \Gamma \vdash \alpha \text{ então } \sigma [\Gamma] \vdash \sigma(\alpha) \text{, para toda substituição } \sigma \text{ de fórmulas por variáveis.}
     \end{align*}
@@ -33,17 +33,17 @@ Com isto, é possível definir formalmente a \textit{paraconsistência} para ló
 
 \begin{definicao}[Lógica Tarskiana paraconsistente]
     \label{def:tarskiana_paracons}
-    Uma lógica Tarskiana $\mathcal{L}$ é dita \textit{paraconsistente} se ela possuir uma negação $\neg$ (primitiva ou definida) tal que $\alpha, \neg \alpha \nvdash \beta$ para algumas fórmulas $\alpha$ e $\beta$ na sua linguagem.\qed{}
+    Uma lógica Tarskiana $\mathcal{L}$ é dita \textit{paraconsistente} se ela possuir uma negação $\neg$ (primitiva ou definida \migs{O que são negações primitivas ou definidas?}) tal que $\alpha, \neg \alpha \nvdash \beta$ para \cortar{algumas} fórmulas $\alpha$ e $\beta$ da sua linguagem.\qed{}
 \end{definicao}
 
 Caso a linguagem de $\mathcal{L}$ possua uma implicação $\rightarrow$ que respeite o metateorema da dedução\footnote{Definido como $\Gamma, \alpha \vdash \beta \Longleftrightarrow \Gamma\vdash \alpha \rightarrow \beta$.}, então $\mathcal{L}$ é paraconsistente somente se a fórmula $\alpha \rightarrow (\neg \alpha \rightarrow \beta)$ não for válida. Ou seja, o Princípio da explosão, em relação a negação $\neg$, é inválido e, portanto, $\neg$ é uma negação não-explosiva.
 
 \section{Inconsistência}
-A motivação para o desenvolvimento das \textbf{LFI}s é possuir sistemas lógicos paraconsistentes nos quais é possível resgatar, de maneira \textit{controlada}, o Princípio da Explosão. Isto é feito definindo um conjunto $\bigcirc(p)$ de fórmulas dependentes somente de uma variável proposicional $p$. Caso uma lógica $\mathcal{L}$ seja explosiva ao unir-se um conjunto $\bigcirc(\alpha)$ com uma contradição $\{\alpha, \neg \alpha\}$, para todo $\alpha$ na sua linguagem, mas não seja explosiva ao unir-se $\bigcirc(\alpha)$ com $\alpha$ nem se unindo $\bigcirc(\alpha)$ com $\neg \alpha$, dizemos que $\mathcal{L}$ é \textit{gentilmente explosiva}.
+A motivação para o desenvolvimento das \textbf{LFI}s é possuir sistemas lógicos \migscortar{paraconsistentes}{ inconsistentes} nos quais é possível resgatar, de maneira \textit{controlada}, o Princípio da Explosão. Isto é feito definindo um conjunto $\bigcirc(p)$ de fórmulas dependentes somente de uma variável proposicional $p$. Caso uma lógica $\mathcal{L}$ seja explosiva ao unir-se um conjunto $\bigcirc(\alpha)$ com uma contradição $\{\alpha, \neg \alpha\}$, para \migscortar{todo}{ qualquer} $\alpha$ na sua linguagem, mas não seja explosiva ao unir-se $\bigcirc(\alpha)$ com $\alpha$ nem se unindo $\bigcirc(\alpha)$ com $\neg \alpha$, dizemos que $\mathcal{L}$ é \textit{gentilmente explosiva}. \migs{Acho que seria mais fácil entender se ao invés de você deixasse as definições por exetenso (e.g.``não seja explosiva ao unir-se $\bigcirc(\alpha)$ com $\alpha$'') deixar as definições usando notação (e.g. ``$\bigcirc(\alpha), \alpha \nvdash \beta$ para algum $\beta$'')}
 
 \begin{definicao}[Lógica de Inconsistência Formal]
     \label{def:lfi}
-    Seja $\mathcal{L} = \langle \pazocal{L}_{\Sigma}, \vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Sigma$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \textit{Lógica de Inconsistência Formal} (\textbf{LFI}) (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições (considerando $\bigcirc(\varphi) = \{\psi(\varphi) \; | \; \psi(p) \in \bigcirc(p)\}$):
+    Seja $\mathcal{L} = \langle \pazocal{L}_{\Sigma}, \vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Sigma$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \textit{Lógica de Inconsistência Formal} (\textbf{LFI}) (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições (considerando $\bigcirc(\varphi) = \{\psi(\varphi) \; | \; \psi(p) \in \bigcirc(p)\}$): \migs{Acho que seria interessante explicar o que quer dizer essa notação, você, que é a autora e que está lendo sobre a mais de mês, teve problema de entender, quem estiver lendo isso pela primeira vez certamente não vai entender nada do que isso quer dizer}
 
 
 \end{definicao}
