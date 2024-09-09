@@ -8,13 +8,13 @@ Uma lógica $\mathcal{L}$ é definida como uma dupla $\mathcal{L} = \langle \paz
 
 \begin{definicao}[Assinatura proposicional]
     \label{def:ass_prop}
-    Uma assinatura proposicional $\Theta$ é um conjunto de conectivos lógicos com a informação acerca da aridade de cada um destes.
+    Uma assinatura proposicional $\Sigma$ é um conjunto de conectivos lógicos com a informação acerca da aridade de cada um destes.
 \end{definicao}
-    Por exemplo, a assinatura proposicional para a lógica proposicional clássica pode ser definida como $\Theta_{LPC} = \{\land^{2}, \lor^{2}, \neg^{1}, \rightarrow^{2}\}$.
+    Por exemplo, a assinatura proposicional para a lógica proposicional clássica pode ser definida como $\Sigma_{LPC} = \{\land^{2}, \lor^{2}, \neg^{1}, \rightarrow^{2}\}$.
 
 \begin{definicao}[Lógica proposicional]
     \label{def:proposicional}
-    Um sistema lógico $\mathcal{L}$, definido sobre uma linguagem $\pazocal{L}$ é dito proposicional caso $\pazocal{L}$ seja definida a partir de um conjunto enumerável de átomos $\pazocal{P} = \{p_{i} \;| \; i \in \omega \}$ e uma assinatura proposicional $\Theta$. Uma linguagem $\pazocal{L}$ definida sobre uma assinatura proposicional é chamada de linguagem proposicional.\qed{}
+    Um sistema lógico $\mathcal{L}$, definido sobre uma linguagem $\pazocal{L}$ é dito proposicional caso $\pazocal{L}$ seja definida a partir de um conjunto enumerável de átomos $\pazocal{P} = \{p_{i} \;| \; i \in \omega \}$ e uma assinatura proposicional $\Sigma$. Uma linguagem $\pazocal{L}$ definida sobre uma assinatura proposicional é chamada de linguagem proposicional.\qed{}
 \end{definicao}
 
 \begin{definicao}[Lógica padrão]
@@ -33,14 +33,14 @@ Uma lógica $\mathcal{L}$ é definida como uma dupla $\mathcal{L} = \langle \paz
     \begin{align*}
          & \text{~~(v) Se } \Gamma \vdash \alpha \text{ então } \sigma [\Gamma] \vdash \sigma(\alpha) \text{, para toda substituição } \sigma \text{ de fórmulas por variáveis.}
     \end{align*}
-    \helena{ou seriam variáveis por fórmulas?? pq tipo fui nas referências do carnielli e lá tá dizendo variável por fórmula... serase mandar email pra ele?}
+    \helena{ou seriam variáveis por fórmulas?? pq tipo fui nas referências do carnielli e lá tá dizendo variável por fórmula... serase mandar email pra ele? BTW DEFINIR SUBSTITUIÇÕES E APRESENTAR ESSA NOTAÇÃO}
     Por fim, uma lógica $\mathcal{L}$ é dita \textit{padrão} caso ela seja Tarskiana, finitária e estrutural.\qed{}
 \end{definicao}
 Com isto, é possível definir formalmente a \textit{paraconsistência} para lógicas Tarskianas.
 
 \begin{definicao}[Lógica Tarskiana paraconsistente]
     \label{def:tarskiana_paracons}
-    Uma lógica Tarskiana $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$, é dita \textit{paraconsistente} se ela possuir uma negação $\neg$\footnote{Esta negação pode ser primitiva (pertencente à assinatura da linguagem) ou definida a partir de outros conectivos.} tal que existem fórmulas $\alpha, \beta \in \pazocal{L}$ de modo que $\alpha, \neg \alpha \nvdash \beta$.\qed{}
+    Uma lógica Tarskiana $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$, é dita \textit{paraconsistente} se ela possuir uma negação $\neg$\footnote{Esta negação pode ser primitiva (pertencente à assinatura da linguagem) ou definida a partir de outras fórmulas.} tal que existem fórmulas $\alpha, \beta \in \pazocal{L}$ de modo que $\alpha, \neg \alpha \nvdash \beta$.\qed{}
 \end{definicao}
 
 Caso a linguagem de $\mathcal{L}$ possua uma implicação $\rightarrow$ que respeite o metateorema da dedução\footnote{Definido como $\Gamma, \alpha \vdash \beta \Longleftrightarrow \Gamma\vdash \alpha \rightarrow \beta$.}, então $\mathcal{L}$ é paraconsistente somente se a fórmula $\alpha \rightarrow (\neg \alpha \rightarrow \beta)$ não for válida. Ou seja, o Princípio da explosão, em relação a negação $\neg$, é inválido e, portanto, $\neg$ é uma negação não-explosiva.
