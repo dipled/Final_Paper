@@ -43,10 +43,8 @@ A lógica proposicional\footnote{Por mais que existam extensões de primeira ord
     A lógica \lfium{} é definida sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte cálculo de Hilbert:
 
     \noindent\textbf{Axiomas:}
-    \begin{center}
-        \begin{gather*}
-            \alpha \rightarrow (\beta & \rightarrow \alpha)\tag{Ax1}\\
-            (\alpha \rightarrow (\beta \rightarrow \gamma)) \rightarrow ((\alpha \rightarrow \beta) \rightarrow (\alpha  \rightarrow \gamma &))\tag{Ax2}
-        \end{gather*}
-    \end{center}
+    \begin{align}
+            \alpha \rightarrow (\beta \rightarrow \alpha&)\tag{Ax1}\\
+            \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (\alpha \rightarrow (\beta \rightarrow \gamma)) \rightarrow ((\alpha \rightarrow \beta&) \rightarrow (\alpha \rightarrow \gamma ))\tag{Ax2} % Migs: Se funciona e é idiota então não é idiota
+    \end{align}
 \end{definicao}
