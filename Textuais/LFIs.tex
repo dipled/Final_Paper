@@ -8,17 +8,17 @@ Uma lógica $\mathcal{L}$ é definida como uma dupla $\mathcal{L} = \langle \paz
 
 \begin{definicao}[Assinatura proposicional]
     \label{def:ass_prop}
-    Uma assinatura proposicional $\Sigma$ é um conjunto de conectivos lógicos com a informação acerca da aridade de cada um destes.
+    Uma assinatura proposicional $\Theta$ é um conjunto de conectivos lógicos com a informação acerca da aridade de cada um destes.
 \end{definicao}
-    Por exemplo, a assinatura proposicional para a lógica proposicional clássica pode ser definida como $\Sigma_{LPC} = \{\land^{2}, \lor^{2}, \neg^{1}, \rightarrow^{2}\}$.
+    Por exemplo, a assinatura proposicional para a lógica proposicional clássica pode ser definida como $\Theta{LPC} = \{\land^{2}, \lor^{2}, \neg^{1}, \rightarrow^{2}\}$.
 
 \begin{definicao}[Lógica proposicional]
     \label{def:proposicional}
-    Um sistema lógico $\mathcal{L}$, definido sobre uma linguagem $\pazocal{L}$ é dito proposicional caso $\pazocal{L}$ seja definida a partir de um conjunto enumerável de átomos $\pazocal{P} = \{p_{i} \;| \; i \in \omega \}$ e uma assinatura proposicional $\Sigma$. Uma linguagem $\pazocal{L}$ definida sobre uma assinatura proposicional é chamada de linguagem proposicional.\qed{}
+    Um sistema lógico $\mathcal{L}$, definido sobre uma linguagem $\pazocal{L}$ é dito proposicional caso $\pazocal{L}$ seja definida a partir de um conjunto enumerável de átomos $\pazocal{P} = \{p_{i} \;| \; i \in \omega \}$ e uma assinatura proposicional $\Theta$. Uma linguagem $\pazocal{L}$ definida sobre uma assinatura proposicional é chamada de linguagem proposicional.\qed{}
 \end{definicao}
 \helena{ADICIONAR REFERENCIA DO LIVRO DO DEDO}
 \begin{notacao}[Substituição]
-Uma substituição $\sigma$ de todas as ocorrências de uma variável $p$ por uma fórmula $\psi$ em uma fórmula $\phi$, é denotada por $\sigma(\phi) = \phi[p \mapsto \psi]$. Dado um conjunto $\Gamma$ de fórmulas, a aplicação da substituição $\sigma$ em todos os elementos de $\Gamma$ é denotada por $\sigma|\Gamma| = \{\sigma(\phi) \; | \; \phi \in \Gamma\}$. 
+Uma substituição $\sigma$ de todas as ocorrências de uma variável $p$ por uma fórmula $\psi$ em uma fórmula $\phi$, é denotada por $\sigma(\phi) = \phi[p \mapsto \psi]$. Dado um conjunto $\Gamma$ de fórmulas, a aplicação da substituição $\sigma$ em todos os elementos de $\Gamma$ é denotada por $\sigma|\Gamma| = \{\sigma(\gamma) \; | \; \gamma \in \Gamma\}$. 
 \end{notacao}
 
 \begin{definicao}[Lógica padrão]
@@ -60,14 +60,14 @@ A motivação para o desenvolvimento das \textbf{LFI}s é possuir sistemas lógi
 
 \begin{definicao}[Lógica de Inconsistência Formal]
     \label{def:lfi}
-    Seja $\mathcal{L} = \langle \pazocal{L}_{\Sigma}, \vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Sigma$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \textit{Lógica de Inconsistência Formal} (\textbf{LFI}) (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições:
+    Seja $\mathcal{L} = \langle \pazocal{L}_{\Theta}, \vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Theta$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \textit{Lógica de Inconsistência Formal} (\textbf{LFI}) (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições:
     %(considerando $\bigcirc(\phi) = \{\psi(\phi) \; | \; \psi(p) \in \bigcirc(p)\}$): \helena{O conjunto $\bigcirc(\phi)$ é definido substituindo-se cada ocorrência $p$ por $\phi$ em cada elemento de $\bigcirc(\phi)$.}
     \begin{align*}
-        & \text{~~(i) Existem } \gamma, \delta \in \pazocal{L}_{\Sigma} \text{ de modo que } \gamma, \neg \gamma \nvdash \delta;\\
-        & \text{~(ii) Existem } \alpha, \beta \in \pazocal{L}_{\Sigma} \text{ de modo que:}\\
+        & \text{~~(i) Existem } \gamma, \delta \in \pazocal{L}_{\Theta} \text{ de modo que } \gamma, \neg \gamma \nvdash \delta;\\
+        & \text{~(ii) Existem } \alpha, \beta \in \pazocal{L}_{\Theta} \text{ de modo que:}\\
             & \qquad \text{(ii.a)} \bigcirc(\alpha), \alpha \nvdash \beta;\\
             & \qquad \text{(ii.a)} \bigcirc(\alpha), \neg \alpha \nvdash \beta;\\
-        & \text{(iii) Para todo } \phi, \psi \in \pazocal{L}_{\Sigma} \text{ tem-se } \bigcirc(\phi), \phi, \neg \phi \vdash \psi. \tag*\qed{}
+        & \text{(iii) Para todo } \phi, \psi \in \pazocal{L}_{\Theta} \text{ tem-se } \bigcirc(\phi), \phi, \neg \phi \vdash \psi. \tag*\qed{}
     \end{align*}
     \helena{Será que eu defino \textbf{LFI}s fracas e fortes também???}
 
