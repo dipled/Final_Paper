@@ -2,7 +2,7 @@
 \label{cap:LFI1}
 BLABLABLABLABLA introduz um textinho % MIGS: Grande introdução 🔥
 
-\section{Definições}
+\section{Linguagem}
 A lógica proposicional\footnote{Por mais que existam extensões de primeira ordem da \lfium{}, como a \textbf{LFI1*}, definida em~\citeshort{carnielli2000formal}, o presente trabalho trata somente do fragmento proposicional desta.} \lfium{} aqui apresentada é definida com base no livro de~\citeshort{Carnielli_Coniglio_2016} como $\mathcal{L} = \langle \pazocal{L}_{\Sigma}, \vdash \rangle$. A linguagem\footnote{A linguagem da \lfium{} pode ser definida de maneira equivalente utilizando-se o operador de consistência (representado por $\circ$), seguindo a definição $\circ \alpha \eqdef \neg \bullet \alpha$.} $\pazocal{L}_{\Sigma}$ da \lfium{} é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \omega\}$ e uma assinatura proposicional $\Sigma = \{\land^{2}, \lor^{2}, \rightarrow^{2}, \neg^{1}, \bullet^{1}\}$ da seguinte forma:
 
 \begin{definicao}[Linguagem da \lfium{}]
@@ -29,21 +29,24 @@ A lógica proposicional\footnote{Por mais que existam extensões de primeira ord
     \label{def:complex}
     Dada uma fórmula $\phi \in \pazocal{L}_{\Sigma}$, a complexidade $C(\phi)$ de de uma fórmula $\phi$ qualquer é definida recursivamente da seguinte forma:
     \begin{align*}
-        & \text{1.~Se } \phi = p \text{, onde } p \in \pazocal{P} \text{, então } C(\phi) = 1;\\
-        & \text{2.~Se } \phi = \neg \psi \text{, então } C(\phi) = C(\psi) + 1;\\
-        & \text{3.~Se } \phi = \bullet \psi \text{, então } C(\phi) = C(\psi) + 2;\\
-        & \text{4.~Se } \phi = \psi \otimes \gamma \text{, onde } \otimes \in \{\land, \lor, \rightarrow\} \text{, então } C(\phi) = C(\psi) + C(\gamma) + 1.\tag*\qed{}
+         & \text{1.~Se } \phi = p \text{, onde } p \in \pazocal{P} \text{, então } C(\phi) = 1;                                                                           \\
+         & \text{2.~Se } \phi = \neg \psi \text{, então } C(\phi) = C(\psi) + 1;                                                                                          \\
+         & \text{3.~Se } \phi = \bullet \psi \text{, então } C(\phi) = C(\psi) + 2;                                                                                       \\
+         & \text{4.~Se } \phi = \psi \otimes \gamma \text{, onde } \otimes \in \{\land, \lor, \rightarrow\} \text{, então } C(\phi) = C(\psi) + C(\gamma) + 1.\tag*\qed{}
     \end{align*}
 \end{definicao}
+
+\section{Axiomatização}
 
 \begin{definicao}[\lfium{}]
     \label{def:lfi1}
     A lógica \lfium{} é definida sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte cálculo de Hilbert:
 
     \noindent\textbf{Axiomas:}
-    \begin{alignat}{2}
-        \alpha \rightarrow (\beta \rightarrow \alpha)\\
-        (\alpha \rightarrow (\beta \rightarrow \gamma)) \rightarrow ((\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \gamma))
-    \end{alignat}{2}
-    
+    \begin{center}
+        \begin{gather*}
+            \alpha \rightarrow (\beta & \rightarrow \alpha)\tag{Ax1}\\
+            (\alpha \rightarrow (\beta \rightarrow \gamma)) \rightarrow ((\alpha \rightarrow \beta) \rightarrow (\alpha  \rightarrow \gamma &))\tag{Ax2}
+        \end{gather*}
+    \end{center}
 \end{definicao}
