@@ -18,7 +18,7 @@ Uma lógica $\mathcal{L}$ é definida como uma dupla $\mathcal{L} = \langle \paz
 \end{definicao}
 \helena{ADICIONAR REFERENCIA DO LIVRO DO DEDO}
 \begin{notacao}[Substituição]
-Uma substituição $\sigma$ de todas as ocorrências de uma variável $p$ por uma fórmula $\psi$ em uma fórmula $\varphi$, é denotada por $\sigma(\varphi) = \varphi[p \mapsto \psi]$. Dado um conjunto $\Gamma$ de fórmulas, a aplicação da substituição $\sigma$ em todos os elementos de $\Gamma$ é denotada por $\sigma|\Gamma| = \{\sigma(\varphi) \; | \; \varphi \in \Gamma\}$. 
+Uma substituição $\sigma$ de todas as ocorrências de uma variável $p$ por uma fórmula $\psi$ em uma fórmula $\phi$, é denotada por $\sigma(\phi) = \phi[p \mapsto \psi]$. Dado um conjunto $\Gamma$ de fórmulas, a aplicação da substituição $\sigma$ em todos os elementos de $\Gamma$ é denotada por $\sigma|\Gamma| = \{\sigma(\phi) \; | \; \phi \in \Gamma\}$. 
 \end{notacao}
 
 \begin{definicao}[Lógica padrão]
@@ -51,23 +51,23 @@ Caso a linguagem de $\mathcal{L}$ possua uma implicação $\rightarrow$ que resp
 
 \section{Inconsistência}
 
-A motivação para o desenvolvimento das \textbf{LFI}s é possuir sistemas lógicos paraconsistentes nos quais é possível resgatar, de maneira \textit{controlada}, o Princípio da Explosão. Isto é feito definindo um conjunto $\bigcirc(p)$ de fórmulas dependentes somente de uma variável proposicional $p$. Caso uma lógica $\mathcal{L}$ seja explosiva ao unir-se um conjunto $\bigcirc(\alpha)$ com uma contradição $\{\alpha, \neg \alpha\}$, ou seja, se $\bigcirc(\alpha), \alpha, \neg \alpha \vdash \beta$ para todo $\alpha$ e $\beta$ pertencentes à sua linguagem, e existirem fórmulas $\varphi$ e $\psi$ tal que $\bigcirc(\varphi), \varphi \nvdash \psi$ e $\bigcirc(\varphi), \neg \varphi \nvdash \psi$, então dizemos que $\mathcal{L}$ é \textit{gentilmente explosiva}.
+A motivação para o desenvolvimento das \textbf{LFI}s é possuir sistemas lógicos paraconsistentes nos quais é possível resgatar, de maneira \textit{controlada}, o Princípio da Explosão. Isto é feito definindo um conjunto $\bigcirc(p)$ de fórmulas dependentes somente de uma variável proposicional $p$. Caso uma lógica $\mathcal{L}$ seja explosiva ao unir-se um conjunto $\bigcirc(\alpha)$ com uma contradição $\{\alpha, \neg \alpha\}$, ou seja, se $\bigcirc(\alpha), \alpha, \neg \alpha \vdash \beta$ para todo $\alpha$ e $\beta$ pertencentes à sua linguagem, e existirem fórmulas $\phi$ e $\psi$ tal que $\bigcirc(\phi), \phi \nvdash \psi$ e $\bigcirc(\phi), \neg \phi \nvdash \psi$, então dizemos que $\mathcal{L}$ é \textit{gentilmente explosiva}.
 
 \begin{notacao}
-    Dado um átomo $p$, define-se $\bigcirc(p)$ como um conjunto não-vazio de fórmulas dependentes somente em $p$. Com base neste conjunto, define-se a notação $\bigcirc(\varphi)$ para representar a substituição das ocorrências de $p$ por $\varphi$ em todos os elementos de $\bigcirc(p)$, ou seja, para uma fórmula $\varphi$ qualquer, $\bigcirc(\varphi) = \{\psi[p \mapsto \varphi] \; | \; \psi \in \bigcirc(p)\}$. 
+    Dado um átomo $p$, define-se $\bigcirc(p)$ como um conjunto não-vazio de fórmulas dependentes somente em $p$. Com base neste conjunto, define-se a notação $\bigcirc(\phi)$ para representar a substituição das ocorrências de $p$ por $\phi$ em todos os elementos de $\bigcirc(p)$, ou seja, para uma fórmula $\phi$ qualquer, $\bigcirc(\phi) = \{\psi[p \mapsto \phi] \; | \; \psi \in \bigcirc(p)\}$. 
 \end{notacao}
 
 
 \begin{definicao}[Lógica de Inconsistência Formal]
     \label{def:lfi}
     Seja $\mathcal{L} = \langle \pazocal{L}_{\Sigma}, \vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Sigma$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \textit{Lógica de Inconsistência Formal} (\textbf{LFI}) (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições:
-    %(considerando $\bigcirc(\varphi) = \{\psi(\varphi) \; | \; \psi(p) \in \bigcirc(p)\}$): \helena{O conjunto $\bigcirc(\varphi)$ é definido substituindo-se cada ocorrência $p$ por $\varphi$ em cada elemento de $\bigcirc(\varphi)$.}
+    %(considerando $\bigcirc(\phi) = \{\psi(\phi) \; | \; \psi(p) \in \bigcirc(p)\}$): \helena{O conjunto $\bigcirc(\phi)$ é definido substituindo-se cada ocorrência $p$ por $\phi$ em cada elemento de $\bigcirc(\phi)$.}
     \begin{align*}
         & \text{~~(i) Existem } \gamma, \delta \in \pazocal{L}_{\Sigma} \text{ de modo que } \gamma, \neg \gamma \nvdash \delta;\\
         & \text{~(ii) Existem } \alpha, \beta \in \pazocal{L}_{\Sigma} \text{ de modo que:}\\
             & \qquad \text{(ii.a)} \bigcirc(\alpha), \alpha \nvdash \beta;\\
             & \qquad \text{(ii.a)} \bigcirc(\alpha), \neg \alpha \nvdash \beta;\\
-        & \text{(iii) Para todo } \varphi, \psi \in \pazocal{L}_{\Sigma} \text{ tem-se } \bigcirc(\varphi), \varphi, \neg \varphi \vdash \psi. \tag*\qed{}
+        & \text{(iii) Para todo } \phi, \psi \in \pazocal{L}_{\Sigma} \text{ tem-se } \bigcirc(\phi), \phi, \neg \phi \vdash \psi. \tag*\qed{}
     \end{align*}
     \helena{Será que eu defino \textbf{LFI}s fracas e fortes também???}
 
