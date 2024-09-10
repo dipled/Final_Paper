@@ -1,6 +1,13 @@
 \chapter{Lógicas de Inconsistência Formal}
 \label{cap:LFIs}
-Neste capítulo são apresentadas algumas definições necessárias para caracterizar as \textit{Lógicas de Inconsistência Formal}, baseadas no livro de~\citeshort{Carnielli_Coniglio_2016}. Antes de definir as \lfis{}, entretanto, é preciso apresentar alguns conceitos acerca de sistemas lógicos paraconsistentes.
+Neste capítulo são apresentadas algumas definições necessárias para caracterizar as \textit{Lógicas de Inconsistência Formal}, baseadas no livro de~\citeshort{Carnielli_Coniglio_2016}. Antes de definir as \lfis{}, entretanto, é preciso apresentar alguns conceitos acerca de sistemas lógicos paraconsistentes. Nas definições que seguem, utiliza-se a seguinte representação:
+\begin{itemize}
+    \item Letras minúsculas do alfabeto latim $p, q, r, \ldots$ para representar fórmulas atômicas.
+    \item Letras maiúsculas do alfabeto latim $A, B, C, \ldots$ para representar conjuntos quaisquer.
+    \item Letra minúsculas do alfabeto grego $\alpha, \beta, \gamma, \ldots$ para representar fórmulas quaisquer.
+    \item As letras $\Gamma, \Delta$ para representar conjuntos de fórmulas.
+    \item As letras $\Sigma, \Theta$ para representar a assinatura de uma linguagem.
+\end{itemize}
 
 \section{Paraconsistência}
 \label{sec:paracons}
@@ -17,8 +24,18 @@ Uma lógica $\mathcal{L}$ é definida como uma dupla $\mathcal{L} = \langle \paz
     Um sistema lógico $\mathcal{L}$, definido sobre uma linguagem $\pazocal{L}$ é dito proposicional caso $\pazocal{L}$ seja definida a partir de um conjunto enumerável de átomos $\pazocal{P} = \{p_{i} \;| \; i \in \omega \}$ e uma assinatura proposicional $\Theta$. Uma linguagem $\pazocal{L}$ definida sobre uma assinatura proposicional é chamada de linguagem proposicional.\qed{}
 \end{definicao}
 
-\begin{notacao}[Substituição]
-Uma substituição $\sigma$ de todas as ocorrências de uma variável $p$ por uma fórmula $\psi$ em uma fórmula $\phi$, é denotada por $\sigma(\phi) = \phi[p \mapsto \psi]$~\cite{dedo}. Dado um conjunto $\Gamma$ de fórmulas, a aplicação da substituição $\sigma$ em todos os elementos de $\Gamma$ é denotada por $\sigma|\Gamma| = \{\sigma(\gamma) \; | \; \gamma \in \Gamma\}$. 
+\begin{definicao}[Substituição]
+    Uma substituição $\sigma$ de todas as ocorrências de uma variável $p$ por uma fórmula $\psi$ em uma fórmula $\phi$, é denotada por $\sigma(\phi) = \phi[p \mapsto \psi]$~\cite{dedo}. A substituição $\phi[p_{i} \mapsto \psi]$ é definida indutivamente como:
+    \begin{align*}
+        & \text{1.~Se }\phi = p_{i} \text{ entao, } \phi[p_{i} \mapsto \psi] = \psi;\\
+        & \text{2.~Se }\phi = p_{j} \text{ e } j \neq i \text{ entao, }\phi[p_{i} \mapsto \psi] = \phi;\\
+        & \text{3.~Se }\phi = \triangle \gamma \text{ com } \triangle \in \{\neg, \bullet\} \text{ entao, } \phi[p_{i} \mapsto \psi] = \triangle(\gamma[p_{i} \mapsto \psi]);\\
+        & \text{4.~Se }\phi = \phi_{0} \otimes \phi_{1} \text{ com } \otimes \in \{\land, \lor, \rightarrow\} \text{ entao, } \phi[p_{i} \mapsto \psi] = \phi_{0}[p_{i} \mapsto \psi] \otimes \phi_{1}[p_{i} \mapsto \psi].
+    \end{align*}
+\end{definicao}
+
+\begin{notacao}
+    Sejam $\Gamma, \Delta$ conjuntos de fórmulas e $\phi, \psi$ fórmulas quaisquer, então $\Gamma, \Delta, \phi \vdash \psi$ denota $\Gamma \cup \Delta \cup \{\phi\} \vdash \psi$.
 \end{notacao}
 
 \begin{definicao}[Lógica padrão]
@@ -46,7 +63,7 @@ Com isto, é possível definir formalmente a \textit{paraconsistência} para ló
     Uma lógica Tarskiana $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$, é dita \textit{paraconsistente} se ela possuir uma negação $\neg$\footnote{Esta negação pode ser primitiva (pertencente à assinatura da linguagem) ou definida a partir de outras fórmulas.} tal que existem fórmulas $\alpha, \beta \in \pazocal{L}$ de modo que $\alpha, \neg \alpha \nvdash \beta$.\qed{}
 \end{definicao}
 
-Caso a linguagem de $\mathcal{L}$ possua uma implicação $\rightarrow$ que respeite o metateorema da dedução\footnote{Definido como $\Gamma, \alpha \vdash \beta \Longleftrightarrow \Gamma\vdash \alpha \rightarrow \beta$.}, então $\mathcal{L}$ é paraconsistente somente se a fórmula $\alpha \rightarrow (\neg \alpha \rightarrow \beta)$ não for válida. Ou seja, o Princípio da explosão, em relação a negação $\neg$, é inválido e, portanto, $\neg$ é uma negação \textit{não-explosiva}.
+Caso a linguagem de $\mathcal{L}$ possua uma implicação $\rightarrow$ que respeite o metateorema da dedução\footnote{Definido como $\Gamma, \alpha \vdash \beta \Longleftrightarrow  \Gamma\vdash \alpha \rightarrow \beta$.}, então $\mathcal{L}$ é paraconsistente somente se a fórmula $\alpha \rightarrow (\neg \alpha \rightarrow \beta)$ não for válida. Ou seja, o Princípio da explosão, em relação a negação $\neg$, é inválido e, portanto, $\neg$ é uma negação \textit{não-explosiva}.
 
 \section{Inconsistência}
 
@@ -69,10 +86,8 @@ A motivação para o desenvolvimento das \lfis{} é possuir sistemas lógicos pa
             & \qquad \text{(ii.a)} \bigcirc(\alpha), \neg \alpha \nvdash \beta;\\
         & \text{(iii) Para todo } \phi, \psi \in \pazocal{L}_{\Theta} \text{ tem-se } \bigcirc(\phi), \phi, \neg \phi \vdash \psi. \tag*\qed{}
     \end{align*}
-    A condição (i) diz que toda \lfi{} é \textit{não-explosiva} (em relação a $\neg$) e a condição (iii) diz que toda \lfi{} é \textit{gentilmente explosiva} (em relação a $\bigcirc{p}$ e $\neg$).
-    \helena{Será que eu defino \lfis{} fracas e fortes também???}
-
-
-\end{definicao}
+\end{definicao} 
+\helena{Definir \lfi{} fraca e forte também?!?!?!?}
+A condição (i) diz que toda \lfi{} é \textit{não-explosiva} (em relação a $\neg$) e a condição (iii) diz que toda \lfi{} é \textit{gentilmente explosiva} (em relação a $\bigcirc{p}$ e $\neg$).
 
 
