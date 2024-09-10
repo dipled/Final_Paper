@@ -16,6 +16,10 @@ Uma lógica $\mathcal{L}$ é definida como uma dupla $\mathcal{L} = \langle \paz
     \label{def:proposicional}
     Um sistema lógico $\mathcal{L}$, definido sobre uma linguagem $\pazocal{L}$ é dito proposicional caso $\pazocal{L}$ seja definida a partir de um conjunto enumerável de átomos $\pazocal{P} = \{p_{i} \;| \; i \in \omega \}$ e uma assinatura proposicional $\Sigma$. Uma linguagem $\pazocal{L}$ definida sobre uma assinatura proposicional é chamada de linguagem proposicional.\qed{}
 \end{definicao}
+\helena{ADICIONAR REFERENCIA DO LIVRO DO DEDO}
+\begin{notacao}[Substituição]
+Uma substituição $\sigma$ de todas as ocorrências de uma variável $p$ por uma fórmula $\psi$ em uma fórmula $\varphi$, será denotada por $\sigma(\varphi) = \varphi[p \mapsto \psi]$. Dado um conjunto $\Gamma$ de fórmulas, a aplicação da substituição $\sigma$ em todos os elementos de $\Gamma$ será denotada por $\sigma|\Gamma| = \{\sigma(\phi) \; | \; \phi \in \Gamma\}$. 
+\end{notacao}
 
 \begin{definicao}[Lógica padrão]
     \label{def:padrao}
@@ -31,9 +35,9 @@ Uma lógica $\mathcal{L}$ é definida como uma dupla $\mathcal{L} = \langle \paz
     \end{align*}
     Uma lógica $\mathcal{L}$ definida sobre uma linguagem proposicional $\pazocal{L}$ é dita \textit{estrutural} caso respeite a seguinte condição:
     \begin{align*}
-         & \text{~~(v) Se } \Gamma \vdash \alpha \text{ então } \sigma [\Gamma] \vdash \sigma(\alpha) \text{, para toda substituição } \sigma \text{ de fórmulas por variáveis.}
+         & \text{~~(v) Se } \Gamma \vdash \alpha \text{ então } \sigma |\Gamma| \vdash \sigma(\alpha) \text{, para toda substituição } \sigma \text{ de variável por fórmula.}
     \end{align*}
-    \helena{ou seriam variáveis por fórmulas?? pq tipo fui nas referências do carnielli e lá tá dizendo variável por fórmula... serase mandar email pra ele? BTW DEFINIR SUBSTITUIÇÕES E APRESENTAR ESSA NOTAÇÃO}
+    \helena{mandar email perguntando se é variável por fórmula e ele escreveu errado ou só ir na fé e alegria? BTW DEFINIR SUBSTITUIÇÕES E APRESENTAR ESSA NOTAÇÃO}
     Por fim, uma lógica $\mathcal{L}$ é dita \textit{padrão} caso ela seja Tarskiana, finitária e estrutural.\qed{}
 \end{definicao}
 Com isto, é possível definir formalmente a \textit{paraconsistência} para lógicas Tarskianas.
@@ -50,7 +54,8 @@ A motivação para o desenvolvimento das \textbf{LFI}s é possuir sistemas lógi
 
 \begin{definicao}[Lógica de Inconsistência Formal]
     \label{def:lfi}
-    Seja $\mathcal{L} = \langle \pazocal{L}_{\Sigma}, \vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Sigma$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \textit{Lógica de Inconsistência Formal} (\textbf{LFI}) (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições (considerando $\bigcirc(\varphi) = \{\psi(\varphi) \; | \; \psi(p) \in \bigcirc(p)\}$): \helena{Ainda tá meio doidera isso, mas acho que tá dizendo que {-} dado um conjunto $\bigcirc(p)$ de fórmulas dependentes somente do átomo $p$ {-} a função $\bigcirc$ aplicada a qualquer fórmula $\varphi$ pode ser descrita como um conjunto de aplições de uma substituição $\psi$ à própria fórmula $\varphi$ de forma que $\psi$ aplicada a $p$ não faz com que ela dependa de outra variável que não ela mesma, ou seja, $\psi(p)$ continua pertencendo ao conjunto $\bigcirc(p)$.} OUTRA POSSIBILIDADE:\helena{O conjunto $\bigcirc(\varphi)$ é definido substituindo-se cada ocorrência $p$ por $\varphi$ em cada elemento de $\bigcirc(\phi)$.}
+    Seja $\mathcal{L} = \langle \pazocal{L}_{\Sigma}, \vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Sigma$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \textit{Lógica de Inconsistência Formal} (\textbf{LFI}) (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições (considerando $\bigcirc(\varphi) = \{\psi[p \mapsto \varphi]\ \; | \; \psi \in \bigcirc(p)\}$)
+    %(considerando $\bigcirc(\varphi) = \{\psi(\varphi) \; | \; \psi(p) \in \bigcirc(p)\}$): \helena{O conjunto $\bigcirc(\varphi)$ é definido substituindo-se cada ocorrência $p$ por $\varphi$ em cada elemento de $\bigcirc(\varphi)$.}
     \begin{align*}
         & \text{~~(i) Existem } \gamma, \delta \in \pazocal{L}_{\Sigma} \text{ de modo que } \gamma, \neg \gamma \nvdash \delta;\\
         & \text{~(ii) Existem } \alpha, \beta \in \pazocal{L}_{\Sigma} \text{ de modo que:}\\
