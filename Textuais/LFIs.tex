@@ -1,6 +1,6 @@
 \chapter{Lógicas de Inconsistência Formal}
 \label{cap:LFIs}
-Neste capítulo são apresentadas algumas definições necessárias para caracterizar as lógicas de inconsistência formal, baseadas no trabalho de~\citeshort{Carnielli_Coniglio_2016}. Antes de definir as \textbf{LFI}s, entretanto, é preciso apresentar alguns conceitos acerca de sistemas lógicos paraconsistentes.
+Neste capítulo são apresentadas algumas definições necessárias para caracterizar as \textit{Lógicas de Inconsistência Formal}, baseadas no livro de~\citeshort{Carnielli_Coniglio_2016}. Antes de definir as \lfis{}, entretanto, é preciso apresentar alguns conceitos acerca de sistemas lógicos paraconsistentes.
 
 \section{Paraconsistência}
 \label{sec:paracons}
@@ -8,17 +8,17 @@ Uma lógica $\mathcal{L}$ é definida como uma dupla $\mathcal{L} = \langle \paz
 
 \begin{definicao}[Assinatura proposicional]
     \label{def:ass_prop}
-    Uma assinatura proposicional $\Theta$ é um conjunto de conectivos lógicos com a informação acerca da aridade de cada um destes.
+    Uma assinatura proposicional $\Theta$ é um conjunto de conectivos lógicos com a informação acerca da aridade de cada um destes.\qed{}
 \end{definicao}
-    Por exemplo, a assinatura proposicional para a lógica proposicional clássica pode ser definida como $\Theta{LPC} = \{\land^{2}, \lor^{2}, \neg^{1}, \rightarrow^{2}\}$.
+    Por exemplo, a assinatura proposicional para a lógica proposicional clássica pode ser definida como $\Theta_{LPC} = \{\land^{2}, \lor^{2}, \neg^{1}, \rightarrow^{2}\}$.
 
 \begin{definicao}[Lógica proposicional]
     \label{def:proposicional}
     Um sistema lógico $\mathcal{L}$, definido sobre uma linguagem $\pazocal{L}$ é dito proposicional caso $\pazocal{L}$ seja definida a partir de um conjunto enumerável de átomos $\pazocal{P} = \{p_{i} \;| \; i \in \omega \}$ e uma assinatura proposicional $\Theta$. Uma linguagem $\pazocal{L}$ definida sobre uma assinatura proposicional é chamada de linguagem proposicional.\qed{}
 \end{definicao}
-\helena{ADICIONAR REFERENCIA DO LIVRO DO DEDO}
+
 \begin{notacao}[Substituição]
-Uma substituição $\sigma$ de todas as ocorrências de uma variável $p$ por uma fórmula $\psi$ em uma fórmula $\phi$, é denotada por $\sigma(\phi) = \phi[p \mapsto \psi]$. Dado um conjunto $\Gamma$ de fórmulas, a aplicação da substituição $\sigma$ em todos os elementos de $\Gamma$ é denotada por $\sigma|\Gamma| = \{\sigma(\gamma) \; | \; \gamma \in \Gamma\}$. 
+Uma substituição $\sigma$ de todas as ocorrências de uma variável $p$ por uma fórmula $\psi$ em uma fórmula $\phi$, é denotada por $\sigma(\phi) = \phi[p \mapsto \psi]$~\cite{dedo}. Dado um conjunto $\Gamma$ de fórmulas, a aplicação da substituição $\sigma$ em todos os elementos de $\Gamma$ é denotada por $\sigma|\Gamma| = \{\sigma(\gamma) \; | \; \gamma \in \Gamma\}$. 
 \end{notacao}
 
 \begin{definicao}[Lógica padrão]
@@ -33,11 +33,10 @@ Uma substituição $\sigma$ de todas as ocorrências de uma variável $p$ por um
     \begin{align*}
          & \text{~(iv) Se } \Gamma \vdash \alpha \text{ então existe conjunto finito } \Gamma_{0} \subseteq \Gamma \text{ tal que } \Gamma_{0} \vdash \alpha.
     \end{align*}
-    Uma lógica $\mathcal{L}$ definida sobre uma linguagem proposicional $\pazocal{L}$ é dita \textit{estrutural} caso respeite a seguinte condição:
+    Uma lógica proposicional $\mathcal{L}$ definida sobre uma linguagem proposicional $\pazocal{L}_{\Theta}$ é dita \textit{estrutural} caso respeite a seguinte condição:
     \begin{align*}
          & \text{~~(v) Se } \Gamma \vdash \alpha \text{ então } \sigma |\Gamma| \vdash \sigma(\alpha) \text{, para toda substituição } \sigma \text{ de variável por fórmula.}
     \end{align*}
-    \helena{mandar email perguntando se é variável por fórmula e ele escreveu errado ou só ir na fé e alegria?}
     Por fim, uma lógica $\mathcal{L}$ é dita \textit{padrão} caso ela seja Tarskiana, finitária e estrutural.\qed{}
 \end{definicao}
 Com isto, é possível definir formalmente a \textit{paraconsistência} para lógicas Tarskianas.
@@ -47,20 +46,21 @@ Com isto, é possível definir formalmente a \textit{paraconsistência} para ló
     Uma lógica Tarskiana $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$, é dita \textit{paraconsistente} se ela possuir uma negação $\neg$\footnote{Esta negação pode ser primitiva (pertencente à assinatura da linguagem) ou definida a partir de outras fórmulas.} tal que existem fórmulas $\alpha, \beta \in \pazocal{L}$ de modo que $\alpha, \neg \alpha \nvdash \beta$.\qed{}
 \end{definicao}
 
-Caso a linguagem de $\mathcal{L}$ possua uma implicação $\rightarrow$ que respeite o metateorema da dedução\footnote{Definido como $\Gamma, \alpha \vdash \beta \Longleftrightarrow \Gamma\vdash \alpha \rightarrow \beta$.}, então $\mathcal{L}$ é paraconsistente somente se a fórmula $\alpha \rightarrow (\neg \alpha \rightarrow \beta)$ não for válida. Ou seja, o Princípio da explosão, em relação a negação $\neg$, é inválido e, portanto, $\neg$ é uma negação não-explosiva.
+Caso a linguagem de $\mathcal{L}$ possua uma implicação $\rightarrow$ que respeite o metateorema da dedução\footnote{Definido como $\Gamma, \alpha \vdash \beta \Longleftrightarrow \Gamma\vdash \alpha \rightarrow \beta$.}, então $\mathcal{L}$ é paraconsistente somente se a fórmula $\alpha \rightarrow (\neg \alpha \rightarrow \beta)$ não for válida. Ou seja, o Princípio da explosão, em relação a negação $\neg$, é inválido e, portanto, $\neg$ é uma negação \textit{não-explosiva}.
 
 \section{Inconsistência}
 
-A motivação para o desenvolvimento das \textbf{LFI}s é possuir sistemas lógicos paraconsistentes nos quais é possível resgatar, de maneira \textit{controlada}, o Princípio da Explosão. Isto é feito definindo um conjunto $\bigcirc(p)$ de fórmulas dependentes somente de uma variável proposicional $p$. Caso uma lógica $\mathcal{L}$ seja explosiva ao unir-se um conjunto $\bigcirc(\alpha)$ com uma contradição $\{\alpha, \neg \alpha\}$, ou seja, se $\bigcirc(\alpha), \alpha, \neg \alpha \vdash \beta$ para todo $\alpha$ e $\beta$ pertencentes à sua linguagem, e existirem fórmulas $\phi$ e $\psi$ tal que $\bigcirc(\phi), \phi \nvdash \psi$ e $\bigcirc(\phi), \neg \phi \nvdash \psi$, então dizemos que $\mathcal{L}$ é \textit{gentilmente explosiva}.
+A motivação para o desenvolvimento das \lfis{} é possuir sistemas lógicos paraconsistentes nos quais é possível resgatar, de maneira \textit{controlada}, o Princípio da Explosão. Isto é feito definindo um conjunto $\bigcirc(p)$ de fórmulas dependentes somente de uma variável proposicional $p$. Caso uma lógica $\mathcal{L}$ seja explosiva ao unir-se um conjunto $\bigcirc(\alpha)$ {-} definido a partir de $\bigcirc(p)$ {-} com uma contradição $\{\alpha, \neg \alpha\}$, ou seja, se $\bigcirc(\alpha), \alpha, \neg \alpha \vdash \beta$ para todo $\alpha$ e $\beta$ pertencentes à sua linguagem, e ainda $\bigcirc(\alpha), \alpha \nvdash \beta$ e $\bigcirc(\alpha), \neg \alpha \nvdash \beta$, então dizemos que $\mathcal{L}$ é \textit{gentilmente explosiva}.
 
 \begin{notacao}
     Dado um átomo $p$, define-se $\bigcirc(p)$ como um conjunto não-vazio de fórmulas dependentes somente em $p$. Com base neste conjunto, define-se a notação $\bigcirc(\phi)$ para representar o conjunto obtido pela substituição de todas as ocorrências de $p$ por $\phi$ em todos os elementos de $\bigcirc(p)$, ou seja, para uma fórmula $\phi$ qualquer, $\bigcirc(\phi) = \{\psi[p \mapsto \phi] \; | \; \psi \in \bigcirc(p)\}$. 
 \end{notacao}
 
 
+
 \begin{definicao}[Lógica de Inconsistência Formal]
     \label{def:lfi}
-    Seja $\mathcal{L} = \langle \pazocal{L}_{\Theta}, \vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Theta$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \textit{Lógica de Inconsistência Formal} (\textbf{LFI}) (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições:
+    Seja $\mathcal{L} = \langle \pazocal{L}_{\Theta}, \vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Theta$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \textit{Lógica de Inconsistência Formal} (\lfi{}) (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições:
     %(considerando $\bigcirc(\phi) = \{\psi(\phi) \; | \; \psi(p) \in \bigcirc(p)\}$): \helena{O conjunto $\bigcirc(\phi)$ é definido substituindo-se cada ocorrência $p$ por $\phi$ em cada elemento de $\bigcirc(\phi)$.}
     \begin{align*}
         & \text{~~(i) Existem } \gamma, \delta \in \pazocal{L}_{\Theta} \text{ de modo que } \gamma, \neg \gamma \nvdash \delta;\\
@@ -69,7 +69,8 @@ A motivação para o desenvolvimento das \textbf{LFI}s é possuir sistemas lógi
             & \qquad \text{(ii.a)} \bigcirc(\alpha), \neg \alpha \nvdash \beta;\\
         & \text{(iii) Para todo } \phi, \psi \in \pazocal{L}_{\Theta} \text{ tem-se } \bigcirc(\phi), \phi, \neg \phi \vdash \psi. \tag*\qed{}
     \end{align*}
-    \helena{Será que eu defino \textbf{LFI}s fracas e fortes também???}
+    A condição (i) diz que toda \lfi{} é \textit{não-explosiva} (em relação a $\neg$) e a condição (iii) diz que toda \lfi{} é \textit{gentilmente explosiva} (em relação a $\bigcirc{p}$ e $\neg$).
+    \helena{Será que eu defino \lfis{} fracas e fortes também???}
 
 
 \end{definicao}
