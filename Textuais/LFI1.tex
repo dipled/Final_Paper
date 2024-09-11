@@ -1,9 +1,9 @@
 \chapter{LFI1}
 \label{cap:LFI1}
-BLABLABLABLABLA introduz um textinho % MIGS: Grande introdução 🔥
+\helena{qq eu boto aqui ahuahuhuahua\\\\}% MIGS: Grande introdução 🔥
 
 \section{Linguagem}
-A lógica proposicional\footnote{Por mais que existam extensões de primeira ordem da \lfium{}, como a \textbf{LFI1*}, definida em~\citeshort{carnielli2000formal}, o presente trabalho trata somente do fragmento proposicional desta.} \lfium{} aqui apresentada é definida com base no livro de~\citeshort{Carnielli_Coniglio_2016} como $\mathcal{L} = \langle \pazocal{L}_{\Sigma}, \vdash \rangle$. A linguagem\footnote{A linguagem da \lfium{} pode ser definida de maneira equivalente utilizando-se o operador de consistência (representado por $\circ$), seguindo a definição $\circ \alpha \eqdef \neg \bullet \alpha$.} $\pazocal{L}_{\Sigma}$ da \lfium{} é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \omega\}$ e uma assinatura proposicional $\Sigma = \{\land^{2}, \lor^{2}, \rightarrow^{2}, \neg^{1}, \bullet^{1}\}$ da seguinte forma:
+A lógica proposicional\footnote{Por mais que existam extensões de primeira ordem da \lfium{}, como a \textbf{LFI1*}, definida em~\citeshort{carnielli2000formal}, o presente trabalho trata somente do fragmento proposicional desta.} \lfium{} aqui apresentada é definida com base no livro de~\citeshort{Carnielli_Coniglio_2016} como $\mathcal{L} = \langle \pazocal{L}_{\Sigma}, \vdash \rangle$. A linguagem $\pazocal{L}_{\Sigma}$ da \lfium{} é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \omega\}$ e uma assinatura proposicional\footnote{A linguagem da \lfium{} pode ser definida de maneira equivalente utilizando-se o operador de consistência (representado por $\circ$), seguindo a definição $\circ \alpha \eqdef \neg \bullet \alpha$.} $\Sigma = \{\land^{2}, \lor^{2}, \rightarrow^{2}, \neg^{1}, \bullet^{1}\}$ da seguinte forma:
 
 \begin{definicao}[Linguagem da \lfium{}]
     \label{def:ling}
@@ -36,7 +36,94 @@ A lógica proposicional\footnote{Por mais que existam extensões de primeira ord
     \end{align*}
 \end{definicao}
 
+\section{Semântica}
+\helena{qq eu boto aqui ahuahuhuahua}
+
+\begin{definicao}[Matriz Lógica]
+    Uma das formas de se definir a semântica de uma dada lógica $\pazocal{L}$ é definir uma \textit{matriz lógica} para seus conectivos. Uma matriz lógica é uma dupla $\pazocal{M} = \langle M, D \rangle$ onde $M$ é seu domínio e $D$ é seu conjunto de valores designados (valores considerados tautologias). \qed{}
+\end{definicao}
+Por exemplo, a matriz lógica $\pazocal{M}_{LPC} = \langle M, D \rangle$ da lógica proposicional clássica possui um domínio $M = \{1, 0\}$ e um conjunto de valores designados $D = \{1\}$.
+\begin{definicao}[Lógica Trivalorada]
+    Uma  lógica $\pazocal{L} = \langle \mathcal{L}, \vdash \rangle$ é dita uma lógica trivalorada caso ela esteja associada a uma matriz $\pazocal{M} = \langle M, D \rangle$ de forma que seu domínio $M$ possua três elementos.
+    \qed{}
+\end{definicao}
+
+\begin{definicao}[Matriz lógica da \lfium{}]
+    A matriz lógica $\pazocal{M}_{\lfium{}} = \langle M, D \rangle$ com domínio $M = \{1, \meio{}, 0\}$ e um conjunto de valores designados $D = \{1, \meio{}\}$ é definida da seguinte forma:
+
+    \noindent
+    \begin{minipage}{0.3\textwidth}
+        % Implication (→)
+        \[
+            \begin{array}{c|ccc}
+                \rightarrow & 1 & \frac{1}{2} & 0 \\
+                \hline
+                1           & 1 & \frac{1}{2} & 0 \\
+                \frac{1}{2} & 1 & \frac{1}{2} & 0 \\
+                0           & 1 & 1           & 1 \\
+            \end{array}
+        \]
+    \end{minipage}
+    \begin{minipage}{0.3\textwidth}
+        % Conjunction (∧)
+        \[
+            \begin{array}{c|ccc}
+                \land       & 1           & \frac{1}{2} & 0 \\
+                \hline
+                1           & 1           & \frac{1}{2} & 0 \\
+                \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & 0 \\
+                0           & 0           & 0           & 0 \\
+            \end{array}
+        \]
+    \end{minipage}
+    \begin{minipage}{0.3\textwidth}
+        % Disjunction (∨)
+        \[
+            \begin{array}{c|ccc}
+                \lor        & 1 & \frac{1}{2} & 0           \\
+                \hline
+                1           & 1 & 1           & 1           \\
+                \frac{1}{2} & 1 & \frac{1}{2} & \frac{1}{2} \\
+                0           & 1 & \frac{1}{2} & 0           \\
+            \end{array}
+        \]
+    \end{minipage}
+
+    \vspace{0.5cm}
+    
+    \begin{minipage}{0.5\textwidth}
+        % Negation (¬)
+        \[
+            \begin{array}{c|c}
+                \neg        &             \\
+                \hline
+                1           & 0           \\
+                \frac{1}{2} & \frac{1}{2} \\
+                0           & 1           \\
+            \end{array}
+        \]
+    \end{minipage}
+    \begin{minipage}{0.3\textwidth}
+        \[
+            \begin{array}{c|c}
+                \bullet       &   \\
+                \hline
+                1           & 0 \\
+                \frac{1}{2} & 1 \\
+                0           & 0 \\
+            \end{array}
+        \]
+    \end{minipage}
+
+    \noindent
+    \qed{}
+\end{definicao}
+
+A lógica \lfium{} é, portanto, dita trivalorada.
+
+
 \section{Axiomatização}
+\helena{qq eu boto aqui ahuahuhuahua}
 
 \begin{notacao}
     Utiliza-se $\alpha \leftrightarrow \beta$ para denotar uma bi-implicação, como forma de abreviar a fórmula $(\alpha \rightarrow \beta) \land (\beta \rightarrow \alpha)$. Além disso, utiliza-se $\circ \alpha$ para denotar a consistência de uma fórmula $\alpha$, de modo a abreviar $\neg \bullet \alpha$.
@@ -48,39 +135,39 @@ A lógica proposicional\footnote{Por mais que existam extensões de primeira ord
     \helena{Escolher um dos esquemas abaixo pra usar (ler as provas apresentadas nos dois trabalhos e decidir qual a mais adequada)}
     \noindent\textbf{Axiomas (Evolutionary Databases):}
     \begin{align*}
-            & \alpha \rightarrow (\beta \rightarrow \alpha)\tag{\textbf{Ax1}}\\
-            & (\alpha \rightarrow (\beta \rightarrow \gamma)) \rightarrow ((\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \gamma ))\tag{\textbf{Ax2}}\\
-            & \alpha \rightarrow (\beta \rightarrow (\alpha \land \beta))\tag{\textbf{Ax3}}\\
-            & (\alpha \land \beta) \rightarrow \alpha\tag{\textbf{Ax4}}\\
-            & (\alpha \land \beta) \rightarrow \beta\tag{\textbf{Ax5}}\\
-            & \alpha \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax6}}\\
-            & \beta \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax7}}\\
-            & (\alpha \rightarrow \gamma) \rightarrow ((\beta \rightarrow \gamma) \rightarrow ((\alpha \lor \beta) \rightarrow \gamma))\tag{\textbf{Ax8}}\\
-            & \alpha \lor \neg \alpha\tag{\textbf{Ax9}}\\
-            & \neg \neg \alpha \rightarrow \alpha\tag{\textbf{Ax10}}\\
-            & \circ \alpha \rightarrow (\alpha \rightarrow (\neg \alpha \rightarrow \beta))\tag{\textbf{Ax11}}\\
-            & \bullet \alpha \rightarrow (\alpha \land \neg \alpha)\tag{\textbf{Ax12}}\\
-            & \bullet (\alpha \land \beta) \leftrightarrow ((\bullet \alpha \land \beta) \lor (\bullet \beta \land \alpha))\tag{\textbf{Ax13}}\\
-            & \bullet (\alpha \lor \beta) \leftrightarrow ((\bullet \alpha \land \neg \beta) \lor (\bullet \beta \land \neg \alpha))\tag{\textbf{Ax14}}\\
-            & \bullet (\alpha \rightarrow \beta) \leftrightarrow (\alpha \land \bullet \beta)\tag{\textbf{Ax15}}
+         & \alpha \rightarrow (\beta \rightarrow \alpha)\tag{\textbf{Ax1}}                                                                                     \\
+         & (\alpha \rightarrow (\beta \rightarrow \gamma)) \rightarrow ((\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \gamma ))\tag{\textbf{Ax2}} \\
+         & \alpha \rightarrow (\beta \rightarrow (\alpha \land \beta))\tag{\textbf{Ax3}}                                                                       \\
+         & (\alpha \land \beta) \rightarrow \alpha\tag{\textbf{Ax4}}                                                                                           \\
+         & (\alpha \land \beta) \rightarrow \beta\tag{\textbf{Ax5}}                                                                                            \\
+         & \alpha \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax6}}                                                                                            \\
+         & \beta \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax7}}                                                                                             \\
+         & (\alpha \rightarrow \gamma) \rightarrow ((\beta \rightarrow \gamma) \rightarrow ((\alpha \lor \beta) \rightarrow \gamma))\tag{\textbf{Ax8}}         \\
+         & \alpha \lor \neg \alpha\tag{\textbf{Ax9}}                                                                                                           \\
+         & \neg \neg \alpha \rightarrow \alpha\tag{\textbf{Ax10}}                                                                                              \\
+         & \circ \alpha \rightarrow (\alpha \rightarrow (\neg \alpha \rightarrow \beta))\tag{\textbf{Ax11}}                                                    \\
+         & \bullet \alpha \rightarrow (\alpha \land \neg \alpha)\tag{\textbf{Ax12}}                                                                            \\
+         & \bullet (\alpha \land \beta) \leftrightarrow ((\bullet \alpha \land \beta) \lor (\bullet \beta \land \alpha))\tag{\textbf{Ax13}}                    \\
+         & \bullet (\alpha \lor \beta) \leftrightarrow ((\bullet \alpha \land \neg \beta) \lor (\bullet \beta \land \neg \alpha))\tag{\textbf{Ax14}}           \\
+         & \bullet (\alpha \rightarrow \beta) \leftrightarrow (\alpha \land \bullet \beta)\tag{\textbf{Ax15}}
     \end{align*}
     \noindent\textbf{Axiomas (Livrão da paraconsistência):}
     \begin{align*}
-            & \alpha \rightarrow (\beta \rightarrow \alpha)\tag{\textbf{Ax1}}\\
-            & (\alpha \rightarrow (\beta \rightarrow \gamma)) \rightarrow ((\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \gamma ))\tag{\textbf{Ax2}}\\
-            & \alpha \rightarrow (\beta \rightarrow (\alpha \land \beta))\tag{\textbf{Ax3}}\\
-            & (\alpha \land \beta) \rightarrow \alpha\tag{\textbf{Ax4}}\\
-            & (\alpha \land \beta) \rightarrow \beta\tag{\textbf{Ax5}}\\
-            & \alpha \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax6}}\\
-            & \beta \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax7}}\\
-            & (\alpha \rightarrow \gamma) \rightarrow ((\beta \rightarrow \gamma) \rightarrow ((\alpha \lor \beta) \rightarrow \gamma))\tag{\textbf{Ax8}}\\
-            & (\alpha \rightarrow \beta) \lor \alpha\tag{\textbf{Ax09}}\\
-            & \alpha \lor \neg \alpha\tag{\textbf{Ax10}}\\
-            & \circ \alpha \rightarrow (\alpha \rightarrow (\neg \alpha \rightarrow \beta))\tag{\textbf{bc1}}\\
-            & \neg \circ \alpha \rightarrow (\alpha \land \neg \alpha)\tag{\textbf{ci}}\\
-            & \bullet (\alpha \land \beta) \leftrightarrow ((\bullet \alpha \land \beta) \lor (\alpha \land \bullet \beta))\tag{\textbf{cj1}}\\
-            & \bullet (\alpha \lor \beta) \leftrightarrow ((\bullet \alpha \land \neg \beta) \lor (\neg \alpha \land \bullet \beta))\tag{\textbf{cj2}}\\
-            & \bullet (\alpha \rightarrow \beta) \leftrightarrow (\alpha \land \bullet \beta)\tag{\textbf{cj3}}
+         & \alpha \rightarrow (\beta \rightarrow \alpha)\tag{\textbf{Ax1}}                                                                                     \\
+         & (\alpha \rightarrow (\beta \rightarrow \gamma)) \rightarrow ((\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \gamma ))\tag{\textbf{Ax2}} \\
+         & \alpha \rightarrow (\beta \rightarrow (\alpha \land \beta))\tag{\textbf{Ax3}}                                                                       \\
+         & (\alpha \land \beta) \rightarrow \alpha\tag{\textbf{Ax4}}                                                                                           \\
+         & (\alpha \land \beta) \rightarrow \beta\tag{\textbf{Ax5}}                                                                                            \\
+         & \alpha \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax6}}                                                                                            \\
+         & \beta \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax7}}                                                                                             \\
+         & (\alpha \rightarrow \gamma) \rightarrow ((\beta \rightarrow \gamma) \rightarrow ((\alpha \lor \beta) \rightarrow \gamma))\tag{\textbf{Ax8}}         \\
+         & (\alpha \rightarrow \beta) \lor \alpha\tag{\textbf{Ax09}}                                                                                           \\
+         & \alpha \lor \neg \alpha\tag{\textbf{Ax10}}                                                                                                          \\
+         & \circ \alpha \rightarrow (\alpha \rightarrow (\neg \alpha \rightarrow \beta))\tag{\textbf{bc1}}                                                     \\
+         & \neg \circ \alpha \rightarrow (\alpha \land \neg \alpha)\tag{\textbf{ci}}                                                                           \\
+         & \bullet (\alpha \land \beta) \leftrightarrow ((\bullet \alpha \land \beta) \lor (\alpha \land \bullet \beta))\tag{\textbf{cj1}}                     \\
+         & \bullet (\alpha \lor \beta) \leftrightarrow ((\bullet \alpha \land \neg \beta) \lor (\neg \alpha \land \bullet \beta))\tag{\textbf{cj2}}            \\
+         & \bullet (\alpha \rightarrow \beta) \leftrightarrow (\alpha \land \bullet \beta)\tag{\textbf{cj3}}
     \end{align*}
     \\
     \noindent\textbf{Regra de inferência:}
@@ -89,4 +176,5 @@ A lógica proposicional\footnote{Por mais que existam extensões de primeira ord
         \RightLabel{MP}
         \UnaryInfC{$\beta$}
     \end{prooftree}
+    \qed{}
 \end{definicao}
