@@ -45,14 +45,14 @@ A lógica proposicional\footnote{Por mais que existam extensões de primeira ord
 \begin{definicao}[\lfium{}]
     \label{def:lfi1}
     A lógica \lfium{} é definida sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte cálculo de Hilbert:
-
-    \noindent\textbf{Axiomas:}
+    \helena{Escolher um dos esquemas abaixo pra usar (ler as provas apresentadas nos dois trabalhos e decidir qual a mais adequada)}
+    \noindent\textbf{Axiomas (Evolutionary Databases):}
     \begin{align*}
             & \alpha \rightarrow (\beta \rightarrow \alpha)\tag{\textbf{Ax1}}\\
             & (\alpha \rightarrow (\beta \rightarrow \gamma)) \rightarrow ((\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \gamma ))\tag{\textbf{Ax2}}\\
             & \alpha \rightarrow (\beta \rightarrow (\alpha \land \beta))\tag{\textbf{Ax3}}\\
-            & (\alpha \land \beta \rightarrow) \alpha\tag{\textbf{Ax4}}\\
-            & (\alpha \land \beta \rightarrow) \beta\tag{\textbf{Ax5}}\\
+            & (\alpha \land \beta) \rightarrow \alpha\tag{\textbf{Ax4}}\\
+            & (\alpha \land \beta) \rightarrow \beta\tag{\textbf{Ax5}}\\
             & \alpha \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax6}}\\
             & \beta \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax7}}\\
             & (\alpha \rightarrow \gamma) \rightarrow ((\beta \rightarrow \gamma) \rightarrow ((\alpha \lor \beta) \rightarrow \gamma))\tag{\textbf{Ax8}}\\
@@ -63,6 +63,24 @@ A lógica proposicional\footnote{Por mais que existam extensões de primeira ord
             & \bullet (\alpha \land \beta) \leftrightarrow ((\bullet \alpha \land \beta) \lor (\bullet \beta \land \alpha))\tag{\textbf{Ax13}}\\
             & \bullet (\alpha \lor \beta) \leftrightarrow ((\bullet \alpha \land \neg \beta) \lor (\bullet \beta \land \neg \alpha))\tag{\textbf{Ax14}}\\
             & \bullet (\alpha \rightarrow \beta) \leftrightarrow (\alpha \land \bullet \beta)\tag{\textbf{Ax15}}
+    \end{align*}
+    \noindent\textbf{Axiomas (Livrão da paraconsistência):}
+    \begin{align*}
+            & \alpha \rightarrow (\beta \rightarrow \alpha)\tag{\textbf{Ax1}}\\
+            & (\alpha \rightarrow (\beta \rightarrow \gamma)) \rightarrow ((\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \gamma ))\tag{\textbf{Ax2}}\\
+            & \alpha \rightarrow (\beta \rightarrow (\alpha \land \beta))\tag{\textbf{Ax3}}\\
+            & (\alpha \land \beta) \rightarrow \alpha\tag{\textbf{Ax4}}\\
+            & (\alpha \land \beta) \rightarrow \beta\tag{\textbf{Ax5}}\\
+            & \alpha \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax6}}\\
+            & \beta \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax7}}\\
+            & (\alpha \rightarrow \gamma) \rightarrow ((\beta \rightarrow \gamma) \rightarrow ((\alpha \lor \beta) \rightarrow \gamma))\tag{\textbf{Ax8}}\\
+            & (\alpha \rightarrow \beta) \lor \alpha\tag{\textbf{Ax09}}\\
+            & \alpha \lor \neg \alpha\tag{\textbf{Ax10}}\\
+            & \circ \alpha \rightarrow (\alpha \rightarrow (\neg \alpha \rightarrow \beta))\tag{\textbf{bc1}}\\
+            & \neg \circ \alpha \rightarrow (\alpha \land \neg \alpha)\tag{\textbf{ci}}\\
+            & \bullet (\alpha \land \beta) \leftrightarrow ((\bullet \alpha \land \beta) \lor (\alpha \land \bullet \beta))\tag{\textbf{cj1}}\\
+            & \bullet (\alpha \lor \beta) \leftrightarrow ((\bullet \alpha \land \neg \beta) \lor (\neg \alpha \land \bullet \beta))\tag{\textbf{cj2}}\\
+            & \bullet (\alpha \rightarrow \beta) \leftrightarrow (\alpha \land \bullet \beta)\tag{\textbf{cj3}}
     \end{align*}
     \\
     \noindent\textbf{Regra de inferência:}
