@@ -1,9 +1,10 @@
 \chapter{LFI1}
 \label{cap:LFI1}
-BLABLABLABLABLA introduz um textinho % MIGS: Grande introdução 🔥
+\helena{coisas bancos de dados}. No trabalho de~\citeshort{carnielli2000formal} a lógica \textbf{LFI1*} é definida como uma extensão de primeira ordem da lógica proposicional \lfium{}. A motivação para definir-se uma lógica de inconsistência formal de primeira ordem vem da natureza das informações contidas em bancos de dados, estas que podem ser compreendidas como sentenças de primeira ordem fixas~\cite{Codd}. Entretanto, o presente trabalho trata somente da lógica proposicional \lfium{}, já que estender este fragmento proposicional.
 
 \section{Linguagem}
-A lógica proposicional\footnote{Por mais que existam extensões de primeira ordem da \lfium{}, como a \textbf{LFI1*}, definida em~\citeshort{carnielli2000formal}, o presente trabalho trata somente do fragmento proposicional desta.} \lfium{} aqui apresentada é definida com base no livro de~\citeshort{Carnielli_Coniglio_2016} como $\mathcal{L} = \langle \pazocal{L}_{\Sigma}, \vdash \rangle$. A linguagem\footnote{A linguagem da \lfium{} pode ser definida de maneira equivalente utilizando-se o operador de consistência (representado por $\circ$), seguindo a definição $\circ \alpha \eqdef \neg \bullet \alpha$.} $\pazocal{L}_{\Sigma}$ da \lfium{} é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \omega\}$ e uma assinatura proposicional $\Sigma = \{\land^{2}, \lor^{2}, \rightarrow^{2}, \neg^{1}, \bullet^{1}\}$ da seguinte forma:
+
+A lógica proposicional \lfium{} aqui apresentada é definida com base em~\citeshort{Carnielli_Coniglio_2016} como $\mathcal{L} = \langle \pazocal{L}_{\Sigma}, \vdash \rangle$. A linguagem\footnote{A linguagem da \lfium{} pode ser definida de maneira equivalente utilizando-se o operador de consistência (representado por $\circ$), seguindo a definição $\circ \alpha \eqdef \neg \bullet \alpha$.} $\pazocal{L}_{\Sigma}$ da \lfium{} é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \mathbb{N}\}$ e uma assinatura proposicional $\Sigma = \{\land^{2}, \lor^{2}, \rightarrow^{2}, \neg^{1}, \bullet^{1}\}$ da seguinte forma:
 
 \begin{definicao}[Linguagem da \lfium{}]
     \label{def:ling}

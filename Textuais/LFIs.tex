@@ -21,16 +21,16 @@ Uma lógica $\mathcal{L}$ é definida como uma dupla $\mathcal{L} = \langle \paz
 
 \begin{definicao}[Lógica proposicional]
     \label{def:proposicional}
-    Um sistema lógico $\mathcal{L}$, definido sobre uma linguagem $\pazocal{L}$ é dito proposicional caso $\pazocal{L}$ seja definida a partir de um conjunto enumerável de átomos $\pazocal{P} = \{p_{i} \;| \; i \in \omega \}$ e uma assinatura proposicional $\Theta$. Uma linguagem $\pazocal{L}$ definida sobre uma assinatura proposicional é chamada de linguagem proposicional.\qed{}
+    Um sistema lógico $\mathcal{L}$, definido sobre uma linguagem $\pazocal{L}$ é dito proposicional caso $\pazocal{L}$ seja definida a partir de um conjunto enumerável de átomos $\pazocal{P} = \{p_{i} \;| \; i \in \mathbb{N} \}$ e uma assinatura proposicional $\Theta$. Uma linguagem $\pazocal{L}$ definida sobre uma assinatura proposicional é chamada de linguagem proposicional.\qed{}
 \end{definicao}
 
 \begin{definicao}[Substituição]
-    Uma substituição $\sigma$ de todas as ocorrências de uma variável $p_{i}$ por uma fórmula $\psi$ em uma fórmula $\phi$, é denotada por $\sigma(\phi) = \phi[p_{i} \mapsto \psi]$~\cite{dedo}. A substituição $\phi[p_{i} \mapsto \psi]$ é definida indutivamente como:
+    Uma substituição $\sigma$ de todas as ocorrências de uma variável $p_{i}$ por uma fórmula $\psi$ em uma fórmula $\phi$, é denotada por $\sigma(\phi) = \phi[p_{i} \mapsto \psi]$~\cite{dedo}. A substituição $\phi[p_{i} \mapsto \psi]$ é definida indutivamente como (considerando $\triangle$, $\otimes$ conectivos quaisquer de aridade 1 e 2 respectivamente):
     \begin{align*}
-        & \text{1.~Se }\phi = p_{i} \text{ entao, } \phi[p_{i} \mapsto \psi] = \psi;\\
-        & \text{2.~Se }\phi = p_{j} \text{ e } j \neq i \text{ entao, }\phi[p_{i} \mapsto \psi] = \phi;\\
-        & \text{3.~Se }\phi = \triangle \gamma \text{ com } \triangle \in \{\neg, \bullet\} \text{ entao, } \phi[p_{i} \mapsto \psi] = \triangle(\gamma[p_{i} \mapsto \psi]);\\
-        & \text{4.~Se }\phi = \phi_{0} \otimes \phi_{1} \text{ com } \otimes \in \{\land, \lor, \rightarrow\} \text{ entao, } \phi[p_{i} \mapsto \psi] = \phi_{0}[p_{i} \mapsto \psi] \otimes \phi_{1}[p_{i} \mapsto \psi].\tag*\qed{}
+        & \text{1.~Se }\phi = p_{i} \text{ então, } \phi[p_{i} \mapsto \psi] = \psi;\\
+        & \text{2.~Se }\phi = p_{j} \text{ e } j \neq i \text{ então, }\phi[p_{i} \mapsto \psi] = \phi;\\
+        & \text{3.~Se }\phi = \triangle \gamma \text{ então, } \phi[p_{i} \mapsto \psi] = \triangle(\gamma[p_{i} \mapsto \psi]);\\
+        & \text{4.~Se }\phi = \phi_{0} \otimes \phi_{1} \text{ então, } \phi[p_{i} \mapsto \psi] = \phi_{0}[p_{i} \mapsto \psi] \otimes \phi_{1}[p_{i} \mapsto \psi].\tag*\qed{}
     \end{align*}
 \end{definicao}
 
@@ -63,7 +63,7 @@ Com isto, é possível definir formalmente a \textit{paraconsistência} para ló
     Uma lógica Tarskiana $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$, é dita \textit{paraconsistente} se ela possuir uma negação $\neg$\footnote{Esta negação pode ser primitiva (pertencente à assinatura da linguagem) ou definida a partir de outras fórmulas.} tal que existem fórmulas $\alpha, \beta \in \pazocal{L}$ de modo que $\alpha, \neg \alpha \nvdash \beta$.\qed{}
 \end{definicao}
 
-Caso a linguagem de $\mathcal{L}$ possua uma implicação $\rightarrow$ que respeite o metateorema da dedução\footnote{Definido como $\Gamma, \alpha \vdash \beta \Longleftrightarrow  \Gamma\vdash \alpha \rightarrow \beta$.}, então $\mathcal{L}$ é paraconsistente somente se a fórmula $\alpha \rightarrow (\neg \alpha \rightarrow \beta)$ não for válida. Ou seja, o Princípio da explosão, em relação a negação $\neg$, é inválido e, portanto, $\neg$ é uma negação \textit{não-explosiva}.
+Caso a linguagem de $\mathcal{L}$ possua uma implicação $\rightarrow$ que respeite o metateorema da dedução\footnote{Definido como $\Gamma, \alpha \vdash \beta \Longleftrightarrow  \Gamma\vdash \alpha \rightarrow \beta$.}, então $\mathcal{L}$ é paraconsistente somente se a fórmula $\alpha \rightarrow (\neg \alpha \rightarrow \beta)$ não for válida. Ou seja, o Princípio da Explosão é inválido (em relação a $\neg$), logo $\neg$ é uma negação \textit{não explosiva}.
 
 \section{Inconsistência}
 
