@@ -1,16 +1,30 @@
 \chapter{Lógicas de Inconsistência Formal}
 \label{cap:LFIs}
-Neste capítulo são apresentadas algumas definições necessárias para caracterizar as \textit{Lógicas de Inconsistência Formal}, baseadas no livro de~\citeshort{Carnielli_Coniglio_2016}. Antes de definir as \lfis{}, entretanto, é preciso apresentar alguns conceitos acerca de sistemas lógicos paraconsistentes. Nas definições que seguem, utiliza-se a seguinte representação:
+No estudo de lógicas clássicas uma contradição é considerada inseparável da trivialidade, ou seja, se uma teoria possuir um subconjunto $\{\alpha,\neg \alpha\}$ de fórmulas, pode-se derivar qualquer sentença. Esta propriedade é chamada de \textit{explosividade}. Desta forma, as lógicas clássicas (e certas lógicas não-clássicas, como a lógica intuicionista), expressam sua \textit{explosividade} como representada pela seguinte equação: 
+\begin{center}
+    Contradições = Trivialidade
+\end{center}
+As \textit{Lógicas de Inconsistência Formal} são lógicas paraconsistentes que se propõem a questionar a noção apresentada anteriormente sem abrir mão completamente da trivialidade. Isto é feito estabelecendo uma nova propriedade, chamada de \textit{explosividade gentil}, que resgata a trivialidade introduzindo o conceito de consistência na sua linguagem~\cite{carnielli2007}. A consistência é expressa na \textit{explosividade gentil} da seguinte forma:
+\begin{center}
+    Contradições + Consistência = Trivialidade
+\end{center}
+Definir de uma lógica que consiga quebrar o tabu da \textit{explosividade} e, ao mesmo tempo, representar uma ferramenta legítima capaz de formalizar o raciocínio e separar inferências aceitáveis de inferências equivocadas é o objetivo do \textit{paraconsistentista}.\helena{Esse termo é do diabo mas o carnielli usou e eu achei até que bonitinho.} As \textit{Lógicas de Inconsistência Formal} cumprem este objetivo de maneira elegante, servindo um propósito importante no estudo de lógicas não-clássicas.\helena{eu boto aquele lerolero de banco de dados aqui tb?}.
+Neste capítulo são apresentadas algumas definições necessárias para caracterizar as \textit{Lógicas de Inconsistência Formal}, baseadas em~\citeshort{Carnielli_Coniglio_2016} e em~\citeshort{carnielli2007}. Antes de definir as \lfis{} é preciso apresentar alguns conceitos básicos acerca de sistemas lógicos paraconsistentes. Nas definições que seguem, utiliza-se a seguinte representação:
 \begin{itemize}
     \item Letras minúsculas do alfabeto latim $p, q, r, \ldots$ para representar fórmulas atômicas.
     \item Letras maiúsculas do alfabeto latim $A, B, C, \ldots$ para representar conjuntos quaisquer.
     \item Letra minúsculas do alfabeto grego $\alpha, \beta, \gamma, \ldots$ para representar fórmulas quaisquer.
     \item As letras $\Gamma, \Delta$ para representar conjuntos de fórmulas.
     \item As letras $\Sigma, \Theta$ para representar a assinatura de uma linguagem.
+    
+    \item O \helena{operador??? n eh bem isso como q chama esse troço} $\vdash$ para representar uma relação de consequência sintática.
+    \item O \helena{operador??? n eh bem isso como q chama esse troço} $\vDash$ para representar uma relação de consequência semântica.
 \end{itemize}
+Ademais, as definições seguirão o mesmo caminho tomado por~\citeshort{Carnielli_Coniglio_2016}, axiomatizando as noções de consistência através do cálculo de Hilbert e, posteriormente, estabelecendo uma semântica de valoração correspondente.
 
 \section{Paraconsistência}
 \label{sec:paracons}
+
 Uma lógica $\mathcal{L}$ é definida como uma dupla $\mathcal{L} = \langle \pazocal{L},\vdash \rangle$, onde $\pazocal{L}$ é sua linguagem (seu conjunto de fórmulas) e $\vdash$ é uma relação de consequência de conclusão única, definida como $\vdash \;\subseteq \wp(\pazocal{L})\times\pazocal{L}$.
 
 \begin{definicao}[Assinatura proposicional]
