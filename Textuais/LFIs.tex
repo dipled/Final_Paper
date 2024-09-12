@@ -1,6 +1,6 @@
 \chapter{Lógicas de Inconsistência Formal}
 \label{cap:LFIs}
-No estudo de lógicas clássicas uma contradição é considerada inseparável da trivialidade, ou seja, se uma teoria possuir um subconjunto $\{\alpha,\neg \alpha\}$ de fórmulas, pode-se derivar qualquer sentença. Esta propriedade é chamada de \textit{explosividade}. Desta forma, as lógicas clássicas (e certas lógicas não-clássicas, como a lógica intuicionista), expressam sua \textit{explosividade} como representada pela seguinte equação: 
+No estudo de lógicas clássicas uma contradição é considerada inseparável da trivialidade, ou seja, se uma teoria possuir um subconjunto $\{\alpha,\neg \alpha\}$ de fórmulas, pode-se derivar qualquer sentença. Esta propriedade é chamada de \textit{explosividade}. Desta forma, as lógicas clássicas (e certas lógicas não-clássicas, como a lógica intuicionista), expressam sua \textit{explosividade} como representada pela seguinte equação:
 \begin{center}
     Contradições = Trivialidade
 \end{center}
@@ -16,22 +16,22 @@ Neste capítulo são apresentadas algumas definições necessárias para caracte
     \item Letra minúsculas do alfabeto grego $\alpha, \beta, \gamma, \ldots$ para representar fórmulas quaisquer.
     \item As letras $\Gamma, \Delta$ para representar conjuntos de fórmulas.
     \item As letras $\Sigma, \Theta$ para representar a assinatura de uma linguagem.
-    
-    \item O \helena{operador??? n eh bem isso como q chama esse troço} $\vdash$ para representar uma relação de consequência sintática.
-    \item O \helena{operador??? n eh bem isso como q chama esse troço} $\vDash$ para representar uma relação de consequência semântica.
+    \item O operador $\vdash$ para representar uma relação de consequência sintática.
+    \item O operador $\vDash$ para representar uma relação de consequência semântica.
 \end{itemize}
-Ademais, as definições seguirão o mesmo caminho tomado por~\citeshort{Carnielli_Coniglio_2016}, axiomatizando as noções de consistência através do cálculo de Hilbert e, posteriormente, estabelecendo uma semântica de valoração correspondente.
+
+Ademais, as definições que sucedem seguem o mesmo caminho de~\citeshort{Carnielli_Coniglio_2016}, baseando-se na teoria geral de relações de consequências para definir \textit{lógicas tarskianas} (lógicas com uma relação de consequência-T). Neste sentido, como a lógica \lfium{} se trata de uma \textit{lógica tarskiana}, o presente trabalho se restringe a trabalhar somente neste escopo.
 
 \section{Paraconsistência}
 \label{sec:paracons}
 
-Uma lógica $\mathcal{L}$ é definida como uma dupla $\mathcal{L} = \langle \pazocal{L},\vdash \rangle$, onde $\pazocal{L}$ é sua linguagem (seu conjunto de fórmulas) e $\vdash$ é uma relação de consequência de conclusão única, definida como $\vdash \;\subseteq \wp(\pazocal{L})\times\pazocal{L}$.
+Uma lógica $\mathcal{L}$ será representada como uma dupla $\mathcal{L} = \langle \pazocal{L},\vdash \rangle$, onde $\pazocal{L}$ é sua linguagem (seu conjunto de fórmulas) e $\vdash$ é uma relação de consequência de conclusão única, definida como $\vdash \;\subseteq \wp(\pazocal{L})\times\pazocal{L}$.
 
 \begin{definicao}[Assinatura proposicional]
     \label{def:ass_prop}
     Uma assinatura proposicional $\Theta$ é um conjunto de conectivos lógicos com a informação acerca da aridade de cada um destes.\qed{}
 \end{definicao}
-    Por exemplo, a assinatura proposicional para a lógica proposicional clássica pode ser definida como $\Theta_{LPC} = \{\land^{2}, \lor^{2}, \neg^{1}, \rightarrow^{2}\}$.
+Por exemplo, a assinatura proposicional para a lógica proposicional clássica pode ser definida como $\Theta_{LPC} = \{\land^{2}, \lor^{2}, \neg^{1}, \rightarrow^{2}\}$.
 
 \begin{definicao}[Lógica proposicional]
     \label{def:proposicional}
@@ -41,10 +41,10 @@ Uma lógica $\mathcal{L}$ é definida como uma dupla $\mathcal{L} = \langle \paz
 \begin{definicao}[Substituição]
     Uma substituição $\sigma$ de todas as ocorrências de uma variável $p_{i}$ por uma fórmula $\psi$ em uma fórmula $\phi$, é denotada por $\sigma(\phi) = \phi[p_{i} \mapsto \psi]$~\cite{dedo}. A substituição $\phi[p_{i} \mapsto \psi]$ é definida indutivamente como (considerando $\triangle$, $\otimes$ conectivos quaisquer de aridade 1 e 2 respectivamente):
     \begin{align*}
-        & \text{1.~Se }\phi = p_{i} \text{ então, } \phi[p_{i} \mapsto \psi] = \psi;\\
-        & \text{2.~Se }\phi = p_{j} \text{ e } j \neq i \text{ então, }\phi[p_{i} \mapsto \psi] = \phi;\\
-        & \text{3.~Se }\phi = \triangle \gamma \text{ então, } \phi[p_{i} \mapsto \psi] = \triangle(\gamma[p_{i} \mapsto \psi]);\\
-        & \text{4.~Se }\phi = \phi_{0} \otimes \phi_{1} \text{ então, } \phi[p_{i} \mapsto \psi] = \phi_{0}[p_{i} \mapsto \psi] \otimes \phi_{1}[p_{i} \mapsto \psi].\tag*\qed{}
+         & \text{1.~Se }\phi = p_{i} \text{ então, } \phi[p_{i} \mapsto \psi] = \psi;                                                                                             \\
+         & \text{2.~Se }\phi = p_{j} \text{ e } j \neq i \text{ então, }\phi[p_{i} \mapsto \psi] = \phi;                                                                          \\
+         & \text{3.~Se }\phi = \triangle \gamma \text{ então, } \phi[p_{i} \mapsto \psi] = \triangle(\gamma[p_{i} \mapsto \psi]);                                                 \\
+         & \text{4.~Se }\phi = \phi_{0} \otimes \phi_{1} \text{ então, } \phi[p_{i} \mapsto \psi] = \phi_{0}[p_{i} \mapsto \psi] \otimes \phi_{1}[p_{i} \mapsto \psi].\tag*\qed{}
     \end{align*}
 \end{definicao}
 
@@ -52,14 +52,14 @@ Uma lógica $\mathcal{L}$ é definida como uma dupla $\mathcal{L} = \langle \paz
     Sejam $\Gamma, \Delta$ conjuntos de fórmulas e $\phi, \psi$ fórmulas quaisquer, então $\Gamma, \Delta, \phi \vdash \psi$ denota $\Gamma \cup \Delta \cup \{\phi\} \vdash \psi$.
 \end{notacao}
 
-\begin{definicao}[Lógica padrão]
-    \label{def:padrao}
-    Uma lógica $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$ é dita \textit{Tarskiana} caso satisfaça as seguintes propriedades para todo $\Gamma \cup \Delta \cup \{\alpha\} \subseteq \pazocal{L}$:
-    \begin{align*}
-         & \text{~~(i) Se } \alpha \in \Gamma \text{ então } \Gamma \vdash \alpha;                                                                       \\
-         & \text{~(ii) Se } \Delta \vdash \alpha \text{ e } \Delta \subseteq \Gamma \text{ então } \Gamma \vdash \alpha;                                 \\
-         & \text{(iii) Se } \Delta \vdash \alpha \text{ e } \Gamma \vdash \delta \text{ para todo } \delta \in \Delta \text{ então } \Gamma \vdash \alpha.
-    \end{align*}
+\begin{definicao}[Lógica Tarskiana]
+    \label{def:tarski}
+    Uma lógica $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$ e munida com uma relação de consequência $\vdash$ é dita \textit{Tarskiana} caso satisfaça as seguintes propriedades para todo $\Gamma \cup \Delta \cup \{\alpha\} \subseteq \pazocal{L}$:
+    \begin{align}
+         & \text{~~(i) Se } \alpha \in \Gamma \text{ então } \Gamma \vdash \alpha;\tag{reflexividade}                                                                                       \\
+         & \text{~(ii) Se } \Delta \vdash \alpha \text{ e } \Delta \subseteq \Gamma \text{ então } \Gamma \vdash \alpha;\tag{monotonicidade}                                                \\
+         & \text{(iii) Se } \Delta \vdash \alpha \text{ e } \Gamma \vdash \delta \text{ para todo } \delta \in \Delta \text{ então } \Gamma \vdash \alpha.\tag{\textit{cut} para conjuntos} \\\tag*\qed{}
+    \end{align}
     Uma lógica $\mathcal{L}$ é dita \textit{finitária} caso satisfaça o seguinte:
     \begin{align*}
          & \text{~(iv) Se } \Gamma \vdash \alpha \text{ então existe conjunto finito } \Gamma_{0} \subseteq \Gamma \text{ tal que } \Gamma_{0} \vdash \alpha.
@@ -68,8 +68,10 @@ Uma lógica $\mathcal{L}$ é definida como uma dupla $\mathcal{L} = \langle \paz
     \begin{align*}
          & \text{~~(v) Se } \Gamma \vdash \alpha \text{ então } \sigma |\Gamma| \vdash \sigma(\alpha) \text{, para toda substituição } \sigma \text{ de variável por fórmula.}
     \end{align*}
-    Por fim, uma lógica $\mathcal{L}$ é dita \textit{padrão} caso ela seja Tarskiana, finitária e estrutural.\qed{}
+    Por fim, uma lógica proposicional $\mathcal{L}$ é dita \textit{padrão} caso ela seja Tarskiana, finitária e estrutural.\qed{}
 \end{definicao}
+
+
 Com isto, é possível definir formalmente a \textit{paraconsistência} para lógicas Tarskianas.
 
 \begin{definicao}[Lógica Tarskiana paraconsistente]
@@ -84,7 +86,7 @@ Caso a linguagem de $\mathcal{L}$ possua uma implicação $\rightarrow$ que resp
 A motivação para o desenvolvimento das \lfis{} é possuir sistemas lógicos paraconsistentes nos quais é possível resgatar, de maneira \textit{controlada}, o Princípio da Explosão. Isto é feito definindo um conjunto $\bigcirc(p)$ de fórmulas dependentes somente de uma variável proposicional $p$. Caso uma lógica $\mathcal{L}$ seja explosiva ao unir-se um conjunto $\bigcirc(\alpha)$ {-} definido a partir de $\bigcirc(p)$ {-} com uma contradição $\{\alpha, \neg \alpha\}$, ou seja, se $\bigcirc(\alpha), \alpha, \neg \alpha \vdash \beta$ para todo $\alpha$ e $\beta$ pertencentes à sua linguagem, e ainda $\bigcirc(\alpha), \alpha \nvdash \beta$ e $\bigcirc(\alpha), \neg \alpha \nvdash \beta$, então dizemos que $\mathcal{L}$ é \textit{gentilmente explosiva}.
 
 \begin{notacao}
-    Dado um átomo $p$, define-se $\bigcirc(p)$ como um conjunto não-vazio de fórmulas dependentes somente em $p$. Com base neste conjunto, define-se a notação $\bigcirc(\phi)$ para representar o conjunto obtido pela substituição de todas as ocorrências de $p$ por $\phi$ em todos os elementos de $\bigcirc(p)$, ou seja, para uma fórmula $\phi$ qualquer, $\bigcirc(\phi) = \{\psi[p \mapsto \phi] \; | \; \psi \in \bigcirc(p)\}$. 
+    Dado um átomo $p$, define-se $\bigcirc(p)$ como um conjunto não-vazio de fórmulas dependentes somente em $p$. Com base neste conjunto, define-se a notação $\bigcirc(\phi)$ para representar o conjunto obtido pela substituição de todas as ocorrências de $p$ por $\phi$ em todos os elementos de $\bigcirc(p)$, ou seja, para uma fórmula $\phi$ qualquer, $\bigcirc(\phi) = \{\psi[p \mapsto \phi] \; | \; \psi \in \bigcirc(p)\}$.
 \end{notacao}
 
 
@@ -94,13 +96,13 @@ A motivação para o desenvolvimento das \lfis{} é possuir sistemas lógicos pa
     Seja $\mathcal{L} = \langle \pazocal{L}_{\Theta}, \vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Theta$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \textit{Lógica de Inconsistência Formal} (\lfi{}) (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições:
     %(considerando $\bigcirc(\phi) = \{\psi(\phi) \; | \; \psi(p) \in \bigcirc(p)\}$): \helena{O conjunto $\bigcirc(\phi)$ é definido substituindo-se cada ocorrência $p$ por $\phi$ em cada elemento de $\bigcirc(\phi)$.}
     \begin{align*}
-        & \text{~~(i) Existem } \gamma, \delta \in \pazocal{L}_{\Theta} \text{ de modo que } \gamma, \neg \gamma \nvdash \delta;\\
-        & \text{~(ii) Existem } \alpha, \beta \in \pazocal{L}_{\Theta} \text{ de modo que:}\\
-            & \qquad \text{(ii.a)} \bigcirc(\alpha), \alpha \nvdash \beta;\\
-            & \qquad \text{(ii.a)} \bigcirc(\alpha), \neg \alpha \nvdash \beta;\\
-        & \text{(iii) Para todo } \phi, \psi \in \pazocal{L}_{\Theta} \text{ tem-se } \bigcirc(\phi), \phi, \neg \phi \vdash \psi. \tag*\qed{}
+         & \text{~~(i) Existem } \gamma, \delta \in \pazocal{L}_{\Theta} \text{ de modo que } \gamma, \neg \gamma \nvdash \delta;               \\
+         & \text{~(ii) Existem } \alpha, \beta \in \pazocal{L}_{\Theta} \text{ de modo que:}                                                    \\
+         & \qquad \text{(ii.a)} \bigcirc(\alpha), \alpha \nvdash \beta;                                                                         \\
+         & \qquad \text{(ii.a)} \bigcirc(\alpha), \neg \alpha \nvdash \beta;                                                                    \\
+         & \text{(iii) Para todo } \phi, \psi \in \pazocal{L}_{\Theta} \text{ tem-se } \bigcirc(\phi), \phi, \neg \phi \vdash \psi. \tag*\qed{}
     \end{align*}
-\end{definicao} 
+\end{definicao}
 \helena{Definir \lfi{} fraca e forte também?!?!?!?}
 A condição (i) diz que toda \lfi{} é \textit{não-explosiva} (em relação a $\neg$) e a condição (iii) diz que toda \lfi{} é \textit{gentilmente explosiva} (em relação a $\bigcirc{p}$ e $\neg$).
 
