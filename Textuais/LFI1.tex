@@ -3,14 +3,14 @@
 \helena{coisas bancos de dados}. No trabalho de~\citeshort{carnielli2000formal} a lógica \textbf{LFI1*} é definida como uma extensão de primeira ordem da lógica proposicional \lfium{}. A motivação para definir-se uma lógica de inconsistência formal de primeira ordem vem da natureza das informações contidas em bancos de dados, estas que podem ser compreendidas como sentenças de primeira ordem fixas~\cite{Codd}. Entretanto, o presente trabalho trata somente da lógica proposicional \lfium{}, já que estender este fragmento proposicional.
 
 \section{Linguagem}
-A lógica proposicional\footnote{Por mais que existam extensões de primeira ordem da \lfium{}, como a \textbf{LFI1*}, definida em~\citeshort{carnielli2000formal}, o presente trabalho trata somente do fragmento proposicional desta.} \lfium{} aqui apresentada é definida com base no livro de~\citeshort{Carnielli_Coniglio_2016} como $\mathcal{L} = \langle \pazocal{L}_{\Sigma}, \Vdash \rangle$. A linguagem $\pazocal{L}_{\Sigma}$ da \lfium{} é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \omega\}$ e uma assinatura proposicional\footnote{A linguagem da \lfium{} pode ser definida de maneira equivalente utilizando-se o operador de consistência (representado por $\circ$), seguindo a definição $\circ \alpha \eqdef \neg \bullet \alpha$.} $\Sigma = \{\land^{2}, \lor^{2}, \rightarrow^{2}, \neg^{1}, \bullet^{1}\}$ da seguinte forma:
+A lógica proposicional\footnote{Por mais que existam extensões de primeira ordem da \lfium{}, como a \textbf{LFI1*}, definida em~\citeshort{carnielli2000formal}, o presente trabalho trata somente do fragmento proposicional desta.} \lfium{} aqui apresentada é definida com base no livro de~\citeshort{Carnielli_Coniglio_2016} sobre a linguagem $\pazocal{L}_{\Sigma}$ que por sua vez é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \omega\}$ e uma assinatura proposicional\footnote{A linguagem da \lfium{} pode ser definida de maneira equivalente utilizando-se o operador de consistência (representado por $\circ$), seguindo a definição $\circ \alpha \eqdef \neg \bullet \alpha$.} $\Sigma = \{\land^{2}, \lor^{2}, \rightarrow^{2}, \neg^{1}, \bullet^{1}\}$ da seguinte forma:
 
 \begin{definicao}[Linguagem da \lfium{}]
     \label{def:ling}
     A linguagem $\pazocal{L}_{\Sigma}$ da \lfium{} é definida indutivamente como o menor conjunto a que respeita as seguintes regras:
     \begin{align*}
-         & \text{1.~}\pazocal{P} \subseteq \pazocal{L}_{\Sigma}                                                                                                                        \\
-         & \text{2.~Se } \phi \in \pazocal{L}_{\Sigma}, \text{então } \triangle  \phi \in \pazocal{L}_{\Sigma}, \text{com } \triangle \in \{\neg, \bullet\}                            \\
+         & \text{1.~}\pazocal{P} \subseteq \pazocal{L}_{\Sigma}\\
+         & \text{2.~Se } \phi \in \pazocal{L}_{\Sigma}, \text{então } \triangle  \phi \in \pazocal{L}_{\Sigma}, \text{com } \triangle \in \{\neg, \bullet\}\\
          & \text{3.~Se } \phi, \psi \in \pazocal{L}_{\Sigma}, \text{então } \phi \otimes \psi \in \pazocal{L}_{\Sigma}, \text{com } \otimes \in \{\land, \lor, \rightarrow\} \tag*\qed
     \end{align*}
 \end{definicao}
