@@ -1,9 +1,9 @@
 \chapter{LFI1}
 \label{cap:LFI1}
-\helena{coisas bancos de dados}. No trabalho de~\citeshort{carnielli2000formal} a lógica \textbf{LFI1*} é definida como uma extensão de primeira ordem da lógica proposicional \lfium{}. A motivação para definir-se uma lógica de inconsistência formal de primeira ordem vem da natureza das informações contidas em bancos de dados, estas que podem ser compreendidas como sentenças de primeira ordem fixas~\cite{Codd}. Entretanto, o presente trabalho trata somente da lógica proposicional \lfium{}, já que estender este fragmento proposicional.
+\helena{coisas bancos de dados}. No trabalho de~\citeshort{carnielli2000formal} a lógica \textbf{LFI1*} é definida como uma extensão de primeira ordem da lógica proposicional \lfium{}. A motivação para definir-se uma lógica de inconsistência formal de primeira ordem vem da natureza das informações contidas em bancos de dados, estas que podem ser compreendidas como sentenças de primeira ordem fixas~\cite{Codd}. Entretanto, o presente trabalho trata somente da lógica proposicional \lfium{}. Nas seções que seguem, serão apresentadas definições 
 
 \section{Linguagem}
-A lógica proposicional\footnote{Por mais que existam extensões de primeira ordem da \lfium{}, como a \textbf{LFI1*}, definida em~\citeshort{carnielli2000formal}, o presente trabalho trata somente do fragmento proposicional desta.} \lfium{} aqui apresentada é definida com base no livro de~\citeshort{Carnielli_Coniglio_2016} sobre a linguagem $\pazocal{L}_{\Sigma}$ que por sua vez é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \omega\}$ e uma assinatura proposicional\footnote{A linguagem da \lfium{} pode ser definida de maneira equivalente utilizando-se o operador de consistência (representado por $\circ$), seguindo a definição $\circ \alpha \eqdef \neg \bullet \alpha$.} $\Sigma = \{\land^{2}, \lor^{2}, \rightarrow^{2}, \neg^{1}, \bullet^{1}\}$ da seguinte forma:
+A lógica proposicional \lfium{} aqui apresentada é definida com base em~\citeshort{Carnielli_Coniglio_2016} sobre a linguagem $\pazocal{L}_{\Sigma}$, que por sua vez é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \mathbb{N}\}$ e uma assinatura proposicional\footnote{A linguagem da \lfium{} pode ser definida de maneira equivalente utilizando-se o operador de consistência (representado por $\circ$), seguindo a definição $\circ \alpha \eqdef \neg \bullet \alpha$.} $\Sigma = \{\land^{2}, \lor^{2}, \rightarrow^{2}, \neg^{1}, \bullet^{1}\}$ da seguinte forma:
 
 \begin{definicao}[Linguagem da \lfium{}]
     \label{def:ling}
@@ -36,7 +36,67 @@ A lógica proposicional\footnote{Por mais que existam extensões de primeira ord
     \end{align*}
 \end{definicao}
 
+
+\section{Axiomatização}
+\label{sec:axiomatizacao}
+\helena{qq eu boto aqui ahuahuhuahua}
+
+\begin{notacao}
+    Utiliza-se $\alpha \leftrightarrow \beta$ para denotar uma bi-implicação, como forma de abreviar a fórmula $(\alpha \rightarrow \beta) \land (\beta \rightarrow \alpha)$. Além disso, utiliza-se $\circ \alpha$ para denotar a consistência de uma fórmula $\alpha$, de modo a abreviar $\neg \bullet \alpha$.
+\end{notacao}
+
+\begin{definicao}[\lfium{}]
+    \label{def:lfi1}
+    A lógica \lfium{} é definida sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte cálculo de Hilbert:
+    \helena{Escolher um dos esquemas abaixo pra usar (ler as provas apresentadas nos dois trabalhos e decidir qual a mais adequada)}
+    \noindent\textbf{Axiomas (Evolutionary Databases):}
+    \begin{align*}
+         & \alpha \rightarrow (\beta \rightarrow \alpha)\tag{\textbf{Ax1}}                                                                                     \\
+         & (\alpha \rightarrow (\beta \rightarrow \gamma)) \rightarrow ((\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \gamma ))\tag{\textbf{Ax2}} \\
+         & \alpha \rightarrow (\beta \rightarrow (\alpha \land \beta))\tag{\textbf{Ax3}}                                                                       \\
+         & (\alpha \land \beta) \rightarrow \alpha\tag{\textbf{Ax4}}                                                                                           \\
+         & (\alpha \land \beta) \rightarrow \beta\tag{\textbf{Ax5}}                                                                                            \\
+         & \alpha \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax6}}                                                                                            \\
+         & \beta \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax7}}                                                                                             \\
+         & (\alpha \rightarrow \gamma) \rightarrow ((\beta \rightarrow \gamma) \rightarrow ((\alpha \lor \beta) \rightarrow \gamma))\tag{\textbf{Ax8}}         \\
+         & \alpha \lor \neg \alpha\tag{\textbf{Ax9}}                                                                                                           \\
+         & \neg \neg \alpha \rightarrow \alpha\tag{\textbf{Ax10}}                                                                                              \\
+         & \circ \alpha \rightarrow (\alpha \rightarrow (\neg \alpha \rightarrow \beta))\tag{\textbf{Ax11}}                                                    \\
+         & \bullet \alpha \rightarrow (\alpha \land \neg \alpha)\tag{\textbf{Ax12}}                                                                            \\
+         & \bullet (\alpha \land \beta) \leftrightarrow ((\bullet \alpha \land \beta) \lor (\bullet \beta \land \alpha))\tag{\textbf{Ax13}}                    \\
+         & \bullet (\alpha \lor \beta) \leftrightarrow ((\bullet \alpha \land \neg \beta) \lor (\bullet \beta \land \neg \alpha))\tag{\textbf{Ax14}}           \\
+         & \bullet (\alpha \rightarrow \beta) \leftrightarrow (\alpha \land \bullet \beta)\tag{\textbf{Ax15}}
+    \end{align*}
+    \noindent\textbf{Axiomas (Livrão da paraconsistência):}
+    \begin{align*}
+         & \alpha \rightarrow (\beta \rightarrow \alpha)\tag{\textbf{Ax1}}                                                                                     \\
+         & (\alpha \rightarrow (\beta \rightarrow \gamma)) \rightarrow ((\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \gamma ))\tag{\textbf{Ax2}} \\
+         & \alpha \rightarrow (\beta \rightarrow (\alpha \land \beta))\tag{\textbf{Ax3}}                                                                       \\
+         & (\alpha \land \beta) \rightarrow \alpha\tag{\textbf{Ax4}}                                                                                           \\
+         & (\alpha \land \beta) \rightarrow \beta\tag{\textbf{Ax5}}                                                                                            \\
+         & \alpha \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax6}}                                                                                            \\
+         & \beta \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax7}}                                                                                             \\
+         & (\alpha \rightarrow \gamma) \rightarrow ((\beta \rightarrow \gamma) \rightarrow ((\alpha \lor \beta) \rightarrow \gamma))\tag{\textbf{Ax8}}         \\
+         & (\alpha \rightarrow \beta) \lor \alpha\tag{\textbf{Ax09}}                                                                                           \\
+         & \alpha \lor \neg \alpha\tag{\textbf{Ax10}}                                                                                                          \\
+         & \circ \alpha \rightarrow (\alpha \rightarrow (\neg \alpha \rightarrow \beta))\tag{\textbf{bc1}}                                                     \\
+         & \neg \circ \alpha \rightarrow (\alpha \land \neg \alpha)\tag{\textbf{ci}}                                                                           \\
+         & \bullet (\alpha \land \beta) \leftrightarrow ((\bullet \alpha \land \beta) \lor (\alpha \land \bullet \beta))\tag{\textbf{cj1}}                     \\
+         & \bullet (\alpha \lor \beta) \leftrightarrow ((\bullet \alpha \land \neg \beta) \lor (\neg \alpha \land \bullet \beta))\tag{\textbf{cj2}}            \\
+         & \bullet (\alpha \rightarrow \beta) \leftrightarrow (\alpha \land \bullet \beta)\tag{\textbf{cj3}}
+    \end{align*}
+    \\
+    \noindent\textbf{Regra de inferência:}
+    \begin{prooftree}
+        \AxiomC{$\alpha, \alpha \rightarrow \beta$}
+        \RightLabel{MP}
+        \UnaryInfC{$\beta$}
+    \end{prooftree}
+    \qed{}
+\end{definicao}
+
 \section{Semântica}
+\label{sec:semantica}
 \helena{qq eu boto aqui ahuahuhuahua}
 
 \begin{definicao}[Matriz Lógica]
@@ -44,7 +104,7 @@ A lógica proposicional\footnote{Por mais que existam extensões de primeira ord
 \end{definicao}
 Por exemplo, a matriz lógica $\pazocal{M}_{LPC} = \langle M, D \rangle$ da lógica proposicional clássica possui um domínio $M = \{1, 0\}$ e um conjunto de valores designados $D = \{1\}$.
 \begin{definicao}[Lógica Trivalorada]
-    Uma  lógica $\pazocal{L} = \langle \mathcal{L}, \Vdash \rangle$ é dita uma lógica trivalorada caso ela esteja associada a uma matriz $\pazocal{M} = \langle M, D \rangle$ de forma que seu domínio $M$ possua três elementos.
+    Uma  lógica $\pazocal{L}$ é dita uma lógica trivalorada caso ela esteja associada a uma matriz $\pazocal{M} = \langle M, D \rangle$ de forma que seu domínio $M$ possua três elementos.
     \qed{}
 \end{definicao}
 
@@ -121,60 +181,3 @@ Por exemplo, a matriz lógica $\pazocal{M}_{LPC} = \langle M, D \rangle$ da lóg
 
 A lógica \lfium{} é, portanto, dita trivalorada.
 
-
-\section{Axiomatização}
-\helena{qq eu boto aqui ahuahuhuahua}
-
-\begin{notacao}
-    Utiliza-se $\alpha \leftrightarrow \beta$ para denotar uma bi-implicação, como forma de abreviar a fórmula $(\alpha \rightarrow \beta) \land (\beta \rightarrow \alpha)$. Além disso, utiliza-se $\circ \alpha$ para denotar a consistência de uma fórmula $\alpha$, de modo a abreviar $\neg \bullet \alpha$.
-\end{notacao}
-
-\begin{definicao}[\lfium{}]
-    \label{def:lfi1}
-    A lógica \lfium{} é definida sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte cálculo de Hilbert:
-    \helena{Escolher um dos esquemas abaixo pra usar (ler as provas apresentadas nos dois trabalhos e decidir qual a mais adequada)}
-    \noindent\textbf{Axiomas (Evolutionary Databases):}
-    \begin{align*}
-         & \alpha \rightarrow (\beta \rightarrow \alpha)\tag{\textbf{Ax1}}                                                                                     \\
-         & (\alpha \rightarrow (\beta \rightarrow \gamma)) \rightarrow ((\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \gamma ))\tag{\textbf{Ax2}} \\
-         & \alpha \rightarrow (\beta \rightarrow (\alpha \land \beta))\tag{\textbf{Ax3}}                                                                       \\
-         & (\alpha \land \beta) \rightarrow \alpha\tag{\textbf{Ax4}}                                                                                           \\
-         & (\alpha \land \beta) \rightarrow \beta\tag{\textbf{Ax5}}                                                                                            \\
-         & \alpha \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax6}}                                                                                            \\
-         & \beta \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax7}}                                                                                             \\
-         & (\alpha \rightarrow \gamma) \rightarrow ((\beta \rightarrow \gamma) \rightarrow ((\alpha \lor \beta) \rightarrow \gamma))\tag{\textbf{Ax8}}         \\
-         & \alpha \lor \neg \alpha\tag{\textbf{Ax9}}                                                                                                           \\
-         & \neg \neg \alpha \rightarrow \alpha\tag{\textbf{Ax10}}                                                                                              \\
-         & \circ \alpha \rightarrow (\alpha \rightarrow (\neg \alpha \rightarrow \beta))\tag{\textbf{Ax11}}                                                    \\
-         & \bullet \alpha \rightarrow (\alpha \land \neg \alpha)\tag{\textbf{Ax12}}                                                                            \\
-         & \bullet (\alpha \land \beta) \leftrightarrow ((\bullet \alpha \land \beta) \lor (\bullet \beta \land \alpha))\tag{\textbf{Ax13}}                    \\
-         & \bullet (\alpha \lor \beta) \leftrightarrow ((\bullet \alpha \land \neg \beta) \lor (\bullet \beta \land \neg \alpha))\tag{\textbf{Ax14}}           \\
-         & \bullet (\alpha \rightarrow \beta) \leftrightarrow (\alpha \land \bullet \beta)\tag{\textbf{Ax15}}
-    \end{align*}
-    \noindent\textbf{Axiomas (Livrão da paraconsistência):}
-    \begin{align*}
-         & \alpha \rightarrow (\beta \rightarrow \alpha)\tag{\textbf{Ax1}}                                                                                     \\
-         & (\alpha \rightarrow (\beta \rightarrow \gamma)) \rightarrow ((\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \gamma ))\tag{\textbf{Ax2}} \\
-         & \alpha \rightarrow (\beta \rightarrow (\alpha \land \beta))\tag{\textbf{Ax3}}                                                                       \\
-         & (\alpha \land \beta) \rightarrow \alpha\tag{\textbf{Ax4}}                                                                                           \\
-         & (\alpha \land \beta) \rightarrow \beta\tag{\textbf{Ax5}}                                                                                            \\
-         & \alpha \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax6}}                                                                                            \\
-         & \beta \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax7}}                                                                                             \\
-         & (\alpha \rightarrow \gamma) \rightarrow ((\beta \rightarrow \gamma) \rightarrow ((\alpha \lor \beta) \rightarrow \gamma))\tag{\textbf{Ax8}}         \\
-         & (\alpha \rightarrow \beta) \lor \alpha\tag{\textbf{Ax09}}                                                                                           \\
-         & \alpha \lor \neg \alpha\tag{\textbf{Ax10}}                                                                                                          \\
-         & \circ \alpha \rightarrow (\alpha \rightarrow (\neg \alpha \rightarrow \beta))\tag{\textbf{bc1}}                                                     \\
-         & \neg \circ \alpha \rightarrow (\alpha \land \neg \alpha)\tag{\textbf{ci}}                                                                           \\
-         & \bullet (\alpha \land \beta) \leftrightarrow ((\bullet \alpha \land \beta) \lor (\alpha \land \bullet \beta))\tag{\textbf{cj1}}                     \\
-         & \bullet (\alpha \lor \beta) \leftrightarrow ((\bullet \alpha \land \neg \beta) \lor (\neg \alpha \land \bullet \beta))\tag{\textbf{cj2}}            \\
-         & \bullet (\alpha \rightarrow \beta) \leftrightarrow (\alpha \land \bullet \beta)\tag{\textbf{cj3}}
-    \end{align*}
-    \\
-    \noindent\textbf{Regra de inferência:}
-    \begin{prooftree}
-        \AxiomC{$\alpha, \alpha \rightarrow \beta$}
-        \RightLabel{MP}
-        \UnaryInfC{$\beta$}
-    \end{prooftree}
-    \qed{}
-\end{definicao}

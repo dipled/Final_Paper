@@ -8,25 +8,22 @@ As \textit{Lógicas de Inconsistência Formal} são lógicas paraconsistentes qu
 \begin{center}
     Contradições + Consistência = Trivialidade
 \end{center}
-Definir-se uma lógica que consiga superar o tabu da \textit{explosividade} e, ao mesmo tempo, representar uma ferramenta legítima capaz de formalizar o raciocínio e separar inferências aceitáveis de inferências equivocadas é o objetivo do \textit{paraconsistentista}.\helena{Esse termo é do diabo mas o carnielli usou e eu achei até que bonitinho.} As \textit{Lógicas de Inconsistência Formal} cumprem este objetivo de maneira elegante, servindo um propósito importante no estudo de lógicas não-clássicas.\helena{eu boto aquele lerolero de banco de dados aqui tb?}.
+Definir uma lógica que consiga superar o tabu da \textit{explosividade} e, ao mesmo tempo, representar uma ferramenta legítima capaz de formalizar o raciocínio e separar inferências aceitáveis de inferências equivocadas é o objetivo do \textit{paraconsistentista}.\helena{Esse termo é do diabo mas o carnielli usou e eu achei até que bonitinho.} As \textit{Lógicas de Inconsistência Formal} cumprem este objetivo de maneira elegante, servindo um propósito importante no estudo de lógicas não-clássicas.\helena{eu boto aquele lerolero de banco de dados aqui tb?}.
 Neste capítulo são apresentadas algumas definições necessárias para caracterizar as \textit{Lógicas de Inconsistência Formal}, baseadas em~\citeshort{Carnielli_Coniglio_2016} e em~\citeshort{carnielli2007}. Antes de definir as \lfis{} é preciso apresentar alguns conceitos básicos acerca de sistemas lógicos paraconsistentes. Nas definições que seguem, utiliza-se a seguinte representação:
 \begin{itemize}
     \item Letras minúsculas do alfabeto latim $p, q, r, \ldots$ para representar fórmulas atômicas.
     \item Letras maiúsculas do alfabeto latim $A, B, C, \ldots$ para representar conjuntos quaisquer.
     \item Letra minúsculas do alfabeto grego $\alpha, \beta, \gamma, \ldots$ para representar fórmulas quaisquer.
     \item As letras $\Gamma, \Delta$ para representar conjuntos de fórmulas.
-    \item As letras $\Sigma, \Theta$ para representar a assinatura de uma linguagem.
-    \item O operador $\Vdash$ para representar uma relação de consequência qualquer (sintática ou semântica).
-    \item O operador $\vdash$ para representar uma relação de consequência sintática.
-    \item O operador $\vDash$ para representar uma relação de consequência semântica.
+    \item As letras $\Sigma, \Theta$ para representar a assinatura de uma 
 \end{itemize}
 
-Ademais, as definições que sucedem seguem o mesmo caminho de~\citeshort{Carnielli_Coniglio_2016}, baseando-se na teoria geral de relações de consequências para definir \textit{lógicas tarskianas} (lógicas com uma relação de consequência-T). Neste sentido, como a lógica \lfium{} se trata de uma \textit{lógica tarskiana}, o presente trabalho se restringe a trabalhar somente neste escopo.
+Ademais, o presente trabalho segue o mesmo caminho de~\citeshort{Carnielli_Coniglio_2016}, baseando-se na teoria geral de relações de consequências para definir \textit{lógicas tarskianas} (lógicas com uma relação de consequência-T). Neste sentido, como a lógica \lfium{} se trata de uma \textit{lógica tarskiana}, o presente trabalho se restringe a trabalhar somente neste escopo.
 
 \section{Paraconsistência}
 \label{sec:paracons}
 
-Uma lógica $\mathcal{L}$ será representada como uma dupla $\mathcal{L} = \langle \pazocal{L},\Vdash \rangle$, onde $\pazocal{L}$ é sua linguagem (seu conjunto de fórmulas) e $\Vdash$ é uma relação de consequência de conclusão única, definida como $\Vdash \;\subseteq \wp(\pazocal{L})\times\pazocal{L}$.
+Uma lógica $\mathcal{L}$ será representada como uma dupla $\mathcal{L} = \langle \pazocal{L},\vdash \rangle$, onde $\pazocal{L}$ é sua linguagem (seu conjunto de fórmulas) e $\vdash$ é uma relação de consequência de conclusão única, definida como $\vdash \;\subseteq \wp(\pazocal{L})\times\pazocal{L}$.
 
 \begin{definicao}[Assinatura proposicional]
     \label{def:ass_prop}
@@ -50,24 +47,24 @@ Por exemplo, a assinatura proposicional para a lógica proposicional clássica p
 \end{definicao}
 
 \begin{notacao}
-    Sejam $\Gamma, \Delta$ conjuntos de fórmulas e $\phi, \psi$ fórmulas quaisquer, então $\Gamma, \Delta, \phi \Vdash \psi$ denota $\Gamma \cup \Delta \cup \{\phi\} \Vdash \psi$.
+    Sejam $\Gamma, \Delta$ conjuntos de fórmulas e $\phi, \psi$ fórmulas quaisquer, então $\Gamma, \Delta, \phi \vdash \psi$ denota $\Gamma \cup \Delta \cup \{\phi\} \vdash \psi$.
 \end{notacao}
 
 \begin{definicao}[Lógica Tarskiana]
     \label{def:tarski}
-    Uma lógica $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$ e munida com uma relação de consequência $\Vdash$ é dita \textit{Tarskiana} caso satisfaça as seguintes propriedades para todo $\Gamma \cup \Delta \cup \{\alpha\} \subseteq \pazocal{L}$:
+    Uma lógica $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$ e munida com uma relação de consequência $\vdash$ é dita \textit{Tarskiana} caso satisfaça as seguintes propriedades para todo $\Gamma \cup \Delta \cup \{\alpha\} \subseteq \pazocal{L}$:
     \begin{align}
-         & \text{~~(i) Se } \alpha \in \Gamma \text{ então } \Gamma \Vdash \alpha;\tag{reflexividade}                                                                                       \\
-         & \text{~(ii) Se } \Delta \Vdash \alpha \text{ e } \Delta \subseteq \Gamma \text{ então } \Gamma \Vdash \alpha;\tag{monotonicidade}                                                \\
-         & \text{(iii) Se } \Delta \Vdash \alpha \text{ e } \Gamma \Vdash \delta \text{ para todo } \delta \in \Delta \text{ então } \Gamma \Vdash \alpha.\tag{\textit{cut} para conjuntos} \\\tag*\qed{}
+         & \text{~~(i) Se } \alpha \in \Gamma \text{ então } \Gamma \vdash \alpha;\tag{reflexividade}                                                                                       \\
+         & \text{~(ii) Se } \Delta \vdash \alpha \text{ e } \Delta \subseteq \Gamma \text{ então } \Gamma \vdash \alpha;\tag{monotonicidade}                                                \\
+         & \text{(iii) Se } \Delta \vdash \alpha \text{ e } \Gamma \vdash \delta \text{ para todo } \delta \in \Delta \text{ então } \Gamma \vdash \alpha.\tag{\textit{cut} para conjuntos} \\\tag*\qed{}
     \end{align}
     Uma lógica $\mathcal{L}$ é dita \textit{finitária} caso satisfaça o seguinte:
     \begin{align*}
-         & \text{~(iv) Se } \Gamma \Vdash \alpha \text{ então existe conjunto finito } \Gamma_{0} \subseteq \Gamma \text{ tal que } \Gamma_{0} \Vdash \alpha.
+         & \text{~(iv) Se } \Gamma \vdash \alpha \text{ então existe conjunto finito } \Gamma_{0} \subseteq \Gamma \text{ tal que } \Gamma_{0} \vdash \alpha.
     \end{align*}
     Uma lógica proposicional $\mathcal{L}$ definida sobre uma linguagem proposicional $\pazocal{L}_{\Theta}$ é dita \textit{estrutural} caso respeite a seguinte condição:
     \begin{align*}
-         & \text{~~(v) Se } \Gamma \Vdash \alpha \text{ então } \sigma |\Gamma| \Vdash \sigma(\alpha) \text{, para toda substituição } \sigma \text{ de variável por fórmula.}
+         & \text{~~(v) Se } \Gamma \vdash \alpha \text{ então } \sigma |\Gamma| \vdash \sigma(\alpha) \text{, para toda substituição } \sigma \text{ de variável por fórmula.}
     \end{align*}
     Por fim, uma lógica proposicional $\mathcal{L}$ é dita \textit{padrão} caso ela seja Tarskiana, finitária e estrutural.\qed{}
 \end{definicao}
@@ -77,14 +74,14 @@ Com isto, é possível definir formalmente a \textit{paraconsistência} para ló
 
 \begin{definicao}[Lógica Tarskiana paraconsistente]
     \label{def:tarskiana_paracons}
-    Uma lógica Tarskiana $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$, é dita \textit{paraconsistente} se ela possuir uma negação $\neg$\footnote{Esta negação pode ser primitiva (pertencente à assinatura da linguagem) ou definida a partir de outras fórmulas.} tal que existem fórmulas $\alpha, \beta \in \pazocal{L}$ de modo que $\alpha, \neg \alpha \nVdash \beta$.\qed{}
+    Uma lógica Tarskiana $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$, é dita \textit{paraconsistente} se ela possuir uma negação $\neg$\footnote{Esta negação pode ser primitiva (pertencente à assinatura da linguagem) ou definida a partir de outras fórmulas.} tal que existem fórmulas $\alpha, \beta \in \pazocal{L}$ de modo que $\alpha, \neg \alpha \nvdash \beta$.\qed{}
 \end{definicao}
 
-Caso a linguagem de $\mathcal{L}$ possua uma implicação $\rightarrow$ que respeite o metateorema da dedução\footnote{Definido como $\Gamma, \alpha \Vdash \beta \Longleftrightarrow  \Gamma\Vdash \alpha \rightarrow \beta$.}, então $\mathcal{L}$ é paraconsistente somente se a fórmula $\alpha \rightarrow (\neg \alpha \rightarrow \beta)$ não for válida. Ou seja, o Princípio da Explosão é inválido (em relação a $\neg$), logo $\neg$ é uma negação \textit{não explosiva}.
+Caso a linguagem de $\mathcal{L}$ possua uma implicação $\rightarrow$ que respeite o metateorema da dedução\footnote{Definido como $\Gamma, \alpha \vdash \beta \Longleftrightarrow  \Gamma\vdash \alpha \rightarrow \beta$.}, então $\mathcal{L}$ é paraconsistente somente se a fórmula $\alpha \rightarrow (\neg \alpha \rightarrow \beta)$ não for válida. Ou seja, o Princípio da Explosão é inválido (em relação a $\neg$), logo $\neg$ é uma negação \textit{não explosiva}.
 
 \section{Inconsistência}
 
-A motivação para o desenvolvimento das \lfis{} é possuir sistemas lógicos paraconsistentes nos quais é possível resgatar, de maneira \textit{controlada}, o Princípio da Explosão. Isto é feito definindo um conjunto $\bigcirc(p)$ de fórmulas dependentes somente de uma variável proposicional $p$. Caso uma lógica $\mathcal{L}$ seja explosiva ao unir-se um conjunto $\bigcirc(\alpha)$ {-} definido a partir de $\bigcirc(p)$ {-} com uma contradição $\{\alpha, \neg \alpha\}$, ou seja, se $\bigcirc(\alpha), \alpha, \neg \alpha \Vdash \beta$ para todo $\alpha$ e $\beta$ pertencentes à sua linguagem, e ainda $\bigcirc(\alpha), \alpha \nVdash \beta$ e $\bigcirc(\alpha), \neg \alpha \nVdash \beta$, então dizemos que $\mathcal{L}$ é \textit{gentilmente explosiva}.
+A motivação para o desenvolvimento das \lfis{} é possuir sistemas lógicos paraconsistentes nos quais é possível resgatar, de maneira \textit{controlada}, o Princípio da Explosão. Isto é feito definindo um conjunto $\bigcirc(p)$ de fórmulas dependentes somente de uma variável proposicional $p$. Caso uma lógica $\mathcal{L}$ seja explosiva ao unir-se um conjunto $\bigcirc(\alpha)$ {-} definido a partir de $\bigcirc(p)$ {-} com uma contradição $\{\alpha, \neg \alpha\}$, ou seja, se $\bigcirc(\alpha), \alpha, \neg \alpha \vdash \beta$ para todo $\alpha$ e $\beta$ pertencentes à sua linguagem, e ainda $\bigcirc(\alpha), \alpha \nvdash \beta$ e $\bigcirc(\alpha), \neg \alpha \nvdash \beta$, então dizemos que $\mathcal{L}$ é \textit{gentilmente explosiva}.
 
 \begin{notacao}
     Dado um átomo $p$, define-se $\bigcirc(p)$ como um conjunto não-vazio de fórmulas dependentes somente em $p$. Com base neste conjunto, define-se a notação $\bigcirc(\phi)$ para representar o conjunto obtido pela substituição de todas as ocorrências de $p$ por $\phi$ em todos os elementos de $\bigcirc(p)$, ou seja, para uma fórmula $\phi$ qualquer, $\bigcirc(\phi) = \{\psi[p \mapsto \phi] \; | \; \psi \in \bigcirc(p)\}$.
@@ -94,14 +91,14 @@ A motivação para o desenvolvimento das \lfis{} é possuir sistemas lógicos pa
 
 \begin{definicao}[Lógica de Inconsistência Formal]
     \label{def:lfi}
-    Seja $\mathcal{L} = \langle \pazocal{L}_{\Theta}, \Vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Theta$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \textit{Lógica de Inconsistência Formal} (\lfi{}) (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições:
+    Seja $\mathcal{L} = \langle \pazocal{L}_{\Theta}, \vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Theta$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \textit{Lógica de Inconsistência Formal} (\lfi{}) (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições:
     %(considerando $\bigcirc(\phi) = \{\psi(\phi) \; | \; \psi(p) \in \bigcirc(p)\}$): \helena{O conjunto $\bigcirc(\phi)$ é definido substituindo-se cada ocorrência $p$ por $\phi$ em cada elemento de $\bigcirc(\phi)$.}
     \begin{align*}
-         & \text{~~(i) Existem } \gamma, \delta \in \pazocal{L}_{\Theta} \text{ de modo que } \gamma, \neg \gamma \nVdash \delta;               \\
+         & \text{~~(i) Existem } \gamma, \delta \in \pazocal{L}_{\Theta} \text{ de modo que } \gamma, \neg \gamma \nvdash \delta;               \\
          & \text{~(ii) Existem } \alpha, \beta \in \pazocal{L}_{\Theta} \text{ de modo que:}                                                    \\
-         & \qquad \text{(ii.a)} \bigcirc(\alpha), \alpha \nVdash \beta;                                                                         \\
-         & \qquad \text{(ii.a)} \bigcirc(\alpha), \neg \alpha \nVdash \beta;                                                                    \\
-         & \text{(iii) Para todo } \phi, \psi \in \pazocal{L}_{\Theta} \text{ tem-se } \bigcirc(\phi), \phi, \neg \phi \Vdash \psi. \tag*\qed{}
+         & \qquad \text{(ii.a)} \bigcirc(\alpha), \alpha \nvdash \beta;                                                                         \\
+         & \qquad \text{(ii.a)} \bigcirc(\alpha), \neg \alpha \nvdash \beta;                                                                    \\
+         & \text{(iii) Para todo } \phi, \psi \in \pazocal{L}_{\Theta} \text{ tem-se } \bigcirc(\phi), \phi, \neg \phi \vdash \psi. \tag*\qed{}
     \end{align*}
 \end{definicao}
 \helena{Definir \lfi{} fraca e forte também?!?!?!?}
