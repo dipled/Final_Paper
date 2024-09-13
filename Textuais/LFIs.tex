@@ -32,7 +32,7 @@ Uma lógica $\mathcal{L}$ será representada como uma dupla $\mathcal{L} = \lang
     \label{def:ass_prop}
     Uma assinatura proposicional $\Theta$ é um conjunto de conectivos lógicos com a informação acerca da aridade de cada um destes.\qed{}
 \end{definicao}
-Por exemplo, a assinatura proposicional para a lógica proposicional clássica pode ser definida como $\Theta_{LPC} = \{\land^{2}, \lor^{2}, \neg^{1}, \rightarrow^{2}\}$. \migs{Sugestão 1: Escreva algo tipo ``Onde o operador $\land^{2}$ representa blah blah blah...'' para cada um deles\\ Sugestão 2: Após explicar o que é cada conectivo, escreva algo tipo ``No restante do texto os símbolos para esses conectivos serão usados sem indicar sua aridade''}
+Por exemplo, a assinatura proposicional para a lógica proposicional clássica pode ser definida como $\Theta_{LPC} = \{\land^{2}, \lor^{2}, \neg^{1}, \rightarrow^{2}\}$, onde o operador $\land^{2}$ representa uma conjunção, $\lor^{2}$ representa uma disjunção, $\neg^{1}$ representa uma negação e $\rightarrow^{2}$ representa uma implicação. No que segue do texto, as aridades de cada operador serão omitidas.
 
 \begin{definicao}[Lógica proposicional]
     \label{def:proposicional}
@@ -51,8 +51,17 @@ Por exemplo, a assinatura proposicional para a lógica proposicional clássica p
 \end{definicao}
 
 \begin{notacao}
-    Sejam $\Gamma, \Delta$ teorias e $\phi, \psi$ fórmulas quaisquer, então $\Gamma, \Delta, \phi \Vdash \psi$ denota $\Gamma \cup \Delta \cup \{\phi\} \Vdash \psi$.
+    Sejam $\Gamma, \Delta$ teorias e $\phi, \psi$ fórmulas, então $\Gamma, \Delta, \phi \Vdash \psi$ denota $\Gamma \cup \Delta \cup \{\phi\} \Vdash \psi$.
 \end{notacao}
+
+Tendo definido a noção de substituição para lógicas proposicionais, é possível descrever as lógicas estruturais como sendo lógicas que preservam uma dada derivação mesmo após aplicar uma substituição em suas premissas e conclusão:
+
+\begin{definicao}[Lógica Estrutural]
+    Uma lógica proposicional $\mathcal{L}$ definida sobre uma linguagem proposicional $\pazocal{L}_{\Theta}$ é dita \textit{estrutural} caso respeite a seguinte condição:
+    \begin{align*}
+         & \text{~~(v) Se } \Gamma \Vdash \alpha \text{ então } \sigma [\Gamma] \Vdash \sigma(\alpha) \text{, para toda substituição } \sigma \text{ de variável por fórmula.}
+    \end{align*}
+\end{definicao}
 
 \begin{definicao}[Lógica Tarskiana]
     \label{def:tarski}
@@ -65,10 +74,6 @@ Por exemplo, a assinatura proposicional para a lógica proposicional clássica p
     Uma lógica $\mathcal{L}$ é dita \textit{finitária} caso satisfaça o seguinte:
     \begin{align*}
          & \text{~(iv) Se } \Gamma \Vdash \alpha \text{ então existe conjunto finito } \Gamma_{0} \subseteq \Gamma \text{ tal que } \Gamma_{0} \Vdash \alpha.
-    \end{align*}
-    Uma lógica proposicional $\mathcal{L}$ definida sobre uma linguagem proposicional $\pazocal{L}_{\Theta}$ é dita \textit{estrutural} caso respeite a seguinte condição:
-    \begin{align*}
-         & \text{~~(v) Se } \Gamma \Vdash \alpha \text{ então } \sigma [\Gamma] \Vdash \sigma(\alpha) \text{, para toda substituição } \sigma \text{ de variável por fórmula.}
     \end{align*}
     Por fim, uma lógica proposicional $\mathcal{L}$ é dita \textit{padrão} caso ela seja Tarskiana, finitária e estrutural.\qed{}
 \end{definicao}
