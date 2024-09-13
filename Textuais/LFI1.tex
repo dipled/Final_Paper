@@ -1,6 +1,6 @@
 \chapter{LFI1}
 \label{cap:LFI1}
-\helena{coisas bancos de dados}. No trabalho de~\citeshort{carnielli2000formal} a lógica \textbf{LFI1*} é definida como uma extensão de primeira ordem da lógica proposicional \lfium{}. A motivação para definir-se uma lógica de inconsistência formal de primeira ordem vem da natureza das informações contidas em bancos de dados, estas que podem ser compreendidas como sentenças de primeira ordem fixas~\cite{Codd}. Entretanto, o presente trabalho trata somente da lógica proposicional \lfium{}. Nas seções que seguem, serão apresentadas definições 
+\helena{coisas bancos de dados}. No trabalho de~\citeshort{carnielli2000formal} a lógica \textbf{LFI1*} é definida como uma extensão de primeira ordem da lógica proposicional \lfium{}. A motivação para definir-se uma lógica de inconsistência formal de primeira ordem vem da natureza das informações contidas em bancos de dados, estas que podem ser compreendidas como sentenças de primeira ordem fixas~\cite{Codd}. Entretanto, o presente trabalho trata somente da lógica proposicional \lfium{}. Nas seções que seguem, serão apresentadas definições
 
 \section{Linguagem}
 A lógica proposicional \lfium{} aqui apresentada é definida com base em~\citeshort{Carnielli_Coniglio_2016} sobre a linguagem $\pazocal{L}_{\Sigma}$, que por sua vez é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \mathbb{N}\}$ e uma assinatura proposicional\footnote{A linguagem da \lfium{} pode ser definida de maneira equivalente utilizando-se o operador de consistência (representado por $\circ$), seguindo a definição $\circ \alpha \eqdef \neg \bullet \alpha$.} $\Sigma = \{\land^{2}, \lor^{2}, \rightarrow^{2}, \neg^{1}, \bullet^{1}\}$ da seguinte forma:
@@ -9,8 +9,8 @@ A lógica proposicional \lfium{} aqui apresentada é definida com base em~\cites
     \label{def:ling}
     A linguagem $\pazocal{L}_{\Sigma}$ da \lfium{} é definida indutivamente como o menor conjunto a que respeita as seguintes regras:
     \begin{align*}
-         & \text{1.~}\pazocal{P} \subseteq \pazocal{L}_{\Sigma}\\
-         & \text{2.~Se } \phi \in \pazocal{L}_{\Sigma}, \text{então } \triangle  \phi \in \pazocal{L}_{\Sigma}, \text{com } \triangle \in \{\neg, \bullet\}\\
+         & \text{1.~}\pazocal{P} \subseteq \pazocal{L}_{\Sigma}                                                                                                                        \\
+         & \text{2.~Se } \phi \in \pazocal{L}_{\Sigma}, \text{então } \triangle  \phi \in \pazocal{L}_{\Sigma}, \text{com } \triangle \in \{\neg, \bullet\}                            \\
          & \text{3.~Se } \phi, \psi \in \pazocal{L}_{\Sigma}, \text{então } \phi \otimes \psi \in \pazocal{L}_{\Sigma}, \text{com } \otimes \in \{\land, \lor, \rightarrow\} \tag*\qed
     \end{align*}
 \end{definicao}
@@ -67,7 +67,7 @@ A lógica proposicional \lfium{} aqui apresentada é definida com base em~\cites
          & \bullet (\alpha \lor \beta) \leftrightarrow ((\bullet \alpha \land \neg \beta) \lor (\bullet \beta \land \neg \alpha))\tag{\textbf{Ax14}}           \\
          & \bullet (\alpha \rightarrow \beta) \leftrightarrow (\alpha \land \bullet \beta)\tag{\textbf{Ax15}}
     \end{align*}
-    \noindent\textbf{Axiomas (Livrão da paraconsistência):}
+    \noindent\ \textbf{(Axiomas Livrão da paraconsistência VERSÃO DO CALCULO DE HILBERT $\text{LFI1}_{\bullet}$)}:
     \begin{align*}
          & \alpha \rightarrow (\beta \rightarrow \alpha)\tag{\textbf{Ax1}}                                                                                     \\
          & (\alpha \rightarrow (\beta \rightarrow \gamma)) \rightarrow ((\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \gamma ))\tag{\textbf{Ax2}} \\
@@ -77,14 +77,43 @@ A lógica proposicional \lfium{} aqui apresentada é definida com base em~\cites
          & \alpha \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax6}}                                                                                            \\
          & \beta \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax7}}                                                                                             \\
          & (\alpha \rightarrow \gamma) \rightarrow ((\beta \rightarrow \gamma) \rightarrow ((\alpha \lor \beta) \rightarrow \gamma))\tag{\textbf{Ax8}}         \\
-         & (\alpha \rightarrow \beta) \lor \alpha\tag{\textbf{Ax09}}                                                                                           \\
+         & (\alpha \rightarrow \beta) \lor \alpha\tag{\textbf{Ax9}}                                                                                           \\
          & \alpha \lor \neg \alpha\tag{\textbf{Ax10}}                                                                                                          \\
          & \circ \alpha \rightarrow (\alpha \rightarrow (\neg \alpha \rightarrow \beta))\tag{\textbf{bc1}}                                                     \\
+         & \neg \neg \alpha \rightarrow \alpha\tag{\textbf{cf}}
+         \\
+         & \alpha \rightarrow \neg \neg \alpha\tag{\textbf{ce}}
+         \\
          & \neg \circ \alpha \rightarrow (\alpha \land \neg \alpha)\tag{\textbf{ci}}                                                                           \\
          & \bullet (\alpha \land \beta) \leftrightarrow ((\bullet \alpha \land \beta) \lor (\alpha \land \bullet \beta))\tag{\textbf{cj1}}                     \\
          & \bullet (\alpha \lor \beta) \leftrightarrow ((\bullet \alpha \land \neg \beta) \lor (\neg \alpha \land \bullet \beta))\tag{\textbf{cj2}}            \\
          & \bullet (\alpha \rightarrow \beta) \leftrightarrow (\alpha \land \bullet \beta)\tag{\textbf{cj3}}
     \end{align*}
+    \noindent\textbf{(Axiomas Livrão da paraconsistência VERSÃO DO CALCULO DE HILBERT $\text{LFI1}_{\circ}$)}:
+    \begin{align*}
+        & \alpha \rightarrow (\beta \rightarrow \alpha)\tag{\textbf{Ax1}}                                                                                     \\
+        & (\alpha \rightarrow (\beta \rightarrow \gamma)) \rightarrow ((\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \gamma ))\tag{\textbf{Ax2}} \\
+        & \alpha \rightarrow (\beta \rightarrow (\alpha \land \beta))\tag{\textbf{Ax3}}                                                                       \\
+        & (\alpha \land \beta) \rightarrow \alpha\tag{\textbf{Ax4}}                                                                                           \\
+        & (\alpha \land \beta) \rightarrow \beta\tag{\textbf{Ax5}}                                                                                            \\
+        & \alpha \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax6}}                                                                                            \\
+        & \beta \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax7}}                                                                                             \\
+        & (\alpha \rightarrow \gamma) \rightarrow ((\beta \rightarrow \gamma) \rightarrow ((\alpha \lor \beta) \rightarrow \gamma))\tag{\textbf{Ax8}}         \\
+        & (\alpha \rightarrow \beta) \lor \alpha\tag{\textbf{Ax9}}                                                                                           \\
+        & \alpha \lor \neg \alpha\tag{\textbf{Ax10}}                                                                                                          \\
+        & \circ \alpha \rightarrow (\alpha \rightarrow (\neg \alpha \rightarrow \beta))\tag{\textbf{bc1}}                                                     \\
+        & \neg \neg \alpha \rightarrow \alpha\tag{\textbf{cf}}
+        \\
+        & \alpha \rightarrow \neg \neg \alpha\tag{\textbf{ce}}
+        \\
+        & \neg \circ \alpha \rightarrow (\alpha \land \neg \alpha)\tag{\textbf{ci}}                                                                           \\
+        & \neg (\alpha \lor \beta) \rightarrow (\neg \alpha \land \neg \beta)\tag{\textbf{neg}$\lor_{1}$}\\
+        & (\neg \alpha \land \neg \beta) \rightarrow \neg (\alpha \lor \beta)\tag{\textbf{neg}$\lor_{2}$}\\
+        & \neg(\alpha \land \beta) \rightarrow (\neg \alpha \lor \neg \beta)\tag{\textbf{neg}$\land_{1}$}\\
+        & (\neg \alpha \lor \neg \beta) \rightarrow \neg (\alpha \land \beta)\tag{\textbf{neg}$\land_{2}$}\\
+        & \neg (\alpha \rightarrow \beta) \rightarrow(\alpha \land \neg \beta)\tag{\textbf{neg}$\rightarrow_{1}$}\\
+        & (\alpha \land \neg \beta) \rightarrow \neg(\alpha \rightarrow \beta)\tag{\textbf{neg}$\rightarrow_{2}$}
+   \end{align*}
     \\
     \noindent\textbf{Regra de inferência:}
     \begin{prooftree}
@@ -150,12 +179,12 @@ Por exemplo, a matriz lógica $\pazocal{M}_{LPC} = \langle M, D \rangle$ da lóg
     \end{minipage}
 
     \vspace{0.5cm}
-    
+
     \begin{minipage}{0.5\textwidth}
         % Negation (¬)
         \[
             \begin{array}{c|c}
-                \neg        &             \\
+                            & \neg        \\
                 \hline
                 1           & 0           \\
                 \frac{1}{2} & \frac{1}{2} \\
@@ -166,11 +195,11 @@ Por exemplo, a matriz lógica $\pazocal{M}_{LPC} = \langle M, D \rangle$ da lóg
     \begin{minipage}{0.3\textwidth}
         \[
             \begin{array}{c|c}
-                \bullet       &   \\
+                            & \bullet   \\
                 \hline
-                1           & 0 \\
-                \frac{1}{2} & 1 \\
-                0           & 0 \\
+                1           & 0         \\
+                \frac{1}{2} & 1         \\
+                0           & 0         \\
             \end{array}
         \]
     \end{minipage}
@@ -181,3 +210,20 @@ Por exemplo, a matriz lógica $\pazocal{M}_{LPC} = \langle M, D \rangle$ da lóg
 
 A lógica \lfium{} é, portanto, dita trivalorada.
 
+\begin{definicao} [Semântica de valorações para \textbf{$\text{LFI1}_{\circ}$}]
+    A função $v : \pazocal{L}_{\Sigma} \rightarrow \{1, 0\}$ é uma valoração para $\text{LFI1}_{\circ}$ caso ela satisfaça as seguintes cláusulas:
+    \begin{align*}
+        & v(\alpha \land \beta) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\beta) = 1\tag{\textbf{$vAnd$}}\\
+        & v(\alpha \lor \beta) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ ou } v(\beta) = 1\tag{\textbf{$vOr$}}\\
+        & v(\alpha \rightarrow \beta) = 1 \Longleftrightarrow v(\alpha) = 0 \text{ ou } v(\beta) = 1\tag{\textbf{$vImp$}}\\
+        & v(\neg \alpha) = 0 \Longrightarrow v(\alpha) = 1\tag{\textbf{$vNeg$}}\\
+        & v(\circ \alpha) = 1 \Longrightarrow v(\alpha) = 0 \text{ ou } v(\neg \alpha) = 0\tag{\textbf{$vCon$}}\\
+        & v(\neg \circ \alpha) = 1 \Longrightarrow v(\alpha) = 1 \text{ e } v(\neg \alpha) = 1\tag{\textbf{$vCi$}}\\
+        & v(\neg \neg \alpha) = 1 \Longrightarrow v(\alpha) = 1\tag{\textbf{$vCf$}}\\
+        & v(\alpha) = 1 \Longrightarrow v(\neg \neg \alpha) = 1\tag{\textbf{$vCe$}}\\
+        & v(\neg (\alpha \land \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ ou } v(\neg \beta) = 1\tag{\textbf{$vDM_{\land}$}}\\
+        & v(\neg (\alpha \lor \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vDM_{\lor}$}}\\
+        & v(\neg (\alpha \rightarrow \beta)) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vCIp_{\rightarrow}$}}
+    \end{align*}
+    
+\end{definicao}
