@@ -25,6 +25,7 @@ Ademais, o presente trabalho segue o mesmo caminho de~\citeshort{Carnielli_Conig
 
 \section{Paraconsistência}
 \label{sec:paracons}
+Um sistema lógico que se atreve a romper com o Princípio da Explosão {-} que afirma que a partir de uma teoria contraditória, qualquer conclusão segue {-} é dito paraconsistente. As justificativas para questionar tal princípio existem em diversos campos do conhecimento, como na linguística~\cite{McGinnis2013-MCGTUA}, na computação~\cite{carnielli2000formal} e até mesmo nas ciências naturais~\cite{Brown2015-BROCAP-9}. Nesta seção, a paraconsistência será definida formalmente, partindo de definições básicas sobre lógica e classificando diferentes sistemas de acordo com propriedades acerca de sua \textit{relação de consequência}.
 
 Uma lógica $\mathcal{L}$ será representada como uma dupla $\mathcal{L} = \langle \pazocal{L},\Vdash \rangle$, onde $\pazocal{L}$ é sua linguagem (seu conjunto de fórmulas) e $\Vdash$ é uma relação de consequência de conclusão única, definida como $\Vdash \;\subseteq \wp(\pazocal{L})\times\pazocal{L}$. Em uma consequência do tipo $A \Vdash \alpha$ (lida como ``$\alpha$ é uma consequência de $A$.'') diz-se que o conjunto $A$ é o conjunto de premissas e $\alpha$ é a conclusão. A fim de facilitar a escrita e leitura, uma notação que resume o conjunto de premissas pode ser estabelecida.
 
@@ -89,7 +90,7 @@ Com isto, é possível definir formalmente o conceito de \textit{paraconsistênc
     Uma lógica Tarskiana $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$, é dita \textit{paraconsistente} se ela possuir uma negação $\neg$\footnote{Esta negação pode ser primitiva (pertencente à assinatura da linguagem) ou definida a partir de outras fórmulas.} tal que existem fórmulas $\alpha, \beta \in \pazocal{L}$ de modo que $\alpha, \neg \alpha \nVdash \beta$.\qed{}
 \end{definicao}
 
-Caso a linguagem de $\mathcal{L}$ possua uma implicação $\rightarrow$ que respeite o metateorema da dedução\footnote{Definido como $\Gamma, \alpha \Vdash \beta \Longleftrightarrow  \Gamma\Vdash \alpha \rightarrow \beta$.}, então $\mathcal{L}$ é paraconsistente somente se a fórmula $\alpha \rightarrow (\neg \alpha \rightarrow \beta)$ não for válida. Ou seja, o Princípio da Explosão é inválido (em relação a $\neg$), logo $\neg$ é uma negação \textit{não explosiva}.
+Caso a linguagem de $\mathcal{L}$ possua uma implicação $\rightarrow$ que respeite o metateorema da dedução\footnote{Definido como $\Gamma, \alpha \Vdash \beta \Longleftrightarrow  \Gamma\Vdash \alpha \rightarrow \beta$.}, então $\mathcal{L}$ é paraconsistente se e somente se a fórmula $\alpha \rightarrow (\neg \alpha \rightarrow \beta)$ não for válida. Ou seja, o Princípio da Explosão é inválido (em relação a $\neg$), logo $\neg$ é uma negação \textit{não explosiva}.
 
 \section{Inconsistência}
 
