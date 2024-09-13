@@ -9,7 +9,7 @@ As \textit{Lógicas de Inconsistência Formal} são lógicas paraconsistentes qu
     Contradições + Consistência = Trivialidade
 \end{center}
 Definir uma lógica que consiga superar o tabu da \textit{explosividade} e, ao mesmo tempo, representar uma ferramenta legítima capaz de formalizar o raciocínio e separar inferências aceitáveis de inferências equivocadas é um dos objetivos do \textit{paraconsistentista}.\helena{Esse termo é do diabo mas o carnielli e o joão marcos usaram e eu achei até que bonitinho.} As \textit{Lógicas de Inconsistência Formal} cumprem este objetivo de maneira elegante, servindo um propósito importante no estudo de lógicas não-clássicas.\helena{eu boto aquele lerolero de banco de dados aqui tb?}.
-Neste capítulo são apresentadas algumas definições necessárias para caracterizar as \textit{Lógicas de Inconsistência Formal}, baseadas em~\citeshort{Carnielli_Coniglio_2016} e em~\citeshort{carnielli2007}. Antes de definir as \lfis{} é preciso apresentar alguns conceitos básicos acerca de sistemas lógicos paraconsistentes. Nas definições que seguem, utiliza-se a seguinte representação:
+Neste capítulo são apresentadas algumas definições necessárias para caracterizar as \textit{Lógicas de Inconsistência Formal}, baseadas em~\citeshort{Carnielli_Coniglio_2016} e em~\citeshort{carnielli2007}. Antes de definir as \lfis{} é preciso apresentar alguns conceitos básicos acerca de sistemas lógicos paraconsistentes. Nas definições que seguem, utiliza-se a seguinte representação: \migs{Isso deveria ir para a lista de símbolos}
 \begin{itemize}
     \item Letras minúsculas do alfabeto latim $p, q, r, \ldots$ para representar fórmulas atômicas.
     \item Letras maiúsculas do alfabeto latim $A, B, C, \ldots$ para representar conjuntos quaisquer.
@@ -17,8 +17,8 @@ Neste capítulo são apresentadas algumas definições necessárias para caracte
     \item As letras $\Gamma, \Delta$ para representar conjuntos de fórmulas.
     \item As letras $\Sigma, \Theta$ para representar a assinatura de uma linguagem.
     \item O operador $\vdash$ para representar uma relação de consequência sintática.
-    \item O operador $\Vdash$ para representar uma relação de consequência semântica.
-    \item \item O operador $\Vdash$ para representar uma relação de consequência qualquer (sintática ou semântica).
+    \item O operador $\Vdash$ para representar uma relação de consequência semântica. \migs{Aqui vc está usando o mesmo operador que no bullet abaixo}
+    \item O operador $\Vdash$ para representar uma relação de consequência qualquer (sintática ou semântica).
 \end{itemize}
 
 Ademais, o presente trabalho segue o mesmo caminho de~\citeshort{Carnielli_Coniglio_2016}, baseando-se na teoria geral de relações de consequências para definir \textit{lógicas tarskianas} (lógicas com uma relação de consequência-T). Neste sentido, como a lógica \lfium{} se trata de uma \textit{lógica tarskiana}, o presente trabalho se restringe a trabalhar somente neste escopo.
@@ -32,7 +32,7 @@ Uma lógica $\mathcal{L}$ será representada como uma dupla $\mathcal{L} = \lang
     \label{def:ass_prop}
     Uma assinatura proposicional $\Theta$ é um conjunto de conectivos lógicos com a informação acerca da aridade de cada um destes.\qed{}
 \end{definicao}
-Por exemplo, a assinatura proposicional para a lógica proposicional clássica pode ser definida como $\Theta_{LPC} = \{\land^{2}, \lor^{2}, \neg^{1}, \rightarrow^{2}\}$.
+Por exemplo, a assinatura proposicional para a lógica proposicional clássica pode ser definida como $\Theta_{LPC} = \{\land^{2}, \lor^{2}, \neg^{1}, \rightarrow^{2}\}$. \migs{Sugestão 1: Escreva algo tipo ``Onde o operador $\land^{2}$ representa blah blah blah...'' para cada um deles\\ Sugestão 2: Após explicar o que é cada conectivo, escreva algo tipo ``No restante do texto os símbolos para esses conectivos serão usados sem indicar sua aridade''}
 
 \begin{definicao}[Lógica proposicional]
     \label{def:proposicional}
@@ -61,7 +61,7 @@ Por exemplo, a assinatura proposicional para a lógica proposicional clássica p
          & \text{~(ii) Se } \Delta \Vdash \alpha \text{ e } \Delta \subseteq \Gamma \text{ então } \Gamma \Vdash \alpha;\tag{monotonicidade}                                                \\
          & \text{(iii) Se } \Delta \Vdash \alpha \text{ e } \Gamma \Vdash \delta \text{ para todo } \delta \in \Delta \text{ então } \Gamma \Vdash \alpha.\tag{\textit{cut} para conjuntos} \\\tag*\qed{}
     \end{align}
-    Uma lógica $\mathcal{L}$ é dita \textit{finitária} caso satisfaça o seguinte:
+    Uma lógica $\mathcal{L}$ é dita \textit{finitária} caso satisfaça o seguinte: \migs{Essa definição tem dois QEDs}
     \begin{align*}
          & \text{~(iv) Se } \Gamma \Vdash \alpha \text{ então existe conjunto finito } \Gamma_{0} \subseteq \Gamma \text{ tal que } \Gamma_{0} \Vdash \alpha.
     \end{align*}

@@ -1,5 +1,6 @@
 \chapter{LFI1}
 \label{cap:LFI1}
+\migs{Acho que um título melhor para o capitulo seria ``A Lógica de Inconsistência Formal LFI1''}
 \helena{coisas bancos de dados}. No trabalho de~\citeshort{carnielli2000formal} a lógica \textbf{LFI1*} é definida como uma extensão de primeira ordem da lógica proposicional \lfium{}. A motivação para definir-se uma lógica de inconsistência formal de primeira ordem vem da natureza das informações contidas em bancos de dados, estas que podem ser compreendidas como sentenças de primeira ordem fixas~\cite{Codd}. Entretanto, o presente trabalho trata somente da lógica proposicional \lfium{}. Nas seções que seguem, serão apresentadas definições
 
 \section{Linguagem}
@@ -27,7 +28,7 @@ A lógica proposicional \lfium{} aqui apresentada é definida com base em~\cites
 
 \begin{definicao}[Complexidade de fórmulas]
     \label{def:complex}
-    Dada uma fórmula $\phi \in \pazocal{L}_{\Sigma}$, a complexidade $C(\phi)$ de de uma fórmula $\phi$ qualquer é definida recursivamente da seguinte forma:
+    Dada uma fórmula $\phi \in \pazocal{L}_{\Sigma}$, a complexidade $C(\phi)$ de de uma fórmula $\phi$ qualquer é definida recursivamente da seguinte forma: \migs{Foi falado na reunião mas vou colocar aqui pra lembrar: Explicar o pq de a complexidade do operador de consistência somar 2}
     \begin{align*}
          & \text{1.~Se } \phi = p \text{, onde } p \in \pazocal{P} \text{, então } C(\phi) = 1;                                                                           \\
          & \text{2.~Se } \phi = \neg \psi \text{, então } C(\phi) = C(\psi) + 1;                                                                                          \\
@@ -40,6 +41,8 @@ A lógica proposicional \lfium{} aqui apresentada é definida com base em~\cites
 \section{Axiomatização}
 \label{sec:axiomatizacao}
 \helena{qq eu boto aqui ahuahuhuahua}
+
+\migs{Eu sugiro uma breve explicação do que é um sistema sintático de Hilbert assim como uma breve explicação de que existem diversas axiomatizações (para a mesma assinatura) e uma explicação sobre pq vc escolheu a axiomatização que escolheu}
 
 \begin{notacao}
     Utiliza-se $\alpha \leftrightarrow \beta$ para denotar uma bi-implicação, como forma de abreviar a fórmula $(\alpha \rightarrow \beta) \land (\beta \rightarrow \alpha)$. Além disso, utiliza-se $\circ \alpha$ para denotar a consistência de uma fórmula $\alpha$, de modo a abreviar $\neg \bullet \alpha$.
@@ -128,6 +131,8 @@ A lógica proposicional \lfium{} aqui apresentada é definida com base em~\cites
 \label{sec:semantica}
 \helena{qq eu boto aqui ahuahuhuahua}
 
+\migs{Idem ao que eu falei acima}
+
 \begin{definicao}[Matriz Lógica]
     Uma das formas de se definir a semântica de uma dada lógica $\pazocal{L}$ é definir uma \textit{matriz lógica} para seus conectivos. Uma matriz lógica é uma dupla $\pazocal{M} = \langle M, D \rangle$ onde $M$ é seu domínio e $D$ é seu conjunto de valores designados (valores considerados tautologias). \qed{}
 \end{definicao}
@@ -210,6 +215,7 @@ Por exemplo, a matriz lógica $\pazocal{M}_{LPC} = \langle M, D \rangle$ da lóg
 
 A lógica \lfium{} é, portanto, dita trivalorada.
 
+\migs{Aqui acho interessante você explicar que essa é uma semântica não determinística e explicar pq você está incluindo ela, assim como eventualmente provar que ela é intertraduzível para a semântica de matrizes (isso deve ter no livro eu creio, se não fazemos juntos essa prova)}
 \begin{definicao} [Semântica de valorações para \textbf{$\text{LFI1}_{\circ}$}]
     A função $v : \pazocal{L}_{\Sigma} \rightarrow \{1, 0\}$ é uma valoração para $\text{LFI1}_{\circ}$ caso ela satisfaça as seguintes cláusulas:
     \begin{align*}
