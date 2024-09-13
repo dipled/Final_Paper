@@ -28,7 +28,7 @@ A lógica proposicional \lfium{} aqui apresentada é definida com base em~\cites
 
 \begin{definicao}[Complexidade de fórmulas]
     \label{def:complex}
-    Dada uma fórmula $\phi \in \pazocal{L}_{\Sigma}$, a complexidade $C(\phi)$ de de uma fórmula $\phi$ qualquer é definida recursivamente da seguinte forma: \migs{Foi falado na reunião mas vou colocar aqui pra lembrar: Explicar o pq de a complexidade do operador de consistência somar 2}
+    Dada uma fórmula $\phi \in \pazocal{L}_{\Sigma}$, a complexidade $C(\phi)$ de de uma fórmula $\phi$ qualquer é definida recursivamente da seguinte forma:
     \begin{align*}
          & \text{1.~Se } \phi = p \text{, onde } p \in \pazocal{P} \text{, então } C(\phi) = 1;                                                                           \\
          & \text{2.~Se } \phi = \neg \psi \text{, então } C(\phi) = C(\psi) + 1;                                                                                          \\
@@ -36,7 +36,7 @@ A lógica proposicional \lfium{} aqui apresentada é definida com base em~\cites
          & \text{4.~Se } \phi = \psi \otimes \gamma \text{, onde } \otimes \in \{\land, \lor, \rightarrow\} \text{, então } C(\phi) = C(\psi) + C(\gamma) + 1.\tag*\qed{}
     \end{align*}
 \end{definicao}
-
+Note que, dada a dependência de $\bullet \alpha$ em $\{\alpha, \neg \alpha\}$, a complexidade $C(\bullet \alpha)$ é definida como $C(\alpha) + 2$. Ou seja, a complexidade de uma fórmula $\bullet \alpha$ é estritamente maior que a complexidade de $\alpha$ e $\neg \alpha$.
 
 \section{Axiomatização}
 \label{sec:axiomatizacao}

@@ -14,10 +14,10 @@ Neste capítulo são apresentadas algumas definições necessárias para caracte
     \item Letras minúsculas do alfabeto latim $p, q, r, \ldots$ para representar fórmulas atômicas.
     \item Letras maiúsculas do alfabeto latim $A, B, C, \ldots$ para representar conjuntos quaisquer.
     \item Letra minúsculas do alfabeto grego $\alpha, \beta, \gamma, \ldots$ para representar fórmulas quaisquer.
-    \item As letras $\Gamma, \Delta$ para representar conjuntos de fórmulas.
+    \item As letras $\Gamma, \Delta$ para representar teorias (conjunto de fórmulas).
     \item As letras $\Sigma, \Theta$ para representar a assinatura de uma linguagem.
     \item O operador $\vdash$ para representar uma relação de consequência sintática.
-    \item O operador $\vDash$ para representar uma relação de consequência semântica. \migs{Aqui vc está usando o mesmo operador que no bullet abaixo}
+    \item O operador $\vDash$ para representar uma relação de consequência semântica.
     \item O operador $\Vdash$ para representar uma relação de consequência qualquer (sintática ou semântica).
 \end{itemize}
 
@@ -40,17 +40,18 @@ Por exemplo, a assinatura proposicional para a lógica proposicional clássica p
 \end{definicao}
 
 \begin{definicao}[Substituição]
-    Uma substituição $\sigma$ de todas as ocorrências de uma variável $p_{i}$ por uma fórmula $\psi$ em uma fórmula $\phi$, é denotada por $\sigma(\phi) = \phi[p_{i} \mapsto \psi]$~\cite{dedo}. A substituição $\phi[p_{i} \mapsto \psi]$ é definida indutivamente como (considerando $\triangle$, $\otimes$ conectivos quaisquer de aridade 1 e 2 respectivamente):
+    Uma substituição $\sigma$ de todas as ocorrências de uma variável $p_{i}$ por uma fórmula $\psi$ em uma fórmula $\phi$, é denotada por $\sigma(\phi) = \phi\{p_{i} \mapsto \psi\}$~\cite{dedo}. A substituição $\phi\{p_{i} \mapsto \psi\}$ é definida indutivamente como (considerando $\triangle$, $\otimes$ conectivos quaisquer de aridade 1 e 2 respectivamente):
     \begin{align*}
-         & \text{1.~Se }\phi = p_{i} \text{ então, } \phi[p_{i} \mapsto \psi] = \psi;                                                                                             \\
-         & \text{2.~Se }\phi = p_{j} \text{ e } j \neq i \text{ então, }\phi[p_{i} \mapsto \psi] = \phi;                                                                          \\
-         & \text{3.~Se }\phi = \triangle \gamma \text{ então, } \phi[p_{i} \mapsto \psi] = \triangle(\gamma[p_{i} \mapsto \psi]);                                                 \\
-         & \text{4.~Se }\phi = \phi_{0} \otimes \phi_{1} \text{ então, } \phi[p_{i} \mapsto \psi] = \phi_{0}[p_{i} \mapsto \psi] \otimes \phi_{1}[p_{i} \mapsto \psi].\tag*\qed{}
+         & \text{1.~Se }\phi = p_{i} \text{ então, } \phi\{p_{i} \mapsto \psi\} = \psi;                                                                                             \\
+         & \text{2.~Se }\phi = p_{j} \text{ e } j \neq i \text{ então, }\phi\{p_{i} \mapsto \psi\} = \phi;                                                                          \\
+         & \text{3.~Se }\phi = \triangle \gamma \text{ então, } \phi\{p_{i} \mapsto \psi\} = \triangle(\gamma\{p_{i} \mapsto \psi\});                                                 \\
+         & \text{4.~Se }\phi = \phi_{0} \otimes \phi_{1} \text{ então, } \phi\{p_{i} \mapsto \psi\} = \phi_{0}\{p_{i} \mapsto \psi\} \otimes \phi_{1}\{p_{i} \mapsto \psi\}.
     \end{align*}
+    Ademais, a aplicação de $\sigma$ sobre uma teoria $\Gamma$ é definida como $\sigma[\Gamma] = \{\sigma(\phi) \; | \; \phi \in \Gamma\}$.\qed{}
 \end{definicao}
 
 \begin{notacao}
-    Sejam $\Gamma, \Delta$ conjuntos de fórmulas e $\phi, \psi$ fórmulas quaisquer, então $\Gamma, \Delta, \phi \Vdash \psi$ denota $\Gamma \cup \Delta \cup \{\phi\} \Vdash \psi$.
+    Sejam $\Gamma, \Delta$ teorias e $\phi, \psi$ fórmulas quaisquer, então $\Gamma, \Delta, \phi \Vdash \psi$ denota $\Gamma \cup \Delta \cup \{\phi\} \Vdash \psi$.
 \end{notacao}
 
 \begin{definicao}[Lógica Tarskiana]
@@ -61,13 +62,13 @@ Por exemplo, a assinatura proposicional para a lógica proposicional clássica p
          & \text{~(ii) Se } \Delta \Vdash \alpha \text{ e } \Delta \subseteq \Gamma \text{ então } \Gamma \Vdash \alpha;\tag{monotonicidade}                                                \\
          & \text{(iii) Se } \Delta \Vdash \alpha \text{ e } \Gamma \Vdash \delta \text{ para todo } \delta \in \Delta \text{ então } \Gamma \Vdash \alpha.\tag{\textit{cut} para conjuntos}
     \end{align}
-    Uma lógica $\mathcal{L}$ é dita \textit{finitária} caso satisfaça o seguinte: \migs{Essa definição tem dois QEDs}
+    Uma lógica $\mathcal{L}$ é dita \textit{finitária} caso satisfaça o seguinte:
     \begin{align*}
          & \text{~(iv) Se } \Gamma \Vdash \alpha \text{ então existe conjunto finito } \Gamma_{0} \subseteq \Gamma \text{ tal que } \Gamma_{0} \Vdash \alpha.
     \end{align*}
     Uma lógica proposicional $\mathcal{L}$ definida sobre uma linguagem proposicional $\pazocal{L}_{\Theta}$ é dita \textit{estrutural} caso respeite a seguinte condição:
     \begin{align*}
-         & \text{~~(v) Se } \Gamma \Vdash \alpha \text{ então } \sigma |\Gamma| \Vdash \sigma(\alpha) \text{, para toda substituição } \sigma \text{ de variável por fórmula.}
+         & \text{~~(v) Se } \Gamma \Vdash \alpha \text{ então } \sigma [\Gamma] \Vdash \sigma(\alpha) \text{, para toda substituição } \sigma \text{ de variável por fórmula.}
     \end{align*}
     Por fim, uma lógica proposicional $\mathcal{L}$ é dita \textit{padrão} caso ela seja Tarskiana, finitária e estrutural.\qed{}
 \end{definicao}
