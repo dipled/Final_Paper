@@ -17,7 +17,7 @@ Neste capítulo são apresentadas algumas definições necessárias para caracte
     \item As letras $\Gamma, \Delta$ para representar conjuntos de fórmulas.
     \item As letras $\Sigma, \Theta$ para representar a assinatura de uma linguagem.
     \item O operador $\vdash$ para representar uma relação de consequência sintática.
-    \item O operador $\Vdash$ para representar uma relação de consequência semântica. \migs{Aqui vc está usando o mesmo operador que no bullet abaixo}
+    \item O operador $\vDash$ para representar uma relação de consequência semântica. \migs{Aqui vc está usando o mesmo operador que no bullet abaixo}
     \item O operador $\Vdash$ para representar uma relação de consequência qualquer (sintática ou semântica).
 \end{itemize}
 
@@ -59,7 +59,7 @@ Por exemplo, a assinatura proposicional para a lógica proposicional clássica p
     \begin{align}
          & \text{~~(i) Se } \alpha \in \Gamma \text{ então } \Gamma \Vdash \alpha;\tag{reflexividade}                                                                                       \\
          & \text{~(ii) Se } \Delta \Vdash \alpha \text{ e } \Delta \subseteq \Gamma \text{ então } \Gamma \Vdash \alpha;\tag{monotonicidade}                                                \\
-         & \text{(iii) Se } \Delta \Vdash \alpha \text{ e } \Gamma \Vdash \delta \text{ para todo } \delta \in \Delta \text{ então } \Gamma \Vdash \alpha.\tag{\textit{cut} para conjuntos} \\\tag*\qed{}
+         & \text{(iii) Se } \Delta \Vdash \alpha \text{ e } \Gamma \Vdash \delta \text{ para todo } \delta \in \Delta \text{ então } \Gamma \Vdash \alpha.\tag{\textit{cut} para conjuntos}
     \end{align}
     Uma lógica $\mathcal{L}$ é dita \textit{finitária} caso satisfaça o seguinte: \migs{Essa definição tem dois QEDs}
     \begin{align*}
