@@ -14,7 +14,7 @@ Neste capítulo são apresentadas algumas definições necessárias para caracte
     \item Letras minúsculas do alfabeto latim $p, q, r, \ldots$ para representar fórmulas atômicas.
     \item Letras maiúsculas do alfabeto latim $A, B, C, \ldots$ para representar conjuntos quaisquer.
     \item Letra minúsculas do alfabeto grego $\alpha, \beta, \gamma, \ldots$ para representar fórmulas quaisquer.
-    \item As letras $\Gamma, \Delta$ para representar teorias (conjunto de fórmulas).
+    \item As letras $\Gamma, \Delta$ para representar teorias (conjuntos de fórmulas).
     \item As letras $\Sigma, \Theta$ para representar a assinatura de uma linguagem.
     \item O operador $\vdash$ para representar uma relação de consequência sintática.
     \item O operador $\vDash$ para representar uma relação de consequência semântica.
@@ -25,7 +25,7 @@ Ademais, o presente trabalho segue o mesmo caminho de~\citeshort{Carnielli_Conig
 
 \section{Paraconsistência}
 \label{sec:paracons}
-Um sistema lógico que se atreve a romper com o Princípio da Explosão {-} que afirma que a partir de uma teoria contraditória, qualquer conclusão segue {-} é dito paraconsistente. As justificativas para questionar tal princípio existem em diversos campos do conhecimento, como na linguística~\cite{McGinnis2013-MCGTUA}, na computação~\cite{carnielli2000formal} e até mesmo nas ciências naturais~\cite{Brown2015-BROCAP-9}. Nesta seção, a paraconsistência será definida formalmente, partindo de definições básicas sobre lógica e classificando diferentes sistemas de acordo com propriedades acerca de sua \textit{relação de consequência}.
+Um sistema lógico que se atreve a romper com o Princípio da Explosão {-} o qual afirma que a partir de uma teoria contraditória, qualquer conclusão segue {-} é dito paraconsistente. As justificativas para questionar tal princípio existem em diversos campos do conhecimento, como na linguística~\cite{McGinnis2013-MCGTUA}, na computação~\cite{carnielli2000formal} e até mesmo nas ciências naturais~\cite{Brown2015-BROCAP-9}. Outra justificativa para o desenvolvimento de sistemas lógicos paraconsistentes é um mero descontentamento com o caráter explosivo das lógicas ortodoxas. Por exemplo, um descontentamento com a conclusão de que ``Um triângulo tem quatro lados.'' a partir da evidência de que ``Choveu na tarde de ontem.'' e da evidência de que ``Não choveu na tarde de ontem.''~\footnote{Esta forma de explosividade é objeto de estudo das lógicas de relevância, que tratam da conexão entre as premissas e a conclusão de uma inferência~\cite{sep-logic-relevance}.}. Nesta seção, a paraconsistência será definida formalmente, partindo de definições básicas sobre lógica e classificando diferentes sistemas de acordo com propriedades acerca de sua \textit{relação de consequência}.
 
 Uma lógica $\mathcal{L}$ será representada como uma dupla $\mathcal{L} = \langle \pazocal{L},\Vdash \rangle$, onde $\pazocal{L}$ é sua linguagem (seu conjunto de fórmulas) e $\Vdash$ é uma relação de consequência de conclusão única, definida como $\Vdash \;\subseteq \wp(\pazocal{L})\times\pazocal{L}$. Em uma consequência do tipo $A \Vdash \alpha$ (lida como ``$\alpha$ é uma consequência de $A$.'') diz-se que o conjunto $A$ é o conjunto de premissas e $\alpha$ é a conclusão. A fim de facilitar a escrita e leitura, uma notação que resume o conjunto de premissas pode ser estabelecida.
 
@@ -39,9 +39,11 @@ Uma lógica $\mathcal{L}$ será representada como uma dupla $\mathcal{L} = \lang
 \end{definicao}
 Por exemplo, a assinatura proposicional para a lógica proposicional clássica pode ser definida como $\Theta_{LPC} = \{\land^{2}, \lor^{2}, \neg^{1}, \rightarrow^{2}\}$, onde o operador $\land^{2}$ representa uma conjunção, $\lor^{2}$ representa uma disjunção, $\neg^{1}$ representa uma negação e $\rightarrow^{2}$ representa uma implicação. No que segue do texto, as aridades de cada operador serão omitidas.
 
+Uma assinatura proposicional juntamente com um conjunto enumerável de átomos são base para a definição de uma linguagem proposicional, que por sua vez é utilizada para definir uma lógica proposicional. No presente trabalho, a lógica de interesse (a lógica \lfium{}) é uma lógica proposicional.
+
 \begin{definicao}[Lógica proposicional]
     \label{def:proposicional}
-    Um sistema lógico $\mathcal{L}$, definido sobre uma linguagem $\pazocal{L}$ é dito proposicional caso $\pazocal{L}$ seja definida a partir de um conjunto enumerável de átomos $\pazocal{P} = \{p_{i} \;| \; i \in \mathbb{N} \}$ e uma assinatura proposicional $\Theta$. Uma linguagem $\pazocal{L}$ definida sobre uma assinatura proposicional é chamada de linguagem proposicional.\qed{}
+    Um sistema lógico $\mathcal{L}$, definido sobre uma linguagem $\pazocal{L}$ é dito proposicional caso $\pazocal{L}$ seja definida a partir de um conjunto enumerável de átomos $\pazocal{P} = \{p_{i} \;| \; i \in \mathbb{N} \}$ e uma assinatura proposicional $\Theta$. A linguagem $\pazocal{L}$ é chamada de linguagem proposicional.\qed{}
 \end{definicao}
 
 \begin{definicao}[Substituição]
@@ -91,7 +93,7 @@ Com isto, é possível definir formalmente o conceito de \textit{paraconsistênc
 Caso a linguagem de $\mathcal{L}$ possua uma implicação $\rightarrow$ que respeite o metateorema da dedução\footnote{Definido como $\Gamma, \alpha \Vdash \beta \Longleftrightarrow  \Gamma\Vdash \alpha \rightarrow \beta$.}, então $\mathcal{L}$ é paraconsistente se e somente se a fórmula $\alpha \rightarrow (\neg \alpha \rightarrow \beta)$ não for válida. Ou seja, o Princípio da Explosão é inválido (em relação a $\neg$), logo $\neg$ é uma negação \textit{não explosiva}.
 
 \section{Inconsistência}
-
+No escopo das lógicas paraconsistentes, 
 A motivação para o desenvolvimento das \lfis{} é possuir sistemas lógicos paraconsistentes nos quais é possível resgatar, de maneira \textit{controlada}, o Princípio da Explosão. Isto é feito definindo um conjunto $\bigcirc(p)$ de fórmulas dependentes somente de uma variável proposicional $p$. Caso uma lógica $\mathcal{L}$ seja explosiva ao unir-se um conjunto $\bigcirc(\alpha)$ {-} definido a partir de $\bigcirc(p)$ {-} com uma contradição $\{\alpha, \neg \alpha\}$, ou seja, se $\bigcirc(\alpha), \alpha, \neg \alpha \Vdash \beta$ para todo $\alpha$ e $\beta$ pertencentes à sua linguagem, e ainda $\bigcirc(\alpha), \alpha \nVdash \beta$ e $\bigcirc(\alpha), \neg \alpha \nVdash \beta$, então dizemos que $\mathcal{L}$ é \textit{gentilmente explosiva}.
 
 \begin{notacao}
@@ -141,8 +143,10 @@ Como é possível observar pelas duas definições acima, toda \lfi{} é uma \lf
          & \qquad \text{(i.a) } \alpha, \neg \alpha \nVdash \beta;\\
          & \qquad \text{(i.b) } \bigcirc(\alpha), \alpha \nVdash \beta;\\
          & \qquad \text{(i.c) } \bigcirc(\alpha), \neg \alpha \nVdash \beta;\\
-         & \text{~(iv) Para todo } \phi, \psi \in \pazocal{L}_{\Theta} \text{ tem-se } \bigcirc(\phi), \phi, \neg \phi \Vdash \psi. \tag*\qed{}
+         & \text{~(ii) Para todo } \phi, \psi \in \pazocal{L}_{\Theta} \text{ tem-se } \bigcirc(\phi), \phi, \neg \phi \Vdash \psi. \tag*\qed{}
     \end{align*}
 \end{definicao}
 
-É imediato perceber que toda \lfi{} forte é uma \lfi{} (já que a condição (i) da Definição~\ref{def:lfi_forte} satisfaz as condições (i) e (ii) da Definição~\ref{def:lfi}), mas o inverso não é necessariamente verdade.
+É imediato perceber que toda \lfi{} forte é uma \lfi{} (já que a condição (i) da Definição~\ref{def:lfi_forte} satisfaz as condições (i) e (ii) da Definição~\ref{def:lfi}), mas o inverso não é necessariamente verdade. Ademais, no escopo das lógicas proposicionais, é possível estabelecer uma forma mais simples de provar que uma dada lógica proposicional é uma \textbf{LFI} forte, tomando $\alpha$ e $\beta$ como dois átomos $p$ e $q$ quaisquer nas condições (i.a), (i.b) e (i.c) da definição acima.
+
+
