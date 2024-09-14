@@ -61,7 +61,7 @@ Uma assinatura proposicional juntamente com um conjunto enumerável de átomos s
 Tendo definido a noção de substituição para lógicas proposicionais, é possível descrever as \textit{lógicas estruturais} como sendo lógicas nas quais todas as inferências são fechadas para a substituição:
 
 \begin{definicao}[Lógica Estrutural]
-    Uma lógica proposicional $\mathcal{L}$ definida sobre uma linguagem proposicional $\pazocal{L}_{\Theta}$ é dita \textit{estrutural} caso respeite a seguinte condição:
+    Uma lógica proposicional $\mathcal{L}$ definida sobre uma linguagem proposicional $\pazocal{L}_{\Theta}$ é dita \textit{estrutural} caso respeite a seguinte condição para todo $\Gamma \cup \Delta \cup \{\alpha\} \subseteq \pazocal{L}$:
     \begin{align*}
          & \text{Se } \Gamma \Vdash \alpha \text{ então } \sigma [\Gamma] \Vdash \sigma(\alpha) \text{, para toda substituição } \sigma \text{ de variável por fórmula.}\tag*\qed{}
     \end{align*}
