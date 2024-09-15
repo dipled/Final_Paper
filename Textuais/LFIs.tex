@@ -47,6 +47,7 @@ Uma assinatura proposicional juntamente com um conjunto enumerável de átomos s
 \end{definicao}
 
 \begin{definicao}[Substituição]
+    \label{def:substituicao}
     Uma substituição $\sigma$ de todas as ocorrências de uma variável $p_{i}$ por uma fórmula $\psi$ em uma fórmula $\phi$, é denotada por $\sigma(\phi) = \phi\{p_{i} \mapsto \psi\}$~\cite{dedo}. A substituição $\phi\{p_{i} \mapsto \psi\}$ é definida indutivamente como (considerando $\triangle$, $\otimes$ conectivos quaisquer de aridade 1 e 2 respectivamente):
     \begin{align*}
          & \text{1.~Se }\phi = p_{i} \text{ então, } \phi\{p_{i} \mapsto \psi\} = \psi;                                                                                             \\
@@ -54,7 +55,7 @@ Uma assinatura proposicional juntamente com um conjunto enumerável de átomos s
          & \text{3.~Se }\phi = \triangle \gamma \text{ então, } \phi\{p_{i} \mapsto \psi\} = \triangle(\gamma\{p_{i} \mapsto \psi\});                                                 \\
          & \text{4.~Se }\phi = \phi_{0} \otimes \phi_{1} \text{ então, } \phi\{p_{i} \mapsto \psi\} = \phi_{0}\{p_{i} \mapsto \psi\} \otimes \phi_{1}\{p_{i} \mapsto \psi\}.
     \end{align*}
-    Ademais, a aplicação de $\sigma$ sobre uma teoria $\Gamma$ é definida como $\sigma[\Gamma] = \{\sigma(\phi) \; | \; \phi \in \Gamma\}$.\qed{}
+    Uma fórmula $\alpha$ é dita \textit{instância de substituição} de uma fórmula $\beta$ caso exista uma substituição $\sigma$ tal que $\alpha = \sigma(\beta)$. Ademais, a aplicação de uma substituição $\sigma$ sobre todos os elementos de uma teoria $\Gamma$ é definida como $\sigma[\Gamma] = \{\sigma(\phi) \; | \; \phi \in \Gamma\}$.\qed{}
 \end{definicao}
 
 
