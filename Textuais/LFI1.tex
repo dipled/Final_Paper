@@ -1,215 +1,213 @@
 \chapter{A Lógica de Inconsistência Formal LFI1}
 \label{cap:LFI1}
 
-\helena{coisas bancos de dados}. A \textit{Lógica De Inconsistência Formal} \lfium{} introduz na sua assinatura o operador $\circ$ para representar a consistência. Uma informação é dita consistente caso ela e sua negação não sejam simultaneamente verdadeiras, ou seja, dada uma informação $\alpha$, sua consistência $\circ \alpha$ será equivalente a fórmula $\neg (\alpha \land \neg \alpha)$. Com a introdução deste novo operador, é possível lidar com a inconsistência de informações sem que trivialidade ocorra, já que, caso uma informação seja conhecidamente \textit{inconsistente}, ou seja, $\neg \circ \alpha$, então ela se trata de uma contradição inofensiva, fruto do excesso de informações numa dada teoria \migs{Essa parte sobre o operador de consistência deveria estar no capítulo anterior}. No trabalho de~\citeshort{carnielli2000formal} a lógica \textbf{LFI1*} é definida como uma extensão de primeira ordem da lógica proposicional \lfium{}. A motivação para definir-se uma \textit{Lógica de Inconsistência Formal} de primeira ordem vem da natureza das informações contidas em bancos de dados, estas que podem ser compreendidas como sentenças de primeira ordem fixas~\cite{Codd}.  Entretanto, o presente trabalho trata somente da lógica proposicional \lfium{}. \migs{A. Cada. Frase. Tem. Um. Ponto.}
+\helena{coisas bancos de dados}. A \textit{Lógica De Inconsistência Formal} \lfium{} introduz na sua assinatura o operador $\circ$ para representar a consistência. Uma informação é dita consistente caso ela e sua negação não sejam simultaneamente verdadeiras, ou seja, dada uma informação $\alpha$, sua consistência $\circ \alpha$ será equivalente a fórmula $\neg (\alpha \land \neg \alpha)$. Com a introdução deste novo operador, é possível lidar com a inconsistência de informações sem que trivialidade ocorra, já que, caso uma informação seja conhecidamente \textit{inconsistente}, ou seja, $\neg \circ \alpha$, então ela se trata de uma contradição inofensiva, fruto do excesso de informações numa dada teoria.
 
-\migs{Idealmente você deveria falar que no artigo que originalmente foi definida a LFI1 era usado o conectivo de inconsistência e que você está usando a formulação do livrão que uso o conectivo de consistência.}
+No trabalho de~\citeshort{carnielli2000formal} a lógica \textbf{LFI1*} é definida como uma extensão de primeira ordem da lógica proposicional \lfium{}. A motivação para definir-se uma \textit{Lógica de Inconsistência Formal} de primeira ordem vem da natureza das informações contidas em bancos de dados, estas que podem ser compreendidas como sentenças de primeira ordem fixas~\cite{Codd}, entretanto, o presente trabalho trata somente da lógica proposicional \lfium{}. Ademais,~\citeshort{carnielli2000formal} tomam o operador de \textit{inconsistência} (denotado por $\bullet$) como primitivo. Isto foi feito pois o foco era explorar a \lfium{} como uma ferramenta para lidar com inconsistências em bancos de dados, portanto tomar a inconsistência como primitiva era de grande interesse. Entretanto, no presente trabalho, será utilizada a definição apresentada em~\citeshort{Carnielli_Coniglio_2016}, onde a linguagem é definida utilizando o operador $\circ$ como primitivo. Isto foi feito pois salienta algumas propriedades interessantes da negação $\neg$, como a presença das leis de De Morgan, axiomatizadas na Seção~\ref{sec:axiomatizacao}.
 
-\migscortar{Nas seções que seguem, serão apresentados conceitos utilizados para definir e provar metapropriedades sobre a lógica \lfium{}}{ Esse capítulo é divido da seguinte forma: na Seção 3.1 é apresentado\dots, na Seção \dots}.
+Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é apresentada a linguagem da lógica proposicional \lfium{} bem como definições necessárias para desenvolver as provas de metateoremas. Na Seção~\ref{sec:axiomatizacao} contém uma breve explicação sobre sistemas de prova sintáticos e uma Axiomatização de Hilbert para a \lfium{} é definida. Na Seção~\ref{sec:semantica} a semântica da \lfium{} é definida a partir de matrizes lógicas e de uma semântica de valorações não determinística.
+
 
 \section{Linguagem}
-A lógica proposicional \lfium{} aqui apresentada é definida com base em~\citeshort{Carnielli_Coniglio_2016} sobre a linguagem $\pazocal{L}_{\Sigma}$, que por sua vez é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \mathbb{N}\}$ e uma assinatura proposicional $\Sigma = \{\land^{2}, \lor^{2}, \rightarrow^{2}, \neg^{1}, \circ^{1}\}$. Como de costume, o conectivo $\land^{2}$ representa uma conjunção, $\lor^{2}$ representa uma disjunção, $\rightarrow^{2}$ representa uma implicação, $\neg^{1}$ representa uma negação e $\circ^{1}$ é o conectivo de consistência, definido de forma primitiva. No restante do texto a aridade destes conectivos será omitida. \cortar{Portanto} A linguagem $\pazocal{L}_{\Sigma}$ da \lfium{} é definida da seguinte forma:
+\label{sec:linguagem}
+    A lógica proposicional \lfium{} aqui apresentada é definida com base em~\citeshort{Carnielli_Coniglio_2016} sobre a linguagem $\pazocal{L}_{\Sigma}$, que por sua vez é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \mathbb{N}\}$ e uma assinatura proposicional $\Sigma = \{\land^{2}, \lor^{2}, \rightarrow^{2}, \neg^{1}, \circ^{1}\}$. Como de costume, o conectivo $\land^{2}$ representa uma conjunção, $\lor^{2}$ representa uma disjunção, $\rightarrow^{2}$ representa uma implicação, $\neg^{1}$ representa uma negação e $\circ^{1}$ é o conectivo de consistência, definido de forma primitiva. No restante do texto a aridade destes conectivos será omitida. A linguagem $\pazocal{L}_{\Sigma}$ da \lfium{} é definida da seguinte forma:
 
-\begin{definicao}[Linguagem da \lfium{}]
-    \label{def:ling}
-    A linguagem $\pazocal{L}_{\Sigma}$ da \lfium{} é definida indutivamente como o menor conjunto a que respeita as seguintes regras:
-    \begin{align*}
-         & \text{1.~}\pazocal{P} \subseteq \pazocal{L}_{\Sigma}                                                                                                                        \\
-         & \text{2.~Se } \phi \in \pazocal{L}_{\Sigma}, \text{então } \triangle  \phi \in \pazocal{L}_{\Sigma}, \text{com } \triangle \in \{\neg, \circ\}                            \\
-         & \text{3.~Se } \phi, \psi \in \pazocal{L}_{\Sigma}, \text{então } \phi \otimes \psi \in \pazocal{L}_{\Sigma}, \text{com } \otimes \in \{\land, \lor, \rightarrow\} \tag*\qed
-    \end{align*}
-\end{definicao}
+    \begin{definicao}[Linguagem da \lfium{}]
+        \label{def:ling}
+        A linguagem $\pazocal{L}_{\Sigma}$ da \lfium{} é definida indutivamente como o menor conjunto a que respeita as seguintes regras:
+        \begin{align*}
+            & \text{1.~}\pazocal{P} \subseteq \pazocal{L}_{\Sigma}                                                                                                                        \\
+            & \text{2.~Se } \phi \in \pazocal{L}_{\Sigma}, \text{então } \triangle  \phi \in \pazocal{L}_{\Sigma}, \text{com } \triangle \in \{\neg, \circ\}                            \\
+            & \text{3.~Se } \phi, \psi \in \pazocal{L}_{\Sigma}, \text{então } \phi \otimes \psi \in \pazocal{L}_{\Sigma}, \text{com } \otimes \in \{\land, \lor, \rightarrow\} \tag*\qed
+        \end{align*}
+    \end{definicao}
 
-A precedência dos conectivos é dada de maneira costumeira, com a adição do operador $\circ$ de consistência, seguindo a ordem (da maior precedência para a menor): $\circ$, $\neg$, $\land$, $\lor$, $\rightarrow$. Os conectivos binários $\land$ e $\lor$ são associativos à esquerda, ou seja, uma expressão do tipo $\alpha \land \beta \land \gamma$ é lida como $((\alpha \land \beta) \land \gamma)$, e o conectivo $\rightarrow$ é associativo à direita, ou seja, uma expressão do tipo $\alpha \rightarrow \beta \rightarrow \gamma$ é lida como $(\alpha \rightarrow (\beta \rightarrow (\gamma)))$.
+    A precedência dos conectivos é dada de maneira costumeira, com a adição do operador $\circ$ de consistência, seguindo a ordem (da maior precedência para a menor): $\circ$, $\neg$, $\land$, $\lor$, $\rightarrow$. Os conectivos binários $\land$ e $\lor$ são associativos à esquerda, ou seja, uma expressão do tipo $\alpha \land \beta \land \gamma$ é lida como $((\alpha \land \beta) \land \gamma)$, e o conectivo $\rightarrow$ é associativo à direita, ou seja, uma expressão do tipo $\alpha \rightarrow \beta \rightarrow \gamma$ é lida como $(\alpha \rightarrow (\beta \rightarrow (\gamma)))$.
 
-A linguagem da \lfium{} pode ser definida de maneira equivalente utilizando-se o operador de inconsistência (representado por $\bullet$), \migscortar{seguindo a definição}{ definido como} $\bullet \alpha \eqdef \neg \circ \alpha$, como feito por~\citeshort{carnielli2000formal}. Naquele trabalho o foco era explorar a \lfium{} como uma ferramenta para lidar com inconsistências em bancos de dados, portanto tomar o operador $\bullet$ como primitivo era de grande interesse. Entretanto, no presente trabalho, \migscortar{a escolha de seguir o que foi feito}{ será utilizada a definição apresentada} em~\citeshort{Carnielli_Coniglio_2016}\migscortar{(definir a semântica e a sintaxe em termos de $\circ$)}{, onde a linguagem é definida utilizando o operador $\circ$.} \migscortar{foi tomada}{ Isso foi feito} pois \migscortar{isto}{} salienta algumas propriedades interessantes da negação $\neg$, como a presença das leis de De Morgan, axiomatizadas na Seção~\ref{sec:axiomatizacao}. \migs{Isso deveria estar na introdução do capítulo, veja meu comentário anterior}
+    A linguagem da \lfium{} pode ser definida de maneira equivalente utilizando-se o operador de inconsistência (representado por $\bullet$), definido como $\bullet \alpha \eqdef \neg \circ \alpha$, como feito por~\citeshort{carnielli2000formal}. 
 
-% \begin{definicao}[Subfórmulas]
-%     \label{def:subf}
-%     O conjunto Sub$(\phi)$ de subfórmulas de uma fórmula $\phi$ é definido indutivamente da seguinte forma:
-%     \begin{align*}
-%          & \text{1.~Sub}(p_{i}) = \{p_{i}\}, \; p_{i} \in \pazocal{P}                                                                                                            \\
-%          & \text{2.~Sub}(\triangle \phi) = \{\triangle \phi\} \; \cup \;\text{Sub}(\phi), \; \triangle \in \{\neg, \circ\}                                                     \\
-%          & \text{3.~Sub}(\phi \otimes \psi) = \{\phi \otimes \psi\} \; \cup \;\text{Sub}(\phi) \; \cup \;\text{Sub}(\psi), \; \otimes \in \{\land, \lor, \rightarrow\} \tag*\qed
-%     \end{align*}
-% \end{definicao}
+    % \begin{definicao}[Subfórmulas]
+    %     \label{def:subf}
+    %     O conjunto Sub$(\phi)$ de subfórmulas de uma fórmula $\phi$ é definido indutivamente da seguinte forma:
+    %     \begin{align*}
+    %          & \text{1.~Sub}(p_{i}) = \{p_{i}\}, \; p_{i} \in \pazocal{P}                                                                                                            \\
+    %          & \text{2.~Sub}(\triangle \phi) = \{\triangle \phi\} \; \cup \;\text{Sub}(\phi), \; \triangle \in \{\neg, \circ\}                                                     \\
+    %          & \text{3.~Sub}(\phi \otimes \psi) = \{\phi \otimes \psi\} \; \cup \;\text{Sub}(\phi) \; \cup \;\text{Sub}(\psi), \; \otimes \in \{\land, \lor, \rightarrow\} \tag*\qed
+    %     \end{align*}
+    % \end{definicao}
 
-No desenvolvimento de metateoremas sobre propriedades de uma determinada lógica, a indução na complexidade de uma fórmula é um método comum de prova. Para isso, define-se uma função recursiva $C(\phi) : \pazocal{L}_{\Sigma} \rightarrow \mathbb{N}$ que retorna, para uma dada fórmula, um número natural representando sua complexidade, baseada na quantidade de operadores e átomos. \migs{Isso deveria estar no capítulo anterior, aqui ao invés de dar essa definição você apenas estende ela adicionando a cláusula para $\circ$}
+    \end{definicao}
 
-\begin{definicao}[Complexidade de fórmulas]
-    \label{def:complex}
-    Dada uma fórmula $\phi \in \pazocal{L}_{\Sigma}$, a complexidade $C(\phi)$ é definida recursivamente da seguinte forma:
-    \begin{align*}
-         & \text{1.~Se } \phi = p \text{, onde } p \in \pazocal{P} \text{, então } C(\phi) = 1;                                                                           \\
-         & \text{2.~Se } \phi = \neg \psi \text{, então } C(\phi) = C(\psi) + 1;                                                                                          \\
-         & \text{3.~Se } \phi = \circ \psi \text{, então } C(\phi) = C(\psi) + 2;                                                                                       \\
-         & \text{4.~Se } \phi = \psi \otimes \gamma \text{, onde } \otimes \in \{\land, \lor, \rightarrow\} \text{, então } C(\phi) = C(\psi) + C(\gamma) + 1.\tag*\qed{}
-    \end{align*}
-\end{definicao}
-Note que a complexidade de uma fórmula do tipo $\circ \alpha$ é estritamente maior que a complexidade de $\alpha$ e $\neg \alpha$. Isto se dá pois, como evidenciado pela semântica de valorações na Definição~\ref{def:valoracoes}, exite uma dependência de $\circ \alpha$ em $\{\alpha, \neg \alpha\}$.
+    Na Definição~\ref{def:complex} a função $C$ da complexidade de uma fórmula na lógica proposicional clássica foi recursivamente definida. É possível estender esta definição para identificar a complexidade de uma fórmula na \lfium{} adicionando-se uma condição para o operador $\circ$:
+
+    \begin{definicao}[Complexidade de uma fórmula na \lfium{}]
+        Dada uma fórmula $\phi \in \pazocal{L}_{\Sigma}$, a complexidade $C(\phi)$ é definida adicionando-se a seguinte condição à Definição~\ref{def:complex}
+        \begin{align*}
+            & \text{Se } \phi = \circ \psi \text{, então } C(\phi) = C(\psi) + 2.\tag*\qed{}
+        \end{align*}
+        
+    \end{definicao}
+
+    Note que a complexidade de uma fórmula do tipo $\circ \alpha$ é estritamente maior que a complexidade de $\alpha$ e $\neg \alpha$. Isto se dá pois, como evidenciado pela semântica de valorações na Definição~\ref{def:valoracoes}, exite uma dependência de $\circ \alpha$ em $\{\alpha, \neg \alpha\}$.
 
 \section{Axiomatização}
 \label{sec:axiomatizacao}
-\migs{Eu suponho que esse primeiro trecho você pegou todo do verbete do SEP que citas no final, o cerne do texto está bom, porém acho muito importante você considerar minhas sugestões e, caso elas contradigam o que está no SEP, você ache uma maneira de manter preservar a estrutura do que falei mas com a ideia do que está na fonte, visto que esse texto tem muita vibe de algo que foi mal traduzido.}
 
-A teoria das provas é uma das abordagens para o estudo das relações de consequência\migscortar{. Nela,}{, onde} a validade de uma inferência é atestada caso haja uma \textit{prova} das conclusões a partir das premissas. Uma \textit{prova} consiste em \migs{uma sequência de} passos bem definidos \migs{aplicados sobre conjuntos (ocasionalmente unitários) de proposições} com base nos princípios de um determinado sistema de provas. A teoria das provas é sintática\footnote{Vale notar que a separação \textit{(prova {$\times$} sintaxe {$\times$} semântica {$\times$} modelo)} \migs{Coloquei o times pq acho que fica mais apropriado que --, porém ainda acho que pode melhorar} não é tão bem definida, \migscortar{vide}{ algo que é explorado em}~\citeshort{Prawitz2005-PRALCA-2}.} por natureza, ou seja, numa inferência do tipo $A \vdash B$, \migscortar{as \textit{strings} de $A$ e $B$ são manipuladas de alguma forma a}{ é relevante apenas a estrutura das fórmulas presentes em \textit{A} e \textit{B}, não sua interpretação ou valor verdade, essa estrutura que é manipulada a fim de} obter-se uma sequência de passos que {--} além de atestar sua validade {--} serve como argumento para tal~\cite{sep-logical-consequence}. Desta forma, pode-se definir um sistema de provas sintático para servir como relação de consequência para uma determinada lógica. 
+    A teoria das provas é uma das abordagens para o estudo das relações de consequência, onde a validade de uma inferência é atestada caso haja uma \textit{prova} das conclusões a partir das premissas. Uma \textit{prova} consiste em uma sequência de passos bem definidos aplicados sobre conjuntos (ocasionalmente unitários) de proposições com base nos princípios de um determinado sistema de provas. A teoria das provas é sintática\footnote{Vale notar que a separação \textit{(prova {$\times$} sintaxe {$\times$} semântica {$\times$} modelo)} não é tão bem definida, algo que é explorado em~\citeshort{Prawitz2005-PRALCA-2}.} por natureza, ou seja, numa inferência do tipo $A \vdash B$, é relevante apenas a estrutura das fórmulas presentes em \textit{A} e \textit{B}, não sua interpretação ou valor verdade, essa estrutura é manipulada a fim de obter-se uma sequência de passos que {--} além de atestar sua validade {--} serve como argumento para tal~\cite{sep-logical-consequence}. Desta forma, pode-se definir um sistema de provas sintático para servir como relação de consequência para uma determinada lógica. 
 
-No contexto da \lfium{} existem dois sistemas de prova sintáticos estabelecidos até o momento: \migs{um}a Axiomatização \migs{no estilo} de Hilbert \migs{Eu creio que o mais correto é ``no estilo de Hilbert'', mas seria bom conferir isso se tiveres tempo}, descrita em~\citeshort{carnielli2000formal,Carnielli_Coniglio_2016} e \migscortar{o}{ um} sistema de \textit{Tableau}, descrito em~\citeshort{tableaulfi}. No presente trabalho, foi escolhida a Axiomatização de Hilbert para definir a sintaxe da \lfium{}, dada a maior facilidade desenvolver metateoremas em relação ao sistema de \textit{Tableau}.
+    No contexto da \lfium{} existem dois sistemas de prova sintáticos estabelecidos até o momento: uma Axiomatização no estilo de Hilbert, descrita em~\citeshort{carnielli2000formal,Carnielli_Coniglio_2016} e um sistema de \textit{Tableau}, descrito em~\citeshort{tableaulfi}. No presente trabalho, foi escolhida a Axiomatização de Hilbert para definir a sintaxe da \lfium{}, dada a maior facilidade desenvolver metateoremas em relação ao sistema de \textit{Tableau}.
 
-A Axiomatização de Hilbert (também conhecida como Sistema de Hilbert ou Cálculo de Hilbert) é um sistema composto por um conjunto de fórmulas, chamadas de \textit{axiomas}, e um conjunto de \textit{regras de inferência}. Uma regra de inferência é formada por uma lista de fórmulas chamadas de premissas da regra e uma fórmula chamada de conclusão da regra~\cite{Restall1999-RESAIT-4}. Uma prova (também chamada de derivação) de uma dada fórmula $\phi$ consiste em uma sequência finita de \migscortar{passos}{ fórmulas} \(\psi_0, \dots, \psi_n\), onde \(\psi_n = \phi\), e cada \migscortar{passos}{ $\psi_i\ (0 \leq i \leq n)$} é uma \textit{instância de substituição} (ver Definição~\ref{def:substituicao}) de um axioma ou \migs{o resultado de} uma aplicação de uma regra de inferência \migs{em fórmulas anteriores}\cortar{. A prova termina quando a última linha contiver a fórmula $\phi$.} \helena{Falta explicar pra LFI1}
+    A Axiomatização no estilo de Hilbert (também conhecida como Sistema de Hilbert ou Cálculo de Hilbert) é um sistema composto por um conjunto de fórmulas, chamadas de \textit{axiomas}, e um conjunto de \textit{regras de inferência}. Uma regra de inferência é formada por uma lista de fórmulas chamadas de premissas da regra e uma fórmula chamada de conclusão da regra~\cite{Restall1999-RESAIT-4}. Uma prova (também chamada de derivação) de uma dada fórmula $\phi$ consiste em uma sequência finita de fórmulas \(\psi_0, \dots, \psi_n\), onde \(\psi_n = \phi\), e cada  $\psi_i\ (0 \leq i \leq n)$ é uma \textit{instância de substituição} (ver Definição~\ref{def:substituicao}) de um axioma ou o resultado da aplicação de uma regra de inferência em fórmulas anteriores\helena{Falta explicar pra LFI1}
 
-\migs{Eu sugiro uma breve explicação do que é um sistema sintático de Hilbert assim como uma breve explicação de que existem diversas axiomatizações (para a mesma assinatura) e uma explicação sobre pq vc escolheu a axiomatização que escolheu}
+    \migs{Eu sugiro uma breve explicação do que é um sistema sintático de Hilbert assim como uma breve explicação de que existem diversas axiomatizações (para a mesma assinatura) e uma explicação sobre pq vc escolheu a axiomatização que escolheu}
 
-\begin{notacao}
-    Utiliza-se $\alpha \leftrightarrow \beta$ para denotar uma bi-implicação, como forma de abreviar a fórmula $(\alpha \rightarrow \beta) \land (\beta \rightarrow \alpha)$. \migs{$\leftarrow$ isso deveria estar onde você introduz os conectivos da sua linguagem | LFI1 para conectivos os apresenta você onde estar deveria isso $\rightarrow$ } Além disso, utiliza-se $\bullet \alpha$ para denotar a inconsistência de uma fórmula $\alpha$, de modo a abreviar $\neg \circ \alpha$.
-\end{notacao}
 
-\begin{definicao}[\lfium{}]
-    \label{def:lfi1}
-    A lógica \lfium{} é definida sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte cálculo de Hilbert:
+    \begin{definicao}[\lfium{}]
+        \label{def:lfi1}
+        A lógica \lfium{} é definida sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte cálculo de Hilbert:
 
-    \noindent\textbf{(Axiomas Livrão da paraconsistência VERSÃO DO CALCULO DE HILBERT $\text{LFI1}_{\circ}$)}:
-    \begin{align*}
-        & \alpha \rightarrow (\beta \rightarrow \alpha)\tag{\textbf{Ax1}}                                                                                     \\
-        & (\alpha \rightarrow (\beta \rightarrow \gamma)) \rightarrow ((\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \gamma ))\tag{\textbf{Ax2}} \\
-        & \alpha \rightarrow (\beta \rightarrow (\alpha \land \beta))\tag{\textbf{Ax3}}                                                                       \\
-        & (\alpha \land \beta) \rightarrow \alpha\tag{\textbf{Ax4}}                                                                                           \\
-        & (\alpha \land \beta) \rightarrow \beta\tag{\textbf{Ax5}}                                                                                            \\
-        & \alpha \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax6}}                                                                                            \\
-        & \beta \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax7}}                                                                                             \\
-        & (\alpha \rightarrow \gamma) \rightarrow ((\beta \rightarrow \gamma) \rightarrow ((\alpha \lor \beta) \rightarrow \gamma))\tag{\textbf{Ax8}}         \\
-        & (\alpha \rightarrow \beta) \lor \alpha\tag{\textbf{Ax9}}                                                                                           \\
-        & \alpha \lor \neg \alpha\tag{\textbf{Ax10}}                                                                                                          \\
-        & \circ \alpha \rightarrow (\alpha \rightarrow (\neg \alpha \rightarrow \beta))\tag{\textbf{bc1}}                                                     \\
-        & \neg \neg \alpha \rightarrow \alpha\tag{\textbf{cf}}
+        \noindent\textbf{(Axiomas Livrão da paraconsistência VERSÃO DO CALCULO DE HILBERT $\text{LFI1}_{\circ}$)}:
+        \begin{align*}
+            & \alpha \rightarrow (\beta \rightarrow \alpha)\tag{\textbf{Ax1}}                                                                                     \\
+            & (\alpha \rightarrow (\beta \rightarrow \gamma)) \rightarrow ((\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \gamma ))\tag{\textbf{Ax2}} \\
+            & \alpha \rightarrow (\beta \rightarrow (\alpha \land \beta))\tag{\textbf{Ax3}}                                                                       \\
+            & (\alpha \land \beta) \rightarrow \alpha\tag{\textbf{Ax4}}                                                                                           \\
+            & (\alpha \land \beta) \rightarrow \beta\tag{\textbf{Ax5}}                                                                                            \\
+            & \alpha \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax6}}                                                                                            \\
+            & \beta \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax7}}                                                                                             \\
+            & (\alpha \rightarrow \gamma) \rightarrow ((\beta \rightarrow \gamma) \rightarrow ((\alpha \lor \beta) \rightarrow \gamma))\tag{\textbf{Ax8}}         \\
+            & (\alpha \rightarrow \beta) \lor \alpha\tag{\textbf{Ax9}}                                                                                           \\
+            & \alpha \lor \neg \alpha\tag{\textbf{Ax10}}                                                                                                          \\
+            & \circ \alpha \rightarrow (\alpha \rightarrow (\neg \alpha \rightarrow \beta))\tag{\textbf{bc1}}                                                     \\
+            & \neg \neg \alpha \rightarrow \alpha\tag{\textbf{cf}}
+            \\
+            & \alpha \rightarrow \neg \neg \alpha\tag{\textbf{ce}}
+            \\
+            & \neg \circ \alpha \rightarrow (\alpha \land \neg \alpha)\tag{\textbf{ci}}                                                                           \\
+            & \neg (\alpha \lor \beta) \rightarrow (\neg \alpha \land \neg \beta)\tag{\textbf{neg}$\lor_{1}$}\\
+            & (\neg \alpha \land \neg \beta) \rightarrow \neg (\alpha \lor \beta)\tag{\textbf{neg}$\lor_{2}$}\\
+            & \neg(\alpha \land \beta) \rightarrow (\neg \alpha \lor \neg \beta)\tag{\textbf{neg}$\land_{1}$}\\
+            & (\neg \alpha \lor \neg \beta) \rightarrow \neg (\alpha \land \beta)\tag{\textbf{neg}$\land_{2}$}\\
+            & \neg (\alpha \rightarrow \beta) \rightarrow(\alpha \land \neg \beta)\tag{\textbf{neg}$\rightarrow_{1}$}\\
+            & (\alpha \land \neg \beta) \rightarrow \neg(\alpha \rightarrow \beta)\tag{\textbf{neg}$\rightarrow_{2}$}
+    \end{align*}
         \\
-        & \alpha \rightarrow \neg \neg \alpha\tag{\textbf{ce}}
-        \\
-        & \neg \circ \alpha \rightarrow (\alpha \land \neg \alpha)\tag{\textbf{ci}}                                                                           \\
-        & \neg (\alpha \lor \beta) \rightarrow (\neg \alpha \land \neg \beta)\tag{\textbf{neg}$\lor_{1}$}\\
-        & (\neg \alpha \land \neg \beta) \rightarrow \neg (\alpha \lor \beta)\tag{\textbf{neg}$\lor_{2}$}\\
-        & \neg(\alpha \land \beta) \rightarrow (\neg \alpha \lor \neg \beta)\tag{\textbf{neg}$\land_{1}$}\\
-        & (\neg \alpha \lor \neg \beta) \rightarrow \neg (\alpha \land \beta)\tag{\textbf{neg}$\land_{2}$}\\
-        & \neg (\alpha \rightarrow \beta) \rightarrow(\alpha \land \neg \beta)\tag{\textbf{neg}$\rightarrow_{1}$}\\
-        & (\alpha \land \neg \beta) \rightarrow \neg(\alpha \rightarrow \beta)\tag{\textbf{neg}$\rightarrow_{2}$}
-   \end{align*}
-    \\
-    \noindent\textbf{Regra de inferência:}
-    \begin{prooftree}
-        \AxiomC{$\alpha, \alpha \rightarrow \beta$}
-        \RightLabel{MP}
-        \UnaryInfC{$\beta$}
-    \end{prooftree}
-    \qed{}
-\end{definicao}
+        \noindent\textbf{Regra de inferência:}
+        \begin{prooftree}
+            \AxiomC{$\alpha, \alpha \rightarrow \beta$}
+            \RightLabel{MP}
+            \UnaryInfC{$\beta$}
+        \end{prooftree}
+        \qed{}
+    \end{definicao}
 
 \section{Semântica}
 \label{sec:semantica}
-\helena{qq eu boto aqui ahuahuhuahua}
+    \helena{qq eu boto aqui ahuahuhuahua}
 
-\migs{Idem ao que eu falei acima}
+    \migs{Idem ao que eu falei acima}
 
-Uma das formas de se definir a semântica de uma dada lógica $\pazocal{L}$ é definir uma \textit{matriz lógica} para seus conectivos. 
-\begin{definicao}[Matriz Lógica]
-    Uma matriz lógica é uma dupla $\pazocal{M} = \langle M, D \rangle$ onde $M$ é seu domínio e $D$ é seu conjunto de valores designados (valores considerados tautologias \migs{Eu acho que ``considerados verdadeiros'' fica melhor, mas seria bom conferir}). \qed{}
-\end{definicao}
-Por exemplo, a matriz lógica $\pazocal{M}_{LPC} = \langle M, D \rangle$ da lógica proposicional clássica possui um domínio $M = \{1, 0\}$ e um conjunto de valores designados $D = \{1\}$.
-\begin{definicao}[Lógica Trivalorada]
-    Uma  lógica $\pazocal{L}$ é dita uma lógica trivalorada caso ela esteja associada a uma matriz $\pazocal{M} = \langle M, D \rangle$ de forma que seu domínio $M$ possua três elementos.
-    \qed{}
-\end{definicao}
+    Uma das formas de se definir a semântica de uma dada lógica $\pazocal{L}$ é definir uma \textit{matriz lógica} para seus conectivos. 
+    \begin{definicao}[Matriz Lógica]
+        Uma matriz lógica é uma dupla $\pazocal{M} = \langle M, D \rangle$ onde $M$ é seu domínio e $D$ é seu conjunto de valores designados (valores considerados tautologias). \qed{}
+    \end{definicao}
+    Por exemplo, a matriz lógica $\pazocal{M}_{LPC} = \langle M, D \rangle$ da lógica proposicional clássica possui um domínio $M = \{1, 0\}$ e um conjunto de valores designados $D = \{1\}$.
+    \begin{definicao}[Lógica Trivalorada]
+        Uma  lógica $\pazocal{L}$ é dita uma lógica trivalorada caso ela esteja associada a uma matriz $\pazocal{M} = \langle M, D \rangle$ de forma que seu domínio $M$ possua três elementos.
+        \qed{}
+    \end{definicao}
 
-\migs{Acho que seria interessante explicar o que significa o valor verdade de $\meio$}
+    \migs{Acho que seria interessante explicar o que significa o valor verdade de $\meio$}
 
-\begin{definicao}[Matriz lógica da \lfium{}]
-    A matriz lógica $\pazocal{M}_{\lfium{}} = \langle M, D \rangle$ com domínio $M = \{1, \meio{}, 0\}$ e um conjunto de valores designados $D = \{1, \meio{}\}$ é definida da seguinte forma:
+    \begin{definicao}[Matriz lógica da \lfium{}]
+        A matriz lógica $\pazocal{M}_{\lfium{}} = \langle M, D \rangle$ com domínio $M = \{1, \meio{}, 0\}$ e um conjunto de valores designados $D = \{1, \meio{}\}$ é definida da seguinte forma:
 
-    \noindent
-    \begin{minipage}{0.3\textwidth}
-        % Implication (→)
-        \[
-            \begin{array}{c|ccc}
-                \rightarrow & 1 & \frac{1}{2} & 0 \\
-                \hline
-                1           & 1 & \frac{1}{2} & 0 \\
-                \frac{1}{2} & 1 & \frac{1}{2} & 0 \\
-                0           & 1 & 1           & 1 \\
-            \end{array}
-        \]
-    \end{minipage}
-    \begin{minipage}{0.3\textwidth}
-        % Conjunction (∧)
-        \[
-            \begin{array}{c|ccc}
-                \land       & 1           & \frac{1}{2} & 0 \\
-                \hline
-                1           & 1           & \frac{1}{2} & 0 \\
-                \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & 0 \\
-                0           & 0           & 0           & 0 \\
-            \end{array}
-        \]
-    \end{minipage}
-    \begin{minipage}{0.3\textwidth}
-        % Disjunction (∨)
-        \[
-            \begin{array}{c|ccc}
-                \lor        & 1 & \frac{1}{2} & 0           \\
-                \hline
-                1           & 1 & 1           & 1           \\
-                \frac{1}{2} & 1 & \frac{1}{2} & \frac{1}{2} \\
-                0           & 1 & \frac{1}{2} & 0           \\
-            \end{array}
-        \]
-    \end{minipage}
+        \noindent
+        \begin{minipage}{0.3\textwidth}
+            % Implication (→)
+            \[
+                \begin{array}{c|ccc}
+                    \rightarrow & 1 & \frac{1}{2} & 0 \\
+                    \hline
+                    1           & 1 & \frac{1}{2} & 0 \\
+                    \frac{1}{2} & 1 & \frac{1}{2} & 0 \\
+                    0           & 1 & 1           & 1 \\
+                \end{array}
+            \]
+        \end{minipage}
+        \begin{minipage}{0.3\textwidth}
+            % Conjunction (∧)
+            \[
+                \begin{array}{c|ccc}
+                    \land       & 1           & \frac{1}{2} & 0 \\
+                    \hline
+                    1           & 1           & \frac{1}{2} & 0 \\
+                    \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & 0 \\
+                    0           & 0           & 0           & 0 \\
+                \end{array}
+            \]
+        \end{minipage}
+        \begin{minipage}{0.3\textwidth}
+            % Disjunction (∨)
+            \[
+                \begin{array}{c|ccc}
+                    \lor        & 1 & \frac{1}{2} & 0           \\
+                    \hline
+                    1           & 1 & 1           & 1           \\
+                    \frac{1}{2} & 1 & \frac{1}{2} & \frac{1}{2} \\
+                    0           & 1 & \frac{1}{2} & 0           \\
+                \end{array}
+            \]
+        \end{minipage}
 
-    \vspace{0.5cm}
+        \vspace{0.5cm}
 
-    \begin{minipage}{0.5\textwidth}
-        % Negation (¬)
-        \[
-            \begin{array}{c|c}
-                            & \neg        \\
-                \hline
-                1           & 0           \\
-                \frac{1}{2} & \frac{1}{2} \\
-                0           & 1           \\
-            \end{array}
-        \]
-    \end{minipage}
-    \begin{minipage}{0.3\textwidth}
-        \[
-            \begin{array}{c|c}
-                            & \circ   \\
-                \hline
-                1           & 1         \\
-                \frac{1}{2} & 0         \\
-                0           & 1         \\
-            \end{array}
-        \]
-    \end{minipage}
+        \begin{minipage}{0.5\textwidth}
+            % Negation (¬)
+            \[
+                \begin{array}{c|c}
+                                & \neg        \\
+                    \hline
+                    1           & 0           \\
+                    \frac{1}{2} & \frac{1}{2} \\
+                    0           & 1           \\
+                \end{array}
+            \]
+        \end{minipage}
+        \begin{minipage}{0.3\textwidth}
+            \[
+                \begin{array}{c|c}
+                                & \circ   \\
+                    \hline
+                    1           & 1         \\
+                    \frac{1}{2} & 0         \\
+                    0           & 1         \\
+                \end{array}
+            \]
+        \end{minipage}
 
-    \noindent
-    \qed{}
-\end{definicao}
+        \noindent
+        \qed{}
+    \end{definicao}
 
-A lógica \lfium{} é, portanto, dita trivalorada.
+    A lógica \lfium{} é, portanto, dita trivalorada.
 
-\migs{Aqui acho interessante você explicar que essa é uma semântica não determinística e explicar pq você está incluindo ela, assim como eventualmente provar que ela é intertraduzível para a semântica de matrizes (isso deve ter no livro eu creio, se não fazemos juntos essa prova)}
-\begin{definicao} [Semântica de valorações para \textbf{$\text{LFI1}_{\circ}$}]
-    \label{def:valoracoes}
-    A função $v : \pazocal{L}_{\Sigma} \rightarrow \{1, 0\}$ é uma valoração para $\text{LFI1}_{\circ}$ caso ela satisfaça as seguintes cláusulas:
-    \begin{align*}
-        & v(\alpha \land \beta) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\beta) = 1\tag{\textbf{$vAnd$}}\\
-        & v(\alpha \lor \beta) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ ou } v(\beta) = 1\tag{\textbf{$vOr$}}\\
-        & v(\alpha \rightarrow \beta) = 1 \Longleftrightarrow v(\alpha) = 0 \text{ ou } v(\beta) = 1\tag{\textbf{$vImp$}}\\
-        & v(\neg \alpha) = 0 \Longrightarrow v(\alpha) = 1\tag{\textbf{$vNeg$}}\\
-        & v(\circ \alpha) = 1 \Longrightarrow v(\alpha) = 0 \text{ ou } v(\neg \alpha) = 0\tag{\textbf{$vCon$}}\\
-        & v(\neg \circ \alpha) = 1 \Longrightarrow v(\alpha) = 1 \text{ e } v(\neg \alpha) = 1\tag{\textbf{$vCi$}}\\
-        & v(\neg \neg \alpha) = 1 \Longrightarrow v(\alpha) = 1\tag{\textbf{$vCf$}}\\
-        & v(\alpha) = 1 \Longrightarrow v(\neg \neg \alpha) = 1\tag{\textbf{$vCe$}}\\
-        & v(\neg (\alpha \land \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ ou } v(\neg \beta) = 1\tag{\textbf{$vDM_{\land}$}}\\
-        & v(\neg (\alpha \lor \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vDM_{\lor}$}}\\
-        & v(\neg (\alpha \rightarrow \beta)) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vCIp_{\rightarrow}$}}
-    \end{align*}
-    
-\end{definicao}
+    \migs{Aqui acho interessante você explicar que essa é uma semântica não determinística e explicar pq você está incluindo ela, assim como eventualmente provar que ela é intertraduzível para a semântica de matrizes (isso deve ter no livro eu creio, se não fazemos juntos essa prova)}
+    \begin{definicao} [Semântica de valorações para \textbf{$\text{LFI1}_{\circ}$}]
+        \label{def:valoracoes}
+        A função $v : \pazocal{L}_{\Sigma} \rightarrow \{1, 0\}$ é uma valoração para $\text{LFI1}_{\circ}$ caso ela satisfaça as seguintes cláusulas:
+        \begin{align*}
+            & v(\alpha \land \beta) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\beta) = 1\tag{\textbf{$vAnd$}}\\
+            & v(\alpha \lor \beta) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ ou } v(\beta) = 1\tag{\textbf{$vOr$}}\\
+            & v(\alpha \rightarrow \beta) = 1 \Longleftrightarrow v(\alpha) = 0 \text{ ou } v(\beta) = 1\tag{\textbf{$vImp$}}\\
+            & v(\neg \alpha) = 0 \Longrightarrow v(\alpha) = 1\tag{\textbf{$vNeg$}}\\
+            & v(\circ \alpha) = 1 \Longrightarrow v(\alpha) = 0 \text{ ou } v(\neg \alpha) = 0\tag{\textbf{$vCon$}}\\
+            & v(\neg \circ \alpha) = 1 \Longrightarrow v(\alpha) = 1 \text{ e } v(\neg \alpha) = 1\tag{\textbf{$vCi$}}\\
+            & v(\neg \neg \alpha) = 1 \Longrightarrow v(\alpha) = 1\tag{\textbf{$vCf$}}\\
+            & v(\alpha) = 1 \Longrightarrow v(\neg \neg \alpha) = 1\tag{\textbf{$vCe$}}\\
+            & v(\neg (\alpha \land \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ ou } v(\neg \beta) = 1\tag{\textbf{$vDM_{\land}$}}\\
+            & v(\neg (\alpha \lor \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vDM_{\lor}$}}\\
+            & v(\neg (\alpha \rightarrow \beta)) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vCIp_{\rightarrow}$}}
+        \end{align*}
+        
+    \end{definicao}
