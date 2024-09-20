@@ -3,10 +3,9 @@
 
 \helena{coisas bancos de dados}. A \textit{Lógica De Inconsistência Formal} \lfium{} introduz na sua assinatura o operador $\circ$ para representar a consistência, internalizando este conceito em sua linguagem. Uma informação é dita consistente caso ela e sua negação não sejam simultaneamente verdadeiras, ou seja, dada uma informação $\alpha$, sua consistência $\circ \alpha$ será equivalente a fórmula $\neg (\alpha \land \neg \alpha)$. Com a introdução deste novo operador, é possível lidar com a inconsistência de informações sem que trivialidade ocorra, já que, caso uma informação seja conhecidamente \textit{inconsistente}, ou seja, $\neg \circ \alpha$, então ela se trata de uma contradição inofensiva, fruto do excesso de informações numa dada teoria. Com isso, na \lfium{}, o conjunto $\bigcirc(p)$ de fórmulas dependentes somente na variável $p$ (descrito na Definição~\ref{def:lfi}) assume forma $\{\circ p\}$.
 
-No trabalho de~\citeshort{carnielli2000formal} a lógica \textbf{LFI1*} é definida como uma extensão de primeira ordem da lógica proposicional \lfium{}. A motivação para definir-se uma \textit{Lógica de Inconsistência Formal} de primeira ordem vem da natureza das informações contidas em bancos de dados, estas que podem ser compreendidas como sentenças de primeira ordem fixas~\cite{Codd}, entretanto, o presente trabalho trata somente da lógica proposicional \lfium{}. Ademais,~\citeshort{carnielli2000formal} tomam o operador de \textit{inconsistência} (denotado por $\bullet$) como primitivo. Isto foi feito pois o foco era explorar a \lfium{} como uma ferramenta para lidar com inconsistências em bancos de dados, portanto tomar a inconsistência como primitiva era de grande interesse. Entretanto, no presente trabalho, será utilizada a definição apresentada em~\citeshort{Carnielli_Coniglio_2016}, onde a linguagem é definida utilizando o operador $\circ$ como primitivo. Isto foi feito pois salienta algumas propriedades interessantes da negação $\neg$, como a presença das leis de De Morgan, axiomatizadas na Seção~\ref{sec:axiomatizacao}.
+No trabalho de~\citeshort{carnielli2000formal} a lógica \textbf{LFI1*} é definida como uma extensão de primeira ordem da lógica proposicional \lfium{}. A motivação para definir-se uma \textit{Lógica de Inconsistência Formal} de primeira ordem vem da natureza das informações contidas em bancos de dados, estas que podem ser compreendidas como sentenças de primeira ordem fixas~\cite{Codd}, entretanto, o presente trabalho trata somente da lógica proposicional \lfium{}. Ademais,~\citeshort{carnielli2000formal} tomam o operador de \textit{inconsistência} (denotado por $\bullet$) como primitivo. Isto foi feito pois o foco era explorar a \lfium{} como uma ferramenta para lidar com inconsistências em bancos de dados, portanto tomar a inconsistência como primitiva era de grande interesse. Entretanto, no presente trabalho, será utilizada a definição apresentada em~\citeshort{Carnielli_Coniglio_2016}, onde a linguagem é definida utilizando o operador $\circ$ como primitivo. Isto salienta algumas propriedades interessantes da negação $\neg$, como a presença das leis de De Morgan, axiomatizadas na Seção~\ref{sec:axiomatizacao}.
 
-Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é apresentada a linguagem da lógica proposicional \lfium{} bem como definições necessárias para desenvolver as provas de metateoremas. Na Seção~\ref{sec:axiomatizacao} contém uma breve explicação sobre sistemas de prova sintáticos e uma Axiomatização de Hilbert para a \lfium{} é definida. Na Seção~\ref{sec:semantica} a semântica da \lfium{} é definida a partir de matrizes lógicas e de uma semântica de valorações não determinística.
-
+Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é apresentada a linguagem da lógica proposicional \lfium{} bem como definições necessárias para desenvolver as provas de metateoremas. A Seção~\ref{sec:axiomatizacao} contém uma breve explicação sobre sistemas de prova sintáticos e uma Axiomatização de Hilbert para a \lfium{} é definida. Na Seção~\ref{sec:semantica} a semântica da \lfium{} é definida a partir de matrizes lógicas e de uma semântica de valorações não determinística. Ainda na Seção~\ref{sec:semantica}, as matrizes e a semântica de valorações são provadas equivalentes. \helena{Não sei como NÃO separar estas últimas duas frases.}
 
 \section{Linguagem}
 \label{sec:linguagem}
@@ -41,7 +40,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     Na Definição~\ref{def:complex} a função $C$ da complexidade de uma fórmula na lógica proposicional clássica foi recursivamente definida. É possível estender esta definição para identificar a complexidade de uma fórmula na \lfium{} adicionando-se uma condição para o operador $\circ$:
 
     \begin{definicao}[Complexidade de uma fórmula na \lfium{}]
-        Dada uma fórmula $\phi \in \pazocal{L}_{\Sigma}$, a complexidade $C(\phi)$ é definida adicionando-se a seguinte condição à Definição~\ref{def:complex}
+        Dada uma fórmula $\phi \in \pazocal{L}_{\Sigma}$, a complexidade $C(\phi)$ é definida adicionando-se a seguinte condição à Definição~\ref{def:complex}:
         \begin{align*}
             & \text{Se } \phi = \circ \psi \text{, então } C(\phi) = C(\psi) + 2.\tag*\qed{}
         \end{align*}
@@ -107,6 +106,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
     \migs{Idem ao que eu falei acima}
 
+    A teoria dos modelos 
     Uma das formas de se definir a semântica de uma dada lógica $\pazocal{L}$ é definir uma \textit{matriz lógica} para seus conectivos. 
     \begin{definicao}[Matriz Lógica]
         Uma matriz lógica é uma dupla $\pazocal{M} = \langle M, D \rangle$ onde $M$ é seu domínio e $D$ é seu conjunto de valores designados (valores considerados tautologias). \qed{}

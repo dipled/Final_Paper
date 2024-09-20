@@ -166,3 +166,20 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
     \end{definicao}
 
     É imediato perceber que toda \lfi{} forte é uma \lfi{} (já que a condição (i) da Definição~\ref{def:lfi_forte} satisfaz as condições (i) e (ii) da Definição~\ref{def:lfi}), mas o inverso não é necessariamente verdade. Ademais, no escopo das lógicas proposicionais, é possível estabelecer uma forma mais simples de provar que uma dada lógica proposicional é uma \textbf{LFI} forte, tomando $\alpha$ e $\beta$ como dois átomos $p$ e $q$ quaisquer nas condições (i.a), (i.b) e (i.c) da definição acima.
+
+    Para lógicas proposicionais, a Definição~\ref{def:lfi_forte} pode ser alterada para simplificar algumas de suas condições:
+
+    \begin{definicao}[\lfi{} forte para lógicas proposicionais]
+        \label{def:lfi_forte_prop}
+        Seja $\mathcal{L} = \langle \pazocal{L}_{\Theta}, \Vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Theta$ possua uma negação $\neg$ e sua linguagem $\pazocal{L}_{\Theta}$ seja definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{0},\ldots, p_{n}\}$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \lfi{} \textit{forte} (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições:
+        %(considerando $\bigcirc(\phi) = \{\psi(\phi) \; | \; \psi(p) \in \bigcirc(p)\}$): \helena{O conjunto $\bigcirc(\phi)$ é definido substituindo-se cada ocorrência $p$ por $\phi$ em cada elemento de $\bigcirc(\phi)$.}
+        \begin{align*}
+            & \text{~~(i) Existem } p, q \in \pazocal{P} \text{ de modo que:}\\
+            & \qquad \text{(i.a) } p, \neg p \nVdash q;\\
+            & \qquad \text{(i.b) } \bigcirc(p), p \nVdash q;\\
+            & \qquad \text{(i.c) } \bigcirc(p), \neg p \nVdash q;\\
+            & \text{~(ii) Para todo } \phi, \psi \in \pazocal{L}_{\Theta} \text{ tem-se } \bigcirc(\phi), \phi, \neg \phi \Vdash \psi. \tag*\qed{}
+        \end{align*}
+    \end{definicao}
+
+    Esta definição será utilizada para provar que a lógica proposicional \lfium{} se trata de uma lógica de inconsistência formal forte. 
