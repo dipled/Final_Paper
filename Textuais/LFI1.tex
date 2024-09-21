@@ -103,111 +103,123 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
 \section{Semântica}
 \label{sec:semantica}
-    \helena{qq eu boto aqui ahuahuhuahua}
+    De forma geral, a semântica é o estudo de como um sistema de símbolos (uma linguagem) internaliza informações, ou seja, é o estudo de como interpretar os símbolos de uma linguagem~\cite{brown2005encyclopedia}. Num sistema lógico, a definição de \textit{matrizes lógicas} é comumente usada para estabelecer o comportamento esperado dos conectivos lógicos de sua assinatura, definindo sua semântica. Outra forma de compreender a semântica de um sistema lógico é definir uma função conhecida como \textit{semântica de valorações}. Nesta seção, a semântica da \lfium{} será definida de dois jeitos distintos: a partir de uma \textit{matriz lógica} e a partir de uma \textit{semântica de valorações}. Ambas serão provadas equivalentes, a fim de facilitar a prova de metateoremas na Seção~\ref{sec:metateoremas}.
+    \subsection{Matriz Lógica e valorações}
+        Uma das formas de definir a semântica de uma dada lógica proposicional $\pazocal{L}_{\Theta}$ é definir uma \textit{matriz lógica} (também chamada de tabela-verdade) para os conectivos de sua assinatura proposicional $\Theta$. Para isso, é necessário definir o conceito de \textit{álgebra} para assinaturas proposicionais:
 
-    \migs{Idem ao que eu falei acima}
-    Semanticamente, a lógica \lfium{} pode ser definida a partir de \textit{matrizes lógicas} 
-    Uma das formas de se definir a semântica de uma dada lógica $\pazocal{L}$ é definir uma \textit{matriz lógica} para seus conectivos. 
-    \begin{definicao}[Matriz Lógica]
-        Uma matriz lógica é uma dupla $\pazocal{M} = \langle M, D \rangle$ onde $M$ é seu domínio e $D$ é seu conjunto de valores designados (valores considerados tautologias). \qed{}
-    \end{definicao}
-    Por exemplo, a matriz lógica $\pazocal{M}_{LPC} = \langle M, D \rangle$ da lógica proposicional clássica possui um domínio $M = \{1, 0\}$ e um conjunto de valores designados $D = \{1\}$.
-    \begin{definicao}[Lógica Trivalorada]
-        Uma  lógica $\pazocal{L}$ é dita uma lógica trivalorada caso ela esteja associada a uma matriz $\pazocal{M} = \langle M, D \rangle$ de forma que seu domínio $M$ possua três elementos.
-        \qed{}
-    \end{definicao}
+        \begin{definicao}[Álgebra para assinaturas proposicionais]
+        \label{def:algebra}
+            Uma álgebra para uma assinatura proposicional $\Theta$ é uma dupla $\pazocal{A} = \langle A, O \rangle$, onde $A$ é um conjunto não vazio (chamado de \textit{domínio} da álgebra) e, para todo conectivo n-ário $c \in \Theta$,  $O$ é uma função que define uma operação $c^{\pazocal{A}} \; : \; A^{n} \rightarrow A$ em $A$. \qed{}
+        \end{definicao}
 
-    \migs{Acho que seria interessante explicar o que significa o valor verdade de $\meio$}
+        Quando não for confuso, o mesmo símbolo é utilizado para representar um conectivo $c$ e sua interpretação $O(c) = c^{\pazocal{A}}$. Ademais, caso $\Theta$ seja finito, a função $O$ é substituída pela lista de conectivos de $\Theta$. Por exemplo, uma álgebra para a assinatura $\Sigma$ da \lfium{} é escrita como $\pazocal{A} = \langle A,\land, \lor, \rightarrow, \neg, \circ \rangle$.
+        
+        \begin{definicao}[Matriz Lógica]
+            Seja $\Theta$ uma assinatura proposicional. Uma \textit{matriz lógica} $\pazocal{M}$ definida sobre $\Theta$ é uma tripla $\pazocal{M} = \langle A, D, O \rangle$, tal que o par $\langle A, O \rangle$ é uma álgebra para $\Theta$ e $D$ é um subconjunto de $A$ cujos elementos são ditos \textit{designados}.\qed{}
+        \end{definicao}
 
-    \begin{definicao}[Matriz lógica da \lfium{}]
-        A matriz lógica $\pazocal{M}_{\lfium{}} = \langle M, D \rangle$ com domínio $M = \{1, \meio{}, 0\}$ e um conjunto de valores designados $D = \{1, \meio{}\}$ é definida da seguinte forma:
+        Com isso, uma lógica tarskiana $\mathcal{L}$ sobre uma linguagem $\pazocal{L}_{\Theta}$ é definida por uma matriz lógica $\pazocal{M} = \langle A, D, O \rangle$ da seguinte forma: $\Gamma \vDash_{M} \alpha$ sse, para todo homomorfismo $h \; : \; \pazocal{L}_{\Theta} \rightarrow \pazocal{A}$ (onde $\pazocal{A}$ é a álgebra por trás de $\pazocal{M}$), se $h[\Gamma] \subseteq D$ então $h(\alpha) \in D$. Em particular, $\alpha$ é uma tautologia em $\mathcal{L}$ sse $h(\alpha) \in D$ para todo homomorfismo $h$.
 
-        \noindent
-        \begin{minipage}{0.3\textwidth}
-            % Implication (→)
-            \[
-                \begin{array}{c|ccc}
-                    \rightarrow & 1 & \frac{1}{2} & 0 \\
-                    \hline
-                    1           & 1 & \frac{1}{2} & 0 \\
-                    \frac{1}{2} & 1 & \frac{1}{2} & 0 \\
-                    0           & 1 & 1           & 1 \\
-                \end{array}
-            \]
-        \end{minipage}
-        \begin{minipage}{0.3\textwidth}
-            % Conjunction (∧)
-            \[
-                \begin{array}{c|ccc}
-                    \land       & 1           & \frac{1}{2} & 0 \\
-                    \hline
-                    1           & 1           & \frac{1}{2} & 0 \\
-                    \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & 0 \\
-                    0           & 0           & 0           & 0 \\
-                \end{array}
-            \]
-        \end{minipage}
-        \begin{minipage}{0.3\textwidth}
-            % Disjunction (∨)
-            \[
-                \begin{array}{c|ccc}
-                    \lor        & 1 & \frac{1}{2} & 0           \\
-                    \hline
-                    1           & 1 & 1           & 1           \\
-                    \frac{1}{2} & 1 & \frac{1}{2} & \frac{1}{2} \\
-                    0           & 1 & \frac{1}{2} & 0           \\
-                \end{array}
-            \]
-        \end{minipage}
+        \begin{definicao}[Valoração]
+            Seja $\pazocal{M}$ uma matriz definida a partir de uma álgebra $\pazocal{A}$ tal que $\pazocal{M}$ define uma lógica $\mathcal{L}$ sobre a linguagem $\pazocal{L}_{\Theta}$. Um homomorfismo $h \; : \; \pazocal{L}_{\Theta} \rightarrow \pazocal{A}$ é dito uma valoração sobre $\pazocal{M}$.\qed{}
+        \end{definicao}
 
-        \vspace{0.5cm}
 
-        \begin{minipage}{0.5\textwidth}
-            % Negation (¬)
-            \[
-                \begin{array}{c|c}
-                                & \neg        \\
-                    \hline
-                    1           & 0           \\
-                    \frac{1}{2} & \frac{1}{2} \\
-                    0           & 1           \\
-                \end{array}
-            \]
-        \end{minipage}
-        \begin{minipage}{0.3\textwidth}
-            \[
-                \begin{array}{c|c}
-                                & \circ   \\
-                    \hline
-                    1           & 1         \\
-                    \frac{1}{2} & 0         \\
-                    0           & 1         \\
-                \end{array}
-            \]
-        \end{minipage}
+        \migs{Acho que seria interessante explicar o que significa o valor verdade de $\meio$}
 
-        \noindent
-        \qed{}
-    \end{definicao}
+        \begin{definicao}[Matriz lógica da \lfium{}]
+            A matriz lógica $\pazocal{M}_{\lfium{}} = \langle M, D \rangle$ com domínio $M = \{1, \meio{}, 0\}$ e um conjunto de valores designados $D = \{1, \meio{}\}$ é definida da seguinte forma:
 
-    A lógica \lfium{} é, portanto, dita trivalorada.
+            \noindent
+            \begin{minipage}{0.3\textwidth}
+                % Implication (→)
+                \[
+                    \begin{array}{c|ccc}
+                        \rightarrow & 1 & \frac{1}{2} & 0 \\
+                        \hline
+                        1           & 1 & \frac{1}{2} & 0 \\
+                        \frac{1}{2} & 1 & \frac{1}{2} & 0 \\
+                        0           & 1 & 1           & 1 \\
+                    \end{array}
+                \]
+            \end{minipage}
+            \begin{minipage}{0.3\textwidth}
+                % Conjunction (∧)
+                \[
+                    \begin{array}{c|ccc}
+                        \land       & 1           & \frac{1}{2} & 0 \\
+                        \hline
+                        1           & 1           & \frac{1}{2} & 0 \\
+                        \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & 0 \\
+                        0           & 0           & 0           & 0 \\
+                    \end{array}
+                \]
+            \end{minipage}
+            \begin{minipage}{0.3\textwidth}
+                % Disjunction (∨)
+                \[
+                    \begin{array}{c|ccc}
+                        \lor        & 1 & \frac{1}{2} & 0           \\
+                        \hline
+                        1           & 1 & 1           & 1           \\
+                        \frac{1}{2} & 1 & \frac{1}{2} & \frac{1}{2} \\
+                        0           & 1 & \frac{1}{2} & 0           \\
+                    \end{array}
+                \]
+            \end{minipage}
+
+            \vspace{0.5cm}
+
+            \begin{minipage}{0.5\textwidth}
+                % Negation (¬)
+                \[
+                    \begin{array}{c|c}
+                                    & \neg        \\
+                        \hline
+                        1           & 0           \\
+                        \frac{1}{2} & \frac{1}{2} \\
+                        0           & 1           \\
+                    \end{array}
+                \]
+            \end{minipage}
+            \begin{minipage}{0.3\textwidth}
+                \[
+                    \begin{array}{c|c}
+                                    & \circ   \\
+                        \hline
+                        1           & 1         \\
+                        \frac{1}{2} & 0         \\
+                        0           & 1         \\
+                    \end{array}
+                \]
+            \end{minipage}
+
+            \noindent
+            \qed{}
+        \end{definicao}
+
+        A lógica \lfium{} é, portanto, dita trivalorada.
 
     \migs{Aqui acho interessante você explicar que essa é uma semântica não determinística e explicar pq você está incluindo ela, assim como eventualmente provar que ela é intertraduzível para a semântica de matrizes (isso deve ter no livro eu creio, se não fazemos juntos essa prova)}
-    \begin{definicao} [Semântica de valorações para \textbf{$\text{LFI1}_{\circ}$}]
-        \label{def:valoracoes}
-        A função $v : \pazocal{L}_{\Sigma} \rightarrow \{1, 0\}$ é uma valoração para $\text{LFI1}_{\circ}$ caso ela satisfaça as seguintes cláusulas:
-        \begin{align*}
-            & v(\alpha \land \beta) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\beta) = 1\tag{\textbf{$vAnd$}}\\
-            & v(\alpha \lor \beta) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ ou } v(\beta) = 1\tag{\textbf{$vOr$}}\\
-            & v(\alpha \rightarrow \beta) = 1 \Longleftrightarrow v(\alpha) = 0 \text{ ou } v(\beta) = 1\tag{\textbf{$vImp$}}\\
-            & v(\neg \alpha) = 0 \Longrightarrow v(\alpha) = 1\tag{\textbf{$vNeg$}}\\
-            & v(\circ \alpha) = 1 \Longrightarrow v(\alpha) = 0 \text{ ou } v(\neg \alpha) = 0\tag{\textbf{$vCon$}}\\
-            & v(\neg \circ \alpha) = 1 \Longrightarrow v(\alpha) = 1 \text{ e } v(\neg \alpha) = 1\tag{\textbf{$vCi$}}\\
-            & v(\neg \neg \alpha) = 1 \Longrightarrow v(\alpha) = 1\tag{\textbf{$vCf$}}\\
-            & v(\alpha) = 1 \Longrightarrow v(\neg \neg \alpha) = 1\tag{\textbf{$vCe$}}\\
-            & v(\neg (\alpha \land \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ ou } v(\neg \beta) = 1\tag{\textbf{$vDM_{\land}$}}\\
-            & v(\neg (\alpha \lor \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vDM_{\lor}$}}\\
-            & v(\neg (\alpha \rightarrow \beta)) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vCIp_{\rightarrow}$}}
-        \end{align*}
-        
-    \end{definicao}
+
+        \begin{definicao} [Semântica de valorações para \textbf{$\text{LFI1}_{\circ}$}]
+            \label{def:valoracoes}
+            A função $v : \pazocal{L}_{\Sigma} \rightarrow \{1, 0\}$ é uma valoração para $\text{LFI1}_{\circ}$ caso ela satisfaça as seguintes cláusulas:
+            \begin{align*}
+                & v(\alpha \land \beta) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\beta) = 1\tag{\textbf{$vAnd$}}\\
+                & v(\alpha \lor \beta) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ ou } v(\beta) = 1\tag{\textbf{$vOr$}}\\
+                & v(\alpha \rightarrow \beta) = 1 \Longleftrightarrow v(\alpha) = 0 \text{ ou } v(\beta) = 1\tag{\textbf{$vImp$}}\\
+                & v(\neg \alpha) = 0 \Longrightarrow v(\alpha) = 1\tag{\textbf{$vNeg$}}\\
+                & v(\circ \alpha) = 1 \Longrightarrow v(\alpha) = 0 \text{ ou } v(\neg \alpha) = 0\tag{\textbf{$vCon$}}\\
+                & v(\neg \circ \alpha) = 1 \Longrightarrow v(\alpha) = 1 \text{ e } v(\neg \alpha) = 1\tag{\textbf{$vCi$}}\\
+                & v(\neg \neg \alpha) = 1 \Longrightarrow v(\alpha) = 1\tag{\textbf{$vCf$}}\\
+                & v(\alpha) = 1 \Longrightarrow v(\neg \neg \alpha) = 1\tag{\textbf{$vCe$}}\\
+                & v(\neg (\alpha \land \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ ou } v(\neg \beta) = 1\tag{\textbf{$vDM_{\land}$}}\\
+                & v(\neg (\alpha \lor \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vDM_{\lor}$}}\\
+                & v(\neg (\alpha \rightarrow \beta)) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vCIp_{\rightarrow}$}}
+            \end{align*}
+            
+        \end{definicao}
+
+\section{Metateoremas}
+\label{sec:metateoremas}
