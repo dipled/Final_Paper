@@ -105,7 +105,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 \label{sec:semantica}
     De forma geral, a semântica é o estudo de como um sistema de símbolos (uma linguagem) internaliza informações, ou seja, é o estudo de como interpretar os símbolos de uma linguagem~\cite{brown2005encyclopedia}. Num sistema lógico, a definição de \textit{matrizes lógicas} é comumente usada para estabelecer o comportamento esperado dos conectivos lógicos de sua assinatura, definindo sua semântica. Outra forma de compreender a semântica de um sistema lógico é definir uma função conhecida como \textit{semântica de valorações}. Nesta seção, a semântica da \lfium{} será definida de dois jeitos distintos: a partir de uma \textit{matriz lógica} e a partir de uma \textit{semântica de valorações}. Ambas serão provadas equivalentes, a fim de facilitar a prova de metateoremas na Seção~\ref{sec:metateoremas}.
     \subsection{Matriz Lógica e valorações}
-        Uma das formas de definir a semântica de uma dada lógica proposicional $\pazocal{L}_{\Theta}$ é definir uma \textit{matriz lógica} (também chamada de tabela-verdade) para os conectivos de sua assinatura proposicional $\Theta$. Para isso, é necessário definir o conceito de \textit{álgebra} para assinaturas proposicionais:
+        Uma das formas de definir a semântica de uma lógica proposicional é definir uma \textit{matriz lógica} (também chamada de tabela-verdade) para os conectivos de sua assinatura proposicional. Para isso, é necessário definir o conceito de \textit{álgebra} para assinaturas proposicionais:
 
         \begin{definicao}[Álgebra para assinaturas proposicionais]
         \label{def:algebra}
@@ -118,10 +118,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             Seja $\Theta$ uma assinatura proposicional. Uma \textit{matriz lógica} $\pazocal{M}$ definida sobre $\Theta$ é uma tripla $\pazocal{M} = \langle A, D, O \rangle$, tal que o par $\langle A, O \rangle$ é uma álgebra para $\Theta$ e $D$ é um subconjunto de $A$ cujos elementos são ditos \textit{designados}.\qed{}
         \end{definicao}
 
-        Com isso, uma lógica tarskiana $\mathcal{L}$ sobre uma linguagem $\pazocal{L}_{\Theta}$ é definida por uma matriz lógica $\pazocal{M} = \langle A, D, O \rangle$ da seguinte forma: $\Gamma \vDash_{M} \alpha$ sse, para todo homomorfismo $h \; : \; \pazocal{L}_{\Theta} \rightarrow \pazocal{A}$ (onde $\pazocal{A}$ é a álgebra por trás de $\pazocal{M}$), se $h[\Gamma] \subseteq D$ então $h(\alpha) \in D$. Em particular, $\alpha$ é uma tautologia em $\mathcal{L}$ sse $h(\alpha) \in D$ para todo homomorfismo $h$.
+        Com isso, uma lógica tarskiana $\mathcal{L}$ sobre uma linguagem $\pazocal{L}_{\Theta}$ é definida por uma matriz lógica $\pazocal{M} = \langle A, D, O \rangle$ da seguinte forma: $\Gamma \vDash_{M} \alpha$ sse, para todo homomorfismo $h : \pazocal{L}_{\Theta} \rightarrow \pazocal{A}$ (onde $\pazocal{A}$ é a álgebra por trás de $\pazocal{M}$), se $h[\Gamma] \subseteq D$ então $h(\alpha) \in D$. Em particular, $\alpha$ é uma tautologia em $\mathcal{L}$ sse $h(\alpha) \in D$ para todo homomorfismo $h$.
 
         \begin{definicao}[Valoração]
-            Seja $\pazocal{M}$ uma matriz definida a partir de uma álgebra $\pazocal{A}$ tal que $\pazocal{M}$ define uma lógica $\mathcal{L}$ sobre a linguagem $\pazocal{L}_{\Theta}$. Um homomorfismo $h \; : \; \pazocal{L}_{\Theta} \rightarrow \pazocal{A}$ é dito uma valoração sobre $\pazocal{M}$.\qed{}
+            Seja $\pazocal{M}$ uma matriz definida a partir de uma álgebra $\pazocal{A}$ tal que $\pazocal{M}$ define uma lógica $\mathcal{L}$ sobre a linguagem $\pazocal{L}_{\Theta}$. Um homomorfismo $h : \pazocal{L}_{\Theta} \rightarrow \pazocal{A}$ é dito uma valoração sobre $\pazocal{M}$.\qed{}
         \end{definicao}
 
 
