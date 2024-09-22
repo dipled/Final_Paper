@@ -71,8 +71,12 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
             & \text{3.~Se }\phi = \triangle \gamma \text{ então, } \phi\{p_{i} \mapsto \psi\} = \triangle(\gamma\{p_{i} \mapsto \psi\});                                                 \\
             & \text{4.~Se }\phi = \phi_{0} \otimes \phi_{1} \text{ então, } \phi\{p_{i} \mapsto \psi\} = \phi_{0}\{p_{i} \mapsto \psi\} \otimes \phi_{1}\{p_{i} \mapsto \psi\}.
         \end{align*}
-        Uma fórmula $\alpha$ é dita \textit{instância de substituição} de uma fórmula $\beta$ caso exista uma substituição $\sigma$ tal que $\alpha = \sigma(\beta)$. Ademais, a aplicação de uma substituição $\sigma$ sobre todos os elementos de uma teoria $\Gamma$ é definida como $\sigma[\Gamma] = \{\sigma(\phi) \; | \; \phi \in \Gamma\}$.\qed{}
+        Uma fórmula $\alpha$ é dita \textit{instância de substituição} de uma fórmula $\beta$ caso exista uma substituição $\sigma$ tal que $\alpha = \sigma(\beta)$.\qed{}
     \end{definicao}
+
+    \begin{notacao}
+        Dada uma função $f$ e um subconjunto $A$ de seu domínio, $f[A]$ resume o conjunto $\{f(a) \; | \; a \in A\}$.
+    \end{notacao}
 
 
     \begin{definicao}[Lógica Tarskiana]
@@ -81,7 +85,7 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
         \begin{align}
             & \text{~~(i) Se } \alpha \in \Gamma \text{ então } \Gamma \Vdash \alpha;\tag{reflexividade}                                                                                       \\
             & \text{~(ii) Se } \Delta \Vdash \alpha \text{ e } \Delta \subseteq \Gamma \text{ então } \Gamma \Vdash \alpha;\tag{monotonicidade}                                                \\
-            & \text{(iii) Se } \Delta \Vdash \alpha \text{ e } \Gamma \Vdash \delta \text{ para todo } \delta \in \Delta \text{ então } \Gamma \Vdash \alpha.\tag{corte para conjuntos}
+            & \text{(iii) Se } \Delta \Vdash \alpha \text{ e } \Gamma \Vdash \delta \text{ para todo } \delta \in \Delta \text{ então } \Gamma \Vdash \alpha.\tag{corte}
         \end{align}
 
         Com a noção de substituição para lógicas proposicionais apresentada na Definição~\ref{def:substituicao}, é possível descrever as lógicas estruturais como sendo lógicas nas quais todas as inferências são fechadas para a substituição:
