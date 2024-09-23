@@ -5,7 +5,7 @@
 
 No trabalho de~\citeshort{carnielli2000formal} a lógica \textbf{LFI1*} é definida como uma extensão de primeira ordem da lógica proposicional \lfium{}. A motivação para definir-se uma \textit{Lógica de Inconsistência Formal} de primeira ordem vem da natureza das informações contidas em bancos de dados, estas que podem ser compreendidas como sentenças de primeira ordem fixas~\cite{Codd}, entretanto, o presente trabalho trata somente da lógica proposicional \lfium{}. Ademais,~\citeshort{carnielli2000formal} tomam o operador de \textit{inconsistência} (denotado por $\bullet$) como primitivo. Isto foi feito pois o foco era explorar a \lfium{} como uma ferramenta para lidar com inconsistências em bancos de dados, portanto tomar a inconsistência como primitiva era de grande interesse. Entretanto, no presente trabalho, será utilizada a definição apresentada em~\citeshort{Carnielli_Coniglio_2016}, onde a linguagem é definida utilizando o operador $\circ$ como primitivo. Isto foi feito pois salienta algumas propriedades interessantes da negação $\neg$, como a presença das leis de De Morgan, axiomatizadas na Seção~\ref{sec:axiomatizacao}.
 
-Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é apresentada a linguagem da lógica proposicional \lfium{} bem como definições necessárias para desenvolver as provas de metateoremas. Na Seção~\ref{sec:axiomatizacao} contém uma breve explicação sobre sistemas de prova sintáticos e uma Axiomatização de Hilbert para a \lfium{} é definida. Na Seção~\ref{sec:semantica} a semântica da \lfium{} é definida a partir de matrizes lógicas e de uma semântica de valorações não determinística.
+Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é apresentada a linguagem da lógica proposicional \lfium{} bem como definições necessárias para desenvolver as provas de metateoremas. Na Seção~\ref{sec:axiomatizacao} \migscortar{contém}{ há} uma breve explicação sobre sistemas de prova sintáticos e uma Axiomatização de Hilbert para a \lfium{} é definida. Na Seção~\ref{sec:semantica} a semântica da \lfium{} é definida a partir de matrizes lógicas e de uma semântica de valorações não determinística.
 
 
 \section{Linguagem}
@@ -22,7 +22,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \end{align*}
     \end{definicao}
 
-    A precedência dos conectivos é dada de maneira costumeira, com a adição do operador $\circ$ de consistência, seguindo a ordem (da maior precedência para a menor): $\circ$, $\neg$, $\land$, $\lor$, $\rightarrow$. Os conectivos binários $\land$ e $\lor$ são associativos à esquerda, ou seja, uma expressão do tipo $\alpha \land \beta \land \gamma$ é lida como $((\alpha \land \beta) \land \gamma)$, e o conectivo $\rightarrow$ é associativo à direita, ou seja, uma expressão do tipo $\alpha \rightarrow \beta \rightarrow \gamma$ é lida como $(\alpha \rightarrow (\beta \rightarrow (\gamma)))$.
+    A precedência dos conectivos é dada de maneira costumeira, com a adição do operador $\circ$ de consistência, seguindo a ordem (da maior precedência para a menor): $\circ$, $\neg$, $\land$, $\lor$, $\rightarrow$. Os conectivos binários $\land$ e $\lor$ são associativos à esquerda, ou seja, uma expressão do tipo $\alpha \land \beta \land \gamma$ é lida como $((\alpha \land \beta) \land \gamma)$, e o conectivo $\rightarrow$ é associativo à direita, ou seja, uma expressão do tipo $\alpha \rightarrow \beta \rightarrow \gamma$ é lida como $(\alpha \rightarrow (\beta \rightarrow \gamma))$.
 
     A linguagem da \lfium{} pode ser definida de maneira equivalente utilizando-se o operador de inconsistência (representado por $\bullet$), definido como $\bullet \alpha \eqdef \neg \circ \alpha$, como feito por~\citeshort{carnielli2000formal}. 
 
@@ -41,14 +41,14 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     Na Definição~\ref{def:complex} a função $C$ da complexidade de uma fórmula na lógica proposicional clássica foi recursivamente definida. É possível estender esta definição para identificar a complexidade de uma fórmula na \lfium{} adicionando-se uma condição para o operador $\circ$:
 
     \begin{definicao}[Complexidade de uma fórmula na \lfium{}]
-        Dada uma fórmula $\phi \in \pazocal{L}_{\Sigma}$, a complexidade $C(\phi)$ é definida adicionando-se a seguinte condição à Definição~\ref{def:complex}
+        Dada uma fórmula $\phi \in \pazocal{L}_{\Sigma}$, a complexidade $C(\phi)$ é definida adicionando-se a seguinte condição à Definição~\ref{def:complex}:
         \begin{align*}
             & \text{Se } \phi = \circ \psi \text{, então } C(\phi) = C(\psi) + 2.\tag*\qed{}
         \end{align*}
         
     \end{definicao}
 
-    Note que a complexidade de uma fórmula do tipo $\circ \alpha$ é estritamente maior que a complexidade de $\alpha$ e $\neg \alpha$. Isto se dá pois, como evidenciado pela semântica de valorações na Definição~\ref{def:valoracoes}, exite uma dependência de $\circ \alpha$ em $\{\alpha, \neg \alpha\}$.
+    Note que a complexidade de uma fórmula do tipo $\circ \alpha$ é estritamente maior que a complexidade de $\alpha$ e $\neg \alpha$. Isto se dá pois, como evidenciado pela semântica de valorações na Definição~\ref{def:valoracoes}, exite uma dependência de $\circ \alpha$ em $\{\alpha, \neg \alpha\}$. \migs{Colocar aqui a citação do livrão tipo ``como apresentado em blah blah''}
 
 \section{Axiomatização}
 \label{sec:axiomatizacao}
@@ -57,14 +57,14 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
     No contexto da \lfium{} existem dois sistemas de prova sintáticos estabelecidos até o momento: uma Axiomatização no estilo de Hilbert, descrita em~\citeshort{carnielli2000formal,Carnielli_Coniglio_2016} e um sistema de \textit{Tableau}, descrito em~\citeshort{tableaulfi}. No presente trabalho, foi escolhida a Axiomatização de Hilbert para definir a sintaxe da \lfium{}, dada a maior facilidade desenvolver metateoremas em relação ao sistema de \textit{Tableau}.
 
-    A Axiomatização no estilo de Hilbert (também conhecida como Sistema de Hilbert ou Cálculo de Hilbert) é um sistema composto por um conjunto de fórmulas, chamadas de \textit{axiomas}, e um conjunto de \textit{regras de inferência}. Uma regra de inferência é formada por uma lista de fórmulas chamadas de premissas da regra e uma fórmula chamada de conclusão da regra~\cite{Restall1999-RESAIT-4}. Uma prova (também chamada de derivação) de uma dada fórmula $\phi$ consiste em uma sequência finita de fórmulas \(\psi_0, \dots, \psi_n\), onde \(\psi_n = \phi\), e cada  $\psi_i\ (0 \leq i \leq n)$ é uma \textit{instância de substituição} (ver Definição~\ref{def:substituicao}) de um axioma ou o resultado da aplicação de uma regra de inferência em fórmulas anteriores\helena{Falta explicar pra LFI1}
+    A Axiomatização no estilo de Hilbert (também conhecida como Sistema de Hilbert ou Cálculo de Hilbert) é um sistema composto por um conjunto de fórmulas, chamadas de \textit{axiomas}, e um conjunto de \textit{regras de inferência}. Uma regra de inferência é formada por uma lista de fórmulas chamadas de premissas da regra e uma fórmula chamada de conclusão da regra~\cite{Restall1999-RESAIT-4}. Uma prova (também chamada de derivação) de uma dada fórmula $\phi$ consiste em uma sequência finita de fórmulas \(\psi_0, \dots, \psi_n\), onde \(\psi_n = \phi\), e cada  $\psi_i\ (0 \leq i \leq n)$ é uma \textit{instância de substituição} (ver Definição~\ref{def:substituicao}) de um axioma ou o resultado da aplicação de uma regra de inferência em fórmulas anteriores\helena{Falta explicar pra LFI1} \migs{Ademais, é interessante mencionar que o cálculo de hilbert usualmente tem apenas uma regra de inferência, e que esse é o caso aqui também}
 
     \migs{Eu sugiro uma breve explicação do que é um sistema sintático de Hilbert assim como uma breve explicação de que existem diversas axiomatizações (para a mesma assinatura) e uma explicação sobre pq vc escolheu a axiomatização que escolheu}
 
 
     \begin{definicao}[\lfium{}]
         \label{def:lfi1}
-        A lógica \lfium{} é definida sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte cálculo de Hilbert:
+        A lógica \lfium{} é definida sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte cálculo de Hilbert: \migs{Acho interessante mencionar antes ou depois dessa definição que os nomes dos axiomas são os mesmos do livro e por isso eles podem ser meio estranhos (vide bc1, cf, ce, \dots)}
 
         \noindent\textbf{(Axiomas Livrão da paraconsistência VERSÃO DO CALCULO DE HILBERT $\text{LFI1}_{\circ}$)}:
         \begin{align*}
@@ -103,13 +103,13 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
 \section{Semântica}
 \label{sec:semantica}
-    De forma geral, a semântica é o estudo de como um sistema de símbolos (uma linguagem) internaliza informações, ou seja, é o estudo de como interpretar os símbolos de uma linguagem~\cite{brown2005encyclopedia}. Num sistema lógico, a definição de \textit{matrizes lógicas} é comumente usada para estabelecer o comportamento esperado dos conectivos lógicos de sua assinatura, definindo sua semântica. Outra forma de compreender a semântica de um sistema lógico é definir uma função conhecida como \textit{semântica de valorações}. Nesta seção, a semântica da \lfium{} será definida de dois jeitos distintos: a partir de uma \textit{matriz lógica} e a partir de uma \textit{semântica de valorações}. Ambas serão provadas equivalentes, a fim de facilitar a prova de metateoremas na Seção~\ref{sec:metateoremas}.
+    De forma geral, a semântica é o estudo de como um sistema de símbolos (uma linguagem) internaliza informações, ou seja, é o estudo de como interpretar os símbolos de uma linguagem~\cite{brown2005encyclopedia}. Num sistema lógico, a definição de \textit{matrizes lógicas} é comumente usada para estabelecer o comportamento esperado dos conectivos lógicos de sua assinatura, definindo sua semântica \migs{Interessante mencionar que as tabelas verdades da lógica clássica são um caso particular de semântica matricial}. Outra forma de compreender a semântica de um sistema lógico é definir uma função conhecida como \textit{semântica de valorações} \migs{Seria bom elaborar um pouco aqui, mas ainda mencionar um caso onde normalmente usa-se semântica de valorações (lógica modal)}. Nesta seção, a semântica da \lfium{} será definida de dois jeitos distintos: a partir de uma \textit{matriz lógica} e a partir de uma \textit{semântica de valorações}. Ambas serão provadas equivalentes, a fim de facilitar a prova de metateoremas na Seção~\ref{sec:metateoremas}.
     \subsection{Matriz Lógica e valorações}
         Uma das formas de definir a semântica de uma lógica proposicional é definir uma \textit{matriz lógica} (também chamada de tabela-verdade) para os conectivos de sua assinatura proposicional. Para isso, é necessário definir o conceito de \textit{álgebra} para assinaturas proposicionais:
 
         \begin{definicao}[Álgebra para assinaturas proposicionais]
         \label{def:algebra}
-            Uma álgebra para uma assinatura proposicional $\Theta$ é uma dupla $\pazocal{A} = \langle A, O \rangle$, onde $A$ é um conjunto não vazio (chamado de \textit{domínio} da álgebra) e, para todo conectivo n-ário $c \in \Theta$,  $O$ é uma função que define uma operação $c^{\pazocal{A}} \; : \; A^{n} \rightarrow A$ em $A$. \qed{}
+            Uma álgebra para uma assinatura proposicional $\Theta$ é uma dupla $\pazocal{A} = \langle A, O \rangle$, onde $A$ é um conjunto não vazio (chamado de \textit{domínio} da álgebra \migs{Eu sei que tuas referências usam ``A'' para falar do domínio de uma álgebra, mas por favor use outra letra, você não precisa seguir a risca a notação deles}) e, para todo conectivo n-ário $c \in \Theta$,  $O$ é uma função \migs{de interpretação} que \migscortar{define}{ induz (conferir com a Kaqui se esse termo é o mais correto)} uma operação $c^{\pazocal{A}} \; : \; A^{n} \rightarrow A$ em $A$. \qed{}
         \end{definicao}
 
         Quando não for confuso, o mesmo símbolo é utilizado para representar um conectivo $c$ e sua interpretação $O(c) = c^{\pazocal{A}}$. Ademais, caso $\Theta$ seja finito, a função $O$ é substituída pela lista de conectivos de $\Theta$. Por exemplo, uma álgebra para a assinatura $\Sigma$ da \lfium{} é escrita como $\pazocal{A} = \langle A,\land, \lor, \rightarrow, \neg, \circ \rangle$.
