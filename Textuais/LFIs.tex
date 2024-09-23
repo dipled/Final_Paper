@@ -30,7 +30,7 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
 \label{sec:paracons}
     Um sistema lógico que se atreve \migs{atreve} \helena{eu gostei de escrever esse atreve porque é mól quebrando o tabu tlg} \migs{Entendo} a romper com o Princípio da Explosão {-} o qual afirma que a partir de uma teoria contraditória, qualquer conclusão segue {-} é dito paraconsistente. As justificativas para questionar tal princípio existem em diversos campos do conhecimento, como na linguística~\cite{McGinnis2013-MCGTUA}, na computação~\cite{carnielli2000formal} e até mesmo nas ciências naturais~\cite{Brown2015-BROCAP-9}. Outra justificativa para o desenvolvimento de sistemas lógicos paraconsistentes é um mero descontentamento com o caráter explosivo das lógicas ortodoxas. Por exemplo, um descontentamento com a conclusão de que ``Um triângulo tem quatro lados.'' a partir da evidência de que ``Choveu na tarde de ontem.'' e da evidência de que ``Não choveu na tarde de ontem.''~\footnote{Esta forma de explosividade é um exemplo de uma contradição estudada pelas lógicas de relevância, que tratam da conexão entre as premissas e a conclusão de uma inferência~\cite{sep-logic-relevance}.}. Nesta seção, a paraconsistência será definida formalmente, partindo de definições básicas sobre lógica e classificando diferentes sistemas de acordo com propriedades acerca de sua \textit{relação de consequência}.
 
-    Uma lógica $\mathcal{L}$ será representada como uma dupla $\mathcal{L} = \langle \pazocal{L},\Vdash \rangle$, onde $\pazocal{L}$ é sua linguagem (seu conjunto de fórmulas) e $\Vdash$ é uma relação de consequência de conclusão única, definida como $\Vdash \;\subseteq \wp(\pazocal{L})\times\pazocal{L}$. Em uma consequência do tipo $A \Vdash \alpha$ (lida como ``$\alpha$ é uma consequência de $A$.'') diz-se que o conjunto $A$ é o conjunto de premissas e $\alpha$ é a conclusão. A fim de facilitar a escrita e leitura, \migscortar{uma notação que resume o conjunto de premissas pode ser estabelecida}{ usaremos a seguinte notação no restante do trabalho}.
+    Uma lógica $\mathcal{L}$ será representada como uma dupla $\mathcal{L} = \langle \pazocal{L},\Vdash \rangle$, onde $\pazocal{L}$ é sua linguagem (seu conjunto de fórmulas) e $\Vdash$ é uma relação de consequência de conclusão única, definida como $\Vdash \;\subseteq \wp(\pazocal{L})\times\pazocal{L}$. Em uma consequência do tipo $A \Vdash \alpha$ (lida como ``$\alpha$ é uma consequência de $A$.'') diz-se que o conjunto $A$ é o conjunto de premissas e $\alpha$ é a conclusão. A fim de facilitar a escrita e leitura, a seguinte notação será utilizada ao longo do texto:
 
     \begin{notacao}
         Sejam $\Gamma, \Delta$ teorias e $\phi, \psi$ fórmulas, então $\Gamma, \Delta, \phi \Vdash \psi$ denota $\Gamma \cup \Delta \cup \{\phi\} \Vdash \psi$.
@@ -135,9 +135,8 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
         \end{align*}
     \end{definicao}
 
-    A condição (i) diz que toda \lfi{} é \textit{não-explosiva} (em relação a $\neg$) e as condições (ii) e (iii) dizem que toda \lfi{} é \textit{gentilmente explosiva} (em relação a $\bigcirc{p}$ e $\neg$).
+    A condição (i) diz que toda \lfi{} é \textit{não-explosiva} (em relação a $\neg$) e as condições (ii) e (iii) dizem que toda \lfi{} é \textit{gentilmente explosiva} (em relação a $\bigcirc(p)$ e $\neg$).
 
-    \migs{Sinto que você ainda não terminou essa seção, mas é importante você falar que o conceito de consistência é internalizado na linguagem por meio de um conectivo e aqui (ou logo depois das outras definições) seria o lugar ideal para você fazer isso.} \helena{Isso só serve pra \lfium{} e talvez pra \textbf{LFI2}. Outros exemplos de \lfis{} como a J3 e outras maluquices lá sequer têm um operador primitivo pra consistência. Acho que vou adicionar essa explicação em outro momento no texto} \migs{Realmente, o melhor é introduzir mais tarde.}
 
     Na literatura existem outras definições para as Lógicas de Inconsistência Formal, que relaxam a condição (ii) para obter uma definição mais uniforme.~\citeshort{Carnielli_Coniglio_2016}, definem \lfis{} \textit{fracas} da seguinte forma:
 
@@ -170,3 +169,20 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
     \end{definicao}
 
     É imediato perceber que toda \lfi{} forte é uma \lfi{} (já que a condição (i) da Definição~\ref{def:lfi_forte} satisfaz as condições (i) e (ii) da Definição~\ref{def:lfi}), mas o inverso não é necessariamente verdade. Ademais, no escopo das lógicas proposicionais, é possível estabelecer uma forma mais simples de provar que uma dada lógica proposicional é uma \textbf{LFI} forte, tomando $\alpha$ e $\beta$ como dois átomos $p$ e $q$ quaisquer nas condições (i.a), (i.b) e (i.c) da definição acima.
+
+    Para lógicas proposicionais, a Definição~\ref{def:lfi_forte} pode ser alterada para simplificar algumas de suas condições:
+
+    \begin{definicao}[\lfi{} forte para lógicas proposicionais]
+        \label{def:lfi_forte_prop}
+        Seja $\mathcal{L} = \langle \pazocal{L}_{\Theta}, \Vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Theta$ possua uma negação $\neg$ e sua linguagem $\pazocal{L}_{\Theta}$ seja definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{0},\ldots, p_{n}\}$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \lfi{} \textit{forte} (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições:
+        %(considerando $\bigcirc(\phi) = \{\psi(\phi) \; | \; \psi(p) \in \bigcirc(p)\}$): \helena{O conjunto $\bigcirc(\phi)$ é definido substituindo-se cada ocorrência $p$ por $\phi$ em cada elemento de $\bigcirc(\phi)$.}
+        \begin{align*}
+            & \text{~~(i) Existem } p, q \in \pazocal{P} \text{ de modo que:}\\
+            & \qquad \text{(i.a) } p, \neg p \nVdash q;\\
+            & \qquad \text{(i.b) } \bigcirc(p), p \nVdash q;\\
+            & \qquad \text{(i.c) } \bigcirc(p), \neg p \nVdash q;\\
+            & \text{~(ii) Para todo } \phi, \psi \in \pazocal{L}_{\Theta} \text{ tem-se } \bigcirc(\phi), \phi, \neg \phi \Vdash \psi. \tag*\qed{}
+        \end{align*}
+    \end{definicao}
+
+    Esta definição será utilizada para provar que a lógica proposicional \lfium{} se trata de uma Lógica de Inconsistência Formal forte. 
