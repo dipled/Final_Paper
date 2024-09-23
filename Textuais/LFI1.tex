@@ -227,7 +227,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             A função $v$ define a relação de consequência semântica $\conval{}$ para a lógica \lfium{}.\qed{}
         \end{definicao}
 
-        \helena{Prova de equivalência entre }
+        Note que, por conta de $(VNeg)$ e $(VCon)$, o valor de $v(\triangle \alpha)$ {-} para $\triangle \in \{\neg, \circ\}$ {-} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, isto não determina o valor $v(\neg \alpha)$, podendo ser tanto $0$ como $1$ (mas não ambos).
+
+        \helena{Prova de equivalência entre $\conval{}$ e $\conmat{}$}
 
 \section{Metateoremas}
 \label{sec:metateoremas}
