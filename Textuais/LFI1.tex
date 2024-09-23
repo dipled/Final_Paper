@@ -64,7 +64,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
     \begin{definicao}[\lfium{}]
         \label{def:lfi1}
-        A relação de consequência sintática $\vdash_{\lfium{}}$ para a lógica \lfium{} é definida sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte Cálculo de Hilbert:
+        A relação de consequência sintática $\conhil{}$ para a lógica \lfium{} é definida sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte Cálculo de Hilbert:
 
         \noindent\textbf{Axiomas}:
         \begin{align*}
@@ -201,7 +201,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \end{minipage}
 
             \noindent
-            A matriz $\pazocal{M}_{\lfium{}}$ define a relação de consequência semântica $\vDash_{\pazocal{M}_{\lfium{}}}$ para a lógica \lfium{}\qed{}
+            A matriz $\pazocal{M}_{\lfium{}}$ define a relação de consequência semântica $\conmat{}$ para a lógica. \lfium{}\qed{}
         \end{definicao}
 
         
@@ -224,8 +224,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 & v(\neg (\alpha \lor \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vDM_{\lor}$}}\\
                 & v(\neg (\alpha \rightarrow \beta)) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vCIp_{\rightarrow}$}}
             \end{align*}
-            A função $v$ define a relação de consequência semântica $\vDash_{\lfium{}}$ para a lógica \lfium{}.\qed{}
+            A função $v$ define a relação de consequência semântica $\conval{}$ para a lógica \lfium{}.\qed{}
         \end{definicao}
+
+        \helena{Prova de equivalência entre }
 
 \section{Metateoremas}
 \label{sec:metateoremas}
