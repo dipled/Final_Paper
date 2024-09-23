@@ -104,24 +104,25 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 \section{Semântica}
 \label{sec:semantica}
     De forma geral, a semântica é o estudo de como um sistema de símbolos (uma linguagem) internaliza informações, ou seja, é o estudo de como interpretar os símbolos de uma linguagem~\cite{brown2005encyclopedia}. Num sistema lógico, a definição de \textit{matrizes lógicas} é comumente usada para estabelecer o comportamento esperado dos conectivos lógicos de sua assinatura, definindo sua semântica \migs{Interessante mencionar que as tabelas verdades da lógica clássica são um caso particular de semântica matricial}. Outra forma de compreender a semântica de um sistema lógico é definir uma função conhecida como \textit{semântica de valorações} \migs{Seria bom elaborar um pouco aqui, mas ainda mencionar um caso onde normalmente usa-se semântica de valorações (lógica modal)}. Nesta seção, a semântica da \lfium{} será definida de dois jeitos distintos: a partir de uma \textit{matriz lógica} e a partir de uma \textit{semântica de valorações}. Ambas serão provadas equivalentes, a fim de facilitar a prova de metateoremas na Seção~\ref{sec:metateoremas}.
+    
     \subsection{Matriz Lógica e valorações}
-        Uma das formas de definir a semântica de uma lógica proposicional é definir uma \textit{matriz lógica} (também chamada de tabela-verdade) para os conectivos de sua assinatura proposicional. Para isso, é necessário definir o conceito de \textit{álgebra} para assinaturas proposicionais:
+        Uma das formas de definir a semântica de uma lógica proposicional é definir uma \textit{matriz lógica} (também chamada de tabela-verdade) para os conectivos de sua assinatura proposicional. \migs{Seria interessante explicar em mais detalhes aqui o que é a matriz para uma assinatura} Para isso, é necessário definir o conceito de \textit{álgebra} para assinaturas proposicionais: \migs{Ademais, seria importante você falar de onde tirou as seguintes definições.}
 
         \begin{definicao}[Álgebra para assinaturas proposicionais]
         \label{def:algebra}
-            Uma álgebra para uma assinatura proposicional $\Theta$ é uma dupla $\pazocal{A} = \langle A, O \rangle$, onde $A$ é um conjunto não vazio (chamado de \textit{domínio} da álgebra \migs{Eu sei que tuas referências usam ``A'' para falar do domínio de uma álgebra, mas por favor use outra letra, você não precisa seguir a risca a notação deles}) e, para todo conectivo n-ário $c \in \Theta$,  $O$ é uma função \migs{de interpretação} que \migscortar{define}{ induz (conferir com a Kaqui se esse termo é o mais correto)} uma operação $c^{\pazocal{A}} \; : \; A^{n} \rightarrow A$ em $A$. \qed{}
+            Uma álgebra para uma assinatura proposicional $\Theta$ é uma dupla $\pazocal{A} = \langle A, O \rangle$, onde $A$ é um conjunto não vazio (chamado de \textit{domínio} da álgebra \migs{Eu sei que tuas referências usam ``A'' para falar do domínio de uma álgebra, mas por favor use outra letra, você não precisa seguir a risca a notação deles}) e, \migscortar{para todo conectivo n-ário $c \in \Theta$,  $O$ é uma função que define uma operação $c^{\pazocal{A}} \; : \; A^{n} \rightarrow A$ em $A$.}{ $O$ é uma função de interpretação que associa cada conectivo n-ário $c \in \Theta$ à uma operação $c^{\pazocal{A}}\!\! : \; A^{n} \rightarrow A$} \qed{}
         \end{definicao}
 
         Quando não for confuso, o mesmo símbolo é utilizado para representar um conectivo $c$ e sua interpretação $O(c) = c^{\pazocal{A}}$. Ademais, caso $\Theta$ seja finito, a função $O$ é substituída pela lista de conectivos de $\Theta$. Por exemplo, uma álgebra para a assinatura $\Sigma$ da \lfium{} é escrita como $\pazocal{A} = \langle A,\land, \lor, \rightarrow, \neg, \circ \rangle$.
         
         \begin{definicao}[Matriz Lógica]
-            Seja $\Theta$ uma assinatura proposicional. Uma \textit{matriz lógica} $\pazocal{M}$ definida sobre $\Theta$ é uma tripla $\pazocal{M} = \langle A, D, O \rangle$, tal que o par $\langle A, O \rangle$ é uma álgebra para $\Theta$ e $D$ é um subconjunto de $A$ cujos elementos são ditos \textit{designados}.\qed{}
+            Seja $\Theta$ uma assinatura proposicional. Uma \textit{matriz lógica} $\pazocal{M}$ definida sobre $\Theta$ é uma tripla $\pazocal{M} = \langle A, D, O \rangle$, tal que o par $\langle A, O \rangle$ é uma álgebra para $\Theta$ e $D \subset A$ é o subconjunto de $A$ cujos elementos são ditos \textit{designados}\migs{, estes são os elementos de $A$ são interpretados como sendo verdadeiros (isso poderia melhorar)}.\qed{}
         \end{definicao}
 
-        Com isso, uma matriz lógica $\pazocal{M} = \langle A, D, O \rangle$ define uma lógica tarskiana $\mathcal{L}$ sobre uma linguagem $\pazocal{L}_{\Theta}$ da seguinte forma: $\Gamma \vDash_{\pazocal{M}} \alpha$ sse, para todo homomorfismo $h : \pazocal{L}_{\Theta} \rightarrow \pazocal{A}$ (onde $\pazocal{A}$ é a álgebra por trás de $\pazocal{M}$), se $h[\Gamma] \subseteq D$ então $h(\alpha) \in D$. Em particular, $\alpha$ é uma tautologia em $\mathcal{L}$ sse $h(\alpha) \in D$ para todo homomorfismo $h$.
+        Com isso, uma matriz lógica $\pazocal{M} = \langle A, D, O \rangle$ \migs{(sendo $\pazocal{A} = \langle A, O \rangle$ a álgebra associada a essa matriz)} \migscortar{define}{ induz} uma lógica tarskiana $\mathcal{L}$ sobre uma linguagem $\pazocal{L}_{\Theta}$ da seguinte forma: \migs{sendo $\Gamma \cup \alpha \in \pazocal{L}_{\Theta}$,} $\Gamma \vDash_{\pazocal{M}} \alpha$ sse, para todo homomorfismo $h : \pazocal{L}_{\Theta} \rightarrow \pazocal{A}$ \cortar{(onde $\pazocal{A}$ é a álgebra por trás de $\pazocal{M}$)}, se $h[\Gamma] \subseteq D$ então $h(\alpha) \in D$. Em particular, $\alpha$ é uma tautologia em $\mathcal{L}$ sse $h(\alpha) \in D$ para todo homomorfismo $h$. \migs{Perceba que o homomorfismo \textit{h} nada mais é do que uma função que associa fórmulas da linguagem a valores designados (interpretados como verdadeiros). (Estou adicionando esse comentário pois não é imediatamente óbvio o que esse homomorfismo deveria ser)}
 
         \begin{definicao}[Valoração]
-            Seja $\pazocal{M}$ uma matriz definida a partir de uma álgebra $\pazocal{A}$ tal que $\pazocal{M}$ define uma lógica $\mathcal{L}$ sobre a linguagem $\pazocal{L}_{\Theta}$. Um homomorfismo $h : \pazocal{L}_{\Theta} \rightarrow \pazocal{A}$ é dito uma valoração sobre $\pazocal{M}$.\qed{}
+            Seja $\pazocal{M}$ uma matriz definida a partir de uma álgebra $\pazocal{A}$ tal que $\pazocal{M}$ \migscortar{define}{ induz} uma lógica $\mathcal{L}$ sobre a linguagem $\pazocal{L}_{\Theta}$. Um homomorfismo $h : \pazocal{L}_{\Theta} \rightarrow \pazocal{A}$ é dito uma \textit{valoração} sobre $\pazocal{M}$.\qed{}
         \end{definicao}
 
 
@@ -221,5 +222,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             
         \end{definicao}
 
+        \migs{Creio que falei isso para os axiomas antes, mas acho que seria interessante explicar pq algumas dessas regras de valoração tem nomes diferenciados.}
+        
 \section{Metateoremas}
 \label{sec:metateoremas}
