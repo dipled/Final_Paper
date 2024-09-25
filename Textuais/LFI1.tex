@@ -228,7 +228,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \end{definicao}
         \helena{Explicar nome zoado das cláusulas}
 
-        Note que, por conta de $(VNeg)$ e $(VCon)$, o valor de $v(\triangle \alpha)$ {-} para $\triangle \in \{\neg, \circ\}$ {-} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, isto não determina o valor $v(\neg \alpha)$, podendo ser tanto $0$ como $1$ (mas não ambos).
+        Note que, por conta de $(VNeg)$ e $(VCon)$, o valor $v(\triangle \alpha)$ {-} para $\triangle \in \{\neg, \circ\}$ {-} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, isto não determina o valor $v(\neg \alpha)$, este podendo ser tanto $0$ como $1$ (mas não ambos).
         
         \helena{Prova de equivalência entre $\conval{}$ e $\conmat{}$ (provavelmente na seção de metateoremas(?))}
 
@@ -240,7 +240,7 @@ Antes de desenvolver as provas destes metateoremas, convém apresentar algumas d
 
 \begin{definicao}[Teoria não-trivial maximal]
     \label{def:nao-trivial_maximal}
-    Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\pazocal{L}$ e sejam $\Gamma, \{\phi\}$ teorias de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. A teoria $\Gamma$ é dita não-trivial maximal em relação a $\phi$ em $\pazocal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
+    Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\mathcal{L}$ e sejam $\Gamma, \{\phi\}$ teorias de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. A teoria $\Gamma$ é dita não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
 \end{definicao}
 
 \helena{Botar exemplo de teoria não-trivial maximal?}
@@ -248,7 +248,7 @@ Antes de desenvolver as provas destes metateoremas, convém apresentar algumas d
 \begin{definicao}[Teoria fechada]
     \label{def:fechada}
 
-    Seja $\mathcal{L}$ uma lógica tarskiana. Uma teoria $\Gamma$ é dita fechada em $\mathcal{L}$ se, para toda formula $\phi$, for o caso que $\Gamma \Vdash \phi$ sse $\phi \in \Gamma$.\qed{}
+    Seja $\mathcal{L}$ uma lógica tarskiana. Uma teoria $\Gamma$ é dita fechada em $\mathcal{L}$ se, para toda formula $\phi$, for o caso que $\Gamma \Vdash_{\mathcal{L}} \phi$ sse $\phi \in \Gamma$.\qed{}
 \end{definicao}
 
 \begin{lema}
