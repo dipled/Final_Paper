@@ -57,7 +57,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
     No contexto da \lfium{} existem dois sistemas de prova sintáticos estabelecidos até o momento: um cálculo de Hilbert, descrito por~\citeshort{carnielli2000formal,Carnielli_Coniglio_2016} e um sistema de \textit{Tableau}, descrito por~\citeshort{tableaulfi}. No presente trabalho, foi escolhido o cálculo de Hilbert para definir a sintaxe da \lfium{}, dada a maior facilidade para desenvolver metateoremas em relação ao sistema de \textit{Tableau}.
 
-    O cálculo de Hilbert (também conhecido como sistema de Hilbert ou axiomatização de Hilbert) é um sistema composto por um conjunto de fórmulas, chamadas de \textit{axiomas}, e um conjunto de \textit{regras de inferência}. Uma regra de inferência é formada por uma lista de fórmulas chamadas de premissas da regra e uma fórmula chamada de conclusão da regra~\cite{Restall1999-RESAIT-4}. Uma prova (também chamada de derivação) de uma dada fórmula $\phi$ consiste em uma sequência finita de fórmulas \(\psi_0, \dots, \psi_n\), onde \(\psi_n = \phi\), e cada  $\psi_i\ (0 \leq i \leq n)$ é uma \textit{instância de substituição} (ver Definição~\ref{def:substituicao}) de um axioma ou o resultado da aplicação de uma regra de inferência em fórmulas anteriores. Usualmente, o cálculo de Hilbert possui apenas uma regra de inferência, esta sendo o \textit{Modus Ponens}. Este também é o caso para o cálculo de Hilbert que será utilizado para a \lfium{}.
+    O cálculo de Hilbert (também conhecido como sistema de Hilbert ou axiomatização de Hilbert) é um sistema composto por um conjunto de fórmulas, chamadas de \textit{axiomas}, um conjunto de \textit{regras de inferência}. Uma regra de inferência é formada por uma lista de fórmulas chamadas de premissas da regra e uma fórmula chamada de conclusão da regra~\cite{Restall1999-RESAIT-4}. Uma prova (também chamada de derivação) do tipo $\Gamma \vdash \phi$ consiste em uma sequência finita de fórmulas \(\psi_0, \dots, \psi_n\), onde \(\psi_n = \phi\), e cada  $\psi_i\ (0 \leq i \leq n)$ é uma \textit{instância de substituição} (ver Definição~\ref{def:substituicao}) de um axioma, um elemento do conjunto de premissas $\Gamma$ ou o resultado da aplicação de uma regra de inferência em fórmulas anteriores. Usualmente, o cálculo de Hilbert possui apenas uma regra de inferência, esta sendo o \textit{Modus Ponens}. Este também é o caso para o cálculo de Hilbert que será utilizado para a \lfium{}.
     
     O cálculo de Hilbert definido a seguir foi apresentado por~\citeshort{Carnielli_Coniglio_2016} como alternativa ao que havia sido definido em trabalhos anteriores~\cite{carnielli2000formal,carnielli2007}. Segundo os autores, esta definição evidencia algumas propriedades interessantes da negação $\neg$ como as leis de De Morgan.
 
@@ -99,6 +99,17 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \UnaryInfC{$\beta$}
         \end{prooftree}
         \qed{}  
+    \end{definicao}
+
+    Com isso, uma derivação em \lfium{} pode ser definida:
+    
+    \begin{definicao}[Derivação em \lfium{}]
+        Seja $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$ um conjunto de fórmulas, uma derivação $\Gamma \vdash \phi$ de $\phi$ a partir de $\Gamma$ em \lfium{} é uma sequência finita de fórmulas \(\phi_0, \dots, \phi_n\) onde, para cada $1 \leqslant i \leqslant n$, é válido que:
+        \begin{align*}
+            & \text{~~(i) }\phi_{i} \text{ é instância de substituição de um axioma, ou}\\
+            & \text{~(ii) }\phi_{i} \in \Gamma \text{, ou}\\
+            & \text{(iii) }\text{existem } j,k \leqslant i \text{ de modo que } \phi_{i} \text{ é obtido por MP em } \phi_{j} \text{ e } \phi_{k}.\tag*\qed{}
+        \end{align*}
     \end{definicao}
 
 \section{Semântica}
@@ -258,3 +269,11 @@ Antes de desenvolver as provas destes metateoremas, convém apresentar algumas d
     Seja $\Gamma$ uma teoria não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Se $\psi \in \Gamma$, então $\Gamma \Vdash_{\mathcal{L}} \psi$, já que $\mathcal{L}$ é tarskiana. Se $\Gamma \Vdash_{\mathcal{L}} \psi$, então supondo que $\psi \notin \Gamma$, temos que $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$, pela Definição~\ref{def:nao-trivial_maximal}. Como $\mathcal{L}$ é tarskiana, segue que $\Gamma \Vdash_{\mathcal{L}} \phi$, o que contradiz o fato de $\Gamma$ ser não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Portanto, $\psi \in \Gamma$ e então $\Gamma$ é fechada em $\mathcal{L}$.
 \end{proof}
 
+
+\begin{teorema}[Metateorema da dedução para \lfium{}]
+    \label{teo:deducao}
+    Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \pazocal{L}_{\Sigma}$, $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.
+\end{teorema}
+\begin{proof} A prova será dividida em duas partes:\\
+    ($\Longleftarrow$) Supondo $\Gamma \conhil \alpha \to \beta$, então existe uma sequência de dedução $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha \to \beta$.
+\end{proof}
