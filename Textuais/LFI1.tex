@@ -5,7 +5,7 @@
 
 No trabalho de~\citeshort{carnielli2000formal} a lógica \textbf{LFI1*} é definida como uma extensão de primeira ordem da lógica proposicional \lfium{}. A motivação para definir-se uma \textit{Lógica de Inconsistência Formal} de primeira ordem vem da natureza das informações contidas em bancos de dados, estas que podem ser compreendidas como sentenças de primeira ordem fixas~\cite{Codd}, entretanto, o presente trabalho trata somente da lógica proposicional \lfium{}. Ademais,~\citeshort{carnielli2000formal} tomam o operador de \textit{inconsistência} (denotado por $\bullet$) como primitivo. Isto foi feito pois o foco era explorar a \lfium{} como uma ferramenta para lidar com inconsistências em bancos de dados, portanto tomar a inconsistência como primitiva era de grande interesse. Entretanto, no presente trabalho, será utilizada a definição apresentada em~\citeshort{Carnielli_Coniglio_2016}, onde a linguagem é definida utilizando o operador $\circ$ como primitivo. Isto salienta algumas propriedades interessantes da negação $\neg$, como a presença das leis de De Morgan, axiomatizadas na Seção~\ref{sec:axiomatizacao}.
 
-Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é apresentada a linguagem da lógica proposicional \lfium{} bem como definições necessárias para desenvolver as provas de metateoremas. A Seção~\ref{sec:axiomatizacao} contém uma breve explicação sobre sistemas de prova sintáticos e uma Axiomatização de Hilbert para a \lfium{} é definida. Na Seção~\ref{sec:semantica} a semântica da \lfium{} é definida a partir de matrizes lógicas e de uma semântica de valorações não determinística\migscortar{. Ainda na Seção~\ref{sec:semantica}, as matrizes e a semântica de valorações são provadas equivalentes. \helena{Não sei como NÃO separar estas últimas duas frases.}}{, assim como é provada a equivalência entre essas duas semânticas.}
+Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é apresentada a linguagem da lógica proposicional \lfium{} bem como definições necessárias para desenvolver as provas de metateoremas. A Seção~\ref{sec:axiomatizacao} contém uma breve explicação sobre sistemas de prova sintáticos e uma Axiomatização de Hilbert para a \lfium{} é definida. Na Seção~\ref{sec:semantica} a semântica da \lfium{} é definida a partir de matrizes lógicas e de uma semântica de valorações não determinística, assim como é provada a equivalência entre essas duas semânticas.
 
 \section{Linguagem}
 \label{sec:linguagem}
@@ -104,7 +104,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     Com isso, uma derivação em \lfium{} pode ser definida:
     
     \begin{definicao}[Derivação em \lfium{}]
-        Seja $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$ um conjunto de fórmulas, uma derivação $\Gamma \vdash \phi$ de $\phi$ a partir de $\Gamma$ em \lfium{} é uma sequência finita de fórmulas \(\phi_0, \dots, \phi_n\) onde, para cada $1 \leqslant i \leqslant n$, \migscortar{é válido que}{ alguma dessas condições é satisfeita (não gostei nem de como tava antes nem de como ficou minha modificação, mas acho que o que estava antes não está muito bom)}:
+        Seja $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$ um conjunto de fórmulas, uma derivação $\Gamma \vdash \phi$ de $\phi$ a partir de $\Gamma$ em \lfium{} é uma sequência finita de fórmulas \(\phi_0, \dots, \phi_n\) onde, para cada $1 \leqslant i \leqslant n$, alguma das seguintes condições é satisfeita.
         \begin{align*}
             & \text{~~(i) }\phi_{i} \text{ é instância de substituição de um axioma;}\\
             & \text{~(ii) }\phi_{i} \in \Gamma;\\
@@ -124,13 +124,13 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             Uma álgebra para uma assinatura proposicional $\Theta$ é uma dupla $\pazocal{A} = \langle A, O \rangle$, onde $A$ é um conjunto não vazio (chamado de \textit{domínio} da álgebra) e $O$ é uma função de interpretação que associa cada conectivo n-ário $c \in \Theta$ à uma operação $c^{\pazocal{A}}\!\! : \; A^{n} \rightarrow A$ em A.\qed{}
         \end{definicao}
 
-        Quando não for confuso, o mesmo símbolo será utilizado para representar um conectivo $c$ e sua interpretação $O(c) = c^{\pazocal{A}}$. Além disso, quando não houver ambiguidade, o símbolo utilizado para se referir a uma álgebra $\langle A, O \rangle$ será simplesmente o símbolo para seu domínio $A$. Ademais, caso $\Theta$ seja finita, a função $O$ será substituída pela lista de conectivos de $\Theta$. Por exemplo, uma álgebra para a assinatura $\Sigma$ da \lfium{} é escrita como $\pazocal{A} = \langle A,\land, \lor, \rightarrow, \neg, \circ \rangle$. \migs{Acho que seria interessante puxar uma nota de rodapé para falar que está usando os mesmo símbolos para representar os conectivos e sua interpretação na álgebra.}
+        Quando não for confuso, o mesmo símbolo será utilizado para representar um conectivo $c$ e sua interpretação $O(c) = c^{\pazocal{A}}$. Além disso, quando não houver ambiguidade, o símbolo utilizado para se referir a uma álgebra $\langle A, O \rangle$ será simplesmente o símbolo para seu domínio $A$. Ademais, caso $\Theta$ seja finita, a função $O$ será substituída pela lista de conectivos de $\Theta$. Por exemplo, uma álgebra para a assinatura $\Sigma$ da \lfium{} é escrita como $\pazocal{A} = \langle A,\land, \lor, \rightarrow, \neg, \circ \rangle$.
 
         \begin{observacao}
-            Uma linguagem sobre uma assinatura proposicional $\Theta = \{c_{1}, \ldots, c_{n}\}$ e um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \; | \; n \in \mathbb{N} \}$ pode ser compreendida como uma álgebra da forma $\langle \pazocal{L}_{\Theta}, c_{1}\ldots, c_{n} \rangle$, onde $\pazocal{L}_{\Theta}$ é um conjunto de fórmulas bem formadas a partir dos conectivos em $\Theta$ e dos átomos em $\pazocal{P}$. \migscortar{Notamos}{ Denotamos} esta álgebra simplesmente por $\pazocal{L}_{\Theta}$~\cite{Sikorski1966-SIKAOF,Wojcicki1984-WJCLOP}.
+            Uma linguagem sobre uma assinatura proposicional $\Theta = \{c_{1}, \ldots, c_{n}\}$ e um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \; | \; n \in \mathbb{N} \}$ pode ser compreendida como uma álgebra da forma $\langle \pazocal{L}_{\Theta}, c_{1}\ldots, c_{n} \rangle$, onde $\pazocal{L}_{\Theta}$ é um conjunto de fórmulas bem formadas a partir dos conectivos em $\Theta$ e dos átomos em $\pazocal{P}$. Denotamos esta álgebra simplesmente por $\pazocal{L}_{\Theta}$~\cite{Sikorski1966-SIKAOF,Wojcicki1984-WJCLOP}.
         \end{observacao}
 
-        Duas álgebras definidas sobre uma mesma assinatura proposicional são ditas \textit{similares}. Uma função (mapeamento) entre duas estruturas algebraicas similares que preserva sua estrutura é chamada de \textit{homomorfismo}. Ou seja, dadas duas álgebras similares $\langle A, O \rangle$, $\langle B, O' \rangle$ definidas sobre uma assinatura proposicional $\Theta$, um mapeamento $h : A \rightarrow B$ será um \textit{homomorfismo} caso $h(c(a_{0},\ldots, a_{n})) = c(h(a_{0}),\ldots, h(a_{n}))$ (onde $c$ é um conectivo de aridade $n$), para todo conectivo $c \in \Theta$ e $a_{0},\ldots,a_{n} \in A$. \migs{Bem lembrado de colocar essa definição.}
+        Duas álgebras definidas sobre uma mesma assinatura proposicional são ditas \textit{similares}. Uma função (mapeamento) entre duas estruturas algebraicas similares que preserva sua estrutura é chamada de \textit{homomorfismo}. Ou seja, dadas duas álgebras similares $\langle A, O \rangle$, $\langle B, O' \rangle$ definidas sobre uma assinatura proposicional $\Theta$, um mapeamento $h : A \rightarrow B$ será um \textit{homomorfismo} caso $h(c(a_{0},\ldots, a_{n})) = c(h(a_{0}),\ldots, h(a_{n}))$ (onde $c$ é um conectivo de aridade $n$), para todo conectivo $c \in \Theta$ e $a_{0},\ldots,a_{n} \in A$.
 
         \begin{definicao}[Matriz Lógica]
             Seja $\Theta$ uma assinatura proposicional. Uma \textit{matriz lógica} $\pazocal{M}$ definida sobre $\Theta$ é uma tripla $\pazocal{M} = \langle A, D, O \rangle$, tal que o par $\langle A, O \rangle$ é uma álgebra para $\Theta$ e $D$ é um subconjunto de $A$ cujos elementos são ditos \textit{designados}, estes são elementos de $A$ considerados como verdadeiros.\qed{}
@@ -240,13 +240,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \end{definicao}
         \helena{Explicar nome zoado das cláusulas}
 
-        Note que, por conta de $(VNeg)$ e $(VCon)$, o valor $v(\triangle \alpha)$ {-} para $\triangle \in \{\neg, \circ\}$ {-} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, \migscortar{isto não determina}{ não é possível determinar} o valor \migs{de} $v(\neg \alpha)$, este podendo ser tanto $0$ como $1$ (mas não ambos).
+        Note que, por conta de $(VNeg)$ e $(VCon)$, o valor $v(\triangle \alpha)$ {-} para $\triangle \in \{\neg, \circ\}$ {-} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, não é possível determinar o valor \migs{de} $v(\neg \alpha)$, este podendo ser tanto $0$ como $1$ (mas não ambos).
         
         \helena{Prova de equivalência entre $\conval{}$ e $\conmat{}$ (provavelmente na seção de metateoremas(?))}
-
-
-        \migs{Creio que falei isso para os axiomas antes, mas acho que seria interessante explicar pq algumas dessas regras de valoração tem nomes diferenciados.}
-        
+                
 \section{Metateoremas}
     \label{sec:metateoremas}
     \helena{Explicação breve dos metateoremas o que sao pra que serve etc aff q preguica mas tem q ter algo bem bonitinho -.-'}
@@ -275,21 +272,14 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \end{proof}
 
     
-    
-    \begin{teorema}[Metateorema da dedução para $\conhil$]
-        \label{teo:deducao}
-        Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \pazocal{L}_{\Sigma}$, $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.
-    \end{teorema}
-    
-    \noindent Antes de apresentar a prova do Teorema~\ref{teo:deducao} é conveniente provar o seguinte lema auxiliar. \migs{Já que você vai apresentar esse lema antes de apresentar a prova do teorema, enuncie e prove ele antes do teorema e então vá para o teorema.}
-    
     \begin{lema}
         \label{lem:id}
         A derivação $\Gamma \conhil \alpha \to \alpha$ é válida para todo $\Gamma \cup \{\alpha\} \subseteq \pazocal{L}_{\Sigma}$.
     \end{lema}
     
+    \noindent Antes de apresentar a prova do Teorema~\ref{teo:deducao} é conveniente provar o seguinte lema auxiliar. \migs{Já que você vai apresentar esse lema antes de apresentar a prova do teorema, enuncie e prove ele antes do teorema e então vá para o teorema.}
     \begin{proof}[Prova do Lema~\ref{lem:id}]
-        A seguinte sequência de derivação demonstra o lema: \migs{Acho interessante você explicitar quais variáveis foram substituídas por o que quando lista qual axioma foi utilizado, igual faria no quadro branco.}
+        A seguinte sequência de derivação demonstra o lema:
         
         \begin{align*}
             & \text{1. } (\alpha \to ((\alpha \to \alpha) \to \alpha)) \to ((\alpha \to (\alpha \to \alpha)) \to (\alpha \to \alpha))\tag{Ax2}\\
@@ -299,6 +289,12 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             & \text{5. } \alpha \to \alpha\tag{MP 3,4}
         \end{align*}
     \end{proof}
+    
+    
+    \begin{teorema}[Metateorema da dedução para $\conhil$]
+        \label{teo:deducao}
+        Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \pazocal{L}_{\Sigma}$, $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.
+    \end{teorema}
 
     \noindent Finalmente, a prova do Teorema~\ref{teo:deducao} pode ser apresentada:
 
@@ -323,7 +319,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         \noindent 1. Caso $\phi_{1}$ seja instância de substituição de um axioma, a seguinte dedução mostra $\Gamma \conhil \alpha \to \phi_{1}$:
         \begin{align*}
-            & \text{1. } \phi_{1} \tag{Suposição}\\
+            & \text{1. } \phi_{1} \tag{Instância de substituição de um axioma}\\
             & \text{2. } \phi_{1} \to (\alpha \to \phi_{1}) \tag{Ax1}\\
             & \text{3. } \alpha \to \phi_{1} \tag{MP 1,2}
         \end{align*}
@@ -336,7 +332,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         \noindent 2.1. Caso $\phi_{1} = \alpha$, é necessário mostrar $\Gamma \conhil \alpha \to \alpha$, que é o que foi provado pelo Lema~\ref{lem:id}.
 
-        \noindent 2.2. Caso $\phi_{1} \in \Gamma$, então $\Gamma \conhil \alpha \to \phi_{1}$ é provado pela \migscortar{seguinte sequência de derivações:}{ mesma sequência de derivações que foi apresentada no caso de $\phi_1$ ser uma instância de um axioma.}
+        \noindent 2.2. Caso $\phi_{1} \in \Gamma$, então $\Gamma \conhil \alpha \to \phi_{1}$ é provado pela seguinte sequência de derivações:
         \begin{align*}
             & \text{1. } \phi_{1} \tag{Premissa}\\
             & \text{2. } \phi_{1} \to (\alpha \to \phi_{1}) \tag{Ax1}\\
@@ -360,6 +356,4 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             & \text{4. } (\alpha \to \phi_{j}) \to (\alpha \to \phi_{n + 1}) \tag{MP 2,3}\\
             & \text{5. } \alpha \to \phi_{n + 1} \tag{MP 1,4}
         \end{align*}
-
-        Com isto, a prova de $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$ foi demonstrada. \migs{Esse comentário é desnecessário.}
     \end{proof}
