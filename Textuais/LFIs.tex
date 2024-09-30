@@ -28,9 +28,9 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
 
 \section{Paraconsistência}
 \label{sec:paracons}
-    Um sistema lógico que se atreve \migs{atreve} \helena{eu gostei de escrever esse atreve porque é mól quebrando o tabu tlg} a romper com o Princípio da Explosão {-} o qual afirma que a partir de uma teoria contraditória, qualquer conclusão segue {-} é dito paraconsistente. As justificativas para questionar tal princípio existem em diversos campos do conhecimento, como na linguística~\cite{McGinnis2013-MCGTUA}, na computação~\cite{carnielli2000formal} e até mesmo nas ciências naturais~\cite{Brown2015-BROCAP-9}. Outra justificativa para o desenvolvimento de sistemas lógicos paraconsistentes é um descontentamento com o caráter explosivo das lógicas ortodoxas. Por exemplo, uma discordância de que a partir da evidência de que ``Choveu na tarde de ontem.'' e da evidência de que ``Não choveu na tarde de ontem.'' pode-se concluir que ``Um triângulo tem quatro lados.''~\footnote{Esta forma de explosividade é um exemplo de uma contradição estudada pelas lógicas de relevância, que tratam da conexão entre as premissas e a conclusão de uma inferência~\cite{sep-logic-relevance}.}. Nesta seção, a paraconsistência será definida formalmente, partindo de definições básicas sobre lógica e classificando diferentes sistemas de acordo com propriedades acerca de sua \textit{relação de consequência}.
+    Um sistema lógico que se atreve a romper com o Princípio da Explosão {-} o qual afirma que a partir de uma teoria contraditória, qualquer conclusão segue {-} é dito paraconsistente. As justificativas para questionar tal princípio existem em diversos campos do conhecimento, como na linguística~\cite{McGinnis2013-MCGTUA}, na computação~\cite{carnielli2000formal} e até mesmo nas ciências naturais~\cite{Brown2015-BROCAP-9}. Outra justificativa para o desenvolvimento de sistemas lógicos paraconsistentes é um descontentamento com o caráter explosivo das lógicas ortodoxas. Por exemplo, uma discordância de que a partir da evidência de que ``Choveu na tarde de ontem.'' e da evidência de que ``Não choveu na tarde de ontem.'' pode-se concluir que ``Um triângulo tem quatro lados.''~\footnote{Esta forma de explosividade é um exemplo de uma contradição estudada pelas lógicas de relevância, que tratam da conexão entre as premissas e a conclusão de uma inferência~\cite{sep-logic-relevance}.}. Nesta seção, a paraconsistência será definida formalmente, partindo de definições básicas sobre lógica e classificando diferentes sistemas de acordo com propriedades acerca de sua \textit{relação de consequência}.
 
-    Uma lógica $\mathcal{L}$ será representada como uma dupla $\mathcal{L} = \langle \pazocal{L},\Vdash \rangle$, onde $\pazocal{L}$ é sua linguagem (seu conjunto de fórmulas) e $\Vdash$ é uma relação de consequência de conclusão única, definida como $\Vdash \;\subseteq \wp(\pazocal{L})\times\pazocal{L}$. Em uma consequência do tipo $\Gamma \Vdash \alpha$ (lida como ``$\alpha$ é uma consequência de $\Gamma$.'') diz-se que o conjunto $\Gamma$ é o conjunto de premissas e $\alpha$ é a conclusão. A fim de facilitar a escrita e leitura, a seguinte notação será utilizada ao longo do texto:
+    Uma lógica $\mathcal{L}$ será representada como uma dupla $\mathcal{L} = \langle \pazocal{L},\Vdash \rangle$, onde $\pazocal{L}$ é sua linguagem (seu conjunto de fórmulas) e $\Vdash$ é uma relação de consequência de conclusão única, definida como $\Vdash \;\subseteq \wp(\pazocal{L})\times\pazocal{L}$ \migs{, sendo $\wp(\pazocal{L})$ o conjunto das partes de $\pazocal{L}$}. Em uma consequência do tipo $\Gamma \Vdash \alpha$ (lida como ``$\alpha$ é uma consequência de $\Gamma$.'') diz-se que o conjunto $\Gamma$ é o conjunto de premissas e $\alpha$ é a conclusão. A fim de facilitar a escrita e leitura, a seguinte notação será utilizada ao longo do texto:
 
     \begin{notacao}
         Sejam $\Gamma, \Delta$ teorias e $\phi, \psi$ fórmulas, então $\Gamma, \Delta, \phi \Vdash \psi$ denota $\Gamma \cup \Delta \cup \{\phi\} \Vdash \psi$.
@@ -46,7 +46,7 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
 
     \begin{definicao}[Lógica proposicional]
         \label{def:proposicional}
-        Um sistema lógico $\mathcal{L}$, definido sobre uma linguagem $\pazocal{L}_{\Theta}$ é dito proposicional caso $\pazocal{L}_{\Theta}$ seja definida a partir de um conjunto enumerável de átomos $\pazocal{P} = \{p_{i} \;| \; i \in \mathbb{N} \}$ e uma assinatura proposicional $\Theta$. A linguagem $\pazocal{L}_{\Theta}$ é chamada de linguagem proposicional.\qed{}
+        Um sistema lógico $\mathcal{L}$, definido sobre uma linguagem $\pazocal{L}_{\Theta}$ é dito proposicional caso $\pazocal{L}_{\Theta}$ seja definida a partir de um conjunto enumerável de átomos $\pazocal{P} = \{p_{i} \;| \; i \in \mathbb{N} \}$ e uma assinatura proposicional $\Theta$. A linguagem $\pazocal{L}_{\Theta}$ é chamada de linguagem proposicional. \migs{Escreveremos $\pazocal{L}$ caso a assinatura da linguagem seja irrelevante ou possa ser inferida sem ambiguidade a partir do contexto. (Já que você já estava fazendo isso, adicionei um comentário na definição.)}\qed{}
     \end{definicao}
 
 
@@ -75,7 +75,7 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
     \end{definicao}
 
     \begin{notacao}
-        Dada uma função $f : A \to B$ e um conjunto $A' \subseteq A$, define-se a notação $f[A']$ = $\{f(a) \; | \; a \in A'\}$.
+        Dada uma função $f : A \to B$ e um conjunto $A' \subseteq A$, \migscortar{define-se a notação $f[A']$ = $\{f(a) \; | \; a \in A'\}$.}{ $f[A']$ denota o conjunto $\{f(a) \; | \; a \in A'\}$.} \migs{Creio que assim fica menos esquisito}
     \end{notacao}
 
 
@@ -109,7 +109,7 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
 
     \begin{definicao}[Lógica Tarskiana paraconsistente]
         \label{def:tarskiana_paracons}
-        Uma lógica Tarskiana $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$, é dita \textit{paraconsistente} se ela possuir uma negação\footnote{Esta negação pode ser primitiva (pertencente à assinatura da linguagem) ou definida a partir de outras fórmulas.} $\neg$ tal que existem fórmulas $\alpha, \beta \in \pazocal{L}$ onde $\alpha, \neg \alpha \nVdash \beta$.\qed{}
+        Uma lógica Tarskiana $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$, é dita \textit{paraconsistente} se ela possuir uma negação\footnote{Esta negação pode ser primitiva (pertencente à assinatura da linguagem) ou definida a partir de outras fórmulas.} $\neg$ tal que existem fórmulas $\alpha, \beta \in \pazocal{L}$ onde $\alpha, \neg \alpha \nVdash \beta$. \migs{Aqui você deveria especificar a assinatura da linguagem} \qed{}
     \end{definicao}
 
     Caso a linguagem de $\mathcal{L}$ possua uma implicação $\rightarrow$ que respeite o metateorema da dedução\footnote{Definido como $\Gamma, \alpha \Vdash \beta \Longleftrightarrow  \Gamma\Vdash \alpha \rightarrow \beta$.}, então $\mathcal{L}$ é paraconsistente se e somente se a fórmula $\alpha \rightarrow (\neg \alpha \rightarrow \beta)$ não for válida. Ou seja, se o Princípio da Explosão é inválido (em relação a $\neg$), o conectivo $\neg$ é considerado uma negação \textit{não explosiva}.
@@ -140,11 +140,10 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
 
     A condição (i) diz que toda \lfi{} é \textit{não-explosiva} (em relação a $\neg$) e as condições (ii) e (iii) dizem que toda \lfi{} é \textit{gentilmente explosiva} (em relação a $\bigcirc(p)$ e $\neg$).
 
+    Na literatura existem outras definições para as lógicas de inconsistência formal, que relaxam a condição (ii) para obter uma definição mais uniforme.~\citeshort{Carnielli_Coniglio_2016}, definem \lfis{} \textit{fracas} da seguinte forma: \migs{No parágrafo antes da definição, você falou que uma das suas referências apresenta três definições distintas, aqui você falou que na literatura há outras definições distintas. Manter esses dois parágrafos consistentes entre si.}
 
-    Na literatura existem outras definições para as lógicas de inconsistência formal, que relaxam a condição (ii) para obter uma definição mais uniforme.~\citeshort{Carnielli_Coniglio_2016}, definem \lfis{} \textit{fracas} da seguinte forma:
 
-
-    \begin{definicao}[\lfi{} fraca]
+    \begin{definicao}[\lfi{} Fraca]
         \label{def:lfi_fraca}
         Seja $\mathcal{L} = \langle \pazocal{L}_{\Theta}, \Vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Theta$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \lfi{} \textit{fraca} (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições:
         %(considerando $\bigcirc(\phi) = \{\psi(\phi) \; | \; \psi(p) \in \bigcirc(p)\}$): \helena{O conjunto $\bigcirc(\phi)$ é definido substituindo-se cada ocorrência $p$ por $\phi$ em cada elemento de $\bigcirc(\phi)$.}
@@ -158,7 +157,7 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
 
     Como é possível observar pelas duas definições acima, toda \lfi{} é uma \lfi{} fraca (já que a condição (ii) da Definição~\ref{def:lfi} satisfaz as condições (ii) e (iii) da Definição~\ref{def:lfi_fraca}), mas o inverso não é necessariamente verdade (observe que as váriaveis $\phi$ e $\psi$ das condições (ii) e (iii) não precisam ser iguais). Ademais, é possível estabelecer outra definição (também mais uniforme do que a Definição~\ref{def:lfi}) que introduz o conceito de \lfis{} \textit{fortes} como feito abaixo:
 
-    \begin{definicao}[\lfi{} forte]
+    \begin{definicao}[\lfi{} Forte]
         \label{def:lfi_forte}
         Seja $\mathcal{L} = \langle \pazocal{L}_{\Theta}, \Vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Theta$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \lfi{} \textit{forte} (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições:
         %(considerando $\bigcirc(\phi) = \{\psi(\phi) \; | \; \psi(p) \in \bigcirc(p)\}$): \helena{O conjunto $\bigcirc(\phi)$ é definido substituindo-se cada ocorrência $p$ por $\phi$ em cada elemento de $\bigcirc(\phi)$.}

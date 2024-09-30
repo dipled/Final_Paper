@@ -1,11 +1,11 @@
 \chapter{A Lógica de Inconsistência Formal LFI1}
 \label{cap:LFI1}
 
-\helena{coisas bancos de dados?? sera??? aff mt chato escrever issoooo ja tem na introducao ;-;}. A Lógica De Inconsistência Formal \lfium{} introduz na sua assinatura o operador $\circ$ para representar a consistência, internalizando este conceito em sua linguagem. Uma informação é dita consistente caso ela e sua negação não sejam simultaneamente verdadeiras, ou seja, dada uma informação $\alpha$, sua consistência $\circ \alpha$ será equivalente a fórmula $\neg (\alpha \land \neg \alpha)$. Com a introdução deste novo operador, é possível lidar com a inconsistência de informações sem que trivialidade ocorra, já que {-} caso uma informação seja conhecidamente \textit{inconsistente}, ou seja, $\neg \circ \alpha$ {-} então ela se trata de uma contradição inofensiva, fruto do excesso de informações numa dada teoria. Com isso, na \lfium{}, o conjunto $\bigcirc(p)$ de fórmulas dependentes somente na variável $p$ (descrito na Definição~\ref{def:lfi}) assume forma $\{\circ p\}$.
+\helena{coisas bancos de dados?? sera??? aff mt chato escrever issoooo ja tem na introducao ;-;} \migs{Sim, de fato tem, mas aqui você deveria aprofundar o detalhes que (idealmente) você não aprofundou na introdução. Dito isso, também não precisa tentar tirar leite de pedra nem repetir \textit{ipsis litteris} o texto da introdução.}. A Lógica De Inconsistência Formal \lfium{} introduz na sua assinatura o operador $\circ$ para representar a consistência, internalizando este conceito em sua linguagem. Uma informação é dita consistente caso ela e sua negação não sejam simultaneamente verdadeiras, ou seja, dada uma informação $\alpha$, sua consistência $\circ \alpha$ será equivalente a fórmula $\neg (\alpha \land \neg \alpha)$. Com a introdução deste novo operador, é possível lidar com a inconsistência de informações sem que trivialidade ocorra, já que {-} caso uma informação seja conhecidamente \textit{inconsistente}, ou seja, $\neg \circ \alpha$ {-} então ela se trata de uma contradição inofensiva, fruto do excesso de informações numa dada teoria. Com isso, na \lfium{}, o conjunto $\bigcirc(p)$ de fórmulas dependentes somente na variável $p$ (descrito na Definição~\ref{def:lfi}) assume forma $\{\circ p\}$.
 
 No trabalho de~\citeshort{carnielli2000formal} a lógica \textbf{LFI1*} é definida como uma extensão de primeira ordem da lógica proposicional \lfium{}. A motivação para definir-se uma \textit{Lógica de Inconsistência Formal} de primeira ordem vem da natureza das informações contidas em bancos de dados, estas que podem ser compreendidas como sentenças de primeira ordem fixas~\cite{Codd}, entretanto, o presente trabalho trata somente da lógica proposicional \lfium{}. Ademais,~\citeshort{carnielli2000formal} tomam o operador de \textit{inconsistência} (denotado por $\bullet$) como primitivo. Isto foi feito pois o foco era explorar a \lfium{} como uma ferramenta para lidar com inconsistências em bancos de dados, portanto tomar a inconsistência como primitiva era de grande interesse. Entretanto, no presente trabalho, será utilizada a definição apresentada em~\citeshort{Carnielli_Coniglio_2016}, onde a linguagem é definida utilizando o operador $\circ$ como primitivo. Isto salienta algumas propriedades interessantes da negação $\neg$, como a presença das leis de De Morgan, axiomatizadas na Seção~\ref{sec:axiomatizacao}.
 
-Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é apresentada a linguagem da lógica proposicional \lfium{} bem como definições necessárias para desenvolver as provas de metateoremas. A Seção~\ref{sec:axiomatizacao} contém uma breve explicação sobre sistemas de prova sintáticos e uma Axiomatização de Hilbert para a \lfium{} é definida. Na Seção~\ref{sec:semantica} a semântica da \lfium{} é definida a partir de matrizes lógicas e de uma semântica de valorações não determinística. Ainda na Seção~\ref{sec:semantica}, as matrizes e a semântica de valorações são provadas equivalentes. \helena{Não sei como NÃO separar estas últimas duas frases.}
+Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é apresentada a linguagem da lógica proposicional \lfium{} bem como definições necessárias para desenvolver as provas de metateoremas. A Seção~\ref{sec:axiomatizacao} contém uma breve explicação sobre sistemas de prova sintáticos e uma Axiomatização de Hilbert para a \lfium{} é definida. Na Seção~\ref{sec:semantica} a semântica da \lfium{} é definida a partir de matrizes lógicas e de uma semântica de valorações não determinística\migscortar{. Ainda na Seção~\ref{sec:semantica}, as matrizes e a semântica de valorações são provadas equivalentes. \helena{Não sei como NÃO separar estas últimas duas frases.}}{, assim como é provada a equivalência entre essas duas semânticas.}
 
 \section{Linguagem}
 \label{sec:linguagem}
@@ -104,11 +104,11 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     Com isso, uma derivação em \lfium{} pode ser definida:
     
     \begin{definicao}[Derivação em \lfium{}]
-        Seja $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$ um conjunto de fórmulas, uma derivação $\Gamma \vdash \phi$ de $\phi$ a partir de $\Gamma$ em \lfium{} é uma sequência finita de fórmulas \(\phi_0, \dots, \phi_n\) onde, para cada $1 \leqslant i \leqslant n$, é válido que:
+        Seja $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$ um conjunto de fórmulas, uma derivação $\Gamma \vdash \phi$ de $\phi$ a partir de $\Gamma$ em \lfium{} é uma sequência finita de fórmulas \(\phi_0, \dots, \phi_n\) onde, para cada $1 \leqslant i \leqslant n$, \migscortar{é válido que}{ alguma dessas condições é satisfeita (não gostei nem de como tava antes nem de como ficou minha modificação, mas acho que o que estava antes não está muito bom)}:
         \begin{align*}
-            & \text{~~(i) }\phi_{i} \text{ é instância de substituição de um axioma, ou}\\
-            & \text{~(ii) }\phi_{i} \in \Gamma \text{, ou}\\
-            & \text{(iii) }\text{existem } j,k \leqslant i \text{ de modo que } \phi_{i} \text{ é obtido por MP em } \phi_{j} \text{ e } \phi_{k}.\tag*\qed{}
+            & \text{~~(i) }\phi_{i} \text{ é instância de substituição de um axioma;}\\
+            & \text{~(ii) }\phi_{i} \in \Gamma;\\
+            & \text{(iii) }\text{existem } j,k \leqslant i \text{ de modo que } \phi_{i} \text{ é o resultado da aplicação de MP em } \phi_{j} \text{ e } \phi_{k}.\tag*\qed{}
         \end{align*}
     \end{definicao}
 
@@ -117,19 +117,20 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     De forma geral, a semântica é o estudo de como um sistema de símbolos (uma linguagem) internaliza informações, ou seja, é o estudo de como interpretar os símbolos de uma linguagem~\cite{brown2005encyclopedia}. Num sistema lógico, a definição de \textit{matrizes lógicas} é comumente usada para estabelecer o comportamento esperado dos conectivos lógicos de sua assinatura, definindo sua semântica. Outra forma de compreender a semântica de um sistema lógico é definir uma função conhecida como \textit{valoração}, que define uma \textit{semântica de valorações}\helena{explicar melhor onde essas semânticas são utilizadas}. Nesta seção, a semântica da \lfium{} será definida de dois jeitos distintos: a partir de uma \textit{matriz lógica} e a partir de uma \textit{valoração}. Ambas serão provadas equivalentes, a fim de facilitar a prova de metateoremas na Seção~\ref{sec:metateoremas}. As definições e notações para os conceitos de \textit{álgebra} definidos aqui baseiam-se nos trabalhos de~\citeshort{Carnielli_Coniglio_2016} e de~\citeshort{Sikorski1966-SIKAOF}.
     \subsection{Matriz Lógica e Valoração}
         Uma das formas de definir a semântica de uma lógica proposicional é definir uma \textit{matriz lógica} (também chamada de tabela-verdade) para os conectivos de sua assinatura proposicional. Para isso, é necessário definir o conceito de \textit{álgebra} para assinaturas proposicionais:
-        \helena{Sera q eu defino essas coisas em outra seção?}
+        \helena{Sera q eu defino essas coisas em outra seção?} \migs{Não acho que seja necessário abrir outra seção apenas para duas ou três de definições.}
+
         \begin{definicao}[Álgebra para assinaturas proposicionais]
         \label{def:algebra}
             Uma álgebra para uma assinatura proposicional $\Theta$ é uma dupla $\pazocal{A} = \langle A, O \rangle$, onde $A$ é um conjunto não vazio (chamado de \textit{domínio} da álgebra) e $O$ é uma função de interpretação que associa cada conectivo n-ário $c \in \Theta$ à uma operação $c^{\pazocal{A}}\!\! : \; A^{n} \rightarrow A$ em A.\qed{}
         \end{definicao}
 
-        Quando não for confuso, o mesmo símbolo será utilizado para representar um conectivo $c$ e sua interpretação $O(c) = c^{\pazocal{A}}$. Além disso, quando não houver ambiguidade, o símbolo utilizado para se referir a uma álgebra $\langle A, O \rangle$ será simplesmente o símbolo para seu domínio $A$. Ademais, caso $\Theta$ seja finita, a função $O$ será substituída pela lista de conectivos de $\Theta$. Por exemplo, uma álgebra para a assinatura $\Sigma$ da \lfium{} é escrita como $\pazocal{A} = \langle A,\land, \lor, \rightarrow, \neg, \circ \rangle$.
+        Quando não for confuso, o mesmo símbolo será utilizado para representar um conectivo $c$ e sua interpretação $O(c) = c^{\pazocal{A}}$. Além disso, quando não houver ambiguidade, o símbolo utilizado para se referir a uma álgebra $\langle A, O \rangle$ será simplesmente o símbolo para seu domínio $A$. Ademais, caso $\Theta$ seja finita, a função $O$ será substituída pela lista de conectivos de $\Theta$. Por exemplo, uma álgebra para a assinatura $\Sigma$ da \lfium{} é escrita como $\pazocal{A} = \langle A,\land, \lor, \rightarrow, \neg, \circ \rangle$. \migs{Acho que seria interessante puxar uma nota de rodapé para falar que está usando os mesmo símbolos para representar os conectivos e sua interpretação na álgebra.}
 
         \begin{observacao}
-            Uma linguagem sobre uma assinatura proposicional $\Theta = \{c_{1}, \ldots, c_{n}\}$ e um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \; | \; n \in \mathbb{N} \}$ pode ser compreendida como uma álgebra da forma $\langle \pazocal{L}_{\Theta}, c_{1}\ldots, c_{n} \rangle$, onde $\pazocal{L}_{\Theta}$ é um conjunto de fórmulas bem formadas a partir dos conectivos em $\Theta$ e dos átomos em $\pazocal{P}$. Notamos esta álgebra simplesmente por $\pazocal{L}_{\Theta}$~\cite{Sikorski1966-SIKAOF,Wojcicki1984-WJCLOP}.
+            Uma linguagem sobre uma assinatura proposicional $\Theta = \{c_{1}, \ldots, c_{n}\}$ e um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \; | \; n \in \mathbb{N} \}$ pode ser compreendida como uma álgebra da forma $\langle \pazocal{L}_{\Theta}, c_{1}\ldots, c_{n} \rangle$, onde $\pazocal{L}_{\Theta}$ é um conjunto de fórmulas bem formadas a partir dos conectivos em $\Theta$ e dos átomos em $\pazocal{P}$. \migscortar{Notamos}{ Denotamos} esta álgebra simplesmente por $\pazocal{L}_{\Theta}$~\cite{Sikorski1966-SIKAOF,Wojcicki1984-WJCLOP}.
         \end{observacao}
 
-        Duas álgebras definidas sobre uma mesma assinatura proposicional são ditas \textit{similares}. Uma função (mapeamento) entre duas estruturas algebraicas similares que preserva sua estrutura é chamada de \textit{homomorfismo}. Ou seja, dadas duas álgebras similares $\langle A, O \rangle$, $\langle B, O' \rangle$ definidas sobre uma assinatura proposicional $\Theta$, um mapeamento $h : A \rightarrow B$ será um \textit{homomorfismo} caso $h(c(a_{0},\ldots, a_{n})) = c(h(a_{0}),\ldots, h(a_{n}))$ (onde $c$ é um conectivo de aridade $n$), para todo conectivo $c \in \Theta$ e $a_{0},\ldots,a_{n} \in A$. 
+        Duas álgebras definidas sobre uma mesma assinatura proposicional são ditas \textit{similares}. Uma função (mapeamento) entre duas estruturas algebraicas similares que preserva sua estrutura é chamada de \textit{homomorfismo}. Ou seja, dadas duas álgebras similares $\langle A, O \rangle$, $\langle B, O' \rangle$ definidas sobre uma assinatura proposicional $\Theta$, um mapeamento $h : A \rightarrow B$ será um \textit{homomorfismo} caso $h(c(a_{0},\ldots, a_{n})) = c(h(a_{0}),\ldots, h(a_{n}))$ (onde $c$ é um conectivo de aridade $n$), para todo conectivo $c \in \Theta$ e $a_{0},\ldots,a_{n} \in A$. \migs{Bem lembrado de colocar essa definição.}
 
         \begin{definicao}[Matriz Lógica]
             Seja $\Theta$ uma assinatura proposicional. Uma \textit{matriz lógica} $\pazocal{M}$ definida sobre $\Theta$ é uma tripla $\pazocal{M} = \langle A, D, O \rangle$, tal que o par $\langle A, O \rangle$ é uma álgebra para $\Theta$ e $D$ é um subconjunto de $A$ cujos elementos são ditos \textit{designados}, estes são elementos de $A$ considerados como verdadeiros.\qed{}
@@ -239,7 +240,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \end{definicao}
         \helena{Explicar nome zoado das cláusulas}
 
-        Note que, por conta de $(VNeg)$ e $(VCon)$, o valor $v(\triangle \alpha)$ {-} para $\triangle \in \{\neg, \circ\}$ {-} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, isto não determina o valor $v(\neg \alpha)$, este podendo ser tanto $0$ como $1$ (mas não ambos).
+        Note que, por conta de $(VNeg)$ e $(VCon)$, o valor $v(\triangle \alpha)$ {-} para $\triangle \in \{\neg, \circ\}$ {-} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, \migscortar{isto não determina}{ não é possível determinar} o valor \migs{de} $v(\neg \alpha)$, este podendo ser tanto $0$ como $1$ (mas não ambos).
         
         \helena{Prova de equivalência entre $\conval{}$ e $\conmat{}$ (provavelmente na seção de metateoremas(?))}
 
@@ -256,7 +257,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\mathcal{L}$ e sejam $\Gamma, \{\phi\}$ teorias de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. A teoria $\Gamma$ é dita não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
     \end{definicao}
 
-    \helena{Botar exemplo de teoria não-trivial maximal?}
+    \helena{Botar exemplo de teoria não-trivial maximal?} \migs{Não acho que seja necessário, mas se você tiver um pronto acho que não vai fazer mal colocar.}
 
     \begin{definicao}[Teoria fechada]
         \label{def:fechada}
@@ -280,7 +281,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \pazocal{L}_{\Sigma}$, $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.
     \end{teorema}
     
-    \noindent Antes de apresentar a prova do Teorema~\ref{teo:deducao} é conveniente provar o seguinte lema auxiliar.
+    \noindent Antes de apresentar a prova do Teorema~\ref{teo:deducao} é conveniente provar o seguinte lema auxiliar. \migs{Já que você vai apresentar esse lema antes de apresentar a prova do teorema, enuncie e prove ele antes do teorema e então vá para o teorema.}
     
     \begin{lema}
         \label{lem:id}
@@ -288,7 +289,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \end{lema}
     
     \begin{proof}[Prova do Lema~\ref{lem:id}]
-        A seguinte sequência de derivação demonstra o lema:
+        A seguinte sequência de derivação demonstra o lema: \migs{Acho interessante você explicitar quais variáveis foram substituídas por o que quando lista qual axioma foi utilizado, igual faria no quadro branco.}
         
         \begin{align*}
             & \text{1. } (\alpha \to ((\alpha \to \alpha) \to \alpha)) \to ((\alpha \to (\alpha \to \alpha)) \to (\alpha \to \alpha))\tag{Ax2}\\
@@ -335,7 +336,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         \noindent 2.1. Caso $\phi_{1} = \alpha$, é necessário mostrar $\Gamma \conhil \alpha \to \alpha$, que é o que foi provado pelo Lema~\ref{lem:id}.
 
-        \noindent 2.2. Caso $\phi_{1} \in \Gamma$, então $\Gamma \conhil \alpha \to \phi_{1}$ é provado pela seguinte sequência de derivações:
+        \noindent 2.2. Caso $\phi_{1} \in \Gamma$, então $\Gamma \conhil \alpha \to \phi_{1}$ é provado pela \migscortar{seguinte sequência de derivações:}{ mesma sequência de derivações que foi apresentada no caso de $\phi_1$ ser uma instância de um axioma.}
         \begin{align*}
             & \text{1. } \phi_{1} \tag{Premissa}\\
             & \text{2. } \phi_{1} \to (\alpha \to \phi_{1}) \tag{Ax1}\\
@@ -360,5 +361,5 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             & \text{5. } \alpha \to \phi_{n + 1} \tag{MP 1,4}
         \end{align*}
 
-        Com isto, a prova de $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$ foi demonstrada.
+        Com isto, a prova de $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$ foi demonstrada. \migs{Esse comentário é desnecessário.}
     \end{proof}
