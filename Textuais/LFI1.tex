@@ -350,10 +350,13 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         \noindent 3. Caso $\phi_{n + 1}$ seja obtido por \textit{modus ponens} em duas fórmulas $\phi_{j}$ e $\phi_{k}$ com $j, k < n + 1$, então $\phi_{k} = \phi_{j} \to \phi_{n + 1}$ (ou $\phi_{j} = \phi_{k} \to \phi_{n + 1}$, a prova para este caso é análoga). Dada a nossa suposição de que $\Gamma, \alpha \conhil \phi_{n + 1}$, temos $\Gamma, \alpha \conhil \phi_{j}$ e $\Gamma, \alpha \conhil \phi_{j} \to \phi_{n + 1}$ sequências de dedução anteriores à aplicação da regra do \textit{modus ponens} na linha $n + 1$. Então, pela hipótese de indução, temos $\Gamma \conhil \alpha \to \phi_{j}$ e $\Gamma \conhil \alpha \to (\phi_{j} \to \phi_{n + 1})$. A seguinte sequência de dedução mostra $\Gamma \conhil \alpha \to \phi_{n + 1}$:
         \begin{align*}
-            & \text{1. } \alpha \to \phi_{j} \tag{HI sobre $\phi_{j}$}\\
-            & \text{2. } \alpha \to (\phi_{j} \to \phi_{n + 1}) \tag{HI sobre $\phi_{k}$}\\
-            & \text{3. } (\alpha \to (\phi_{j} \to \phi_{n + 1})) \to ((\alpha \to \phi_{j}) \to (\alpha \to \phi_{n + 1})) \tag{Ax2}\\
-            & \text{4. } (\alpha \to \phi_{j}) \to (\alpha \to \phi_{n + 1}) \tag{MP 2,3}\\
-            & \text{5. } \alpha \to \phi_{n + 1} \tag{MP 1,4}
+            & \text{~~~~~~~~~~~~1. } \; \ldots\\
+            & ~~~~~~~~~~~~\; \; \vdots \; \; \;\ddots\\
+            & \text{~~~~~~~~~~~~$j$. } \alpha \to \phi_{j} \tag{HI sobre $\phi_{j}$}\\
+            & ~~~~~~~~~~~~\; \; \vdots \; \; \;\ddots\\
+            & \text{~~~~~~$j + k$. } \alpha \to (\phi_{j} \to \phi_{n + 1}) \tag{HI sobre $\phi_{k}$}\\
+            & \text{$j + k + 1$. } (\alpha \to (\phi_{j} \to \phi_{n + 1})) \to ((\alpha \to \phi_{j}) \to (\alpha \to \phi_{n + 1})) \tag{Ax2}\\
+            & \text{$j + k + 2$. } (\alpha \to \phi_{j}) \to (\alpha \to \phi_{n + 1}) \tag{MP $j$,$j + k$}\\
+            & \text{$j + k + 3$. } \alpha \to \phi_{n + 1} \tag{MP 1,4}
         \end{align*}
     \end{proof}
