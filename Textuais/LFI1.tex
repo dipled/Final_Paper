@@ -273,7 +273,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
     
     
-    \begin{teorema}[Metateorema da dedução para \lfium{}]
+    \begin{teorema}[Metateorema da dedução para $\conhil$]
         \label{teo:deducao}
         Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \pazocal{L}_{\Sigma}$, $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.
     \end{teorema}
@@ -282,18 +282,18 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     
     \begin{lema}
         \label{lem:id}
-        A derivação $\conhil \alpha \to \alpha$ é válida.
+        A derivação $\Gamma \conhil \alpha \to \alpha$ é válida para todo $\Gamma \subseteq \pazocal{L}_{\Sigma}$.
     \end{lema}
     
     \begin{proof}[Prova do Lema~\ref{lem:id}]
-        A seguinte sequência de derivação demonstra o teorema:
+        A seguinte sequência de derivação demonstra o lema:
         
         \begin{align*}
-            & \text{1. } (\alpha \to ((\alpha \to \alpha) \to \alpha)) \to ((\alpha \to (\alpha \to \alpha)) \to (\alpha \to \alpha))\tag{\textbf{Ax2}}\\
-            & \text{2. } \alpha \to ((\alpha \to \alpha) \to \alpha)\tag{\textbf{Ax1}}\\
-            & \text{3. } \alpha \to (\alpha \to \alpha)\tag{\textbf{Ax1}}\\
-            & \text{4. } (\alpha \to (\alpha \to \alpha)) \to (\alpha \to \alpha)\tag{\textbf{MP 1,2}}\\
-            & \text{5. } \alpha \to \alpha\tag{\textbf{MP 4,3}}
+            & \text{1. } (\alpha \to ((\alpha \to \alpha) \to \alpha)) \to ((\alpha \to (\alpha \to \alpha)) \to (\alpha \to \alpha))\tag{Ax2}\\
+            & \text{2. } \alpha \to ((\alpha \to \alpha) \to \alpha)\tag{Ax1}\\
+            & \text{3. } \alpha \to (\alpha \to \alpha)\tag{Ax1}\\
+            & \text{4. } (\alpha \to (\alpha \to \alpha)) \to (\alpha \to \alpha)\tag{MP 1,2}\\
+            & \text{5. } \alpha \to \alpha\tag{MP 4,3}
         \end{align*}
     \end{proof}
 
@@ -304,8 +304,24 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \begin{align*}
             & \text{~~~~~~1. } \; \ldots\\
             & ~~~~~~\; \; \vdots \; \; \;\ddots\\
-            & \text{~~~~~~n. } \alpha \to \beta\tag{\textbf{Suposição}}\\
-            & \text{n + 1. } \alpha\tag{\textbf{Premissa}}\\
-            & \text{n + 2. } \beta\tag{\textbf{MP n, n + 1}}
+            & \text{~~~~~~$n$. } \alpha \to \beta\tag{Suposição}\\
+            & \text{$n + 1$. } \alpha\tag{Premissa}\\
+            & \text{$n + 2$. } \beta\tag{MP $n$, n + 1}
+        \end{align*}
+
+        \noindent  ($\Longrightarrow$) Supondo $\Gamma, \alpha \conhil \beta$, então existe uma sequência de dedução $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \beta$ a partir do conjunto de premissas $\Gamma \cup \{\alpha\}$. A prova de $\Gamma \conhil \alpha \to \beta$ é feita pela indução no comprimento $n$ da sequência de dedução:
+
+        \noindent\underline{Caso Base} $n = 1$.
+        Como $n = 1$, a sequência contem somente uma fórmula $phi_{1} = \beta$. Portanto, existem duas possibilidades:
+        \begin{enumerate}
+            \item $\beta$ é instância de substituição de um axioma.
+            \item $\beta \in \Gamma$.
+        \end{enumerate}
+
+        \noindent1. Caso $\phi_{1} = \beta$ seja instância de substituição de um axioma, a seguinte dedução mostra $\Gamma \conhil \alpha \to \beta$:
+        \begin{align*}
+            & \text{1. } \beta \tag{Suposição}\\
+            & \text{2. } \beta (\alpha \to \beta) \tag{Ax1}\\
+            & \text{3. } \alpha \to \beta \tag{Ax2}
         \end{align*}
     \end{proof}
