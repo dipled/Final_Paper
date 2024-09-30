@@ -245,35 +245,67 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
 
 \section{Metateoremas}
-\label{sec:metateoremas}
-\helena{Explicação breve dos metateoremas o que sao pra que serve etc aff q preguica mas tem q ter algo bem bonitinho -.-'}
-Antes de desenvolver as provas destes metateoremas, convém apresentar algumas definições pertinentes e provar lemas que facilitarão o desenvolvimento das provas mais extensas. Para isso, é necessário ter ciência da definição de Lógicas Tarskianas, apresentadas na Definição~\ref{def:tarski}.
+    \label{sec:metateoremas}
+    \helena{Explicação breve dos metateoremas o que sao pra que serve etc aff q preguica mas tem q ter algo bem bonitinho -.-'}
+    Antes de desenvolver as provas destes metateoremas, convém apresentar algumas definições pertinentes e provar lemas que facilitarão o desenvolvimento das provas mais extensas. Para isso, é necessário ter ciência da definição de Lógicas Tarskianas, apresentadas na Definição~\ref{def:tarski}.
 
-\begin{definicao}[Teoria não-trivial maximal]
-    \label{def:nao-trivial_maximal}
-    Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\mathcal{L}$ e sejam $\Gamma, \{\phi\}$ teorias de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. A teoria $\Gamma$ é dita não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
-\end{definicao}
+    \begin{definicao}[Teoria não-trivial maximal]
+        \label{def:nao-trivial_maximal}
+        Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\mathcal{L}$ e sejam $\Gamma, \{\phi\}$ teorias de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. A teoria $\Gamma$ é dita não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
+    \end{definicao}
 
-\helena{Botar exemplo de teoria não-trivial maximal?}
+    \helena{Botar exemplo de teoria não-trivial maximal?}
 
-\begin{definicao}[Teoria fechada]
-    \label{def:fechada}
+    \begin{definicao}[Teoria fechada]
+        \label{def:fechada}
 
-    Seja $\mathcal{L}$ uma lógica tarskiana. Uma teoria $\Gamma$ é dita fechada em $\mathcal{L}$ se, para toda formula $\phi$, for o caso que $\Gamma \Vdash_{\mathcal{L}} \phi$ sse $\phi \in \Gamma$.\qed{}
-\end{definicao}
+        Seja $\mathcal{L}$ uma lógica tarskiana. Uma teoria $\Gamma$ é dita fechada em $\mathcal{L}$ se, para toda formula $\phi$, for o caso que $\Gamma \Vdash_{\mathcal{L}} \phi$ sse $\phi \in \Gamma$.\qed{}
+    \end{definicao}
 
-\begin{lema}
-    Toda teoria não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ é fechada em $\mathcal{L}$.
-\end{lema}
-\begin{proof}
-    Seja $\Gamma$ uma teoria não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Se $\psi \in \Gamma$, então $\Gamma \Vdash_{\mathcal{L}} \psi$, já que $\mathcal{L}$ é tarskiana. Se $\Gamma \Vdash_{\mathcal{L}} \psi$, então supondo que $\psi \notin \Gamma$, temos que $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$, pela Definição~\ref{def:nao-trivial_maximal}. Como $\mathcal{L}$ é tarskiana, segue que $\Gamma \Vdash_{\mathcal{L}} \phi$, o que contradiz o fato de $\Gamma$ ser não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Portanto, $\psi \in \Gamma$ e então $\Gamma$ é fechada em $\mathcal{L}$.
-\end{proof}
+    \begin{lema}
+        \label{lem:nao_trivial_maximal_fechada}
+        Toda teoria não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ é fechada em $\mathcal{L}$.
+    \end{lema}
 
+    \begin{proof}[Prova do Lema~\ref{lem:nao_trivial_maximal_fechada}]
+        Seja $\Gamma$ uma teoria não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Se $\psi \in \Gamma$, então $\Gamma \Vdash_{\mathcal{L}} \psi$, já que $\mathcal{L}$ é tarskiana. Se $\Gamma \Vdash_{\mathcal{L}} \psi$, então supondo que $\psi \notin \Gamma$, temos que $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$, pela Definição~\ref{def:nao-trivial_maximal}. Como $\mathcal{L}$ é tarskiana, segue que $\Gamma \Vdash_{\mathcal{L}} \phi$, o que contradiz o fato de $\Gamma$ ser não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Portanto, $\psi \in \Gamma$ e então $\Gamma$ é fechada em $\mathcal{L}$.
+    \end{proof}
 
-\begin{teorema}[Metateorema da dedução para \lfium{}]
-    \label{teo:deducao}
-    Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \pazocal{L}_{\Sigma}$, $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.
-\end{teorema}
-\begin{proof} A prova será dividida em duas partes:\\
-    ($\Longleftarrow$) Supondo $\Gamma \conhil \alpha \to \beta$, então existe uma sequência de dedução $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha \to \beta$.
-\end{proof}
+    
+    
+    \begin{teorema}[Metateorema da dedução para \lfium{}]
+        \label{teo:deducao}
+        Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \pazocal{L}_{\Sigma}$, $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.
+    \end{teorema}
+    
+    \noindent Antes de apresentar a prova do Teorema~\ref{teo:deducao} é conveniente provar o seguinte lema auxiliar.
+    
+    \begin{lema}
+        \label{lem:id}
+        A derivação $\conhil \alpha \to \alpha$ é válida.
+    \end{lema}
+    
+    \begin{proof}[Prova do Lema~\ref{lem:id}]
+        A seguinte sequência de derivação demonstra o teorema:
+        
+        \begin{align*}
+            & \text{1. } (\alpha \to ((\alpha \to \alpha) \to \alpha)) \to ((\alpha \to (\alpha \to \alpha)) \to (\alpha \to \alpha))\tag{\textbf{Ax2}}\\
+            & \text{2. } \alpha \to ((\alpha \to \alpha) \to \alpha)\tag{\textbf{Ax1}}\\
+            & \text{3. } \alpha \to (\alpha \to \alpha)\tag{\textbf{Ax1}}\\
+            & \text{4. } (\alpha \to (\alpha \to \alpha)) \to (\alpha \to \alpha)\tag{\textbf{MP 1,2}}\\
+            & \text{5. } \alpha \to \alpha\tag{\textbf{MP 4,3}}
+        \end{align*}
+    \end{proof}
+
+    \noindent Finalmente, a prova do Teorema~\ref{teo:deducao} pode ser apresentada:
+
+    \begin{proof}[Prova do Teorema~\ref{teo:deducao}] A prova será dividida em duas partes:\\
+        ($\Longleftarrow$) Supondo $\Gamma \conhil \alpha \to \beta$, então existe uma sequência de dedução $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha \to \beta$. A seguinte sequência de dedução completa a prova de $\Gamma, \alpha \conhil \beta$:
+        \begin{align*}
+            & \text{~~~~~~1. } \; \ldots\\
+            & ~~~~~~\; \; \vdots \; \; \;\ddots\\
+            & \text{~~~~~~n. } \alpha \to \beta\tag{\textbf{Suposição}}\\
+            & \text{n + 1. } \alpha\tag{\textbf{Premissa}}\\
+            & \text{n + 2. } \beta\tag{\textbf{MP n, n + 1}}
+        \end{align*}
+    \end{proof}
