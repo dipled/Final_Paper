@@ -55,16 +55,16 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
     A teoria das provas é uma das abordagens para o estudo das relações de consequência, onde a validade de uma inferência é atestada caso haja uma \textit{prova} das conclusões a partir das premissas. Uma \textit{prova} consiste em uma sequência de passos bem definidos aplicados sobre conjuntos (ocasionalmente unitários) de proposições, com base nos princípios de um determinado sistema de provas. A teoria das provas é sintática\footnote{Vale notar que a separação \textit{prova {--} sintaxe {--} semântica {--} modelo} não é tão bem definida, algo que é explorado em~\citeshort{Prawitz2005-PRALCA-2}.} por natureza, ou seja, numa inferência do tipo $A \vdash B$, é relevante apenas a estrutura das fórmulas presentes em \textit{A} e \textit{B}, não sua interpretação ou valor-verdade. Essa estrutura é manipulada a fim de obter-se uma sequência de passos que {--} além de atestar sua validade {--} serve como argumento para tal~\cite{sep-logical-consequence}. Desta forma, pode-se definir um sistema de provas sintático para servir como relação de consequência para uma determinada lógica. 
 
-    No contexto da \lfium{} existem dois sistemas de prova sintáticos estabelecidos até o momento: um Cálculo de Hilbert, descrita por~\citeshort{carnielli2000formal,Carnielli_Coniglio_2016} e um sistema de \textit{Tableau}, descrito por~\citeshort{tableaulfi}. No presente trabalho, foi escolhida o Cálculo de Hilbert para definir a sintaxe da \lfium{}, dada a maior facilidade desenvolver metateoremas em relação ao sistema de \textit{Tableau}.
+    No contexto da \lfium{} existem dois sistemas de prova sintáticos estabelecidos até o momento: um cálculo de Hilbert, descrito por~\citeshort{carnielli2000formal,Carnielli_Coniglio_2016} e um sistema de \textit{Tableau}, descrito por~\citeshort{tableaulfi}. No presente trabalho, foi escolhido o cálculo de Hilbert para definir a sintaxe da \lfium{}, dada a maior facilidade para desenvolver metateoremas em relação ao sistema de \textit{Tableau}.
 
-    O Cálculo de Hilbert (também conhecido como Sistema de Hilbert ou Axiomatização de Hilbert) é um sistema composto por um conjunto de fórmulas, chamadas de \textit{axiomas}, e um conjunto de \textit{regras de inferência}. Uma regra de inferência é formada por uma lista de fórmulas chamadas de premissas da regra e uma fórmula chamada de conclusão da regra~\cite{Restall1999-RESAIT-4}. Uma prova (também chamada de derivação) de uma dada fórmula $\phi$ consiste em uma sequência finita de fórmulas \(\psi_0, \dots, \psi_n\), onde \(\psi_n = \phi\), e cada  $\psi_i\ (0 \leq i \leq n)$ é uma \textit{instância de substituição} (ver Definição~\ref{def:substituicao}) de um axioma ou o resultado da aplicação de uma regra de inferência em fórmulas anteriores. Usualmente, o Cálculo de Hilbert possui apenas uma regra de inferência, esta sendo o \textit{Modus Ponens}. Este também é o caso para o Cálculo de Hilbert que será utilizado para a \lfium{}.
+    O cálculo de Hilbert (também conhecido como sistema de Hilbert ou axiomatização de Hilbert) é um sistema composto por um conjunto de fórmulas, chamadas de \textit{axiomas}, um conjunto de \textit{regras de inferência}. Uma regra de inferência é formada por uma lista de fórmulas chamadas de premissas da regra e uma fórmula chamada de conclusão da regra~\cite{Restall1999-RESAIT-4}. Uma prova (também chamada de derivação) do tipo $\Gamma \vdash \phi$ consiste em uma sequência finita de fórmulas \(\psi_0, \dots, \psi_n\), onde \(\psi_n = \phi\), e cada  $\psi_i\ (0 \leq i \leq n)$ é uma \textit{instância de substituição} (ver Definição~\ref{def:substituicao}) de um axioma, um elemento do conjunto de premissas $\Gamma$ ou o resultado da aplicação de uma regra de inferência em fórmulas anteriores. Usualmente, o cálculo de Hilbert possui apenas uma regra de inferência, esta sendo o \textit{Modus Ponens}. Este também é o caso para o cálculo de Hilbert que será utilizado para a \lfium{}.
     
-    O Cálculo de Hilbert definido a seguir foi apresentado por~\citeshort{Carnielli_Coniglio_2016} como alternativa ao que havia sido definido em trabalhos anteriores~\cite{carnielli2000formal,carnielli2007}. Segundo os autores, esta definição evidencia algumas propriedades interessantes da negação $\neg$ como as leis de De Morgan.
+    O cálculo de Hilbert definido a seguir foi apresentado por~\citeshort{Carnielli_Coniglio_2016} como alternativa ao que havia sido definido em trabalhos anteriores~\cite{carnielli2000formal,carnielli2007}. Segundo os autores, esta definição evidencia algumas propriedades interessantes da negação $\neg$ como as leis de De Morgan.
 
 
     \begin{definicao}[\lfium{}]
         \label{def:lfi1}
-        A relação de consequência sintática $\conhil{}$ para a lógica \lfium{} é definida sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte Cálculo de Hilbert:\helena{explicar os nomes estranhos dos axiomas}
+        A relação de consequência sintática $\conhil{}$ para a lógica \lfium{} é definida sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte cálculo de Hilbert:\helena{explicar os nomes estranhos dos axiomas}
 
         \noindent\textbf{Axiomas}:
         \begin{align*}
@@ -101,6 +101,17 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \qed{}  
     \end{definicao}
 
+    Com isso, uma derivação em \lfium{} pode ser definida:
+    
+    \begin{definicao}[Derivação em \lfium{}]
+        Seja $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$ um conjunto de fórmulas, uma derivação $\Gamma \vdash \phi$ de $\phi$ a partir de $\Gamma$ em \lfium{} é uma sequência finita de fórmulas \(\phi_0, \dots, \phi_n\) onde, para cada $1 \leqslant i \leqslant n$, é válido que:
+        \begin{align*}
+            & \text{~~(i) }\phi_{i} \text{ é instância de substituição de um axioma, ou}\\
+            & \text{~(ii) }\phi_{i} \in \Gamma \text{, ou}\\
+            & \text{(iii) }\text{existem } j,k \leqslant i \text{ de modo que } \phi_{i} \text{ é obtido por MP em } \phi_{j} \text{ e } \phi_{k}.\tag*\qed{}
+        \end{align*}
+    \end{definicao}
+
 \section{Semântica}
 \label{sec:semantica}
     De forma geral, a semântica é o estudo de como um sistema de símbolos (uma linguagem) internaliza informações, ou seja, é o estudo de como interpretar os símbolos de uma linguagem~\cite{brown2005encyclopedia}. Num sistema lógico, a definição de \textit{matrizes lógicas} é comumente usada para estabelecer o comportamento esperado dos conectivos lógicos de sua assinatura, definindo sua semântica. Outra forma de compreender a semântica de um sistema lógico é definir uma função conhecida como \textit{valoração}, que define uma \textit{semântica de valorações}\helena{explicar melhor onde essas semânticas são utilizadas}. Nesta seção, a semântica da \lfium{} será definida de dois jeitos distintos: a partir de uma \textit{matriz lógica} e a partir de uma \textit{valoração}. Ambas serão provadas equivalentes, a fim de facilitar a prova de metateoremas na Seção~\ref{sec:metateoremas}. As definições e notações para os conceitos de \textit{álgebra} definidos aqui baseiam-se nos trabalhos de~\citeshort{Carnielli_Coniglio_2016} e de~\citeshort{Sikorski1966-SIKAOF}.
@@ -112,10 +123,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             Uma álgebra para uma assinatura proposicional $\Theta$ é uma dupla $\pazocal{A} = \langle A, O \rangle$, onde $A$ é um conjunto não vazio (chamado de \textit{domínio} da álgebra) e $O$ é uma função de interpretação que associa cada conectivo n-ário $c \in \Theta$ à uma operação $c^{\pazocal{A}}\!\! : \; A^{n} \rightarrow A$ em A.\qed{}
         \end{definicao}
 
-        Quando não for confuso, o mesmo símbolo é utilizado para representar um conectivo $c$ e sua interpretação $O(c) = c^{\pazocal{A}}$. Além disso, quando não houver ambiguidade, o símbolo utilizado para se referir a uma álgebra $\langle A, O \rangle$ será simplesmente o símbolo para seu domínio $A$. Ademais, caso $\Theta$ seja finita, a função $O$ é substituída pela lista de conectivos de $\Theta$. Por exemplo, uma álgebra para a assinatura $\Sigma$ da \lfium{} é escrita como $\pazocal{A} = \langle A,\land, \lor, \rightarrow, \neg, \circ \rangle$.
+        Quando não for confuso, o mesmo símbolo será utilizado para representar um conectivo $c$ e sua interpretação $O(c) = c^{\pazocal{A}}$. Além disso, quando não houver ambiguidade, o símbolo utilizado para se referir a uma álgebra $\langle A, O \rangle$ será simplesmente o símbolo para seu domínio $A$. Ademais, caso $\Theta$ seja finita, a função $O$ será substituída pela lista de conectivos de $\Theta$. Por exemplo, uma álgebra para a assinatura $\Sigma$ da \lfium{} é escrita como $\pazocal{A} = \langle A,\land, \lor, \rightarrow, \neg, \circ \rangle$.
 
         \begin{observacao}
-            Uma linguagem sobre uma assinatura proposicional $\Theta$ pode ser compreendida como uma álgebra da forma $\langle \pazocal{L}_{\Theta}, f \rangle$, onde $\pazocal{L}_{\Theta}$ é um conjunto de fórmulas bem formadas a partir da função $f$. Notamos esta álgebra simplesmente por $\pazocal{L}_{\Theta}$~\cite{Sikorski1966-SIKAOF}.
+            Uma linguagem sobre uma assinatura proposicional $\Theta = \{c_{1}, \ldots, c_{n}\}$ e um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \; | \; n \in \mathbb{N} \}$ pode ser compreendida como uma álgebra da forma $\langle \pazocal{L}_{\Theta}, c_{1}\ldots, c_{n} \rangle$, onde $\pazocal{L}_{\Theta}$ é um conjunto de fórmulas bem formadas a partir dos conectivos em $\Theta$ e dos átomos em $\pazocal{P}$. Notamos esta álgebra simplesmente por $\pazocal{L}_{\Theta}$~\cite{Sikorski1966-SIKAOF,Wojcicki1984-WJCLOP}.
         \end{observacao}
 
         Duas álgebras definidas sobre uma mesma assinatura proposicional são ditas \textit{similares}. Uma função (mapeamento) entre duas estruturas algebraicas similares que preserva sua estrutura é chamada de \textit{homomorfismo}. Ou seja, dadas duas álgebras similares $\langle A, O \rangle$, $\langle B, O' \rangle$ definidas sobre uma assinatura proposicional $\Theta$, um mapeamento $h : A \rightarrow B$ será um \textit{homomorfismo} caso $h(c(a_{0},\ldots, a_{n})) = c(h(a_{0}),\ldots, h(a_{n}))$ (onde $c$ é um conectivo de aridade $n$), para todo conectivo $c \in \Theta$ e $a_{0},\ldots,a_{n} \in A$. 
@@ -201,7 +212,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \end{minipage}
 
             \noindent
-            A matriz $\pazocal{M}_{\lfium{}}$ define a relação de consequência semântica $\conmat{}$ para a lógica. \lfium{}\qed{}
+            A matriz $\pazocal{M}_{\lfium{}}$ define a relação de consequência semântica $\conmat{}$ para a lógica \lfium{}. \qed{}
         \end{definicao}
 
         
@@ -228,11 +239,126 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \end{definicao}
         \helena{Explicar nome zoado das cláusulas}
 
-        Note que, por conta de $(VNeg)$ e $(VCon)$, o valor de $v(\triangle \alpha)$ {-} para $\triangle \in \{\neg, \circ\}$ {-} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, isto não determina o valor $v(\neg \alpha)$, podendo ser tanto $0$ como $1$ (mas não ambos).
+        Note que, por conta de $(VNeg)$ e $(VCon)$, o valor $v(\triangle \alpha)$ {-} para $\triangle \in \{\neg, \circ\}$ {-} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, isto não determina o valor $v(\neg \alpha)$, este podendo ser tanto $0$ como $1$ (mas não ambos).
+        
+        \helena{Prova de equivalência entre $\conval{}$ e $\conmat{}$ (provavelmente na seção de metateoremas(?))}
 
-        \helena{Prova de equivalência entre $\conval{}$ e $\conmat{}$ pra depois passar pros metateoremas malucos}
 
         \migs{Creio que falei isso para os axiomas antes, mas acho que seria interessante explicar pq algumas dessas regras de valoração tem nomes diferenciados.}
         
 \section{Metateoremas}
-\label{sec:metateoremas}
+    \label{sec:metateoremas}
+    \helena{Explicação breve dos metateoremas o que sao pra que serve etc aff q preguica mas tem q ter algo bem bonitinho -.-'}
+    Antes de desenvolver as provas destes metateoremas, convém apresentar algumas definições pertinentes e provar lemas que facilitarão o desenvolvimento das provas mais extensas. Para isso, é necessário ter ciência da definição de Lógicas Tarskianas, apresentadas na Definição~\ref{def:tarski}.
+
+    \begin{definicao}[Teoria não-trivial maximal]
+        \label{def:nao-trivial_maximal}
+        Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\mathcal{L}$ e sejam $\Gamma, \{\phi\}$ teorias de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. A teoria $\Gamma$ é dita não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
+    \end{definicao}
+
+    \helena{Botar exemplo de teoria não-trivial maximal?}
+
+    \begin{definicao}[Teoria fechada]
+        \label{def:fechada}
+
+        Seja $\mathcal{L}$ uma lógica tarskiana. Uma teoria $\Gamma$ é dita fechada em $\mathcal{L}$ se, para toda formula $\phi$, for o caso que $\Gamma \Vdash_{\mathcal{L}} \phi$ sse $\phi \in \Gamma$.\qed{}
+    \end{definicao}
+
+    \begin{lema}
+        \label{lem:nao_trivial_maximal_fechada}
+        Toda teoria não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ é fechada em $\mathcal{L}$.
+    \end{lema}
+
+    \begin{proof}[Prova do Lema~\ref{lem:nao_trivial_maximal_fechada}]
+        Seja $\Gamma$ uma teoria não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Se $\psi \in \Gamma$, então $\Gamma \Vdash_{\mathcal{L}} \psi$, já que $\mathcal{L}$ é tarskiana. Se $\Gamma \Vdash_{\mathcal{L}} \psi$, então supondo que $\psi \notin \Gamma$, temos que $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$, pela Definição~\ref{def:nao-trivial_maximal}. Como $\mathcal{L}$ é tarskiana, segue que $\Gamma \Vdash_{\mathcal{L}} \phi$, o que contradiz o fato de $\Gamma$ ser não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Portanto, $\psi \in \Gamma$ e então $\Gamma$ é fechada em $\mathcal{L}$.
+    \end{proof}
+
+    
+    
+    \begin{teorema}[Metateorema da dedução para $\conhil$]
+        \label{teo:deducao}
+        Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \pazocal{L}_{\Sigma}$, $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.
+    \end{teorema}
+    
+    \noindent Antes de apresentar a prova do Teorema~\ref{teo:deducao} é conveniente provar o seguinte lema auxiliar.
+    
+    \begin{lema}
+        \label{lem:id}
+        A derivação $\Gamma \conhil \alpha \to \alpha$ é válida para todo $\Gamma \cup \{\alpha\} \subseteq \pazocal{L}_{\Sigma}$.
+    \end{lema}
+    
+    \begin{proof}[Prova do Lema~\ref{lem:id}]
+        A seguinte sequência de derivação demonstra o lema:
+        
+        \begin{align*}
+            & \text{1. } (\alpha \to ((\alpha \to \alpha) \to \alpha)) \to ((\alpha \to (\alpha \to \alpha)) \to (\alpha \to \alpha))\tag{Ax2}\\
+            & \text{2. } \alpha \to ((\alpha \to \alpha) \to \alpha)\tag{Ax1}\\
+            & \text{3. } \alpha \to (\alpha \to \alpha)\tag{Ax1}\\
+            & \text{4. } (\alpha \to (\alpha \to \alpha)) \to (\alpha \to \alpha)\tag{MP 1,2}\\
+            & \text{5. } \alpha \to \alpha\tag{MP 3,4}
+        \end{align*}
+    \end{proof}
+
+    \noindent Finalmente, a prova do Teorema~\ref{teo:deducao} pode ser apresentada:
+
+    \begin{proof}[Prova do Teorema~\ref{teo:deducao}] A prova será dividida em duas partes:\\
+        ($\Longleftarrow$) Supondo $\Gamma \conhil \alpha \to \beta$, então existe uma sequência de dedução $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha \to \beta$. A seguinte sequência de dedução completa a prova de $\Gamma, \alpha \conhil \beta$:
+        \begin{align*}
+            & \text{~~~~~~1. } \; \ldots\\
+            & ~~~~~~\; \; \vdots \; \; \;\ddots\\
+            & \text{~~~~~~$n$. } \alpha \to \beta\tag{Suposição}\\
+            & \text{$n + 1$. } \alpha\tag{Premissa}\\
+            & \text{$n + 2$. } \beta\tag{MP $n, n + 1$}
+        \end{align*}
+
+        \noindent  ($\Longrightarrow$) Supondo $\Gamma, \alpha \conhil \beta$, então existe uma sequência de dedução $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \beta$ a partir do conjunto de premissas $\Gamma \cup \{\alpha\}$. A prova de $\Gamma \conhil \alpha \to \beta$ é feita pela indução no comprimento $n$ da sequência de dedução:
+
+        \noindent\underline{Base} $n = 1$.
+        A sequência contem somente uma fórmula $\phi_{1} = \beta$. Portanto, existem duas possibilidades:
+        \begin{enumerate}
+            \item $\phi_{1}$ é instância de substituição de um axioma.
+            \item $\phi_{1} \in \Gamma \cup \{\alpha\}$.
+        \end{enumerate}
+
+        \noindent 1. Caso $\phi_{1}$ seja instância de substituição de um axioma, a seguinte dedução mostra $\Gamma \conhil \alpha \to \phi_{1}$:
+        \begin{align*}
+            & \text{1. } \phi_{1} \tag{Suposição}\\
+            & \text{2. } \phi_{1} \to (\alpha \to \phi_{1}) \tag{Ax1}\\
+            & \text{3. } \alpha \to \phi_{1} \tag{MP 1,2}
+        \end{align*}
+        
+        \noindent 2. Caso $\phi_{1} \in \Gamma \cup \{\alpha\}$, existem dois casos a serem considerados:
+        \begin{enumerate}
+            \item $\phi_{1} = \alpha$
+            \item $\phi_{1} \in \Gamma$
+        \end{enumerate}
+
+        \noindent 2.1. Caso $\phi_{1} = \alpha$, é necessário mostrar $\Gamma \conhil \alpha \to \alpha$, que é o que foi provado pelo Lema~\ref{lem:id}.
+
+        \noindent 2.2. Caso $\phi_{1} \in \Gamma$, então $\Gamma \conhil \alpha \to \phi_{1}$ é provado pela seguinte sequência de derivações:
+        \begin{align*}
+            & \text{1. } \phi_{1} \tag{Premissa}\\
+            & \text{2. } \phi_{1} \to (\alpha \to \phi_{1}) \tag{Ax1}\\
+            & \text{3. } \alpha \to \phi_{1} \tag{MP 1, 2}
+        \end{align*}
+
+        \noindent \underline{Passo} Hipótese de indução (HI): \textit{Para qualquer sequência de dedução $\phi_{1} \ldots \phi_{n}$ de $\Gamma, \alpha \conhil \beta$ tem-se $\Gamma \conhil \alpha \to \beta$}. É preciso mostrar que $\Gamma \conhil \alpha \to \beta$ segue caso a dedução seja de tamanho $n + 1$. Ao analisar a obtenção de $\phi_{n + 1} = \beta$, existem três casos a se considerar:
+        \begin{enumerate}
+            \item $\phi_{n + 1}$ é instância de substituição de um axioma.
+            \item $\phi_{n + 1} \in \Gamma \cup \{\alpha\}$.
+            \item $\phi_{n + 1}$ é obtido por \textit{modus ponens} em duas fórmulas $\phi_{j}$ e $\phi_{k}$ com $j, k \leqslant n + 1$.
+        \end{enumerate}
+        
+        \noindent Os casos 1 e 2 são análogos aos casos provados na base.
+
+        \noindent 3. Caso $\phi_{n + 1}$ seja obtido por \textit{modus ponens} em duas fórmulas $\phi_{j}$ e $\phi_{k}$ com $j, k \leqslant n + 1$. Então $\phi_{k} = \phi_{j} \to \phi_{n + 1}$ (ou $\phi_{j} = \phi_{k} \to \phi_{n + 1}$, a prova para este caso é análoga). Como $j, k \leqslant n + 1$, pela hipótese de indução segue que $\Gamma \conhil \alpha \to \phi_{j}$ e $\Gamma \conhil \alpha \to \phi_{k}$. A seguinte sequência de dedução mostra $\Gamma \conhil \alpha \to \phi_{n + 1}$:
+        \begin{align*}
+            & \text{1. } \alpha \to \phi_{j} \tag{HI sobre $\phi_{j}$}\\
+            & \text{2. } \alpha \to (\phi_{j} \to \phi_{n + 1}) \tag{HI sobre $\phi_{k}$}\\
+            & \text{3. } (\alpha \to (\phi_{j} \to \phi_{n + 1})) \to ((\alpha \to \phi_{j}) \to (\alpha \to \phi_{n + 1})) \tag{Ax2}\\
+            & \text{4. } (\alpha \to \phi_{j}) \to (\alpha \to \phi_{n + 1}) \tag{MP 2,3}\\
+            & \text{5. } \alpha \to \phi_{n + 1} \tag{MP 1,4}
+        \end{align*}
+
+        Com isto, a prova de $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$ foi demonstrada.
+    \end{proof}
