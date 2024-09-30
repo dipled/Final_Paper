@@ -290,13 +290,13 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \end{align*}
     \end{proof}
     
+    \noindent Finalmente, a prova do Teorema~\ref{teo:deducao} pode ser apresentada:
     
     \begin{teorema}[Metateorema da dedução para $\conhil$]
         \label{teo:deducao}
         Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \pazocal{L}_{\Sigma}$, $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.
     \end{teorema}
 
-    \noindent Finalmente, a prova do Teorema~\ref{teo:deducao} pode ser apresentada:
 
     \begin{proof}[Prova do Teorema~\ref{teo:deducao}] A prova será dividida em duas partes:\\
         ($\Longleftarrow$) Supondo $\Gamma \conhil \alpha \to \beta$, então existe uma sequência de dedução $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha \to \beta$. A seguinte sequência de dedução completa a prova de $\Gamma, \alpha \conhil \beta$:
