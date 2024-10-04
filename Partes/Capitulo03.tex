@@ -235,13 +235,16 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 & v(\neg (\alpha \lor \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vDM_{\lor}$}}\\
                 & v(\neg (\alpha \rightarrow \beta)) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vCIp_{\rightarrow}$}}
             \end{align*}
-            A função $v$ define a relação de consequência semântica $\conval{}$ para a lógica \lfium{}.\qed{}
+            O conjunto destas valorações será denotado por $V^{\lfium{}}$. Então, a relação de consequência semântica $\conval$ é definida, para todo $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$, da seguinte forma: $\Gamma \conval \phi$ sse, para todo $v \in V^{\lfium{}}$, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$ então $v(\phi) = 1$.\qed{}
         \end{definicao}
         \helena{Explicar nome zoado das cláusulas}
 
         Note que, por conta de $(VNeg)$ e $(VCon)$, o valor $v(\triangle \alpha)$ {-} para $\triangle \in \{\neg, \circ\}$ {-} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, não é possível determinar o valor \migs{de} $v(\neg \alpha)$, este podendo ser tanto $0$ como $1$ (mas não ambos).
         
-        \helena{Prova de equivalência entre $\conval{}$ e $\conmat{}$ (provavelmente na seção de metateoremas(?))}
+        \begin{lema}[Equivalência entre a semântica de Matrizes e a semântica de valorações]
+            \label{lem:matval}
+            Seja $v$ uma valoração em $V^{\lfium{}}$, então existe
+        \end{lema}
                 
 \section{Metateoremas}
     \label{sec:metateoremas}
