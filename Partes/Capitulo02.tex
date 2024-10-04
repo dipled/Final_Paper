@@ -1,6 +1,6 @@
 \chapter{Lógicas de Inconsistência Formal}
 \label{cap:LFIs}
-No estudo de lógicas clássicas uma contradição é considerada inseparável da trivialidade, ou seja, se uma teoria possuir um subconjunto $\{\alpha,\neg \alpha\}$ de fórmulas, pode-se derivar qualquer sentença. Esta propriedade é chamada de \textit{explosividade}. Desta forma, as lógicas clássicas (e certas lógicas não-clássicas, como a lógica intuicionista), expressam sua \textit{explosividade} como representada pela seguinte equação: \migs{Esse parágrafo ficou muito bom}
+No estudo de lógicas clássicas, uma contradição é considerada inseparável da trivialidade, ou seja, se uma teoria possuir um subconjunto $\{\alpha,\neg \alpha\}$ de fórmulas, pode-se derivar qualquer sentença. Esta propriedade é chamada de \textit{explosividade}. Desta forma, as lógicas clássicas (e certas lógicas não-clássicas, como a lógica intuicionista), expressam sua \textit{explosividade} como representada pela seguinte equação: \migs{Esse parágrafo ficou muito bom}
 \begin{center}
     Contradições = Trivialidade
 \end{center}
@@ -110,7 +110,7 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
 
     \begin{definicao}[Lógica Tarskiana paraconsistente]
         \label{def:tarskiana_paracons}
-        Uma lógica Tarskiana $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$, é dita \textit{paraconsistente} se ela possuir uma negação\footnote{Esta negação pode ser primitiva (pertencente à assinatura da linguagem) ou definida a partir de outras fórmulas.} $\neg$ tal que existem fórmulas $\alpha, \beta \in \pazocal{L}$ onde $\alpha, \neg \alpha \nVdash \beta$. \migs{Aqui você deveria especificar a assinatura da linguagem} \qed{}
+        Uma lógica Tarskiana $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$, é dita \textit{paraconsistente} se ela possuir uma negação\footnote{Esta negação pode ser primitiva (pertencente à assinatura da linguagem) ou definida a partir de outras fórmulas.} $\neg$ tal que existem fórmulas $\alpha, \beta \in \pazocal{L}$ onde $\alpha, \neg \alpha \nVdash \beta$.\qed{}
     \end{definicao}
 
     Caso a linguagem de $\mathcal{L}$ possua uma implicação $\rightarrow$ que respeite o metateorema da dedução\footnote{Definido como $\Gamma, \alpha \Vdash \beta \Longleftrightarrow  \Gamma\Vdash \alpha \rightarrow \beta$.}, então $\mathcal{L}$ é paraconsistente se e somente se a fórmula $\alpha \rightarrow (\neg \alpha \rightarrow \beta)$ não for válida. Ou seja, se o Princípio da Explosão é inválido (em relação a $\neg$), o conectivo $\neg$ é considerado uma negação \textit{não explosiva}.

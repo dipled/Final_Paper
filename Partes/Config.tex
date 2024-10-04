@@ -51,12 +51,16 @@
 \setlength{\parskip}{0.2cm}  % tente também \onelineskip
 
 % Configurações adicionadas por Bruno e Helena:
+
 	% Fontes
-	\DeclareMathAlphabet{\pazocal}{OMS}{zplm}{m}{n}
-	\DeclareMathAlphabet{\mathscr}{OMS}{zplm}{m}{n}
-% Definindo fonte caligráfica e negrita
-	\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
-	% Teoremas e etc:
+		\DeclareMathAlphabet{\pazocal}{OMS}{zplm}{m}{n}
+		\DeclareMathAlphabet{\mathscr}{OMS}{zplm}{m}{n}
+		\renewcommand{\phi}{\varphi}
+
+	% Definindo fonte caligráfica e negrita
+		\DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
+
+	% Teoremas:
 		\newtheorem{proposicao}{Proposição}
 		\newtheorem{lema}      {Lema}
 		\newtheorem{corolario} {Corolário}
@@ -70,7 +74,8 @@
 		
 		\theoremstyle{remark}
 		\newtheorem{observacao}{Observação}
-	% Operadores e etc:
+
+	% Operadores:
 		\newcommand{\eqdef}{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily def}}}{=}}}
 		\renewcommand\qedsymbol{$\blacksquare$}
 		\newcommand{\meio}{\frac{1}{2}}
@@ -88,13 +93,14 @@
 		\newcommand{\migscortar}[2]{\textcolor{violet}{\textbf{MIGS:} \sout{#1}{#2}}}
 		\newcommand{\kaqui}[1]{\textcolor{teal}{\textbf{KAQUI:} #1}}
 
-	% Highlight de código em coq:
+	% Highlight de código em Coq:
 		\definecolor{violet}{RGB}{80,5,100}
 		\definecolor{teal}{RGB}{0,128,128}
 		\definecolor{orange}{RGB}{255,128,13}
 		\definecolor{darkgreen}{RGB}{0,100,0}
 		\definecolor{darkred}{RGB}{100,0,0}
 		\usepackage{listings, Estilos/coq, Estilos/coq-error}
+
 	% Algoritmos:
 		\usepackage[portuguese,linesnumbered,boxruled,noend]{algorithm2e}
 		\usepackage{hyperref}

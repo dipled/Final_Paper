@@ -103,11 +103,11 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     Com isso, uma derivação em \lfium{} pode ser definida:
     
     \begin{definicao}[Derivação em \lfium{}]
-        Seja $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$ um conjunto de fórmulas, uma derivação $\Gamma \vdash \phi$ de $\phi$ a partir de $\Gamma$ em \lfium{} é uma sequência finita de fórmulas \(\phi_0, \dots, \phi_n\) onde, para cada $1 \leq i \leq n$, alguma das seguintes condições é satisfeita.
+        Seja $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$ um conjunto de fórmulas, uma derivação $\Gamma \conhil \phi$ de $\phi$ a partir de $\Gamma$ em \lfium{} é uma sequência finita de fórmulas \(\phi_0, \dots, \phi_n\) onde, para cada $1 \leq i \leq n$, alguma das seguintes condições é satisfeita:
         \begin{align*}
             & \text{~~(i) }\phi_{i} \text{ é um axioma;}\\
             & \text{~(ii) }\phi_{i} \in \Gamma;\\
-            & \text{(iii) }\text{existem } j,k \leq i \text{ de modo que } \phi_{i} \text{ é o resultado da aplicação de MP em } \phi_{j} \text{ e } \phi_{k}.\tag*\qed{}
+            & \text{(iii) }\text{existem } j,k < i \text{ de modo que } \phi_{i} \text{ é o resultado da aplicação de MP em } \phi_{j} \text{ e } \phi_{k}.\tag*\qed{}
         \end{align*}
     \end{definicao}
 
@@ -288,7 +288,6 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \end{align*}
     \end{proof}
     
-    \noindent Finalmente, a prova do Teorema~\ref{teo:deducao} pode ser apresentada:
     
     \begin{teorema}[Metateorema da dedução para $\conhil$]
         \label{teo:deducao}
@@ -299,11 +298,11 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \begin{proof}[Prova do Teorema~\ref{teo:deducao}] A prova será dividida em duas partes:\\
         ($\Longleftarrow$) Supondo $\Gamma \conhil \alpha \to \beta$, então existe uma sequência de dedução $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha \to \beta$. A seguinte sequência de dedução completa a prova de $\Gamma, \alpha \conhil \beta$:
         \begin{align*}
-            \text{1}&. \; \ldots\\
-            & \vdots \; \ddots\\
-            \text{$n$}&. \alpha \to \beta\tag{Suposição}\\
-            \text{$n + 1$}&. \alpha\tag{Premissa}\\
-            \text{$n + 2$}&. \beta\tag{MP $n, n + 1$}
+            \text{1}&.~ \; \ldots\\
+            & \vdots \; ~\ddots\\
+            \text{$n$}&.~ \alpha \to \beta\tag{Suposição}\\
+            \text{$n + 1$}&.~ \alpha\tag{Premissa}\\
+            \text{$n + 2$}&.~ \beta\tag{MP $n, n + 1$}
         \end{align*}
 
         \noindent  ($\Longrightarrow$) Supondo $\Gamma, \alpha \conhil \beta$, então existe uma sequência de dedução $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \beta$ a partir do conjunto de premissas $\Gamma \cup \{\alpha\}$. A prova de $\Gamma \conhil \alpha \to \beta$ é feita pela indução no comprimento $n$ da sequência de dedução:
@@ -317,7 +316,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         \noindent 1. Caso $\phi_{1}$ seja um axioma, a seguinte dedução mostra $\Gamma \conhil \alpha \to \phi_{1}$:
         \begin{align*}
-            & \text{1. } \phi_{1} \tag{um axioma}\\
+            & \text{1. } \phi_{1} \tag{Axioma}\\
             & \text{2. } \phi_{1} \to (\alpha \to \phi_{1}) \tag{Ax1}\\
             & \text{3. } \alpha \to \phi_{1} \tag{MP 1,2}
         \end{align*}
@@ -348,13 +347,13 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         \noindent 3. Caso $\phi_{n + 1}$ seja obtido por \textit{modus ponens} em duas fórmulas $\phi_{j}$ e $\phi_{k}$ com $j, k < n + 1$, então $\phi_{k} = \phi_{j} \to \phi_{n + 1}$ (ou $\phi_{j} = \phi_{k} \to \phi_{n + 1}$, a prova para este caso é análoga). Dada a nossa suposição de $\Gamma, \alpha \conhil \phi_{n + 1}$, temos $\Gamma, \alpha \conhil \phi_{j}$ e $\Gamma, \alpha \conhil \phi_{j} \to \phi_{n + 1}$ sequências de dedução anteriores à aplicação da regra do \textit{modus ponens} na linha $n + 1$. Então, pela hipótese de indução, temos $\Gamma \conhil \alpha \to \phi_{j}$ e $\Gamma \conhil \alpha \to (\phi_{j} \to \phi_{n + 1})$. A seguinte sequência de dedução mostra $\Gamma \conhil \alpha \to \phi_{n + 1}$:
         \begin{align*}
-            \text{1}&. \; \ldots\\
-            &\vdots \; \ddots\\
-            \text{$j$}&. \alpha \to \phi_{j} \tag{HI sobre $\phi_{j}$}\\
-            &\vdots \; \ddots\\
-            \text{$j + k$}&. \alpha \to (\phi_{j} \to \phi_{n + 1}) \tag{HI sobre $\phi_{k}$}\\
-            \text{$j + k + 1$}&. (\alpha \to (\phi_{j} \to \phi_{n + 1})) \to ((\alpha \to \phi_{j}) \to (\alpha \to \phi_{n + 1})) \tag{Ax2}\\
-            \text{$j + k + 2$}&. (\alpha \to \phi_{j}) \to (\alpha \to \phi_{n + 1}) \tag{MP $j$,$j + k$}\\
-             \text{$j + k + 3$}&. \alpha \to \phi_{n + 1} \tag{MP 1,4}
+            \text{1}&.~ \; \ldots\\
+            &\vdots \; ~\ddots\\
+            \text{$j$}&.~ \alpha \to \phi_{j} \tag{HI sobre $\phi_{j}$}\\
+            &\vdots \; ~\ddots\\
+            \text{$j + k$}&.~ \alpha \to (\phi_{j} \to \phi_{n + 1}) \tag{HI sobre $\phi_{k}$}\\
+            \text{$j + k + 1$}&.~ (\alpha \to (\phi_{j} \to \phi_{n + 1})) \to ((\alpha \to \phi_{j}) \to (\alpha \to \phi_{n + 1})) \tag{Ax2}\\
+            \text{$j + k + 2$}&.~ (\alpha \to \phi_{j}) \to (\alpha \to \phi_{n + 1}) \tag{MP $j + k$,$j + k + 1$}\\
+             \text{$j + k + 3$}&.~ \alpha \to \phi_{n + 1} \tag{MP $j$,$j + k + 2$}
         \end{align*}
     \end{proof}
