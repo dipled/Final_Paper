@@ -57,7 +57,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
     No contexto da \lfium{} existem dois sistemas de prova sintáticos estabelecidos até o momento: um cálculo de Hilbert, descrito por~\citeshort{carnielli2000formal,Carnielli_Coniglio_2016} e um sistema de \textit{Tableau}, descrito por~\citeshort{tableaulfi}. No presente trabalho, foi escolhido o cálculo de Hilbert para definir a sintaxe da \lfium{}, dada a maior facilidade para desenvolver metateoremas em relação ao sistema de \textit{Tableau}.
 
-    O cálculo de Hilbert (também conhecido como sistema de Hilbert ou axiomatização de Hilbert) é um sistema composto por um conjunto de fórmulas, chamadas de \textit{axiomas}, um conjunto de \textit{regras de inferência}. Uma regra de inferência é formada por uma lista de fórmulas chamadas de premissas da regra e uma fórmula chamada de conclusão da regra~\cite{Restall1999-RESAIT-4}. Uma prova (também chamada de derivação) do tipo $\Gamma \vdash \phi$ consiste em uma sequência finita de fórmulas \(\psi_0, \dots, \psi_n\), onde \(\psi_n = \phi\), e cada  $\psi_i\ (0 \leq i \leq n)$ é uma \textit{instância de substituição} (ver Definição~\ref{def:substituicao}) de um axioma, um elemento do conjunto de premissas $\Gamma$ ou o resultado da aplicação de uma regra de inferência em fórmulas anteriores. Usualmente, o cálculo de Hilbert possui apenas uma regra de inferência, esta sendo o \textit{Modus Ponens}. Este também é o caso para o cálculo de Hilbert que será utilizado para a \lfium{}.
+    O cálculo de Hilbert (também conhecido como sistema de Hilbert ou axiomatização de Hilbert) é um sistema composto por um conjunto de fórmulas, chamadas de \textit{axiomas}, um conjunto de \textit{regras de inferência}. Uma regra de inferência é formada por uma lista de fórmulas chamadas de premissas da regra e uma fórmula chamada de conclusão da regra~\cite{Restall1999-RESAIT-4}. Uma prova (também chamada de derivação) do tipo $\Gamma \vdash \phi$ consiste em uma sequência finita de fórmulas \(\psi_0, \dots, \psi_n\), onde \(\psi_n = \phi\), e cada  $\psi_i\ (0 \leq i \leq n)$ é um axioma, um elemento do conjunto de premissas $\Gamma$ ou o resultado da aplicação de uma regra de inferência em fórmulas anteriores. Usualmente, o cálculo de Hilbert possui apenas uma regra de inferência, esta sendo o \textit{Modus Ponens}. Este também é o caso para o cálculo de Hilbert que será utilizado para a \lfium{}.
     
     O cálculo de Hilbert definido a seguir foi apresentado por~\citeshort{Carnielli_Coniglio_2016} como alternativa ao que havia sido definido em trabalhos anteriores~\cite{carnielli2000formal,carnielli2007}. Segundo os autores, esta definição evidencia algumas propriedades interessantes da negação $\neg$ como as leis de De Morgan.
 
@@ -106,7 +106,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \begin{definicao}[Derivação em \lfium{}]
         Seja $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$ um conjunto de fórmulas, uma derivação $\Gamma \vdash \phi$ de $\phi$ a partir de $\Gamma$ em \lfium{} é uma sequência finita de fórmulas \(\phi_0, \dots, \phi_n\) onde, para cada $1 \leq i \leq n$, alguma das seguintes condições é satisfeita.
         \begin{align*}
-            & \text{~~(i) }\phi_{i} \text{ é instância de substituição de um axioma;}\\
+            & \text{~~(i) }\phi_{i} \text{ é um axioma;}\\
             & \text{~(ii) }\phi_{i} \in \Gamma;\\
             & \text{(iii) }\text{existem } j,k \leq i \text{ de modo que } \phi_{i} \text{ é o resultado da aplicação de MP em } \phi_{j} \text{ e } \phi_{k}.\tag*\qed{}
         \end{align*}
@@ -312,13 +312,13 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \noindent\underline{Base} $n = 1$.
         A sequência contem somente uma fórmula $\phi_{1} = \beta$. Portanto, existem duas possibilidades:
         \begin{enumerate}
-            \item $\phi_{1}$ é instância de substituição de um axioma.
+            \item $\phi_{1}$ é um axioma.
             \item $\phi_{1} \in \Gamma \cup \{\alpha\}$.
         \end{enumerate}
 
-        \noindent 1. Caso $\phi_{1}$ seja instância de substituição de um axioma, a seguinte dedução mostra $\Gamma \conhil \alpha \to \phi_{1}$:
+        \noindent 1. Caso $\phi_{1}$ seja um axioma, a seguinte dedução mostra $\Gamma \conhil \alpha \to \phi_{1}$:
         \begin{align*}
-            & \text{1. } \phi_{1} \tag{Instância de substituição de um axioma}\\
+            & \text{1. } \phi_{1} \tag{um axioma}\\
             & \text{2. } \phi_{1} \to (\alpha \to \phi_{1}) \tag{Ax1}\\
             & \text{3. } \alpha \to \phi_{1} \tag{MP 1,2}
         \end{align*}
@@ -340,7 +340,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         \noindent \underline{Passo} Hipótese de indução (HI): \textit{Para qualquer sequência de dedução $\Gamma, \alpha \conhil \beta$ de tamanho $k$, com $k \leq n$, tem-se $\Gamma \conhil \alpha \to \beta$}. É preciso mostrar que $\Gamma \conhil \alpha \to \beta$ segue caso a dedução $\Gamma, \alpha \conhil \beta$ seja de tamanho $n + 1$. Ao analisar a obtenção de $\phi_{n + 1} = \beta$ na sequência de dedução de $\Gamma, \alpha\conhil \phi_{n + 1}$, existem três casos a se considerar:
         \begin{enumerate}
-            \item $\phi_{n + 1}$ é instância de substituição de um axioma.
+            \item $\phi_{n + 1}$ é um axioma.
             \item $\phi_{n + 1} \in \Gamma \cup \{\alpha\}$.
             \item $\phi_{n + 1}$ é obtido por \textit{modus ponens} em duas fórmulas $\phi_{j}$ e $\phi_{k}$ com $j, k < n + 1$.
         \end{enumerate}
