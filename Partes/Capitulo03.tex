@@ -35,7 +35,6 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     %     \end{align*}
     % \end{definicao}
 
-    \end{definicao}
 
     Na Definição~\ref{def:complex} a função $C$ da complexidade de uma fórmula na lógica proposicional clássica foi recursivamente definida. É possível estender esta definição para identificar a complexidade de uma fórmula na \lfium{} adicionando-se uma condição para o operador $\circ$:
 
@@ -213,9 +212,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \end{minipage}
 
             \noindent
-            A matriz $\pazocal{M}_{\lfium{}}$ define a relação de consequência semântica $\conmat{}$ para a lógica \lfium{}. \qed{}
+            A matriz $\pazocal{M}_{\lfium{}}$ define a relação de consequência semântica $\conmat{}$ para a lógica \lfium{}.\qed{}
         \end{definicao}
-
+        
         
 
     \migs{Aqui acho interessante você explicar que essa é uma semântica não determinística e explicar pq você está incluindo ela, assim como eventualmente provar que ela é intertraduzível para a semântica de matrizes (isso deve ter no livro eu creio, se não fazemos juntos essa prova)}
@@ -300,11 +299,11 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \begin{proof}[Prova do Teorema~\ref{teo:deducao}] A prova será dividida em duas partes:\\
         ($\Longleftarrow$) Supondo $\Gamma \conhil \alpha \to \beta$, então existe uma sequência de dedução $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha \to \beta$. A seguinte sequência de dedução completa a prova de $\Gamma, \alpha \conhil \beta$:
         \begin{align*}
-            & \text{~~~~~~1. } \; \ldots\\
-            & ~~~~~~\; \; \vdots \; \; \;\ddots\\
-            & \text{~~~~~~$n$. } \alpha \to \beta\tag{Suposição}\\
-            & \text{$n + 1$. } \alpha\tag{Premissa}\\
-            & \text{$n + 2$. } \beta\tag{MP $n, n + 1$}
+            \text{1}&. \; \ldots\\
+            & \vdots \; \ddots\\
+            \text{$n$}&. \alpha \to \beta\tag{Suposição}\\
+            \text{$n + 1$}&. \alpha\tag{Premissa}\\
+            \text{$n + 2$}&. \beta\tag{MP $n, n + 1$}
         \end{align*}
 
         \noindent  ($\Longrightarrow$) Supondo $\Gamma, \alpha \conhil \beta$, então existe uma sequência de dedução $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \beta$ a partir do conjunto de premissas $\Gamma \cup \{\alpha\}$. A prova de $\Gamma \conhil \alpha \to \beta$ é feita pela indução no comprimento $n$ da sequência de dedução:
@@ -349,13 +348,13 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         \noindent 3. Caso $\phi_{n + 1}$ seja obtido por \textit{modus ponens} em duas fórmulas $\phi_{j}$ e $\phi_{k}$ com $j, k < n + 1$, então $\phi_{k} = \phi_{j} \to \phi_{n + 1}$ (ou $\phi_{j} = \phi_{k} \to \phi_{n + 1}$, a prova para este caso é análoga). Dada a nossa suposição de $\Gamma, \alpha \conhil \phi_{n + 1}$, temos $\Gamma, \alpha \conhil \phi_{j}$ e $\Gamma, \alpha \conhil \phi_{j} \to \phi_{n + 1}$ sequências de dedução anteriores à aplicação da regra do \textit{modus ponens} na linha $n + 1$. Então, pela hipótese de indução, temos $\Gamma \conhil \alpha \to \phi_{j}$ e $\Gamma \conhil \alpha \to (\phi_{j} \to \phi_{n + 1})$. A seguinte sequência de dedução mostra $\Gamma \conhil \alpha \to \phi_{n + 1}$:
         \begin{align*}
-            & \text{~~~~~~~~~~~~1. } \; \ldots\\
-            & ~~~~~~~~~~~~\; \; \vdots \; \; \;\ddots\\
-            & \text{~~~~~~~~~~~~$j$. } \alpha \to \phi_{j} \tag{HI sobre $\phi_{j}$}\\
-            & ~~~~~~~~~~~~\; \; \vdots \; \; \;\ddots\\
-            & \text{~~~~~~$j + k$. } \alpha \to (\phi_{j} \to \phi_{n + 1}) \tag{HI sobre $\phi_{k}$}\\
-            & \text{$j + k + 1$. } (\alpha \to (\phi_{j} \to \phi_{n + 1})) \to ((\alpha \to \phi_{j}) \to (\alpha \to \phi_{n + 1})) \tag{Ax2}\\
-            & \text{$j + k + 2$. } (\alpha \to \phi_{j}) \to (\alpha \to \phi_{n + 1}) \tag{MP $j$,$j + k$}\\
-            & \text{$j + k + 3$. } \alpha \to \phi_{n + 1} \tag{MP 1,4}
+            \text{1}&. \; \ldots\\
+            &\vdots \; \ddots\\
+            \text{$j$}&. \alpha \to \phi_{j} \tag{HI sobre $\phi_{j}$}\\
+            &\vdots \; \ddots\\
+            \text{$j + k$}&. \alpha \to (\phi_{j} \to \phi_{n + 1}) \tag{HI sobre $\phi_{k}$}\\
+            \text{$j + k + 1$}&. (\alpha \to (\phi_{j} \to \phi_{n + 1})) \to ((\alpha \to \phi_{j}) \to (\alpha \to \phi_{n + 1})) \tag{Ax2}\\
+            \text{$j + k + 2$}&. (\alpha \to \phi_{j}) \to (\alpha \to \phi_{n + 1}) \tag{MP $j$,$j + k$}\\
+             \text{$j + k + 3$}&. \alpha \to \phi_{n + 1} \tag{MP 1,4}
         \end{align*}
     \end{proof}

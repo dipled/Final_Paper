@@ -1,0 +1,8 @@
+\begin{figure}[h]
+    \centering
+    \caption{Grafo do módulo ssreflect}
+    \includegraphics[width=0.6\textwidth]{Figuras/ssreflect.png}\\
+    \footnotesize{Disponível em: <\url{https://math-comp.github.io/htmldoc_2_2_0/libgraph.html}>.
+    Acesso em: 18 de maio de 2024.}
+    \label{fig:graph-mathcomp}
+\end{figure}

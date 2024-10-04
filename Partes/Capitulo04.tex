@@ -1,0 +1,302 @@
+\chapter{Algoritmo de Tonelli-Shanks (ou RESSOL)}
+\label{cap:tonelli-shanks}
+
+Neste Capítulo será apresentado o principal objeto deste trabalho. Essa apresentação será separada em duas partes: descrição do algoritmo e prova manual de corretude e terminação. Ambas se baseiam em \cite{Huynh1581080}.
+
+\section{Descrição do Algoritmo}
+Para apresentação do pseudocódigo do algoritmo \hyperref[algo:ressol]{\textsc{Ressol}}, é conveniente que se definam algoritmos auxiliares, de modo a evitar que o pseudocódigo principal fique demasiadamente extenso para o leitor.
+
+Dentre este algoritmos auxiliares, o primeiro a ser apresentado recebe um inteiro $n$ e retorna um valor $s$ tal que $\exists q \in \mathbb{Z}, q\cdot2^s = n$. Seu pseudocódigo é dado a seguir:
+\begin{algorithm}[!htbp]
+    \caption{\textsc{Fatorar-Potência-de-Dois}}
+    \label{algo:2factorizationmachine}
+    \SetAlgoLined
+    \vspace{3mm}
+    \Entrada{$n \in \mathbb{Z}$}
+    \Saida{$s \in \mathbb{Z}$.}
+    $q \leftarrow n$ \\
+    $s \leftarrow 0$ \\
+    \Enqto{$2 \mid q \land q \neq 0$}
+    {
+        $s \leftarrow s + 1$
+        \\
+        $q \leftarrow \frac{q}{2}$
+    }
+    % Os argumentos não estão automaticamente em itálico como no caso da função "Retorna", mas condições como no caso do "Enquanto" estão em itálico ainda.
+    \Retorna{\textit{s}}
+\end{algorithm}
+\\
+O segundo algoritmo auxiliar tem como objetivo receber um inteiro $p$ e então retornar um inteiro $z$ tal que $z$ não é um resíduo quadrático módulo $p$:
+\begin{algorithm}[!htbp]
+    \caption{\textsc{Obter-Resíduo-Não-Quadrático}}
+    \label{algo:nonquadraticresidue}
+    \SetAlgoLined
+    \vspace{3mm}
+    \Entrada{$p \in \mathbb{Z}$}
+    \Saida{$z \in \mathbb{Z}$}
+%     \\
+    $z \leftarrow 2$
+%     \\
+    \Enqto{$z^{\frac{p-1}{2}} \not\equiv -1 \pmod{p}$}
+    {
+        $z \leftarrow z + 1$
+    }
+    \Retorna{\textit{z}}
+\end{algorithm}
+\newpage
+\noindent
+O terceiro e último algoritmo auxiliar a ser apresentado recebe dois inteiros $n$ e $p$ e computa um valor $i$ tal que $n^{2^i} \equiv 1 \bmod{p}$:
+\begin{algorithm}[!htbp]
+    \caption{\textsc{Repetir-Quadrados}}
+    \label{algo:repeatsquaring}
+    \SetAlgoLined
+    \vspace{3mm}
+    \Entrada{$n, p \in \mathbb{Z}$}
+    \Saida{$i \in \mathbb{Z}$}
+%     \\
+    $i \leftarrow 0$
+%     \\
+    $t \leftarrow n$
+%     \\
+    \Enqto{$t \neq 1$}
+    {
+        $i \leftarrow i + 1$
+        \\
+        $t \leftarrow t^2 \bmod{p}$
+    }
+    \Retorna{\textit{i}}
+\end{algorithm}
+\\
+Vistos estes algoritmos auxiliares, o pseudocódigo do algoritmo \hyperref[algo:ressol]{\textsc{Ressol}}, é apresentado a seguir:
+% O algoritmo em questão pode ser apresentado pelo seguinte pseudocódigo:
+\begin{algorithm}[!htbp]
+                \SetAlgoLined
+                \caption{\textsc{Ressol}}
+                \label{algo:ressol}
+                \vspace{3mm}
+                \Entrada{$a, p \in \mathbb{Z}$}
+                \Saida{inteiro $r$ ou \textit{erro}.}
+                % \\
+                \Se{$p$ não é primo}
+                    {\Retorna{\textit{erro}}}
+                \Se{$a \equiv 1 \pmod{p}$}
+                    {\Retorna{$1$}}
+                \Se{$a^{\left(\frac{p-1}{2}\right)} \not\equiv 1 \pmod{p}$}
+                    {\Se{$a^{\left(\frac{p-1}{2}\right)} \equiv 0 \pmod{p}$}
+                        {\Retorna{$0$}}
+                        {\Retorna{\textit{erro}}}
+                    }
+                $s \leftarrow \hyperref[algo:2factorizationmachine]{\textsc{Fatorar-Potência-de-Dois}}(p-1)$
+                \\
+                $q \leftarrow \frac{p-1}{2^s}$
+                \\
+                $z \leftarrow \hyperref[algo:nonquadraticresidue]{\textsc{Obter-Resíduo-Não-Quadrático}}(p)$
+                \\
+                $m \leftarrow s$
+                \\
+                $c \leftarrow z^q \bmod{p}$
+                \\
+                $t \leftarrow a^q \bmod{p}$
+                \\
+                $r \leftarrow a^{\frac{q+1}{2}} \bmod{p}$
+                \\
+                \Enqto{$t \neq 1$}
+                {
+                    $i \leftarrow \hyperref[algo:repeatsquaring]{\textsc{Repetir-Quadrados}}(t, p)$
+                    \\
+                    $b \leftarrow c^{2^{m - i - 1}} \bmod{p}$
+                    \\
+                    $m \leftarrow i$
+                    \\
+                    $c \leftarrow b^2 \bmod{p}$
+                    \\
+                    $t \leftarrow t \cdot b^2 \bmod{p}$
+                    \\
+                    $r \leftarrow r \cdot b \bmod{p}$
+                }
+                \Retorna{\textit{r}}
+    \end{algorithm}
+\newpage
+\section{Prova Manual}
+A prova do algoritmo \hyperref[algo:ressol]{\textsc{Ressol}} consiste nas seguintes partes:
+
+\begin{enumerate}
+    \item Provar que as funções \hyperref[algo:2factorizationmachine]{\textsc{Fatorar-Potência-de-Dois}} e \hyperref[algo:nonquadraticresidue]{\textsc{Obter-Resíduo-Não-Quadrático}} terminam e retornam o resultado correto: quanto a primeira, sobre a condição do \textit{loop}, é trivial notar que eventualmente $2 \nmid q$ ou $q = 0$, portanto esta função termina (e o seu resultado também é trivial). Quanto a segunda função, pelo Lema \ref{lema:existnonquadratic}, há algum resíduo não quadrático módulo $p$, portanto essa função eventualmente irá terminar e irá retornar o resultado correto.                                                                             
+    \item \label{item:provaaux} Provar as seguintes invariantes do \textit{loop} no algoritmo \hyperref[algo:ressol]{\textsc{Ressol}}, considerando (da primeira parte da prova) que $p = q \cdot 2^s$ e $z^{\frac{p-1}{2}} \equiv -1 \pmod{p}$:
+    \begin{lema}
+        No algoritmo \hyperref[algo:ressol]{\textsc{Ressol}}, em toda iteração do \textit{loop}, para as variáveis $a$, $c$, $m$, $t$ e $r$ são válidas as seguintes equações:
+    \end{lema}
+    \begin{itemize}
+        \item $c^{2^{m-1}} \equiv -1 \pmod{p}$
+        \item $t^{2^{m-1}} \equiv 1 \pmod{p}$
+        % \item $r^2 = t \cdot a$
+        \item $r^2 \equiv t \cdot a \pmod{p}$
+    \end{itemize}
+%     \\
+    \textit{Demonstração}: utilizando indução sobre o número de iterações $k$ do \textit{loop} tem-se
+    \footnote{Uma observação a se fazer ao leitor antes do início desta prova é que muitas substituições nas manipulações algébricas são feitas com base nas atribuições que ocorrem no pseudocódigo.}:
+    \begin{itemize}
+        \item \textit{Caso base} ($0$-ésima iteração): pela inicialização das variáveis (antes do \textit{loop}), note que:
+        % \vspace{4mm}
+        \begin{itemize}
+                \item[$\triangleright$] $c^{2^{m-1}} \equiv (z^q)^{2^{s-1}} \equiv (z^{\frac{p-1}{2}}) \pmod{p}$, pois $p - 1 = q\cdot2^{s}$, e como $z$ é um resíduo não quadrático módulo $p$, então, $c^{2^{m-1}} \equiv -1 \pmod{p}$.
+                \vspace{4mm}
+                \item[$\triangleright$] $t^{2^{m-1}} \equiv (a^q)^{2^{s-1}} \equiv (a^{\frac{p-1}{2}})\pmod{p}$, pois $p - 1 = q\cdot2^{s}$, e como $a$ é um resíduo quadrático módulo $p$,
+                $t^{2^{m-1}} \equiv 1 \pmod{1}$.
+                \vspace{4mm}
+                \item[$\triangleright$] $r^2 \equiv (a^{\frac{q + 1}{2}})^2 \equiv a^{q + 1} \equiv a^{q} \cdot a \equiv t \cdot a \pmod{p}$.
+        \end{itemize}        
+        % \vspace{4mm}
+        \item \textit{Hipótese de indução}: para $j, k \in \mathbb{N}$, para todo $0 \leq j \leq k$, na $j$-ésima iteração têm-se\footnote{A variável $i$ não será enumerada pela iteração pois seu valor é calculado sempre no inicio dessa, tornando isso desnecessário (nas equações ocorre apenas o uso do valor de $i$ na iteração atual).}:
+        % \vspace{3.15mm}
+            \begin{itemize}
+                \item[$\triangleright$] $c_{j}^{2^{(m_j -1)}} \equiv -1 \pmod{p}$
+                \vspace{4mm}
+                \item[$\triangleright$] $t_{j}^{2^{(m_j -1)}} \equiv 1 \pmod{p}$
+                \vspace{4mm}
+                % \item[$\triangleright$] $r_{j}^2 = t_j \cdot a$
+                \item[$\triangleright$] $r_{j}^2 \equiv t_j \cdot a \pmod{p}$
+            \end{itemize}
+        \item \textit{Passo}: realizando a próxima iteração ($k+1$-ésima iteração) têm-se:
+            \begin{itemize}
+                \item[$\triangleright$] quanto a função \hyperref[algo:repeatsquaring]{\textsc{Repetir-Quadrados}}, como o \textit{loop} dessa termina ao encontrar um valor $i$ tal que $t_{k}^{2^{i}} \equiv 1 \pmod{p}$ e pela \textit{hipótese de indução} $t_{k}^{2^{m_{k}-1}} \equiv 1 \pmod{p}$, o \textit{loop} desta função irá terminar em no máximo $m-1$ iterações.
+                \vspace{4mm}
+                \item[$\triangleright$] tem-se que $b_{k+1} \equiv c_{k}^{2^{m_k - i - 1}} \pmod{p}$.
+                \vspace{4mm}
+                \item[$\triangleright$] tem-se que $m_{k+1} = i$.
+                \vspace{4mm}
+                \item[$\triangleright$] $c_{k+1}^{2^{(m_{k + 1} - 1)}} \equiv c_{k+1}^{2^{i - 1}} \equiv (b_{k+1}^{2})^{2^{i - 1}} \equiv b_{k+1}^{2^i} \equiv (c_{k}^{2^{(m_k - i - 1)}})^{2^i} \equiv c_{k}^{2^{(m_k - 1)}} \pmod{p}$, e pela \textit{hipótese de indução}
+                $c_{k}^{2^{(m_k - 1)}} \equiv -1  \pmod{p}$, portanto tem-se que $c_{k+1}^{2^{(m_{k + 1} - 1)}} \equiv -1  \pmod{p}$.
+                \vspace{4mm}
+                \item[$\triangleright$]
+                $t_{k+1}^{2^{(m_{k+1} - 1)}} \equiv (t_k \cdot b_{k+1}^2)^{2^{(m_{k+1} - 1)}} \equiv (t_k \cdot b_{k+1}^2)^{2^{(i - 1)}} \equiv t_{k}^{2^{(i - 1)}} \cdot b_{k+1}^{2^i} \pmod{p}$, nesta situação, note que $i$ é sempre o menor inteiro tal que $t_{k}^{2^i} \equiv 1 \pmod{p}$, assim, tem-se os seguintes casos:
+                \vspace{4mm}
+                    \begin{itemize}
+                        \item[$\blacktriangleright$] se $i = 0$, então $t_k^{2^0} \equiv t_k \equiv 1 \pmod{p}$, mas note que, pelas atribuições feitas no pseucódigo, $0 < t \leq p-1$, portanto só pode ser o caso de que $t_k = 1$, mas se isso ocorre então o \textit{loop} teria terminado na $k$-ésima iteração, com (pela hipótese de indução) $r_k^2 \equiv t_k \cdot a \equiv a \pmod{p}$, portanto $r_k$ é a solução de $r_k^2 \equiv a \pmod{p}$, e o algoritmo além de ter terminado retornou o resultado correto. 
+                        \vspace{4mm}
+                        \item[$\blacktriangleright$] para qualquer $i > 0$, note que, se $t_k^{2^i} \equiv 1 \pmod{p}$ então
+                        $(t_k^{2^{i-1}})^2 \equiv (1)^2 \pmod{p}$ e:
+                        \begin{align*}
+                            (t_k^{2^{i-1}})^2 \equiv (1)^2 \pmod{p} & \; \Longleftrightarrow \; p \mid (t_k^{2^{i-1}})^2 - (1)^2
+                            \\
+                            & \; \Longleftrightarrow \; p \mid (t_k^{2^{i-1}} - 1) \cdot (t_k^{2^{i-1}} + 1)
+                            \\
+                            & \; \Longleftrightarrow \; p \mid (t_k^{2^{i-1}} - 1) \lor p \mid (t_k^{2^{i-1}} + 1)
+                            \\
+                            & \; \Longleftrightarrow \; t_k^{2^{i-1}} \equiv 1 \pmod{p} \lor t_k^{2^{i-1}} \equiv -1 \pmod{p}
+                        \end{align*}
+                        porém, sabe-se que $i$ é o menor natural tal que $t_k^{2^i} \equiv 1 \pmod{p}$ (e $i - 1 < i$), portanto só pode ser o caso de que
+                        $t_k^{2^{i-1}} \equiv -1 \pmod{p}$, assim, note que
+                        \begin{align*}
+                            % O seguinte comando serve para ignorar a identação do ambiente itemize:
+                            \hspace*{\dimexpr-\leftmargini-\leftmarginii-\leftmarginiii}
+                            t_{k+1}^{2^{m_{k+1} - 1}} \equiv t_{k+1}^{2^{m_{k+1} - 1}}  \pmod{p}
+                            &
+                            \Longleftrightarrow
+                            t_{k+1}^{2^{m_{k+1} - 1}} \equiv (t_k \cdot b_{k+1}^2)^{2^{m_{k+1} - 1}} \pmod{p}
+                            \\
+                            &
+                            \Longleftrightarrow
+                            t_{k+1}^{2^{m_{k+1} - 1}}
+                            \equiv (t_k)^{2^{m_{k+1} - 1}} \cdot b_{k+1}^{2^{m_{k+1}}} \pmod{p}
+                            \\
+                            &
+                            \Longleftrightarrow
+                            t_{k+1}^{2^{m_{k+1} - 1}}
+                            \equiv (t_k)^{2^{i - 1}} \cdot b_{k+1}^{2^{m_{k+1}}} \pmod{p}
+                            \\
+                            &
+                            \Longleftrightarrow
+                            t_{k+1}^{2^{m_{k+1} - 1}}
+                            \equiv (t_k)^{2^{i - 1}} \cdot b_{k+1}^{2^{i}} \pmod{p}
+                            \\
+                            % &
+                            % \Longleftrightarrow
+                            % t_{k+1}^{2^{m_{k+1} - 1}}
+                            % \equiv (t_k)^{2^{i - 1}} \cdot b_{k+1}^{2^{i}} \pmod{p}
+                            % \\
+                            &
+                            \Longleftrightarrow
+                            t_{k+1}^{2^{m_{k+1} - 1}}
+                            \equiv (t_k)^{2^{i - 1}} \cdot (c_{k}^{2^{m_k - i - 1}})^{2^{i}} \pmod{p}
+                            \\
+                            &
+                            \Longleftrightarrow
+                            t_{k+1}^{2^{m_{k+1} - 1}}
+                            \equiv (t_k)^{2^{i - 1}} \cdot (c_{k}^{2^{m_k - 1}})\pmod{p}
+                        \end{align*}
+                        Como $(t_k)^{2^{i - 1}} \equiv -1 \pmod{p}$ e pela hipótese de indução
+                        $(c_{k}^{2^{m_k - 1}}) \equiv -1 \pmod{p}$ tem-se que $t_{k+1}^{2^{m_{k+1} - 1}} \equiv (-1) \cdot (-1) \equiv 1 \pmod{p}$.
+
+                        % $t_{k+1}^{2^{m_{k+1} - 1}} \equiv (t_k \cdot b_{k+1}^2)^{2^{m_{k+1} - 1}} \equiv (t_k)^{2^{m_{k+1} - 1}} \cdot b_{k+1}^{2^{m_{k+1}}} \equiv (t_k)^{2^{i - 1}} \cdot b_{k+1}^{2^{m_{k+1}}} \equiv (t_k)^{2^{i - 1}} \cdot b_{k+1}^{2^{i}}
+                        % \equiv (t_k)^{2^{i - 1}} \cdot b_{k+1}^{2^{i}} \equiv (t_k)^{2^{i - 1}} \cdot (c_{k}^{2^{m_k - i - 1}})^{2^{i}} \pmod{p}$, e como $(t_k)^{2^{i - 1}} \equiv -1 \pmod{p}$ e pela hipótese de indução
+                        
+                        % se $i = 1$, então, $m_{k+1} = 1$ e $t_{k+1}^{2^{(m_{k+1} - 1)}} \equiv (t_{k} \cdot b^2)^{2^{(m_{k+1} - 1)}}
+                        % \equiv (t_{k} \cdot b^2)^{2^{i - 1}}
+                        % \equiv (t_{k} \cdot b^2)^{2^{1 - 1}}
+                        % \equiv (t_{k} \cdot b^2)
+                        % \equiv (t_{k} \cdot b^2) \pmod$, e note que, se $t_k^{2^i} \equiv 1 \pmod{p}$ então $t_k^{2^i} \equiv 1 \pmod{p}$
+                        
+                        % $r_k^2 \equiv (t_k \cdot b_k)^2 \equiv b_k^2 \equiv \left(c_{k-1}^{2^{(m_{k-1} - i - 1)}}\right) ^2$ \equiv $c_{k-1}^{2^{(m_{k-1} - i)}} \pmod{p}$, e como $i= 0$, então, $c_{k-1}^{2^{(m_{k-1} - i)}} \equiv c_{k-1}^{2^{(m_{k-1})}} \pmod{p}$, e pela hipótese de indução, $c_{k-1}^{2^{(m_{k-1})}} \equiv 1 \pmod{p}$. 
+                    \end{itemize}
+                \vspace{4mm}
+                \item[$\triangleright$] por último, para $r_{k+1}$ temos que:
+                    \begin{align*}
+                        r_{k+1}^2 \equiv r_{k+1}^2 \pmod{p} 
+                        &
+                        \Longleftrightarrow 
+                        r_{k+1}^2 \equiv (r_k \cdot b_{k+1})^2 \pmod{p}
+                        \\
+                        &
+                        \Longleftrightarrow
+                        r_{k+1}^2 \equiv r_k^2 \cdot b_{k+1}^2 \pmod{p}
+                        \\
+                        &
+                        \Longleftrightarrow
+                        r_{k+1}^2 \equiv t_k \cdot a \cdot b_{k+1}^2 \pmod{p}
+                        \\
+                        &
+                        \Longleftrightarrow
+                        r_{k+1}^2 \equiv a \cdot (t_k \cdot b_{k+1}^2) \pmod{p}
+                        \\
+                        \shortintertext{e pela atribuição feita à $t_{k+1}$:}
+                        r_{k+1}^2 \equiv r_{k+1}^2 \pmod{p} 
+                        &
+                        \Longleftrightarrow
+                        r_{k+1}^2 \equiv a \cdot t_{k+1} \pmod{p} %\;\;\;\; \text{(pela atribuição feita a $t_{k+1}$)}
+                        \\
+                        &
+                        \Longleftrightarrow
+                        r_{k+1}^2 \equiv t_{k+1} \cdot a \pmod{p}
+                    \end{align*}
+    \end{itemize}
+    \qed
+    
+\end{itemize}
+
+\item Tendo provado as invariante do \textit{loop}, resta provar os teoremas de terminação e corretude:
+
+    \begin{teorema}[\textit{Terminação do algoritmo RESSOL}]
+        O algoritmo \hyperref[algo:ressol]{\textsc{Ressol}} executa sempre um número finito de iterações.
+    \end{teorema}
+    \textit{Demonstração}: tendo provado as invariante do \textit{loop}, observe que, a cada iteração do \textit{loop}, como $i$ é o menor número natural para o qual $t^{2^i} \equiv 1 \pmod{p}$ e $i \leq m - 1$, pois $t^{2^{m-1}} \equiv 1 \pmod{p}$, ao atualizar o valor de $m$ fazendo $m \leftarrow i$, o valor de $m$ irá diminuir. Assim, eventualmente se terá que $m = 1$ e portanto, para o novo valor de $t$, se terá pela invariante do \textit{loop}, que $t \equiv 2^{m - 1} \equiv 2^{1 - 1} \equiv 1 \pmod{p}$, ou seja, $t = 1$ pois $0 \leq t \leq p - 1$. Observe que não ocorre $m = 0$ dentro do \textit{loop} pois $0 \leq t \leq p - 1$, logo para que ocorre-se isso seria necessário $t = 1$, mas então o algoritmo teria parado antes de alterar o valor de $m$. Assim está provado que o algoritmo sempre termina (quanto a parte externa ao \textit{loop}, a demonstração de que essa termina foi feita em \ref{item:provaaux} se mostrando que os algoritmos auxiliares executados nessa terminam). \qed
+    
+    \begin{teorema}[\textit{Corretude do algoritmo RESSOL}]
+        O algoritmo \hyperref[algo:ressol]{\textsc{Ressol}} ao receber como argumentos $a$ e $p$ tem como retorno:
+        \begin{itemize}
+            \item erro se $p$ não é primo ou se $a$ não é um resíduo quadrático.
+            \item $0$ se $p \mid a$.
+            \item $r$ tal que $r^2 \equiv a \pmod{p}$.
+        \end{itemize}
+    \end{teorema}
+    
+    \textit{Demonstração}: Quanto ao valor retornado pelo algoritmo, fora do \textit{loop} a conclusão sobre sua corretude é trivial, pois:
+        \begin{itemize}
+            \item Se $p$ não é primo, por ser quebrada a hipótese em que se baseia o algoritmo ($p$ ser primo) se retorna \textit{erro};
+            \item se $a \equiv 1 \pmod{p}$ basta retornar $1$ pois $a \equiv 1 \equiv 1^2 \pmod{p}$;
+            \item se $a^{\frac{p-1}{2}} \equiv 0 \pmod{p}$ então, pelo teorema \ref{teorema:criteriodeeuler}, $p \mid a$, portanto $a \equiv 0 \equiv 0^2 \pmod{p}$, por isso se retorna $0$;
+            \item se $a^{\frac{p-1}{2}} \not\equiv 1 \pmod{p}$
+            e $a^{\frac{p-1}{2}} \not\equiv 0 \pmod{p}$ então, de acordo com o teorema \ref{teorema:criteriodeeuler} só pode ser o caso de $a^{\frac{p-1}{2}} \equiv -1 \pmod{p}$, situação em que não existe $r$ tal que $a \equiv r^2 \pmod{p}$, e por isso se retorna \textit{erro}.
+        \end{itemize}
+    Caso o retorno só ocorra após iniciar o \textit{loop}, note que, esse só encerra quando $t = 1$, e pela invariante tem-se $r^2 \equiv t \cdot a \equiv a \pmod{p}$ e $r$ é o valor retornado. \qed 
+\end{enumerate}

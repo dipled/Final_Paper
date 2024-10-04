@@ -96,7 +96,7 @@
 \ProvidesPackage{abntex2cite}[2018/11/24 v-1.9.7 abnTeX2]
 \RequirePackage{ifthen}
 \RequirePackage{calc}
-\RequirePackage{abntex2abrev}
+\RequirePackage{AbnTex/abntex2abrev}
 \RequirePackage{setspace}	
 \RequirePackage{url} %*****
 
@@ -384,9 +384,9 @@
 	               \and\boolean{ABCIauto-abntoptions}}
 	   {
 	   % this system of checking is not good...
-	    \IfSubStringInString{abntex2-options}{#1}
+	    \IfSubStringInString{AbnTex/abntex2-options}{#1}
 	      {\if@filesw\immediate\write\@auxout{\string\bibdata{#1}}\fi}
-	      {\if@filesw\immediate\write\@auxout{\string\bibdata{abntex2-options,#1}}\fi}
+	      {\if@filesw\immediate\write\@auxout{\string\bibdata{AbnTex/abntex2-options,#1}}\fi}
 	      }
 	   {
 	    \if@filesw

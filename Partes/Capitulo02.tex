@@ -60,6 +60,7 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
             & \text{2.~Se } \phi = \neg \psi \text{, então } C(\phi) = C(\psi) + 1;\\
             & \text{3.~Se } \phi = \psi \otimes \gamma \text{, onde } \otimes \in \{\land, \lor, \rightarrow\} \text{, então } C(\phi) = C(\psi) + C(\gamma) + 1.\tag*\qed{}
         \end{align*}
+    \end{definicao}
 
 
     \begin{definicao}[Substituição]
@@ -83,9 +84,9 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
         \label{def:tarski}
         Uma lógica $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$ e munida com uma relação de consequência $\Vdash$ é dita \textit{Tarskiana} caso satisfaça as seguintes propriedades para todo $\Gamma \cup \Delta \cup \{\alpha\} \subseteq \pazocal{L}$:
         \begin{align}
-            & \text{~~(i) Se } \alpha \in \Gamma \text{ então } \Gamma \Vdash \alpha;\tag{reflexividade}                                                                                       \\
-            & \text{~(ii) Se } \Delta \Vdash \alpha \text{ e } \Delta \subseteq \Gamma \text{ então } \Gamma \Vdash \alpha;\tag{monotonicidade}                                                \\
-            & \text{(iii) Se } \Delta \Vdash \alpha \text{ e } \Gamma \Vdash \delta \text{ para todo } \delta \in \Delta \text{ então } \Gamma \Vdash \alpha.\tag{corte}\\
+            \text{(i) } & \text{Se } \alpha \in \Gamma \text{ então } \Gamma \Vdash \alpha;\tag{reflexividade}                                                                                       \\
+            \text{(ii) } & \text{Se } \Delta \Vdash \alpha \text{ e } \Delta \subseteq \Gamma \text{ então } \Gamma \Vdash \alpha;\tag{monotonicidade}                                                \\
+            \text{(iii) } & \text{Se } \Delta \Vdash \alpha \text{ e } \Gamma \Vdash \delta \text{ para todo } \delta \in \Delta \text{ então } \Gamma \Vdash \alpha.\tag{corte}\\
             &\tag*\qed{}
         \end{align}
     \end{definicao}
