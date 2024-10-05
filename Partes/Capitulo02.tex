@@ -12,8 +12,8 @@ Definir uma lógica que consiga superar o tabu da \textit{explosividade} e, ao m
 
 Neste capítulo são apresentadas algumas definições necessárias para caracterizar as lógicas de inconsistência formal, baseadas em~\citeshort{Carnielli_Coniglio_2016} e em~\citeshort{carnielli2007}. Antes de definir as \lfis{} é preciso apresentar alguns conceitos básicos acerca de sistemas lógicos paraconsistentes. Nas definições que seguem, utiliza-se a seguinte representação: \migs{Isso deveria ir para a lista de símbolos}
 \begin{itemize}
-    \item $p, q, r\ldots$ (letras minúsculas do alfabeto latim) {--} variáveis atômicas.
-    \item $A, B, C, \ldots$ (letras maiúsculas do alfabeto latim) {--} conjuntos quaisquer.
+    \item $p, q, r\ldots$ (letras minúsculas do alfabeto latino) {--} variáveis atômicas.
+    \item $A, B, C, \ldots$ (letras maiúsculas do alfabeto latino) {--} conjuntos quaisquer.
     \item $\alpha, \beta, \gamma, \ldots$ (letra minúsculas do alfabeto grego) {--} fórmulas quaisquer.
     \item $\Gamma, \Delta$ {-} conjuntos de fórmulas, chamados de teorias.
     \item $\Sigma, \Theta$ {--} assinaturas de linguagens.
@@ -131,11 +131,11 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
         Seja $\mathcal{L} = \langle \pazocal{L}_{\Theta}, \Vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Theta$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \textit{Lógica de Inconsistência Formal} (\lfi{}) (em relação a $\bigcirc(p)$ e $\neg$) caso respeite as seguintes condições:
         %(considerando $\bigcirc(\phi) = \{\psi(\phi) \; | \; \psi(p) \in \bigcirc(p)\}$): \helena{O conjunto $\bigcirc(\phi)$ é definido substituindo-se cada ocorrência $p$ por $\phi$ em cada elemento de $\bigcirc(\phi)$.}
         \begin{align*}
-            & \text{~~(i) Existem } \gamma, \delta \in \pazocal{L}_{\Theta} \text{ de modo que } \gamma, \neg \gamma \nVdash \delta;               \\
-            & \text{~(ii) Existem } \alpha, \beta \in \pazocal{L}_{\Theta} \text{ de modo que:}                                                    \\
-            & \qquad \text{(ii.a)} \bigcirc(\alpha), \alpha \nVdash \beta;                                                                         \\
-            & \qquad \text{(ii.b)} \bigcirc(\alpha), \neg \alpha \nVdash \beta;                                                                    \\
-            & \text{(iii) Para todo } \phi, \psi \in \pazocal{L}_{\Theta} \text{ tem-se } \bigcirc(\phi), \phi, \neg \phi \Vdash \psi. \tag*\qed{}
+            \text{(i)} & \text{ Existem}~ \gamma, \delta \in \pazocal{L}_{\Theta} \text{ de modo que } \gamma, \neg \gamma \nVdash \delta;               \\
+            \text{(ii)} & \text{ Existem}~ \alpha, \beta \in \pazocal{L}_{\Theta} \text{ de modo que:}                                                    \\
+            & \qquad \text{(ii.a)}~ \bigcirc(\alpha), \alpha \nVdash \beta;                                                                         \\
+            & \qquad \text{(ii.b)}~ \bigcirc(\alpha), \neg \alpha \nVdash \beta;                                                                    \\
+            \text{(iii)} & \text{ Para todo}~ \phi, \psi \in \pazocal{L}_{\Theta} \text{ tem-se } \bigcirc(\phi), \phi, \neg \phi \Vdash \psi. \tag*\qed{}
         \end{align*}
     \end{definicao}
 
@@ -149,10 +149,10 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
         Seja $\mathcal{L} = \langle \pazocal{L}_{\Theta}, \Vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Theta$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \lfi{} \textit{fraca} (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições:
         %(considerando $\bigcirc(\phi) = \{\psi(\phi) \; | \; \psi(p) \in \bigcirc(p)\}$): \helena{O conjunto $\bigcirc(\phi)$ é definido substituindo-se cada ocorrência $p$ por $\phi$ em cada elemento de $\bigcirc(\phi)$.}
         \begin{align*}
-            & \text{~~(i) Existem } \phi, \psi \in \pazocal{L}_{\Theta} \text{ de modo que } \phi, \neg \phi \nVdash \psi;\\
-            & \text{~(ii) Existem } \phi, \psi \in \pazocal{L}_{\Theta} \text{ de modo que } \bigcirc(\phi), \phi \nVdash \psi;\\
-            & \text{(iii) Existem } \phi, \psi \in \pazocal{L}_{\Theta} \text{ de modo que } \bigcirc(\phi), \neg \phi \nVdash \psi;\\
-            & \text{(iv) Para todo } \phi, \psi \in \pazocal{L}_{\Theta} \text{ tem-se } \bigcirc(\phi), \phi, \neg \phi \Vdash \psi. \tag*\qed{}
+            \text{(i)} & \text{ Existem}~ \phi, \psi \in \pazocal{L}_{\Theta} \text{ de modo que } \phi, \neg \phi \nVdash \psi;\\
+            \text{(ii)} & \text{ Existem}~ \phi, \psi \in \pazocal{L}_{\Theta} \text{ de modo que } \bigcirc(\phi), \phi \nVdash \psi;\\
+            \text{(iii)} & \text{ Existem}~ \phi, \psi \in \pazocal{L}_{\Theta} \text{ de modo que } \bigcirc(\phi), \neg \phi \nVdash \psi;\\
+            \text{(iv)} & \text{ Para todo}~ \phi, \psi \in \pazocal{L}_{\Theta} \text{ tem-se } \bigcirc(\phi), \phi, \neg \phi \Vdash \psi. \tag*\qed{}
         \end{align*}
     \end{definicao}
 
@@ -163,11 +163,11 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
         Seja $\mathcal{L} = \langle \pazocal{L}_{\Theta}, \Vdash \rangle$ uma lógica padrão, de forma que sua assinatura proposicional $\Theta$ possua uma negação $\neg$. Seja $\bigcirc(p)$ um conjunto não-vazio de fórmulas dependentes somente na variável proposicional $p$. Então $\mathcal{L}$ será uma \lfi{} \textit{forte} (em relação a $\bigcirc(p)$ e $\neg$) caso ela respeite as seguintes condições:
         %(considerando $\bigcirc(\phi) = \{\psi(\phi) \; | \; \psi(p) \in \bigcirc(p)\}$): \helena{O conjunto $\bigcirc(\phi)$ é definido substituindo-se cada ocorrência $p$ por $\phi$ em cada elemento de $\bigcirc(\phi)$.}
         \begin{align*}
-            & \text{~~(i) Existem } \alpha, \beta \in \pazocal{L}_{\Theta} \text{ de modo que:}\\
-            & \qquad \text{(i.a) } \alpha, \neg \alpha \nVdash \beta;\\
-            & \qquad \text{(i.b) } \bigcirc(\alpha), \alpha \nVdash \beta;\\
-            & \qquad \text{(i.c) } \bigcirc(\alpha), \neg \alpha \nVdash \beta;\\
-            & \text{~(ii) Para todo } \phi, \psi \in \pazocal{L}_{\Theta} \text{ tem-se } \bigcirc(\phi), \phi, \neg \phi \Vdash \psi. \tag*\qed{}
+            \text{(i)} & \text{ Existem}~ \alpha, \beta \in \pazocal{L}_{\Theta} \text{ de modo que:}\\
+            & \qquad \text{(i.a)}~ \alpha, \neg \alpha \nVdash \beta;\\
+            & \qquad \text{(i.b)}~ \bigcirc(\alpha), \alpha \nVdash \beta;\\
+            & \qquad \text{(i.c)}~ \bigcirc(\alpha), \neg \alpha \nVdash \beta;\\
+            \text{(ii)} & \text{ Para todo}~ \phi, \psi \in \pazocal{L}_{\Theta} \text{ tem-se } \bigcirc(\phi), \phi, \neg \phi \Vdash \psi. \tag*\qed{}
         \end{align*}
     \end{definicao}
 
