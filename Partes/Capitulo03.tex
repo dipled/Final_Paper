@@ -339,24 +339,24 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             & \text{3. } \alpha \to \phi_{1} \tag{MP 1, 2}
         \end{align*}
 
-        \noindent \underline{Passo} Hipótese de indução (HI): \textit{Para qualquer sequência de dedução $\Gamma, \alpha \conhil \beta$ de tamanho $k$, com $k \leq n$, tem-se $\Gamma \conhil \alpha \to \beta$}. É preciso mostrar que $\Gamma \conhil \alpha \to \beta$ segue caso a dedução $\Gamma, \alpha \conhil \beta$ seja de tamanho $n + 1$. Ao analisar a obtenção de $\phi_{n + 1} = \beta$ na sequência de dedução de $\Gamma, \alpha\conhil \phi_{n + 1}$, existem três casos a se considerar:
+        \noindent \underline{Passo} Hipótese de indução (HI): \textit{Para qualquer sequência de dedução $\Gamma, \alpha \conhil \beta$ de tamanho $i$, com $i < n$, tem-se $\Gamma \conhil \alpha \to \beta$}. É preciso mostrar que $\Gamma \conhil \alpha \to \beta$ segue caso a dedução $\Gamma, \alpha \conhil \beta$ seja de tamanho $n$. Ao analisar a obtenção de $\phi_{n} = \beta$ na sequência de dedução de $\Gamma, \alpha\conhil \phi_{n}$, existem três casos a se considerar:
         \begin{enumerate}
-            \item $\phi_{n + 1}$ é um axioma.
-            \item $\phi_{n + 1} \in \Gamma \cup \{\alpha\}$.
-            \item $\phi_{n + 1}$ é obtido por \textit{modus ponens} em duas fórmulas $\phi_{j}$ e $\phi_{k}$ com $j, k < n + 1$.
+            \item $\phi_{n}$ é um axioma.
+            \item $\phi_{n} \in \Gamma \cup \{\alpha\}$.
+            \item $\phi_{n}$ é obtido por \textit{modus ponens} em duas fórmulas $\phi_{j}$ e $\phi_{k}$ com $j, k < n$.
         \end{enumerate}
         
         \noindent Os casos 1 e 2 são análogos aos casos provados na base.
 
-        \noindent 3. Caso $\phi_{n + 1}$ seja obtido por \textit{modus ponens} em duas fórmulas $\phi_{j}$ e $\phi_{k}$ com $j, k < n + 1$, então $\phi_{k} = \phi_{j} \to \phi_{n + 1}$ (ou $\phi_{j} = \phi_{k} \to \phi_{n + 1}$, a prova para este caso é análoga). Dada a nossa suposição de $\Gamma, \alpha \conhil \phi_{n + 1}$, temos $\Gamma, \alpha \conhil \phi_{j}$ e $\Gamma, \alpha \conhil \phi_{j} \to \phi_{n + 1}$ sequências de dedução anteriores à aplicação da regra do \textit{modus ponens} na linha $n + 1$. Então, pela hipótese de indução, temos $\Gamma \conhil \alpha \to \phi_{j}$ e $\Gamma \conhil \alpha \to (\phi_{j} \to \phi_{n + 1})$. A seguinte sequência de dedução mostra $\Gamma \conhil \alpha \to \phi_{n + 1}$:
+        \noindent 3. Caso $\phi_{n}$ seja obtido por \textit{modus ponens} em duas fórmulas $\phi_{j}$ e $\phi_{k}$ com $j, k < n$, então $\phi_{k} = \phi_{j} \to \phi_{n}$ (ou $\phi_{j} = \phi_{k} \to \phi_{n}$, a prova para este caso é análoga). Dada a nossa suposição de $\Gamma, \alpha \conhil \phi_{n}$, temos $\Gamma, \alpha \conhil \phi_{j}$ e $\Gamma, \alpha \conhil \phi_{j} \to \phi_{n}$ sequências de dedução anteriores à aplicação da regra do \textit{modus ponens} na linha $n$. Então, pela hipótese de indução, temos $\Gamma \conhil \alpha \to \phi_{j}$ e $\Gamma \conhil \alpha \to (\phi_{j} \to \phi_{n})$. A seguinte sequência de dedução mostra $\Gamma \conhil \alpha \to \phi_{n}$:
         \begin{align*}
             \text{1}&.~ \; \ldots\\
             &\vdots \; ~\ddots\\
             \text{$j$}&.~ \alpha \to \phi_{j} \tag{HI sobre $\phi_{j}$}\\
             &\vdots \; ~\ddots\\
-            \text{$j + k$}&.~ \alpha \to (\phi_{j} \to \phi_{n + 1}) \tag{HI sobre $\phi_{k}$}\\
-            \text{$j + k + 1$}&.~ (\alpha \to (\phi_{j} \to \phi_{n + 1})) \to ((\alpha \to \phi_{j}) \to (\alpha \to \phi_{n + 1})) \tag{Ax2}\\
-            \text{$j + k + 2$}&.~ (\alpha \to \phi_{j}) \to (\alpha \to \phi_{n + 1}) \tag{MP $j + k$,$j + k + 1$}\\
-             \text{$j + k + 3$}&.~ \alpha \to \phi_{n + 1} \tag{MP $j$,$j + k + 2$}
+            \text{$j + k$}&.~ \alpha \to (\phi_{j} \to \phi_{n}) \tag{HI sobre $\phi_{k}$}\\
+            \text{$j + k + 1$}&.~ (\alpha \to (\phi_{j} \to \phi_{n})) \to ((\alpha \to \phi_{j}) \to (\alpha \to \phi_{n})) \tag{Ax2}\\
+            \text{$j + k + 2$}&.~ (\alpha \to \phi_{j}) \to (\alpha \to \phi_{n}) \tag{MP $j + k$,$j + k + 1$}\\
+             \text{$j + k + 3$}&.~ \alpha \to \phi_{n} \tag{MP $j$,$j + k + 2$}
         \end{align*}
     \end{proof}
