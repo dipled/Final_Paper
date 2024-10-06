@@ -387,7 +387,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         \noindent 1.3. Caso $\phi_{1} = \alpha \to (\beta \to (\alpha \land \beta))$. Suponha $v(\alpha \to (\beta \to (\alpha \land \beta))) = 0$. Logo $v(\alpha) = 1$ e $v(\beta \to (\alpha \land \beta)) = 0$ por $(vImp)$. Então $v(\beta) = 1$ e $v(\alpha \land \beta) = 0$ novamente por $(vImp)$. Com isso, temos $v(\alpha) = 0$ ou $v(\beta) = 0$ por $(vAnd)$, mas isso resulta numa contradição, já que $v(\alpha) = 1$ e $v(\beta) = 1$. Portanto $v(\alpha \to (\beta \to (\alpha \land \beta))) = 1$.
 
-        \noindent 1.4. Caso $\phi_{1} = (\alpha \land \beta) \to \alpha$. Suponha $v((\alpha \land \beta) \to \alpha) = 0$. Logo $v(\alpha \land \beta) = 1$ e $v(\alpha) = 0$ por $(vImp)$. Então, $v(\alpha) = 1$ e $v(\beta) = 1$ por $(vAnd)$, o que resulta numa contradição, portanto $v((\alpha \land \beta) \to \alpha) = 1$.
+        \noindent 1.4. Caso $\phi_{1} = (\alpha \land \beta) \to \alpha$. Suponha $v((\alpha \land \beta) \to \alpha) = 0$. Logo $v(\alpha \land \beta) = 1$ e $v(\alpha) = 0$ por $(vImp)$. Então, $v(\alpha) = 1$ e $v(\beta) = 1$ por $(vAnd)$, o que resulta numa contradição. Portanto $v((\alpha \land \beta) \to \alpha) = 1$.
 
-        \noindent 1.5. Caso $\phi_{1} = (\alpha \land \beta) \to \beta$. Suponha $v((\alpha \land \beta) \to \beta) = 0$. Logo $v(\alpha \land \beta) = 1$ e $v(\beta) = 0$ por $(vImp)$. Então, $v(\alpha) = 1$ e $v(\beta) = 1$ por $(vAnd)$, o que resulta numa contradição, portanto $v((\alpha \land \beta) \to \beta) = 1$.
+        \noindent 1.5. Caso $\phi_{1} = (\alpha \land \beta) \to \beta$. Como no Caso 1.4, \textit{mutatis mutandis}.
     \end{proof}
