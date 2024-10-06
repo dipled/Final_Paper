@@ -9,7 +9,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
 \section{Linguagem}
 \label{sec:linguagem}
-    A lógica proposicional \lfium{} aqui apresentada é definida com base em~\citeshort{Carnielli_Coniglio_2016} sobre a linguagem $\pazocal{L}_{\Sigma}$, que por sua vez é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \mathbb{N}\}$ e uma assinatura proposicional $\Sigma = \{\land^{2}, \lor^{2}, \rightarrow^{2}, \neg^{1}, \circ^{1}\}$. Como de costume, o conectivo $\land^{2}$ representa uma conjunção, $\lor^{2}$ representa uma disjunção, $\rightarrow^{2}$ representa uma implicação, $\neg^{1}$ representa uma negação e $\circ^{1}$ é o conectivo de consistência, definido de forma primitiva. No restante do texto a aridade destes conectivos será omitida. A linguagem $\pazocal{L}_{\Sigma}$ da \lfium{} é definida da seguinte forma:
+    A lógica proposicional \lfium{} aqui apresentada é definida com base em~\citeshort{Carnielli_Coniglio_2016} sobre a linguagem $\pazocal{L}_{\Sigma}$, que por sua vez é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \mathbb{N}\}$ e uma assinatura proposicional $\Sigma = \{\land^{2}, \lor^{2}, \to^{2}, \neg^{1}, \circ^{1}\}$. Como de costume, o conectivo $\land^{2}$ representa uma conjunção, $\lor^{2}$ representa uma disjunção, $\to^{2}$ representa uma implicação, $\neg^{1}$ representa uma negação e $\circ^{1}$ é o conectivo de consistência, definido de forma primitiva. No restante do texto a aridade destes conectivos será omitida. A linguagem $\pazocal{L}_{\Sigma}$ da \lfium{} é definida da seguinte forma:
 
     \begin{definicao}[Linguagem da \lfium{}]
         A linguagem $\pazocal{L}_{\Sigma}$ da \lfium{} é definida indutivamente como o menor conjunto a que respeita as seguintes regras:
@@ -17,11 +17,11 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \begin{align*}
             & \text{1.~}\pazocal{P} \subseteq \pazocal{L}_{\Sigma}                                                                                                                        \\
             & \text{2.~Se } \phi \in \pazocal{L}_{\Sigma}, \text{então } \triangle  \phi \in \pazocal{L}_{\Sigma}, \text{com } \triangle \in \{\neg, \circ\}                            \\
-            & \text{3.~Se } \phi, \psi \in \pazocal{L}_{\Sigma}, \text{então } \phi \otimes \psi \in \pazocal{L}_{\Sigma}, \text{com } \otimes \in \{\land, \lor, \rightarrow\} \tag*\qed
+            & \text{3.~Se } \phi, \psi \in \pazocal{L}_{\Sigma}, \text{então } \phi \otimes \psi \in \pazocal{L}_{\Sigma}, \text{com } \otimes \in \{\land, \lor, \to\} \tag*\qed
         \end{align*}
     \end{definicao}
 
-    A precedência dos conectivos é dada de maneira costumeira, com a adição do operador $\circ$ de consistência, seguindo a ordem (da maior precedência para a menor): $\circ$, $\neg$, $\land$, $\lor$, $\rightarrow$. Os conectivos binários $\land$ e $\lor$ são associativos à esquerda, ou seja, uma expressão do tipo $\alpha \land \beta \land \gamma$ é lida como $((\alpha \land \beta) \land \gamma)$, e o conectivo $\rightarrow$ é associativo à direita, ou seja, uma expressão do tipo $\alpha \rightarrow \beta \rightarrow \gamma$ é lida como $(\alpha \rightarrow (\beta \rightarrow \gamma))$.
+    A precedência dos conectivos é dada de maneira costumeira, com a adição do operador $\circ$ de consistência, seguindo a ordem (da maior precedência para a menor): $\circ$, $\neg$, $\land$, $\lor$, $\to$. Os conectivos binários $\land$ e $\lor$ são associativos à esquerda, ou seja, uma expressão do tipo $\alpha \land \beta \land \gamma$ é lida como $((\alpha \land \beta) \land \gamma)$, e o conectivo $\to$ é associativo à direita, ou seja, uma expressão do tipo $\alpha \to \beta \to \gamma$ é lida como $(\alpha \to (\beta \to \gamma))$.
 
     A linguagem da \lfium{} pode ser definida de maneira equivalente utilizando-se o operador de inconsistência (representado por $\bullet$), definido como $\bullet \alpha \eqdef \neg \circ \alpha$, como feito por~\citeshort{carnielli2000formal}. 
 
@@ -31,7 +31,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     %     \begin{align*}
     %          & \text{1.~Sub}(p_{i}) = \{p_{i}\}, \; p_{i} \in \pazocal{P}                                                                                                            \\
     %          & \text{2.~Sub}(\triangle \phi) = \{\triangle \phi\} \; \cup \;\text{Sub}(\phi), \; \triangle \in \{\neg, \circ\}                                                     \\
-    %          & \text{3.~Sub}(\phi \otimes \psi) = \{\phi \otimes \psi\} \; \cup \;\text{Sub}(\phi) \; \cup \;\text{Sub}(\psi), \; \otimes \in \{\land, \lor, \rightarrow\} \tag*\qed
+    %          & \text{3.~Sub}(\phi \otimes \psi) = \{\phi \otimes \psi\} \; \cup \;\text{Sub}(\phi) \; \cup \;\text{Sub}(\psi), \; \otimes \in \{\land, \lor, \to\} \tag*\qed
     %     \end{align*}
     % \end{definicao}
 
@@ -67,33 +67,33 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         \noindent\textbf{Axiomas}:
         \begin{align*}
-            & \alpha \rightarrow (\beta \rightarrow \alpha)\tag{\textbf{Ax1}}                                                                                     \\
-            & (\alpha \rightarrow (\beta \rightarrow \gamma)) \rightarrow ((\alpha \rightarrow \beta) \rightarrow (\alpha \rightarrow \gamma ))\tag{\textbf{Ax2}} \\
-            & \alpha \rightarrow (\beta \rightarrow (\alpha \land \beta))\tag{\textbf{Ax3}}                                                                       \\
-            & (\alpha \land \beta) \rightarrow \alpha\tag{\textbf{Ax4}}                                                                                           \\
-            & (\alpha \land \beta) \rightarrow \beta\tag{\textbf{Ax5}}                                                                                            \\
-            & \alpha \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax6}}                                                                                            \\
-            & \beta \rightarrow (\alpha \lor \beta)\tag{\textbf{Ax7}}                                                                                             \\
-            & (\alpha \rightarrow \gamma) \rightarrow ((\beta \rightarrow \gamma) \rightarrow ((\alpha \lor \beta) \rightarrow \gamma))\tag{\textbf{Ax8}}         \\
-            & (\alpha \rightarrow \beta) \lor \alpha\tag{\textbf{Ax9}}                                                                                           \\
+            & \alpha \to (\beta \to \alpha)\tag{\textbf{Ax1}}                                                                                     \\
+            & (\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma ))\tag{\textbf{Ax2}} \\
+            & \alpha \to (\beta \to (\alpha \land \beta))\tag{\textbf{Ax3}}                                                                       \\
+            & (\alpha \land \beta) \to \alpha\tag{\textbf{Ax4}}                                                                                           \\
+            & (\alpha \land \beta) \to \beta\tag{\textbf{Ax5}}                                                                                            \\
+            & \alpha \to (\alpha \lor \beta)\tag{\textbf{Ax6}}                                                                                            \\
+            & \beta \to (\alpha \lor \beta)\tag{\textbf{Ax7}}                                                                                             \\
+            & (\alpha \to \gamma) \to ((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma))\tag{\textbf{Ax8}}         \\
+            & (\alpha \to \beta) \lor \alpha\tag{\textbf{Ax9}}                                                                                           \\
             & \alpha \lor \neg \alpha\tag{\textbf{Ax10}}                                                                                                          \\
-            & \circ \alpha \rightarrow (\alpha \rightarrow (\neg \alpha \rightarrow \beta))\tag{\textbf{bc1}}                                                     \\
-            & \neg \neg \alpha \rightarrow \alpha\tag{\textbf{cf}}
+            & \circ \alpha \to (\alpha \to (\neg \alpha \to \beta))\tag{\textbf{bc1}}                                                     \\
+            & \neg \neg \alpha \to \alpha\tag{\textbf{cf}}
             \\
-            & \alpha \rightarrow \neg \neg \alpha\tag{\textbf{ce}}
+            & \alpha \to \neg \neg \alpha\tag{\textbf{ce}}
             \\
-            & \neg \circ \alpha \rightarrow (\alpha \land \neg \alpha)\tag{\textbf{ci}}                                                                           \\
-            & \neg (\alpha \lor \beta) \rightarrow (\neg \alpha \land \neg \beta)\tag{\textbf{neg}$\lor_{1}$}\\
-            & (\neg \alpha \land \neg \beta) \rightarrow \neg (\alpha \lor \beta)\tag{\textbf{neg}$\lor_{2}$}\\
-            & \neg(\alpha \land \beta) \rightarrow (\neg \alpha \lor \neg \beta)\tag{\textbf{neg}$\land_{1}$}\\
-            & (\neg \alpha \lor \neg \beta) \rightarrow \neg (\alpha \land \beta)\tag{\textbf{neg}$\land_{2}$}\\
-            & \neg (\alpha \rightarrow \beta) \rightarrow(\alpha \land \neg \beta)\tag{\textbf{neg}$\rightarrow_{1}$}\\
-            & (\alpha \land \neg \beta) \rightarrow \neg(\alpha \rightarrow \beta)\tag{\textbf{neg}$\rightarrow_{2}$}
+            & \neg \circ \alpha \to (\alpha \land \neg \alpha)\tag{\textbf{ci}}                                                                           \\
+            & \neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta)\tag{\textbf{neg}$\lor_{1}$}\\
+            & (\neg \alpha \land \neg \beta) \to \neg (\alpha \lor \beta)\tag{\textbf{neg}$\lor_{2}$}\\
+            & \neg(\alpha \land \beta) \to (\neg \alpha \lor \neg \beta)\tag{\textbf{neg}$\land_{1}$}\\
+            & (\neg \alpha \lor \neg \beta) \to \neg (\alpha \land \beta)\tag{\textbf{neg}$\land_{2}$}\\
+            & \neg (\alpha \to \beta) \to(\alpha \land \neg \beta)\tag{\textbf{neg}$\to_{1}$}\\
+            & (\alpha \land \neg \beta) \to \neg(\alpha \to \beta)\tag{\textbf{neg}$\to_{2}$}
     \end{align*}
         \\
         \noindent\textbf{Regra de inferência:}
         \begin{prooftree}
-            \AxiomC{$\alpha, \alpha \rightarrow \beta$}
+            \AxiomC{$\alpha, \alpha \to \beta$}
             \RightLabel{MP}
             \UnaryInfC{$\beta$}
         \end{prooftree}
@@ -120,25 +120,25 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         \begin{definicao}[Álgebra para assinaturas proposicionais]
         \label{def:algebra}
-            Uma álgebra para uma assinatura proposicional $\Theta$ é uma dupla $\pazocal{A} = \langle A, O \rangle$, onde $A$ é um conjunto não vazio (chamado de \textit{domínio} da álgebra) e $O$ é uma função de interpretação que associa cada conectivo n-ário $c \in \Theta$ à uma operação $c^{\pazocal{A}}\!\! : \; A^{n} \rightarrow A$ em A.\qed{}
+            Uma álgebra para uma assinatura proposicional $\Theta$ é uma dupla $\pazocal{A} = \langle A, O \rangle$, onde $A$ é um conjunto não vazio (chamado de \textit{domínio} da álgebra) e $O$ é uma função de interpretação que associa cada conectivo n-ário $c \in \Theta$ à uma operação $c^{\pazocal{A}}\!\! : \; A^{n} \to A$ em A.\qed{}
         \end{definicao}
 
-        Quando não for confuso, o mesmo símbolo será utilizado para representar um conectivo $c$ e sua interpretação $O(c) = c^{\pazocal{A}}$. Além disso, quando não houver ambiguidade, o símbolo utilizado para se referir a uma álgebra $\langle A, O \rangle$ será simplesmente o símbolo para seu domínio $A$. Ademais, caso $\Theta$ seja finita, a função $O$ será substituída pela lista de conectivos de $\Theta$. Por exemplo, uma álgebra para a assinatura $\Sigma$ da \lfium{} é escrita como $\pazocal{A} = \langle A,\land, \lor, \rightarrow, \neg, \circ \rangle$.
+        Quando não for confuso, o mesmo símbolo será utilizado para representar um conectivo $c$ e sua interpretação $O(c) = c^{\pazocal{A}}$. Além disso, quando não houver ambiguidade, o símbolo utilizado para se referir a uma álgebra $\langle A, O \rangle$ será simplesmente o símbolo para seu domínio $A$. Ademais, caso $\Theta$ seja finita, a função $O$ será substituída pela lista de conectivos de $\Theta$. Por exemplo, uma álgebra para a assinatura $\Sigma$ da \lfium{} é escrita como $\pazocal{A} = \langle A,\land, \lor, \to, \neg, \circ \rangle$.
 
         \begin{observacao}
             Uma linguagem sobre uma assinatura proposicional $\Theta = \{c_{1}, \ldots, c_{n}\}$ e um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \; | \; n \in \mathbb{N} \}$ pode ser compreendida como uma álgebra da forma $\langle \pazocal{L}_{\Theta}, c_{1}\ldots, c_{n} \rangle$, onde $\pazocal{L}_{\Theta}$ é um conjunto de fórmulas bem formadas a partir dos conectivos em $\Theta$ e dos átomos em $\pazocal{P}$. Denotamos esta álgebra simplesmente por $\pazocal{L}_{\Theta}$~\cite{Sikorski1966-SIKAOF,Wojcicki1984-WJCLOP}.
         \end{observacao}
 
-        Duas álgebras definidas sobre uma mesma assinatura proposicional são ditas \textit{similares}. Uma função (mapeamento) entre duas estruturas algebraicas similares que preserva sua estrutura é chamada de \textit{homomorfismo}. Ou seja, dadas duas álgebras similares $\langle A, O \rangle$, $\langle B, O' \rangle$ definidas sobre uma assinatura proposicional $\Theta$, um mapeamento $h : A \rightarrow B$ será um \textit{homomorfismo} caso $h(c(a_{0},\ldots, a_{n})) = c(h(a_{0}),\ldots, h(a_{n}))$ (onde $c$ é um conectivo de aridade $n$), para todo conectivo $c \in \Theta$ e $a_{0},\ldots,a_{n} \in A$.
+        Duas álgebras definidas sobre uma mesma assinatura proposicional são ditas \textit{similares}. Uma função (mapeamento) entre duas estruturas algebraicas similares que preserva sua estrutura é chamada de \textit{homomorfismo}. Ou seja, dadas duas álgebras similares $\langle A, O \rangle$, $\langle B, O' \rangle$ definidas sobre uma assinatura proposicional $\Theta$, um mapeamento $h : A \to B$ será um \textit{homomorfismo} caso $h(c(a_{0},\ldots, a_{n})) = c(h(a_{0}),\ldots, h(a_{n}))$ (onde $c$ é um conectivo de aridade $n$), para todo conectivo $c \in \Theta$ e $a_{0},\ldots,a_{n} \in A$.
 
         \begin{definicao}[Matriz Lógica]
             Seja $\Theta$ uma assinatura proposicional. Uma \textit{matriz lógica} $\pazocal{M}$ definida sobre $\Theta$ é uma tripla $\pazocal{M} = \langle A, D, O \rangle$, tal que o par $\langle A, O \rangle$ é uma álgebra para $\Theta$ e $D$ é um subconjunto de $A$ cujos elementos são ditos \textit{designados}, estes são elementos de $A$ considerados como verdadeiros.\qed{}
         \end{definicao}
 
-        Com isso, uma matriz lógica $\pazocal{M} = \langle A, D, O \rangle$ induz uma lógica tarskiana $\mathcal{L}$ sobre uma linguagem $\pazocal{L}_{\Theta}$ da seguinte forma: Sendo $\Gamma \cup \{\alpha\} \in \pazocal{L}_{\Theta}$, $\Gamma \vDash_{\pazocal{M}} \alpha$ sse, para todo homomorfismo $h : \pazocal{L}_{\Theta} \rightarrow A$, se $h[\Gamma] \subseteq D$ então $h(\alpha) \in D$. Em particular, $\alpha$ é uma tautologia em $\mathcal{L}$ sse $h(\alpha) \in D$ para todo homomorfismo $h$. Perceba que o homomorfismo h nada mais é do que uma função que associa fórmulas da linguagem $\pazocal{L}_{\Theta}$ a valores do domínio $A$ da matriz $\pazocal{M}$.
+        Com isso, uma matriz lógica $\pazocal{M} = \langle A, D, O \rangle$ induz uma lógica tarskiana $\mathcal{L}$ sobre uma linguagem $\pazocal{L}_{\Theta}$ da seguinte forma: Sendo $\Gamma \cup \{\alpha\} \in \pazocal{L}_{\Theta}$, $\Gamma \vDash_{\pazocal{M}} \alpha$ sse, para todo homomorfismo $h : \pazocal{L}_{\Theta} \to A$, se $h[\Gamma] \subseteq D$ então $h(\alpha) \in D$. Em particular, $\alpha$ é uma tautologia em $\mathcal{L}$ sse $h(\alpha) \in D$ para todo homomorfismo $h$. Perceba que o homomorfismo h nada mais é do que uma função que associa fórmulas da linguagem $\pazocal{L}_{\Theta}$ a valores do domínio $A$ da matriz $\pazocal{M}$.
 
         \begin{definicao}[Valoração]
-            Seja $\pazocal{M} = \langle A, D, O \rangle$ uma matriz lógica tal que $\pazocal{M}$ define uma lógica $\mathcal{L}$ sobre a linguagem $\pazocal{L}_{\Theta}$. Um homomorfismo $h : \pazocal{L}_{\Theta} \rightarrow A$ é dito uma valoração sobre $\pazocal{M}$.\qed{}
+            Seja $\pazocal{M} = \langle A, D, O \rangle$ uma matriz lógica tal que $\pazocal{M}$ define uma lógica $\mathcal{L}$ sobre a linguagem $\pazocal{L}_{\Theta}$. Um homomorfismo $h : \pazocal{L}_{\Theta} \to A$ é dito uma valoração sobre $\pazocal{M}$.\qed{}
         \end{definicao}
 
 
@@ -152,7 +152,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 % Implication (→)
                 \[
                     \begin{array}{c|ccc}
-                        \rightarrow & 1 & \frac{1}{2} & 0 \\
+                        \to & 1 & \frac{1}{2} & 0 \\
                         \hline
                         1           & 1 & \frac{1}{2} & 0 \\
                         \frac{1}{2} & 1 & \frac{1}{2} & 0 \\
@@ -212,7 +212,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \end{minipage}
 
             \noindent
-            A matriz $\pazocal{M}_{\lfium{}}$ define a relação de consequência semântica $\conmat{}$, para todo $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$, da seguinte forma: $\Gamma \conmat \phi$ sse, para todo homomorfismo $h : \pazocal{L}_{\Sigma} \rightarrow M$, se $h[\Gamma] \subseteq \{1, \meio{}\}$ então $h(\phi) \in \{1, \meio{}\}$. \qed{}
+            A matriz $\pazocal{M}_{\lfium{}}$ define a relação de consequência semântica $\conmat{}$, para todo $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$, da seguinte forma: $\Gamma \conmat \phi$ sse, para todo homomorfismo $h : \pazocal{L}_{\Sigma} \to M$, se $h[\Gamma] \subseteq \{1, \meio{}\}$ então $h(\phi) \in \{1, \meio{}\}$. \qed{}
         \end{definicao}
         
         
@@ -221,11 +221,11 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         \begin{definicao} [Semântica de valorações para \textbf{$\text{LFI1}$}]
             \label{def:valoracoes}
-            A função $v : \pazocal{L}_{\Sigma} \rightarrow \{1, 0\}$ é uma valoração para a lógica \lfium{} caso ela satisfaça as seguintes cláusulas:
+            A função $v : \pazocal{L}_{\Sigma} \to \{1, 0\}$ é uma valoração para a lógica \lfium{} caso ela satisfaça as seguintes cláusulas:
             \begin{align*}
                 & v(\alpha \land \beta) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\beta) = 1\tag{\textbf{$vAnd$}}\\
                 & v(\alpha \lor \beta) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ ou } v(\beta) = 1\tag{\textbf{$vOr$}}\\
-                & v(\alpha \rightarrow \beta) = 1 \Longleftrightarrow v(\alpha) = 0 \text{ ou } v(\beta) = 1\tag{\textbf{$vImp$}}\\
+                & v(\alpha \to \beta) = 1 \Longleftrightarrow v(\alpha) = 0 \text{ ou } v(\beta) = 1\tag{\textbf{$vImp$}}\\
                 & v(\neg \alpha) = 0 \Longrightarrow v(\alpha) = 1\tag{\textbf{$vNeg$}}\\
                 & v(\circ \alpha) = 1 \Longrightarrow v(\alpha) = 0 \text{ ou } v(\neg \alpha) = 0\tag{\textbf{$vCon$}}\\
                 & v(\neg \circ \alpha) = 1 \Longrightarrow v(\alpha) = 1 \text{ e } v(\neg \alpha) = 1\tag{\textbf{$vCi$}}\\
@@ -233,7 +233,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 & v(\alpha) = 1 \Longrightarrow v(\neg \neg \alpha) = 1\tag{\textbf{$vCe$}}\\
                 & v(\neg (\alpha \land \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ ou } v(\neg \beta) = 1\tag{\textbf{$vDM_{\land}$}}\\
                 & v(\neg (\alpha \lor \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vDM_{\lor}$}}\\
-                & v(\neg (\alpha \rightarrow \beta)) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vCIp_{\rightarrow}$}}
+                & v(\neg (\alpha \to \beta)) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vCIp_{\to}$}}
             \end{align*}
             O conjunto destas valorações será denotado por $V^{\lfium{}}$. Então, a relação de consequência semântica $\conval$ é definida, para todo $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$, da seguinte forma: $\Gamma \conval \phi$ sse, para todo $v \in V^{\lfium{}}$, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$ então $v(\phi) = 1$.\qed{}
         \end{definicao}
@@ -294,12 +294,14 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     
     \begin{teorema}[Metateorema da dedução para $\conhil$]
         \label{teo:deducao}
-        Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \pazocal{L}_{\Sigma}$, $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.
+        Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \pazocal{L}_{\Sigma}$:\\
+        \centering
+        $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.
     \end{teorema}
 
 
     \begin{proof}[Prova do Teorema~\ref{teo:deducao}] A prova será dividida em duas partes:\\
-        ($\Longleftarrow$) Supondo $\Gamma \conhil \alpha \to \beta$, então existe uma sequência de dedução $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha \to \beta$. A seguinte sequência de dedução completa a prova de $\Gamma, \alpha \conhil \beta$:
+        ($\Longleftarrow$) Supondo $\Gamma \conhil \alpha \to \beta$, então existe uma sequência de derivação $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha \to \beta$. A seguinte sequência de derivação completa a prova de $\Gamma, \alpha \conhil \beta$:
         \begin{align*}
             \text{1}&.~ \; \ldots\\
             & \vdots \; ~\ddots\\
@@ -308,7 +310,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \text{$n + 2$}&.~ \beta\tag{MP $n, n + 1$}
         \end{align*}
 
-        \noindent  ($\Longrightarrow$) Supondo $\Gamma, \alpha \conhil \beta$, então existe uma sequência de dedução $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \beta$ a partir do conjunto de premissas $\Gamma \cup \{\alpha\}$. A prova de $\Gamma \conhil \alpha \to \beta$ é feita pela indução no comprimento $n$ da sequência de dedução:
+        \noindent  ($\Longrightarrow$) Supondo $\Gamma, \alpha \conhil \beta$, então existe uma sequência de derivação $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \beta$ a partir do conjunto de premissas $\Gamma \cup \{\alpha\}$. A prova de $\Gamma \conhil \alpha \to \beta$ é feita pela indução no tamanho $n$ da sequência de derivação:
 
         \noindent\underline{Base} $n = 1$.
         A sequência contem somente uma fórmula $\phi_{1} = \beta$. Portanto, existem duas possibilidades:
@@ -326,8 +328,8 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         
         \noindent 2. Caso $\phi_{1} \in \Gamma \cup \{\alpha\}$, existem dois casos a serem considerados:
         \begin{enumerate}
-            \item $\phi_{1} = \alpha$
-            \item $\phi_{1} \in \Gamma$
+            \item[2.1] $\phi_{1} = \alpha$
+            \item[2.2] $\phi_{1} \in \Gamma$
         \end{enumerate}
 
         \noindent 2.1. Caso $\phi_{1} = \alpha$, é necessário mostrar $\Gamma \conhil \alpha \to \alpha$, que é o que foi provado pelo Lema~\ref{lem:id}.
@@ -339,7 +341,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             & \text{3. } \alpha \to \phi_{1} \tag{MP 1, 2}
         \end{align*}
 
-        \noindent \underline{Passo} Hipótese de indução (HI): \textit{Para qualquer sequência de dedução $\Gamma, \alpha \conhil \beta$ de tamanho $i$, com $i < n$, tem-se $\Gamma \conhil \alpha \to \beta$}. É preciso mostrar que $\Gamma \conhil \alpha \to \beta$ segue caso a dedução $\Gamma, \alpha \conhil \beta$ seja de tamanho $n$. Ao analisar a obtenção de $\phi_{n} = \beta$ na sequência de dedução de $\Gamma, \alpha\conhil \phi_{n}$, existem três casos a se considerar:
+        \noindent \underline{Passo} Hipótese de indução (HI): \textit{Para qualquer sequência de derivação $\Gamma, \alpha \conhil \beta$ de tamanho $i$, com $i < n$, tem-se $\Gamma \conhil \alpha \to \beta$}. É preciso mostrar que $\Gamma \conhil \alpha \to \beta$ segue caso a dedução $\Gamma, \alpha \conhil \beta$ seja de tamanho $n$. Ao analisar a obtenção de $\phi_{n} = \beta$ na sequência de derivação de $\Gamma, \alpha\conhil \phi_{n}$, existem três casos a se considerar:
         \begin{enumerate}
             \item $\phi_{n}$ é um axioma.
             \item $\phi_{n} \in \Gamma \cup \{\alpha\}$.
@@ -348,7 +350,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         
         \noindent Os casos 1 e 2 são análogos aos casos provados na base.
 
-        \noindent 3. Caso $\phi_{n}$ seja obtido por \textit{modus ponens} em duas fórmulas $\phi_{j}$ e $\phi_{k}$ com $j, k < n$, então $\phi_{k} = \phi_{j} \to \phi_{n}$ (ou $\phi_{j} = \phi_{k} \to \phi_{n}$, a prova para este caso é análoga). Dada a nossa suposição de $\Gamma, \alpha \conhil \phi_{n}$, temos $\Gamma, \alpha \conhil \phi_{j}$ e $\Gamma, \alpha \conhil \phi_{j} \to \phi_{n}$ sequências de dedução anteriores à aplicação da regra do \textit{modus ponens} na linha $n$. Então, pela hipótese de indução, temos $\Gamma \conhil \alpha \to \phi_{j}$ e $\Gamma \conhil \alpha \to (\phi_{j} \to \phi_{n})$. A seguinte sequência de dedução mostra $\Gamma \conhil \alpha \to \phi_{n}$:
+        \noindent 3. Caso $\phi_{n}$ seja obtido por \textit{modus ponens} em duas fórmulas $\phi_{j}$ e $\phi_{k}$ com $j, k < n$, então $\phi_{k} = \phi_{j} \to \phi_{n}$ (ou $\phi_{j} = \phi_{k} \to \phi_{n}$, a prova para este caso é análoga). Dada a nossa suposição de $\Gamma, \alpha \conhil \phi_{n}$, temos $\Gamma, \alpha \conhil \phi_{j}$ e $\Gamma, \alpha \conhil \phi_{j} \to \phi_{n}$ sequências de dedução anteriores à aplicação da regra do \textit{modus ponens} na linha $n$. Então, pela hipótese de indução, temos $\Gamma \conhil \alpha \to \phi_{j}$ e $\Gamma \conhil \alpha \to (\phi_{j} \to \phi_{n})$. A seguinte sequência de derivação mostra $\Gamma \conhil \alpha \to \phi_{n}$:
         \begin{align*}
             \text{1}&.~ \; \ldots\\
             &\vdots \; ~\ddots\\
@@ -359,4 +361,33 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \text{$j + k + 2$}&.~ (\alpha \to \phi_{j}) \to (\alpha \to \phi_{n}) \tag{MP $j + k$,$j + k + 1$}\\
              \text{$j + k + 3$}&.~ \alpha \to \phi_{n} \tag{MP $j$,$j + k + 2$}
         \end{align*}
+    \end{proof}
+
+    \begin{teorema}[Correção]
+        \label{teo:correcao}
+        A lógica \lfium{} é correta em relação a sua semântica de valorações, ou seja, para todo conjunto de fórmulas $\Gamma \cup \{\alpha\} \subseteq \pazocal{L}_{\Sigma}$:\\
+        \centering
+        $\Gamma \conhil \alpha \Longleftrightarrow \Gamma \conval \alpha$.
+    \end{teorema}
+
+    \begin{proof}[Prova do Teorema~\ref{teo:correcao}]
+        Supondo $\Gamma \conhil \alpha$, existe uma sequência de derivação $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha$. A prova de $\Gamma \conval \alpha$ é obtida por indução no tamanho $n$ da sequência de derivação:
+
+        \noindent \underline{Base} $n = 1$. A sequência contém somente uma fórmula $\phi_{1} = \alpha$. Portanto, existem duas possibilidades:
+        \begin{enumerate}
+            \item $\phi_{1}$ é um axioma.
+            \item $\phi_{1} \in \Gamma$.
+        \end{enumerate}
+        
+        \noindent 1. Caso $\phi_{1}$ seja um axioma, então basta mostrar que para todo $v \in V^{\lfium{}}$, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$, então $v(\phi_{1}) = 1$. Como $\phi_{1}$ é um axioma, basta analisar todos os casos possíveis:
+
+        \noindent 1.1. Caso $\phi_{1} = \alpha \to (\beta \to \alpha)$. Suponha $v(\alpha \to (\beta \to \alpha)) = 0$. Logo $v(\alpha) = 1$ e $v(\beta \to \alpha) = 0$ por $(vImp)$. $v(\beta) = 1$ e $v(\alpha) = 0$ novamente por $(vImp)$. Isto resulta numa contradição. Portanto $v(\alpha \to (\beta \to \alpha)) = 1$.
+
+        \noindent 1.2. Caso $\phi_{1} = (\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma ))$. Suponha $v((\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma))) = 0$. Logo (por ($vImp$)) $v(\alpha \to (\beta \to \gamma)) = 1$ e $v((\alpha \to \beta) \to (\alpha \to \gamma)) = 0$. Portanto (por $(vImp)$) $v(\alpha) = 0$ ou $v(\beta \to \gamma) = 1$. Além disso, $v(\alpha \to \beta) = 1$ e $v(\alpha \to \gamma) = 0$. Por $(vImp)$ segue que $v(\alpha) = 1$ e $v(\gamma) = 0$, logo, $v(\beta \to \gamma) = 1$ e, portanto, $v(\beta) = 0$ ou $v(\gamma) = 1$. Porém, como $v(\alpha \to \beta) = 1$ e $v(\alpha = 1)$, então $v(\beta) = 1$, o que resulta numa contradição. Portanto $v((\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma))) = 1$.
+
+        \noindent 1.3. Caso $\phi_{1} = \alpha \to (\beta \to (\alpha \land \beta))$. Suponha $v(\alpha \to (\beta \to (\alpha \land \beta))) = 0$. Logo $v(\alpha) = 1$ e $v(\beta \to (\alpha \land \beta)) = 0$ por $(vImp)$. Então $v(\beta) = 1$ e $v(\alpha \land \beta) = 0$ novamente por $(vImp)$. Com isso, temos $v(\alpha) = 0$ ou $v(\beta) = 0$ por $(vAnd)$, mas isso resulta numa contradição, já que $v(\alpha) = 1$ e $v(\beta) = 1$. Portanto $v(\alpha \to (\beta \to (\alpha \land \beta))) = 1$.
+
+        \noindent 1.4. Caso $\phi_{1} = (\alpha \land \beta) \to \alpha$. Suponha $v((\alpha \land \beta) \to \alpha) = 0$. Logo $v(\alpha \land \beta) = 1$ e $v(\alpha) = 0$ por $(vImp)$. Então, $v(\alpha) = 1$ e $v(\beta) = 1$ por $(vAnd)$, o que resulta numa contradição, portanto $v((\alpha \land \beta) \to \alpha) = 1$.
+
+        \noindent 1.5. Caso $\phi_{1} = (\alpha \land \beta) \to \beta$. Suponha $v((\alpha \land \beta) \to \beta) = 0$. Logo $v(\alpha \land \beta) = 1$ e $v(\beta) = 0$ por $(vImp)$. Então, $v(\alpha) = 1$ e $v(\beta) = 1$ por $(vAnd)$, o que resulta numa contradição, portanto $v((\alpha \land \beta) \to \beta) = 1$.
     \end{proof}

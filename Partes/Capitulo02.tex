@@ -40,7 +40,7 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
         \label{def:ass_prop}
         Uma assinatura proposicional $\Theta$ é um conjunto de conectivos lógicos, cada um contendo a informação sobre sua aridade.\qed{}
     \end{definicao}
-    Por exemplo, a assinatura proposicional para a lógica proposicional clássica pode ser definida como $\Theta_{LPC} = \{\land^{2}, \lor^{2}, \neg^{1}, \rightarrow^{2}\}$, onde o operador $\land^{2}$ representa uma conjunção, $\lor^{2}$ representa uma disjunção, $\neg^{1}$ representa uma negação e $\rightarrow^{2}$ representa uma implicação. No restante do texto, as aridades destes conectivos será omitida e a aridade de novos conectivos será apresentada somente na sua definição.
+    Por exemplo, a assinatura proposicional para a lógica proposicional clássica pode ser definida como $\Theta_{LPC} = \{\land^{2}, \lor^{2}, \neg^{1}, \to^{2}\}$, onde o operador $\land^{2}$ representa uma conjunção, $\lor^{2}$ representa uma disjunção, $\neg^{1}$ representa uma negação e $\to^{2}$ representa uma implicação. No restante do texto, as aridades destes conectivos será omitida e a aridade de novos conectivos será apresentada somente na sua definição.
 
     Uma assinatura proposicional juntamente com um conjunto enumerável de átomos são base para a definição de uma linguagem proposicional, que por sua vez é utilizada para definir uma lógica proposicional, como é o caso da \lfium{}.
 
@@ -50,7 +50,7 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
     \end{definicao}
 
 
-    No desenvolvimento de metateoremas sobre propriedades de uma determinada lógica, a indução na complexidade de uma fórmula é um método comum de prova. Para isso, dada uma lógica $\mathcal{L}$ sobre uma linguagem $\pazocal{L}$, define-se uma função recursiva $C(\phi) : \pazocal{L} \rightarrow \mathbb{N}$ que retorna, para uma dada fórmula, um número natural representando sua complexidade, baseada na quantidade de operadores e átomos:
+    No desenvolvimento de metateoremas sobre propriedades de uma determinada lógica, a indução na complexidade de uma fórmula é um método comum de prova. Para isso, dada uma lógica $\mathcal{L}$ sobre uma linguagem $\pazocal{L}$, define-se uma função recursiva $C(\phi) : \pazocal{L} \to \mathbb{N}$ que retorna, para uma dada fórmula, um número natural representando sua complexidade, baseada na quantidade de operadores e átomos:
 
     \begin{definicao}[Complexidade de fórmulas para a lógica proposicional clássica]
         \label{def:complex}
@@ -58,7 +58,7 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
         \begin{align*}
             & \text{1.~Se } \phi = p \text{, onde } p \in \pazocal{P} \text{, então } C(\phi) = 1;\\
             & \text{2.~Se } \phi = \neg \psi \text{, então } C(\phi) = C(\psi) + 1;\\
-            & \text{3.~Se } \phi = \psi \otimes \gamma \text{, onde } \otimes \in \{\land, \lor, \rightarrow\} \text{, então } C(\phi) = C(\psi) + C(\gamma) + 1.\tag*\qed{}
+            & \text{3.~Se } \phi = \psi \otimes \gamma \text{, onde } \otimes \in \{\land, \lor, \to\} \text{, então } C(\phi) = C(\psi) + C(\gamma) + 1.\tag*\qed{}
         \end{align*}
     \end{definicao}
 
@@ -113,7 +113,7 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
         Uma lógica Tarskiana $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$, é dita \textit{paraconsistente} se ela possuir uma negação\footnote{Esta negação pode ser primitiva (pertencente à assinatura da linguagem) ou definida a partir de outras fórmulas.} $\neg$ tal que existem fórmulas $\alpha, \beta \in \pazocal{L}$ onde $\alpha, \neg \alpha \nVdash \beta$.\qed{}
     \end{definicao}
 
-    Caso a linguagem de $\mathcal{L}$ possua uma implicação $\rightarrow$ que respeite o metateorema da dedução\footnote{Definido como $\Gamma, \alpha \Vdash \beta \Longleftrightarrow  \Gamma\Vdash \alpha \rightarrow \beta$.}, então $\mathcal{L}$ é paraconsistente se e somente se a fórmula $\alpha \rightarrow (\neg \alpha \rightarrow \beta)$ não for válida. Ou seja, se o Princípio da Explosão é inválido (em relação a $\neg$), o conectivo $\neg$ é considerado uma negação \textit{não explosiva}.
+    Caso a linguagem de $\mathcal{L}$ possua uma implicação $\to$ que respeite o metateorema da dedução\footnote{Definido como $\Gamma, \alpha \Vdash \beta \Longleftrightarrow  \Gamma\Vdash \alpha \to \beta$.}, então $\mathcal{L}$ é paraconsistente se e somente se a fórmula $\alpha \to (\neg \alpha \to \beta)$ não for válida. Ou seja, se o Princípio da Explosão é inválido (em relação a $\neg$), o conectivo $\neg$ é considerado uma negação \textit{não explosiva}.
 
 \section{Inconsistência}
 \label{sec:incons}
