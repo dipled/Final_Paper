@@ -390,4 +390,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \noindent 1.4. Caso $\phi_{1} = (\alpha \land \beta) \to \alpha$. Suponha $v((\alpha \land \beta) \to \alpha) = 0$. Logo $v(\alpha \land \beta) = 1$ e $v(\alpha) = 0$ por $(vImp)$. Então, $v(\alpha) = 1$ e $v(\beta) = 1$ por $(vAnd)$, o que resulta numa contradição. Portanto $v((\alpha \land \beta) \to \alpha) = 1$.
 
         \noindent 1.5. Caso $\phi_{1} = (\alpha \land \beta) \to \beta$. Como no Caso 1.4, \textit{mutatis mutandis}.
+
+        \noindent 1.6. Caso $\phi_{1} = \alpha \to (\alpha \lor \beta)$. Suponha $v(\alpha \to (\alpha \lor \beta)) = 0$. Logo $v(\alpha) = 1$ e $v(\alpha \lor \beta) = 0$ por $(vImp)$. Então temos $v(\alpha) = 0$ e $v(\beta) = 0$ por $(vOr)$, o que resulta numa contradição. Portanto $v(\alpha \to (\alpha \lor \beta)) = 1$.
+
+        \noindent 1.7. Caso $\phi_{1} = \beta \to (\alpha \lor \beta)$. Como no Caso 1.6, \textit{mutatis mutandis}.
+        
     \end{proof}
