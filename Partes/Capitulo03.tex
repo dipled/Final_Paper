@@ -319,22 +319,22 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \item $\phi_{1} \in \Gamma \cup \{\alpha\}$.
         \end{enumerate}
 
-        \noindent 1. Caso $\phi_{1}$ seja um axioma, a seguinte dedução mostra $\Gamma \conhil \alpha \to \phi_{1}$:
+        \textit{Caso 1.} $\phi_{1}$ seja um axioma, a seguinte dedução mostra $\Gamma \conhil \alpha \to \phi_{1}$:
         \begin{align*}
             & \text{1. } \phi_{1} \tag{Axioma}\\
             & \text{2. } \phi_{1} \to (\alpha \to \phi_{1}) \tag{Ax1}\\
             & \text{3. } \alpha \to \phi_{1} \tag{MP 1,2}
         \end{align*}
         
-        \noindent 2. Caso $\phi_{1} \in \Gamma \cup \{\alpha\}$, existem dois casos a serem considerados:
+        \textit{Caso 2.} $\phi_{1} \in \Gamma \cup \{\alpha\}$, existem dois casos a serem considerados:
         \begin{enumerate}
             \item[2.1] $\phi_{1} = \alpha$
             \item[2.2] $\phi_{1} \in \Gamma$
         \end{enumerate}
 
-        \noindent 2.1. Caso $\phi_{1} = \alpha$, é necessário mostrar $\Gamma \conhil \alpha \to \alpha$, que é o que foi provado pelo Lema~\ref{lem:id}.
+        \textit{Subcaso 2.1.} $\phi_{1} = \alpha$, é necessário mostrar $\Gamma \conhil \alpha \to \alpha$, o que foi provado pelo Lema~\ref{lem:id}.
 
-        \noindent 2.2. Caso $\phi_{1} \in \Gamma$, então $\Gamma \conhil \alpha \to \phi_{1}$ é provado pela seguinte sequência de derivações:
+        \textit{Subcaso 2.2.} $\phi_{1} \in \Gamma$, então $\Gamma \conhil \alpha \to \phi_{1}$ é provado pela seguinte sequência de derivações:
         \begin{align*}
             & \text{1. } \phi_{1} \tag{Premissa}\\
             & \text{2. } \phi_{1} \to (\alpha \to \phi_{1}) \tag{Ax1}\\
@@ -348,9 +348,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \item $\phi_{n}$ é obtido por \textit{modus ponens} em duas fórmulas $\phi_{j}$ e $\phi_{k}$ com $j, k < n$.
         \end{enumerate}
         
-        \noindent Os casos 1 e 2 são análogos aos casos provados na base.
+         Os casos 1 e 2 são análogos aos casos provados na base.
 
-        \noindent 3. Caso $\phi_{n}$ seja obtido por \textit{modus ponens} em duas fórmulas $\phi_{j}$ e $\phi_{k}$ com $j, k < n$, então $\phi_{k} = \phi_{j} \to \phi_{n}$ (ou $\phi_{j} = \phi_{k} \to \phi_{n}$, a prova para este caso é análoga). Dada a nossa suposição de $\Gamma, \alpha \conhil \phi_{n}$, temos $\Gamma, \alpha \conhil \phi_{j}$ e $\Gamma, \alpha \conhil \phi_{j} \to \phi_{n}$ sequências de dedução anteriores à aplicação da regra do \textit{modus ponens} na linha $n$. Então, pela hipótese de indução, temos $\Gamma \conhil \alpha \to \phi_{j}$ e $\Gamma \conhil \alpha \to (\phi_{j} \to \phi_{n})$. A seguinte sequência de derivação mostra $\Gamma \conhil \alpha \to \phi_{n}$:
+         \textit{Caso 3.} $\phi_{n}$ seja obtido por \textit{modus ponens} em duas fórmulas $\phi_{j}$ e $\phi_{k}$ com $j, k < n$, então $\phi_{k} = \phi_{j} \to \phi_{n}$ (ou $\phi_{j} = \phi_{k} \to \phi_{n}$, a prova para este caso é análoga). Dada a nossa suposição de $\Gamma, \alpha \conhil \phi_{n}$, temos $\Gamma, \alpha \conhil \phi_{j}$ e $\Gamma, \alpha \conhil \phi_{j} \to \phi_{n}$ sequências de dedução anteriores à aplicação da regra do \textit{modus ponens} na linha $n$. Então, pela hipótese de indução, temos $\Gamma \conhil \alpha \to \phi_{j}$ e $\Gamma \conhil \alpha \to (\phi_{j} \to \phi_{n})$. A seguinte sequência de derivação mostra $\Gamma \conhil \alpha \to \phi_{n}$:
         \begin{align*}
             \text{1}&.~ \; \ldots\\
             &\vdots \; ~\ddots\\
@@ -379,20 +379,20 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \item $\phi_{1} \in \Gamma$.
         \end{enumerate}
         
-        \noindent 1. Caso $\phi_{1}$ seja um axioma, então basta mostrar que para todo $v \in V^{\lfium{}}$, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$, então $v(\phi_{1}) = 1$. Como $\phi_{1}$ é um axioma, basta analisar todos os casos possíveis:
+         \textit{Caso 1.} $\phi_{1}$ seja um axioma, então basta mostrar que para todo $v \in V^{\lfium{}}$, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$, então $v(\phi_{1}) = 1$. Como $\phi_{1}$ é um axioma, basta analisar todos os \textit{caso}s possíveis:
 
-        \noindent 1.1. Caso $\phi_{1} = \alpha \to (\beta \to \alpha)$. Suponha $v(\alpha \to (\beta \to \alpha)) = 0$. Logo $v(\alpha) = 1$ e $v(\beta \to \alpha) = 0$ por $(vImp)$. $v(\beta) = 1$ e $v(\alpha) = 0$ novamente por $(vImp)$. Isto resulta numa contradição. Portanto $v(\alpha \to (\beta \to \alpha)) = 1$.
+         \textit{Subcaso 1.1.} $\phi_{1} = \alpha \to (\beta \to \alpha)$. Suponha $v(\alpha \to (\beta \to \alpha)) = 0$. Logo $v(\alpha) = 1$ e $v(\beta \to \alpha) = 0$ por $(vImp)$. $v(\beta) = 1$ e $v(\alpha) = 0$ novamente por $(vImp)$. Isto resulta numa contradição. Portanto $v(\alpha \to (\beta \to \alpha)) = 1$.
 
-        \noindent 1.2. Caso $\phi_{1} = (\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma ))$. Suponha $v((\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma))) = 0$. Logo (por ($vImp$)) $v(\alpha \to (\beta \to \gamma)) = 1$ e $v((\alpha \to \beta) \to (\alpha \to \gamma)) = 0$. Portanto (por $(vImp)$) $v(\alpha) = 0$ ou $v(\beta \to \gamma) = 1$. Além disso, $v(\alpha \to \beta) = 1$ e $v(\alpha \to \gamma) = 0$. Por $(vImp)$ segue que $v(\alpha) = 1$ e $v(\gamma) = 0$, logo, $v(\beta \to \gamma) = 1$ e, portanto, $v(\beta) = 0$ ou $v(\gamma) = 1$. Porém, como $v(\alpha \to \beta) = 1$ e $v(\alpha = 1)$, então $v(\beta) = 1$, o que resulta numa contradição. Portanto $v((\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma))) = 1$.
+         \textit{Subcaso 1.2.} $\phi_{1} = (\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma ))$. Suponha $v((\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma))) = 0$. Logo (por ($vImp$)) $v(\alpha \to (\beta \to \gamma)) = 1$ e $v((\alpha \to \beta) \to (\alpha \to \gamma)) = 0$. Portanto (por $(vImp)$) $v(\alpha) = 0$ ou $v(\beta \to \gamma) = 1$. Além disso, $v(\alpha \to \beta) = 1$ e $v(\alpha \to \gamma) = 0$. Por $(vImp)$ segue que $v(\alpha) = 1$ e $v(\gamma) = 0$, logo, $v(\beta \to \gamma) = 1$ e, portanto, $v(\beta) = 0$ ou $v(\gamma) = 1$. Porém, como $v(\alpha \to \beta) = 1$ e $v(\alpha = 1)$, então $v(\beta) = 1$, o que resulta numa contradição. Portanto $v((\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma))) = 1$.
 
-        \noindent 1.3. Caso $\phi_{1} = \alpha \to (\beta \to (\alpha \land \beta))$. Suponha $v(\alpha \to (\beta \to (\alpha \land \beta))) = 0$. Logo $v(\alpha) = 1$ e $v(\beta \to (\alpha \land \beta)) = 0$ por $(vImp)$. Então $v(\beta) = 1$ e $v(\alpha \land \beta) = 0$ novamente por $(vImp)$. Com isso, temos $v(\alpha) = 0$ ou $v(\beta) = 0$ por $(vAnd)$, mas isso resulta numa contradição, já que $v(\alpha) = 1$ e $v(\beta) = 1$. Portanto $v(\alpha \to (\beta \to (\alpha \land \beta))) = 1$.
+         \textit{Subcaso 1.3.} $\phi_{1} = \alpha \to (\beta \to (\alpha \land \beta))$. Suponha $v(\alpha \to (\beta \to (\alpha \land \beta))) = 0$. Logo $v(\alpha) = 1$ e $v(\beta \to (\alpha \land \beta)) = 0$ por $(vImp)$. Então $v(\beta) = 1$ e $v(\alpha \land \beta) = 0$ novamente por $(vImp)$. Com isso, temos $v(\alpha) = 0$ ou $v(\beta) = 0$ por $(vAnd)$, mas isso resulta numa contradição, já que $v(\alpha) = 1$ e $v(\beta) = 1$. Portanto $v(\alpha \to (\beta \to (\alpha \land \beta))) = 1$.
 
-        \noindent 1.4. Caso $\phi_{1} = (\alpha \land \beta) \to \alpha$. Suponha $v((\alpha \land \beta) \to \alpha) = 0$. Logo $v(\alpha \land \beta) = 1$ e $v(\alpha) = 0$ por $(vImp)$. Então, $v(\alpha) = 1$ e $v(\beta) = 1$ por $(vAnd)$, o que resulta numa contradição. Portanto $v((\alpha \land \beta) \to \alpha) = 1$.
+         \textit{Subcaso 1.4.} $\phi_{1} = (\alpha \land \beta) \to \alpha$. Suponha $v((\alpha \land \beta) \to \alpha) = 0$. Logo $v(\alpha \land \beta) = 1$ e $v(\alpha) = 0$ por $(vImp)$. Então, $v(\alpha) = 1$ e $v(\beta) = 1$ por $(vAnd)$, o que resulta numa contradição. Portanto $v((\alpha \land \beta) \to \alpha) = 1$.
 
-        \noindent 1.5. Caso $\phi_{1} = (\alpha \land \beta) \to \beta$. Como no Caso 1.4, \textit{mutatis mutandis}.
+         \textit{Subcaso 1.5.} $\phi_{1} = (\alpha \land \beta) \to \beta$. Como no Subcaso 1.4, \textit{mutatis mutandis}.
 
-        \noindent 1.6. Caso $\phi_{1} = \alpha \to (\alpha \lor \beta)$. Suponha $v(\alpha \to (\alpha \lor \beta)) = 0$. Logo $v(\alpha) = 1$ e $v(\alpha \lor \beta) = 0$ por $(vImp)$. Então temos $v(\alpha) = 0$ e $v(\beta) = 0$ por $(vOr)$, o que resulta numa contradição. Portanto $v(\alpha \to (\alpha \lor \beta)) = 1$.
+         \textit{Subcaso 1.6.} $\phi_{1} = \alpha \to (\alpha \lor \beta)$. Suponha $v(\alpha \to (\alpha \lor \beta)) = 0$. Logo $v(\alpha) = 1$ e $v(\alpha \lor \beta) = 0$ por $(vImp)$. Então temos $v(\alpha) = 0$ e $v(\beta) = 0$ por $(vOr)$, o que resulta numa contradição. Portanto $v(\alpha \to (\alpha \lor \beta)) = 1$.
 
-        \noindent 1.7. Caso $\phi_{1} = \beta \to (\alpha \lor \beta)$. Como no Caso 1.6, \textit{mutatis mutandis}.
+         \textit{Subcaso 1.7.} $\phi_{1} = \beta \to (\alpha \lor \beta)$. Como no Subcaso 1.6, \textit{mutatis mutandis}.
         
     \end{proof}
