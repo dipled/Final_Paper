@@ -12,4 +12,4 @@ changevar:
 	$(eval CLEANFLAG=-C -bibtex)
 
 clean:
-	latexmk ${CLEANFLAG}; rm ${EXTRACLEAN}; cd PreTextual/; latexmk ${CLEANFLAG}; cd ../Partes/; latexmk ${CLEANFLAG}; cd ..
+	latexmk ${CLEANFLAG}; rm ${EXTRACLEAN}; cd PreTextuais/; latexmk ${CLEANFLAG}; cd ../PosTextuais/; latexmk ${CLEANFLAG}; cd ../Textuais/; latexmk ${CLEANFLAG}; cd ..

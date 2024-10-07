@@ -19,8 +19,7 @@ morekeywords=[1]{Section, Module, End, Require, Import, Export,
   Program, Infix, Theorem, Lemma, Corollary, Proposition, Fact,
   Remark, Example, Proof, Goal, Save, Qed, Defined, Hint, Resolve,
   Rewrite, View, Search, Show, Print, Printing, All, Eval, Check,
-  Projections, inside, outside, Def, Compute, Fail,
-  Variant, Types},
+  Projections, inside, outside, Def},
 %
 % Gallina
 morekeywords=[2]{forall, exists, exists2, fun, fix, cofix, struct,
@@ -28,7 +27,7 @@ morekeywords=[2]{forall, exists, exists2, fun, fix, cofix, struct,
   nosimpl, when},
 %
 % Sorts
-morekeywords=[3]{Type, Prop, Set, true, false, option, bool, eqType, nat, natEqType, int},
+morekeywords=[3]{Type, Prop, Set, true, false, option},
 %
 % Various tactics, some are std Coq subsumed by ssr, for the manual purpose
 morekeywords=[4]{pose, set, move, case, elim, apply, clear, hnf,
@@ -45,8 +44,6 @@ morekeywords=[5]{by, done, exact, reflexivity, tauto, romega, omega,
 %
 % Control
 morekeywords=[6]{do, last, first, try, idtac, repeat},
-% Control2
-morekeywords=[7]{if, else, then, let, in},
 %
 % Comments delimiters, we do turn this off for the manual
 morecomment=[s]{(*}{*)},
@@ -84,8 +81,7 @@ identifierstyle={\ttfamily\color{black}},
 % Style for declaration keywords
 keywordstyle=[1]{\ttfamily\color{violet}},
 % Style for gallina keywords
-% keywordstyle=[2]{\ttfamily\color{darkgreen}},
-keywordstyle=[2]{\ttfamily\color{teal}},
+keywordstyle=[2]{\ttfamily\color{darkgreen}},
 % Style for sorts keywords
 keywordstyle=[3]{\ttfamily\color{blue}},
 % Style for tactics keywords
@@ -93,8 +89,7 @@ keywordstyle=[4]{\ttfamily\color{blue}},
 % Style for terminators keywords
 keywordstyle=[5]{\ttfamily\color{red}},
 %Style for iterators
-keywordstyle=[6]{\ttfamily\color{dkpink}},
-keywordstyle=[7]{\ttfamily\color{yellow}},
+%keywordstyle=[6]{\ttfamily\color{dkpink}},
 % Style for strings
 stringstyle=\ttfamily,
 % Style for comments
@@ -102,17 +97,14 @@ commentstyle={\ttfamily\color{darkred}},
 %
 %moredelim=**[is][\ttfamily\color{red}]{/&}{&/},
 literate=
-    {\\forall}{{\color{orange}{$\forall\;$}}}1
-    {\\exists}{{\color{darkgreen}{$\exists\;$}}}1
+    {\\forall}{{\color{green}{$\forall\;$}}}1
+    {\\exists}{{$\exists\;$}}1
     {<-}{{$\leftarrow\;$}}1
     {=>}{{$\Rightarrow\;$}}1
-    {==}{{==\;}}1
-    {>->}{{$\mapsto$\;}}1
-    % {>->}{{\code{>->}\;}}1
-    % {==}{{$==$}\;}1
+    {==}{{\code{==}\;}}1
     {==>}{{\code{==>}\;}}1
 %    {:>}{{\code{:>}\;}}1
-    {->}{{$\to\;$}}1
+    {->}{{$\rightarrow\;$}}1
     {<->}{{$\leftrightarrow\;$}}1
     {<==}{{$\leq\;$}}1
     {\#}{{$^\star$}}1
@@ -121,9 +113,7 @@ literate=
     {\/\\}{{$\wedge\;$}}1
     {\\\/}{{$\vee\;$}}1
     % {++}{{\code{++}}}1
-    % {~}{{$\lnot$}}1
-    % {~}{{$\sim$}}1
-    {\\otimes}{{$\otimes$\;}}1
+    {~}{{$\lnot$}}1
     {\@\@}{{$@$}}1
     {\\mapsto}{{$\mapsto\;$}}1
     {\\hline}{{\rule{\linewidth}{0.5pt}}}1
