@@ -300,8 +300,19 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.
     \end{teorema}
 
+    
+    
+    \begin{teorema}[Metateorema da dedução para $\conhil$]
+        \label{teo:deducao}
+        Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \pazocal{L}_{\Sigma}$:
+
+        \centering
+        $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.
+    \end{teorema}
+
 
     \begin{proof}[Prova do Teorema~\ref{teo:deducao}] A prova será dividida em duas partes:\\
+        ($\Longleftarrow$) Supondo $\Gamma \conhil \alpha \to \beta$, então existe uma sequência de derivação $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha \to \beta$. A seguinte sequência de derivação completa a prova de $\Gamma, \alpha \conhil \beta$:
         ($\Longleftarrow$) Supondo $\Gamma \conhil \alpha \to \beta$, então existe uma sequência de derivação $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha \to \beta$. A seguinte sequência de derivação completa a prova de $\Gamma, \alpha \conhil \beta$:
         \begin{align*}
             \text{1}&.~ \; \ldots\\
@@ -309,8 +320,14 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \text{$n$}&.~ \alpha \to \beta\tag{Suposição}\\
             \text{$n + 1$}&.~ \alpha\tag{Premissa}\\
             \text{$n + 2$}&.~ \beta\tag{MP $n, n + 1$}
+            \text{1}&.~ \; \ldots\\
+            & \vdots \; ~\ddots\\
+            \text{$n$}&.~ \alpha \to \beta\tag{Suposição}\\
+            \text{$n + 1$}&.~ \alpha\tag{Premissa}\\
+            \text{$n + 2$}&.~ \beta\tag{MP $n, n + 1$}
         \end{align*}
 
+        \noindent  ($\Longrightarrow$) Supondo $\Gamma, \alpha \conhil \beta$, então existe uma sequência de derivação $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \beta$ a partir do conjunto de premissas $\Gamma \cup \{\alpha\}$. A prova de $\Gamma \conhil \alpha \to \beta$ é feita pela indução no tamanho $n$ da sequência de derivação:
         \noindent  ($\Longrightarrow$) Supondo $\Gamma, \alpha \conhil \beta$, então existe uma sequência de derivação $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \beta$ a partir do conjunto de premissas $\Gamma \cup \{\alpha\}$. A prova de $\Gamma \conhil \alpha \to \beta$ é feita pela indução no tamanho $n$ da sequência de derivação:
 
         \noindent\underline{Base} $n = 1$.
