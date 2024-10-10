@@ -1,7 +1,7 @@
 FLAGS  = -f -pdf -pv -quiet
 CLEANFLAG = -c
 TARGET = Main.tex
-EXTRACLEAN = *.maf *.mtc* *.tdo *.nls *.nlo
+EXTRACLEAN = *.maf *.mtc* *.tdo *.nls *.nlo *.brf
 
 all: 
 	latexmk ${FLAGS} ${TARGET}
