@@ -49,152 +49,14 @@ como parte dos requisitos para a obtenção do grau de Bacharel em Ciência da C
 
 \makeindex
 
+\input{Comandos.tex}
+
 % -----------------------------------------------------------------
 % Início do documento
 % -----------------------------------------------------------------
 \begin{document}
 
 \selectlanguage{brazil}
-
-% Teoremas e Provas
-
-% Estilo padrão, i.e., texto itálico
-\newtheorem{teorema}   {Teorema}
-\newtheorem{proposicao}{Proposição}
-\newtheorem{lema}      {Lema}
-\newtheorem{corolario} {Corolário}
-\renewcommand{\proofname}{Prova}
-\renewcommand\qedsymbol{$\blacksquare$}
-
-% Estilo simples, i.e., texto normal
-\theoremstyle{definition}
-\newtheorem{definicao}{Definição}
-\newtheorem{notacao}{Notação}
-\newtheorem{exemplo}{Exemplo}
-
-\theoremstyle{remark}
-\newtheorem{observacao}{Observação}
-
-% \AtEndEnvironment{teorema}  {\qed}%
-% \AtEndEnvironment{proposicao}  {\qed}%
-% \AtEndEnvironment{lema}     {\qed}%
-% \AtEndEnvironment{definicao}{\qed}%
-% \AtEndEnvironment{exemplo}  {\qed}%
-
-%% Grego
-
-\renewcommand\phi{\varphi}
-
-% Grego Minúsculo
-
-% Grego Maiúsculo
-\newcommand{\GAMMA}{\(\Gamma\)\xspace}
-\newcommand{\DDELTA}{\(\Delta\)\xspace}
-\newcommand{\SIGMA}{\(\Sigma\)\xspace}
-\newcommand{\THETA}{\(\Theta\)\xspace}
-\newcommand{\LAMBDA}{\(\Lambda\)\xspace}
-\newcommand{\LAMBDAlm}{\(\Lambda_{\mathsf{LM}}\)\xspace}
-\newcommand{\Lambdalm}{\Lambda_{\mathsf{LM}}}
-
-% Modalidades e símbolos matemáticos
-
-\newcommand{\meio}{\frac{1}{2}}
-
-\newcommand{\VVDASH}{\(\Vdash\)\xspace}
-\newcommand{\VDDASH}{\(\vDash\)\xspace}
-\newcommand{\VDASH}{\(\vdash\)\xspace}
-
-\newcommand{\ODOT}{\(\odot\)\xspace}
-\newcommand{\OPLUS}{\(\oplus\)\xspace}
-\newcommand{\OTIMES}{\(\otimes\)\xspace}
-\newcommand{\OMINUS}{\(\ominus\)\xspace}
-
-\newcommand{\tofrom}{\leftrightarrow}
-\newcommand{\conmat}{\vDash_{\pazocal{M}_{\lfium{}}}}
-\newcommand{\conval}{\vDash_{\lfium{}}}
-\newcommand{\conhil}{\vdash_{\lfium{}}}
-
-\newcommand{\eqdef}{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny\sffamily def}}}{=}}}
-
-% Fontes
-\newcommand{\Mathcal}[1]{\(\mathcal{#1}\)\xspace}
-\newcommand{\Mathcali}[2]{\(\mathcal{#1}_{#2}\)\xspace}
-\newcommand{\MathcalI}[2]{\(\mathcal{#1}^{#2}\)\xspace}
-\newcommand{\Mathcalii}[3]{\(\mathcal{#1}{#2}_{#3}\)\xspace}
-
-\newcommand{\Mathfrak}[1]{\(\mathfrak{#1}\)\xspace}
-\newcommand{\Mathfraki}[2]{\(\mathfrak{#1}_{#2}\)\xspace}
-\newcommand{\MathfrakI}[2]{\(\mathfrak{#1}^{#2}\)\xspace}
-
-\newcommand{\Mathbb}[1]{\(\mathbb{#1}\)\xspace}
-\newcommand{\Mathbbi}[2]{\(\mathbb{#1}_{#2}\)\xspace}
-\newcommand{\MathbbI}[2]{\(\mathbb{#1}{#2}\)\xspace}
-
-% Comentários
-\newcommand{\cortar}[1]{\textcolor{red}{\sout{#1}}}
-\newcommand{\ignore}[1]{\textcolor{blue}{\textbf{IGNOREM:} #1}}
-\newcommand{\helena}[1]{\textcolor{magenta}{\textbf{HELENA:} #1}}
-\newcommand{\migs}[1]{\textcolor{violet}{\textbf{MIGS:} #1}}
-\newcommand{\migscortar}[2]{\textcolor{violet}{\textbf{MIGS:} \sout{#1}{#2}}}
-\newcommand{\kaqui}[1]{\textcolor{teal}{\textbf{KAQUI:} #1}}
-
-% Outros
-\newcommand{\linguagem}[1]{\(\mathsf{LFI1}_{#1}\)\xspace}
-\newcommand{\Linguagem}[1]{\mathsf{LFI1}_{#1}\xspace}
-\newcommand{\funcao}[1]{\operatorname{#1}\xspace}
-\newcommand{\inlinecoq}[1]{\lstinline[columns=fixed,language=coq]{#1}}
-
-\newcommand{\Odot}  {\mathbin{\odot}}
-\newcommand{\Oplus} {\mathbin{\oplus}}
-\newcommand{\Otimes}{\mathbin{\otimes}}
-
-% Abreviações
-\newcommand{\lfium}{\textbf{LFI1}}
-\newcommand{\lfi}{\textbf{LFI}}
-\newcommand{\lfis}{\textbf{LFI}s}
-\newcommand{\Ltac}{\Mathcal{L}\unskip~tac}
-\newcommand{\CalcLambda}{Cálculo-\(\lambda\)\xspace}
-\newcommand{\CalcsLambda}{Cálculos-\(\lambda\)\xspace}
-\newcommand{\SisT}{\(\textbf{KT} \Odot \textbf{K4}\)\xspace}
-
-\newcommand{\CLST}{Cálculo-\(\lambda\) Simplesmente Tipado\xspace}
-\newcommand{\TTML}{Teoria de Tipos de Martin-Löf\xspace}
-\newcommand{\CCH}{Correspondência de Curry-Howard\xspace}
-
-\newcommand{\PIMODELOS}{\PI-Modelos\xspace}
-\newcommand{\PIMODELO} {\PI-Modelo\xspace}
-\newcommand{\PImodelos}{\PI-modelos\xspace}
-\newcommand{\PImodelo} {\PI-modelo\xspace}
-
-\newcommand{\PIFRAMES}{\PI-Frames\xspace}
-\newcommand{\PIFRAME} {\PI-Frame\xspace}
-\newcommand{\PIframes}{\PI-frames\xspace}
-\newcommand{\PIframe} {\PI-frame\xspace}
-
-\newcommand{\OPIMODELOS}{\OPI-Modelos\xspace}
-\newcommand{\OPIMODELO} {\OPI-Modelo\xspace}
-\newcommand{\OPImodelos}{\OPI-modelos\xspace}
-\newcommand{\OPImodelo} {\OPI-modelo\xspace}
-
-\newcommand{\OPIFRAMES}{\OPI-Frames\xspace}
-\newcommand{\OPIFRAME} {\OPI-Frame\xspace}
-\newcommand{\OPIframes}{\OPI-frames\xspace}
-\newcommand{\OPIframe} {\OPI-frame\xspace}
-
-\newcommand{\Modeloinicial}{\(\mathbfcal{I}\)\xspace}
-\newcommand{\modeloinicial}{\mathbfcal{I}\xspace}
-
-\newcommand{\Mundoinicial}{\textbf{\textit{i}}\xspace}
-\newcommand{\mundoinicial}{\textbf{\textit{i}}\xspace}
-
-\newcommand{\Mundobase}{\textit{w}\textsubscript{\Mathcal{M}}\xspace}
-\newcommand{\mundobase}{w_{\mathcal{M}}\xspace}
-
-\newcommand{\ElementoMaximo}{\MathcalI{S}{+}\xspace}
-\newcommand{\elementomaximo}{\mathcal{S}^{+}\xspace}
-
-% Referência de Environments
-\newcommand{\SubCaso}[2]{\ref{#1}.\ref{#2}}
 
 % Citações
 % MIGUEL: Esses comandos nunca funcionaram, eu deixei pois um dia pretendia arrumar, nunca arrumei lmao
@@ -241,6 +103,9 @@ como parte dos requisitos para a obtenção do grau de Bacharel em Ciência da C
 \include{Textuais/LFIs}
 \include{Textuais/LFI1}
 
+
+% Exemplo de como usar o ambiente que defini (precisa do lipsum)
+\include{Textuais/Teste}
 
 % -----------------------------------------------------------------
 % ELEMENTOS PÓS-TEXTUAIS
