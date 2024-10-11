@@ -301,14 +301,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \end{teorema}
 
     \begin{proof}[Prova do Teorema~\ref{teo:deducao}] A prova será dividida em duas partes:\\
-        ($\Longleftarrow$) Supondo $\Gamma \conhil \alpha \to \beta$, então existe uma sequência de derivação $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha \to \beta$. A seguinte sequência de derivação completa a prova de $\Gamma, \alpha \conhil \beta$:
-        ($\Longleftarrow$) Supondo $\Gamma \conhil \alpha \to \beta$, então existe uma sequência de derivação $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha \to \beta$. A seguinte sequência de derivação completa a prova de $\Gamma, \alpha \conhil \beta$:
+        ($\Longleftarrow$) Supondo $\Gamma \conhil \alpha \to \beta$, então existe uma sequência de derivação $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha \to \beta$. 
+        
+        A seguinte sequência de derivação completa a prova de $\Gamma, \alpha \conhil \beta$:
         \begin{align*}
-            \text{1}&.~ \; \ldots\\
-            & \vdots \; ~\ddots\\
-            \text{$n$}&.~ \alpha \to \beta\tag{Suposição}\\
-            \text{$n + 1$}&.~ \alpha\tag{Premissa}\\
-            \text{$n + 2$}&.~ \beta\tag{MP $n, n + 1$}
             \text{1}&.~ \; \ldots\\
             & \vdots \; ~\ddots\\
             \text{$n$}&.~ \alpha \to \beta\tag{Suposição}\\
@@ -317,38 +313,58 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \end{align*}
 
         \noindent  ($\Longrightarrow$) Supondo $\Gamma, \alpha \conhil \beta$, então existe uma sequência de derivação $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \beta$ a partir do conjunto de premissas $\Gamma \cup \{\alpha\}$. A prova de $\Gamma \conhil \alpha \to \beta$ é feita pela indução no tamanho $n$ da sequência de derivação:
-        \noindent  ($\Longrightarrow$) Supondo $\Gamma, \alpha \conhil \beta$, então existe uma sequência de derivação $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \beta$ a partir do conjunto de premissas $\Gamma \cup \{\alpha\}$. A prova de $\Gamma \conhil \alpha \to \beta$ é feita pela indução no tamanho $n$ da sequência de derivação:
+        \noindent  ($\Longrightarrow$) Supondo $\Gamma, \alpha \conhil \beta$, então existe uma sequência de derivação $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \beta$ a partir do conjunto de premissas $\Gamma \cup \{\alpha\}$. A prova de $\Gamma \conhil \alpha \to \beta$ é feita pela indução no tamanho $n$ da sequência de derivação:\\
 
-        \noindent\underline{Base} $n = 1$.
+        \noindent \textbf{\textsc{Base}} $n = 1$.
         A sequência contem somente uma fórmula $\phi_{1} = \beta$. Portanto, existem duas possibilidades:
         \begin{enumerate}
             \item $\phi_{1}$ é um axioma.
             \item $\phi_{1} \in \Gamma \cup \{\alpha\}$.
         \end{enumerate}
 
-        \textit{Caso 1.} $\phi_{1}$ seja um axioma, a seguinte dedução mostra $\Gamma \conhil \alpha \to \phi_{1}$:
-        \begin{align*}
-            & \text{1. } \phi_{1} \tag{Axioma}\\
-            & \text{2. } \phi_{1} \to (\alpha \to \phi_{1}) \tag{Ax1}\\
-            & \text{3. } \alpha \to \phi_{1} \tag{MP 1,2}
-        \end{align*}
+        \begin{provaporcasos}
+            \casodeprova Provaremos $\Gamma \conhil \alpha \to \phi_{1}$ caso $\phi_{1}$ seja um axioma. 
+            
+                A seguinte derivação mostra $\Gamma \conhil \alpha \to \phi_{1}$:
+                \begin{align*}
+                    & \text{1. } \phi_{1} \tag{Axioma}\\
+                    & \text{2. } \phi_{1} \to (\alpha \to \phi_{1}) \tag{Ax1}\\
+                    & \text{3. } \alpha \to \phi_{1} \tag{MP 1,2}
+                \end{align*}
+
+                \casodeprova  Provaremos $\Gamma \conhil \alpha \to \phi_{1}$ caso $\phi_{1} \in \Gamma \cup \{\alpha\}$. 
+                
+                Existem dois casos a serem considerados:
+
+                \begin{enumerate}
+                    \item[2.1] $\phi_{1} = \alpha$
+                    \item[2.2] $\phi_{1} \in \Gamma$
+                \end{enumerate}
+
+                \begin{provaporsubcasos}
+                    \subcasodeprova $\phi_{1} = \alpha$. 
+                    
+                        É necessário mostrar $\Gamma \conhil \alpha \to \alpha$, o que foi provado pelo Lema~\ref{lem:id}.
+
+                    \subcasodeprova $\phi_{1} \in \Gamma$.
+                    
+                        Então $\Gamma \conhil \alpha \to \phi_{1}$ é provado pela seguinte sequência de derivações:
+                        \begin{align*}
+                            & \text{1. } \phi_{1} \tag{Premissa}\\
+                            & \text{2. } \phi_{1} \to (\alpha \to \phi_{1}) \tag{Ax1}\\
+                            & \text{3. } \alpha \to \phi_{1} \tag{MP 1, 2}
+                        \end{align*}
+                \end{provaporsubcasos}
+                
+            \end{provaporcasos}
+            
+            Portanto, $\Gamma \conhil \alpha \to \phi_{1}$ segue para o caso da \textbf{\textsc{Base}}.
+
+        \noindent \textbf{\textsc{Passo}} Hipótese de indução (HI): \textit{Para qualquer sequência de derivação $\Gamma, \alpha \conhil \beta$ de tamanho $i$, com $i < n$, tem-se $\Gamma \conhil \alpha \to \beta$}. 
         
-        \textit{Caso 2.} $\phi_{1} \in \Gamma \cup \{\alpha\}$, existem dois casos a serem considerados:
-        \begin{enumerate}
-            \item[2.1] $\phi_{1} = \alpha$
-            \item[2.2] $\phi_{1} \in \Gamma$
-        \end{enumerate}
-
-        \textit{Subcaso 2.1.} $\phi_{1} = \alpha$, é necessário mostrar $\Gamma \conhil \alpha \to \alpha$, o que foi provado pelo Lema~\ref{lem:id}.
-
-        \textit{Subcaso 2.2.} $\phi_{1} \in \Gamma$, então $\Gamma \conhil \alpha \to \phi_{1}$ é provado pela seguinte sequência de derivações:
-        \begin{align*}
-            & \text{1. } \phi_{1} \tag{Premissa}\\
-            & \text{2. } \phi_{1} \to (\alpha \to \phi_{1}) \tag{Ax1}\\
-            & \text{3. } \alpha \to \phi_{1} \tag{MP 1, 2}
-        \end{align*}
-
-        \noindent \underline{Passo} \migs{Não lembro se a Kaqui havia falado, mas colocar a HI separada do Passo de Indução} Hipótese de indução (HI): \textit{Para qualquer sequência de derivação $\Gamma, \alpha \conhil \beta$ de tamanho $i$, com $i < n$, tem-se $\Gamma \conhil \alpha \to \beta$}. É preciso mostrar que $\Gamma \conhil \alpha \to \beta$ segue caso a dedução $\Gamma, \alpha \conhil \beta$ seja de tamanho $n$. Ao analisar a obtenção de $\phi_{n} = \beta$ na sequência de derivação de $\Gamma, \alpha\conhil \phi_{n}$, existem três casos a se considerar:
+        É preciso mostrar que $\Gamma \conhil \alpha \to \beta$ segue caso a dedução $\Gamma, \alpha \conhil \beta$ seja de tamanho $n$. 
+        
+        Ao analisar a obtenção de $\phi_{n} = \beta$ na sequência de derivação de $\Gamma, \alpha\conhil \phi_{n}$, existem três casos a se considerar:
         \begin{enumerate}
             \item $\phi_{n}$ é um axioma.
             \item $\phi_{n} \in \Gamma \cup \{\alpha\}$.
@@ -357,22 +373,31 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         
          Os casos 1 e 2 são análogos aos casos provados na base.
 
-         \textit{Caso 3.} $\phi_{n}$ seja obtido por \textit{modus ponens} em duas fórmulas $\phi_{j}$ e $\phi_{k}$ com $j, k < n$, então $\phi_{k} = \phi_{j} \to \phi_{n}$ (ou $\phi_{j} = \phi_{k} \to \phi_{n}$, a prova para este caso é análoga). Dada a nossa suposição de $\Gamma, \alpha \conhil \phi_{n}$, temos $\Gamma, \alpha \conhil \phi_{j}$ e $\Gamma, \alpha \conhil \phi_{j} \to \phi_{n}$ sequências de dedução anteriores à aplicação da regra do \textit{modus ponens} na linha $n$. Então, pela hipótese de indução, temos $\Gamma \conhil \alpha \to \phi_{j}$ e $\Gamma \conhil \alpha \to (\phi_{j} \to \phi_{n})$. A seguinte sequência de derivação mostra $\Gamma \conhil \alpha \to \phi_{n}$:
-        \begin{align*}
-            \text{1}&.~ \; \ldots\\
-            &\vdots \; ~\ddots\\
-            \text{$j$}&.~ \alpha \to \phi_{j} \tag{HI sobre $\phi_{j}$}\\
-            &\vdots \; ~\ddots\\
-            \text{$j + k$}&.~ \alpha \to (\phi_{j} \to \phi_{n}) \tag{HI sobre $\phi_{k}$}\\
-            \text{$j + k + 1$}&.~ (\alpha \to (\phi_{j} \to \phi_{n})) \to ((\alpha \to \phi_{j}) \to (\alpha \to \phi_{n})) \tag{Ax2}\\
-            \text{$j + k + 2$}&.~ (\alpha \to \phi_{j}) \to (\alpha \to \phi_{n}) \tag{MP $j + k$,$j + k + 1$}\\
-             \text{$j + k + 3$}&.~ \alpha \to \phi_{n} \tag{MP $j$,$j + k + 2$}
-        \end{align*}
+         \noindent \textsc{Caso 3.} $\phi_{n}$ é obtido por \textit{modus ponens} em duas fórmulas $\phi_{j}$ e $\phi_{k}$ com $j, k < n$. 
+         
+         Então, $\phi_{k} = \phi_{j} \to \phi_{n}$ (ou $\phi_{j} = \phi_{k} \to \phi_{n}$, a prova para este caso é análoga). 
+         
+         Dada a nossa suposição de $\Gamma, \alpha \conhil \phi_{n}$, temos $\Gamma, \alpha \conhil \phi_{j}$ e $\Gamma, \alpha \conhil \phi_{j} \to \phi_{n}$ sequências de dedução anteriores à aplicação da regra do \textit{modus ponens} na linha $n$. 
+         
+         Então, pela (HI), temos $\Gamma \conhil \alpha \to \phi_{j}$ e $\Gamma \conhil \alpha \to (\phi_{j} \to \phi_{n})$. 
+         
+         A seguinte sequência de derivação mostra $\Gamma \conhil \alpha \to \phi_{n}$:
+         \begin{align*}
+             \text{1}&.~ \; \ldots\\
+             &\vdots \; ~\ddots\\
+             \text{$j$}&.~ \alpha \to \phi_{j} \tag{HI sobre $\phi_{j}$}\\
+             &\vdots \; ~\ddots\\
+             \text{$j + k$}&.~ \alpha \to (\phi_{j} \to \phi_{n}) \tag{HI sobre $\phi_{k}$}\\
+             \text{$j + k + 1$}&.~ (\alpha \to (\phi_{j} \to \phi_{n})) \to ((\alpha \to \phi_{j}) \to (\alpha \to \phi_{n})) \tag{Ax2}\\
+             \text{$j + k + 2$}&.~ (\alpha \to \phi_{j}) \to (\alpha \to \phi_{n}) \tag{MP $j + k$,$j + k + 1$}\\
+              \text{$j + k + 3$}&.~ \alpha \to \phi_{n} \tag{MP $j$,$j + k + 2$}
+         \end{align*}
     \end{proof}
 
     \begin{teorema}[Correção]
         \label{teo:correcao}
-        A lógica \lfium{} é correta em relação a sua semântica de valorações, ou seja, para todo conjunto de fórmulas $\Gamma \cup \{\alpha\} \subseteq \pazocal{L}_{\Sigma}$:\\
+        A lógica \lfium{} é correta em relação a sua semântica de valorações, ou seja, para todo conjunto de fórmulas $\Gamma \cup \{\alpha\} \subseteq \pazocal{L}_{\Sigma}$:
+
         \centering
         $\Gamma \conhil \alpha \Longrightarrow \Gamma \conval \alpha$.
     \end{teorema}
