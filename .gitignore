@@ -70,3 +70,4 @@ CoqMakefile.conf
 .vscode
 .latexmkrc
 *.pdf
+Main.pdf
