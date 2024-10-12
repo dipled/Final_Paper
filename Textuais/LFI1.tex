@@ -217,7 +217,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         
         
 
-    \migs{Aqui acho interessante você explicar que essa é uma semântica não determinística e explicar pq você está incluindo ela, assim como eventualmente provar que ela é intertraduzível para a semântica de matrizes (isso deve ter no livro eu creio, se não fazemos juntos essa prova)}
+        Uma semântica de valorações definida sobre uma função $v : \pazocal{L} \to A$ é chamada de \textit{bivaloração} quando $A = \{1, 0\}$.~\citeshort{DaCosta1977-NEWASA-3} apresentam uma bivaloração para a lógica paraconsistente $\text{\textbf{C}}_{1}$. Nesta semântica, a negação $\neg$ tem um comportamento não-determinístico. A semântica de valorações para a \lfium{} definida a seguir evidencia o comportamento determinístico dos conectivos $\neg$ e $\circ$:
 
         \begin{definicao} [Semântica de valorações para \textbf{$\text{LFI1}$}]
             \label{def:valoracoes}
@@ -239,29 +239,26 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \end{definicao}
         \helena{Explicar nome zoado das cláusulas}
 
-        Note que, por conta de $(VNeg)$ e $(VCon)$, o valor $v(\triangle \alpha)$ {-} para $\triangle \in \{\neg, \circ\}$ {-} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, não é possível determinar o valor \migs{de} $v(\neg \alpha)$, este podendo ser tanto $0$ como $1$ (mas não ambos).
+        Note que, por conta de $(VNeg)$ e $(VCon)$, o valor $v(\triangle \alpha)$ {-} para $\triangle \in \{\neg, \circ\}$ {-} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, pode-se ter $v(\neg \alpha)$ tanto $0$ como $1$ (mas não ambos).
         
         \begin{lema}[Equivalência entre a semântica de Matrizes e a semântica de valorações]
             \label{lem:matval}
-            Seja $v$ uma valoração em $V^{\lfium{}}$, então existe
+            Seja $v$ uma valoração em $V^{\lfium{}}$, então existe\helena{completar prova}
         \end{lema}
                 
 \section{Metateoremas}
     \label{sec:metateoremas}
-    \helena{Explicação breve dos metateoremas o que sao pra que serve etc aff q preguica mas tem q ter algo bem bonitinho -.-'}
-    Antes de desenvolver as provas destes metateoremas, convém apresentar algumas definições pertinentes e provar lemas que facilitarão o desenvolvimento das provas mais extensas. Para isso, é necessário ter ciência da definição de Lógicas Tarskianas, apresentadas na Definição~\ref{def:tarski}.
+    No desenvolvimento da lógica, um metateorema é uma prova sobre propriedades de teoremas de um sistema formal~\cite{Barile_2024}. Uma propriedade provada através de um metateorema é chamada de \textit{metapropriedade}. Num sistema lógico munido com uma relação de consequência sintática $\vdash$ e uma relação de consequência semântica $\vDash$ a metapropriedade da correção, que afirma que tudo que é derivável em $\vdash$ é válido em $\vDash$, é uma característica fundamental para que o sistema seja útil em alguma medida. Outra propriedade interessante é a completude, que afirma que tudo que é válido em $\vDash$ pode ser provado em $\vdash$. Antes de desenvolver as provas destes metateoremas, convém apresentar algumas definições pertinentes e provar lemas que facilitarão o desenvolvimento das provas mais extensas.
 
     \begin{definicao}[Teoria não-trivial maximal]
         \label{def:nao-trivial_maximal}
-        Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\mathcal{L}$ e sejam $\Gamma, \{\phi\}$ teorias de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. A teoria $\Gamma$ é dita não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
+        Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\pazocal{L}$ e sejam $\Gamma, \{\phi\}$ teorias de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. A teoria $\Gamma$ é dita não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
     \end{definicao}
-
-    \helena{Botar exemplo de teoria não-trivial maximal?} \migs{Não acho que seja necessário, mas se você tiver um pronto acho que não vai fazer mal colocar.}
 
     \begin{definicao}[Teoria fechada]
         \label{def:fechada}
 
-        Seja $\mathcal{L}$ uma lógica tarskiana. Uma teoria $\Gamma$ é dita fechada em $\mathcal{L}$ se, para toda formula $\phi$, for o caso que $\Gamma \Vdash_{\mathcal{L}} \phi$ sse $\phi \in \Gamma$.\qed{}
+        Seja $\mathcal{L}$ uma lógica tarskiana. Uma teoria $\Gamma$ é dita fechada em $\mathcal{L}$ se, para toda fórmula $\phi$, tem-se $\Gamma \Vdash_{\mathcal{L}} \phi$ sse $\phi \in \Gamma$.\qed{}
     \end{definicao}
 
     \begin{lema}
@@ -273,7 +270,8 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         Seja $\Gamma$ uma teoria não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Se $\psi \in \Gamma$, então $\Gamma \Vdash_{\mathcal{L}} \psi$, já que $\mathcal{L}$ é tarskiana. Se $\Gamma \Vdash_{\mathcal{L}} \psi$, então supondo que $\psi \notin \Gamma$, temos que $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$, pela Definição~\ref{def:nao-trivial_maximal}. Como $\mathcal{L}$ é tarskiana, segue que $\Gamma \Vdash_{\mathcal{L}} \phi$, o que contradiz o fato de $\Gamma$ ser não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Portanto, $\psi \in \Gamma$ e então $\Gamma$ é fechada em $\mathcal{L}$.
     \end{proof}
 
-    
+
+    O lema a seguir será utilizado na prova do metateorema da dedução (Teorema~\ref{teo:deducao}):
     \begin{lema}
         \label{lem:id}
         A derivação $\Gamma \conhil \alpha \to \alpha$ é válida para todo $\Gamma \cup \{\alpha\} \subseteq \pazocal{L}_{\Sigma}$.
@@ -297,7 +295,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \pazocal{L}_{\Sigma}$:
 
         \centering
-        $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.
+        {\normalfont $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.}
     \end{teorema}
 
     \begin{proof}[Prova do Teorema~\ref{teo:deducao}] A prova será dividida em duas partes:\\
@@ -360,8 +358,8 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             
             Portanto, $\Gamma \conhil \alpha \to \phi_{1}$ segue para o caso da \textbf{\textsc{Base}}.
 
-        \noindent \textbf{\textsc{Passo}} Hipótese de indução (HI): \textit{Para qualquer sequência de derivação $\Gamma, \alpha \conhil \beta$ de tamanho $i$, com $i < n$, tem-se $\Gamma \conhil \alpha \to \beta$}. 
-        
+        \noindent \textbf{\textsc{Passo}} Hipótese de indução (HI): Para qualquer sequência de derivação $\Gamma, \alpha \conhil \beta$ de tamanho $i$, com $i < n$, tem-se $\Gamma \conhil \alpha \to \beta$. 
+    
         É preciso mostrar que $\Gamma \conhil \alpha \to \beta$ segue caso a dedução $\Gamma, \alpha \conhil \beta$ seja de tamanho $n$. 
         
         Ao analisar a obtenção de $\phi_{n} = \beta$ na sequência de derivação de $\Gamma, \alpha\conhil \phi_{n}$, existem três casos a se considerar:
@@ -394,12 +392,14 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
          \end{align*}
     \end{proof}
 
+    A ideia da prova da correção para a \lfium{} é, como de costume, provar que todo axioma do cálculo de Hilbert $\conhil$ é válido na semântica de valorações $\conval$ e mostrar que a regra de inferência \textit{modus ponens} preserva sua validade.
+
     \begin{teorema}[Correção]
         \label{teo:correcao}
-        A lógica \lfium{} é correta em relação a sua semântica de valorações, ou seja, para todo conjunto de fórmulas $\Gamma \cup \{\alpha\} \subseteq \pazocal{L}_{\Sigma}$:
+        A lógica {\normalfont \lfium{}} é correta em relação a sua semântica de valorações, ou seja, para todo conjunto de fórmulas $\Gamma \cup \{\alpha\} \subseteq \pazocal{L}_{\Sigma}$:
 
         \centering
-        $\Gamma \conhil \alpha \Longrightarrow \Gamma \conval \alpha$.
+        {\normalfont $\Gamma \conhil \alpha \Longrightarrow \Gamma \conval \alpha$.}
     \end{teorema}
 
     \begin{proof}[Prova do Teorema~\ref{teo:correcao}]
@@ -418,7 +418,6 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \newcommand{\subcaso}{\refstepcounter{subcasosUm}\item[Subcaso 1.\thesubcasosUm{}.]}
         % \end{gambiarra}
         
-        \migs{Mudar isso aqui para usar o ambiente geral que eu defini}
 
         \begin{provaporcasos}
             
@@ -587,7 +586,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         \end{provaporcasos}
 
-         \noindent \textbf{\textsc{Passo}} \textit{Hipótese de indução (HI): Para qualquer sequência da derivação de $\Gamma \conhil \alpha$ de tamanho $k < n$, tem-se $\Gamma \conval \alpha$}. 
+         \noindent \textbf{\textsc{Passo}} Hipótese de indução (HI): Para qualquer sequência da derivação de $\Gamma \conhil \alpha$ de tamanho $k < n$, tem-se $\Gamma \conval \alpha$. 
          
          Portanto, é preciso mostrar que $\Gamma \conval \alpha$ segue caso a sequência de derivação de $\Gamma \conhil \alpha$ tenha tamanho $n$. Ao analisar a obtenção de $\phi_{n} = \alpha$ em $\Gamma \conhil \phi_{n}$, existem três casos a se considerar:
          
