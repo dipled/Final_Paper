@@ -1,5 +1,4 @@
-\chapter{A Lógica de Inconsistência Formal LFI1}
-\label{cap:LFI1}
+\chapter{A Lógica de Inconsistência Formal LFI1}\label{cap:LFI1}
 
 Com os avanços da internet no contexto do gerenciamento de bancos de dados, informações passaram a ser coletadas a partir de diferentes fontes que frequentemente se contradizem. Dada a existência das restrições de integridade {--} que impedem contradições {--} a atualização e manutenção de bancos de dados se torna um processo difícil~\cite{carnielli2000formal}. Portanto, uma lógica capaz de lidar com informações inconsistentes sem necessariamente sofrer com a trivialidade é de grande interesse. A lógica de inconsistência formal \lfium{} é capaz de lidar com contradições ao introduzir na sua assinatura o operador $\circ$ para representar a consistência, internalizando este conceito em sua linguagem. Uma informação é dita consistente caso ela e sua negação não sejam simultaneamente verdadeiras, ou seja, dada uma informação $\alpha$, sua consistência $\circ \alpha$ será equivalente a fórmula $\neg (\alpha \land \neg \alpha)$. Com a introdução deste novo operador, é possível lidar com a inconsistência de informações sem que trivialidade ocorra, já que {-} caso uma informação seja conhecidamente \textit{inconsistente}, ou seja, $\neg \circ \alpha$ {-} então ela se trata de uma contradição inofensiva, fruto do excesso de informações numa dada teoria. Com isso, na \lfium{}, o conjunto $\bigcirc(p)$ de fórmulas dependentes somente na variável $p$ (descrito na Definição~\ref{def:lfi}) assume forma $\{\circ p\}$.
 
@@ -7,13 +6,11 @@ No trabalho de~\citeshort{carnielli2000formal} a lógica \textbf{LFI1*} é defin
 
 Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é apresentada a linguagem da lógica proposicional \lfium{} bem como definições necessárias para desenvolver as provas de metateoremas. A Seção~\ref{sec:axiomatizacao} contém uma breve explicação sobre sistemas de prova sintáticos e uma Axiomatização de Hilbert para a \lfium{} é definida. Na Seção~\ref{sec:semantica} a semântica da \lfium{} é definida a partir de matrizes lógicas e de uma semântica de valorações não determinística, assim como é provada a equivalência entre essas duas semânticas.
 
-\section{Linguagem}
-\label{sec:linguagem}
+\section{Linguagem}\label{sec:linguagem}
     A lógica proposicional \lfium{} aqui apresentada é definida com base em~\citeshort{Carnielli_Coniglio_2016} sobre a linguagem $\pazocal{L}_{\Sigma}$, que por sua vez é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \mathbb{N}\}$ e uma assinatura proposicional $\Sigma = \{\land^{2}, \lor^{2}, \to^{2}, \neg^{1}, \circ^{1}\}$. Como de costume, o conectivo $\land^{2}$ representa uma conjunção, $\lor^{2}$ representa uma disjunção, $\to^{2}$ representa uma implicação, $\neg^{1}$ representa uma negação e $\circ^{1}$ é o conectivo de consistência, definido de forma primitiva. No restante do texto a aridade destes conectivos será omitida. A linguagem $\pazocal{L}_{\Sigma}$ da \lfium{} é definida da seguinte forma:
 
     \begin{definicao}[Linguagem da \lfium{}]
-        A linguagem $\pazocal{L}_{\Sigma}$ da \lfium{} é definida indutivamente como o menor conjunto a que respeita as seguintes regras:
-        \label{def:ling}
+        A linguagem $\pazocal{L}_{\Sigma}$ da \lfium{} é definida indutivamente como o menor conjunto a que respeita as seguintes regras:\label{def:ling}
         \begin{align*}
             & \text{1.~}\pazocal{P} \subseteq \pazocal{L}_{\Sigma}                                                                                                                        \\
             & \text{2.~Se } \phi \in \pazocal{L}_{\Sigma}, \text{então } \triangle  \phi \in \pazocal{L}_{\Sigma}, \text{com } \triangle \in \{\neg, \circ\}                            \\
@@ -39,8 +36,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     Na Definição~\ref{def:complex} a função $C$ da complexidade de uma fórmula na lógica proposicional clássica foi recursivamente definida. É possível estender esta definição para identificar a complexidade de uma fórmula na \lfium{} adicionando-se uma condição para o operador $\circ$:
 
     \begin{definicao}[Complexidade de uma fórmula na \lfium{}]
-        Dada uma fórmula $\phi \in \pazocal{L}_{\Sigma}$, a complexidade $C(\phi)$ é definida adicionando-se a seguinte condição à Definição~\ref{def:complex}:
-        \label{def:complex_lfi1}
+        Dada uma fórmula $\phi \in \pazocal{L}_{\Sigma}$, a complexidade $C(\phi)$ é definida adicionando-se a seguinte condição à Definição~\ref{def:complex}:\label{def:complex_lfi1}
         \begin{align*}
             & \text{Se } \phi = \circ \psi \text{, então } C(\phi) = C(\psi) + 2.\tag*\qed{}
         \end{align*}
@@ -49,8 +45,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
     Note que a complexidade de uma fórmula do tipo $\circ \alpha$ é estritamente maior que a complexidade de $\alpha$ e $\neg \alpha$. Isto se dá pois, como evidenciado pela semântica de valorações na Definição~\ref{def:valoracoes}, exite uma dependência de $\circ \alpha$ em $\{\alpha, \neg \alpha\}$, como apresentada por~\citeshort{Carnielli_Coniglio_2016}.
 
-\section{Axiomatização}
-\label{sec:axiomatizacao}
+\section{Axiomatização}\label{sec:axiomatizacao}
 
     A teoria das provas é uma das abordagens para o estudo das relações de consequência, onde a validade de uma inferência é atestada caso haja uma \textit{prova} das conclusões a partir das premissas. Uma \textit{prova} consiste em uma sequência de passos bem definidos aplicados sobre conjuntos (ocasionalmente unitários) de proposições, com base nos princípios de um determinado sistema de provas. A teoria das provas é sintática\footnote{Vale notar que a separação \textit{prova {--} sintaxe {--} semântica {--} modelo} não é tão bem definida, algo que é explorado em~\citeshort{Prawitz2005-PRALCA-2}.} por natureza, ou seja, numa inferência do tipo $A \vdash B$, é relevante apenas a estrutura das fórmulas presentes em \textit{A} e \textit{B}, não sua interpretação ou valor-verdade. Essa estrutura é manipulada a fim de obter-se uma sequência de passos que {--} além de atestar sua validade {--} serve como argumento para tal~\cite{sep-logical-consequence}. Desta forma, pode-se definir um sistema de provas sintático para servir como relação de consequência para uma determinada lógica. 
 
@@ -61,8 +56,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     O cálculo de Hilbert definido a seguir foi apresentado por~\citeshort{Carnielli_Coniglio_2016} como alternativa ao que havia sido definido em trabalhos anteriores~\cite{carnielli2000formal,carnielli2007}. Segundo os autores, esta definição evidencia algumas propriedades interessantes da negação $\neg$ como as leis de De Morgan.
 
 
-    \begin{definicao}[\lfium{}]
-        \label{def:lfi1}
+    \begin{definicao}[\lfium{}]\label{def:lfi1}
         A relação de consequência sintática $\conhil{}$ para a lógica \lfium{} é definida sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte cálculo de Hilbert:\helena{explicar os nomes estranhos dos axiomas}
 
         \noindent\textbf{Axiomas}:
@@ -111,15 +105,13 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \end{align*}
     \end{definicao}
 
-\section{Semântica}
-\label{sec:semantica}
+\section{Semântica}\label{sec:semantica}
     De forma geral, a semântica é o estudo de como um sistema de símbolos (uma linguagem) internaliza informações, ou seja, é o estudo de como interpretar os símbolos de uma linguagem~\cite{brown2005encyclopedia}. Num sistema lógico, \textit{matrizes lógicas} são comumente usadas para estabelecer o comportamento esperado dos conectivos lógicos de sua assinatura. Outra forma de compreender a semântica de um sistema lógico é definir uma função conhecida como \textit{valoração}, que define uma \textit{semântica de valorações}. Nesta seção, a semântica da \lfium{} será definida de dois jeitos distintos: a partir de uma \textit{matriz lógica} e a partir de uma \textit{valoração}. Ambas serão provadas equivalentes, a fim de facilitar a prova de metateoremas na Seção~\ref{sec:metateoremas}. As definições e notações para os conceitos de \textit{álgebra} definidos aqui baseiam-se nos trabalhos de~\citeshort{Carnielli_Coniglio_2016} e de~\citeshort{Sikorski1966-SIKAOF}.
     \subsection{Matriz Lógica e Valoração}
         Uma das formas de definir a semântica de uma lógica proposicional é definir uma \textit{matriz lógica} (também chamada de tabela-verdade) para os conectivos de sua assinatura proposicional. Para isso, é necessário definir o conceito de \textit{álgebra} para assinaturas proposicionais:
         \helena{Sera q eu defino essas coisas em outra seção?} \migs{Não acho que seja necessário abrir outra seção apenas para duas ou três de definições.}
 
-        \begin{definicao}[Álgebra para assinaturas proposicionais]
-        \label{def:algebra}
+        \begin{definicao}[Álgebra para assinaturas proposicionais]\label{def:algebra}
             Uma álgebra para uma assinatura proposicional $\Theta$ é uma dupla $\pazocal{A} = \langle A, O \rangle$, onde $A$ é um conjunto não vazio (chamado de \textit{domínio} da álgebra) e $O$ é uma função de interpretação que associa cada conectivo n-ário $c \in \Theta$ à uma operação $c^{\pazocal{A}}\!\! : \; A^{n} \to A$ em A.\qed{}
         \end{definicao}
 
@@ -151,9 +143,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \begin{minipage}{0.3\textwidth}
                 % Implication (→)
                 \[
-                    \begin{array}{c|ccc}
+                    \begin{array}{c|ccc}%chktex 44 
                         \to & 1 & \frac{1}{2} & 0 \\
-                        \hline
+                        \hline%chktex 44 
                         1           & 1 & \frac{1}{2} & 0 \\
                         \frac{1}{2} & 1 & \frac{1}{2} & 0 \\
                         0           & 1 & 1           & 1 \\
@@ -163,9 +155,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \begin{minipage}{0.3\textwidth}
                 % Conjunction (∧)
                 \[
-                    \begin{array}{c|ccc}
+                    \begin{array}{c|ccc}%chktex 44 
                         \land       & 1           & \frac{1}{2} & 0 \\
-                        \hline
+                        \hline%chktex 44 
                         1           & 1           & \frac{1}{2} & 0 \\
                         \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & 0 \\
                         0           & 0           & 0           & 0 \\
@@ -175,9 +167,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \begin{minipage}{0.3\textwidth}
                 % Disjunction (∨)
                 \[
-                    \begin{array}{c|ccc}
+                    \begin{array}{c|ccc}%chktex 44 
                         \lor        & 1 & \frac{1}{2} & 0           \\
-                        \hline
+                        \hline%chktex 44 
                         1           & 1 & 1           & 1           \\
                         \frac{1}{2} & 1 & \frac{1}{2} & \frac{1}{2} \\
                         0           & 1 & \frac{1}{2} & 0           \\
@@ -190,9 +182,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \begin{minipage}{0.5\textwidth}
                 % Negation (¬)
                 \[
-                    \begin{array}{c|c}
+                    \begin{array}{c|c}%chktex 44 
                                     & \neg        \\
-                        \hline
+                        \hline%chktex 44 
                         1           & 0           \\
                         \frac{1}{2} & \frac{1}{2} \\
                         0           & 1           \\
@@ -201,9 +193,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \end{minipage}
             \begin{minipage}{0.3\textwidth}
                 \[
-                    \begin{array}{c|c}
+                    \begin{array}{c|c}%chktex 44 
                                     & \circ   \\
-                        \hline
+                        \hline%chktex 44 
                         1           & 1         \\
                         \frac{1}{2} & 0         \\
                         0           & 1         \\
@@ -219,8 +211,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         Uma semântica de valorações definida sobre uma função $v : \pazocal{L} \to A$ é chamada de \textit{bivaloração} quando $A = \{1, 0\}$.~\citeshort{DaCosta1977-NEWASA-3} apresentam uma bivaloração para a lógica paraconsistente $\text{\textbf{C}}_{1}$. Nesta semântica, a negação $\neg$ tem um comportamento não-determinístico. A semântica de valorações para a \lfium{} definida a seguir evidencia o comportamento determinístico dos conectivos $\neg$ e $\circ$:
 
-        \begin{definicao} [Semântica de valorações para \textbf{$\text{LFI1}$}]
-            \label{def:valoracoes}
+        \begin{definicao} [Semântica de valorações para \textbf{$\text{LFI1}$}]\label{def:valoracoes}
             A função $v : \pazocal{L}_{\Sigma} \to \{1, 0\}$ é uma valoração para a lógica \lfium{} caso ela satisfaça as seguintes cláusulas:
             \begin{align*}
                 & v(\alpha \land \beta) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\beta) = 1\tag{\textbf{$vAnd$}}\\
@@ -241,39 +232,33 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         Note que, por conta de $(VNeg)$ e $(VCon)$, o valor $v(\triangle \alpha)$ {-} para $\triangle \in \{\neg, \circ\}$ {-} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, pode-se ter $v(\neg \alpha)$ tanto $0$ como $1$ (mas não ambos).
         
-        \begin{lema}[Equivalência entre a semântica de Matrizes e a semântica de valorações]
-            \label{lem:matval}
+        \begin{lema}[Equivalência entre a semântica de Matrizes e a semântica de valorações]\label{lem:matval}
             Seja $v$ uma valoração em $V^{\lfium{}}$, então existe\helena{completar prova}
         \end{lema}
                 
-\section{Metateoremas}
-    \label{sec:metateoremas}
+\section{Metateoremas}\label{sec:metateoremas}
     A metalógica é uma parte da metamatemática que se restringe ao estudo de sistemas lógicos através de métodos matemáticos, desenvolvendo metateoremas~\cite{Jacquette2002-JACACT-7}. Um metateorema é uma prova sobre propriedades de um sistema formal, sobretudo sobre suas relações de consequência, utilizando uma metalinguagem~\cite{Tarski1956-TARLSM,Barile_2024}. Uma propriedade provada através de um metateorema é chamada de \textit{metapropriedade}. Num sistema lógico munido com uma relação de consequência sintática $\vdash$ e uma relação de consequência semântica $\vDash$ a metapropriedade da correção, que afirma que tudo que é derivável em $\vdash$ é válido em $\vDash$, é uma característica fundamental para que o sistema seja útil em alguma medida. Outra propriedade interessante é a completude, que afirma que tudo que é válido em $\vDash$ pode ser provado em $\vdash$. Antes de desenvolver as provas destes metateoremas, convém apresentar algumas definições pertinentes e provar lemas que facilitarão o desenvolvimento das provas mais extensas.
 
-    \begin{definicao}[Teoria não-trivial maximal]
-        \label{def:nao-trivial_maximal}
-        Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\pazocal{L}$ e sejam $\Gamma, \{\phi\}$ teorias de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. A teoria $\Gamma$ é dita não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
+    \begin{definicao}[Conjunto de fórmulas não-trivial maximal]\label{def:nao-trivial_maximal}
+        Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\pazocal{L}$ e sejam $\Gamma, \{\phi\}$ conjuntos de fórmulas de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. O conjunto $\Gamma$ é dito não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
     \end{definicao}
 
-    \begin{definicao}[Teoria fechada]
-        \label{def:fechada}
+    \begin{definicao}[Teoria fechada]\label{def:fechada}
 
-        Seja $\mathcal{L}$ uma lógica tarskiana. Uma teoria $\Gamma$ é dita fechada em $\mathcal{L}$ se, para toda fórmula $\phi$, tem-se $\Gamma \Vdash_{\mathcal{L}} \phi$ sse $\phi \in \Gamma$.\qed{}
+        Seja $\mathcal{L}$ uma lógica tarskiana. Um conjunto de fórmulas $\Gamma$ é dito fechado em $\mathcal{L}$ (ou dito uma \textit{teoria fechada} em $\mathcal{L}$) se, para toda fórmula $\phi$, tem-se $\Gamma \Vdash_{\mathcal{L}} \phi$ sse $\phi \in \Gamma$.\qed{}
     \end{definicao}
 
-    \begin{lema}
-        \label{lem:nao_trivial_maximal_fechada}
-        Toda teoria não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ é fechada em $\mathcal{L}$.
+    \begin{lema}\label{lem:nao_trivial_maximal_fechado}
+        Todo conjunto de fórmulas não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ é fechado em $\mathcal{L}$.
     \end{lema}
 
-    \begin{proof}[Prova do Lema~\ref{lem:nao_trivial_maximal_fechada}]
-        Seja $\Gamma$ uma teoria não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Se $\psi \in \Gamma$, então $\Gamma \Vdash_{\mathcal{L}} \psi$, já que $\mathcal{L}$ é tarskiana. Se $\Gamma \Vdash_{\mathcal{L}} \psi$, então supondo que $\psi \notin \Gamma$, temos que $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$, pela Definição~\ref{def:nao-trivial_maximal}. Como $\mathcal{L}$ é tarskiana, segue que $\Gamma \Vdash_{\mathcal{L}} \phi$, o que contradiz o fato de $\Gamma$ ser não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Portanto, $\psi \in \Gamma$ e então $\Gamma$ é fechada em $\mathcal{L}$.
+    \begin{proof}[Prova do Lema~\ref{lem:nao_trivial_maximal_fechado}]
+        Seja $\Gamma$ uma conjunto de fórmulas não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Se $\psi \in \Gamma$, então $\Gamma \Vdash_{\mathcal{L}} \psi$, já que $\mathcal{L}$ é tarskiana. Se $\Gamma \Vdash_{\mathcal{L}} \psi$, então supondo que $\psi \notin \Gamma$, temos que $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$, pela Definição~\ref{def:nao-trivial_maximal}. Como $\mathcal{L}$ é tarskiana, segue que $\Gamma \Vdash_{\mathcal{L}} \phi$, o que contradiz o fato de $\Gamma$ ser não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Portanto, $\psi \in \Gamma$ e então $\Gamma$ é fechado em $\mathcal{L}$.
     \end{proof}
 
 
     O lema a seguir será utilizado na prova do metateorema da dedução (Teorema~\ref{teo:deducao}):
-    \begin{lema}
-        \label{lem:id}
+    \begin{lema}\label{lem:id}
         A derivação $\Gamma \conhil \alpha \to \alpha$ é válida para todo $\Gamma \cup \{\alpha\} \subseteq \pazocal{L}_{\Sigma}$.
     \end{lema}
     
@@ -290,12 +275,11 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \end{proof}
     
     
-    \begin{teorema}[Metateorema da dedução para $\conhil$]
-        \label{teo:deducao}
+    \begin{teorema}[Metateorema da dedução para $\conhil$]\label{teo:deducao}
         Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \pazocal{L}_{\Sigma}$:
 
         \centering
-        {\normalfont $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.}
+        {\normalfont{} $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.}
     \end{teorema}
 
     \begin{proof}[Prova do Teorema~\ref{teo:deducao}] A prova será dividida em duas partes:\\
@@ -321,7 +305,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \end{enumerate}
 
         \begin{provaporcasos}
-            \casodeprova Provaremos $\Gamma \conhil \alpha \to \phi_{1}$ caso $\phi_{1}$ seja um axioma. 
+            \casodeprova{} Provaremos $\Gamma \conhil \alpha \to \phi_{1}$ caso $\phi_{1}$ seja um axioma. 
             
                 A seguinte derivação mostra $\Gamma \conhil \alpha \to \phi_{1}$:
                 \begin{align*}
@@ -330,7 +314,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     & \text{3. } \alpha \to \phi_{1} \tag{MP 1,2}
                 \end{align*}
 
-                \casodeprova  Provaremos $\Gamma \conhil \alpha \to \phi_{1}$ caso $\phi_{1} \in \Gamma \cup \{\alpha\}$. 
+                \casodeprova{}  Provaremos $\Gamma \conhil \alpha \to \phi_{1}$ caso $\phi_{1} \in \Gamma \cup \{\alpha\}$. 
                 
                 Existem dois casos a serem considerados:
 
@@ -340,11 +324,11 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 \end{enumerate}
 
                 \begin{provaporsubcasos}
-                    \subcasodeprova $\phi_{1} = \alpha$. 
+                    \subcasodeprova{} $\phi_{1} = \alpha$. 
                     
                         É necessário mostrar $\Gamma \conhil \alpha \to \alpha$, o que foi provado pelo Lema~\ref{lem:id}.
 
-                    \subcasodeprova $\phi_{1} \in \Gamma$.
+                    \subcasodeprova{} $\phi_{1} \in \Gamma$.
                     
                         Então $\Gamma \conhil \alpha \to \phi_{1}$ é provado pela seguinte sequência de derivações:
                         \begin{align*}
@@ -387,19 +371,18 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
              &\vdots \; ~\ddots\\
              \text{$j + k$}&.~ \alpha \to (\phi_{j} \to \phi_{n}) \tag{HI sobre $\phi_{k}$}\\
              \text{$j + k + 1$}&.~ (\alpha \to (\phi_{j} \to \phi_{n})) \to ((\alpha \to \phi_{j}) \to (\alpha \to \phi_{n})) \tag{Ax2}\\
-             \text{$j + k + 2$}&.~ (\alpha \to \phi_{j}) \to (\alpha \to \phi_{n}) \tag{MP $j + k$,$j + k + 1$}\\
-              \text{$j + k + 3$}&.~ \alpha \to \phi_{n} \tag{MP $j$,$j + k + 2$}
+             \text{$j + k + 2$}&.~ (\alpha \to \phi_{j}) \to (\alpha \to \phi_{n}) \tag{MP $j + k$\text{,}$j + k + 1$}\\
+              \text{$j + k + 3$}&.~ \alpha \to \phi_{n} \tag{MP $j$\text{,}$j + k + 2$}
          \end{align*}
     \end{proof}
 
     A ideia da prova da correção para a \lfium{} é, como de costume, provar que todo axioma do cálculo de Hilbert $\conhil$ é válido na semântica de valorações $\conval$ e mostrar que a regra de inferência \textit{modus ponens} preserva sua validade.
 
-    \begin{teorema}[Correção]
-        \label{teo:correcao}
-        A lógica {\normalfont \lfium{}} é correta em relação a sua semântica de valorações, ou seja, para todo conjunto de fórmulas $\Gamma \cup \{\alpha\} \subseteq \pazocal{L}_{\Sigma}$:
+    \begin{teorema}[Correção]\label{teo:correcao}
+        A lógica {\normalfont\lfium{}} é correta em relação a sua semântica de valorações, ou seja, para todo conjunto de fórmulas $\Gamma \cup \{\alpha\} \subseteq \pazocal{L}_{\Sigma}$:
 
         \centering
-        {\normalfont $\Gamma \conhil \alpha \Longrightarrow \Gamma \conval \alpha$.}
+        {\normalfont{} $\Gamma \conhil \alpha \Longrightarrow \Gamma \conval \alpha$.}
     \end{teorema}
 
     \begin{proof}[Prova do Teorema~\ref{teo:correcao}]
@@ -421,11 +404,11 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         \begin{provaporcasos}
             
-            \casodeprova $\phi_{1}$ seja um axioma, então basta mostrar que para todo $v \in V^{\lfium{}}$, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$, então $v(\phi_{1}) = 1$. Como $\phi_{1}$ é um axioma, basta analisar todos os casos possíveis:
+            \casodeprova{} $\phi_{1}$ seja um axioma, então basta mostrar que para todo $v \in V^{\lfium{}}$, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$, então $v(\phi_{1}) = 1$. Como $\phi_{1}$ é um axioma, basta analisar todos os casos possíveis:
 
             \begin{provaporsubcasos}
                 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \alpha \to (\beta \to \alpha)$.
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \alpha \to (\beta \to \alpha)$.
 
                     Supondo $v(\alpha \to (\beta \to \alpha)) = 0$, temos $v(\alpha) = 1$ e $v(\beta \to \alpha) = 0$ por $(vImp)$. 
                         
@@ -433,7 +416,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto $v(\alpha \to (\beta \to \alpha)) = 1$.
 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma ))$.
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma ))$.
                 
                     Supondo $v((\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma))) = 0$, temos, por ($vImp$), $v(\alpha \to (\beta \to \gamma)) = 1 \text{ e } v((\alpha \to \beta) \to (\alpha \to \gamma)) = 0$.
 
@@ -443,7 +426,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Porém, como $v(\alpha \to \beta) = 1$ e $v(\alpha) = 1$, então $v(\beta) = 1$, o que resulta numa contradição. Logo $v((\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma))) = 1$.
 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \alpha \to (\beta \to (\alpha \land \beta))$. 
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \alpha \to (\beta \to (\alpha \land \beta))$. 
 
                     Supondo $v(\alpha \to (\beta \to (\alpha \land \beta))) = 0$, temos $v(\alpha) = 1$ e $v(\beta \to (\alpha \land \beta)) = 0$, por $(vImp)$, então $v(\beta) = 1$ e $v(\alpha \land \beta) = 0$ novamente por $(vImp)$. 
                     
@@ -451,7 +434,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto $v(\alpha \to (\beta \to (\alpha \land \beta))) = 1$.
 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\alpha \land \beta) \to \alpha$. 
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\alpha \land \beta) \to \alpha$. 
                 
                     Supondo $v((\alpha \land \beta) \to \alpha) = 0$. 
                 
@@ -461,9 +444,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto $v((\alpha \land \beta) \to \alpha) = 1$.
 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\alpha \land \beta) \to \beta$. Como no caso anterior, \textit{mutatis mutandis}.
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\alpha \land \beta) \to \beta$. Como no caso anterior, \textit{mutatis mutandis}.
 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \alpha \to (\alpha \lor \beta)$. 
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \alpha \to (\alpha \lor \beta)$. 
                 
                     Supondo $v(\alpha \to (\alpha \lor \beta)) = 0$, temos $v(\alpha) = 1$ e $v(\alpha \lor \beta) = 0$, por $(vImp)$. 
                     
@@ -471,9 +454,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto $v(\alpha \to (\alpha \lor \beta)) = 1$.
 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \beta \to (\alpha \lor \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \beta \to (\alpha \lor \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\alpha \to \gamma) \to ((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma))$. 
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\alpha \to \gamma) \to ((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma))$. 
                 
                     Supondo $v((\alpha \to \gamma) \to ((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma))) = 0$, temos, por $(vImp)$, $v((\alpha \to \gamma)) = 1$ e $v(((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma))) = 0$. 
                     
@@ -485,7 +468,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto, $v((\alpha \to \gamma) \to ((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma))) = 1$.
 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\alpha \to \beta) \lor \alpha$. 
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\alpha \to \beta) \lor \alpha$. 
                     
                     Supondo $v((\alpha \to \beta) \lor \alpha) = 0$, então, por $(vOr)$, temos $v(\alpha \to \beta) = 0$ e $v(\alpha) = 0$. 
                     
@@ -493,7 +476,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto, $v((\alpha \to \beta) \lor \alpha) = 1$.
 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \alpha \lor \neg \alpha$. 
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \alpha \lor \neg \alpha$. 
                 
                     Supondo $v(\alpha \lor \neg \alpha) = 0$, temos por $(vOr)$, $v(\alpha) = 0$ e $v(\neg \alpha) = 0$. 
                     
@@ -501,7 +484,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto, $v(\alpha \lor \neg \alpha) = 1$.
 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \circ \alpha \to (\alpha \to (\neg \alpha \to \beta))$. 
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \circ \alpha \to (\alpha \to (\neg \alpha \to \beta))$. 
                 
                     Supondo $v(\circ \alpha \to (\alpha \to (\neg \alpha \to \beta))) = 0$, então, por $(vImp)$, $v(\circ \alpha) = 1$ e $v(\alpha \to (\neg \alpha \to \beta)) = 0$. 
                     
@@ -513,7 +496,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto, $v(\circ \alpha \to (\alpha \to (\neg \alpha \to \beta))) = 1$.
 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \neg \neg \alpha \to \alpha$. 
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \neg \neg \alpha \to \alpha$. 
                     
                     Supondo $v(\neg \neg \alpha \to \alpha) = 0$, então, por $(vImp)$, $v(\neg \neg \alpha) = 1$ e $v(\alpha) = 0$. 
                     
@@ -521,7 +504,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto, $v(\neg \neg \alpha \to \alpha) = 1$.
 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \alpha \to \neg \neg \alpha$. 
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \alpha \to \neg \neg \alpha$. 
                 
                     Supondo $v(\alpha \to \neg \neg \alpha) = 0$, então, por $(vImp)$, $v(\alpha) = 1$ e $v(\neg \neg \alpha) = 0$. 
                     
@@ -529,7 +512,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto, $v(\alpha \to \neg \neg \alpha) = 1$.
 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \neg \circ \alpha \to (\alpha \land \neg \alpha)$. 
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \neg \circ \alpha \to (\alpha \land \neg \alpha)$. 
                 
                     Supondo $v(\neg \circ \alpha \to (\alpha \land \neg \alpha)) = 0$, temos, por $(vImp)$, $v(\neg \circ \alpha) = 1$ e $v(\alpha \land \neg \alpha) = 0$. 
                     
@@ -541,7 +524,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto, $v(\neg \circ \alpha \to (\alpha \land \neg \alpha)) = 1$.
 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta)$. 
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta)$. 
                 
                     Supondo $v(\neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta)) = 0$, temos, por $(vImp)$, $v(\neg (\alpha \lor \beta)) = 1$ e $v(\neg \alpha \land \neg \beta) = 0$. 
                     
@@ -552,9 +535,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     Portanto, $v(\neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta)) = 1$.
 
 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\neg \alpha \land \neg \beta) \to \neg (\alpha \lor \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\neg \alpha \land \neg \beta) \to \neg (\alpha \lor \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \neg(\alpha \land \beta) \to (\neg \alpha \lor \neg \beta)$. 
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \neg(\alpha \land \beta) \to (\neg \alpha \lor \neg \beta)$. 
                 
                 Supondo $v(\neg(\alpha \land \beta) \to (\neg \alpha \lor \neg \beta)) = 0$, temos, por $(vImp)$, $v(\neg(\alpha \land \beta)) = 1$ e $v(\neg \alpha \lor \neg \beta) = 0$. 
                 
@@ -566,9 +549,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 
                 Portanto, $v(\neg(\alpha \land \beta) \to (\neg \alpha \lor \neg \beta)) = 1$.
 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\neg \alpha \lor \neg \beta) \to \neg (\alpha \land \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\neg \alpha \lor \neg \beta) \to \neg (\alpha \land \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \neg (\alpha \to \beta) \to(\alpha \land \neg \beta)$. 
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \neg (\alpha \to \beta) \to(\alpha \land \neg \beta)$. 
                 
                 Supondo $v(\neg (\alpha \to \beta) \to (\alpha \land \neg \beta)) = 0$. Por $(vImp)$ temos $v(\neg (\alpha \to \beta)) = 1$ e $v(\alpha \land \neg \beta) = 0$. 
                 
@@ -576,13 +559,13 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 
                 Isto resulta numa contradição, portanto $v(\neg (\alpha \to \beta) \to (\alpha \land \neg \beta)) = 1$.
 
-                \subcasodeprova Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\alpha \land \neg \beta) \to \neg(\alpha \to \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
+                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\alpha \land \neg \beta) \to \neg(\alpha \to \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
                 
             \end{provaporsubcasos}
 
             Com isso, o \textsc{Caso 1} está provado e $\Gamma \conval \phi_{1}$ segue caso $\phi_{1}$ seja um axioma.
 
-            \casodeprova $\phi_{1} \in \Gamma$. Logo, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$, temos $v(\phi_{1}) = 1$. Portanto, $\Gamma \conval \phi_{1}$.
+            \casodeprova{} $\phi_{1} \in \Gamma$. Logo, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$, temos $v(\phi_{1}) = 1$. Portanto, $\Gamma \conval \phi_{1}$.
 
         \end{provaporcasos}
 
