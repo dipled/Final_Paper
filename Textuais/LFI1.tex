@@ -305,7 +305,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \end{enumerate}
 
         \begin{provaporcasos}
-            \casodeprova{} Provaremos $\Gamma \conhil \alpha \to \phi_{1}$ caso $\phi_{1}$ seja um axioma. 
+            \casodeprova{} $\phi_{1}$ é um axioma. 
             
                 A seguinte derivação mostra $\Gamma \conhil \alpha \to \phi_{1}$:
                 \begin{align*}
@@ -314,7 +314,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     & \text{3. } \alpha \to \phi_{1} \tag{MP 1,2}
                 \end{align*}
 
-                \casodeprova{}  Provaremos $\Gamma \conhil \alpha \to \phi_{1}$ caso $\phi_{1} \in \Gamma \cup \{\alpha\}$. 
+                \casodeprova{} $\phi_{1} \in \Gamma \cup \{\alpha\}$. 
                 
                 Existem dois casos a serem considerados:
 
@@ -344,9 +344,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         \noindent \textbf{\textsc{Passo}} Hipótese de indução (HI): Para qualquer sequência de derivação $\Gamma, \alpha \conhil \beta$ de tamanho $i$, com $i < n$, tem-se $\Gamma \conhil \alpha \to \beta$. 
     
-        É preciso mostrar que $\Gamma \conhil \alpha \to \beta$ segue caso a dedução $\Gamma, \alpha \conhil \beta$ seja de tamanho $n$. 
+        É preciso mostrar que $\Gamma, \alpha \conhil \beta$ segue caso a dedução $\Gamma, \alpha \conhil \beta$ seja de tamanho $n$. Então, vamos supor $\Gamma, \alpha \conhil \phi_{n}$ e mostrar $\Gamma \conhil \alpha \to \phi_{n}$.
         
-        Ao analisar a obtenção de $\phi_{n} = \beta$ na sequência de derivação de $\Gamma, \alpha\conhil \phi_{n}$, existem três casos a se considerar:
+        Ao analisar a obtenção de $\phi_{n}$ na sequência de derivação de $\Gamma, \alpha\conhil \phi_{n}$, existem três casos a se considerar:
         \begin{enumerate}
             \item $\phi_{n}$ é um axioma.
             \item $\phi_{n} \in \Gamma \cup \{\alpha\}$.
@@ -374,6 +374,8 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
              \text{$j + k + 2$}&.~ (\alpha \to \phi_{j}) \to (\alpha \to \phi_{n}) \tag{MP $j + k$\text{,}$j + k + 1$}\\
               \text{$j + k + 3$}&.~ \alpha \to \phi_{n} \tag{MP $j$\text{,}$j + k + 2$}
          \end{align*}
+         Portanto, temos $\Gamma \conhil \alpha \to \beta$ e a prova está finalizada.
+         
     \end{proof}
 
     A ideia da prova da correção para a \lfium{} é, como de costume, provar que todo axioma do cálculo de Hilbert $\conhil$ é válido na semântica de valorações $\conval$ e mostrar que a regra de inferência \textit{modus ponens} preserva sua validade.
@@ -404,11 +406,11 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         \begin{provaporcasos}
             
-            \casodeprova{} $\phi_{1}$ seja um axioma, então basta mostrar que para todo $v \in V^{\lfium{}}$, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$, então $v(\phi_{1}) = 1$. Como $\phi_{1}$ é um axioma, basta analisar todos os casos possíveis:
+            \casodeprova{} $\phi_{1}$ é um axioma. Então basta mostrar que para todo $v \in V^{\lfium{}}$, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$, então $v(\phi_{1}) = 1$. Como $\phi_{1}$ é um axioma, basta analisar todos os casos possíveis:
 
             \begin{provaporsubcasos}
                 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \alpha \to (\beta \to \alpha)$.
+                \subcasodeprova{} $\phi_{1} = \alpha \to (\beta \to \alpha)$.
 
                     Supondo $v(\alpha \to (\beta \to \alpha)) = 0$, temos $v(\alpha) = 1$ e $v(\beta \to \alpha) = 0$ por $(vImp)$. 
                         
@@ -416,7 +418,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto $v(\alpha \to (\beta \to \alpha)) = 1$.
 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma ))$.
+                \subcasodeprova{} $\phi_{1} = (\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma ))$.
                 
                     Supondo $v((\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma))) = 0$, temos, por ($vImp$), $v(\alpha \to (\beta \to \gamma)) = 1 \text{ e } v((\alpha \to \beta) \to (\alpha \to \gamma)) = 0$.
 
@@ -426,7 +428,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Porém, como $v(\alpha \to \beta) = 1$ e $v(\alpha) = 1$, então $v(\beta) = 1$, o que resulta numa contradição. Logo $v((\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma))) = 1$.
 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \alpha \to (\beta \to (\alpha \land \beta))$. 
+                \subcasodeprova{} $\phi_{1} = \alpha \to (\beta \to (\alpha \land \beta))$. 
 
                     Supondo $v(\alpha \to (\beta \to (\alpha \land \beta))) = 0$, temos $v(\alpha) = 1$ e $v(\beta \to (\alpha \land \beta)) = 0$, por $(vImp)$, então $v(\beta) = 1$ e $v(\alpha \land \beta) = 0$ novamente por $(vImp)$. 
                     
@@ -434,7 +436,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto $v(\alpha \to (\beta \to (\alpha \land \beta))) = 1$.
 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\alpha \land \beta) \to \alpha$. 
+                \subcasodeprova{} $\phi_{1} = (\alpha \land \beta) \to \alpha$. 
                 
                     Supondo $v((\alpha \land \beta) \to \alpha) = 0$. 
                 
@@ -444,9 +446,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto $v((\alpha \land \beta) \to \alpha) = 1$.
 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\alpha \land \beta) \to \beta$. Como no caso anterior, \textit{mutatis mutandis}.
+                \subcasodeprova{} $\phi_{1} = (\alpha \land \beta) \to \beta$. Como no caso anterior, \textit{mutatis mutandis}.
 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \alpha \to (\alpha \lor \beta)$. 
+                \subcasodeprova{} $\phi_{1} = \alpha \to (\alpha \lor \beta)$. 
                 
                     Supondo $v(\alpha \to (\alpha \lor \beta)) = 0$, temos $v(\alpha) = 1$ e $v(\alpha \lor \beta) = 0$, por $(vImp)$. 
                     
@@ -454,9 +456,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto $v(\alpha \to (\alpha \lor \beta)) = 1$.
 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \beta \to (\alpha \lor \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
+                \subcasodeprova{} $\phi_{1} = \beta \to (\alpha \lor \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\alpha \to \gamma) \to ((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma))$. 
+                \subcasodeprova{} $\phi_{1} = (\alpha \to \gamma) \to ((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma))$. 
                 
                     Supondo $v((\alpha \to \gamma) \to ((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma))) = 0$, temos, por $(vImp)$, $v((\alpha \to \gamma)) = 1$ e $v(((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma))) = 0$. 
                     
@@ -468,7 +470,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto, $v((\alpha \to \gamma) \to ((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma))) = 1$.
 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\alpha \to \beta) \lor \alpha$. 
+                \subcasodeprova{} $\phi_{1} = (\alpha \to \beta) \lor \alpha$. 
                     
                     Supondo $v((\alpha \to \beta) \lor \alpha) = 0$, então, por $(vOr)$, temos $v(\alpha \to \beta) = 0$ e $v(\alpha) = 0$. 
                     
@@ -476,7 +478,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto, $v((\alpha \to \beta) \lor \alpha) = 1$.
 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \alpha \lor \neg \alpha$. 
+                \subcasodeprova{} $\phi_{1} = \alpha \lor \neg \alpha$. 
                 
                     Supondo $v(\alpha \lor \neg \alpha) = 0$, temos por $(vOr)$, $v(\alpha) = 0$ e $v(\neg \alpha) = 0$. 
                     
@@ -484,7 +486,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto, $v(\alpha \lor \neg \alpha) = 1$.
 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \circ \alpha \to (\alpha \to (\neg \alpha \to \beta))$. 
+                \subcasodeprova{} $\phi_{1} = \circ \alpha \to (\alpha \to (\neg \alpha \to \beta))$. 
                 
                     Supondo $v(\circ \alpha \to (\alpha \to (\neg \alpha \to \beta))) = 0$, então, por $(vImp)$, $v(\circ \alpha) = 1$ e $v(\alpha \to (\neg \alpha \to \beta)) = 0$. 
                     
@@ -496,7 +498,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto, $v(\circ \alpha \to (\alpha \to (\neg \alpha \to \beta))) = 1$.
 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \neg \neg \alpha \to \alpha$. 
+                \subcasodeprova{} $\phi_{1} = \neg \neg \alpha \to \alpha$. 
                     
                     Supondo $v(\neg \neg \alpha \to \alpha) = 0$, então, por $(vImp)$, $v(\neg \neg \alpha) = 1$ e $v(\alpha) = 0$. 
                     
@@ -504,7 +506,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto, $v(\neg \neg \alpha \to \alpha) = 1$.
 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \alpha \to \neg \neg \alpha$. 
+                \subcasodeprova{} $\phi_{1} = \alpha \to \neg \neg \alpha$. 
                 
                     Supondo $v(\alpha \to \neg \neg \alpha) = 0$, então, por $(vImp)$, $v(\alpha) = 1$ e $v(\neg \neg \alpha) = 0$. 
                     
@@ -512,7 +514,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto, $v(\alpha \to \neg \neg \alpha) = 1$.
 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \neg \circ \alpha \to (\alpha \land \neg \alpha)$. 
+                \subcasodeprova{} $\phi_{1} = \neg \circ \alpha \to (\alpha \land \neg \alpha)$. 
                 
                     Supondo $v(\neg \circ \alpha \to (\alpha \land \neg \alpha)) = 0$, temos, por $(vImp)$, $v(\neg \circ \alpha) = 1$ e $v(\alpha \land \neg \alpha) = 0$. 
                     
@@ -524,7 +526,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                     Portanto, $v(\neg \circ \alpha \to (\alpha \land \neg \alpha)) = 1$.
 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta)$. 
+                \subcasodeprova{} $\phi_{1} = \neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta)$. 
                 
                     Supondo $v(\neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta)) = 0$, temos, por $(vImp)$, $v(\neg (\alpha \lor \beta)) = 1$ e $v(\neg \alpha \land \neg \beta) = 0$. 
                     
@@ -535,9 +537,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     Portanto, $v(\neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta)) = 1$.
 
 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\neg \alpha \land \neg \beta) \to \neg (\alpha \lor \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
+                \subcasodeprova{} $\phi_{1} = (\neg \alpha \land \neg \beta) \to \neg (\alpha \lor \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \neg(\alpha \land \beta) \to (\neg \alpha \lor \neg \beta)$. 
+                \subcasodeprova{} $\phi_{1} = \neg(\alpha \land \beta) \to (\neg \alpha \lor \neg \beta)$. 
                 
                 Supondo $v(\neg(\alpha \land \beta) \to (\neg \alpha \lor \neg \beta)) = 0$, temos, por $(vImp)$, $v(\neg(\alpha \land \beta)) = 1$ e $v(\neg \alpha \lor \neg \beta) = 0$. 
                 
@@ -549,9 +551,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 
                 Portanto, $v(\neg(\alpha \land \beta) \to (\neg \alpha \lor \neg \beta)) = 1$.
 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\neg \alpha \lor \neg \beta) \to \neg (\alpha \land \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
+                \subcasodeprova{} $\phi_{1} = (\neg \alpha \lor \neg \beta) \to \neg (\alpha \land \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = \neg (\alpha \to \beta) \to(\alpha \land \neg \beta)$. 
+                \subcasodeprova{} $\phi_{1} = \neg (\alpha \to \beta) \to(\alpha \land \neg \beta)$. 
                 
                 Supondo $v(\neg (\alpha \to \beta) \to (\alpha \land \neg \beta)) = 0$. Por $(vImp)$ temos $v(\neg (\alpha \to \beta)) = 1$ e $v(\alpha \land \neg \beta) = 0$. 
                 
@@ -559,7 +561,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 
                 Isto resulta numa contradição, portanto $v(\neg (\alpha \to \beta) \to (\alpha \land \neg \beta)) = 1$.
 
-                \subcasodeprova{} Provaremos $v(\phi_{1}) = 1$ para $\phi_{1} = (\alpha \land \neg \beta) \to \neg(\alpha \to \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
+                \subcasodeprova{} $\phi_{1} = (\alpha \land \neg \beta) \to \neg(\alpha \to \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
                 
             \end{provaporsubcasos}
 
@@ -571,7 +573,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
          \noindent \textbf{\textsc{Passo}} Hipótese de indução (HI): Para qualquer sequência da derivação de $\Gamma \conhil \alpha$ de tamanho $k < n$, tem-se $\Gamma \conval \alpha$. 
          
-         Portanto, é preciso mostrar que $\Gamma \conval \alpha$ segue caso a sequência de derivação de $\Gamma \conhil \alpha$ tenha tamanho $n$. Ao analisar a obtenção de $\phi_{n} = \alpha$ em $\Gamma \conhil \phi_{n}$, existem três casos a se considerar:
+         Portanto, é preciso mostrar que $\Gamma \conval \alpha$ segue caso a sequência de derivação de $\Gamma \conhil \alpha$ tenha tamanho $n$. Então, vamos supor $\Gamma \conhil \phi_{n}$.
+         
+         Ao analisar a obtenção de $\phi_{n}$ em $\Gamma \conhil \phi_{n}$, existem três casos a se considerar:
          
          \begin{enumerate}
             \item $\phi_{n}$ é um axioma.
@@ -589,12 +593,14 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
          
          Pela (HI), temos $\Gamma \conval \phi_{j}$ e $\Gamma \conval \phi_{j} \to \phi_{n}$. 
          
-         Então, se $v(\gamma) = 1$ para todo $v(\gamma) \in \Gamma$, temos $v(\phi_{j}) = 1$ e $v(\phi_{j} \to \phi_{n}) = 1$. 
+         Então, supondo $v(\gamma) = 1$ para todo $v(\gamma) \in \Gamma$, temos $v(\phi_{j}) = 1$ e $v(\phi_{j} \to \phi_{n}) = 1$. 
          
          Por $(vImp)$ temos $v(\phi_{j}) = 0$ ou $v(\phi_{n}) = 1$. 
          
          Isto, unido ao fato de termos $v(\phi_{j}) = 1$, nos permite concluir $v(\phi_{n}) = 1$. 
          
-         Portanto $\Gamma \conval \phi_{n}$ e a prova está finalizada.
+         Portanto $\Gamma \conval \phi_{n}$.
+
+         \noindent Com isso, provamos $\Gamma \conval \alpha$ e a prova está finalizada.
 
     \end{proof}
