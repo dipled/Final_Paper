@@ -47,17 +47,17 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
 \section{Axiomatização}\label{sec:axiomatizacao}
 
-    A teoria das provas é uma das abordagens para o estudo das relações de consequência, onde a validade de uma inferência é atestada caso haja uma \textit{prova} das conclusões a partir das premissas. Uma \textit{prova} consiste em uma sequência de passos bem definidos aplicados sobre conjuntos (ocasionalmente unitários) de proposições, com base nos princípios de um determinado sistema de provas. A teoria das provas é sintática\footnote{Vale notar que a separação \textit{prova {--} sintaxe {--} semântica {--} modelo} não é tão bem definida, algo que é explorado em~\citeshort{Prawitz2005-PRALCA-2}.} por natureza, ou seja, numa inferência do tipo $A \vdash B$, é relevante apenas a estrutura das fórmulas presentes em \textit{A} e \textit{B}, não sua interpretação ou valor-verdade. Essa estrutura é manipulada a fim de obter-se uma sequência de passos que {--} além de atestar sua validade {--} serve como argumento para tal~\cite{sep-logical-consequence}. Desta forma, pode-se definir um sistema de provas sintático para servir como relação de consequência para uma determinada lógica. 
+    A teoria das provas é uma das abordagens para o estudo das relações de consequência, onde a validade de uma inferência é atestada caso haja uma \textit{prova} das conclusões a partir das premissas. Uma prova consiste em uma sequência de passos bem definidos aplicados sobre conjuntos (ocasionalmente unitários) de fórmulas, com base nos princípios de um determinado sistema de provas. A teoria das provas é sintática\footnote{Vale notar que a separação \textit{prova {--} sintaxe {--} semântica {--} modelo} não é tão bem definida, algo que é explorado em~\citeshort{Prawitz2005-PRALCA-2}.} por natureza, ou seja, numa inferência do tipo $A \vdash B$, é relevante apenas a estrutura das fórmulas presentes em \textit{A} e \textit{B}, não sua interpretação ou valor-verdade. Essa estrutura é manipulada a fim de obter-se uma sequência de passos que {--} além de atestar sua validade {--} serve como argumento para tal~\cite{sep-logical-consequence}. Desta forma, pode-se definir um sistema de provas sintático para servir como relação de consequência para uma determinada lógica. 
 
-    No contexto da \lfium{} existem dois sistemas de prova sintáticos estabelecidos até o momento: um cálculo de Hilbert, descrito por~\citeshort{carnielli2000formal,Carnielli_Coniglio_2016} e um sistema de \textit{Tableau}, descrito por~\citeshort{tableaulfi}. No presente trabalho, foi escolhido o cálculo de Hilbert para definir a sintaxe da \lfium{}, dada a maior facilidade para desenvolver metateoremas em relação ao sistema de \textit{Tableau}.
+    No contexto da \lfium{}, existem dois sistemas de prova sintáticos estabelecidos até o momento: um cálculo de Hilbert, descrito por~\citeshort{carnielli2000formal,Carnielli_Coniglio_2016} e um sistema de \textit{Tableau}, descrito por~\citeshort{tableaulfi}. No presente trabalho, foi escolhido o cálculo de Hilbert para definir a sintaxe da \lfium{}, dada a maior facilidade para desenvolver metateoremas em relação ao sistema de \textit{Tableau}.
 
-    O cálculo de Hilbert (também conhecido como sistema de Hilbert ou axiomatização de Hilbert) é um sistema composto por um conjunto de fórmulas, chamadas de \textit{axiomas}, um conjunto de \textit{regras de inferência}. Uma regra de inferência é formada por uma lista de fórmulas chamadas de premissas da regra e uma fórmula chamada de conclusão da regra~\cite{Restall1999-RESAIT-4}. Uma prova (também chamada de derivação) do tipo $\Gamma \vdash \phi$ consiste em uma sequência finita de fórmulas \(\psi_0, \dots, \psi_n\), onde \(\psi_n = \phi\), e cada  $\psi_i\ (0 \leq i \leq n)$ é um axioma, um elemento do conjunto de premissas $\Gamma$ ou o resultado da aplicação de uma regra de inferência em fórmulas anteriores. Usualmente, o cálculo de Hilbert possui apenas uma regra de inferência, esta sendo o \textit{Modus Ponens}. Este também é o caso para o cálculo de Hilbert que será utilizado para a \lfium{}.
+    O cálculo de Hilbert (também conhecido como sistema de Hilbert ou axiomatização de Hilbert) é um sistema composto por um conjunto de fórmulas, chamadas de \textit{axiomas} e um conjunto de \textit{regras de inferência}. Uma regra de inferência é formada por uma lista de fórmulas chamadas de premissas da regra e uma fórmula chamada de conclusão da regra~\cite{Restall1999-RESAIT-4}. Uma prova (também chamada de derivação ou dedução) do tipo $\Gamma \vdash \phi$ consiste em uma sequência finita de fórmulas \(\psi_0, \dots, \psi_n\), onde \(\psi_n = \phi\), e cada  $\psi_i\ (0 \leq i \leq n)$ é um axioma, um elemento do conjunto de premissas $\Gamma$ ou o resultado da aplicação de uma regra de inferência em fórmulas anteriores. Usualmente, o cálculo de Hilbert possui apenas uma regra de inferência, esta sendo o \textit{modus ponens}. Este também é o caso para o cálculo de Hilbert que será utilizado para a \lfium{}.
     
     O cálculo de Hilbert definido a seguir foi apresentado por~\citeshort{Carnielli_Coniglio_2016} como alternativa ao que havia sido definido em trabalhos anteriores~\cite{carnielli2000formal,carnielli2007}. Segundo os autores, esta definição evidencia algumas propriedades interessantes da negação $\neg$ como as leis de De Morgan.
 
 
     \begin{definicao}[\lfium{}]\label{def:lfi1}
-        A relação de consequência sintática $\conhil{}$ para a lógica \lfium{} é definida sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte cálculo de Hilbert:\helena{explicar os nomes estranhos dos axiomas}
+        A relação de consequência sintática $\conhil{}$ para a lógica \lfium{} é definida sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte cálculo de Hilbert:
 
         \noindent\textbf{Axiomas}:
         \begin{align*}
@@ -94,51 +94,78 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \qed{}  
     \end{definicao}
 
+    Os axiomas (\textbf{Ax1}) {--} (\textbf{Ax10}) e a regra de inferência \textbf{MP} (\textit{modus ponens}) são importados da lógica proposicional clássica. O axioma (\textbf{bc1}) é chamado de \textit{princípio da explosão gentil}. Os axiomas (\textbf{neg}$\lor_{1}$) {--} (\textbf{neg}$\to_{2}$) expressam as leis de De Morgan em relação a negação paraconsistente $\neg$.
+
     Com isso, uma derivação em \lfium{} pode ser definida:
     
     \begin{definicao}[Derivação em \lfium{}]
-        Seja $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$ um conjunto de fórmulas, uma derivação $\Gamma \conhil \phi$ de $\phi$ a partir de $\Gamma$ em \lfium{} é uma sequência finita de fórmulas \(\phi_0, \dots, \phi_n\) onde, para cada $1 \leq i \leq n$, alguma das seguintes condições é satisfeita:
+        Seja $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$ um conjunto de fórmulas, uma derivação de $\phi$ a partir de $\Gamma$ em \lfium{}, denotada como $\Gamma \conhil \phi$, é uma sequência finita de fórmulas \(\phi_0, \dots, \phi_n\) onde, para cada $1 \leq i \leq n$, alguma das seguintes condições é satisfeita:
         \begin{align*}
-            & \text{~~(i) }\phi_{i} \text{ é um axioma;}\\
-            & \text{~(ii) }\phi_{i} \in \Gamma;\\
-            & \text{(iii) }\text{existem } j,k < i \text{ de modo que } \phi_{i} \text{ é o resultado da aplicação de MP em } \phi_{j} \text{ e } \phi_{k}.\tag*\qed{}
+              \text{(i) } & \phi_{i} \text{ é um axioma;}\\
+              \text{(ii) } & \phi_{i} \in \Gamma;\\
+              \text{(iii) } & \text{existem } j,k < i \text{ de modo que } \phi_{i} \text{ é o resultado da aplicação de MP em } \phi_{j} \text{ e } \phi_{k}.\tag*\qed{}
         \end{align*}
     \end{definicao}
+
+    Para ilustrar, provaremos um exemplo de derivação no cálculo de Hilbert apresentado:
+    
+    \begin{exemplo}\label{ex:1}
+        A derivação {\normalfont{} $\circ \psi, \alpha \to (\psi \land \neg \psi), \neg \alpha \to (\psi \land \neg \psi) \conhil \phi$} é válida.
+    \end{exemplo}
+
+    \begin{proof}[Prova do Exemplo~\ref{ex:1}]
+        A seguinte derivação completa a prova
+        \begin{align*}
+            1.~& \circ \psi \tag{Premissa} \\
+            2.~& \alpha \to (\psi \land \neg \psi) \tag{Premissa} \\
+            3.~& \neg \alpha \to (\psi \land \neg \psi) \tag{Premissa} \\
+            4.~& \alpha \lor \neg \alpha \tag{Ax10} \\
+            5.~& (\alpha \to (\psi \land \neg \psi)) \to ((\neg \alpha \to (\psi \land \neg \psi)) \to ((\alpha \lor \neg \alpha) \to (\psi \land \neg \psi))) \tag{Ax8} \\
+            6.~& (\neg \alpha \to (\psi \land \neg \psi)) \to ((\alpha \lor \neg \alpha) \to (\psi \land \neg \psi)) \tag{MP 2, 5}\\
+            7.~& (\alpha \lor \neg \alpha) \to (\psi \land \neg \psi) \tag{MP 3, 6}\\
+            8.~& \psi \land \neg \psi \tag{MP 4, 7} \\
+            9.~& (\psi \land \neg \psi) \to \psi \tag{Ax4} \\
+            10.~& (\psi \land \neg \psi) \to \neg \psi \tag{Ax5} \\
+            11.~& \psi \tag{MP 8, 9}\\
+            12.~& \neg \psi \tag{MP 8, 10}\\
+            13.~& \circ \psi \to (\psi \to (\neg \psi \to \phi)) \tag{bc1}\\
+            14.~& \psi \to (\neg \psi \to \phi) \tag{MP 1, 13}\\
+            15.~& \neg \psi \to \phi \tag{MP 11, 14} \\
+            16.~& \phi \tag{MP, 12, 15}
+        \end{align*}
+    \end{proof}
+
+
 
 \section{Semântica}\label{sec:semantica}
     De forma geral, a semântica é o estudo de como um sistema de símbolos (uma linguagem) internaliza informações, ou seja, é o estudo de como interpretar os símbolos de uma linguagem~\cite{brown2005encyclopedia}. Num sistema lógico, \textit{matrizes lógicas} são comumente usadas para estabelecer o comportamento esperado dos conectivos lógicos de sua assinatura. Outra forma de compreender a semântica de um sistema lógico é definir uma função conhecida como \textit{valoração}, que define uma \textit{semântica de valorações}. Nesta seção, a semântica da \lfium{} será definida de dois jeitos distintos: a partir de uma \textit{matriz lógica} e a partir de uma \textit{valoração}. Ambas serão provadas equivalentes, a fim de facilitar a prova de metateoremas na Seção~\ref{sec:metateoremas}. As definições e notações para os conceitos de \textit{álgebra} definidos aqui baseiam-se nos trabalhos de~\citeshort{Carnielli_Coniglio_2016} e de~\citeshort{Sikorski1966-SIKAOF}.
     \subsection{Matriz Lógica e Valoração}
         Uma das formas de definir a semântica de uma lógica proposicional é definir uma \textit{matriz lógica} (também chamada de tabela-verdade) para os conectivos de sua assinatura proposicional. Para isso, é necessário definir o conceito de \textit{álgebra} para assinaturas proposicionais:
-        \helena{Sera q eu defino essas coisas em outra seção?} \migs{Não acho que seja necessário abrir outra seção apenas para duas ou três de definições.}
 
         \begin{definicao}[Álgebra para assinaturas proposicionais]\label{def:algebra}
-            Uma álgebra para uma assinatura proposicional $\Theta$ é uma dupla $\pazocal{A} = \langle A, O \rangle$, onde $A$ é um conjunto não vazio (chamado de \textit{domínio} da álgebra) e $O$ é uma função de interpretação que associa cada conectivo n-ário $c \in \Theta$ à uma operação $c^{\pazocal{A}}\!\! : \; A^{n} \to A$ em A.\qed{}
+            Uma álgebra para uma assinatura proposicional $\Theta$ é uma dupla $\pazocal{A} = \langle A, O \rangle$, onde $A$ é um conjunto não vazio (chamado de \textit{domínio} da álgebra) e $O$ é uma função de interpretação que associa cada conectivo n-ário $c \in \Theta$ à uma operação $c^{\pazocal{A}}\!\! : \; A^{n} \to A$ em $A$.\qed{}
         \end{definicao}
 
-        Quando não for confuso, o mesmo símbolo será utilizado para representar um conectivo $c$ e sua interpretação $O(c) = c^{\pazocal{A}}$. Além disso, quando não houver ambiguidade, o símbolo utilizado para se referir a uma álgebra $\langle A, O \rangle$ será simplesmente o símbolo para seu domínio $A$. Ademais, caso $\Theta$ seja finita, a função $O$ será substituída pela lista de conectivos de $\Theta$. Por exemplo, uma álgebra para a assinatura $\Sigma$ da \lfium{} é escrita como $\pazocal{A} = \langle A,\land, \lor, \to, \neg, \circ \rangle$.
+        Quando não for confuso, o mesmo símbolo será utilizado para representar um conectivo $c$ e sua interpretação $O(c) = c^{\pazocal{A}}$. Além disso o símbolo utilizado para se referir a uma álgebra $\langle A, O \rangle$ será simplesmente o símbolo para seu domínio $A$. Ademais, caso $\Theta$ seja finita, a função $O$ será substituída pela lista de conectivos de $\Theta$. Por exemplo, uma álgebra para a assinatura $\Sigma$ da \lfium{} é escrita como $\pazocal{A} = \langle A,\land, \lor, \to, \neg, \circ \rangle$.
 
         \begin{observacao}
-            Uma linguagem sobre uma assinatura proposicional $\Theta = \{c_{1}, \ldots, c_{n}\}$ e um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \; | \; n \in \mathbb{N} \}$ pode ser compreendida como uma álgebra da forma $\langle \pazocal{L}_{\Theta}, c_{1}\ldots, c_{n} \rangle$, onde $\pazocal{L}_{\Theta}$ é um conjunto de fórmulas bem formadas a partir dos conectivos em $\Theta$ e dos átomos em $\pazocal{P}$. Denotamos esta álgebra simplesmente por $\pazocal{L}_{\Theta}$~\cite{Sikorski1966-SIKAOF,Wojcicki1984-WJCLOP}.
+            Uma linguagem definida sobre uma assinatura proposicional $\Theta = \{c_{1}, \ldots, c_{n}\}$ e um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \; | \; n \in \mathbb{N} \}$ pode ser compreendida como uma álgebra da forma $\langle \pazocal{L}_{\Theta}, c_{1}\ldots, c_{n} \rangle$, onde $\pazocal{L}_{\Theta}$ é um conjunto de fórmulas bem formadas a partir dos conectivos em $\Theta$ e dos átomos em $\pazocal{P}$. Denotamos esta álgebra simplesmente por $\pazocal{L}_{\Theta}$~\cite{Sikorski1966-SIKAOF,Wojcicki1984-WJCLOP}.
         \end{observacao}
 
-        Duas álgebras definidas sobre uma mesma assinatura proposicional são ditas \textit{similares}. Uma função (mapeamento) entre duas estruturas algebraicas similares que preserva sua estrutura é chamada de \textit{homomorfismo}. Ou seja, dadas duas álgebras similares $\langle A, O \rangle$, $\langle B, O' \rangle$ definidas sobre uma assinatura proposicional $\Theta$, um mapeamento $h : A \to B$ será um \textit{homomorfismo} caso para todo conectivo $c$ de aridade $n$ tal que $c \in \Theta$ e para todo $a_{0},\ldots,a_{n} \in A$ $h(c(a_{0},\ldots, a_{n})) = c(h(a_{0}),\ldots, h(a_{n}))$.
+        Duas álgebras definidas sobre uma mesma assinatura proposicional são ditas \textit{similares}. Uma função (mapeamento) entre duas estruturas algebraicas similares que preserva sua estrutura é chamada de \textit{homomorfismo}. Ou seja, dadas duas álgebras similares $\langle A, O \rangle$, $\langle B, O' \rangle$ definidas sobre uma assinatura proposicional $\Theta$, um mapeamento $h : A \to B$ será um \textit{homomorfismo} caso para todo conectivo $c \in \Theta$ de aridade $n$ e para todo $a_{0},\ldots,a_{n} \in A$ tem-se $h(c(a_{0},\ldots, a_{n})) = c(h(a_{0}),\ldots, h(a_{n}))$.
 
         \begin{definicao}[Matriz Lógica]
-            Seja $\Theta$ uma assinatura proposicional. Uma \textit{matriz lógica} $\pazocal{M}$ definida sobre $\Theta$ é uma tripla $\pazocal{M} = \langle A, D, O \rangle$, tal que o par $\langle A, O \rangle$ é uma álgebra para $\Theta$ e $D$ é um subconjunto de $A$ cujos elementos são ditos \textit{designados}, estes são elementos de $A$ considerados como verdadeiros.\qed{}
+            Seja $\Theta$ uma assinatura proposicional. Uma \textit{matriz lógica} $\pazocal{M}$ definida sobre $\Theta$ é uma tripla $\pazocal{M} = \langle A, D, O \rangle$, tal que o par $\langle A, O \rangle$ é uma álgebra para $\Theta$ e $D$ é um subconjunto de $A$ cujos elementos são ditos \textit{designados} (estes são elementos de $A$ considerados como verdadeiros).\qed{}
         \end{definicao}
 
-        Com isso, uma matriz lógica $\pazocal{M} = \langle A, D, O \rangle$ induz uma lógica tarskiana $\mathcal{L}$ sobre uma linguagem $\pazocal{L}_{\Theta}$ da seguinte forma: Sendo $\Gamma \cup \{\alpha\} \in \pazocal{L}_{\Theta}$, tem-se $\Gamma \vDash_{\pazocal{M}} \alpha$ sse, para todo homomorfismo $h : \pazocal{L}_{\Theta} \to A$, se $h[\Gamma] \subseteq D$ então $h(\alpha) \in D$. Em particular, $\alpha$ é uma tautologia em $\mathcal{L}$ sse $h(\alpha) \in D$ para todo homomorfismo $h$. Perceba que o homomorfismo $h$ nada mais é do que uma função que associa fórmulas da linguagem $\pazocal{L}_{\Theta}$ a valores do domínio $A$ da matriz $\pazocal{M}$.
-
-        \begin{definicao}[Valoração]
-            Seja $\pazocal{M} = \langle A, D, O \rangle$ uma matriz lógica tal que $\pazocal{M}$ define uma lógica $\mathcal{L}$ sobre a linguagem $\pazocal{L}_{\Theta}$. Um homomorfismo $h : \pazocal{L}_{\Theta} \to A$ é dito uma valoração sobre $\pazocal{M}$.\qed{}
-        \end{definicao}
+        Com isso, uma matriz lógica $\pazocal{M} = \langle A, D, O \rangle$ induz uma relação de consequência semântica para uma lógica tarskiana $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}_{\Theta}$, da seguinte forma: Sendo $\Gamma \cup \{\alpha\} \in \pazocal{L}_{\Theta}$, tem-se $\Gamma \vDash_{\pazocal{M}} \alpha$ sse, para todo homomorfismo $h : \pazocal{L}_{\Theta} \to A$, se $h[\Gamma] \subseteq D$ então $h(\alpha) \in D$. Em particular, $\alpha$ é uma tautologia em $\mathcal{L}$ sse $h(\alpha) \in D$ para todo homomorfismo $h$. Perceba que o homomorfismo $h$ nada mais é do que uma função que associa fórmulas da linguagem $\pazocal{L}_{\Theta}$ a valores do domínio $A$ da matriz $\pazocal{M}$. Desta forma, $h$ é dito uma \textit{valoração} sobre $\pazocal{M}$.
 
 
        Uma lógica que apresenta três elementos no domínio de sua matriz lógica é dita \textit{trivalorada}. Algumas lógicas trivaloradas introduzem um terceiro valor além da verdade e falsidade para representar uma informação desconhecida, como é o caso da lógica de Kleene~\cite{manyvalued}. A \lfium{}, por sua vez, introduz o valor $\meio{}$ além dos valores clássicos $0$ e $1$ para representar uma informação inconsistente. Ou seja, caso $\alpha$ tenha o valor $\meio{}$, então $\neg \alpha$ também terá o valor $\meio{}$.
 
         \begin{definicao}[Matriz lógica da \lfium{}]
             A matriz lógica $\pazocal{M}_{\lfium{}} = \langle M, D, O \rangle$ com domínio $M = \{1, \meio{}, 0\}$ e um conjunto de valores designados $D = \{1, \meio{}\}$ é definida da seguinte forma:
-
+            \setbool{@fleqn}{false}
             \noindent
             \begin{minipage}{0.3\textwidth}
                 % Implication (→)
@@ -179,7 +206,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
             \vspace{0.5cm}
 
-            \begin{minipage}{0.5\textwidth}
+            \begin{minipage}{0.4\textwidth}
                 % Negation (¬)
                 \[
                     \begin{array}{c|c}%chktex 44 
@@ -204,12 +231,39 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \end{minipage}
 
             \noindent
-            A matriz $\pazocal{M}_{\lfium{}}$ define a relação de consequência semântica $\conmat{}$, para todo $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$, da seguinte forma: $\Gamma \conmat \phi$ sse, para todo homomorfismo $h : \pazocal{L}_{\Sigma} \to M$, se $h[\Gamma] \subseteq \{1, \meio{}\}$ então $h(\phi) \in \{1, \meio{}\}$.\qed{}
+            A matriz $\pazocal{M}_{\lfium{}}$ define a relação de consequência semântica $\conmat{}$ da seguinte forma: para todo $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$, tem-se $\Gamma \conmat \phi$ sse, para todo valoração $h : \pazocal{L}_{\Sigma} \to M$ de $\pazocal{M}$, se $h[\Gamma] \subseteq \{1, \meio{}\}$ então $h(\phi) \in \{1, \meio{}\}$.\qed{}
         \end{definicao}
-        
-        
 
-        Uma semântica de valorações definida sobre uma função $v : \pazocal{L} \to A$ é chamada de \textit{bivaloração} quando $A = \{1, 0\}$.~\citeshort{DaCosta1977-NEWASA-3} apresentam uma bivaloração para a lógica paraconsistente $\text{\textbf{C}}_{1}$. Nesta semântica, a negação $\neg$ tem um comportamento não-determinístico. A semântica de valorações para a \lfium{} definida a seguir evidencia o comportamento determinístico dos conectivos $\neg$ e $\circ$:
+        Para ilustrar, provaremos um exemplo de inferência na semântica matricial apresentada:
+
+        \begin{exemplo}\label{ex:2}
+            A inferência $ \conmat \circ \circ \alpha$ é válida.
+        \end{exemplo}
+
+        \begin{proof}[Prova do Exemplo~\ref{ex:2}]
+            Vamos mostrar que, para toda valoração $h : \pazocal{L}_{\Sigma} \to \{1,\meio{},0\}$ de $\pazocal{M}_{\lfium{}}$, $h(\circ \circ \alpha) \in \{1, \meio{}\}$. Para isso, construiremos uma tabela com todas as valorações possíveis para $\circ \circ \alpha$.
+
+            \begin{center}
+                \setbool{@fleqn}{false}
+                \[
+                    \begin{array}{|c|c|c|}%chktex 44 
+                        \hline
+                        \alpha      & \circ \alpha & \circ \circ \alpha   \\
+                        \hline%chktex 44 
+                        1           & 1            &    1\\
+                        \meio{    } & 0            &    1\\
+                        0           & 1            &    1\\
+                        \hline
+                    \end{array}
+                \]
+            \end{center}
+
+            Como é possível observar, a coluna da fórmula $\circ \circ \alpha$ é composta somente por elementos pertencentes ao conjunto $\{1, \meio{}\}$, portanto, para toda valoração $h$ de $\pazocal{M}_{\lfium{}}$, $h(\circ \circ \alpha) \in \{1, \meio{}\}$. Logo $ \conmat \circ \circ \alpha$.
+            
+        \end{proof}
+
+        
+        Outra forma de definir a relação de consequência semântica de uma lógica é descrever uma semântica de valorações, esta que define um conjunto de cláusulas condicionais sobre funções. Quando uma função respeita todas as cláusulas, ela é dita valoração da lógica.~\citeshort{DaCosta1977-NEWASA-3} apresentam uma valoração para a lógica paraconsistente $\text{\textbf{C}}_{1}$. Nesta semântica, a negação $\neg$ tem um comportamento não-determinístico. A semântica de valorações para a \lfium{} definida a seguir evidencia o comportamento não determinístico dos conectivos $\neg$ e $\circ$:
 
         \begin{definicao} [Semântica de valorações para \textbf{$\text{LFI1}$}]\label{def:valoracoes}
             A função $v : \pazocal{L}_{\Sigma} \to \{1, 0\}$ é uma valoração para a lógica \lfium{} caso ela satisfaça as seguintes cláusulas:
@@ -226,18 +280,22 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 & v(\neg (\alpha \lor \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vDM_{\lor}$}}\\
                 & v(\neg (\alpha \to \beta)) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vCIp_{\to}$}}
             \end{align*}
-            O conjunto de todas as valorações será denotado por $V^{\lfium{}}$. Então, a relação de consequência semântica $\conval$ é definida, para todo $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$, da seguinte forma: $\Gamma \conval \phi$ sse, para todo $v \in V^{\lfium{}}$, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$ então $v(\phi) = 1$.\qed{}
+            O conjunto de todas as valorações será denotado por $V^{\lfium{}}$. Então, a relação de consequência semântica $\conval$ é definida da seguinte forma: para todo $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$, tem-se $\Gamma \conval \phi$ sse, para todo $v \in V^{\lfium{}}$, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$ então $v(\phi) = 1$.\qed{}
         \end{definicao}
-        \helena{Explicar nome zoado das cláusulas}
+        \helena{Em vez de ficar explicando esses nomes das cláusulas eu poderia só mudar pra coisas mais normais né}
 
         Note que, por conta de $(VNeg)$ e $(VCon)$, o valor $v(\triangle \alpha)$ {-} para $\triangle \in \{\neg, \circ\}$ {-} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, pode-se ter $v(\neg \alpha)$ tanto $0$ como $1$ (mas não ambos).
-        
-        \begin{lema}[Equivalência entre a semântica de Matrizes e a semântica de valorações]\label{lem:matval}
-            Seja $v$ uma valoração em $V^{\lfium{}}$, então existe\helena{completar prova}
-        \end{lema}
+
                 
 \section{Metateoremas}\label{sec:metateoremas}
     A metalógica é uma parte da metamatemática que se restringe ao estudo de sistemas lógicos através de métodos matemáticos, desenvolvendo metateoremas~\cite{Jacquette2002-JACACT-7}. Um metateorema é uma prova sobre propriedades de um sistema formal, sobretudo sobre suas relações de consequência, utilizando uma metalinguagem~\cite{Tarski1956-TARLSM,Barile_2024}. Uma propriedade provada através de um metateorema é chamada de \textit{metapropriedade}. Num sistema lógico munido com uma relação de consequência sintática $\vdash$ e uma relação de consequência semântica $\vDash$ a metapropriedade da correção, que afirma que tudo que é derivável em $\vdash$ é válido em $\vDash$, é uma característica fundamental para que o sistema seja útil em alguma medida. Outra propriedade interessante é a completude, que afirma que tudo que é válido em $\vDash$ pode ser provado em $\vdash$. Antes de desenvolver as provas destes metateoremas, convém apresentar algumas definições pertinentes e provar lemas que facilitarão o desenvolvimento das provas mais extensas.
+
+    \helena{pode ser que isso mude de lugar. depois vejo} Na Seção~\ref{sec:semantica}, foram apresentadas duas formas distintas de definir a semântica da lógica \lfium{}. A semântica matricial é simples e intuitiva, nos permitindo demonstrar a validade de uma inferência com facilidade. Contudo, as provas de correção e completude em relação à matriz lógica são mais extensas quando comparadas com as provas em relação à semântica de valorações. Portanto, ambas serão provadas equivalentes, ou seja, uma inferência é válida na semântica matricial sse é válida na semântica de valorações:
+
+            
+    \begin{lema}[Equivalência entre a semântica de Matrizes e a semântica de valorações]\label{lem:matval}
+        Seja $v$ uma valoração em $V^{\lfium}$, então existe uma valoração $h$ para $\pazocal{M}_{\lfium}$\helena{continua}
+    \end{lema}
 
     \begin{definicao}[Conjunto de fórmulas não-trivial maximal]\label{def:nao-trivial_maximal}
         Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\pazocal{L}$ e sejam $\Gamma, \{\phi\}$ conjuntos de fórmulas de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. O conjunto $\Gamma$ é dito não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
