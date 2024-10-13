@@ -231,7 +231,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \end{minipage}
 
             \noindent
-            A matriz $\pazocal{M}_{\lfium{}}$ define a relação de consequência semântica $\conmat{}$ da seguinte forma: para todo $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$, tem-se $\Gamma \conmat \phi$ sse, para todo valoração $h : \pazocal{L}_{\Sigma} \to M$ de $\pazocal{M}$, se $h[\Gamma] \subseteq \{1, \meio{}\}$ então $h(\phi) \in \{1, \meio{}\}$.\qed{}
+            A matriz $\pazocal{M}_{\lfium{}}$ define a relação de consequência semântica $\conmat{}$ da seguinte forma: para todo $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$, tem-se $\Gamma \conmat \phi$ sse, para todo valoração $h : \pazocal{L}_{\Sigma} \to M$ de $\pazocal{M}_{\lfium{}}$, se $h[\Gamma] \subseteq \{1, \meio{}\}$ então $h(\phi) \in \{1, \meio{}\}$.\qed{}
         \end{definicao}
 
         Para ilustrar, provaremos um exemplo de inferência na semântica matricial apresentada:
@@ -288,7 +288,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
                 
 \section{Metateoremas}\label{sec:metateoremas}
-    A metalógica é uma parte da metamatemática que se restringe ao estudo de sistemas lógicos através de métodos matemáticos, desenvolvendo metateoremas~\cite{Jacquette2002-JACACT-7}. Um metateorema é uma prova sobre propriedades de um sistema formal, sobretudo sobre suas relações de consequência, utilizando uma metalinguagem~\cite{Tarski1956-TARLSM,Barile_2024}. Uma propriedade provada através de um metateorema é chamada de \textit{metapropriedade}. Num sistema lógico munido com uma relação de consequência sintática $\vdash$ e uma relação de consequência semântica $\vDash$ a metapropriedade da correção, que afirma que tudo que é derivável em $\vdash$ é válido em $\vDash$, é uma característica fundamental para que o sistema seja útil em alguma medida. Outra propriedade interessante é a completude, que afirma que tudo que é válido em $\vDash$ pode ser provado em $\vdash$. Antes de desenvolver as provas destes metateoremas, convém apresentar algumas definições pertinentes e provar lemas que facilitarão o desenvolvimento das provas mais extensas.
+    \helena{adicionar outros metateoremas do artigo das database?!?@!@?!}A metalógica é uma parte da metamatemática que se restringe ao estudo de sistemas lógicos através de métodos matemáticos, desenvolvendo metateoremas~\cite{Jacquette2002-JACACT-7}. Um metateorema é uma prova sobre propriedades de um sistema formal, sobretudo sobre suas relações de consequência, utilizando uma metalinguagem~\cite{Tarski1956-TARLSM,Barile_2024}. Uma propriedade provada através de um metateorema é chamada de \textit{metapropriedade}. Num sistema lógico munido com uma relação de consequência sintática $\vdash$ e uma relação de consequência semântica $\vDash$ a metapropriedade da correção, que afirma que tudo que é derivável em $\vdash$ é válido em $\vDash$, é uma característica fundamental para que o sistema seja útil em alguma medida. Outra propriedade interessante é a completude, que afirma que tudo que é válido em $\vDash$ pode ser provado em $\vdash$. Antes de desenvolver as provas destes metateoremas, convém apresentar algumas definições pertinentes e provar lemas que facilitarão o desenvolvimento das provas mais extensas.
 
     \helena{pode ser que isso mude de lugar. depois vejo} Na Seção~\ref{sec:semantica}, foram apresentadas duas formas distintas de definir a semântica da lógica \lfium{}. A semântica matricial é simples e intuitiva, nos permitindo demonstrar a validade de uma inferência com facilidade. Contudo, as provas de correção e completude em relação à matriz lógica são mais extensas quando comparadas com as provas em relação à semântica de valorações. Portanto, ambas serão provadas equivalentes, ou seja, uma inferência é válida na semântica matricial sse é válida na semântica de valorações:
 
@@ -296,23 +296,6 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \begin{lema}[Equivalência entre a semântica de Matrizes e a semântica de valorações]\label{lem:matval}
         Seja $v$ uma valoração em $V^{\lfium}$, então existe uma valoração $h$ para $\pazocal{M}_{\lfium}$\helena{continua}
     \end{lema}
-
-    \begin{definicao}[Conjunto de fórmulas não-trivial maximal]\label{def:nao-trivial_maximal}
-        Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\pazocal{L}$ e sejam $\Gamma, \{\phi\}$ conjuntos de fórmulas de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. O conjunto $\Gamma$ é dito não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
-    \end{definicao}
-
-    \begin{definicao}[Teoria fechada]\label{def:fechada}
-
-        Seja $\mathcal{L}$ uma lógica tarskiana. Um conjunto de fórmulas $\Gamma$ é dito fechado em $\mathcal{L}$ (ou dito uma \textit{teoria fechada} em $\mathcal{L}$) se, para toda fórmula $\phi$, tem-se $\Gamma \Vdash_{\mathcal{L}} \phi$ sse $\phi \in \Gamma$.\qed{}
-    \end{definicao}
-
-    \begin{lema}\label{lem:nao_trivial_maximal_fechado}
-        Todo conjunto de fórmulas não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ é fechado em $\mathcal{L}$.
-    \end{lema}
-
-    \begin{proof}[Prova do Lema~\ref{lem:nao_trivial_maximal_fechado}]
-        Seja $\Gamma$ uma conjunto de fórmulas não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Se $\psi \in \Gamma$, então $\Gamma \Vdash_{\mathcal{L}} \psi$, já que $\mathcal{L}$ é tarskiana. Se $\Gamma \Vdash_{\mathcal{L}} \psi$, então supondo que $\psi \notin \Gamma$, temos que $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$, pela Definição~\ref{def:nao-trivial_maximal}. Como $\mathcal{L}$ é tarskiana, segue que $\Gamma \Vdash_{\mathcal{L}} \phi$, o que contradiz o fato de $\Gamma$ ser não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Portanto, $\psi \in \Gamma$ e então $\Gamma$ é fechado em $\mathcal{L}$.
-    \end{proof}
 
 
     O lema a seguir será utilizado na prova do metateorema da dedução (Teorema~\ref{teo:deducao}):
@@ -660,5 +643,37 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
          Portanto $\Gamma \conval \phi_{n}$.
 
          \noindent Com isso, provamos $\Gamma \conval \alpha$ e a prova está finalizada.
+
+    \end{proof}
+
+    A prova da completude para a lógica \lfium{} depende das seguintes definições e lemas auxiliares para ser desenvolvida:
+
+    \begin{definicao}[Conjunto de fórmulas não-trivial maximal]\label{def:nao-trivial_maximal}
+        Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\pazocal{L}$ e sejam $\Gamma, \{\phi\}$ conjuntos de fórmulas de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. O conjunto $\Gamma$ é dito não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
+    \end{definicao}
+
+    \begin{definicao}[Teoria fechada]\label{def:fechada}
+
+        Seja $\mathcal{L}$ uma lógica tarskiana. Um conjunto de fórmulas $\Gamma$ é dito fechado em $\mathcal{L}$ (ou dito uma \textit{teoria fechada} em $\mathcal{L}$) se, para toda fórmula $\phi$, tem-se $\Gamma \Vdash_{\mathcal{L}} \phi$ sse $\phi \in \Gamma$.\qed{}
+    \end{definicao}
+
+    \begin{lema}\label{lem:nao_trivial_maximal_fechado}
+        Todo conjunto de fórmulas não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ é fechado em $\mathcal{L}$.
+    \end{lema}
+
+    \begin{proof}[Prova do Lema~\ref{lem:nao_trivial_maximal_fechado}]
+        Seja $\Gamma$ uma conjunto de fórmulas não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Se $\psi \in \Gamma$, então $\Gamma \Vdash_{\mathcal{L}} \psi$, já que $\mathcal{L}$ é tarskiana. Se $\Gamma \Vdash_{\mathcal{L}} \psi$, então supondo que $\psi \notin \Gamma$, temos que $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$, pela Definição~\ref{def:nao-trivial_maximal}. Como $\mathcal{L}$ é tarskiana, segue que $\Gamma \Vdash_{\mathcal{L}} \phi$, o que contradiz o fato de $\Gamma$ ser não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Portanto, $\psi \in \Gamma$ e então $\Gamma$ é fechado em $\mathcal{L}$.
+    \end{proof}
+
+
+    \begin{teorema}[Completude]\label{teo:completude}
+        A lógica {\normalfont\lfium{}} é completa em relação a sua semântica de valorações, ou seja, para todo conjunto de fórmulas $\Gamma \cup \{\alpha\} \subseteq \pazocal{L}_{\Sigma}$:
+
+        \centering
+        {\normalfont{} $\Gamma \conval \alpha \Longrightarrow \Gamma \conhil \alpha$.}
+    \end{teorema}
+
+    \begin{proof}[Prova do Teorema~\ref{teo:completude}]
+        \helena{Será adicionado.}
 
     \end{proof}
