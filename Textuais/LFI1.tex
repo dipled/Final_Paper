@@ -646,15 +646,87 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
     \end{proof}
 
+    Com o resultado anterior, a prova de que a lógica \lfium{} se trata de uma \lfi{} forte (ver Definição~\ref{def:lfi_forte_prop}) é imediata.
+
+    \begin{corolario}\label{cor:lfi_forte}
+        Seja $p$ uma variável proposicional qualquer e $\bigcirc(p) = \{\circ p\}$ um conjunto de fórmulas dependente somente de $p$. A lógica \lfium{} é uma \lfi{} forte em relação a $\neg$ e $\bigcirc(p)$.
+    \end{corolario}
+
+    \begin{proof}[Prova do Corolário~\ref{cor:lfi_forte}]
+        Sejam $a, b \in \pazocal{P}$ variáveis proposicionais distintas e sejam $\phi, \psi \in \pazocal{L}_{\Sigma}$ fórmulas quaisquer.
+        
+        \noindent\textbf{Prova da condição (i):}
+        A tabela abaixo contem todas as valorações possíveis em relação a $a$ e $b$ sobre a matriz lógica $\pazocal{M}_{\lfium{}}$:
+        \begin{center}
+            \setbool{@fleqn}{false}
+            \[
+                \begin{array}{|c|c|c|c|}%chktex 44 
+                    \hline
+                    a      & \neg a & \circ a & b   \\
+                    \hline%chktex 44 
+                    1           & 0        &  1  &    1\\
+                    \meio{    } & \meio{}   &  0       &    1\\
+                    0           & 1         &  1 &    1\\
+                    1           & 0         &  1 &    \meio{}\\
+                    \meio{    } & \meio{}   &  0       &    \meio{}\\
+                    0           & 1         &  1 &    \meio{}\\
+                    1           & 0         &  1 &    0\\
+                   \meio{  }&  \meio{}  &   0       &    0\\
+                    0           & 1      &     1 &    0\\
+                    \hline
+                \end{array}
+            \]
+        \end{center}
+        
+        Temos, então, os seguintes resultados:
+
+        \begin{itemize}
+            \item A penúltima linha da tabela mostra $a, \neg a \nconmat b$;
+            \item A terceira linha mostra $\circ a, a \nconmat b$;
+            \item A primeira linha mostra $\circ a, \neg a \nconmat b$.
+        \end{itemize}
+        
+        Pela equivalência entre a semântica matricial e a semântica de valorações (Lema~\ref{lem:matval}), temos:
+
+        \begin{itemize}
+            \item $a, \neg a \nconval b$;
+            \item $\circ a, a \nconval b$;
+            \item $\circ a, \neg a \nconval b$.
+        \end{itemize}
+
+        Finalmente, pela contraposta da correção (Teorema~\ref{teo:correcao}), as condições (i.a), (i.b) e (i.c) são satisfeitas da seguinte forma:
+
+        \begin{itemize}
+            \item $a, \neg a \nconhil b$;
+            \item $\circ a, a \nconhil b$;
+            \item $\circ a, \neg a \nconhil b$.
+        \end{itemize}
+
+        \noindent\textbf{Prova da condição (ii):} A sequência de derivação abaixo mostra $\phi, \neg \phi, \circ \phi \conhil \psi$:
+
+        \begin{align*}
+            1.~ & \phi \tag{Premissa}       \\
+            2.~ & \neg \phi \tag{Premissa}  \\
+            3.~ & \circ \phi \tag{Premissa} \\
+            4.~ & \circ \phi \to (\phi \to (\neg \phi \to \psi)) \tag{bc1} \\
+            5.~ & \phi \to (\neg \phi \to \psi) \tag{MP 3, 4} \\
+            6.~ & \neg \phi \to \psi \tag{MP 1, 5} \\
+            7.~ & \psi \tag{MP 2, 6}
+        \end{align*}
+
+
+        Portanto, a \lfium{} se trata de uma \lfi{} forte.
+    \end{proof}
+
     A prova da completude para a lógica \lfium{} depende das seguintes definições e lemas auxiliares para ser desenvolvida:
 
     \begin{definicao}[Conjunto de fórmulas não-trivial maximal]\label{def:nao-trivial_maximal}
-        Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\pazocal{L}$ e sejam $\Gamma, \{\phi\}$ conjuntos de fórmulas de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. O conjunto $\Gamma$ é dito não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
+        Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\pazocal{L}$ e sejam $\Gamma, \{\phi\}$ conjuntos de fórmulas de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. O conjunto $\Gamma$ é dito não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nvdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
     \end{definicao}
 
     \begin{definicao}[Teoria fechada]\label{def:fechada}
 
-        Seja $\mathcal{L}$ uma lógica tarskiana. Um conjunto de fórmulas $\Gamma$ é dito fechado em $\mathcal{L}$ (ou dito uma \textit{teoria fechada} em $\mathcal{L}$) se, para toda fórmula $\phi$, tem-se $\Gamma \Vdash_{\mathcal{L}} \phi$ sse $\phi \in \Gamma$.\qed{}
+        Seja $\mathcal{L}$ uma lógica tarskiana. Um conjunto de fórmulas $\Gamma$ é dito fechado em $\mathcal{L}$ (ou dito uma \textit{teoria fechada} em $\mathcal{L}$) se, para toda fórmula $\phi$, tem-se $\Gamma \vdash_{\mathcal{L}} \phi$ sse $\phi \in \Gamma$.\qed{}
     \end{definicao}
 
     \begin{lema}\label{lem:nao_trivial_maximal_fechado}
@@ -662,7 +734,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \end{lema}
 
     \begin{proof}[Prova do Lema~\ref{lem:nao_trivial_maximal_fechado}]
-        Seja $\Gamma$ uma conjunto de fórmulas não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Se $\psi \in \Gamma$, então $\Gamma \Vdash_{\mathcal{L}} \psi$, já que $\mathcal{L}$ é tarskiana. Se $\Gamma \Vdash_{\mathcal{L}} \psi$, então supondo que $\psi \notin \Gamma$, temos que $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$, pela Definição~\ref{def:nao-trivial_maximal}. Como $\mathcal{L}$ é tarskiana, segue que $\Gamma \Vdash_{\mathcal{L}} \phi$, o que contradiz o fato de $\Gamma$ ser não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Portanto, $\psi \in \Gamma$ e então $\Gamma$ é fechado em $\mathcal{L}$.
+        Seja $\Gamma$ uma conjunto de fórmulas não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Se $\psi \in \Gamma$, então $\Gamma \vdash_{\mathcal{L}} \psi$, já que $\mathcal{L}$ é tarskiana. Se $\Gamma \vdash_{\mathcal{L}} \psi$, então supondo que $\psi \notin \Gamma$, temos que $\Gamma, \psi \vdash_{\mathcal{L}} \phi$, pela Definição~\ref{def:nao-trivial_maximal}. Como $\mathcal{L}$ é tarskiana, segue que $\Gamma \vdash_{\mathcal{L}} \phi$, o que contradiz o fato de $\Gamma$ ser não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Portanto, $\psi \in \Gamma$ e então $\Gamma$ é fechado em $\mathcal{L}$.
     \end{proof}
 
 
@@ -677,3 +749,5 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \helena{Será adicionado.}
 
     \end{proof}
+
+
