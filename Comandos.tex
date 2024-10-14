@@ -143,12 +143,15 @@
 \newcommand{\elementomaximo}{\mathcal{S}^{+}\xspace}
 
 % Referência de Environments
-\newcommand{\SubCaso}[2]{\ref{#1}.\ref{#2}}
+% \newcommand{\SubCaso}[2]{\ref{#1}.\ref{#2}}
+% MIGS: Tirei o comando acima para não dar problema com o que fizemos abaixo sobre subcasos de provas
 
 % Ambiente customizado para provas com casos e subcasos
 
 \newcounter{Casos}    % Contador que enumera os casos da prova
 \newcounter{SubCasos} % Contador que enumera o subcaso da prova
+\newcounter{SubSubCasos} % Contador que enumera o subsubcaso da prova (eu achei que não seria necessário mas cá estamos)
+
 \newenvironment{provaporcasos} % Ambiente customizado para fazer provas por casos
     {
         % O que é feito quando este ambiente é aberto    
@@ -162,7 +165,7 @@
     }
 
 % Comando para printar o caso com a numeração correta
-\newcommand{\casodeprova}{\refstepcounter{Casos}\item[Caso \theCasos{}.]}
+\newcommand{\casodeprova}[1]{\refstepcounter{Casos}\item[Caso \theCasos{}.] #1}
 
 % Ambiente customizado para fazer provas por casos que contenham subcasos
 % Só deve ser usado dentro de um ambiente provaporcasos
@@ -179,7 +182,24 @@
     }
 
 % Comando para printar o subcaso com a numeração correta
-\newcommand{\subcasodeprova}{\refstepcounter{SubCasos}\item[Subcaso \theCasos{}.\theSubCasos{}.]}
+\newcommand{\subcasodeprova}[1]{\refstepcounter{SubCasos}\item[Subcaso \theCasos{}.\theSubCasos{}.] #1}
+
+% Ambiente customizado para fazer provas por casos que contenham subsubcasos
+% Só deve ser usado dentro de um ambiente provaporsubcasos
+\newenvironment{provaporsubsubcasos}
+    {
+        % O que é feito quando este ambiente é aberto    
+        \setcounter{SubSubCasos}{0} % resetando o counter por via das dúvidas
+        \begin{description}[font=\mdseries\scshape] % abrindo o ambiente de description com a formatação bonita
+    }   
+    {
+        % O que é feito quando esse ambiente é fechado
+        \setcounter{SubSubCasos}{0} % resetando o counter por via das dúvidas
+        \end{description} % fechando o ambiente
+    }
+
+% Comando para printar o subcaso com a numeração correta
+\newcommand{\subsubcasodeprova}[1]{\refstepcounter{SubSubCasos}\item[Subsubcaso \theCasos{}.\theSubCasos{}.\theSubSubCasos{}] #1}
 
 % Para testar, mantenha comentado se não estiver ativamente usando
 \usepackage{lipsum}
