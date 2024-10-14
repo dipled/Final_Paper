@@ -419,6 +419,54 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
          
     \end{proof}
 
+
+    Com a prova do metateorema da dedução para o cálculo de Hilbert da \lfium{}, os seguintes corolários são imediatos:
+
+    \begin{corolario}\label{cor:intro_ou_esq}
+        Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta, \phi\} \subseteq \pazocal{L}_{\Sigma}$:
+
+        \centering
+        {\normalfont{}Se $\Gamma, \alpha \conhil \phi \text{ e }\Gamma, \beta \conhil \phi \text{ então } \Gamma, \alpha \lor \beta \conhil \phi$.}
+    \end{corolario}
+
+    \begin{proof}[Prova do Corolário~\ref{cor:intro_ou_esq}]
+        Seja $\Gamma \cup \{\alpha, \beta, \phi\} \subseteq \pazocal{L}_{\Sigma}$ um conjunto de fórmulas qualquer.
+        
+        Suponha $\Gamma, \alpha \conhil \phi \text{ e }\Gamma, \beta \conhil \phi$. Então, pelo metateorema da dedução (MTD) (Teorema~\ref{teo:deducao}), temos $\Gamma \conhil \alpha \to \phi \text{ e }\Gamma \conhil \beta \to \phi$.
+
+        A seguinte sequência de derivação mostra $\Gamma, \alpha \lor \beta \conhil \phi$:
+        \begin{align*}
+            1. ~& \alpha \to \phi \tag{MTD aplicado à suposição} \\
+            2. ~& \beta \to \phi \tag{MTD aplicado à suposição} \\
+            3. ~& \alpha \lor \beta \tag{Premissa} \\
+            4. ~& (\alpha \to \phi) \to ((\beta \to \phi) \to ((\alpha \lor \beta) \to \phi)) \tag{Ax8} \\
+            5. ~& (\beta \to \phi) \to ((\alpha \lor \beta) \to \phi) \tag{MP 1, 4}\\
+            6. ~& (\alpha \lor \beta) \to \phi \tag{MP 2, 5} \\
+            7. ~& \phi \tag{MP 3, 6}
+        \end{align*}
+    \end{proof}
+
+
+    \begin{corolario}\label{cor:prova_por_casos}
+        Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta, \phi\} \subseteq \pazocal{L}_{\Sigma}$:
+
+        \centering
+        {\normalfont{}Se $\Gamma, \alpha \conhil \phi \text{ e }\Gamma, \neg\alpha \conhil \phi \text{ então } \Gamma \conhil \phi$.}
+    \end{corolario}
+
+    \begin{proof}[Prova do Corolário~\ref{cor:prova_por_casos}]
+        Seja $\Gamma \cup \{\alpha, \beta, \phi\} \subseteq \pazocal{L}_{\Sigma}$ um conjunto de fórmulas qualquer.
+
+        Suponha $\Gamma, \alpha \conhil \phi \text{ e }\Gamma, \neg\alpha \conhil \phi$. Pelo Corolário~\ref{cor:intro_ou_esq}, temos $\Gamma, \alpha \lor \neg \alpha \conhil \phi$. Pelo metateorema da dedução (MTD) (Teorema~\ref{teo:deducao}), temos $\Gamma \conhil (\alpha \lor \neg \alpha) \to \phi$.
+
+        A seguinte sequência de derivação mostra $\Gamma\conhil \phi$:
+        \begin{align*}
+            1. ~& (\alpha \lor \neg \alpha) \to \phi\tag{MTD aplicado à suposição} \\
+            2. ~& \alpha \lor \neg \alpha \tag{Ax10} \\
+            3. ~& \phi \tag{MP 1,2}
+        \end{align*}
+    \end{proof}
+
     A ideia da prova da correção para a \lfium{} é, como de costume, provar que todo axioma do cálculo de Hilbert $\conhil$ é válido na semântica de valorações $\conval$ e mostrar que a regra de inferência \textit{modus ponens} preserva sua validade.
 
     \begin{teorema}[Correção]\label{teo:correcao}
