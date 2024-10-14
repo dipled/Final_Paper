@@ -57,7 +57,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
 
     \begin{definicao}[\lfium{}]\label{def:lfi1}
-        A relação de consequência sintática $\conhil{}$ para a lógica \lfium{} é definida sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte cálculo de Hilbert:
+        A lógica \lfium{} é definida a partir da relação de consequência sintática $\conhil{}$ sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte cálculo de Hilbert:
 
         \noindent\textbf{Axiomas}:
         \begin{align*}
@@ -231,7 +231,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \end{minipage}
 
             \noindent
-            A matriz $\pazocal{M}_{\lfium{}}$ define a relação de consequência semântica $\conmat{}$ da seguinte forma: para todo $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$, tem-se $\Gamma \conmat \phi$ sse, para todo valoração $h : \pazocal{L}_{\Sigma} \to M$ de $\pazocal{M}_{\lfium{}}$, se $h[\Gamma] \subseteq \{1, \meio{}\}$ então $h(\phi) \in \{1, \meio{}\}$.\qed{}
+            A matriz $\pazocal{M}_{\lfium{}}$ define a relação de consequência semântica $\conmat{}$ para a lógica \lfium{} da seguinte forma: para todo $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$, tem-se $\Gamma \conmat \phi$ sse, para todo valoração $h : \pazocal{L}_{\Sigma} \to M$ de $\pazocal{M}_{\lfium{}}$, se $h[\Gamma] \subseteq \{1, \meio{}\}$ então $h(\phi) \in \{1, \meio{}\}$.\qed{}
         \end{definicao}
 
         Para ilustrar, provaremos um exemplo de inferência na semântica matricial apresentada:
@@ -280,7 +280,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 & v(\neg (\alpha \lor \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vDM_{\lor}$}}\\
                 & v(\neg (\alpha \to \beta)) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vCIp_{\to}$}}
             \end{align*}
-            O conjunto de todas as valorações será denotado por $V^{\lfium{}}$. Então, a relação de consequência semântica $\conval$ é definida da seguinte forma: para todo $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$, tem-se $\Gamma \conval \phi$ sse, para todo $v \in V^{\lfium{}}$, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$ então $v(\phi) = 1$.\qed{}
+            O conjunto de todas as valorações para a lógica \lfium{} será denotado por $V^{\lfium{}}$. Então, a relação de consequência semântica $\conval$ para a \lfium{} é definida da seguinte forma: para todo $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$, tem-se $\Gamma \conval \phi$ sse, para todo $v \in V^{\lfium{}}$, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$ então $v(\phi) = 1$.\qed{}
         \end{definicao}
         \helena{Em vez de ficar explicando esses nomes das cláusulas eu poderia só mudar pra coisas mais normais né}
 
@@ -294,11 +294,80 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
             
     \begin{lema}[Equivalência entre a semântica de Matrizes e a semântica de valorações]\label{lem:matval}
-        Seja $v$ uma valoração em $V^{\lfium}$, então existe uma valoração $h$ para $\pazocal{M}_{\lfium}$ tal que, para todo $\phi \in \pazocal{L}_{\Sigma}$, $v(\phi) = 1$ sse $h(\phi) \in \{1, \meio{}\}$.
+        Seja $v$ uma valoração em $V^{\lfium}$, então existe uma valoração $h$ sobre $\pazocal{M}_{\lfium}$ tal que, para todo $\phi \in \pazocal{L}_{\Sigma}$, $v(\phi) = 1$ sse $h(\phi) \in \{1, \meio{}\}$.
     \end{lema}
 
+    \begin{proof}[Prova do Lema~\ref{lem:matval}]
+        Seja $v$ uma valoração em $V^{\lfium}$. Então, considere a valoração $h$ sobre $\pazocal{M}_{\lfium}$ tal que para toda variável proposicional $p$:
+        \begin{center}
+            \setbool{@fleqn}{false}
+            \begin{equation*}
+                h(p) =
+                \begin{cases}
+                  1 \text{ sse } v(p) = 1 \text{ e } v(\neg p) = 0 \\
+                  \meio{} \text{ sse } v(p) = 1 \text{ e } v(\neg p) = 1 \\
+                  0 \text{ sse } v(p) = 0
+                \end{cases}
+              \end{equation*}
+        \end{center}
 
-    O lema a seguir será utilizado na prova do metateorema da dedução (Teorema~\ref{teo:deducao}):
+        Então, por indução na complexidade de uma fórmula $\phi \in \pazocal{L}_{\Sigma}$, será provado o seguinte:
+        \begin{center}
+            \setbool{@fleqn}{false}
+            \begin{equation*}
+                h(\phi) =
+                \begin{cases}
+                  1 \text{ sse } v(\phi) = 1 \text{ e } v(\neg \phi) = 0 \\
+                  \meio{} \text{ sse } v(\phi) = 1 \text{ e } v(\neg \phi) = 1 \\
+                  0 \text{ sse } v(\phi) = 0
+                \end{cases}
+              \end{equation*}
+        \end{center}
+
+        \noindent \textbf{\textsc{Base}} $C(\phi) = 1$.
+
+        Como $C(\phi) = 1$, temos $\phi \in \pazocal{P}$ pela Definição~\ref{def:complex_lfi1}. Com isso, a própria definição de $h$ prova o caso \textbf{\textsc{Base}}.
+
+        \noindent \textbf{\textsc{Passo}} Hipótese de indução (HI): A propriedade vale para toda fórmula $\phi$ tal que $C(\phi) = k$, com $k < n$.
+
+        Vamos mostrar que a propriedade vale caso $C(\phi) = n$.
+
+        \begin{provaporcasos}
+            \casodeprova{} $\phi = \neg \alpha$.
+                
+                (a) ($\Longrightarrow$) Supondo $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 1$, vamos provar $v(\phi) = 1$ e $v(\neg \phi) = 0$. 
+                
+                Pela matriz de $\neg$, temos $h(\alpha) = 0$. Então, por (HI), $v(\alpha) = 0$. 
+
+                Por $(vNeg)$ temos $v(\neg \alpha) = v(\phi) = 1$. Enfim, por $(vCf)$, $v(\neg \phi) = v(\neg \neg \alpha) = v(\alpha) = 0$
+
+                (a) ($\Longleftarrow$) Supondo $v(\phi) = v(\neg \alpha) = 1$ e $v(\neg \phi) = v(\neg \neg \alpha) = 0$, vamos provar $h(\phi) = h(\neg \alpha) = 1$.
+
+                Por $(vCe)$, temos $v(\neg \neg \alpha) = v(\alpha) = 0$.
+
+                Por (HI) temos $h(\alpha) = 0$. Então, $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 1$, pela matriz de $\neg$.
+
+                (b) ($\Longrightarrow$) Supondo $h(\phi) = h(\neg \alpha) = \meio{}$, vamos provar $v(\phi) = 1$ e $v(\neg \phi) = 1$.
+
+                Pela matriz de $\neg$, temos $h(\alpha) = \meio{}$. Então, por (HI), $v(\alpha) = 1$ e $v(\neg \alpha) = v(\phi) = 1$.
+
+                Enfim, por $(vCe)$, temos $v(\neg \phi) = v(\neg \neg \alpha) = v(\alpha) = 1$.
+        \end{provaporcasos}
+
+
+    \end{proof}
+
+
+    
+    
+    \begin{teorema}[Metateorema da dedução para $\conhil$]\label{teo:deducao}
+        Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \pazocal{L}_{\Sigma}$:
+
+        \centering
+        {\normalfont{} $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.}
+    \end{teorema}
+
+    O seguinte lema torna a prova do teorema mais imediata:
     \begin{lema}\label{lem:id}
         A derivação $\Gamma \conhil \alpha \to \alpha$ é válida para todo $\Gamma \cup \{\alpha\} \subseteq \pazocal{L}_{\Sigma}$.
     \end{lema}
@@ -314,14 +383,6 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             & \text{5. } \alpha \to \alpha\tag{MP 3,4}
         \end{align*}
     \end{proof}
-    
-    
-    \begin{teorema}[Metateorema da dedução para $\conhil$]\label{teo:deducao}
-        Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \pazocal{L}_{\Sigma}$:
-
-        \centering
-        {\normalfont{} $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.}
-    \end{teorema}
 
     \begin{proof}[Prova do Teorema~\ref{teo:deducao}] A prova será dividida em duas partes:\\
         ($\Longleftarrow$) Supondo $\Gamma \conhil \alpha \to \beta$, então existe uma sequência de derivação $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha \to \beta$. 
