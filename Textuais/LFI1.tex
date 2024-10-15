@@ -58,8 +58,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     O cálculo de Hilbert definido a seguir foi apresentado por~\citeshort{Carnielli_Coniglio_2016} como alternativa ao que havia sido definido em trabalhos anteriores~\cite{carnielli2000formal,carnielli2007}. Segundo os autores, esta definição evidencia algumas propriedades interessantes da negação $\neg$ como as leis de De Morgan.
 
 
-    \begin{definicao}[\lfium{}]\label{def:lfi1}
-        \migs{Não acho que seja uma boa ideia deixar o nome da definição apenas \lfium.}
+    \begin{definicao}[Cálculo de Hilbert para \lfium{}]\label{def:hilbert_lfi1}
         A lógica \lfium{} é definida a partir da relação de consequência sintática $\conhil{}$ sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte cálculo de Hilbert:
 
         \noindent\textbf{Axiomas}:
@@ -95,8 +94,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \qed{}  
     \end{definicao}
 
-    Os axiomas (\textbf{Ax1}) {--} (\textbf{Ax10}) e a regra de inferência \textbf{MP} (\textit{modus ponens}) são importados da lógica proposicional clássica. O axioma (\textbf{bc1}) é chamado de \textit{princípio da explosão gentil}. Os axiomas (\textbf{neg}$\lor_{1}$) {--} (\textbf{neg}$\to_{2}$) expressam as leis de De Morgan em relação a negação paraconsistente $\neg$.
-    \migs{E os outros axiomas? Tipo o~\ref{ax:axce} ou~\ref{ax:axcf}?}
+    Os axiomas (\textbf{Ax1}) {--} (\textbf{Ax10}) e a regra de inferência \textbf{MP} (\textit{modus ponens}) são importados da lógica proposicional clássica. O axioma (\textbf{bc1}) é chamado de \textit{princípio da explosão gentil}. Os axiomas (\textbf{neg}$\lor_{1}$) {--} (\textbf{neg}$\to_{2}$) expressam as leis de De Morgan em relação a negação paraconsistente $\neg$. Os axiomas (\textbf{ce}) e (\textbf{cf}) expressam, respectivamente, a introdução e a eliminação da dupla negação. O axioma (\textbf{ci}) representa a inconsistência de uma informação.
 
     Com isso, uma derivação em \lfium{} pode ser definida:
     
@@ -116,7 +114,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \end{exemplo}
 
     \begin{proof}[Prova do Exemplo~\ref{ex:1}]
-        A seguinte derivação completa a prova
+        A seguinte derivação completa a prova:
         \begin{align*}
             1.~& \circ \psi \tag{Premissa} \\
             2.~& \alpha \to (\psi \land \neg \psi) \tag{Premissa} \\
@@ -137,8 +135,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \end{align*}
     \end{proof}
 
-    \migs{Seria legal ter \textit{algum} texto aqui só pra não ir seco de uma prova para o início de outra seção, mas também não é estritamente necessário.}
-
+    \helena{enfiar algum texto aqui}.
 \section{Semântica}\label{sec:semantica}
     De forma geral, a semântica é o estudo de como um sistema de símbolos (uma linguagem) internaliza informações, ou seja, é o estudo de como interpretar os símbolos de uma linguagem~\cite{brown2005encyclopedia}. Num sistema lógico, \textit{matrizes lógicas} são comumente usadas para estabelecer o comportamento esperado dos conectivos lógicos de sua assinatura. Outra forma de compreender a semântica de um sistema lógico é definir uma função conhecida como \textit{valoração}, que define uma \textit{semântica de valorações}. Nesta seção, a semântica da \lfium{} será definida de dois jeitos distintos: a partir de uma \textit{matriz lógica} e a partir de uma \textit{valoração}. Ambas serão provadas equivalentes, a fim de facilitar a prova de metateoremas na Seção~\ref{sec:metateoremas}. As definições e notações para os conceitos de \textit{álgebra} definidos aqui baseiam-se nos trabalhos de~\citeshort{Carnielli_Coniglio_2016} e de~\citeshort{Sikorski1966-SIKAOF}.
     
@@ -298,17 +295,15 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
                 
 \section{Metateoremas}\label{sec:metateoremas}
-\helena{adicionar outros metateoremas do artigo das database?!?@!@?!} \migs{Sabe esse é o tipo de coisa que você pergunta pra mim ou para a Karina.} A metalógica é uma parte da metamatemática que se restringe ao estudo de sistemas lógicos através de métodos matemáticos, desenvolvendo metateoremas~\cite{Jacquette2002-JACACT-7}. Um metateorema é uma prova sobre propriedades de um sistema formal, sobretudo sobre suas relações de consequência, utilizando uma metalinguagem~\cite{Tarski1956-TARLSM,Barile_2024}. Uma propriedade provada através de um metateorema é chamada de \textit{metapropriedade} \migs{Convém reescrever esse começo de parágrafo. A primeira frase não tem qualquer conexão com o restante do parágrafo (leia ele com e sem a primeira frase e veja se a sua ausência torna o texto menos compreensível), as duas outras frases estão soltas e poderiam ser melhor ligadas entre si.}. Num sistema lógico munido com uma relação de consequência sintática $\vdash$ e uma relação de consequência semântica $\vDash$ a metapropriedade da correção, que afirma que tudo que é derivável em $\vdash$ é válido em $\vDash$, é uma característica fundamental para que o sistema seja útil em alguma medida. Outra propriedade interessante é a completude, que afirma que tudo que é válido em $\vDash$ pode ser provado em $\vdash$. Antes de desenvolver as provas destes metateoremas, convém apresentar algumas definições pertinentes e provar lemas que facilitarão o desenvolvimento das provas mais extensas.
+\helena{adicionar outros metateoremas do artigo das database?!?@!@?!} \migs{Sabe esse é o tipo de coisa que você pergunta pra mim ou para a Karina.} \helena{UE MAS EU TO PERGUNTANDO PRA VCS AO FAZER ESSE COMENTARIO\ldots}A metalógica é uma parte da metamatemática que se restringe ao estudo de sistemas lógicos através de métodos matemáticos, desenvolvendo metateoremas~\cite{Jacquette2002-JACACT-7}. Um metateorema é uma prova sobre propriedades de um sistema formal, sobretudo sobre suas relações de consequência, utilizando uma metalinguagem~\cite{Tarski1956-TARLSM,Barile_2024}. Estas propriedads são chamadas de \textit{metapropriedades}. Num sistema lógico munido com uma relação de consequência sintática $\vdash$ e uma relação de consequência semântica $\vDash$ a metapropriedade da correção, que afirma que tudo que é derivável em $\vdash$ é válido em $\vDash$, é uma característica fundamental para que o sistema seja útil em alguma medida. Outra propriedade interessante é a completude, que afirma que tudo que é válido em $\vDash$ pode ser provado em $\vdash$. Antes de desenvolver as provas destes metateoremas, convém apresentar algumas definições pertinentes e provar lemas que facilitarão o desenvolvimento das provas mais extensas.
 
-    \migs{Nesse parágrafo você conclui seu argumento com ``Portanto'' sendo que você não aprensentou muito bem pq vai provar elas equivalentes. Fiz algumas sugestões de como pode ficar melhor.}
-    \helena{pode ser que isso mude de lugar. depois vejo} Na Seção~\ref{sec:semantica}, foram apresentadas duas formas distintas de definir a semântica da lógica \lfium{}. A semântica matricial é simples e intuitiva, nos permitindo demonstrar a validade de uma inferência com facilidade. Contudo, as provas de correção e completude em relação à matriz lógica são \migscortar{mais extensas quando comparadas com as provas em relação à semântica de valorações.}{ extensas e complexas de serem feitas (não sei se é o caso, mas fale coisas nessas linhas). Ao mesmo tempo, a semântica de valorações é mais complexa de ser utilizada e menos intutiva, porém suas provas de correção e completude são simples, especialmente se comparadas com a semântica matricial.} Portanto, ambas serão provadas equivalentes, ou seja, \migs{provaremos que} uma inferência é válida na semântica matricial sse é válida na semântica de valorações:
+    Na Seção~\ref{sec:semantica}, foram apresentadas duas formas distintas de definir a semântica da lógica \lfium{}. A semântica matricial é simples e intuitiva, nos permitindo demonstrar a validade de uma inferência com facilidade. Contudo, as provas de correção e completude em relação à matriz lógica são extensas e complexas de serem feitas. Ao mesmo tempo, a semântica de valorações é mais complexa de ser utilizada e menos intutiva, porém suas provas de correção e completude são simples, especialmente se comparadas com a semântica matricial. Portanto, ambas serão provadas equivalentes, ou seja, provaremos que uma inferência é válida na semântica matricial sse é válida na semântica de valorações. 
+    
+    Os lemas e teoremas desenvolvidos nesta seção seguem um caminho baseado no que foi apresentado por~\citeshort{Carnielli_Coniglio_2016} e por~\citeshort{DaCosta1977-NEWASA-3}, com modificações para se adequarem ao presente trabalho.
 
-            
     \begin{lema}[Equivalência entre a semântica de matrizes e a semântica de valorações]\label{lem:matval}
         Seja $v$ uma valoração em $V^{\lfium}$, então existe uma valoração $h$ sobre $\pazocal{M}_{\lfium}$ tal que, para todo $\phi \in \pazocal{L}_{\Sigma}$, $v(\phi) = 1$ sse $h(\phi) \in \{1, \meio{}\}$.
     \end{lema}
-
-    \migs{Cite de quem você tirou essa prova, se não parece que é uma prova original sua.}
 
     \begin{proof}[Prova do Lema~\ref{lem:matval}]
         Seja $v$ uma valoração em $V^{\lfium}$. Então, considere a valoração $h$ sobre $\pazocal{M}_{\lfium}$ tal que para toda variável proposicional $p$:
@@ -350,69 +345,92 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \begin{provaporcasos}
             \casodeprova{} $\phi = \neg \alpha$.
                 
-                \migs{Eu fiquei alguns minutos olhando para o texto para tentar entender o que raios era ``(a)'', ``(b)'' e ``(c)''. Por favor use o comando de subcasos que eu fiz \textit{\textbf{exatamente}} para situações desse tipo.}
+                \begin{provaporsubcasos}
+                    \subcasodeprova{$h(\phi) = 1$ sse $v(\phi) = 1$ e $v(\neg \phi) = 0$.}
+                        
+                        ($\Longrightarrow$) Supondo $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 1$, vamos provar $v(\phi) = 1$ e $v(\neg \phi) = 0$. 
+                        
+                        Pela matriz de $\neg$ temos $h(\alpha) = 0$. Então, por (HI), $v(\alpha) = 0$. 
+                        
+                        Por $(vNeg)$ temos $v(\neg \alpha) = v(\phi) = 1$. Enfim, por $(vCf)$, $v(\neg \phi) = v(\neg \neg \alpha) = v(\alpha) = 0$
+                        
+                        
+                        ($\Longleftarrow$) Supondo $v(\phi) = v(\neg \alpha) = 1$ e $v(\neg \phi) = v(\neg \neg \alpha) = 0$, vamos provar $h(\phi) = h(\neg \alpha) = 1$.
+                        
+                        Por $(vCe)$ temos $v(\neg \neg \alpha) = v(\alpha) = 0$.
+                        
+                        Por (HI) temos $h(\alpha) = 0$. Então, $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 1$, pela matriz de $\neg$.
+                    
+                    \subcasodeprova{$h(\phi) = \meio{}$ sse $v(\phi) = 1$ e $v(\neg \phi) = 1$.}
+                    
+                        ($\Longrightarrow$) Supondo $h(\phi) = h(\neg \alpha) = \meio{}$, vamos provar $v(\phi) = 1$ e $v(\neg \phi) = 1$.
+                        
+                        Pela matriz de $\neg$ temos $h(\alpha) = \meio{}$. Então, por (HI), $v(\alpha) = 1$ e $v(\neg \alpha) = v(\phi) = 1$.
+                        
+                        Enfim, por $(vCe)$ temos $v(\neg \phi) = v(\neg \neg \alpha) = v(\alpha) = 1$.
+                        
+                        ($\Longleftarrow$) Supondo $v(\phi) = v(\neg \alpha) = 1$ e $v(\neg \phi) = v(\neg \neg \alpha)= 1$, vamos provar $h(\phi) = \meio{}$.
 
-                (a) ($\Longrightarrow$) Supondo $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 1$, vamos provar $v(\phi) = 1$ e $v(\neg \phi) = 0$. 
-                
-                Pela matriz de $\neg$ temos $h(\alpha) = 0$. Então, por (HI), $v(\alpha) = 0$. 
+                        Por $(vCf)$ temos $v(\alpha) = v(\neg \neg \alpha) = 1$.
+                        
+                        Por (HI), temos $h(\alpha) = \meio{}$. Então, pela matriz de $\neg$, temos $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = \meio{}$.
+                    
+                    \subcasodeprova{$h(\phi) = 0$ sse $v(\phi) = 0$.}
+                        
+                        ($\Longrightarrow$) Supondo $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 0$, vamos provar $v(\phi) = v(\neg \alpha) = 0$.
+                        
+                        Pela matriz de $\neg$ temos $h(\alpha) = 1$. Então, por (HI), $v(\alpha) = 1$ e $v(\phi) = v(\neg \alpha) = 0$.
+                    
+                        ($\Longleftarrow$) Supondo $v(\phi) = v(\neg \alpha) = 0$, vamos provar $h(\phi) = h(\neg \alpha) = 0$.
+                    
+                        Por $(vNeg)$ temos $v(\alpha) = 1$. Logo, por (HI), temos $h(\alpha) = 1$.
+                        
+                        Pela matriz de $\neg$ temos $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 0$.
+                \end{provaporsubcasos}
+                    
+                    \casodeprova{} $\phi = \circ \alpha$.
+                    
+                    \begin{provaporsubcasos}
+                        
+                        \subcasodeprova{$h(\phi) = 1$ sse $v(\phi) = 1$ e $v(\neg \phi) = 0$.}
 
-                Por $(vNeg)$ temos $v(\neg \alpha) = v(\phi) = 1$. Enfim, por $(vCf)$, $v(\neg \phi) = v(\neg \neg \alpha) = v(\alpha) = 0$
+                            ($\Longrightarrow$) Supondo $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 1$, vamos provar $v(\phi) = 1$ e $v(\neg \phi) = 0$.
+                            
+                            Pela matriz de $\circ$, temos $h(\alpha) = 1$ ou $h(\alpha) = 0$.
+                            \begin{provaporsubsubcasos}
+                                \subsubcasodeprova{$h(\alpha) = 1$.} 
+                                    
+                                    Por (HI), temos $v(\alpha) = 1$ e $v(\neg \alpha) = 0$.
+                                
+                                    Por $(vCi)$ temos $v(\neg \phi) = v(\neg \circ \alpha) = 0$. Então, por $(vNeg)$, temos $v(\phi) = v(\circ \alpha) = 1$.
+                                
+                                \subsubcasodeprova{$h(\alpha) = 0$.}
+                                    
+                                    Por (HI), temos $v(\alpha) = 0$.
+                                
+                                    Por $(vCi)$, temos $v(\neg \phi) = v(\neg \circ \alpha) = 0$. Então, por $(vNeg)$ temos $v(\phi) = 1$.
 
-                (a) ($\Longleftarrow$) Supondo $v(\phi) = v(\neg \alpha) = 1$ e $v(\neg \phi) = v(\neg \neg \alpha) = 0$, vamos provar $h(\phi) = h(\neg \alpha) = 1$.
+                            \end{provaporsubsubcasos}
+                            
+                            
+                            
+                            
+                            ($\Longleftarrow$) Supondo $v(\phi) = v(\circ \alpha) = 1$ e $v(\neg \phi) = v(\neg \circ \alpha) = 0$, vamos provar $h(\phi) = h(\circ \alpha) = 1$.
+                            
+                        \subcasodeprova{$h(\phi) = \meio{}$ sse $v(\phi) = 1$ e $v(\neg \phi) = 1$.}
 
-                Por $(vCe)$ temos $v(\neg \neg \alpha) = v(\alpha) = 0$.
+                            ($\Longrightarrow$) Supondo $h(\phi) = h(\circ \alpha) = \meio{}$, vamos provar $v(\phi) = 1$ e $v(\neg \phi) = 1$.\helena{TO BE ACABADO.}
+                            
+                            
+                            ($\Longleftarrow$) Supondo $v(\phi) = v(\circ \alpha) = 1$ e $v(\neg \phi) = v(\neg \circ \alpha)= 1$, vamos provar $h(\phi) = \meio{}$.
+                        
+                        \subcasodeprova{$h(\phi) = 0$ sse $v(\phi) = 0$.}
 
-                Por (HI) temos $h(\alpha) = 0$. Então, $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 1$, pela matriz de $\neg$.
-
-                (b) ($\Longrightarrow$) Supondo $h(\phi) = h(\neg \alpha) = \meio{}$, vamos provar $v(\phi) = 1$ e $v(\neg \phi) = 1$.
-
-                Pela matriz de $\neg$ temos $h(\alpha) = \meio{}$. Então, por (HI), $v(\alpha) = 1$ e $v(\neg \alpha) = v(\phi) = 1$.
-
-                Enfim, por $(vCe)$ temos $v(\neg \phi) = v(\neg \neg \alpha) = v(\alpha) = 1$.
-
-                (b) ($\Longleftarrow$) Supondo $v(\phi) = v(\neg \alpha) = 1$ e $v(\neg \phi) = v(\neg \neg \alpha)= 1$, vamos provar $h(\phi) = \meio{}$.
-
-                Por $(vCf)$ temos $v(\alpha) = v(\neg \neg \alpha) = 1$.
-
-                Por (HI), temos $h(\alpha) = \meio{}$. Então, pela matriz de $\neg$, temos $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = \meio{}$.
-
-                (c) ($\Longrightarrow$) Supondo $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 0$, vamos provar $v(\phi) = v(\neg \alpha) = 0$.
-
-                Pela matriz de $\neg$ temos $h(\alpha) = 1$. Então, por (HI), $v(\alpha) = 1$ e $v(\phi) = v(\neg \alpha) = 0$.
-
-                (c) ($\Longleftarrow$) Supondo $v(\phi) = v(\neg \alpha) = 0$, vamos provar $h(\phi) = h(\neg \alpha) = 0$.
-
-                Por $(vNeg)$ temos $v(\alpha) = 1$. Logo, por (HI), temos $h(\alpha) = 1$.
-
-                Pela matriz de $\neg$ temos $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 0$.
-
-            \casodeprova{} $\phi = \circ \alpha$.
-
-            (a) ($\Longrightarrow$) Supondo $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 1$, vamos provar $v(\phi) = 1$ e $v(\neg \phi) = 0$.
-
-            Pela matriz de $\circ$, temos $h(\alpha) = 1$ ou $h(\alpha) = 0$.
-
-            (a.1) Se $h(\alpha) = 1$, então, por (HI), temos $v(\alpha) = 1$ e $v(\neg \alpha) = 0$.
-
-            Por $(vCi)$ temos $v(\neg \phi) = v(\neg \circ \alpha) = 0$. Então, por $(vNeg)$, temos $v(\phi) = v(\circ \alpha) = 1$.
-
-            (a.2) Se $h(\alpha) = 0$, então, por (HI), temos $v(\alpha) = 0$.
-
-            Por $(vCi)$, temos $v(\neg \phi) = v(\neg \circ \alpha) = 0$. Então, por $(vNeg)$ temos $v(\phi) = 1$.
-
-            (a) ($\Longleftarrow$) Supondo $v(\phi) = v(\circ \alpha) = 1$ e $v(\neg \phi) = v(\neg \circ \alpha) = 0$, vamos provar $h(\phi) = h(\circ \alpha) = 1$.
-
-
-            (b) ($\Longrightarrow$) Supondo $h(\phi) = h(\circ \alpha) = \meio{}$, vamos provar $v(\phi) = 1$ e $v(\neg \phi) = 1$.\helena{TO BE ACABADO.}
-
-           
-            (b) ($\Longleftarrow$) Supondo $v(\phi) = v(\circ \alpha) = 1$ e $v(\neg \phi) = v(\neg \circ \alpha)= 1$, vamos provar $h(\phi) = \meio{}$.
-
-            
-            (c) ($\Longrightarrow$) Supondo $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 0$, vamos provar $v(\phi) = v(\circ \alpha) = 0$.
-
-            (c) ($\Longleftarrow$) Supondo $v(\phi) = v(\circ \alpha) = 0$, vamos provar $h(\phi) = h(\circ \alpha) = 0$.
-
+                            ($\Longrightarrow$) Supondo $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 0$, vamos provar $v(\phi) = v(\circ \alpha) = 0$.
+                        
+                            ($\Longleftarrow$) Supondo $v(\phi) = v(\circ \alpha) = 0$, vamos provar $h(\phi) = h(\circ \alpha) = 0$.
+                        
+                \end{provaporsubcasos}
            
 
 
@@ -423,7 +441,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \end{proof}
 
 
-    \migs{Seria interessante você explicar pq está provando o metateorema da dedução, mesmo que seja apenas uma referência a uma parte anterior do texto.}    
+    O metateorema da dedução é uma propriedade conveniente de ser provada, já que nos permite utilizar características particulares de lógicas tarskianas a fim de desenvolver provas de outros metateoremas.
     
     \begin{teorema}[Metateorema da dedução para $\conhil$]\label{teo:deducao}
         Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \pazocal{L}_{\Sigma}$:
@@ -437,8 +455,6 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         A derivação $\Gamma \conhil \alpha \to \alpha$ é válida para todo $\Gamma \cup \{\alpha\} \subseteq \pazocal{L}_{\Sigma}$.
     \end{lema}
     
-    \migs{Reitero o que disse sobre citar de onde tiraste a prova, apesar que esse caso é bem bobinho}
-
     \begin{proof}[Prova do Lema~\ref{lem:id}]
         A seguinte sequência de derivação demonstra o lema:
         
@@ -508,12 +524,12 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 
             \end{provaporcasos}
             
-            Portanto, $\Gamma \conhil \alpha \to \phi_{1}$ segue para o caso \cortar{da} \textbf{\textsc{Base}}.
+            Portanto, $\Gamma \conhil \alpha \to \phi_{1}$ segue para o caso \textbf{\textsc{Base}}.
 
         \noindent \textbf{\textsc{Hipótese de indução (HI)}} Para qualquer sequência de derivação $\Gamma, \alpha \conhil \beta$ de tamanho $i$, com $i < n$, tem-se $\Gamma \conhil \alpha \to \beta$. 
 
         \noindent \textbf{\textsc{Passo}}
-        É preciso mostrar que $\Gamma, \alpha \conhil \beta$ segue caso a dedução $\Gamma, \alpha \conhil \beta$ seja de tamanho $n$. Então, vamos supor $\Gamma, \alpha \conhil \phi_{n}$ e mostrar $\Gamma \conhil \alpha \to \phi_{n}$. \migs{Quando escrevo isso são 8 da noite e eu estou cansado, mas você tem certeza que no começo dessa parte deveria ser $\Gamma, \alpha \conhil \beta$ e não $\Gamma \conhil \alpha \to \beta$?}
+        É preciso mostrar que $\Gamma \conhil \alpha \to \beta$ segue caso a dedução $\Gamma, \alpha \conhil \beta$ seja de tamanho $n$. Então, vamos supor $\Gamma, \alpha \conhil \phi_{n}$ e mostrar $\Gamma \conhil \alpha \to \phi_{n}$.
         
         Ao analisar a obtenção de $\phi_{n}$ na sequência de derivação de $\Gamma, \alpha\conhil \phi_{n}$, existem três casos a se considerar:
         \begin{enumerate}
@@ -548,6 +564,8 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \end{proof}
 
 
+    No desenvolvimento das provas que seguem a abreviação MTD representará o metateorema da dedução.
+    
     Com a prova do metateorema da dedução para o cálculo de Hilbert da \lfium{}, os seguintes corolários são imediatos:
 
     \begin{corolario}\label{cor:intro_ou_esq}
@@ -561,7 +579,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         Seja $\Gamma \cup \{\alpha, \beta, \phi\} \subseteq \pazocal{L}_{\Sigma}$ um conjunto de fórmulas qualquer.
         
         Suponha $\Gamma, \alpha \conhil \phi \text{ e }\Gamma, \beta \conhil \phi$. 
-        Então, pelo metateorema da dedução (MTD) \migs{Você deveria introduzir essa abreviação antes, fica estranho (MTD) (Teorema 1)} (Teorema~\ref{teo:deducao}), temos $\Gamma \conhil \alpha \to \phi \text{ e }\Gamma \conhil \beta \to \phi$.
+        Então, por MTD (Teorema~\ref{teo:deducao}), temos $\Gamma \conhil \alpha \to \phi \text{ e }\Gamma \conhil \beta \to \phi$.
 
         A seguinte sequência de derivação mostra $\Gamma, \alpha \lor \beta \conhil \phi$:
         \begin{align*}
@@ -586,7 +604,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \begin{proof}[Prova do Corolário~\ref{cor:prova_por_casos}]
         Seja $\Gamma \cup \{\alpha, \beta, \phi\} \subseteq \pazocal{L}_{\Sigma}$ um conjunto de fórmulas qualquer.
 
-        Suponha $\Gamma, \alpha \conhil \phi \text{ e }\Gamma, \neg\alpha \conhil \phi$. Pelo Corolário~\ref{cor:intro_ou_esq}, temos $\Gamma, \alpha \lor \neg \alpha \conhil \phi$. Pelo metateorema da dedução (MTD) (Teorema~\ref{teo:deducao}), temos $\Gamma \conhil (\alpha \lor \neg \alpha) \to \phi$.
+        Suponha $\Gamma, \alpha \conhil \phi \text{ e }\Gamma, \neg\alpha \conhil \phi$. Pelo Corolário~\ref{cor:intro_ou_esq}, temos $\Gamma, \alpha \lor \neg \alpha \conhil \phi$. Por MTD (Teorema~\ref{teo:deducao}), temos $\Gamma \conhil (\alpha \lor \neg \alpha) \to \phi$.
 
         A seguinte sequência de derivação mostra $\Gamma\conhil \phi$:
         \begin{align*}
