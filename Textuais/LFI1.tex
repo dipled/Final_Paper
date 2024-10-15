@@ -400,13 +400,13 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                             \begin{provaporsubsubcasos}
                                 \subsubcasodeprova{$h(\alpha) = 1$.} 
                                     
-                                    Por (HI), temos $v(\alpha) = 1$ e $v(\neg \alpha) = 0$.
+                                    Por (HI) temos $v(\alpha) = 1$ e $v(\neg \alpha) = 0$.
                                 
                                     Por $(vCi)$ temos $v(\neg \phi) = v(\neg \circ \alpha) = 0$. Então, por $(vNeg)$, temos $v(\phi) = v(\circ \alpha) = 1$.
                                 
                                 \subsubcasodeprova{$h(\alpha) = 0$.}
                                     
-                                    Por (HI), temos $v(\alpha) = 0$.
+                                    Por (HI) temos $v(\alpha) = 0$.
                                 
                                     Por $(vCi)$, temos $v(\neg \phi) = v(\neg \circ \alpha) = 0$. Então, por $(vNeg)$ temos $v(\phi) = 1$.
 
@@ -416,10 +416,25 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                             
                             
                             ($\Longleftarrow$) Supondo $v(\phi) = v(\circ \alpha) = 1$ e $v(\neg \phi) = v(\neg \circ \alpha) = 0$, vamos provar $h(\phi) = h(\circ \alpha) = 1$.
+
+                            Por $(vCon)$ temos $v(\alpha) = 0$ ou $v(\neg \alpha) = 0$.
+
+                            \begin{provaporsubsubcasos}
+                                \subsubcasodeprova{$v(\alpha) = 0$.}
+
+                                    Por (HI) temos $h(\alpha) = 0$. Então, pela matriz de $\circ$, temos $h(\phi) = h(\circ \alpha) = 1$.
+                                
+                                \subsubcasodeprova{$v(\neg \alpha) = 0$.} 
+
+                                    Por $(vNeg)$ temos $v(\alpha) = 1$.
+
+                                    Por (HI) temos $h(\alpha) = 1$. Então, pela matriz de $\circ$, temos $h(\phi) = h(\circ \alpha) = 1$.
+                            \end{provaporsubsubcasos}
                             
                         \subcasodeprova{$h(\phi) = \meio{}$ sse $v(\phi) = 1$ e $v(\neg \phi) = 1$.}
 
-                            ($\Longrightarrow$) Supondo $h(\phi) = h(\circ \alpha) = \meio{}$, vamos provar $v(\phi) = 1$ e $v(\neg \phi) = 1$.\helena{TO BE ACABADO.}
+                            ($\Longrightarrow$) Supondo $h(\phi) = h(\circ \alpha) = \meio{}$, vamos provar $v(\phi) = 1$ e $v(\neg \phi) = 1$.
+
                             
                             
                             ($\Longleftarrow$) Supondo $v(\phi) = v(\circ \alpha) = 1$ e $v(\neg \phi) = v(\neg \circ \alpha)= 1$, vamos provar $h(\phi) = \meio{}$.
