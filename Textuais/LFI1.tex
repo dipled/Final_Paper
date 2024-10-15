@@ -536,7 +536,19 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     \qquad{}sse, por $(vOr)$, temos $v(\neg \alpha) = 1$ e $v(\neg \beta) = 1$ e temos $v(\alpha \lor \beta) = 1$ ou $v(\alpha \lor \beta) = 1$ ou $v(\alpha \lor \beta) = 1$
                     
                     \qquad{}sse, por $(vDM_{\lor})$ e pela idempotência da disjunção, temos $v(\alpha \lor \beta) = 1$ e $v(\neg(\alpha \lor \beta)) = 1$.
+
+                \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 0$ sse $v(\phi) = v(\alpha \lor \beta) = 0$.}
+
+                    Temos $h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 0$
+
+                    \qquad{}sse, pela matriz de $\lor$, temos $h(\alpha) = 0$ e $h(\beta) = 0$
+
+                    \qquad{}sse, por (HI), temos $v(\alpha) = 0$ e $v(\beta) = 0$
+
+                    \qquad{}sse, por $(vOr)$, temos $v(\alpha \lor \beta) = 0$.
+
             \end{provaporsubcasos}
+
 
         \end{provaporcasos}
 
