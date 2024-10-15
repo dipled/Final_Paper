@@ -424,27 +424,80 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
                             \subsubcasodeprova{$v(\alpha) = 0$.}
 
-                                Por (HI) temos $h(\alpha) = 0$. Então, pela matriz de $\circ$, temos $h(\phi) = h(\circ \alpha) = 1$.
+                                Por (HI) temos $h(\alpha) = 0$. Então, pela matriz de $\circ$, temos $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 1$.
                             
                             \subsubcasodeprova{$v(\neg \alpha) = 0$.} 
 
                                 Por $(vNeg)$ temos $v(\alpha) = 1$.
 
-                                Por (HI) temos $h(\alpha) = 1$. Então, pela matriz de $\circ$, temos $h(\phi) = h(\circ \alpha) = 1$.
+                                Por (HI) temos $h(\alpha) = 1$. Então, pela matriz de $\circ$, temos $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 1$.
                         \end{provaporsubsubcasos}
                         
                     \subcasodeprova{$h(\phi) = \meio{}$ sse $v(\phi) = 1$ e $v(\neg \phi) = 1$.}
+                        
+                        ($\Longrightarrow$) Pela matriz lógica de $\circ$, nunca temos $h(\phi) = h(\circ \alpha) = \meio{}$.
+                        
+                        ($\Longleftarrow$) Supondo $v(\phi) = 1$ e $v(\neg \phi) = 1$, então, por $(vCon)$ aplicado a $v(\phi) = v(\alpha) = 1$, temos $v(\alpha) = 0$ ou $v(\neg \alpha) = 0$. 
+                        
+                        Entretanto, por $(vCi)$ aplicado a $v(\neg \phi) = v(\neg \alpha) = 1$, temos $v(\alpha) = 1$ e $v(\neg \alpha) = 1$.
+
+                        Portanto, nunca temos $v(\phi) = 1$ e $v(\neg \phi) = 1$.
+
+                        
                     
                     \subcasodeprova{$h(\phi) = 0$ sse $v(\phi) = 0$.}
 
                         ($\Longrightarrow$) Supondo $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 0$, vamos provar $v(\phi) = v(\circ \alpha) = 0$.
+
+                        Pela matriz de $\circ$, temos $h(\alpha) = \meio{}$.
+
+                        Por (HI), temos $v(\alpha) = 1$ e $v(\neg \alpha) = 1$. 
+                        
+                        Por $(vCon)$, temos $v(\phi) = v(\circ \alpha) = 0$.
                     
                         ($\Longleftarrow$) Supondo $v(\phi) = v(\circ \alpha) = 0$, vamos provar $h(\phi) = h(\circ \alpha) = 0$.
+
+                        Por $(vCe)$ temos $v(\neg \neg \circ \alpha) = 0$.
+
+                        Por $(vNeg)$ temos $v(\neg \circ \alpha) = 1$.
+
+                        Por $(vCi)$ temos $v(\alpha) = 1$ e $v(\neg \alpha) = 1$.
+
+                        Por (HI) temos $h(\alpha) = \meio{}$.
+
+                        Pela matriz de $\circ$, temos $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 0$.
                     
             \end{provaporsubcasos}
         
+            \casodeprova{$\phi = \alpha \land \beta$.}
 
+            \begin{provaporsubcasos}
+                \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = 1$ sse $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 0$.}
 
+                    Teremos $h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 1$
+
+                    \qquad{}sse, pela matriz de $\land$, $h(\alpha) = 1$ e $h(\beta) = 1$
+
+                    \qquad{}sse, por (HI), $v(\alpha) = 1$, $v(\neg \alpha) = 0$, $v(\beta) = 1$ e $v(\neg \beta) = 0$
+
+                    \qquad{}sse, por $(vAnd)$, $v(\alpha \land \beta) = 1$
+
+                    \qquad{}sse, por $(vDM_{\land})$, $v(\neg(\alpha \land \beta)) = 0$.
+            
+                \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = \meio{}$ sse $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 1$.}
+
+                    Teremos $h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = \meio{}$
+
+                    \qquad{}sse, pela matriz de $\land$, temos $h(\alpha), h(\beta) \in \{1, \meio{}\}$ e temos $h(\alpha) = \meio{}$ ou $h(\beta) = \meio{}$
+                    
+                    \qquad{}sse, por (HI), temos $v(\alpha) = 1$ e $v(\beta) = 1$ e temos $v(\alpha) = v(\neg \alpha) = 1$ ou $v(\beta) = v(\neg \beta) = 1$
+
+                    \qquad{}sse, pela distributividade da conjunção sobre a disjunção e pela idempotência da conjunção, temos $v(\alpha) = 1$, $v(\neg \alpha) = 1$ e $v(\beta) = 1$ ou temos $v(\alpha) = 1$, $v(\neg \beta) = 1$ e $v(\beta) = 1$
+
+                
+            \end{provaporsubcasos}
+
+            
 
         \end{provaporcasos}
 
