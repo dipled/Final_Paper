@@ -492,7 +492,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
                     \qquad{}sse, pela distributividade da conjunção sobre a disjunção e pela idempotência da conjunção, temos $v(\alpha) = 1$, $v(\neg \alpha) = 1$ e $v(\beta) = 1$ ou temos $v(\alpha) = 1$, $v(\neg \beta) = 1$ e $v(\beta) = 1$
 
-                    \qquad{}sse, pela eliminação da disjunção, temos $v(\alpha) = 1$ e $v(\beta) = 1$ e temos $v(\neg \alpha)$ ou $v(\neg \beta)$
+                    \qquad{}sse, pela eliminação da disjunção, temos $v(\alpha) = 1$ e $v(\beta) = 1$ e temos $v(\neg \alpha) = 1$ ou $v(\neg \beta) = 1$
 
                     \qquad{}sse, por $(vAnd)$ e $(vDM_{\land})$, temos $v(\alpha \land \beta) = 1$ e $v(\neg (\alpha \land \beta)) = 1$.
 
@@ -520,6 +520,16 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     \qquad{}sse, por (HI), $v(\alpha) = v(\beta) = 1$ e $v(\neg \alpha) = v(\neg \beta) = 0$
 
                     \qquad{}sse, por $(vOr)$, $v(\alpha \lor \beta) = 1$ e, por $(vDM_{\lor})$, $v(\neg(\alpha \lor \beta)) = 0$.
+
+                \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = \meio{0}$ sse $v(\phi) = v(\alpha \lor \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \lor \beta)) = 1$.}
+
+                    Temos $h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = \meio{}$
+
+                    \qquad{}sse, pela matriz de $\lor$, temos $h(\alpha) = h(\beta) = \meio{}$ ou temos $h(\alpha) = \meio{}$ e $h(\beta) = 0$ ou temos $h(\alpha) = 0$ e $h(\beta) = \meio{}$.
+
+                    \qquad{}sse, por (HI), temos $v(\alpha) = 1$, $v(\neg \alpha) = 1$, $v(\beta) = 1$ e $v(\neg \beta) = 1$ ou temos $v(\alpha) = 1$, $v(\neg \alpha) = 1$ e $v(\beta) = 0$ ou temos $v(\alpha) = 0$, $v(\beta) = 1$ e $v(\neg \beta) = 1$
+
+                    \qquad{}sse, por $(vNeg)$, temos $v(\alpha) = 1$, $v(\neg \alpha) = 1$, $v(\beta) = 1$ e $v(\neg \beta) = 1$ ou temos $v(\alpha) = 1$, $v(\neg \alpha) = 1$, $v(\beta) = 0$ e $v(\neg \beta) = 1$ ou temos $v(\alpha) = 0$, $v(\neg \alpha) = 1$, $v(\beta) = 1$, $v(\neg \beta) = 1$
 
             \end{provaporsubcasos}
 
