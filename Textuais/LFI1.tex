@@ -411,13 +411,17 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                             
                                 Por $(vCi)$, temos $v(\neg \phi) = v(\neg \circ \alpha) = 0$. Então, por $(vNeg)$ temos $v(\phi) = 1$.
 
+                                \newcounter{buffer}
+                                \setcounter{buffer}{\theSubSubCasos}
                         \end{provaporsubsubcasos}
                         
                         ($\Longleftarrow$) Supondo $v(\phi) = v(\circ \alpha) = 1$ e $v(\neg \phi) = v(\neg \circ \alpha) = 0$, vamos provar $h(\phi) = h(\circ \alpha) = 1$.
-
+                        
                         Por $(vCon)$ temos $v(\alpha) = 0$ ou $v(\neg \alpha) = 0$.
 
                         \begin{provaporsubsubcasos}
+                            \setcounter{SubSubCasos}{\thebuffer}
+
                             \subsubcasodeprova{$v(\alpha) = 0$.}
 
                                 Por (HI) temos $h(\alpha) = 0$. Então, pela matriz de $\circ$, temos $h(\phi) = h(\circ \alpha) = 1$.
