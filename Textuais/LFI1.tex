@@ -480,9 +480,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
                     \qquad{}sse, por (HI), $v(\alpha) = 1$, $v(\neg \alpha) = 0$, $v(\beta) = 1$ e $v(\neg \beta) = 0$
 
-                    \qquad{}sse, por $(vAnd)$, $v(\alpha \land \beta) = 1$
-
-                    \qquad{}sse, por $(vDM_{\land})$, $v(\neg(\alpha \land \beta)) = 0$.
+                    \qquad{}sse, por $(vAnd)$, $v(\alpha \land \beta) = 1$ e, por $(vDM_{\land})$, $v(\neg(\alpha \land \beta)) = 0$.
             
                 \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = \meio{}$ sse $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 1$.}
 
@@ -507,9 +505,23 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     \qquad{}sse, por (HI), $v(\alpha) = 0$ ou $v(\beta) = 0$
 
                     \qquad{}sse, por $(vAnd)$, $v(\alpha \land \beta) = 0$.
+
             \end{provaporsubcasos}
 
-            
+            \casodeprova{$\phi = \alpha \lor \beta$.}
+
+            \begin{provaporsubcasos}
+                \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 1$ sse $v(\phi) = v(\alpha \lor \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \lor \beta)) = 0$.}
+
+                    Temos $h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 1$
+
+                    \qquad{}sse, pela tabela verdade de $\lor$, $h(\alpha) = 1$ ou $h(\beta) = 1$
+
+                    \qquad{}sse, por (HI), $v(\alpha) = v(\beta) = 1$ e $v(\neg \alpha) = v(\neg \beta) = 0$
+
+                    \qquad{}sse, por $(vOr)$, $v(\alpha \lor \beta) = 1$ e, por $(vDM_{\lor})$, $v(\neg(\alpha \lor \beta)) = 0$.
+
+            \end{provaporsubcasos}
 
         \end{provaporcasos}
 
