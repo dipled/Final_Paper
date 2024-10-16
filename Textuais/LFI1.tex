@@ -289,9 +289,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \end{definicao}
         \helena{Em vez de ficar explicando esses nomes das cláusulas eu poderia só mudar pra coisas mais normais né} \migs{Sim, contudo eu acho que seria interessante pelo menos mencionar que você está usando uma nomenclatura diferente do que suas referências estão usando.}
 
-        Note que, por conta de $(vNeg)$ e $(vCon)$, o valor $v(\triangle \alpha)$ {-} para $\triangle \in \{\neg, \circ\}$ {-} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, pode-se ter $v(\neg \alpha)$ tanto $0$ como $1$ (mas não ambos).
-
-        Considerando as cláusulas $(vNeg)$, $(vCon)$ e $(vCi)$ as possíveis valorações para $\neg \phi$ e $\circ \phi$, dada fórmula $\phi$, podem ser expressas na forma da seguinte tabela:
+        Note que, por conta de $(vNeg)$ e $(vCon)$, o valor $v(\triangle \alpha)$ {-} para $\triangle \in \{\neg, \circ\}$ {-} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, pode-se ter $v(\neg \alpha)$ tanto $0$ como $1$ (mas não ambos). Isto pode ser observado na seguinte tabela de possíveis valorações para $\neg \phi$ e $\circ \phi$, dada uma fórmula $\phi$:
 
         \begin{table}[h]
             \setbool{@fleqn}{false}
@@ -304,9 +302,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     & 1 & 0 & v_3 \\ \hline
                 \end{array}
                 \]
-                \caption{Valorações possíveis para $\phi$, $\neg \phi$ e $\circ \phi$.}
+                \caption{Valorações possíveis para $\phi$, $\neg \phi$ e $\circ \phi$, considerando $(vNeg)$, $(vCon)$ e $(vCi)$.}
                 \label{tab:negcirc}
         \end{table}
+
 
         
                 
