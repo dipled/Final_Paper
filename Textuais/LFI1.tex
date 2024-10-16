@@ -1026,17 +1026,16 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         
         \noindent\textbf{Prova da condição (i):} A prova das condições será feita com base nas valorações presentes na Tabela~\ref{tab:negcirc}.
 
-        \textbf{(i.a)}: Vamos provar $a, \neg a \nconval b$.
+        \begin{itemize}
+            \item[\textbf{(i.a)}] Vamos provar $a, \neg a \nconhil b$.
+                                  Tomando a valoração $v_3$, tal que $v_3(b) = 0$, então temos $a, \neg a \nconval b$. Pela contraposta da correção (Teorema~\ref{teo:correcao}) temos  $a, \neg a \nconhil b$.
+            \item[\textbf{(i.b)}] Vamos provar $\circ a, a \nconhil b$.
+                                  Tomando a valoração $v_2$, tal que $v_2(b) = 0$, então temos $a, \neg a \nconval b$. Pela contraposta da correção temos $\circ a, a \nconhil b$.
+            \item[\textbf{(i.c)}] Vamos provar $\circ a, \neg a \nconhil b$.
 
-                        Tomando a valoração $v_3$, tal que $v_3(b) = 0$, então temos $a, \neg a \nconval b$. Pela contraposta da correção (Teorema~\ref{teo:correcao}) temos  $a, \neg a \nconhil b$.
-
-        \textbf{(i.b)}: Vamos provar $\circ a, a \nconval b$.
-
-                        Tomando a valoração $v_2$, tal que $v_2(b) = 0$, então temos $a, \neg a \nconval b$. Pela contraposta da correção temos $\circ a, a \nconhil b$.
-        
-        \textbf{(i.c)}: Vamos provar $\circ a, \neg a \nconval b$.
-
-                        Tomando a valoração $v_1$, tal que $v_1(b) = 0$, então temos $\circ a, \neg a \nconval b$. Pela contraposta da correção temos $\circ a, \neg a \nconhil b$.
+                                  Tomando a valoração $v_1$, tal que $v_1(b) = 0$, então temos $\circ a, \neg a \nconval b$. Pela contraposta da correção temos $\circ a, \neg a \nconhil b$.
+            
+        \end{itemize}
 
 
         \noindent\textbf{Prova da condição (ii):} A sequência de derivação abaixo mostra $\phi, \neg \phi, \circ \phi \conhil \psi$:
