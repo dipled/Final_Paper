@@ -617,7 +617,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \begin{proof}[Prova do Corolário~\ref{cor:matval}]
         Seja $\Gamma \cup \{\phi\} \subseteq \ling{}$ um conjunto de fórmulas e seja $v \in V^{\lfium{}}$ uma valoração tal que $v[\Gamma] \subseteq \{1\}$. Vamos supor $\Gamma \conmat \phi$. Então, temos que provar $\Gamma \conval \phi$.
 
-        Pelo Lema~\ref{lem:matval}, então existe uma valoração $h$ tal que, para todo $\psi \in \ling{}$, $v(\psi) = 1$ sse $h{\psi} \subseteq \{1, \meio{}\}$. Supondo $v[\Gamma] = 1$, então temos $h[\Gamma] \subseteq \{1,\meio{}\}$. Pela nossa suposição de $\Gamma \conmat \phi$, temos $h(\phi) = \{1, \meio{}\}$. Novamente, pelo Lema~\ref{lem:matval}, temos $v(\phi) = 1$. Portanto, segue $\Gamma \conval \phi$.
+        Pelo Lema~\ref{lem:matval}, então existe uma valoração $h$ tal que, para todo $\psi \in \ling{}$, $v(\psi) = 1$ sse $h(\psi) \subseteq \{1, \meio{}\}$. Supondo $v[\Gamma] = 1$, então temos $h[\Gamma] \subseteq \{1,\meio{}\}$. Pela nossa suposição de $\Gamma \conmat \phi$, temos $h(\phi) = \{1, \meio{}\}$. Novamente, pelo Lema~\ref{lem:matval}, temos $v(\phi) = 1$. Portanto, segue $\Gamma \conval \phi$.
 
     \end{proof}
 
