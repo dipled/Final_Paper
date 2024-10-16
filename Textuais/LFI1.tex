@@ -9,14 +9,14 @@ No trabalho de~\citeshort{carnielli2000formal} a lógica \textbf{LFI1*} é defin
 Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é apresentada a linguagem da lógica proposicional \lfium{} bem como definições necessárias para desenvolver as provas de metateoremas. A Seção~\ref{sec:axiomatizacao} contém uma breve explicação sobre sistemas de prova sintáticos e uma Axiomatização de Hilbert para a \lfium{} é definida. Na Seção~\ref{sec:semantica} a semântica da \lfium{} é definida a partir de matrizes lógicas e de uma semântica de valorações não determinística, assim como é provada a equivalência entre essas duas semânticas.
 
 \section{Linguagem}\label{sec:linguagem}
-    A lógica proposicional \lfium{} aqui apresentada é definida com base em~\citeshort{Carnielli_Coniglio_2016} sobre a linguagem $\pazocal{L}_{\Sigma}$, que por sua vez é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \mathbb{N}\}$ e uma assinatura proposicional $\Sigma = \{\land^{2}, \lor^{2}, \to^{2}, \neg^{1}, \circ^{1}\}$. Como de costume, o conectivo $\land^{2}$ representa uma conjunção, $\lor^{2}$ representa uma disjunção, $\to^{2}$ representa uma implicação, $\neg^{1}$ representa uma negação e $\circ^{1}$ é o conectivo de consistência, definido de forma primitiva. No restante do texto a aridade destes conectivos será omitida. A linguagem $\pazocal{L}_{\Sigma}$ da \lfium{} é definida da seguinte forma:
+    A lógica proposicional \lfium{} aqui apresentada é definida com base em~\citeshort{Carnielli_Coniglio_2016} sobre a linguagem $\ling{}$, que por sua vez é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \mathbb{N}\}$ e uma assinatura proposicional $\Sigma = \{\land^{2}, \lor^{2}, \to^{2}, \neg^{1}, \circ^{1}\}$. Como de costume, o conectivo $\land^{2}$ representa uma conjunção, $\lor^{2}$ representa uma disjunção, $\to^{2}$ representa uma implicação, $\neg^{1}$ representa uma negação e $\circ^{1}$ é o conectivo de consistência, definido de forma primitiva. No restante do texto a aridade destes conectivos será omitida. A linguagem $\ling{}$ da \lfium{} é definida da seguinte forma:
 
     \begin{definicao}[Linguagem da \lfium{}]
-        A linguagem $\pazocal{L}_{\Sigma}$ da \lfium{} é definida indutivamente como o menor conjunto a que respeita as seguintes regras:\label{def:ling}
+        A linguagem $\ling{}$ da \lfium{} é definida indutivamente como o menor conjunto a que respeita as seguintes regras:\label{def:ling}
         \begin{align*}
-            & \text{1.~}\pazocal{P} \subseteq \pazocal{L}_{\Sigma}                                                                                                                        \\
-            & \text{2.~Se } \phi \in \pazocal{L}_{\Sigma}, \text{então } \triangle  \phi \in \pazocal{L}_{\Sigma}, \text{com } \triangle \in \{\neg, \circ\}                            \\
-            & \text{3.~Se } \phi, \psi \in \pazocal{L}_{\Sigma}, \text{então } \phi \otimes \psi \in \pazocal{L}_{\Sigma}, \text{com } \otimes \in \{\land, \lor, \to\} \tag*\qed
+            & \text{1.~}\pazocal{P} \subseteq \ling{}                                                                                                                        \\
+            & \text{2.~Se } \phi \in \ling{}, \text{então } \triangle  \phi \in \ling{}, \text{com } \triangle \in \{\neg, \circ\}                            \\
+            & \text{3.~Se } \phi, \psi \in \ling{}, \text{então } \phi \otimes \psi \in \ling{}, \text{com } \otimes \in \{\land, \lor, \to\} \tag*\qed
         \end{align*}
     \end{definicao}
 
@@ -38,7 +38,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     Na Definição~\ref{def:complex} a função $C$ da complexidade de uma fórmula na lógica proposicional clássica foi recursivamente definida. É possível estender esta definição para identificar a complexidade de uma fórmula na \lfium{} adicionando-se uma condição para o operador $\circ$:
 
     \begin{definicao}[Complexidade de uma fórmula na \lfium{}]
-        Dada uma fórmula $\phi \in \pazocal{L}_{\Sigma}$, a complexidade $C(\phi)$ é definida adicionando-se a seguinte condição à Definição~\ref{def:complex}:\label{def:complex_lfi1}
+        Dada uma fórmula $\phi \in \ling{}$, a complexidade $C(\phi)$ é definida adicionando-se a seguinte condição à Definição~\ref{def:complex}:\label{def:complex_lfi1}
         \begin{align*}
             & \text{Se } \phi = \circ \psi \text{, então } C(\phi) = C(\psi) + 2.\tag*\qed{}
         \end{align*}
@@ -59,7 +59,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
 
     \begin{definicao}[Cálculo de Hilbert para \lfium{}]\label{def:hilbert_lfi1}
-        A lógica \lfium{} é definida a partir da relação de consequência sintática $\conhil{}$ sobre a linguagem $\pazocal{L}_{\Sigma}$ através do seguinte cálculo de Hilbert:
+        A lógica \lfium{} é definida a partir da relação de consequência sintática $\conhil{}$ sobre a linguagem $\ling{}$ através do seguinte cálculo de Hilbert:
 
         \noindent\textbf{Axiomas}:
         \begin{align*}
@@ -99,7 +99,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     Com isso, uma derivação em \lfium{} pode ser definida:
     
     \begin{definicao}[Derivação em \lfium{}]
-        Seja $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$ um conjunto de fórmulas, uma derivação de $\phi$ a partir de $\Gamma$ em \lfium{}, denotada como $\Gamma \conhil \phi$, é uma sequência finita de fórmulas \(\phi_0, \dots, \phi_n\) onde, para cada $1 \leq i \leq n$, alguma das seguintes condições é satisfeita:
+        Seja $\Gamma \cup \{\phi\} \subseteq \ling{}$ um conjunto de fórmulas, uma derivação de $\phi$ a partir de $\Gamma$ em \lfium{}, denotada como $\Gamma \conhil \phi$, é uma sequência finita de fórmulas \(\phi_0, \dots, \phi_n\) onde, para cada $1 \leq i \leq n$, alguma das seguintes condições é satisfeita:
         \begin{align*}
               \text{(i) } & \phi_{i} \text{ é um axioma;}\\
               \text{(ii) } & \phi_{i} \in \Gamma;\\
@@ -237,7 +237,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \vspace{\baselineskip}
 
             \noindent
-            A matriz $\pazocal{M}_{\lfium{}}$ define a relação de consequência semântica $\conmat{}$ para a lógica \lfium{} da seguinte forma: para todo $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$, tem-se $\Gamma \conmat \phi$ sse, para todo valoração $h : \pazocal{L}_{\Sigma} \to M$ de $\pazocal{M}_{\lfium{}}$, se $h[\Gamma] \subseteq \{1, \meio{}\}$ então $h(\phi) \in \{1, \meio{}\}$.\qed{}
+            A matriz $\pazocal{M}_{\lfium{}}$ define a relação de consequência semântica $\conmat{}$ para a lógica \lfium{} da seguinte forma: para todo $\Gamma \cup \{\phi\} \subseteq \ling{}$, tem-se $\Gamma \conmat \phi$ sse, para todo valoração $h : \ling{} \to M$ de $\pazocal{M}_{\lfium{}}$, se $h[\Gamma] \subseteq \{1, \meio{}\}$ então $h(\phi) \in \{1, \meio{}\}$.\qed{}
         \end{definicao}
 
         Para ilustrar, provaremos um exemplo de inferência na semântica matricial apresentada:
@@ -247,7 +247,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \end{exemplo}
 
         \begin{proof}[Prova do Exemplo~\ref{ex:2}]
-            Vamos mostrar que, para toda valoração $h : \pazocal{L}_{\Sigma} \to \{1,\meio{},0\}$ de $\pazocal{M}_{\lfium{}}$, $h(\circ \circ \alpha) \in \{1, \meio{}\}$. Para isso, construiremos uma tabela com todas as valorações possíveis para $\circ \circ \alpha$:
+            Vamos mostrar que, para toda valoração $h : \ling{} \to \{1,\meio{},0\}$ de $\pazocal{M}_{\lfium{}}$, $h(\circ \circ \alpha) \in \{1, \meio{}\}$. Para isso, construiremos uma tabela com todas as valorações possíveis para $\circ \circ \alpha$:
             \begin{center}
                 \setbool{@fleqn}{false}
                 \[
@@ -271,7 +271,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         Outra forma de definir a relação de consequência semântica de uma lógica é descrever uma semântica de valorações, esta que define um conjunto de cláusulas condicionais sobre funções. Quando uma função respeita todas as cláusulas, ela é dita valoração da lógica.~\citeshort{DaCosta1977-NEWASA-3} apresentam uma valoração para a lógica paraconsistente $\text{\textbf{C}}_{1}$. Nesta semântica, a negação $\neg$ tem um comportamento não-determinístico. A semântica de valorações para a \lfium{} definida a seguir evidencia o comportamento não determinístico dos conectivos $\neg$ e $\circ$:
 
         \begin{definicao} [Semântica de valorações para \textbf{$\text{LFI1}$}]\label{def:valoracoes}
-            A função $v : \pazocal{L}_{\Sigma} \to \{1, 0\}$ é uma valoração para a lógica \lfium{} caso ela satisfaça as seguintes cláusulas:
+            A função $v : \ling{} \to \{1, 0\}$ é uma valoração para a lógica \lfium{} caso ela satisfaça as seguintes cláusulas:
             \begin{align*}
                 & v(\alpha \land \beta) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\beta) = 1\tag{\textbf{$vAnd$}}\\
                 & v(\alpha \lor \beta) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ ou } v(\beta) = 1\tag{\textbf{$vOr$}}\\
@@ -283,16 +283,32 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 & v(\alpha) = 1 \Longrightarrow v(\neg \neg \alpha) = 1\tag{\textbf{$vCe$}}\\
                 & v(\neg (\alpha \land \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ ou } v(\neg \beta) = 1\tag{\textbf{$vDM_{\land}$}}\\
                 & v(\neg (\alpha \lor \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vDM_{\lor}$}}\\
-                & v(\neg (\alpha \to \beta)) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vCIp_{\to}$}}
+                & v(\neg (\alpha \to \beta)) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vCip_{\to}$}}
             \end{align*}
-            O conjunto de todas as valorações para a lógica \lfium{} será denotado por $V^{\lfium{}}$. Então, a relação de consequência semântica $\conval$ para a \lfium{} é definida da seguinte forma: para todo $\Gamma \cup \{\phi\} \subseteq \pazocal{L}_{\Sigma}$, tem-se $\Gamma \conval \phi$ sse, para todo $v \in V^{\lfium{}}$, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$ então $v(\phi) = 1$.\qed{}
+            O conjunto de todas as valorações para a lógica \lfium{} será denotado por $V^{\lfium{}}$. Então, a relação de consequência semântica $\conval$ para a \lfium{} é definida da seguinte forma: para todo $\Gamma \cup \{\phi\} \subseteq \ling{}$, tem-se $\Gamma \conval \phi$ sse, para todo $v \in V^{\lfium{}}$, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$ então $v(\phi) = 1$.\qed{}
         \end{definicao}
         \helena{Em vez de ficar explicando esses nomes das cláusulas eu poderia só mudar pra coisas mais normais né} \migs{Sim, contudo eu acho que seria interessante pelo menos mencionar que você está usando uma nomenclatura diferente do que suas referências estão usando.}
 
-        Note que, por conta de $(VNeg)$ e $(VCon)$, o valor $v(\triangle \alpha)$ {-} para $\triangle \in \{\neg, \circ\}$ {-} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, pode-se ter $v(\neg \alpha)$ tanto $0$ como $1$ (mas não ambos).
+        Note que, por conta de $(vNeg)$ e $(vCon)$, o valor $v(\triangle \alpha)$ {-} para $\triangle \in \{\neg, \circ\}$ {-} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, pode-se ter $v(\neg \alpha)$ tanto $0$ como $1$ (mas não ambos).
 
-        \migs{Seria legal você colocar um exemplo aqui (me refiro ao lugar no texto onde está esse comentário, Karina) igual você colocou para o caso da semântica matricial.}
+        Considerando as cláusulas $(vNeg)$, $(vCon)$ e $(vCi)$ as possíveis valorações para uma dada fórmula $\phi$ podem ser expressas na forma da seguinte tabela:
 
+        \begin{table}[h]
+            \setbool{@fleqn}{false}
+            \[
+                \begin{array}{|c|c|c|c}
+                    \cline{1-3}
+                    \phi & \neg\phi & \circ\phi & \\ \hline
+                    0 & 1 & 1 & v_1 \\ \hline
+                    \multirow{2}{*}{1} & 0 & 1 & v_2 \\ \cline{2-4}
+                    & 1 & 0 & v_3 \\ \hline
+                \end{array}
+                \]
+                \caption{Valorações possíveis para $\phi$, $\neg \phi$ e $\circ \phi$.}
+                \label{tab:negcirc}
+        \end{table}
+
+        
                 
 \section{Metateoremas}\label{sec:metateoremas}
 \helena{adicionar outros metateoremas do artigo das database?!?@!@?!} \migs{Sabe esse é o tipo de coisa que você pergunta pra mim ou para a Karina.} \helena{UE MAS EU TO PERGUNTANDO PRA VCS AO FAZER ESSE COMENTARIO\ldots}A metalógica estuda sistemas lógicos através de métodos matemáticos, desenvolvendo metateoremas~\cite{Jacquette2002-JACACT-7}. Um metateorema é uma prova sobre propriedades de um sistema formal, sobretudo sobre suas relações de consequência, utilizando uma metalinguagem~\cite{Tarski1956-TARLSM,Barile_2024}. Estas propriedades são chamadas de \textit{metapropriedades}. Num sistema lógico munido com uma relação de consequência sintática $\vdash$ e uma relação de consequência semântica $\vDash$ a metapropriedade da correção, que afirma que tudo que é derivável em $\vdash$ é válido em $\vDash$, é uma característica fundamental para que o sistema seja útil em alguma medida. Outra propriedade interessante é a completude, que afirma que tudo que é válido em $\vDash$ pode ser provado em $\vdash$. Antes de desenvolver as provas destes metateoremas, convém apresentar algumas definições pertinentes e provar lemas que facilitarão o desenvolvimento das provas mais extensas.
@@ -301,8 +317,8 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     
     Os lemas e teoremas desenvolvidos nesta seção seguem um caminho baseado no que foi apresentado por~\citeshort{Carnielli_Coniglio_2016} e por~\citeshort{DaCosta1977-NEWASA-3}, com modificações para se adequarem ao presente trabalho.
 
-    \begin{lema}[Equivalência entre a semântica de matrizes e a semântica de valorações]\label{lem:matval}
-        Seja $v$ uma valoração em $V^{\lfium}$, então existe uma valoração $h$ sobre $\pazocal{M}_{\lfium}$ tal que, para todo $\phi \in \pazocal{L}_{\Sigma}$, $v(\phi) = 1$ sse $h(\phi) \in \{1, \meio{}\}$.
+    \begin{lema}\label{lem:matval}
+        Seja $v$ uma valoração em $V^{\lfium}$, então existe uma valoração $h$ sobre $\pazocal{M}_{\lfium}$ tal que, para todo $\phi \in \ling{}$, $v(\phi) = 1$ sse $h(\phi) \in \{1, \meio{}\}$.
     \end{lema}
 
     \begin{proof}[Prova do Lema~\ref{lem:matval}]
@@ -319,7 +335,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
               \end{equation*}
         \end{center}
 
-        Então, por indução na complexidade de uma fórmula $\phi \in \pazocal{L}_{\Sigma}$, será provado o seguinte:
+        Então, por indução na complexidade de uma fórmula $\phi \in \ling{}$, será provado o seguinte:
         \begin{center}
             \setbool{@fleqn}{false}
             \begin{equation*}
@@ -480,7 +496,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
                     \qquad{}sse, por (HI), $v(\alpha) = 1$, $v(\neg \alpha) = 0$, $v(\beta) = 1$ e $v(\neg \beta) = 0$
 
-                    \qquad{}sse, por $(vAnd)$, $v(\alpha \land \beta) = 1$ e, por $(vDM_{\land})$, $v(\neg(\alpha \land \beta)) = 0$.
+                    \qquad{}sse, por $(vAnd)$, $v(\phi) = v(\alpha \land \beta) = 1$ e, por $(vDM_{\land})$, $v(\neg \phi) = v(\neg(\alpha \land \beta)) = 0$.
             
                 \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = \meio{}$ sse $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 1$.}
 
@@ -494,7 +510,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
                     \qquad{}sse, pela distributividade da conjunção sobre a disjunção e pela idempotência da conjunção, temos $v(\alpha) = 1$ e $v(\beta) = 1$ e temos $v(\neg \alpha) = 1$ ou $v(\neg \beta) = 1$
 
-                    \qquad{}sse, por $(vAnd)$ e $(vDM_{\land})$, temos $v(\alpha \land \beta) = 1$ e $v(\neg (\alpha \land \beta)) = 1$.
+                    \qquad{}sse, por $(vAnd)$ e $(vDM_{\land})$, temos $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 1$.
 
                 \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 0$ sse $v(\phi) = v(\alpha \land \beta) = 0$.}
 
@@ -504,7 +520,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
                     \qquad{}sse, por (HI), $v(\alpha) = 0$ ou $v(\beta) = 0$
 
-                    \qquad{}sse, por $(vAnd)$, $v(\alpha \land \beta) = 0$.
+                    \qquad{}sse, por $(vAnd)$, $v(\phi) = v(\alpha \land \beta) = 0$.
 
             \end{provaporsubcasos}
 
@@ -519,7 +535,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
                     \qquad{}sse, por (HI), $v(\alpha) = v(\beta) = 1$ e $v(\neg \alpha) = v(\neg \beta) = 0$
 
-                    \qquad{}sse, por $(vOr)$, $v(\alpha \lor \beta) = 1$ e, por $(vDM_{\lor})$, $v(\neg(\alpha \lor \beta)) = 0$.
+                    \qquad{}sse, por $(vOr)$, $v(\phi) = v(\alpha \lor \beta) = 1$ e, por $(vDM_{\lor})$, $v(\neg \phi) = v(\neg(\alpha \lor \beta)) = 0$.
 
                 \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = \meio{0}$ sse $v(\phi) = v(\alpha \lor \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \lor \beta)) = 1$.}
 
@@ -535,7 +551,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
                     \qquad{}sse, por $(vOr)$, temos $v(\neg \alpha) = 1$ e $v(\neg \beta) = 1$ e temos $v(\alpha \lor \beta) = 1$ ou $v(\alpha \lor \beta) = 1$ ou $v(\alpha \lor \beta) = 1$
                     
-                    \qquad{}sse, por $(vDM_{\lor})$ e pela idempotência da disjunção, temos $v(\alpha \lor \beta) = 1$ e $v(\neg(\alpha \lor \beta)) = 1$.
+                    \qquad{}sse, por $(vDM_{\lor})$ e pela idempotência da disjunção, temos $v(\phi) = v(\alpha \lor \beta) = 1$ e $v(\neg \phi) = v(\neg(\alpha \lor \beta)) = 1$.
 
                 \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 0$ sse $v(\phi) = v(\alpha \lor \beta) = 0$.}
 
@@ -545,21 +561,70 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
                     \qquad{}sse, por (HI), temos $v(\alpha) = 0$ e $v(\beta) = 0$
 
-                    \qquad{}sse, por $(vOr)$, temos $v(\alpha \lor \beta) = 0$.
+                    \qquad{}sse, por $(vOr)$, temos $v(\phi) = v(\alpha \lor \beta) = 0$.
 
             \end{provaporsubcasos}
 
+            \casodeprova{$\phi = \alpha \to \beta$.}
 
+            \begin{provaporsubcasos}
+                \subcasodeprova{$h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 1$ sse $v(\phi) = v(\alpha \to \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \to \beta)) = 0$.}
+
+                    Temos $h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 1$
+
+                    \qquad{}sse, pela matriz de $\to$, $h(\alpha) = 0$ ou $h(\beta) = 1$
+
+                    \qquad{}sse, por (HI), temos $v(\alpha) = 0$ ou temos $v(\beta) = 1$ e $v(\neg \beta) = 0$
+
+                    \qquad{}sse, por $(vImp)$ e $(vCip)$, temos $v(\alpha \to \beta) = 1$ e $v(\neg (\alpha \to \beta)) = 0$ ou temos $v(\alpha \to \beta) = 1$ e $v(\neg (\alpha \to \beta)) = 0$
+
+                    \quad{}sse, pela idempotência da disjunção, temos $v(\phi) = v(\alpha \to \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \to \beta)) = 0$
+
+                \subcasodeprova{$h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = \meio{}$ sse $v(\phi) = v(\alpha \to \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \to \beta)) = 1$.}
+
+                    Temos $h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = \meio{}$
+
+                    \qquad{}sse, pela matriz de $\to$, temos $h(\alpha) = 1$ e $h(\beta) = \meio{}$ ou temos $h(\alpha) = \meio{}$ e $h(\beta) = \meio{}$
+
+                    \qquad{}sse, por (HI), temos $v(\alpha) = v(\beta) = v(\neg \beta) = 1$ e $v(\neg \alpha) = 0$ ou temos $v(\alpha) = v(\neg \alpha) = v(\beta) = v(\neg \beta) = 1$
+
+                    \qquad{}sse, por $(vImp)$ e $(vCip)$, temos $v(\alpha \to \beta) = v(\neg (\alpha \to \beta)) = 1$ e $v(\alpha \to \beta) = v(\neg (\alpha \to \beta)) = 1$
+
+                    \qquad{}sse, pela idempotência da disjunção, temos $v(\phi) = v(\alpha \to \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \to \beta)) = 1$.
+
+                \subcasodeprova{$h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 0$ sse $v(\phi) = v(\alpha \to \beta) = 0$.}
+
+                    Temos $h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 0$
+
+                    \qquad{}sse, pela matriz de $\to$, temos $h(\alpha) = 1$ e $h(\beta) = 0$ ou temos $h(\alpha) = \meio{}$ e $h(\beta) = 0$
+
+                    \qquad{}sse, por (HI), temos $v(\alpha) = 1$ e $v(\neg \alpha) = v(\beta) = 0$ ou temos $v(\alpha) = v(\neg \alpha) = 1$ e $v(\beta) = 0$
+
+                    \qquad{}sse, por $(vImp)$, temos $v(\alpha \to \beta) = 0$ ou $v(\alpha \to \beta) = 0$
+
+                    \qquad{}sse, pela idempotência da disjunção, temos $v(\alpha \to \beta) = 0$.
+            \end{provaporsubcasos}
         \end{provaporcasos}
-
-
     \end{proof}
 
+    \begin{corolario}\label{cor:matval}
+        Para todo conjunto de fórmulas $\Gamma \cup \{\phi\} \ling{}$:
+
+        \centering
+        $\Gamma \conmat \phi \Longrightarrow \Gamma \conval \phi$. 
+    \end{corolario}
+
+    \begin{proof}[Prova do Corolário~\ref{cor:matval}]
+        Seja $\Gamma \cup \{\phi\} \subseteq \ling{}$ um conjunto de fórmulas e seja $v \in V^{\lfium{}}$ uma valoração tal que $v[\Gamma] \subseteq \{1\}$. Vamos supor $\Gamma \conmat \phi$. Então, temos que provar $\Gamma \conval \phi$.
+
+        Pelo Lema~\ref{lem:matval}, então existe uma valoração $h$ tal que, para todo $\psi \in \ling{}$, $v(\psi) = 1$ sse $h{\psi} \subseteq \{1, \meio{}\}$. Supondo $v[\Gamma] = 1$, então temos $h[\Gamma] \subseteq \{1,\meio{}\}$. Pela nossa suposição de $\Gamma \conmat \phi$, temos $h(\phi) = \{1, \meio{}\}$. Novamente, pelo Lema~\ref{lem:matval}, temos $v(\phi) = 1$. Portanto, segue $\Gamma \conval \phi$.
+        
+    \end{proof}
 
     O metateorema da dedução é uma propriedade conveniente de ser provada, já que nos permite utilizar características particulares de lógicas tarskianas a fim de desenvolver provas de outros metateoremas.
     
     \begin{teorema}[Metateorema da dedução para $\conhil$]\label{teo:deducao}
-        Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \pazocal{L}_{\Sigma}$:
+        Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \ling{}$:
 
         \centering
         {\normalfont{} $\Gamma, \alpha \conhil \beta \Longleftrightarrow \Gamma \conhil \alpha \to \beta$.}
@@ -567,7 +632,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
     O seguinte lema torna a prova do teorema mais imediata:
     \begin{lema}\label{lem:id}
-        A derivação $\Gamma \conhil \alpha \to \alpha$ é válida para todo $\Gamma \cup \{\alpha\} \subseteq \pazocal{L}_{\Sigma}$.
+        A derivação $\Gamma \conhil \alpha \to \alpha$ é válida para todo $\Gamma \cup \{\alpha\} \subseteq \ling{}$.
     \end{lema}
     
     \begin{proof}[Prova do Lema~\ref{lem:id}]
@@ -684,14 +749,14 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     Com a prova do metateorema da dedução para o cálculo de Hilbert da \lfium{}, os seguintes corolários são imediatos:
 
     \begin{corolario}\label{cor:intro_ou_esq}
-        Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta, \phi\} \subseteq \pazocal{L}_{\Sigma}$:
+        Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta, \phi\} \subseteq \ling{}$:
 
         \centering
         {\normalfont{}Se $\Gamma, \alpha \conhil \phi \text{ e }\Gamma, \beta \conhil \phi \text{ então } \Gamma, \alpha \lor \beta \conhil \phi$.}
     \end{corolario}
 
     \begin{proof}[Prova do Corolário~\ref{cor:intro_ou_esq}]
-        Seja $\Gamma \cup \{\alpha, \beta, \phi\} \subseteq \pazocal{L}_{\Sigma}$ um conjunto de fórmulas qualquer.
+        Seja $\Gamma \cup \{\alpha, \beta, \phi\} \subseteq \ling{}$ um conjunto de fórmulas qualquer.
         
         Suponha $\Gamma, \alpha \conhil \phi \text{ e }\Gamma, \beta \conhil \phi$. 
         Então, por MTD (Teorema~\ref{teo:deducao}), temos $\Gamma \conhil \alpha \to \phi \text{ e }\Gamma \conhil \beta \to \phi$.
@@ -710,14 +775,14 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
 
     \begin{corolario}\label{cor:prova_por_casos}
-        Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta, \phi\} \subseteq \pazocal{L}_{\Sigma}$:
+        Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta, \phi\} \subseteq \ling{}$:
 
         \centering
         {\normalfont{}Se $\Gamma, \alpha \conhil \phi \text{ e }\Gamma, \neg\alpha \conhil \phi \text{ então } \Gamma \conhil \phi$.}
     \end{corolario}
 
     \begin{proof}[Prova do Corolário~\ref{cor:prova_por_casos}]
-        Seja $\Gamma \cup \{\alpha, \beta, \phi\} \subseteq \pazocal{L}_{\Sigma}$ um conjunto de fórmulas qualquer.
+        Seja $\Gamma \cup \{\alpha, \beta, \phi\} \subseteq \ling{}$ um conjunto de fórmulas qualquer.
 
         Suponha $\Gamma, \alpha \conhil \phi \text{ e }\Gamma, \neg\alpha \conhil \phi$. Pelo Corolário~\ref{cor:intro_ou_esq}, temos $\Gamma, \alpha \lor \neg \alpha \conhil \phi$. Por MTD (Teorema~\ref{teo:deducao}), temos $\Gamma \conhil (\alpha \lor \neg \alpha) \to \phi$.
 
@@ -732,7 +797,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     A ideia da prova da correção para a \lfium{} é, como de costume, provar que todo axioma do cálculo de Hilbert $\conhil$ é válido na semântica de valorações $\conval$ e mostrar que a regra de inferência \textit{modus ponens} preserva sua validade.
 
     \begin{teorema}[Correção]\label{teo:correcao}
-        A lógica {\normalfont\lfium{}} é correta em relação a sua semântica de valorações, ou seja, para todo conjunto de fórmulas $\Gamma \cup \{\alpha\} \subseteq \pazocal{L}_{\Sigma}$:
+        A lógica {\normalfont\lfium{}} é correta em relação a sua semântica de valorações, ou seja, para todo conjunto de fórmulas $\Gamma \cup \{\alpha\} \subseteq \ling{}$:
 
         \centering
         {\normalfont{} $\Gamma \conhil \alpha \Longrightarrow \Gamma \conval \alpha$.}
@@ -908,7 +973,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 
                 Supondo $v(\neg (\alpha \to \beta) \to (\alpha \land \neg \beta)) = 0$. Por $(vImp)$ temos $v(\neg (\alpha \to \beta)) = 1$ e $v(\alpha \land \neg \beta) = 0$. 
                 
-                Então, por $(vCIp_{\to})$, temos $v(\alpha) = 1$ e $v(\neg \beta) = 1$. Ademais, por $(vAnd)$, temos $v(\alpha) = 0$ ou $v(\neg \beta) = 0$, o que unido ao fato de termos $v(\neg \beta) = 1$, nos permite concluir $v(\alpha) = 0$. 
+                Então, por $(vCip_{\to})$, temos $v(\alpha) = 1$ e $v(\neg \beta) = 1$. Ademais, por $(vAnd)$, temos $v(\alpha) = 0$ ou $v(\neg \beta) = 0$, o que unido ao fato de termos $v(\neg \beta) = 1$, nos permite concluir $v(\alpha) = 0$. 
                 
                 Isto resulta numa contradição, portanto $v(\neg (\alpha \to \beta) \to (\alpha \land \neg \beta)) = 1$.
 
@@ -963,48 +1028,24 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \end{corolario}
 
     \begin{proof}[Prova do Corolário~\ref{cor:lfi_forte}]
-        Sejam $a, b \in \pazocal{P}$ variáveis proposicionais distintas e sejam $\phi, \psi \in \pazocal{L}_{\Sigma}$ fórmulas quaisquer.
+        Sejam $a, b \in \pazocal{P}$ variáveis proposicionais distintas e sejam $\phi, \psi \in \ling{}$ fórmulas quaisquer.
         
-        \noindent\textbf{Prova da condição (i):}
-        A tabela abaixo contem todas as valorações possíveis em relação a $a$ e $b$ sobre a matriz lógica $\pazocal{M}_{\lfium{}}$:
-        \begin{center}
-            \setbool{@fleqn}{false}
-            \[
-                \begin{array}{|c|c|c|c|}%chktex 44 
-                    \hline
-                    a      & \neg a & \circ a & b   \\
-                    \hline%chktex 44 
-                    1           & 0        &  1  &    1\\
-                    \meio{    } & \meio{}   &  0       &    1\\
-                    0           & 1         &  1 &    1\\
-                    1           & 0         &  1 &    \meio{}\\
-                    \meio{    } & \meio{}   &  0       &    \meio{}\\
-                    0           & 1         &  1 &    \meio{}\\
-                    1           & 0         &  1 &    0\\
-                   \meio{  }&  \meio{}  &   0       &    0\\
-                    0           & 1      &     1 &    0\\
-                    \hline
-                \end{array}
-            \]
-        \end{center}
+        \noindent\textbf{Prova da condição (i):} A prova das condições será feita com base nas valorações presentes na Tabela~\ref{tab:negcirc}.
+
+        \textbf{(i.a)}: Vamos provar $\alpha, \neg \alpha \nconval \beta$.
+
+                        Seja $v \in V^{\lfium{}}$ uma valoração e tomando a valoração $v_3$, tal que $v_3(\beta) = 0$, temos $\alpha, \neg \alpha \nconval \beta$.
+
+        \textbf{(i.b)}: Vamos provar $\circ \alpha, \alpha \nconval \beta$.
+
+                        Seja $v \in V^{\lfium{}}$ uma valoração e tomando a valoração $v_2$, tal que $v_2(\beta) = 0$, temos $\alpha, \neg \alpha \nconval \beta$.
         
-        Temos, então, os seguintes resultados:
+        \textbf{(i.c)}: Vamos provar $\circ \alpha, \neg \alpha \nconval \beta$.
 
-        \begin{itemize}
-            \item A penúltima linha da tabela mostra $a, \neg a \nconmat b$;
-            \item A terceira linha mostra $\circ a, a \nconmat b$;
-            \item A primeira linha mostra $\circ a, \neg a \nconmat b$.
-        \end{itemize}
-        
-        Pela equivalência entre a semântica matricial e a semântica de valorações (Lema~\ref{lem:matval}), temos:
+                        Seja $v \in V^{\lfium{}}$ uma valoração e tomando a valoração $v_1$, tal que $v_1(\beta) = 0$, temos $\circ \alpha, \neg \alpha \nconval \beta$.
 
-        \begin{itemize}
-            \item $a, \neg a \nconval b$;
-            \item $\circ a, a \nconval b$;
-            \item $\circ a, \neg a \nconval b$.
-        \end{itemize}
 
-        Finalmente, pela contraposta da correção (Teorema~\ref{teo:correcao}), as condições (i.a), (i.b) e (i.c) são satisfeitas da seguinte forma:
+        Finalmente, pela contraposta da correção (Teorema~\ref{teo:correcao}), as condições (i.a), (i.b) e (i.c) são satisfeitas, isto é, temos:
 
         \begin{itemize}
             \item $a, \neg a \nconhil b$;
@@ -1049,7 +1090,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
 
     \begin{teorema}[Completude]\label{teo:completude}
-        A lógica {\normalfont\lfium{}} é completa em relação a sua semântica de valorações, ou seja, para todo conjunto de fórmulas $\Gamma \cup \{\alpha\} \subseteq \pazocal{L}_{\Sigma}$:
+        A lógica {\normalfont\lfium{}} é completa em relação a sua semântica de valorações, ou seja, para todo conjunto de fórmulas $\Gamma \cup \{\alpha\} \subseteq \ling{}$:
 
         \centering
         {\normalfont{} $\Gamma \conval \alpha \Longrightarrow \Gamma \conhil \alpha$.}
