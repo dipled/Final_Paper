@@ -578,7 +578,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
                     \qquad{}sse, por $(vImp)$ e $(vCip)$, temos $v(\alpha \to \beta) = 1$ e $v(\neg (\alpha \to \beta)) = 0$ ou temos $v(\alpha \to \beta) = 1$ e $v(\neg (\alpha \to \beta)) = 0$
 
-                    \quad{}sse, pela idempotência da disjunção, temos $v(\phi) = v(\alpha \to \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \to \beta)) = 0$
+                    \qquad{}sse, pela idempotência da disjunção, temos $v(\phi) = v(\alpha \to \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \to \beta)) = 0$
 
                 \subcasodeprova{$h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = \meio{}$ sse $v(\phi) = v(\alpha \to \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \to \beta)) = 1$.}
 
@@ -618,7 +618,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         Seja $\Gamma \cup \{\phi\} \subseteq \ling{}$ um conjunto de fórmulas e seja $v \in V^{\lfium{}}$ uma valoração tal que $v[\Gamma] \subseteq \{1\}$. Vamos supor $\Gamma \conmat \phi$. Então, temos que provar $\Gamma \conval \phi$.
 
         Pelo Lema~\ref{lem:matval}, então existe uma valoração $h$ tal que, para todo $\psi \in \ling{}$, $v(\psi) = 1$ sse $h{\psi} \subseteq \{1, \meio{}\}$. Supondo $v[\Gamma] = 1$, então temos $h[\Gamma] \subseteq \{1,\meio{}\}$. Pela nossa suposição de $\Gamma \conmat \phi$, temos $h(\phi) = \{1, \meio{}\}$. Novamente, pelo Lema~\ref{lem:matval}, temos $v(\phi) = 1$. Portanto, segue $\Gamma \conval \phi$.
-        
+
     \end{proof}
 
     O metateorema da dedução é uma propriedade conveniente de ser provada, já que nos permite utilizar características particulares de lógicas tarskianas a fim de desenvolver provas de outros metateoremas.
