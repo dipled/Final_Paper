@@ -107,7 +107,7 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
 
     Caso a linguagem de $\mathcal{L}$ possua uma implicação $\to$ que respeite o metateorema da dedução\footnote{Definido como $\Gamma, \alpha \Vdash \beta \Longleftrightarrow  \Gamma\Vdash \alpha \to \beta$.}, então $\mathcal{L}$ é paraconsistente se e somente se a fórmula $\alpha \to (\neg \alpha \to \beta)$ não for válida. Ou seja, se o Princípio da Explosão é inválido (em relação a $\neg$), o conectivo $\neg$ é considerado uma negação \textit{não explosiva}.
 
-\section{Inconsistência}\label{sec:incons}
+\section{Inconsistência Formal}\label{sec:incons}
     A motivação para o desenvolvimento das \lfis{} é a existência sistemas lógicos paraconsistentes nos quais é possível resgatar, de maneira \textit{controlada}, o Princípio da Explosão. Ao internalizar o conceito de consistência, as \lfis{} propõem a noção de que uma contradição que é reconhecidamente inconsistente numa dada teoria é inofensiva e é somente fruto do excesso de informação. O resgate \textit{controlado} da explosividade é feito definindo um conjunto $\bigcirc(p)$ de fórmulas dependentes somente em uma variável proposicional $p$. Caso uma lógica $\mathcal{L}$ seja explosiva ao unir-se um conjunto $\bigcirc(\alpha)$ com uma contradição $\{\alpha, \neg \alpha\}$, ou seja, se  o seguinte for válido para todo $\alpha$ e $\beta$ pertencentes à sua linguagem: $\bigcirc(\alpha), \alpha, \neg \alpha \Vdash \beta$ e $\bigcirc(\alpha), \alpha \nVdash \beta$ e $\bigcirc(\alpha), \neg \alpha \nVdash \beta$, então dizemos que $\mathcal{L}$ é \textit{gentilmente explosiva}. Esta é uma das formas de definir as lógicas de inconsistência formal. Como será mostrado nesta seção, existem três jeitos diferentes de definir as \lfis{} e sua \textit{explosividade gentil}.
 
     \begin{notacao}
@@ -175,4 +175,4 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons} serão apresentadas definiç�
         \end{align*}
     \end{definicao}
 
-    Esta definição será utilizada para provar que a lógica proposicional \lfium{} se trata de uma Lógica de Inconsistência Formal forte. 
+    Esta definição será utilizada para provar que a lógica proposicional \lfium{} se trata de uma lógica de inconsistência formal forte. 
