@@ -285,7 +285,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 & v(\neg (\alpha \lor \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vDM_{\lor}$}}\\
                 & v(\neg (\alpha \to \beta)) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vCip_{\to}$}}
             \end{align*}
-            O conjunto de todas as valorações para a lógica \lfium{} será denotado por $V^{\lfium{}}$. Então, a relação de consequência semântica $\conval$ para a \lfium{} é definida da seguinte forma: para todo $\Gamma \cup \{\phi\} \subseteq \ling{}$, tem-se $\Gamma \conval \phi$ sse, para todo $v \in V^{\lfium{}}$, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$ então $v(\phi) = 1$.\qed{}
+            O conjunto de todas as valorações para a lógica \lfium{} será denotado por $V^{\lfium{}}$. Então, a relação de consequência semântica $\conval$ para a \lfium{} é definida da seguinte forma: para todo $\Gamma \cup \{\phi\} \subseteq \ling{}$, tem-se $\Gamma \conval \phi$ sse, para todo $v \in V^{\lfium{}}$, se $v[\Gamma] \subseteq \{1\}$ então $v(\phi) = 1$.\qed{}
         \end{definicao}
         \helena{Em vez de ficar explicando esses nomes das cláusulas eu poderia só mudar pra coisas mais normais né} \migs{Sim, contudo eu acho que seria interessante pelo menos mencionar que você está usando uma nomenclatura diferente do que suas referências estão usando.}
 
@@ -976,7 +976,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
             Com isso, o \textsc{Caso 1} está provado e $\Gamma \conval \phi_{1}$ segue caso $\phi_{1}$ seja um axioma.
 
-            \casodeprova{} $\phi_{1} \in \Gamma$. Logo, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$, temos $v(\phi_{1}) = 1$. Portanto, $\Gamma \conval \phi_{1}$.
+            \casodeprova{} $\phi_{1} \in \Gamma$. Logo, se $v[\Gamma] \subseteq \{1\}$, temos $v(\phi_{1}) = 1$. Portanto, $\Gamma \conval \phi_{1}$.
 
         \end{provaporcasos}
 
@@ -1002,7 +1002,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
          
          Pela (HI), temos $\Gamma \conval \phi_{j}$ e $\Gamma \conval \phi_{j} \to \phi_{n}$. 
          
-         Então, supondo $v(\gamma) = 1$ para todo $v(\gamma) \in \Gamma$, temos $v(\phi_{j}) = 1$ e $v(\phi_{j} \to \phi_{n}) = 1$. 
+         Então, supondo $v[\Gamma] \subseteq \{1\}$, temos $v(\phi_{j}) = 1$ e $v(\phi_{j} \to \phi_{n}) = 1$. 
          
          Por $(vImp)$ temos $v(\phi_{j}) = 0$ ou $v(\phi_{n}) = 1$. 
          
