@@ -319,6 +319,8 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     
     Os lemas e teoremas desenvolvidos nesta seção seguem um caminho baseado no que foi apresentado por~\citeshort{Carnielli_Coniglio_2016} e por~\citeshort{DaCosta1977-NEWASA-3}, com modificações para se adequarem ao presente trabalho.
 
+
+    \helena{cometar a questão de $v$ não ser um homomorfismo e, por isso, a volta da equivalência ser mais fácil utilizando a correção em relação a semâantica matricial e a completude em relação a bivalorações}
     \begin{lema}\label{lem:matval}
         Seja $v$ uma valoração em $V^{\lfium}$, então existe uma valoração $h$ sobre $\pazocal{M}_{\lfium}$ tal que, para todo $\phi \in \ling{}$, $v(\phi) = 1$ sse $h(\phi) \in \{1, \meio{}\}$.
     \end{lema}
@@ -1026,7 +1028,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \begin{proof}[Prova do Corolário~\ref{cor:lfi_forte}]
         Sejam $a, b \in \pazocal{P}$ variáveis proposicionais distintas e sejam $\phi, \psi \in \ling{}$ fórmulas quaisquer.
         
-        \noindent\textbf{Prova da condição (i):} A prova das condições será feita com base nas valorações presentes na Tabela~\ref{tab:negcirc}.
+        \noindent\textbf{Prova da condição (i):} A prova das condições será feita com base nas valorações $v_1, v_2$ e $v_3$ presentes na Tabela~\ref{tab:negcirc}.
 
         \begin{itemize}
             \item[\textbf{(i.a)}] Vamos provar $a, \neg a \nconhil b$.
@@ -1059,12 +1061,12 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     A prova da completude para a lógica \lfium{} depende das seguintes definições e lemas auxiliares para ser desenvolvida:
 
     \begin{definicao}[Conjunto de fórmulas não-trivial maximal]\label{def:nao-trivial_maximal}
-        Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\pazocal{L}$ e sejam $\Gamma, \{\phi\}$ conjuntos de fórmulas de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. O conjunto $\Gamma$ é dito não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nvdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
+        Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\pazocal{L}$ e sejam $\Gamma, \{\phi\}$ conjuntos de fórmulas de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. O conjunto $\Gamma$ é dito não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
     \end{definicao}
 
     \begin{definicao}[Teoria fechada]\label{def:fechada}
 
-        Seja $\mathcal{L}$ uma lógica tarskiana. Um conjunto de fórmulas $\Gamma$ é dito fechado em $\mathcal{L}$ (ou dito uma \textit{teoria fechada} em $\mathcal{L}$) se, para toda fórmula $\phi$, tem-se $\Gamma \vdash_{\mathcal{L}} \phi$ sse $\phi \in \Gamma$.\qed{}
+        Seja $\mathcal{L}$ uma lógica tarskiana. Um conjunto de fórmulas $\Gamma$ é dito fechado em $\mathcal{L}$ (ou dito uma \textit{teoria fechada} em $\mathcal{L}$) se, para toda fórmula $\phi$, tem-se $\Gamma \Vdash_{\mathcal{L}} \phi$ sse $\phi \in \Gamma$.\qed{}
     \end{definicao}
 
     \begin{lema}\label{lem:nao_trivial_maximal_fechado}
@@ -1072,7 +1074,13 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \end{lema}
 
     \begin{proof}[Prova do Lema~\ref{lem:nao_trivial_maximal_fechado}]
-        Seja $\Gamma$ uma conjunto de fórmulas não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Se $\psi \in \Gamma$, então $\Gamma \vdash_{\mathcal{L}} \psi$, já que $\mathcal{L}$ é tarskiana. Se $\Gamma \vdash_{\mathcal{L}} \psi$, então supondo que $\psi \notin \Gamma$, temos que $\Gamma, \psi \vdash_{\mathcal{L}} \phi$, pela Definição~\ref{def:nao-trivial_maximal}. Como $\mathcal{L}$ é tarskiana, segue que $\Gamma \vdash_{\mathcal{L}} \phi$, o que contradiz o fato de $\Gamma$ ser não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Portanto, $\psi \in \Gamma$ e então $\Gamma$ é fechado em $\mathcal{L}$.
+        Seja $\Gamma$ uma conjunto de fórmulas não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. 
+        
+        \noindent($\Longrightarrow$) Se $\psi \in \Gamma$, então $\Gamma \Vdash_{\mathcal{L}} \psi$, já que $\mathcal{L}$ é tarskiana. 
+        
+        \noindent($\Longleftarrow$) Se $\Gamma \Vdash_{\mathcal{L}} \psi$, então supondo $\psi \notin \Gamma$, temos $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$, pela Definição~\ref{def:nao-trivial_maximal}. Pela propriedade do corte, segue que $\Gamma \Vdash_{\mathcal{L}} \phi$, o que contradiz o fato de $\Gamma$ ser não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Portanto, $\psi \in \Gamma$.
+        
+        Então $\Gamma$ é fechado em $\mathcal{L}$.
     \end{proof}
 
 
