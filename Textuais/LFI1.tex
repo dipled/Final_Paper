@@ -237,7 +237,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \vspace{\baselineskip}
 
             \noindent
-            A matriz $\pazocal{M}_{\lfium{}}$ define a relação de consequência semântica $\conmat{}$ para a lógica \lfium{} da seguinte forma: para todo $\Gamma \cup \{\phi\} \subseteq \ling{}$, tem-se $\Gamma \conmat \phi$ sse, para todo valoração $h : \ling{} \to M$ de $\pazocal{M}_{\lfium{}}$, se $h[\Gamma] \subseteq \{1, \meio{}\}$ então $h(\phi) \in \{1, \meio{}\}$.\qed{}
+            A matriz $\pazocal{M}_{\lfium{}}$ define a relação de consequência semântica $\conmat{}$ para a lógica \lfium{} da seguinte forma: para todo $\Gamma \cup \{\phi\} \subseteq \ling{}$, tem-se $\Gamma \conmat \phi$ sse, para toda valoração $h : \ling{} \to M$ de $\pazocal{M}_{\lfium{}}$, se $h[\Gamma] \subseteq \{1, \meio{}\}$ então $h(\phi) \in \{1, \meio{}\}$.\qed{}
         \end{definicao}
 
         Para ilustrar, provaremos um exemplo de inferência na semântica matricial apresentada:
@@ -615,7 +615,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \begin{proof}[Prova do Corolário~\ref{cor:matval}]
         Seja $\Gamma \cup \{\phi\} \subseteq \ling{}$ um conjunto de fórmulas e seja $v \in V^{\lfium{}}$ uma valoração. Vamos supor $\Gamma \conmat \phi$.
 
-        Pelo Lema~\ref{lem:matval}, então existe uma valoração $h$ tal que, para todo $\psi \in \ling{}$, $v(\psi) = 1$ sse $h(\psi) \subseteq \{1, \meio{}\}$. Supondo $v[\Gamma] = 1$, então temos $h[\Gamma] \subseteq \{1,\meio{}\}$. Pela nossa suposição de $\Gamma \conmat \phi$, temos $h(\phi) \in \{1, \meio{}\}$. Novamente, pelo Lema~\ref{lem:matval}, temos $v(\phi) = 1$. Portanto, segue $\Gamma \conval \phi$.
+        Pelo Lema~\ref{lem:matval}, então existe uma valoração $h$ tal que, para todo $\psi \in \ling{}$, $v(\psi) = 1$ sse $h(\psi) \subseteq \{1, \meio{}\}$. Supondo $v[\Gamma] = 1$, então temos $h[\Gamma] \subseteq \ummeio{}$. Pela nossa suposição de $\Gamma \conmat \phi$, temos $h(\phi) \in \{1, \meio{}\}$. Novamente, pelo Lema~\ref{lem:matval}, temos $v(\phi) = 1$. Portanto, segue $\Gamma \conval \phi$.
 
     \end{proof}
 
@@ -792,202 +792,124 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \end{align*}
     \end{proof}
 
-    A ideia da prova da correção para a \lfium{} é, como de costume, provar que todo axioma do cálculo de Hilbert $\conhil$ é válido na semântica de valorações $\conval$ e mostrar que a regra de inferência \textit{modus ponens} preserva sua validade.
+    A ideia da prova da correção para a \lfium{} é, como de costume, provar que todo axioma do cálculo de Hilbert $\conhil$ é válido na semântica matricial $\conmat$ e mostrar que a regra de inferência \textit{modus ponens} preserva sua validade. No desenvolvimento da prova, as igualdades do tipo $h(\triangle \phi) = \triangle h(\phi)$ e $h(\phi \otimes \psi) = h(\phi) \otimes h(\psi)$, onde $\triangle, \otimes$ são um conectivos quaisquer, ficam implícitas e as justificativas do tipo ($\otimes$) dizem respeito a valoração correspondente ao conectivo $\otimes$ em $\pazocal{M}_{\lfium{}}$.
 
-    \begin{teorema}[Correção]\label{teo:correcao}
-        A lógica {\normalfont\lfium{}} é correta em relação a sua semântica de valorações, ou seja, para todo conjunto de fórmulas $\Gamma \cup \{\alpha\} \subseteq \ling{}$:
+
+    \begin{teorema}[Correção em relação a semântica matricial]\label{teo:correcao_mat}
+        A lógica {\normalfont\lfium{}} é correta em relação a sua semântica matricial, ou seja, para todo conjunto de fórmulas $\Gamma \cup \{\alpha\} \subseteq \ling{}$:
 
         \centering
-        {\normalfont{} $\Gamma \conhil \alpha \Longrightarrow \Gamma \conval \alpha$.}
+        {\normalfont{} $\Gamma \conhil \alpha \Longrightarrow \Gamma \conmat \alpha$.}
     \end{teorema}
 
-    \begin{proof}[Prova do Teorema~\ref{teo:correcao}]
-        Supondo $\Gamma \conhil \alpha$, existe uma sequência de derivação $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha$. A prova de $\Gamma \conval \alpha$ é obtida por indução no tamanho $n$ da sequência de derivação:\\
+
+    \begin{proof}[Prova do Teorema~\ref{teo:correcao_mat}]
+        Seja $\Gamma \cup \{\alpha\} \subseteq{} \ling{}$ um conjunto de fórmulas.
+        Supondo $\Gamma \conhil \alpha$, existe uma sequência de derivação $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha$. A prova de $\Gamma \conmat \alpha$ é obtida por indução no tamanho $n$ da sequência de derivação:\\
 
         \noindent \textbf{\textsc{Base}} $n = 1$. A sequência contém somente uma fórmula $\phi_{1} = \alpha$. Portanto, existem duas possibilidades:
         \begin{enumerate}
             \item $\phi_{1}$ é um axioma.
             \item $\phi_{1} \in \Gamma$.
         \end{enumerate}
-        
-
-        % \begin{gambiarra}
-            % Isso é uma grandissima gambiarra mas funciona que é uma beleza -- migs
-            \newcounter{subcasosUm}
-            \newcommand{\subcaso}{\refstepcounter{subcasosUm}\item[Subcaso 1.\thesubcasosUm{}.]}
-        % \end{gambiarra}
-        
 
         \begin{provaporcasos}
             
-            \casodeprova{} $\phi_{1}$ é um axioma. Então basta mostrar que para todo $v \in V^{\lfium{}}$, se $v(\gamma) = 1$ para todo $\gamma \in \Gamma$, então $v(\phi_{1}) = 1$. Como $\phi_{1}$ é um axioma, basta analisar todos os casos possíveis:
+            \casodeprova{} $\phi_{1}$ é um axioma. Então basta mostrar que para todo $h : \ling{} \to M$ de $\pazocal{M}_{\lfium{}}$, se $h[\Gamma] \subseteq \ummeio{}$, então $h(\phi_{1}) \in \ummeio{}$. Como $\phi_{1}$ é um axioma, basta analisar todos os casos possíveis:
 
             \begin{provaporsubcasos}
                 
                 \subcasodeprova{} $\phi_{1} = \alpha \to (\beta \to \alpha)$.
 
-                    Supondo $v(\alpha \to (\beta \to \alpha)) = 0$, temos $v(\alpha) = 1$ e $v(\beta \to \alpha) = 0$ por $(vImp)$. 
-                        
-                    Logo, $v(\beta) = 1$ e $v(\alpha) = 0$ novamente por $(vImp)$. Isto resulta numa contradição. 
-                    
-                    Portanto $v(\alpha \to (\beta \to \alpha)) = 1$.
+                    Supondo $h(\alpha \to (\beta \to \alpha)) = 0$, temos:
+
+                        $h(\alpha \to (\beta \to \alpha)) = 0$
+
+                        $\Longleftrightarrow h(\alpha) \in \ummeio{}$ e $h(\beta \to \alpha) = 0$  \hfill[$\to$]
+
+                        $\Longleftrightarrow$ $h(\alpha) \subseteq \ummeio{}$ e $h(\beta) \subseteq \ummeio{}$ e $h(\alpha) = 0$ \hfill[$\to$]
+
+
+                    Chegamos numa contradição, portanto $h(\alpha \to (\beta \to \alpha)) \in \ummeio{}$
 
                 \subcasodeprova{} $\phi_{1} = (\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma ))$.
-                
-                    Supondo $v((\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma))) = 0$, temos, por ($vImp$), $v(\alpha \to (\beta \to \gamma)) = 1 \text{ e } v((\alpha \to \beta) \to (\alpha \to \gamma)) = 0$.
 
-                    Portanto, por $(vImp)$, temos $v(\alpha) = 0$ ou $v(\beta \to \gamma) = 1$, e $v(\alpha \to \beta) = 1$ e $v(\alpha \to \gamma) = 0$. 
-                    
-                    Por $(vImp)$ segue $v(\alpha) = 1$ e $v(\gamma) = 0$, logo, $v(\beta \to \gamma) = 1$ e, portanto, $v(\beta) = 0$ ou $v(\gamma) = 1$. 
-                    
-                    Porém, como $v(\alpha \to \beta) = 1$ e $v(\alpha) = 1$, então $v(\beta) = 1$, o que resulta numa contradição. Logo $v((\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma))) = 1$.
+                    Supondo $h((\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma ))) = 0$, temos:
+
+                    $h((\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma ))) = 0$
+
+                    $\Leftrightarrow h(\alpha \to (\beta \to \gamma)) \in \ummeio{}$ e $h((\alpha \to \beta) \to (\alpha \to \gamma )) = 0$ \hfill[$\to$]
+
+                    $\Leftrightarrow (h(\alpha) = 0$ ou $h(\beta \to \gamma) \subseteq \ummeio{})$ e $h(\alpha \to \beta) \subseteq \ummeio{}$ e $h(\alpha \to \gamma) = 0$ \hfill[$\to$]
+
+                    $\Leftrightarrow (h(\alpha) = 0$ ou $h(\beta) = 0$ ou $h(\gamma) \subseteq \ummeio{})$ e ($h(\alpha) = 0$ ou $h(\beta) \subseteq \ummeio{}$) e $h(\alpha) \subseteq \ummeio{}$ e $ h(\gamma) = 0$ \hfill[$\to$]
+                
+                    Chegamos numa contradição, portanto $h((\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma ))) \in \ummeio{}$
 
                 \subcasodeprova{} $\phi_{1} = \alpha \to (\beta \to (\alpha \land \beta))$. 
 
-                    Supondo $v(\alpha \to (\beta \to (\alpha \land \beta))) = 0$, temos $v(\alpha) = 1$ e $v(\beta \to (\alpha \land \beta)) = 0$, por $(vImp)$, então $v(\beta) = 1$ e $v(\alpha \land \beta) = 0$ novamente por $(vImp)$. 
-                    
-                    Com isso, temos $v(\alpha) = 0$ ou $v(\beta) = 0$ por $(vAnd)$, mas isso resulta numa contradição, já que $v(\alpha) = 1$ e $v(\beta) = 1$. 
-                    
-                    Portanto $v(\alpha \to (\beta \to (\alpha \land \beta))) = 1$.
+                   
 
                 \subcasodeprova{} $\phi_{1} = (\alpha \land \beta) \to \alpha$. 
                 
-                    Supondo $v((\alpha \land \beta) \to \alpha) = 0$. 
-                
-                    Logo $v(\alpha \land \beta) = 1$ e $v(\alpha) = 0$ por $(vImp)$. 
-                    
-                    Então, $v(\alpha) = 1$ e $v(\beta) = 1$ por $(vAnd)$, o que resulta numa contradição. 
-                    
-                    Portanto $v((\alpha \land \beta) \to \alpha) = 1$.
 
                 \subcasodeprova{} $\phi_{1} = (\alpha \land \beta) \to \beta$. Como no caso anterior, \textit{mutatis mutandis}.
 
                 \subcasodeprova{} $\phi_{1} = \alpha \to (\alpha \lor \beta)$. 
                 
-                    Supondo $v(\alpha \to (\alpha \lor \beta)) = 0$, temos $v(\alpha) = 1$ e $v(\alpha \lor \beta) = 0$, por $(vImp)$. 
-                    
-                    Então temos $v(\alpha) = 0$ e $v(\beta) = 0$ por $(vOr)$, o que resulta numa contradição. 
-                    
-                    Portanto $v(\alpha \to (\alpha \lor \beta)) = 1$.
-
                 \subcasodeprova{} $\phi_{1} = \beta \to (\alpha \lor \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
 
                 \subcasodeprova{} $\phi_{1} = (\alpha \to \gamma) \to ((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma))$. 
                 
-                    Supondo $v((\alpha \to \gamma) \to ((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma))) = 0$, temos, por $(vImp)$, $v((\alpha \to \gamma)) = 1$ e $v(((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma))) = 0$. 
                     
-                    Portanto, novamente por $(vImp)$, temos $v(\alpha) = 0$ ou $v(\gamma) = 1$. Além disso, temos $v(\beta \to \gamma) = 1$ e $v((\alpha \lor \beta) \to \gamma) = 0$. 
-                    
-                    Então, temos $v(\beta) = 0$ ou $v(\gamma) = 1$. Ademais, $v(\alpha \lor \beta) = 1$ e $v(\gamma) = 0$. 
-                    
-                    Finalmente, por $(vOr)$, temos $v(\alpha) = 1$ ou $v(\beta) = 1$. O fato de termos $v(\gamma) = 0$ nos permite concluir $v(\alpha) = 0$ e $v(\beta) = 0$, porém isto nos dá $v(\alpha) = 1$ (já que temos $v(\alpha) = 1$ ou $v(\beta) = 1$ e também $v(\beta) = 0$), o que resulta numa contradição, pois já temos $v(\alpha) = 0$. 
-                    
-                    Portanto, $v((\alpha \to \gamma) \to ((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma))) = 1$.
-
                 \subcasodeprova{} $\phi_{1} = (\alpha \to \beta) \lor \alpha$. 
                     
-                    Supondo $v((\alpha \to \beta) \lor \alpha) = 0$, então, por $(vOr)$, temos $v(\alpha \to \beta) = 0$ e $v(\alpha) = 0$. 
-                    
-                    Logo, por $(vImp)$, $v(\alpha) = 1$  e $v(\beta) = 0$, o que resulta numa contradição. 
-                    
-                    Portanto, $v((\alpha \to \beta) \lor \alpha) = 1$.
 
                 \subcasodeprova{} $\phi_{1} = \alpha \lor \neg \alpha$. 
                 
-                    Supondo $v(\alpha \lor \neg \alpha) = 0$, temos por $(vOr)$, $v(\alpha) = 0$ e $v(\neg \alpha) = 0$. 
-                    
-                    Então, por $(vNeg)$, $v(\alpha) = 1$, o que resulta numa contradição. 
-                    
-                    Portanto, $v(\alpha \lor \neg \alpha) = 1$.
+                 
 
                 \subcasodeprova{} $\phi_{1} = \circ \alpha \to (\alpha \to (\neg \alpha \to \beta))$. 
                 
-                    Supondo $v(\circ \alpha \to (\alpha \to (\neg \alpha \to \beta))) = 0$, então, por $(vImp)$, $v(\circ \alpha) = 1$ e $v(\alpha \to (\neg \alpha \to \beta)) = 0$. 
-                    
-                    Logo, por $(vCon)$, $v(\alpha) = 0$ ou $v(\neg \alpha) = 0$. Ademais, por $(vImp)$, $v(\alpha) = 1$ e $v(\neg \alpha \to \beta) = 0$. 
-                    
-                    Novamente por $(vImp)$, $v(\neg \alpha) = 1$ e $v(\beta) = 0$. Podemos concluir $v(\alpha) = 0$, já que temos $v(\neg \alpha) = 1$ e também temos $v(\alpha) = 0$ ou $v(\neg \alpha) = 0$. 
-                    
-                    Isto resulta numa contradição, pois temos $v(\alpha) = 1$ e $v(\alpha) = 0$. 
-                    
-                    Portanto, $v(\circ \alpha \to (\alpha \to (\neg \alpha \to \beta))) = 1$.
-
+                  
                 \subcasodeprova{} $\phi_{1} = \neg \neg \alpha \to \alpha$. 
                     
-                    Supondo $v(\neg \neg \alpha \to \alpha) = 0$, então, por $(vImp)$, $v(\neg \neg \alpha) = 1$ e $v(\alpha) = 0$. 
-                    
-                    Por $(vCf)$ temos $v(\alpha) = 1$, o que resulta numa contradição. 
-                    
-                    Portanto, $v(\neg \neg \alpha \to \alpha) = 1$.
-
+                   
                 \subcasodeprova{} $\phi_{1} = \alpha \to \neg \neg \alpha$. 
                 
-                    Supondo $v(\alpha \to \neg \neg \alpha) = 0$, então, por $(vImp)$, $v(\alpha) = 1$ e $v(\neg \neg \alpha) = 0$. 
-                    
-                    Por $(vCe)$ temos $v(\neg \neg \alpha) = 1$, o que resulta numa contradição. 
-                    
-                    Portanto, $v(\alpha \to \neg \neg \alpha) = 1$.
-
+                   
                 \subcasodeprova{} $\phi_{1} = \neg \circ \alpha \to (\alpha \land \neg \alpha)$. 
-                
-                    Supondo $v(\neg \circ \alpha \to (\alpha \land \neg \alpha)) = 0$, temos, por $(vImp)$, $v(\neg \circ \alpha) = 1$ e $v(\alpha \land \neg \alpha) = 0$. 
-                    
-                    Por $(vCi)$ temos $v(\alpha) = 1$ e $v(\neg \alpha) = 1$. Ademais, por $(vAnd)$, temos $v(\alpha) = 0$ ou $v(\neg \alpha) = 0$. 
-                    
-                    Podemos concluir $v(\alpha) = 0$, já que temos $v(\alpha) = 0$ ou $v(\neg \alpha) = 0$ e também temos $v(\neg \alpha) = 1$. 
-                    
-                    Isto resulta numa contradição, pois temos $v(\alpha) = 1$ e  $v(\alpha) = 0$. 
-                    
-                    Portanto, $v(\neg \circ \alpha \to (\alpha \land \neg \alpha)) = 1$.
+               
 
                 \subcasodeprova{} $\phi_{1} = \neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta)$. 
                 
-                    Supondo $v(\neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta)) = 0$, temos, por $(vImp)$, $v(\neg (\alpha \lor \beta)) = 1$ e $v(\neg \alpha \land \neg \beta) = 0$. 
-                    
-                    Por $(vDM_{\lor})$ temos $v(\neg \alpha) = 1$ e $v(\neg \beta) = 1$. Ademais, por $(vAnd)$, temos $v(\neg \alpha) = 0$ ou $v(\neg \beta) = 0$. 
-                    
-                    Isto, unido ao fato de termos $v(\neg \beta) = 1$, nos permite concluir $v(\neg \alpha) = 0$, o que resulta numa contradição. 
-                    
-                    Portanto, $v(\neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta)) = 1$.
-
+                   
 
                 \subcasodeprova{} $\phi_{1} = (\neg \alpha \land \neg \beta) \to \neg (\alpha \lor \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
 
                 \subcasodeprova{} $\phi_{1} = \neg(\alpha \land \beta) \to (\neg \alpha \lor \neg \beta)$. 
+   
                 
-                Supondo $v(\neg(\alpha \land \beta) \to (\neg \alpha \lor \neg \beta)) = 0$, temos, por $(vImp)$, $v(\neg(\alpha \land \beta)) = 1$ e $v(\neg \alpha \lor \neg \beta) = 0$. 
-                
-                Então, por $(vDM_{\land})$, temos $v(\neg \alpha) = 1$ ou $v(\neg \beta) = 1$. Além disso, por $(vOr)$, temos $v(\neg \alpha) = 0$ e $v(\neg \beta) = 0$. 
-                
-                Isto nos permite concluir $v(\neg \alpha) = 1$, pois temos $v(\neg \alpha) = 1$ ou $v(\neg \beta) = 1$ e também temos $v(\neg \beta) = 0$. 
-                
-                Isto resulta numa contradição, pois temos $v(\neg \alpha) = 1$ e $v(\neg \alpha) = 0$. 
-                
-                Portanto, $v(\neg(\alpha \land \beta) \to (\neg \alpha \lor \neg \beta)) = 1$.
+               
 
-                \subcasodeprova{} $\phi_{1} = (\neg \alpha \lor \neg \beta) \to \neg (\alpha \land \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
+                \subcasodeprova{} $\phi_{1} = (\neg \alpha \lor \neg \beta) \to \neg (\alpha \land \beta)$. 
 
                 \subcasodeprova{} $\phi_{1} = \neg (\alpha \to \beta) \to(\alpha \land \neg \beta)$. 
-                
-                Supondo $v(\neg (\alpha \to \beta) \to (\alpha \land \neg \beta)) = 0$. Por $(vImp)$ temos $v(\neg (\alpha \to \beta)) = 1$ e $v(\alpha \land \neg \beta) = 0$. 
-                
-                Então, por $(vCip_{\to})$, temos $v(\alpha) = 1$ e $v(\neg \beta) = 1$. Ademais, por $(vAnd)$, temos $v(\alpha) = 0$ ou $v(\neg \beta) = 0$, o que unido ao fato de termos $v(\neg \beta) = 1$, nos permite concluir $v(\alpha) = 0$. 
-                
-                Isto resulta numa contradição, portanto $v(\neg (\alpha \to \beta) \to (\alpha \land \neg \beta)) = 1$.
+               
 
                 \subcasodeprova{} $\phi_{1} = (\alpha \land \neg \beta) \to \neg(\alpha \to \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
                 
             \end{provaporsubcasos}
 
-            Com isso, o \textsc{Caso 1} está provado e $\Gamma \conval \phi_{1}$ segue caso $\phi_{1}$ seja um axioma.
+            Com isso, o \textsc{Caso 1} está provado e $\Gamma \conmat \phi_{1}$ segue caso $\phi_{1}$ seja um axioma.
 
-            \casodeprova{} $\phi_{1} \in \Gamma$. Logo, se $v[\Gamma] \subseteq \{1\}$, temos $v(\phi_{1}) = 1$. Portanto, $\Gamma \conval \phi_{1}$.
+            \casodeprova{} $\phi_{1} \in \Gamma$. Logo, se $v[\Gamma] \subseteq \{1\}$, temos $v(\phi_{1}) = 1$. Portanto, $\Gamma \conmat \phi_{1}$.
 
         \end{provaporcasos}
 
-         \noindent \textbf{\textsc{Passo}} Hipótese de indução (HI): Para qualquer sequência da derivação de $\Gamma \conhil \alpha$ de tamanho $k < n$, tem-se $\Gamma \conval \alpha$. 
+         \noindent \textbf{\textsc{Passo}} Hipótese de indução (HI): Para qualquer sequência da derivação de $\Gamma \conhil \alpha$ de tamanho $k < n$, tem-se $\Gamma \conmat \alpha$. 
          
-         Portanto, é preciso mostrar que $\Gamma \conval \alpha$ segue caso a sequência de derivação de $\Gamma \conhil \alpha$ tenha tamanho $n$. Então, vamos supor $\Gamma \conhil \phi_{n}$.
+         Portanto, é preciso mostrar que $\Gamma \conmat \alpha$ segue caso a sequência de derivação de $\Gamma \conhil \alpha$ tenha tamanho $n$. Então, vamos supor $\Gamma \conhil \phi_{n}$.
          
          Ao analisar a obtenção de $\phi_{n}$ em $\Gamma \conhil \phi_{n}$, existem três casos a se considerar:
          
@@ -1005,7 +927,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
          
          Dada nossa suposição de $\Gamma \conhil \phi_{n}$, então $\Gamma \conhil \phi_{j}$ e $\Gamma \conhil \phi_{j} \to \phi_{n}$. 
          
-         Pela (HI), temos $\Gamma \conval \phi_{j}$ e $\Gamma \conval \phi_{j} \to \phi_{n}$. 
+         Pela (HI), temos $\Gamma \conmat \phi_{j}$ e $\Gamma \conmat \phi_{j} \to \phi_{n}$. 
          
          Então, supondo $v[\Gamma] \subseteq \{1\}$, temos $v(\phi_{j}) = 1$ e $v(\phi_{j} \to \phi_{n}) = 1$. 
          
@@ -1013,9 +935,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
          
          Isto, unido ao fato de termos $v(\phi_{j}) = 1$, nos permite concluir $v(\phi_{n}) = 1$. 
          
-         Portanto $\Gamma \conval \phi_{n}$.
+         Portanto $\Gamma \conmat \phi_{n}$.
 
-         \noindent Com isso, provamos $\Gamma \conval \alpha$ e a prova está finalizada.
+         \noindent Com isso, provamos $\Gamma \conmat \alpha$ e a prova está finalizada.
 
     \end{proof}
 
@@ -1032,7 +954,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         \begin{itemize}
             \item[\textbf{(i.a)}] Vamos provar $a, \neg a \nconhil b$.
-                                  Tomando a valoração $v_3$, tal que $v_3(b) = 0$, então temos $a, \neg a \nconval b$. Pela contraposta da correção (Teorema~\ref{teo:correcao}) temos  $a, \neg a \nconhil b$.
+                                  Tomando a valoração $v_3$, tal que $v_3(b) = 0$, então temos $a, \neg a \nconval b$. Pela contraposta da correção (Teorema~\ref{teo:correcao_val}) temos  $a, \neg a \nconhil b$.
             \item[\textbf{(i.b)}] Vamos provar $\circ a, a \nconhil b$.
                                   Tomando a valoração $v_2$, tal que $v_2(b) = 0$, então temos $a, \neg a \nconval b$. Pela contraposta da correção temos $\circ a, a \nconhil b$.
             \item[\textbf{(i.c)}] Vamos provar $\circ a, \neg a \nconhil b$.
