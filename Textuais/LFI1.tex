@@ -815,7 +815,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         \begin{provaporcasos}
             
-            \casodeprova{} $\phi_{1}$ é um axioma. Então seja $h : \ling{} \to M$ uma valoração de $\mat{}$, vamos supor $h[\Gamma] \subseteq \ummeio{}$. Então vamos mostrar $h(\phi_{1}) \in \ummeio{}$. Como $\phi_{1}$ é um axioma, basta analisar todos os casos possíveis:
+            \casodeprova{} $\phi_{1}$ é um axioma. Então vamos mostrar que para toda valoração $h : \ling{} \to M$ sobre $\mat{}$, se $h[\Gamma] \subseteq \ummeio{}$, então $h(\phi_{1}) \in \ummeio{}$. Como $\phi_{1}$ é um axioma, basta analisar todos os casos possíveis:
 
             \begin{provaporsubcasos}
                 
@@ -1347,7 +1347,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
          
          Pela matriz de $\to$, temos $h(\phi_{j}) = 0$ ou $h(\phi_{n}) \in \{1,\meio{}\}$. 
          
-         Isto, unido ao fato de termos $h(\phi_{j}) \in \{1,\meio{}\}$, nos permite concluir $h(\phi_{n}) = \in \{1,\meio{}\}$. 
+         Isto, unido ao fato de termos $h(\phi_{j}) \in \{1,\meio{}\}$, nos permite concluir $h(\phi_{n}) \in \{1,\meio{}\}$. 
          
          Portanto $\Gamma \conmat \phi_{n}$.
 
@@ -1366,7 +1366,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \end{corolario}
 
     \begin{proof}[Prova do Corolário~\ref{cor:correcao_val}]
-        Seja $\Gamma \cup \{\alpha\} \subseteq \ling{}$ um conjunto de fórmulas. Então, supondo $\Gamma \conhil \alpha$, temos, pelo Teorema~\ref{teo:correcao_mat}, $\Gamma \conmat \alpha$. Finalmente, pelo Lema~\ref{lem:matval}, temos $\Gamma \conval \alpha$.
+        Seja $\Gamma \cup \{\alpha\} \subseteq \ling{}$ um conjunto de fórmulas. Então, supondo $\Gamma \conhil \alpha$, temos, pelo Teorema~\ref{teo:correcao_mat}, $\Gamma \conmat \alpha$. Finalmente, pelo Corolário~\ref{cor:matval}, temos $\Gamma \conval \alpha$.
     \end{proof}
 
     Com o resultado anterior, a prova de que a lógica \lfium{} se trata de uma \lfi{} forte (ver Definição~\ref{def:lfi_forte_prop}) é imediata.
@@ -1382,12 +1382,12 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
         \begin{itemize}
             \item[\textbf{(i.a)}] Vamos provar $a, \neg a \nconhil b$.
-                                  Tomando a valoração $v_3$, tal que $v_3(b) = 0$, então temos $a, \neg a \nconval b$. Pela contraposta do Corolário~\ref{cor:correcao_val}, temos  $a, \neg a \nconhil b$.
+                                  Tomando a valoração $v_3$, com $v_3(b) = 0$, então temos $a, \neg a \nconval b$. Pela contraposta do Corolário~\ref{cor:correcao_val}, temos  $a, \neg a \nconhil b$.
             \item[\textbf{(i.b)}] Vamos provar $\circ a, a \nconhil b$.
-                                  Tomando a valoração $v_2$, tal que $v_2(b) = 0$, então temos $a, \neg a \nconval b$. Pela contraposta do Corolário~\ref{cor:correcao_val}, temos $\circ a, a \nconhil b$.
+                                  Tomando a valoração $v_2$, com $v_2(b) = 0$, então temos $a, \neg a \nconval b$. Pela contraposta do Corolário~\ref{cor:correcao_val}, temos $\circ a, a \nconhil b$.
             \item[\textbf{(i.c)}] Vamos provar $\circ a, \neg a \nconhil b$.
 
-                                  Tomando a valoração $v_1$, tal que $v_1(b) = 0$, então temos $\circ a, \neg a \nconval b$. Pela contraposta do Corolário~\ref{cor:correcao_val}, temos $\circ a, \neg a \nconhil b$.
+                                  Tomando a valoração $v_1$, com $v_1(b) = 0$, então temos $\circ a, \neg a \nconval b$. Pela contraposta do Corolário~\ref{cor:correcao_val}, temos $\circ a, \neg a \nconhil b$.
             
         \end{itemize}
 
