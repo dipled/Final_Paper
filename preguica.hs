@@ -1,55 +1,40 @@
 
-data TruthValue = Meio | Um | Zero
+data TruthValue = Zero | Half | Unit deriving (Eq, Ord)
 
-instance (Show TruthValue) where
-    show Meio = "\\meio{}"
-    show Um = "1"
+instance Show TruthValue where
+    show Half = "\\meio{}"
+    show Unit = "1"
     show Zero = "0"
 
-instance (Eq TruthValue) where
-    Zero == Zero = True
-    Zero == _ = False
+neg :: TruthValue -> TruthValue
+neg Half = Half
+neg Zero = Unit
+neg Unit = Zero
 
-    Um == Um = True
-    Um == _ = False
+circ :: TruthValue -> TruthValue
+circ Half = Zero
+circ Unit = Unit
+circ Zero = Unit
 
-    Meio == Meio = True
-    Meio == _ = False
-
-instance (Ord TruthValue) where
-    Zero <= _ = True
-
-    Meio <= Zero = False
-    Meio <= _ = True
-
-    Um <= Um = True
-    Um <= _ = False
-
-
-neg Meio = Meio
-neg Zero = Um
-neg Um = Zero
-
-con Meio = Zero
-con Um = Um
-con Zero = Um
-
-circ Meio = Zero
-circ Um = Um
-circ Zero = Zero
-
+to :: TruthValue -> TruthValue -> TruthValue
 to a b = max (neg a) b
 
+land :: TruthValue -> TruthValue -> TruthValue
 land a b = min a b
 
+lor :: TruthValue -> TruthValue -> TruthValue
 lor a b = max a b
 
+phi :: (TruthValue, TruthValue) -> TruthValue
+phi (alpha,beta) = (neg (alpha `to` beta)) `to` (alpha `land` (neg beta))
 
-phi (alpha) =  alpha `lor` neg alpha
-vars = [(i) | i <- [Um, Meio, Zero]]
+vars :: [(TruthValue, TruthValue)]
+vars = [(i,j) | i <- [Zero, Half, Unit], j <- [Zero, Half, Unit]]
 
+result :: [TruthValue]
 result = map phi vars
 
+main :: IO [()]
 main = 
     do
        sequence $ map print vars
