@@ -792,7 +792,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \end{align*}
     \end{proof}
 
-    A ideia da prova da correção para a \lfium{} é, como de costume, provar que todo axioma do cálculo de Hilbert $\conhil$ é válido na semântica matricial $\conmat$ e mostrar que a regra de inferência \textit{modus ponens} preserva sua validade. No desenvolvimento da prova, as igualdades do tipo $h(\triangle \phi) = \triangle h(\phi)$ e $h(\phi \otimes \psi) = h(\phi) \otimes h(\psi)$, onde $\triangle, \otimes$ são um conectivos quaisquer, ficam implícitas e as justificativas do tipo ($\otimes$) dizem respeito a valoração correspondente ao conectivo $\otimes$ em $\pazocal{M}_{\lfium{}}$.
+    A ideia da prova da correção para a \lfium{} é, como de costume, provar que todo axioma do cálculo de Hilbert $\conhil$ é válido na semântica matricial $\conmat$ e mostrar que a regra de inferência \textit{modus ponens} preserva sua validade. No desenvolvimento da prova, as igualdades do tipo $h(\triangle \phi) = \triangle h(\phi)$ e $h(\phi \otimes \psi) = h(\phi) \otimes h(\psi)$, onde $\triangle, \otimes$ são um conectivos quaisquer, ficam implícitas.
 
 
     \begin{teorema}[Correção em relação a semântica matricial]\label{teo:correcao_mat}
@@ -819,53 +819,274 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
             \begin{provaporsubcasos}
                 
-                \subcasodeprova{} $\phi_{1} = \alpha \to (\beta \to \alpha)$.
+                \subcasodeprova{} $\phi_{1} = \alpha \to (\beta \to \alpha)$
+                    \begin{center}
+                        \setbool{@fleqn}{false}
+                        \[
+                            \begin{array}{|c|c|c|}%chktex 44 
+                                \hline
+                                \alpha      & \beta & \alpha \to (\beta \to \alpha)  \\
+                                \hline%chktex 44 
+                                1            & 1            &    1\\
+                                1            & \frac{1}{2}  &    1\\
+                                1            & 0            &    1\\
+                                \frac{1}{2}  & 1            &    \meio{}\\
+                                \frac{1}{2}  & \frac{1}{2}  &    \meio{}\\
+                                \frac{1}{2}  & 0            &    1\\
+                                0            & 1            &    1\\
+                                0            & \frac{1}{2}  &    1\\
+                                0            & 0            &    1\\
+                                \hline
+                            \end{array}
+                        \]
+                    \end{center}
 
-                    Supondo $h(\alpha \to (\beta \to \alpha)) = 0$, temos:
-
-                        $h(\alpha \to (\beta \to \alpha)) = 0$
-
-                        $\Longleftrightarrow h(\alpha) \in \ummeio{}$ e $h(\beta \to \alpha) = 0$  \hfill[$\to$]
-
-                        $\Longleftrightarrow$ $h(\alpha) \subseteq \ummeio{}$ e $h(\beta) \subseteq \ummeio{}$ e $h(\alpha) = 0$ \hfill[$\to$]
-
-
-                    Chegamos numa contradição, portanto $h(\alpha \to (\beta \to \alpha)) \in \ummeio{}$
+                    Portanto, $\Gamma \conmat \phi_{1}$.
 
                 \subcasodeprova{} $\phi_{1} = (\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma ))$.
-
-                    Supondo $h((\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma ))) = 0$, temos:
-
-                    $h((\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma ))) = 0$
-
-                    $\Leftrightarrow h(\alpha \to (\beta \to \gamma)) \in \ummeio{}$ e $h((\alpha \to \beta) \to (\alpha \to \gamma )) = 0$ \hfill[$\to$]
-
-                    $\Leftrightarrow (h(\alpha) = 0$ ou $h(\beta \to \gamma) \subseteq \ummeio{})$ e $h(\alpha \to \beta) \subseteq \ummeio{}$ e $h(\alpha \to \gamma) = 0$ \hfill[$\to$]
-
-                    $\Leftrightarrow (h(\alpha) = 0$ ou $h(\beta) = 0$ ou $h(\gamma) \subseteq \ummeio{})$ e ($h(\alpha) = 0$ ou $h(\beta) \subseteq \ummeio{}$) e $h(\alpha) \subseteq \ummeio{}$ e $ h(\gamma) = 0$ \hfill[$\to$]
                 
-                    Chegamos numa contradição, portanto $h((\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma ))) \in \ummeio{}$
+                    \begin{center}
+                        \setbool{@fleqn}{false}
+                        \[
+                            \begin{array}{|c|c|c|c|}%chktex 44 
+                                \hline
+                                \alpha      & \beta & \gamma & (\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma)) \\
+                                \hline%chktex 44 
+                                1           & 1           & 1           & 1 \\
+                                1           & 1           & \frac{1}{2} & \meio{} \\
+                                1           & 1           & 0           & 1 \\
+                                1           & \frac{1}{2} & 1           & 1 \\
+                                1           & \frac{1}{2} & \frac{1}{2} & \meio{} \\
+                                1           & \frac{1}{2} & 0           & \meio{} \\
+                                1           & 0           & 1           & 1 \\
+                                1           & 0           & \frac{1}{2} & 1 \\
+                                1           & 0           & 0           & 1 \\
+                                \frac{1}{2} & 1           & 1           & 1 \\
+                                \frac{1}{2} & 1           & \frac{1}{2} & \meio{} \\
+                                \frac{1}{2} & 1           & 0           & \meio{} \\
+                                \frac{1}{2} & \frac{1}{2} & 1           & 1 \\
+                                \frac{1}{2} & \frac{1}{2} & \frac{1}{2} & \meio{} \\
+                                \frac{1}{2} & \frac{1}{2} & 0           & \meio{} \\
+                                \frac{1}{2} & 0           & 1           & 1 \\
+                                \frac{1}{2} & 0           & \frac{1}{2} & \meio{} \\
+                                \frac{1}{2} & 0           & 0           & \meio{} \\
+                                0           & 1           & 1           & 1 \\
+                                0           & 1           & \frac{1}{2} & 1 \\
+                                0           & 1           & 0           & 1 \\
+                                0           & \frac{1}{2} & 1           & 1 \\
+                                0           & \frac{1}{2} & \frac{1}{2} & 1 \\
+                                0           & \frac{1}{2} & 0           & 1 \\
+                                0           & 0           & 1           & 1 \\
+                                0           & 0           & \frac{1}{2} & 1 \\
+                                0           & 0           & 0           & 1 \\
+                                \hline
+                            \end{array}
+                        \]
+                    \end{center}
+                
 
                 \subcasodeprova{} $\phi_{1} = \alpha \to (\beta \to (\alpha \land \beta))$. 
+
+                \begin{center}
+                    \setbool{@fleqn}{false}
+                    \[
+                        \begin{array}{|c|c|c|}%chktex 44 
+                            \hline
+                            \alpha      & \beta & \alpha \to (\beta \to (\alpha \land \beta)) \\
+                            \hline%chktex 44 
+                            1&1&               1\\ 
+                            1&\meio{}&\meio{}\\
+                            1&0&1\\
+                            \meio{}&1&\meio{}\\
+                            \meio{}&\meio{}&\meio{}\\
+                            \meio{}&0&1\\
+                            0&1&1\\
+                            0&\meio{}&1\\
+                            0&0&1\\
+                            \hline
+                        \end{array}
+                    \]
+                \end{center}
 
                    
 
                 \subcasodeprova{} $\phi_{1} = (\alpha \land \beta) \to \alpha$. 
+
+
+                \begin{center}
+                    \setbool{@fleqn}{false}
+                    \[
+                        \begin{array}{|c|c|c|}%chktex 44 
+                            \hline
+                            \alpha      & \beta & (\alpha \land \beta) \to \alpha \\
+                            \hline%chktex 44 
+                            1 & 1 &                 1\\
+                            1 & \meio{} &1\\
+                            1 & 0 &1\\
+                            \meio{} & 1 &\meio{}\\
+                            \meio{} & \meio{} &\meio{}\\
+                            \meio{} & 0 &1\\
+                            0 & 1 &1\\
+                            0 & \meio{} &1\\
+                            0 & 0 &1\\
+                            \hline
+                        \end{array}
+                    \]
+                \end{center}
                 
 
-                \subcasodeprova{} $\phi_{1} = (\alpha \land \beta) \to \beta$. Como no caso anterior, \textit{mutatis mutandis}.
+                \subcasodeprova{} $\phi_{1} = (\alpha \land \beta) \to \beta$.
+
+                \begin{center}
+                    \setbool{@fleqn}{false}
+                    \[
+                        \begin{array}{|c|c|c|}%chktex 44 
+                            \hline
+                            \alpha      & \beta & (\alpha \land \beta) \to \beta \\
+                            \hline%chktex 44 
+                            1 & 1 & 1\\
+                            1 & \meio{} & \meio{}\\
+                            1 & 0 & 1\\
+                            \meio{} & 1 & 1\\
+                            \meio{} & \meio{} & \meio{}\\
+                            \meio{} & 0 & 1\\
+                            0 & 1 & 1\\
+                            0 & \meio{} & 1\\
+                            0 & 0 & 1\\
+                            \hline
+                        \end{array}
+                    \]
+                \end{center}
 
                 \subcasodeprova{} $\phi_{1} = \alpha \to (\alpha \lor \beta)$. 
+
+                \begin{center}
+                    \setbool{@fleqn}{false}
+                    \[
+                        \begin{array}{|c|c|c|}%chktex 44 
+                            \hline
+                            \alpha      & \beta & \alpha \to (\alpha \lor \beta) \\
+                            \hline%chktex 44 
+                            1 & 1 &1\\
+                            1 & \meio{} &1\\
+                            1 & 0 &1\\
+                            \meio{} & 1 &1\\
+                            \meio{} & \meio{} &\meio{}\\
+                            \meio{} & 0 &\meio{}\\
+                            0 & 1 &1\\
+                            0 & \meio{} &1\\
+                            0 & 0 &1\\
+                            \hline
+                        \end{array}
+                    \]
+                \end{center}
                 
-                \subcasodeprova{} $\phi_{1} = \beta \to (\alpha \lor \beta)$. Como no caso anterior, \textit{mutatis mutandis}.
+                \subcasodeprova{} $\phi_{1} = \beta \to (\alpha \lor \beta)$.
+
+                \begin{center}
+                    \setbool{@fleqn}{false}
+                    \[
+                        \begin{array}{|c|c|c|}%chktex 44 
+                            \hline
+                            \alpha      & \beta & \beta \to (\alpha \lor \beta) \\
+                            \hline%chktex 44 
+                            1 & 1 &1\\
+                            1 & \meio{} &1\\
+                            1 & 0 &1\\
+                            \meio{} & 1 &1\\
+                            \meio{} & \meio{} &\meio{}\\
+                            \meio{} & 0 &1\\
+                            0 & 1 &1\\
+                            0 & \meio{} &\meio{}\\
+                            0 & 0 &1\\
+                            \hline
+                        \end{array}
+                    \]
+                \end{center}
 
                 \subcasodeprova{} $\phi_{1} = (\alpha \to \gamma) \to ((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma))$. 
+
+                \begin{center}
+                    \setbool{@fleqn}{false}
+                    \[
+                        \begin{array}{|c|c|c|c|}%chktex 44 
+                            \hline
+                            \alpha      & \beta & \gamma & (\alpha \to \gamma) \to ((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma)) \\
+                            \hline%chktex 44 
+                            1 & 1 & 1 &1\\
+                            1 & 1 & \meio{} &\meio{}\\
+                            1 & 1 & 0 &1\\
+                            1 & \meio{} & 1 &1\\
+                            1 & \meio{} & \meio{} &\meio{}\\
+                            1 & \meio{} & 0 &1\\
+                            1 & 0 & 1 &1\\
+                            1 & 0 & \meio{} &\meio{}\\
+                            1 & 0 & 0 &1\\
+                            \meio{} & 1 & 1 &1\\
+                            \meio{} & 1 & \meio{} &\meio{}\\
+                            \meio{} & 1 & 0 &1\\
+                            \meio{} & \meio{} & 1 &1\\
+                            \meio{} & \meio{} & \meio{} &\meio{}\\
+                            \meio{} & \meio{} & 0 &\meio{}\\
+                            \meio{} & 0 & 1 &1\\
+                            \meio{} & 0 & \meio{} &\meio{}\\
+                            \meio{} & 0 & 0 &\meio{}\\
+                            0 & 1 & 1 &1\\
+                            0 & 1 & \meio{} &\meio{}\\
+                            0 & 1 & 0 &1\\
+                            0 & \meio{} & 1 &1\\
+                            0 & \meio{} & \meio{} &\meio{}\\
+                            0 & \meio{} & 0 &\meio{}\\
+                            0 & 0 & 1 &1\\
+                            0 & 0 & \meio{} &1\\
+                            0 & 0 & 0 &1\\
+                            \hline
+                        \end{array}
+                    \]
+                \end{center}
+
                 
                     
                 \subcasodeprova{} $\phi_{1} = (\alpha \to \beta) \lor \alpha$. 
+
+                \begin{center}
+                    \setbool{@fleqn}{false}
+                    \[
+                        \begin{array}{|c|c|c|}%chktex 44 
+                            \hline
+                            \alpha      & \beta & (\alpha \to \beta) \lor \alpha \\
+                            \hline%chktex 44 
+                            1 & 1 & 1\\
+                            1 & \meio{} & 1\\
+                            1 & 0 & 1\\
+                            \meio{} & 1 & 1\\
+                            \meio{} & \meio{} & \meio{}\\
+                            \meio{} & 0 & \meio{}\\
+                            0 & 1 & 1\\
+                            0 & \meio{} & 1\\
+                            0 & 0 & 1\\
+                            \hline
+                        \end{array}
+                    \]
+                \end{center}
                     
 
                 \subcasodeprova{} $\phi_{1} = \alpha \lor \neg \alpha$. 
+
+                \begin{center}
+                    \setbool{@fleqn}{false}
+                    \[
+                        \begin{array}{|c|c|c|}%chktex 44 
+                            \hline
+                            \alpha      & \neg \alpha & \alpha \lor \neg \alpha \\
+                            \hline%chktex 44 
+                            1 & 0 & 1\\
+                            \meio{} & \meio{} & \meio{}\\
+                            0 & 1 & 1\\
+                            \hline
+                        \end{array}
+                    \]
+                \end{center}
                 
                  
 
