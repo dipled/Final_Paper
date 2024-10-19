@@ -1,0 +1,16 @@
+\chapter{Biblioteca}\label{cap:biblioteca}
+Neste capítulo será feita a implementação da biblioteca da lógica de inconsistência formal \lfium{} no assistente de provas Coq, bem como o desenvolvimento de alguns metateoremas apresentados na Seção~\ref{sec:metateoremas} dentro da biblioteca. A implementação será análoga àquela feita por~\citeshort{silveira2020implementacao}, que implementou uma biblioteca de lógica modal. Antes de tratar especificamente da implementação, o Coq será brevemente apresentado e caracterizado.
+
+\section{Assistente de provas Coq}\label{sec:coq}
+    Os assistentes de provas são ferramentas de \textit{software} que auxiliam o usuário no desenvolvimento de teoremas, permitindo que provas sejam verificadas na medida em que são escritas~\cite{geuvers2009proof}, conferindo a estes programas uma importância significativa na verificação e especificação formal de \textit{software}. Atualmente, existem diversos assistentes de provas como: Agda, Isabelle, Coq, Lean, HOL, Idris e Twelf. Cada um destes tem suas particularidades e diferenças em relação ao formalismo matemático utilizado como base.
+
+    O Coq é um assistente de provas baseado no Cálculo de Construções Indutivas (CCI) que possui aplicações em diferentes áreas da matemática e da computação como (mas não limitado a) lógica, linguagens formais, linguistica computacional e desenvolvimento de programas seguros~\cite{coqart}. Sob a ótica da Correspondência de Curry{-}Howard, o Coq é tanto uma linguagem de programação funcional quanto uma linguagem de prova, podendo ser dividido em quatro partes~\cite{silva2019certificaccao}:
+    
+    \begin{itemize}
+        \item A linguagem de programação e especificação \textit{Gallina}, que goza da propriedade da normalização forte\footnote{Um objeto é fortemente normalizável caso toda sequência de reescrita acabe numa forma normal (num termo irredutível). Um sistema no qual todos os objetos são fortemente normalizáveis possui a propriedade da normalização forte.~\cite{nipkow2006rewriting}}, a qual garante que todo programa termina.
+        \item A linguagem de comandos \textit{Vernacular}, que permite interagir com o assistente.
+        \item O conjunto de táticas (\textit{tactics}) utilizadas para manipular elementos durante o desenvolvimento de uma prova.
+        \item A linguagem $\pazocal{L}$tac, utilizada para implementar novas táticas e automatizar provas.
+    \end{itemize}
+
+    No restante do trabalho é presumido que o leitor tem um conhecimento básico acerca do o funcionamento do assistente de provas Coq no desenvolvimento de provas e verificação de programas. Se este não for o caso, uma consulta ao livro Logical Foundations~\cite{Pierce2017Logical} e ao trabalho de~\citeshort{silveira2020implementacao} é recomendada, a fim de conhecer o Coq e tomar nota das diferentes funcionalidades presentes no assistente.
