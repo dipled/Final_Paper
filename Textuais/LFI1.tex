@@ -1415,8 +1415,8 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
     A prova da completude para a lógica \lfium{} depende das seguintes definições e lemas auxiliares para ser desenvolvida:
 
-    \begin{definicao}[Conjunto de fórmulas não-trivial maximal]\label{def:nao-trivial_maximal}
-        Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\pazocal{L}$ e sejam $\Gamma, \{\phi\}$ conjuntos de fórmulas de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. O conjunto $\Gamma$ é dito não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
+    \begin{definicao}[Conjunto de fórmulas maximal não-trivial]\label{def:nao-trivial_maximal}
+        Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\pazocal{L}$ e sejam $\Gamma, \{\phi\}$ conjuntos de fórmulas de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. O conjunto $\Gamma$ é dito maximal não-trivial em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
     \end{definicao}
 
     \begin{definicao}[Teoria fechada]\label{def:fechada}
@@ -1425,18 +1425,65 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \end{definicao}
 
     \begin{lema}\label{lem:nao_trivial_maximal_fechado}
-        Todo conjunto de fórmulas não-trivial maximal em relação a $\phi$ em $\mathcal{L}$ é fechado em $\mathcal{L}$.
+        Todo conjunto de fórmulas maximal não-trivial em relação a $\phi$ em $\mathcal{L}$ é fechado em $\mathcal{L}$.
     \end{lema}
 
     \begin{proof}[Prova do Lema~\ref{lem:nao_trivial_maximal_fechado}]
-        Seja $\Gamma$ uma conjunto de fórmulas não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. 
+        Seja $\Gamma$ uma conjunto de fórmulas maximal não-trivial em relação a $\phi$ em $\mathcal{L}$. 
         
         \noindent($\Longrightarrow$) Se $\psi \in \Gamma$, então $\Gamma \Vdash_{\mathcal{L}} \psi$, já que $\mathcal{L}$ é tarskiana. 
         
-        \noindent($\Longleftarrow$) Se $\Gamma \Vdash_{\mathcal{L}} \psi$, então supondo $\psi \notin \Gamma$, temos $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$, pela Definição~\ref{def:nao-trivial_maximal}. Pela propriedade do corte, segue que $\Gamma \Vdash_{\mathcal{L}} \phi$, o que contradiz o fato de $\Gamma$ ser não-trivial maximal em relação a $\phi$ em $\mathcal{L}$. Portanto, $\psi \in \Gamma$.
+        \noindent($\Longleftarrow$) Se $\Gamma \Vdash_{\mathcal{L}} \psi$, então supondo $\psi \notin \Gamma$, temos $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$, pela Definição~\ref{def:nao-trivial_maximal}. Pela propriedade do corte, segue que $\Gamma \Vdash_{\mathcal{L}} \phi$, o que contradiz o fato de $\Gamma$ ser maximal não-trivial em relação a $\phi$ em $\mathcal{L}$. Portanto, $\psi \in \Gamma$.
         
         Então $\Gamma$ é fechado em $\mathcal{L}$.
     \end{proof}
+
+    Provaremos agora o lema de Lindenbaum, proposto originalmente por Adolf Lindenbaum (de acordo com~\citeshort{Tarski1956-TARLSM}) e adaptado por~\citeshort{los_lindenbaum,Wojcicki1984-WJCLOP}. A versão apresentada por~\citeshort{Carnielli_Coniglio_2016} utiliza o princípio da boa ordem e aplica uma recursão transfinita para que o lema siga verdadeiro mesmo quando se tratado de sistemas definidos sobre linguagens não enumeráveis. Para o propósito do presente trabalho, isso não se mostra necessário, tendo em vista que a linguagem da \lfium{} (Definição~\ref{def:ling}) é enumerável.
+
+    \begin{lema}[Lindenbaum-{\L}os]\label{lem:lindenbaum}
+        Para qualquer lógica tarskiana e finitária $\mathcal{L} = \langle \pazocal{L}, \Vdash \rangle$, para qualquer conjunto de fórmulas $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$, se $\Gamma \nVdash \phi$ então existe um conjunto de fórmulas $\Delta$, com $\Gamma \subseteq \Delta \subseteq \pazocal{L}$, tal que $\Delta$ é um conjunto maximal não-trivial em relação a $\phi$ em $\mathcal{L}$.
+    \end{lema}
+
+    \begin{proof}[Prova do Lema~\ref{lem:lindenbaum}]\setbool{@fleqn}{false}
+        Seja $\mathcal{L} = \langle \pazocal{L}, \Vdash \rangle$ uma lógica tarskiana e finitária e seja $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$ um conjunto de fórmulas com $\Gamma \nVdash \phi$. Arranje as fórmulas de $\pazocal{L}$ numa sequência $\phi_1 \ldots \phi_i \ldots$ e defina $\Gamma_i$ recursivamente da seguinte forma:
+        \begin{align*}
+                &\Gamma_0 = \Gamma\\
+                &\Gamma_i =
+                \begin{cases}
+                    \Gamma_{i - 1} &\text{ se } \Gamma_{i - 1}, \phi_i \Vdash \phi\\
+                    \Gamma_{i - 1} \cup \{\phi_i\} &\text{ se } \Gamma_{i - 1}, \phi_i \nVdash \phi
+                \end{cases}
+        \end{align*}
+
+        Então, defina um conjunto de fórmulas $\Delta = \bigcup_{i=0}^{\infty}\Gamma_i$. Dividiremos a prova em algumas condições a serem provadas:
+        
+            (1) $\Gamma \subseteq \Delta \subseteq \pazocal{L}$.
+            \begin{adjustwidth}{2cm}{}
+                
+                Pela construção de $\Gamma_i$, temos $\Gamma_0 = \Gamma \subseteq \Gamma_i$ e $\Gamma_i \subseteq \pazocal{L}$ para todo $i \in \mathbb{N}$. Como $\Delta$ é formado a partir da união de todos os conjuntos $\Gamma_i$, temos $\Gamma_0 \subseteq \Delta$ e $\Delta \subseteq \pazocal{L}$.
+            \end{adjustwidth}
+            
+            (2) $\Gamma_i \nVdash \phi$ para todo $i \geq 0$.
+            \begin{adjustwidth}{2cm}{}Provaremos por indução:
+
+                \textbf{\textsc{Base}} $i = 0$.
+    
+                Temos $\Gamma_0 \nVdash \phi$ pela nossa hipótese de $\Gamma \nVdash \phi$.
+    
+                \textbf{\textsc{Passo}} Hipótese de indução (HI): Para qualquer $k < i$, temos $\Gamma_k \nVdash \phi$.
+    
+                 Logo temos $\Gamma_{i-1} \nVdash \phi$ por (HI). Portanto, pela definição de $\Gamma_i$, temos $\Gamma_i \nVdash \phi$.
+
+            \end{adjustwidth}
+                    
+            
+            (3) $\Delta \nVdash \phi$ para todo $i \geq 0$.
+        
+            (4) $\Delta$ é maximal não-trivial em relação a $\phi$ em $\mathcal{L}$.
+
+
+    \end{proof}
+
 
 
     \begin{teorema}[Completude]\label{teo:completude}
@@ -1447,7 +1494,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \end{teorema}
 
     \begin{proof}[Prova do Teorema~\ref{teo:completude}]
-        \helena{Será adicionado.} \migs{Antes de adicionar, você poderia colocar a ideia da prova do teorema, \textit{se sobrar tempo}.}
+ 
 
     \end{proof}
 
