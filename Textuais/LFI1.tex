@@ -1447,8 +1447,8 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \begin{proof}[Prova do Lema~\ref{lem:lindenbaum}]\setbool{@fleqn}{false}
         Seja $\mathcal{L} = \langle \pazocal{L}, \Vdash \rangle$ uma lógica tarskiana e finitária e seja $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$ um conjunto de fórmulas com $\Gamma \nVdash \phi$. Arranje as fórmulas de $\pazocal{L}$ numa sequência $\phi_1 \ldots \phi_i \ldots$ e defina $\Gamma_i$ recursivamente da seguinte forma:
         \begin{align*}
-                &\Gamma_0 = \Gamma\\
-                &\Gamma_i =
+                \text{(i)}~&\Gamma_0 = \Gamma\\
+                \text{(ii)}~&\Gamma_i =
                 \begin{cases}
                     \Gamma_{i - 1} &\text{ se } \Gamma_{i - 1}, \phi_i \Vdash \phi\\
                     \Gamma_{i - 1} \cup \{\phi_i\} &\text{ se } \Gamma_{i - 1}, \phi_i \nVdash \phi
