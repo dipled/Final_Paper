@@ -153,10 +153,25 @@
 % MIGS: Tirei o comando acima para não dar problema com o que fizemos abaixo sobre subcasos de provas
 
 % Ambiente customizado para provas com casos e subcasos
-
+\newcounter{Partes}
 \newcounter{Casos}    % Contador que enumera os casos da prova
 \newcounter{SubCasos} % Contador que enumera o subcaso da prova
 \newcounter{SubSubCasos} % Contador que enumera o subsubcaso da prova (eu achei que não seria necessário mas cá estamos)
+
+
+\newenvironment{provaempartes} % Ambiente customizado para fazer provas por casos
+    {
+        % O que é feito quando este ambiente é aberto    
+        \setcounter{Partes}{0} % resetando o counter por via das dúvidas
+        \begin{description}[font=\mdseries\scshape] % abrindo o ambiente de description com a formatação bonita
+    }   
+    {
+        % O que é feito quando esse ambiente é fechado
+        \setcounter{Partes}{0} % resetando o counter por via das dúvidas
+        \end{description} % fechando o ambiente
+    }
+\newcommand{\parte}[1]{\refstepcounter{Partes}\item[Parte \thePartes{}.] #1}
+
 
 \newenvironment{provaporcasos} % Ambiente customizado para fazer provas por casos
     {
