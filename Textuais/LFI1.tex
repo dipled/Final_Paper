@@ -138,6 +138,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     De forma geral, a semântica é o estudo de como um sistema de símbolos (uma linguagem) internaliza informações, ou seja, é o estudo de como interpretar os símbolos de uma linguagem~\cite{brown2005encyclopedia}. Num sistema lógico, \textit{matrizes lógicas} são comumente usadas para estabelecer o comportamento esperado dos conectivos lógicos de sua assinatura. Outra forma de compreender a semântica de um sistema lógico é definir condições que caracterizam funções conhecidas como valorações, que define uma \textit{semântica de valorações}. Nesta seção, a semântica da \lfium{} será definida de duas formas distintas: a partir de uma \textit{matriz lógica} e a partir de uma \textit{semântica de valorações}. As definições e notações para os conceitos de \textit{álgebra} definidos aqui baseiam-se nos trabalhos de~\citeshort{Carnielli_Coniglio_2016},~\citeshort{Sikorski1966-SIKAOF} e~\citeshort{Rasiowa1963-RASTMO}.
     
     \subsection{Matriz Lógica e Valoração}
+        \migs{Caso não tenha falado antes: Acho que seria melhor mudar o título dessa seção para ``Semântica Matricial e Semântica de Valorações'' ou algo semelhante.}
         Uma das formas de definir a semântica de uma lógica proposicional é definir uma \textit{matriz lógica} (também chamada de tabela-verdade) para os conectivos de sua assinatura proposicional. Para isso, é necessário definir o conceito de \textit{álgebra} para assinaturas proposicionais:
 
         \begin{definicao}[Álgebra para assinaturas proposicionais]\label{def:algebra}
@@ -492,6 +493,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         
             \casodeprova{$\phi = \alpha \land \beta$.}
 
+            \migs{Em alguns dos subcasos dessa prova, você escreveu equações tipo ``\(f(\beta) = x\)'' porém devido ao tamanho da linha, \(f(\beta) = \) e \textit{x} ficaram em linhas diferentes,
+            seria bom arrumar isso para ficarem sempre na mesma linha pois essa separação torna a leitura mais difícil (você pode fazer isso encapsulando o bloco matemático com \textbraceleft e \textbraceright).}
+
             \begin{provaporsubcasos}
                 \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 1$ sse $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 0$.}
 
@@ -709,7 +713,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 
             \end{provaporcasos}
             
-            Portanto, $\Gamma \conhil \alpha \to \phi_{1}$ segue para o caso \textbf{\textsc{Base.}}.
+            Portanto, $\Gamma \conhil \alpha \to \phi_{1}$ segue para o caso \textbf{\textsc{Base.}}
 
 
         \noindent \textbf{\textsc{Passo.}}
@@ -751,7 +755,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \end{proof}
 
 
-    No desenvolvimento das provas que seguem a abreviação MTD representará o metateorema da dedução.
+    No desenvolvimento das provas que seguem a abreviação MTD representará o metateorema da dedução. \migs{Como você colocou ``MTD'' na tabela de abreviaturas, essa linha é desnecessária.}
     
     Com a prova do metateorema da dedução para o cálculo de Hilbert da \lfium{}, os seguintes corolários são imediatos:
 
@@ -1380,7 +1384,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         Seja $\Gamma \cup \{\alpha\} \subseteq \ling{}$ um conjunto de fórmulas. Então, supondo $\Gamma \conhil \alpha$, temos, pelo Teorema~\ref{teo:correcao_mat}, $\Gamma \conmat \alpha$. Finalmente, pelo Corolário~\ref{cor:matval}, temos $\Gamma \conval \alpha$.
     \end{proof}
 
-    Com o resultado anterior, a prova de que a lógica \lfium{} se trata de uma \lfi{} forte (ver Definição~\ref{def:lfi_forte_prop}) é imediata.
+    Com o resultado anterior, a prova de que a lógica \lfium{} se trata de uma \lfi{} forte (\migscortar{ver}{ como apresentado na} Definição~\ref{def:lfi_forte_prop}) é imediata.
 
     \begin{corolario}\label{cor:lfi_forte}
         Seja $p$ uma variável proposicional qualquer e $\bigcirc(p) = \{\circ p\}$ um conjunto de fórmulas dependente somente de $p$. A lógica \lfium{} é uma \lfi{} forte em relação a $\neg$ e $\bigcirc(p)$.
@@ -1433,12 +1437,12 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \item [(iii)] Se $\Delta \conhil \phi$ e $\Gamma \conhil \delta$ para todo $\delta \in \Delta$, então $\Gamma \conhil \phi$.
         \end{itemize}
         \begin{adjustwidth}{1cm}{}
-            \textbf{Prova do item (i)}. Vamos supor $\phi \in \Gamma$. Então, a seguinte derivação mostra $\Gamma \conhil \phi$:
-            \begin{align*}
-                1.~& \phi\tag{Premissa}
-            \end{align*}
+            \textbf{Prova do item (i)}. Vamos supor $\phi \in \Gamma$. Então \migscortar{a seguinte derivação mostra $\Gamma \conhil \phi$:}{, por definição, temos que $\Gamma \conhil \phi$.}
+            % \begin{align*}
+            %     1.~& \phi\tag{Premissa}
+            % \end{align*}
 
-            \noindent{}\textbf{Prova do item (ii)}. Vamos supor $\Delta \conhil \phi$ e $\Delta \subseteq \Gamma$. Então, existe uma prova (sequência de fórmulas) de $\phi$ a partir do conjunto de fórmulas $\Delta$. A mesma sequência de fórmulas prova $\Gamma \conhil \phi$.
+            \noindent{}\textbf{Prova do item (ii)}. Vamos supor $\Delta \conhil \phi$ e $\Delta \subseteq \Gamma$. Então, existe uma prova (sequência de fórmulas) de $\phi$ a partir do conjunto de fórmulas $\Delta$. \migs{Como, pela suposição, temos que essa sequência está inteiramente contida em $\Gamma$ concluímos que} a mesma sequência de fórmulas prova $\Gamma \conhil \phi$.
             
             \noindent{}\textbf{Prova do item (iii)}. Vamos supor $\Delta \conhil \phi$ e $\Gamma \conhil \delta$ para todo $\delta \in \Delta$. Então, existe uma prova $\phi_1, \ldots, \phi_n$ de $\phi_n = \phi$ a partir de $\Delta$. Vamos fazer uma indução no tamanho $n$ desta prova.
             
@@ -1557,7 +1561,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \end{lema}
 
     \begin{proof}[Prova do Lema~\ref{lem:lindenbaum}]\setbool{@fleqn}{false}
-        Seja $\lfium{} = \langle \ling, \conhil \rangle$ a lógica \lfium{} e seja $\Gamma \cup \{\phi\} \subseteq \ling$ um conjunto de fórmulas com $\Gamma \nconhil \phi$. Arranje as fórmulas de $\ling$ numa sequência $\pazocal{C} = \phi_1 \ldots \phi_i \ldots$ e defina $\Gamma_i$ recursivamente da seguinte forma:
+        Seja $\lfium{} = \langle \ling, \conhil \rangle$ a lógica \lfium{} e seja $\Gamma \cup \{\phi\} \subseteq \ling$ um conjunto de fórmulas com $\Gamma \nconhil \phi$. Arranje as fórmulas de $\ling$ numa sequência $\pazocal{C} = \phi_1, \phi_2, \ldots, \phi_i, \ldots$ e defina $\Gamma_i$ recursivamente da seguinte forma:
         \begin{align*}
                 \text{(i)}~&\Gamma_0 = \Gamma\\
                 \text{(ii)}~&\Gamma_i =
