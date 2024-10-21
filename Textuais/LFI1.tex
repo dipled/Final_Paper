@@ -1437,12 +1437,12 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             \item [(iii)] Se $\Delta \conhil \phi$ e $\Gamma \conhil \delta$ para todo $\delta \in \Delta$, então $\Gamma \conhil \phi$.
         \end{itemize}
         \begin{adjustwidth}{1cm}{}
-            \textbf{Prova do item (i)}. Vamos supor $\phi \in \Gamma$. Então \migscortar{a seguinte derivação mostra $\Gamma \conhil \phi$:}{, por definição, temos que $\Gamma \conhil \phi$.}
+            \textbf{Prova do item (i)}. Vamos supor $\phi \in \Gamma$. Então \migscortar{a seguinte derivação mostra $\Gamma \conhil \phi$:}{, por definição de derivação, temos que $\Gamma \conhil \phi$.}
             % \begin{align*}
             %     1.~& \phi\tag{Premissa}
             % \end{align*}
 
-            \noindent{}\textbf{Prova do item (ii)}. Vamos supor $\Delta \conhil \phi$ e $\Delta \subseteq \Gamma$. Então, existe uma prova (sequência de fórmulas) de $\phi$ a partir do conjunto de fórmulas $\Delta$. \migs{Como, pela suposição, temos que essa sequência está inteiramente contida em $\Gamma$ concluímos que} a mesma sequência de fórmulas prova $\Gamma \conhil \phi$.
+            \noindent{}\textbf{Prova do item (ii)}. Vamos supor $\Delta \conhil \phi$ e $\Delta \subseteq \Gamma$. Então, existe uma prova (sequência de fórmulas) de $\phi$ a partir do conjunto de fórmulas $\Delta$. \migs{Como, pela suposição, temos que essa sequência está inteiramente contida em $\Gamma$ concluímos que} \cortar{a mesma sequência de fórmulas prova} $\Gamma \conhil \phi$.
             
             \noindent{}\textbf{Prova do item (iii)}. Vamos supor $\Delta \conhil \phi$ e $\Gamma \conhil \delta$ para todo $\delta \in \Delta$. Então, existe uma prova $\phi_1, \ldots, \phi_n$ de $\phi_n = \phi$ a partir de $\Delta$. Vamos fazer uma indução no tamanho $n$ desta prova.
             
@@ -1472,7 +1472,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 
                 \casodeprova{$\phi_n$ é resultado de MP em duas fórmulas $\phi_j, \phi_k$ com $j, k < n$}.
                 
-                Então, $\phi_j = \phi_k \to \phi_n$ (ou $\phi_k = \phi_j \to \phi_n$, a prova para este caso é análoga). Além disso, temos $\Delta \conhil \phi_k$ e $\Delta \conhil \phi_k \to \phi_n$. Logo, por (HI), temos $\Gamma \conhil \phi_k$ e $\Gamma \conhil \phi_k \to \phi_n$. Então, basta derivar estas duas fórmulas e aplicar MP para obter $\phi_n$. Portanto, $\Gamma \conhil \phi_n$.
+                Então, $\phi_j = \phi_k \to \phi_n$ (ou $\phi_k = \phi_j \to \phi_n$, a prova para este caso é análoga). Além disso, temos $\Delta \conhil \phi_k$ e $\Delta \conhil \phi_k \to \phi_n$. Logo, por (HI), temos $\Gamma \conhil \phi_k$ e $\Gamma \conhil \phi_k \to \phi_n$. Então, basta \cortar{derivar estas duas fórmulas e} aplicar MP para obter $\phi_n$. Portanto, $\Gamma \conhil \phi_n$.
             \end{provaporcasos}
         \end{adjustwidth}
     \end{adjustwidth}
@@ -1489,7 +1489,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \begin{proof}[Prova da Proposição~\ref{prop:finit}]
         Seja $\Gamma \cup \{\phi\} \subseteq \ling{}$ um conjunto qualquer de fórmulas com $\Gamma \conhil \phi$. Então, existe uma sequência finita de derivação $\phi_1, \ldots, \phi_n$, a partir de $\Gamma$, onde $\phi_n = \phi$. 
         
-        Vamos definir o conjunto $\Gamma_0$ como sendo o conjunto formado somente pelas premissas desta derivação ($\Gamma_0$ é finito). Como todo elemento de $\Gamma_0$ é uma premissa de $\Gamma$, é evidente que $\Gamma_0 \subseteq \Gamma$. Vamos provar $\Gamma_0 \conhil \phi$ por indução no tamanho $n$ da sequência de derivação.
+        Vamos definir o conjunto $\Gamma_0$ como sendo o conjunto formado somente pelas premissas desta derivação (\migs{logo, }$\Gamma_0$ é finito). Como todo elemento de $\Gamma_0$ é uma premissa de $\Gamma$, é evidente que $\Gamma_0 \subseteq \Gamma$. Vamos provar $\Gamma_0 \conhil \phi$ por indução no tamanho $n$ da sequência de derivação.
 
 
         \begin{adjustwidth}{1cm}{}
@@ -1518,7 +1518,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
                 \casodeprova{$\phi_n$ é resultado de MP em duas fórmulas $\phi_j, \phi_k$ com $j, k < n$}.
                 
-                Então, $\phi_j = \phi_k \to \phi_n$ (ou $\phi_k = \phi_j \to \phi_n$, a prova para este caso é análoga). Além disso, temos $\Gamma \conhil \phi_k$ e $\Gamma \conhil \phi_k \to \phi_n$. Logo, por (HI), temos $\Gamma_0 \conhil \phi_k$ e $\Gamma_0 \conhil \phi_k \to \phi_n$. Então, basta derivar estas duas fórmulas e aplicar MP para obter $\phi_n$. Portanto, $\Gamma_0 \conhil \phi_n$.
+                Então, $\phi_j = \phi_k \to \phi_n$ (ou $\phi_k = \phi_j \to \phi_n$, a prova para este caso é análoga). Além disso, temos $\Gamma \conhil \phi_k$ e $\Gamma \conhil \phi_k \to \phi_n$. Logo, por (HI), temos $\Gamma_0 \conhil \phi_k$ e $\Gamma_0 \conhil \phi_k \to \phi_n$. Então, basta \cortar{derivar estas duas fórmulas e} aplicar MP para obter $\phi_n$. Portanto, $\Gamma_0 \conhil \phi_n$.
             \end{provaporcasos}
         \end{adjustwidth}
         Então, a \lfium{} é finitária.
@@ -1561,7 +1561,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     \end{lema}
 
     \begin{proof}[Prova do Lema~\ref{lem:lindenbaum}]\setbool{@fleqn}{false}
-        Seja $\lfium{} = \langle \ling, \conhil \rangle$ a lógica \lfium{} e seja $\Gamma \cup \{\phi\} \subseteq \ling$ um conjunto de fórmulas com $\Gamma \nconhil \phi$. Arranje as fórmulas de $\ling$ numa sequência $\pazocal{C} = \phi_1, \phi_2, \ldots, \phi_i, \ldots$ e defina $\Gamma_i$ recursivamente da seguinte forma:
+        Seja $\lfium{} = \langle \ling, \conhil \rangle$ a lógica \lfium{} \migs{Seja a lógica LFI1 a lógica LFI1 (note também que você definiu ela no enunciado do Lema)} e seja $\Gamma \cup \{\phi\} \subseteq \ling$ um conjunto de fórmulas com $\Gamma \nconhil \phi$. Arranje \migs{Como?} as fórmulas de $\ling$ numa sequência $\pazocal{C} = \phi_1, \phi_2, \ldots, \phi_i, \ldots$ e defina $\Gamma_i$ recursivamente da seguinte forma:
         \begin{align*}
                 \text{(i)}~&\Gamma_0 = \Gamma\\
                 \text{(ii)}~&\Gamma_i =
@@ -1571,7 +1571,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 \end{cases}
         \end{align*}
 
-        Então, defina um conjunto de fórmulas $\Delta = \bigcup_{i=0}^{\infty}\Gamma_i$. Dividiremos a prova em algumas partes:
+        Então, defina um conjunto de fórmulas $\Delta = \bigcup_{i=0}^{\infty}\Gamma_i$. Dividiremos a prova em algumas partes: \migs{Por que? Faz mais sentido você enumerar as coisas que precisa provar, preferencialmente também explicando o porquê precisa provar isso já que estás fazendo sua própria prova e não tirando de nenhuma outra fonte, e então provar cada uma delas.}
         
         \begin{adjustwidth}{1cm}{}
             \noindent(1) $\Gamma \subseteq \Delta \subseteq \ling$.
@@ -1595,7 +1595,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 
                 \noindent\textbf{Hipótese de indução (HI):} Para qualquer $k < i$, temos $\Gamma_k \nconhil \phi$.
                 
-                    Logo temos $\Gamma_{i-1} \nconhil \phi$ por (HI). Portanto, pela definição de $\Gamma_i$, temos $\Gamma_i \nconhil \phi$.
+                    Como caso particular da Hipótese de Indução, temos que $\Gamma_{i-1} \nconhil \phi$. Portanto, pela \migscortar{definição}{ construção} de $\Gamma_i$, temos $\Gamma_i \nconhil \phi$.
                     
             \end{adjustwidth}
 
