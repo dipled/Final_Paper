@@ -137,8 +137,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 \section{Semântica}\label{sec:semantica}
     De forma geral, a semântica é o estudo de como um sistema de símbolos (uma linguagem) internaliza informações, ou seja, é o estudo de como interpretar os símbolos de uma linguagem~\cite{brown2005encyclopedia}. Num sistema lógico, \textit{matrizes lógicas} são comumente usadas para estabelecer o comportamento esperado dos conectivos lógicos de sua assinatura. Outra forma de compreender a semântica de um sistema lógico é definir condições que caracterizam funções conhecidas como valorações, que define uma \textit{semântica de valorações}. Nesta seção, a semântica da \lfium{} será definida de duas formas distintas: a partir de uma \textit{matriz lógica} e a partir de uma \textit{semântica de valorações}. As definições e notações para os conceitos de \textit{álgebra} definidos aqui baseiam-se nos trabalhos de~\citeshort{Carnielli_Coniglio_2016},~\citeshort{Sikorski1966-SIKAOF} e~\citeshort{Rasiowa1963-RASTMO}.
     
-    \subsection{Matriz Lógica e Valoração}
-        \migs{Caso não tenha falado antes: Acho que seria melhor mudar o título dessa seção para ``Semântica Matricial e Semântica de Valorações'' ou algo semelhante.}
+    \subsection{Semântica matricial e Bivalorações}
         Uma das formas de definir a semântica de uma lógica proposicional é definir uma \textit{matriz lógica} (também chamada de tabela-verdade) para os conectivos de sua assinatura proposicional. Para isso, é necessário definir o conceito de \textit{álgebra} para assinaturas proposicionais:
 
         \begin{definicao}[Álgebra para assinaturas proposicionais]\label{def:algebra}
@@ -1382,7 +1381,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         Seja $\Gamma \cup \{\alpha\} \subseteq \ling{}$ um conjunto de fórmulas. Então, supondo $\Gamma \conhil \alpha$, temos, pelo Teorema~\ref{teo:correcao_mat}, $\Gamma \conmat \alpha$. Finalmente, pelo Corolário~\ref{cor:matval}, temos $\Gamma \conval \alpha$.
     \end{proof}
 
-    Com o resultado anterior, a prova de que a lógica \lfium{} se trata de uma \lfi{} forte (\migscortar{ver}{ como apresentado na} Definição~\ref{def:lfi_forte_prop}) é imediata.
+    Com o resultado anterior, a prova de que a lógica \lfium{} se trata de uma \lfi{} forte como apresentado na Definição~\ref{def:lfi_forte_prop} é imediata.
 
     \begin{corolario}\label{cor:lfi_forte}
         Seja $p$ uma variável proposicional qualquer e $\bigcirc(p) = \{\circ p\}$ um conjunto de fórmulas dependente somente de $p$. A lógica \lfium{} é uma \lfi{} forte em relação a $\neg$ e $\bigcirc(p)$.
@@ -1574,7 +1573,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \begin{adjustwidth}{1cm}{}
             \noindent(1) $\Gamma \subseteq \Delta \subseteq \ling$.
 
+            \begin{adjustwidth}{1cm}{}
                 Pela construção de $\Gamma_i$, temos $\Gamma_0 = \Gamma \subseteq \Gamma_i$ e $\Gamma_i \subseteq \ling$ para todo $i \in \mathbb{N}$. Como $\Delta$ é formado a partir da união de todos os conjuntos $\Gamma_i$, temos $\Gamma_0 \subseteq \Delta$ e $\Delta \subseteq \ling$.
+            \end{adjustwidth}
 
             \noindent(2) $\Gamma_i \nconhil \phi$ para todo $i \geq 0$.
 
@@ -1604,9 +1605,17 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
             \noindent(4) $\Delta \nconhil \phi$.
 
-                Vamos supor $\Delta \conhil \phi$. 
+            \begin{adjustwidth}{1cm}{}
+                Vamos supor $\Delta \conhil \phi$. Portanto, como a \lfium{} é finitária (Proposição~\ref{prop:finit}), existe um $\Delta' \subseteq \Delta$ finito com $\Delta' \conhil \phi$. Logo, por (3), existe um $\Gamma_i$ na sequência tal que $\Delta' \subseteq \Gamma_i$. Então, como a \lfium{} é tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma_i \conhil \phi$, o que é uma contradição (por (2)). Portanto, $\Delta \nconhil \phi$.
+            \end{adjustwidth}
 
             \noindent(5) $\Delta$ é maximal não-trivial em relação a $\phi$ em \lfium{}.
+            
+            \begin{adjustwidth}{1cm}{}
+                Seja $\psi$ uma fórmula qualquer com $\psi \not \in \Delta$. Então $\phi = \phi_i$ para algum $i \in \mathbb{N}$. Pela definição de $\Delta$, temos $\phi_i \not \in \Gamma_i$. Por construção de $\phi_{i + 1}$, temos $\Gamma_i, \phi_i \conhil \phi$. Portanto, pela monotonicidade da \lfium{}, temos $\Delta \conhil \phi$. Logo, $\Delta$ é maximal não-trivial em relação a $\phi$ em \lfium{}.
+
+            \end{adjustwidth}
+
 
         \end{adjustwidth}
             
