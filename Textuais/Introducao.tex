@@ -5,7 +5,7 @@ As lógicas paraconsistentes são uma família de lógicas na qual a presença d
 
 De acordo com~\citeshort{sep-logic-paraconsistent}, as motivações para o estudo de lógicas paraconsistentes podem ser observadas em diversos campos do conhecimento. Nas ciências naturais, por exemplo, teorias inconsistentes e não-triviais são comuns, como é o caso da teoria do átomo de Bohr, que, segundo~\citeshort{Brown2015-BROCAP-9}, deve possuir um mecanismo de inferência paraconsistente\footnote{De acordo com a teoria, um elétron orbita o núcelo do átomo sem radiar energia. Porém, de acordo com as equações de Maxwell, que compõem parte da teoria de Bohr, um elétron que está acelerando em órbita deve radiar energia. Estes fatos são inconsistentes entre si, entretanto, não é possível inferir \textit{tudo} sobre o comportamento dos elétrons a partir disso. Portanto, o mecanismo de inferência deve se tratar de um mecanismo paraconsistente.}. No campo da linguística, inconsistências não-triviais também são possíveis, como a preservação da noção espacial da palavra ``Próximo'' mesmo tratando-se de objetos impossíveis\footnote{Por exemplo, na sentença ``Adam está próximo de um cubo esférico'', a noção espacial entre Adam e um objeto impossível é preservada.~\cite{McGinnis2013-MCGTUA}}. Ademais, no contexto da computação, uma aplicação da paraconsistência é o uso de lógicas de inconsistência formal para a modelagem e o desenvolvimento de bancos de dados evolucionários~\cite{carnielli2000formal}.
 
-As lógicas de inconsistência formal (\lfis{}), são lógicas paraconsistentes que introduzem na sua linguagem os conceitos de consistência e inconsistência como formas de representar o excesso de informações (por exemplo, evidência para $\alpha$ e evidência para $\neg \alpha$), para resgatar a capacidade de se obter a trivialidade em alguns casos~\cite{carnielli2007}. Ao explicitamente representar a consistência dentro da sua linguagem, é possível estudar teorias inconsistentes sem necessariamente assumir que elas são triviais, porém possibilitando a trivialidade em situações específicas. A ideia por trás das \lfis{} é que deve-se respeitar as noções da lógica clássica o máximo possível, desviando desta somente na presença de contradições. Isto significa que, na ausência de contradições, o princípio da explosão deve ser tomado como válido~\cite{sep-logic-paraconsistent}. Segundo~\citeshort{Carnielli_Coniglio_2016,new_advances_lfi}, na lógica \lfium{}, uma lógica paraconsistente e trivalorada, os conceitos de inconsistência e consistência são introduzidos à linguagem por meio do operador $\bullet$ para a inconsistência ou $\circ$ para a consistência, sendo que qualquer um destes pode ser usado para definir a linguagem da \lfium{}. Desta forma, como veremos ao longo do presente trabalho, e possível resgatar a trivialidade através do princípio da explosão Gentil, definido, no caso da $\text{\lfium{}}$, como $\circ \alpha \to (\alpha \to (\neg \alpha \to \beta))$~\cite{carnielli2007}. Este princípio diz que a trivialidade é obtida a partir da contradição de uma informação consistente.
+As lógicas de inconsistência formal (\lfis{}) são lógicas paraconsistentes que introduzem na sua linguagem os conceitos de consistência e inconsistência como formas de representar o excesso de informações (por exemplo, evidência para $\alpha$ e evidência para $\neg \alpha$), para resgatar a capacidade de se obter a trivialidade em alguns casos~\cite{carnielli2007}. Ao explicitamente representar a consistência dentro da sua linguagem, é possível estudar teorias inconsistentes sem necessariamente assumir que elas são triviais, porém possibilitando a trivialidade em situações específicas. A ideia por trás das \lfis{} é que deve-se respeitar as noções da lógica clássica o máximo possível, desviando desta somente na presença de contradições. Isto significa que, na ausência de contradições, o princípio da explosão deve ser tomado como válido~\cite{sep-logic-paraconsistent}. Segundo~\citeshort{Carnielli_Coniglio_2016,new_advances_lfi}, na lógica \lfium{}, uma lógica paraconsistente e trivalorada, os conceitos de inconsistência e consistência são introduzidos à linguagem por meio do operador $\bullet$ para a inconsistência ou $\circ$ para a consistência, sendo que qualquer um destes pode ser usado para definir a linguagem da \lfium{}. Desta forma, como veremos ao longo do presente trabalho, e possível resgatar a trivialidade através do princípio da explosão Gentil, definido, no caso da $\text{\lfium{}}$, como $\circ \alpha \to (\alpha \to (\neg \alpha \to \beta))$~\cite{carnielli2007}. Este princípio diz que a trivialidade é obtida a partir da contradição de uma informação consistente.
 
 
 Um sistema lógico capaz de lidar com informações inconsistentes é de grande interesse no campo da computação, sobretudo no gerenciamento de bancos de dados~\cite{carnielli2000formal}. Um banco de dados pode ser definido como um conjunto estruturado de relações finitas que armazena informações. Estas informações precisam satisfazer condições conhecidas como restrições de integridade antes de serem inseridas no banco~\cite{Codd}. As restrições são definidas pelo projetista do banco de dados no momento da implementação e podem ser formalizadas como sentenças de primeira ordem fixas~\cite{carnielli2000formal}. Conforme o banco de dados evolui, é preciso atualizar as informações contidas para refletir a realidade, contudo, como informações contraditórias não são permitidas pelas restrições de integridade, isso torna o processo de atualização difícil e trabalhoso. Ademais, a existência de bancos de dados que possam alterar suas restrições de integridade com o passar do tempo (conhecidos como bancos de dados evolucionários) é outro ponto de interesse que pode ser explorado com o uso das \lfis{}.
@@ -20,30 +20,36 @@ A proposta deste trabalho é desenvolver uma biblioteca da lógica de inconsist�
 
 
     \section{Objetivo Geral}
-    O objetivo geral deste trabalho é implementar uma biblioteca da \lfium{} em Coq, assim como desenvolver provas da completude, da correção e do metateorema da dedução dentro da biblioteca.
+        O objetivo geral deste trabalho é implementar uma biblioteca da \lfium{} em Coq, assim como desenvolver provas da completude, da correção e do metateorema da dedução dentro da biblioteca.
 
 
     \section{Objetivos Específicos}
-    \begin{itemize}
-        \item Estudar conceitos relevantes sobre lógicas paraconsistentes, em especial a \lfium{};
-        \item Estudar e revisar as provas manuais para completude, correção e metateorema da dedução da \lfium{};
-        \item Realizar um levantamento do estado da arte do desenvolvimento de lógicas paraconsistentes em assistentes de provas;
-        \item Desenvolver uma biblioteca da \lfium{} em Coq, baseada na semântica e sintaxe previamente definidas;
-        \item Desenvolver e verificar formalmente as provas para completude, correção e metateorema da dedução em Coq.
-    \end{itemize}
+        \begin{itemize}
+            \item Estudar conceitos relevantes sobre lógicas paraconsistentes, em especial a \lfium{};
+            \item Estudar e revisar as provas manuais para completude, correção e metateorema da dedução da \lfium{};
+            \item Realizar um levantamento do estado da arte do desenvolvimento de lógicas paraconsistentes em assistentes de provas;
+            \item Desenvolver uma biblioteca da \lfium{} em Coq, baseada na semântica e sintaxe previamente definidas;
+            \item Desenvolver e verificar formalmente as provas para completude, correção e metateorema da dedução em Coq.
+        \end{itemize}
 
 
     \section{Trabalhos Relacionados}
-    A partir de um levantamento acerca do estado da arte do desenvolvimento de lógicas não-clássicas em assistentes de provas na literatura, foram encontrados alguns trabalhos semelhantes ao presente trabalho. 
+        A partir de um levantamento acerca do estado da arte do desenvolvimento de lógicas não-clássicas em assistentes de provas na literatura, foram encontrados alguns trabalhos semelhantes ao presente trabalho. 
     
-    Em~\cite{Villadsen2017}, os autores implementam uma biblioteca de uma lógica paraconsistente utilizando assistente de provas Isabelle. A lógica em questão possui uma quantidade infinita contável de valores verdades não-clássicos, sendo uma generalização da lógica trivalorada proposta por {\L}ukasiewicz, como definida por~\citeshort{sep-lukasiewicz}. Além de implementar a biblioteca, são provados metateoremas sobre esta lógica, como o número mínimo de valores verdades a serem analisados para determinar o valor verdade de uma fórmula e os metateoremas da redução e da dedução. 
-    
-    Em outro trabalho,~\citeshort{schlichtkrull:LIPIcs.TYPES.2018.5} prova alguns outros metateoremas para esta mesma lógica dentro do assistente Isabelle, expandindo ainda mais a biblioteca já implementada.
+        Em~\cite{Villadsen2017}, os autores implementam uma biblioteca de uma lógica paraconsistente utilizando assistente de provas Isabelle. A lógica em questão possui uma quantidade infinita contável de valores verdades não-clássicos, sendo uma generalização da lógica trivalorada proposta por {\L}ukasiewicz, como definida por~\citeshort{sep-lukasiewicz}. Além de implementar a biblioteca, são provados metateoremas sobre esta lógica, como o número mínimo de valores verdades a serem analisados para determinar o valor verdade de uma fórmula e os metateoremas da redução e da dedução. Em outro trabalho,~\citeshort{schlichtkrull:LIPIcs.TYPES.2018.5} prova alguns outros metateoremas para esta mesma lógica dentro do assistente Isabelle, expandindo ainda mais a biblioteca já implementada.
 
-    \helena{Deixar mais ampla ainda a pesquisa por trabalhos relacionados? Tipo, qualquer coisa envolvendo assistentes de prova junto a lógicas não-clássicas?}
+        \helena{Paraconsistência em computação}
 
-    \section{Metodologia}
+    \section{Metodologia}\label{sec:metodologia}
+      O desenvolvimento do presente trabalhou se iniciou com uma pesquisa bibliográfica envolvendo os fundamentos teóricos acerca da lógica tratada e uma análise das provas dos metateoremas da \lfium{} existentes na literatura. Depois disso, foi feito um levantamento do estado da arte de implementações de lógicas paraconsistentes em assistentes de provas diversos, bem como aplicações da paraconsistência no contexto da computação.
+
+     Com a finalização desta etapa, foi iniciada a escrita do texto e o desenvolvimento das provas manuais dos metateoremas da \lfium{} com base na literatura pesquisada.
         
 
-    \section{Estrutura do Trabalho}
+    \section{Estrutura do Trabalho}\label{sec:estrutura}
+        O trabalho está organizado como segue: no Capítulo~\ref{cap:LFIs}, as lógicas de inconsistência formal são definidas e caracterizadas em relação a suas propriedades e motivações para seu desenvolvimento. No Capítulo~\ref{cap:LFI1}, a lógica \lfium{} é apresentada e sua linguagem, sintaxe e semântica são definidas formalmente, além disso, alguns metateoremas relevantes são provados. No Capítulo~\ref{cap:implementacao}, há uma breve contextualização sobre o desenvolvimento de provas e verificação de \textit{software} em assistentes de provas, com foco no Coq. 
+        
+    
+
+
        

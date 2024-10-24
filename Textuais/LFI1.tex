@@ -2,9 +2,9 @@
 
 Com os avanços da internet no contexto do gerenciamento de bancos de dados, informações passaram a ser coletadas a partir de diferentes fontes que frequentemente se contradizem. Dada a existência das restrições de integridade {--} que impedem contradições {--} a atualização e manutenção de bancos de dados se torna um processo difícil~\cite{carnielli2000formal}. Portanto, uma lógica capaz de lidar com informações inconsistentes sem necessariamente sofrer com a trivialidade é de grande interesse. A lógica de inconsistência formal \lfium{} é capaz de lidar com contradições ao introduzir na sua assinatura o operador $\circ$ para representar a consistência, internalizando este conceito em sua linguagem. Uma informação é dita consistente caso ela e sua negação não sejam simultaneamente verdadeiras, ou seja, dada uma informação $\alpha$, sua consistência $\circ \alpha$ será equivalente a fórmula $\neg (\alpha \land \neg \alpha)$. Com a introdução deste novo operador, é possível lidar com a inconsistência de informações sem que trivialidade ocorra, já que {--} caso uma informação seja conhecidamente \textit{inconsistente}, ou seja, $\neg \circ \alpha$ {--} então ela se trata de uma contradição inofensiva, fruto do excesso de informações numa dada teoria. Com isso, na \lfium{}, o conjunto $\bigcirc(p)$ de fórmulas dependentes somente na variável $p$ (descrito na Definição~\ref{def:lfi}) assume forma $\{\circ p\}$.
 
-No trabalho de~\citeshort{carnielli2000formal} a lógica \textbf{LFI1*} é definida como uma extensão de primeira ordem da lógica proposicional \lfium{}. A motivação para definir-se uma lógica de inconsistência formal de primeira ordem vem da natureza das informações contidas em bancos de dados, estas que podem ser compreendidas como sentenças de primeira ordem fixas~\cite{Codd}, entretanto, o presente trabalho trata somente da lógica proposicional \lfium{}. Ademais,~\citeshort{carnielli2000formal} tomam o operador de \textit{inconsistência} (denotado por $\bullet$) como primitivo. Isto foi feito pois o foco era explorar a \lfium{} como uma ferramenta para lidar com inconsistências em bancos de dados, portanto tomar a inconsistência como primitiva era de grande interesse. Entretanto, no presente trabalho, será utilizada a definição apresentada em~\citeshort{Carnielli_Coniglio_2016}, onde a linguagem é definida utilizando o operador $\circ$ como primitivo. Isto salienta algumas propriedades interessantes da negação $\neg$, como a presença das leis de De Morgan, axiomatizadas na Seção~\ref{sec:axiomatizacao}.
+No trabalho de~\citeshort{carnielli2000formal}, a lógica \textbf{LFI1*} é definida como uma extensão de primeira ordem da lógica proposicional \lfium{}. A motivação para definir-se uma lógica de inconsistência formal de primeira ordem vem da natureza das informações contidas em bancos de dados, estas que podem ser compreendidas como sentenças de primeira ordem fixas~\cite{Codd}, entretanto, o presente trabalho trata somente da lógica proposicional \lfium{}. Ademais,~\citeshort{carnielli2000formal} tomam o operador de \textit{inconsistência} (denotado por $\bullet$) como primitivo. Isto foi feito pois o foco era explorar a \lfium{} como uma ferramenta para lidar com inconsistências em bancos de dados, portanto tomar a inconsistência como primitiva era de grande interesse. Entretanto, no presente trabalho, será utilizada a definição apresentada em~\citeshort{Carnielli_Coniglio_2016}, onde a linguagem é definida utilizando o operador $\circ$ como primitivo. Isto salienta algumas propriedades interessantes da negação $\neg$, como a presença das leis de De Morgan, axiomatizadas na Seção~\ref{sec:axiomatizacao}.
 
-Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é apresentada a linguagem da lógica proposicional \lfium{} bem como definições necessárias para desenvolver as provas de metateoremas. A Seção~\ref{sec:axiomatizacao} contém uma breve explicação sobre sistemas de prova sintáticos e um cálculo de Hilbert para a \lfium{} é definido. Na Seção~\ref{sec:semantica} a semântica da \lfium{} é definida a partir de matrizes lógicas e de uma semântica de valorações não determinística, assim como é provada a equivalência entre essas dois sistemas.
+Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é apresentada a linguagem da lógica proposicional \lfium{} bem como definições necessárias para desenvolver as provas de metateoremas. A Seção~\ref{sec:axiomatizacao} contém uma breve explicação sobre sistemas de prova sintáticos e um cálculo de Hilbert para a \lfium{} é definido. Na Seção~\ref{sec:semantica}, a semântica da \lfium{} é definida a partir de matrizes lógicas e de uma semântica de valorações não determinística, assim como é provada a equivalência entre essas dois sistemas.
 
 \section{Linguagem}\label{sec:linguagem}
     A lógica proposicional \lfium{} aqui apresentada é definida com base em~\citeshort{Carnielli_Coniglio_2016} sobre a linguagem $\ling{}$, que por sua vez é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \mathbb{N}\}$ e uma assinatura proposicional $\Sigma = \{\land^{2}, \lor^{2}, \to^{2}, \neg^{1}, \circ^{1}\}$. Como de costume, o conectivo $\land$ representa uma conjunção, $\lor$ representa uma disjunção, $\to$ representa uma implicação, $\neg$ representa uma negação e $\circ$ é o conectivo de consistência, definido de forma primitiva. No restante do texto a aridade destes conectivos será omitida. A linguagem $\ling{}$ da \lfium{} é definida da seguinte forma:
@@ -33,7 +33,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
     % \end{definicao}
 
 
-    Na Definição~\ref{def:complex} a função $C$ da complexidade de uma fórmula na lógica proposicional clássica foi recursivamente definida. É possível estendê-la para identificar a complexidade de uma fórmula na \lfium{} adicionando-se uma condição para o operador $\circ$:
+    Na Definição~\ref{def:complex}, a função $C$ da complexidade de uma fórmula na lógica proposicional clássica foi recursivamente definida. É possível estendê-la para identificar a complexidade de uma fórmula na \lfium{} adicionando-se uma condição para o operador $\circ$:
 
     \begin{definicao}[Complexidade de uma fórmula na \lfium{}]
         Seja $\phi \in \ling{}$ uma fórmula bem formada, a complexidade $C(\phi)$ é dada adicionando-se a seguinte condição à Definição~\ref{def:complex}:\label{def:complex_lfi1}
@@ -101,7 +101,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \begin{align*}
               \text{(i) } & \phi_{i} \text{ é um axioma;}\\
               \text{(ii) } & \phi_{i} \in \Gamma;\\
-              \text{(iii) } & \text{existem } j,k < i \text{ de modo que } \phi_{i} \text{ é o resultado da aplicação de MP em } \phi_{j} \text{ e } \phi_{k}.\tag*\qed{}
+              \text{(iii) } & \text{existem } j,k < i \text{, de modo que } \phi_{i} \text{ é o resultado da aplicação de MP em } \phi_{j} \text{ e } \phi_{k}.\tag*\qed{}
         \end{align*}
     \end{definicao}
 
@@ -133,7 +133,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
         \end{align*}
     \end{proof}
 
-    \helena{enfiar algum texto aqui}.
+
 \section{Semântica}\label{sec:semantica}
     De forma geral, a semântica é o estudo de como um sistema de símbolos (uma linguagem) internaliza informações, ou seja, é o estudo de como interpretar os símbolos de uma linguagem~\cite{brown2005encyclopedia}. Num sistema lógico, \textit{matrizes lógicas} são comumente usadas para estabelecer o comportamento esperado dos conectivos lógicos de sua assinatura. Outra forma de compreender a semântica de um sistema lógico é definir condições que caracterizam funções conhecidas como valorações, que define uma \textit{semântica de valorações}. Nesta seção, a semântica da \lfium{} será definida de duas formas distintas: a partir de uma \textit{matriz lógica} e a partir de uma \textit{semântica de valorações}. As definições e notações para os conceitos de \textit{álgebra} definidos aqui baseiam-se nos trabalhos de~\citeshort{Carnielli_Coniglio_2016},~\citeshort{Sikorski1966-SIKAOF} e~\citeshort{Rasiowa1963-RASTMO}.
     
@@ -150,13 +150,13 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
             Uma linguagem definida sobre uma assinatura proposicional $\Theta = \{c_{1}, \ldots, c_{n}\}$ e um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \; | \; n \in \mathbb{N} \}$ pode ser compreendida como uma álgebra da forma $\langle \pazocal{L}_{\Theta}, c_{1}\ldots, c_{n} \rangle$, onde $\pazocal{L}_{\Theta}$ é um conjunto de fórmulas bem formadas a partir dos conectivos em $\Theta$ e dos átomos em $\pazocal{P}$. Denotamos esta álgebra simplesmente por $\pazocal{L}_{\Theta}$~\cite{Sikorski1966-SIKAOF,Wojcicki1984-WJCLOP}.
         \end{observacao}
 
-        Duas álgebras $\langle A, o_1, \ldots, o_n \rangle$ e $\langle B, o'_1, \ldots, o'_n \rangle$ definidas sobre uma mesma assinatura proposicional são ditas \textit{similares} caso, para todo $1 \leq j \leq n$, as operações $o_j$ e $o'_j$ tenham mesma aridade. Uma função (mapeamento) entre duas estruturas algebraicas similares que preserva sua estrutura é chamada de \textit{homomorfismo}. Ou seja, dadas duas álgebras similares $\langle A, O \rangle$, $\langle B, O' \rangle$ definidas sobre uma assinatura proposicional $\Theta$, um mapeamento $h : A \to B$ será um \textit{homomorfismo} caso para todo conectivo $c \in \Theta$ de aridade $n$ e para todo $a_{0},\ldots,a_{n} \in A$ tem-se $h(c(a_{0},\ldots, a_{n})) = c(h(a_{0}),\ldots, h(a_{n}))$.
+        Duas álgebras $\langle A, o_1, \ldots, o_n \rangle$ e $\langle B, o'_1, \ldots, o'_n \rangle$ definidas sobre uma mesma assinatura proposicional são ditas \textit{similares} caso, para todo $1 \leq j \leq n$, as operações $o_j$ e $o'_j$ tenham mesma aridade. Uma função (mapeamento) entre duas estruturas algebraicas similares que preserva sua estrutura é chamada de \textit{homomorfismo}. Ou seja, dadas duas álgebras similares $\langle A, O \rangle$, $\langle B, O' \rangle$ definidas sobre uma assinatura proposicional $\Theta$, um mapeamento $h : A \to B$ será um \textit{homomorfismo} caso, para todo conectivo $c \in \Theta$ de aridade $n$, e para todo $a_{0},\ldots,a_{n} \in A$, tem-se $h(c(a_{0},\ldots, a_{n})) = c(h(a_{0}),\ldots, h(a_{n}))$.
 
         \begin{definicao}[Matriz Lógica]
             Seja $\Theta$ uma assinatura proposicional. Uma \textit{matriz lógica} $\pazocal{M}$ definida sobre $\Theta$ é uma tripla $\pazocal{M} = \langle A, D, O \rangle$, tal que o par $\langle A, O \rangle$ é uma álgebra para $\Theta$ e $D$ é um subconjunto de $A$ cujos elementos são ditos \textit{designados} (estes são elementos de $A$ considerados como verdadeiros).\qed{}
         \end{definicao}
 
-        Com isso, uma matriz lógica $\pazocal{M} = \langle A, D, O \rangle$ induz uma relação de consequência semântica para uma lógica tarskiana $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}_{\Theta}$, da seguinte forma: sendo $\Gamma \cup \{\alpha\} \in \pazocal{L}_{\Theta}$, tem-se $\Gamma \vDash_{\pazocal{M}} \alpha$ sse, para todo homomorfismo $h : \pazocal{L}_{\Theta} \to A$, se $h[\Gamma] \subseteq D$ então $h(\alpha) \in D$. Em particular, $\alpha$ é uma tautologia em $\mathcal{L}$ sse $h(\alpha) \in D$ para todo homomorfismo $h$. Perceba que o homomorfismo $h$ nada mais é do que uma função que associa fórmulas da linguagem $\pazocal{L}_{\Theta}$ a valores do domínio $A$ da matriz $\pazocal{M}$. Desta forma, $h$ é dito uma \textit{valoração} sobre $\pazocal{M}$.
+        Com isso, uma matriz lógica $\pazocal{M} = \langle A, D, O \rangle$ induz uma relação de consequência semântica para uma lógica tarskiana $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}_{\Theta}$, da seguinte forma: sendo $\Gamma \cup \{\alpha\} \in \pazocal{L}_{\Theta}$, tem-se $\Gamma \vDash_{\pazocal{M}} \alpha$ sse, para todo homomorfismo $h : \pazocal{L}_{\Theta} \to A$, se $h[\Gamma] \subseteq D$, então $h(\alpha) \in D$. Em particular, $\alpha$ é uma tautologia em $\mathcal{L}$ sse $h(\alpha) \in D$ para todo homomorfismo $h$. Perceba que o homomorfismo $h$ nada mais é do que uma função que associa fórmulas da linguagem $\pazocal{L}_{\Theta}$ a valores do domínio $A$ da matriz $\pazocal{M}$. Desta forma, $h$ é dito uma \textit{valoração} sobre $\pazocal{M}$.
 
 
        Uma lógica que apresenta três elementos no domínio de sua matriz lógica é dita \textit{trivalorada}. Algumas lógicas trivaloradas introduzem um terceiro valor além da verdade e falsidade para representar uma informação desconhecida, como é o caso da lógica de Kleene~\cite{manyvalued}. A \lfium{}, por sua vez, introduz o valor $\meio{}$ além dos valores clássicos $0$ e $1$ para representar uma informação inconsistente. Ou seja, caso $\alpha$ tenha o valor $\meio{}$, então $\neg \alpha$ também terá o valor $\meio{}$.
@@ -280,8 +280,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                 & v(\neg \alpha) = 0 \Longrightarrow v(\alpha) = 1\tag{\textbf{$vNeg$}}\\
                 & v(\circ \alpha) = 1 \Longrightarrow v(\alpha) = 0 \text{ ou } v(\neg \alpha) = 0\tag{\textbf{$vCon$}}\\
                 & v(\neg \circ \alpha) = 1 \Longrightarrow v(\alpha) = 1 \text{ e } v(\neg \alpha) = 1\tag{\textbf{$vCi$}}\\
-                & v(\neg \neg \alpha) = 1 \Longrightarrow v(\alpha) = 1\tag{\textbf{$vCf$}}\\
-                & v(\alpha) = 1 \Longrightarrow v(\neg \neg \alpha) = 1\tag{\textbf{$vCe$}}\\
+                & v(\neg \neg \alpha) = 1 \Longleftrightarrow v(\alpha) = 1\tag{\textbf{$vDNE$}}\\
                 & v(\neg (\alpha \land \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ ou } v(\neg \beta) = 1\tag{\textbf{$vDM_{\land}$}}\\
                 & v(\neg (\alpha \lor \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vDM_{\lor}$}}\\
                 & v(\neg (\alpha \to \beta)) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vCip_{\to}$}}
@@ -379,12 +378,12 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                         
                         Pela matriz de $\neg$ temos $h(\alpha) = 0$. Então, por (HI), $v(\alpha) = 0$. 
                         
-                        Por $(vNeg)$ temos $v(\neg \alpha) = v(\phi) = 1$. Enfim, por $(vCf)$, $v(\neg \phi) = v(\neg \neg \alpha) = v(\alpha) = 0$
+                        Por $(vNeg)$ temos $v(\neg \alpha) = v(\phi) = 1$. Enfim, por $(vDNE)$, $v(\neg \phi) = v(\neg \neg \alpha) = v(\alpha) = 0$
                         
                         
                         ($\Longleftarrow$) Supondo $v(\phi) = v(\neg \alpha) = 1$ e $v(\neg \phi) = v(\neg \neg \alpha) = 0$, vamos provar $h(\phi) = h(\neg \alpha) = 1$.
                         
-                        Por $(vCe)$ temos $v(\neg \neg \alpha) = v(\alpha) = 0$.
+                        Por $(vDNE)$ temos $v(\neg \neg \alpha) = v(\alpha) = 0$.
                         
                         Por (HI) temos $h(\alpha) = 0$. Então, $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 1$, pela matriz de $\neg$.
                     
@@ -394,11 +393,11 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                         
                         Pela matriz de $\neg$ temos $h(\alpha) = \meio{}$. Então, por (HI), $v(\alpha) = 1$ e $v(\neg \alpha) = v(\phi) = 1$.
                         
-                        Enfim, por $(vCe)$ temos $v(\neg \phi) = v(\neg \neg \alpha) = v(\alpha) = 1$.
+                        Enfim, por $(vDNE)$ temos $v(\neg \phi) = v(\neg \neg \alpha) = v(\alpha) = 1$.
                         
                         ($\Longleftarrow$) Supondo $v(\phi) = v(\neg \alpha) = 1$ e $v(\neg \phi) = v(\neg \neg \alpha)= 1$, vamos provar $h(\phi) = \meio{}$.
 
-                        Por $(vCf)$ temos $v(\alpha) = v(\neg \neg \alpha) = 1$.
+                        Por $(vDNE)$ temos $v(\alpha) = v(\neg \neg \alpha) = 1$.
                         
                         Por (HI), temos $h(\alpha) = \meio{}$. Então, pela matriz de $\neg$, temos $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = \meio{}$.
                     
@@ -482,7 +481,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
                     
                         ($\Longleftarrow$) Supondo $v(\phi) = v(\circ \alpha) = 0$, vamos provar $h(\phi) = h(\circ \alpha) = 0$.
 
-                        Por $(vCe)$ temos $v(\neg \neg \circ \alpha) = 0$. Então, por $(vNeg)$, temos $v(\neg \circ \alpha) = 1$.
+                        Por $(vDNE)$ temos $v(\neg \neg \circ \alpha) = 0$. Então, por $(vNeg)$, temos $v(\neg \circ \alpha) = 1$.
 
                         Por $(vCi)$ temos $v(\alpha) = 1$ e $v(\neg \alpha) = 1$. Logo, por (HI), temos $h(\alpha) = \meio{}$.
 
@@ -1553,7 +1552,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem} é 
 
     Provaremos agora o lema de Lindenbaum, proposto originalmente por Adolf Lindenbaum (de acordo com~\citeshort{Tarski1956-TARLSM}) e adaptado por~\citeshort{los_lindenbaum,Wojcicki1984-WJCLOP}. A versão apresentada por~\citeshort{Carnielli_Coniglio_2016} utiliza o princípio da boa ordem e aplica uma recursão transfinita para que o lema siga verdadeiro mesmo quando se tratando de sistemas definidos sobre linguagens não enumeráveis. Para o propósito do presente trabalho, isso não se mostra necessário, tendo em vista que a linguagem da \lfium{} (Definição~\ref{def:ling}) é enumerável.
 
-    \begin{lema}[Lindenbaum-{\L}os para \lfium{}]\label{lem:lindenbaum}
+    \begin{lema}[Lindenbaum-{\L}oś para \lfium{}]\label{lem:lindenbaum}
         Dada a lógica $\lfium{} = \langle \ling, \conhil \rangle$ então temos, para qualquer conjunto de fórmulas $\Gamma \cup \{\phi\} \subseteq \ling$, se $\Gamma \nconhil \phi$ então existe um conjunto de fórmulas $\Delta$, com $\Gamma \subseteq \Delta \subseteq \ling$, tal que $\Delta$ é um conjunto maximal não-trivial em relação a $\phi$ em \lfium{}.
     \end{lema}
 
