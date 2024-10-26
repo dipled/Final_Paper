@@ -322,6 +322,23 @@ doi = {10.1007/978-3-662-07964-5}
     title = {Possible-translations semantics}
 }
 
+@inproceedings{fixpoint,
+author = {Van Gelder, Allen},
+title = {The alternating fixpoint of logic programs with negation},
+year = {1989},
+isbn = {0897913086},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/73721.73722},
+doi = {10.1145/73721.73722},
+abstract = {We introduce and describe the alternating fixpoint of a logic program with negation. The underlying idea is to monotonically build up a set of negative conclusions until the least fixpoint is reached, using a transformation related to the one that defines stable models, developed by Gelfand and Lifschitz. From a fixed set of negative conclusions, we can derive the positive conclusions that follow (without deriving any further negative ones), by traditional Horn clause semantics. The union of positive and negative conclusions is called the alternating fixpoint partial model. The name “alternating” was chosen because the transformation runs in two passes; the first pass transforms an underestimate of the set of negative conclusions into an (intermediate) overestimate; the second pass transforms the overestimates into a new underestimate; the composition of the two passes is monotonic.Our main theorem is that the alternating fixpoint partial model is exactly the well-founded partial model.We also show that a system is fixpoint logic, which permits rule bodies to be first order formulas but requires inductive relations to be positive within them, can be transformed straightforwardly into a normal logic program whose alternating fixpoint partial model corresponds to the least fixpoint of the fixpoint logic system. Thus alternating fixpoint logic is at least as expressive as fixpoint logic. The converse is shown to hold for finite structures.},
+booktitle = {Proceedings of the Eighth ACM SIGACT-SIGMOD-SIGART Symposium on Principles of Database Systems},
+pages = {1–10},
+numpages = {10},
+location = {Philadelphia, Pennsylvania, USA},
+series = {PODS '89}
+}
+
 @InProceedings{evidential,
 author="Baldwin, J. F.",
 editor="Bouchon-Meunier, Bernadette
@@ -410,6 +427,15 @@ isbn="978-3-540-47580-4"
 
 
 % --------------------------- INBOOK ---------------------------
+@inbook{datalog,
+author = {Abiteboul, Serge and Hull, Richard and Vianu, Victor},
+year = {1995},
+month = {01},
+pages = {},
+title = {Foundations of Databases},
+isbn = {0-201-53771-0}
+}
+
 @inbook{carnielli2007,
     author = {Carnielli, Walter and Coniglio, Marcelo and Marcos, Jo{\~a}o},
     year = {2007},
@@ -492,6 +518,22 @@ url="https://doi.org/10.1007/978-3-662-55947-5_5"
 }
 
 % --------------------------- ARTICLE ---------------------------
+@article{pdatalog,
+title = {A paraconsistent logic programming approach for querying inconsistent databases},
+journal = {International Journal of Approximate Reasoning},
+volume = {46},
+number = {2},
+pages = {366-386},
+year = {2007},
+note = {Special Track on Uncertain Reasoning of the 18th International Florida Artificial Intelligence Research Symposium (FLAIRS 2005)},
+issn = {0888-613X},
+doi = {https://doi.org/10.1016/j.ijar.2006.09.009},
+url = {https://www.sciencedirect.com/science/article/pii/S0888613X06001307},
+author = {Amo, Sandra de and Pais, Mônica Sakuray},
+keywords = {Inconsistent information, Logic programming, Paraconsistent logic, Deductive databases, Query languages},
+abstract = {When integrating data coming from multiple different sources we are faced with the possibility of inconsistency in databases. A paraconsistent approach for knowledge base integration allows keeping inconsistent information and reasoning in its presence. In this paper, we use a paraconsistent logic (LFI1) as the underlying logic for the specification of P-Datalog, a deductive query language for databases containing inconsistent information. We present a declarative semantics which captures the desired meaning of a recursive query executed over a database containing inconsistent facts and whose rules allow inferring information from inconsistent premises. We also present a bottom-up evaluation method for P-Datalog programs based on an alternating fixpoint operator.}
+}
+
 @article{los_lindenbaum,
  ISSN = {00393215, 15728730},
  URL = {http://www.jstor.org/stable/20013531},
