@@ -1555,7 +1555,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
     \end{lema}
 
     \begin{proof}[Prova do Lema~\ref{lem:lindenbaum}]\setbool{@fleqn}{false}
-        Dada $\lfium{} = \langle \ling, \conhil \rangle$ e seja $\Gamma \cup \{\phi\} \subseteq \ling$ um conjunto de fórmulas com $\Gamma \nconhil \phi$. Arranje \migs{Como?} as fórmulas de $\ling$ numa sequência $\pazocal{C} = \phi_1, \phi_2, \ldots, \phi_i, \ldots$ e defina $\Gamma_i$ recursivamente da seguinte forma:
+        Dada $\lfium{} = \langle \ling, \conhil \rangle$ e seja $\Gamma \cup \{\phi\} \subseteq \ling$ um conjunto de fórmulas com $\Gamma \nconhil \phi$. Arranje \migs{Como?}\helena{TAMBÉM NÃO SEI ;-;} as fórmulas de $\ling$ numa sequência $\pazocal{C} = \phi_1, \phi_2, \ldots, \phi_i, \ldots$ e defina $\Gamma_i$ recursivamente da seguinte forma:
         \begin{align*}
                 \text{(i)}\quad&\Gamma_0 = \Gamma\\
                 \text{(ii)}\quad&\Gamma_i =
@@ -1565,7 +1565,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \end{cases}
         \end{align*}
 
-        Então, defina um conjunto de fórmulas $\Delta = \bigcup_{i=0}^{\infty}\Gamma_i$. Dividiremos a prova em algumas partes: \migs{Por que? Faz mais sentido você enumerar as coisas que precisa provar, preferencialmente também explicando o porquê precisa provar isso já que estás fazendo sua própria prova e não tirando de nenhuma outra fonte, e então provar cada uma delas.}
+        Então, defina um conjunto de fórmulas $\Delta = \bigcup_{i=0}^{\infty}\Gamma_i$. Dividiremos a prova em algumas partes: \migs{Por que? Faz mais sentido você enumerar as coisas que precisa provar, preferencialmente também explicando o porquê precisa provar isso já que estás fazendo sua própria prova e não tirando de nenhuma outra fonte, e então provar cada uma delas.} \helena{tipo, é só dividir por dividir mesmo. em vez de provar tudo em um textão. Mas tb não acho que seja interessante fazer lemas pra isso, já que são resultados bem ``locais''.}
         
         \begin{adjustwidth}{1cm}{}
             \noindent(1) $\Gamma \subseteq \Delta \subseteq \ling$.
@@ -1574,7 +1574,14 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 Pela construção de $\Gamma_i$, temos $\Gamma_0 = \Gamma \subseteq \Gamma_i$ e $\Gamma_i \subseteq \ling$ para todo $i \in \mathbb{N}$. Como $\Delta$ é formado a partir da união de todos os conjuntos $\Gamma_i$, temos $\Gamma_0 \subseteq \Delta$ e $\Delta \subseteq \ling$.
             \end{adjustwidth}
 
-            \noindent(2) $\Gamma_i \nconhil \phi$ para todo $i \geq 0$.
+            \noindent(2) $\Gamma_k \subseteq \Gamma_i$, onde $0 \leq k \leq i$.
+
+            \begin{adjustwidth}{1cm}{}
+                Dados dois números $i, k \in \mathbb{N}$ com $k \leq i$, o conjunto $\Gamma_i$ é construído pela união de todos os seus predecessores, portanto, $\Gamma_k \subseteq \Gamma_i$.
+                
+            \end{adjustwidth}
+
+            \noindent(3) $\Gamma_i \nconhil \phi$ para todo $i \geq 0$.
 
             Provaremos por indução em $i$:
 
@@ -1596,17 +1603,31 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \end{adjustwidth}
 
             
-            \noindent(3) Para todo $\Delta' \subseteq \Delta$ finito temos que existe um $\Gamma_i$ na sequência com $\Delta' \subseteq \Gamma_i$.
+            \noindent(4) Para todo $i \geq 1$, se $\phi_i \in \Delta$, então $\phi_i \in \Gamma_i$.
+
+            \begin{adjustwidth}{1cm}{}
 
 
+                Vamos supor $\phi_i \in \Delta$ e $\phi_i \not \in \Gamma_i$. Temos, por (3), $\Gamma_{i - 1} \nconhil \phi$. Pela definição de $\Gamma_i$, temos $\Gamma_{i - 1}, \phi_i \conhil \phi$. Portanto, por (2) e pela monotonicidade da \lfium{} (Proposição~\ref{prop:tarski}), temos $\Gamma_k, \phi_i \conhil \phi$, para qualquer $k \geq i$. Então, por (3), $\phi \not \in \Gamma_k$ para qualquer $k > i$. Portanto, $\phi_i \not \in \Delta$, o que contradiz a nossa suposição inicial. Portanto, $\phi_i \in \Gamma_i$.
 
-            \noindent(4) $\Delta \nconhil \phi$.
+            \end{adjustwidth}
+
+            \noindent(5) Para todo $\Delta' \subseteq \Delta$ finito temos que existe um $\Gamma_i$ na sequência com $\Delta' \subseteq \Gamma_i$.
+
+            \begin{adjustwidth}{1cm}{}
+
+                Seja $\Delta' \subseteq \Delta$ um subconjunto finito. Como $\Delta$ é formado a partir da sequência $\pazocal{C} = \phi_1, \phi_2, \ldots, \phi_i, \ldots$, então existe um $\phi_{max} \in \Delta'$ tal que $max \geq i$ para qualquer $\phi_i \in \Delta'$. Logo, $\phi_{max} \in \Delta$ e, por (4), temos $\phi_{max} \in \Gamma_{max}$. Para qualquer outro elemento $\phi_k \in \Delta'$, com $max \geq k$, temos, por (4), $\phi_k \in \Gamma_k$, e, por (2), $\Gamma_k \subseteq \Gamma_{max}$. Portanto, $\Delta' \subseteq \Gamma_{max}$.
+
+            \end{adjustwidth}
+
+
+            \noindent(6) $\Delta \nconhil \phi$.
 
             \begin{adjustwidth}{1cm}{}
                 Vamos supor $\Delta \conhil \phi$. Portanto, como a \lfium{} é finitária (Proposição~\ref{prop:finit}), existe um $\Delta' \subseteq \Delta$ finito com $\Delta' \conhil \phi$. Logo, por (3), existe um $\Gamma_i$ na sequência tal que $\Delta' \subseteq \Gamma_i$. Então, como a \lfium{} é tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma_i \conhil \phi$, o que é uma contradição (por (2)). Portanto, $\Delta \nconhil \phi$.
             \end{adjustwidth}
 
-            \noindent(5) $\Delta$ é maximal não-trivial em relação a $\phi$ em \lfium{}.
+            \noindent(7) $\Delta$ é maximal não-trivial em relação a $\phi$ em \lfium{}.
             
             \begin{adjustwidth}{1cm}{}
                 Seja $\psi$ uma fórmula qualquer com $\psi \not \in \Delta$. Então $\phi = \phi_i$ para algum $i \in \mathbb{N}$. Pela definição de $\Delta$, temos $\phi_i \not \in \Gamma_i$. Por construção de $\phi_{i + 1}$, temos $\Gamma_i, \phi_i \conhil \phi$. Portanto, pela monotonicidade da \lfium{}, temos $\Delta \conhil \phi$. Logo, $\Delta$ é maximal não-trivial em relação a $\phi$ em \lfium{}.
