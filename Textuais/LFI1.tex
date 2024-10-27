@@ -1655,7 +1655,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
         \begin{provaporcasos}
             
-            \casodeprova{$\psi = \alpha \land \beta$.}
+            \casodeprova{$(vAnd)$}
 
                 \begin{adjustwidth}{1cm}{}
                     \noindent ($\Longrightarrow$) Vamos supor $v(\alpha \land \beta) = 1$. Logo $(\alpha \land \beta) \in \Gamma$. 
@@ -1675,7 +1675,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
                 \end{adjustwidth}
 
-            \casodeprova{$\psi = \alpha \lor \beta$.}
+            \casodeprova{$(vOr)$}
 
                 \begin{adjustwidth}{1cm}{}
                     \noindent ($\Longrightarrow$) Vamos supor $v(\alpha \lor \beta) = 1$. Logo, $\alpha \lor \beta \in \Gamma$.
@@ -1694,24 +1694,62 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
                 \end{adjustwidth}
 
-                \casodeprova{$\psi = \alpha \to \beta$.}
+                \casodeprova{$(vImp)$}
 
-                \begin{adjustwidth}{1cm}{}
+                    \begin{adjustwidth}{1cm}{}
+                        
+                        \noindent ($\Longrightarrow$) Vamos supor $v(\alpha \to \beta) = 1$. Logo, $\alpha \to \beta \in \Gamma$.
+
+                        \noindent Supondo $v(\alpha) = 1$ e $v(\beta) = 0$, temos $\alpha \in \Gamma$ e $\beta \not \in \Gamma$. Então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \alpha$, $\Gamma \nconhil \beta$ e $\Gamma \conhil \alpha \to \beta$. Logo, por MP, $\Gamma \conhil \beta$, o que é uma contradição. Portanto, $v(\alpha) = 0$ ou $v(\beta) = 1$.
+
+                        \noindent ($\Longleftarrow$) Vamos supor $v(\alpha) = 0$ ou $v(\beta) = 1$.
+
+                        \noindent Caso $v(\alpha) = 0$, então temos $\alpha \not \in \Gamma$. Supondo $\alpha \to \beta \not \in \Gamma$, temos, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, $\Gamma, \alpha \conhil \phi$ e $\Gamma, \alpha \to \beta \conhil \phi$. Logo, pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, (\alpha \to \beta) \lor \alpha \conhil \phi$. Portanto, pelo axioma \textbf{(Ax9)} e pela monotonicidade da \lfium{}, temos $\Gamma \conhil \alpha$, o que é uma contradição. Portanto, $\alpha \to \beta \in \Gamma$ e, então, $v(\alpha \to \beta) = 1$.
+
+                        \noindent Caso $v(\beta) = 1$, então temos $\beta \in \Gamma$. Pelo axioma \textbf{(Ax1)}, temos $\Gamma \conhil \beta \to (\alpha \to \beta)$. Portanto, por MP, temos $\Gamma \conhil \alpha \to \beta$. Logo $\alpha \to \beta \in \Gamma$ e, então, $v(\alpha \to \beta) = 1$.
+
+                        \noindent Logo, $v(\alpha \to \beta) = 1$.
+
+                    \end{adjustwidth}
+
+                \casodeprova{$(vNeg)$}
                     
-                    \noindent ($\Longrightarrow$) Vamos supor $v(\alpha \to \beta) = 1$. Logo, $\alpha \to \beta \in \Gamma$.
+                    \begin{adjustwidth}{1cm}{}
+                        \noindent Supondo $v(\neg \alpha) = 0$, temos $\neg \alpha \not \in \Gamma$. Então, supondo $v(\alpha) = 0$, temos $\alpha \not \in \Gamma$. 
+                        
+                        \noindent Portanto, $\Gamma, \alpha \conhil \phi$ e $\Gamma \neg \alpha \conhil \phi$. Pelo Corolário~\ref{cor:caso_neg}, temos $\Gamma \conhil \phi$, o que é uma contradição. Logo, $v(\alpha) = 1$.
 
-                    \noindent Supondo $v(\alpha) = 1$ e $v(\beta) = 0$, temos $\alpha \in \Gamma$ e $\beta \not \in \Gamma$. Então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \alpha$, $\Gamma \nconhil \beta$ e $\Gamma \conhil \alpha \to \beta$. Logo, por MP, $\Gamma \conhil \beta$, o que é uma contradição. Portanto, $v(\alpha) = 0$ ou $v(\beta) = 1$.
+                    \end{adjustwidth}
 
-                    \noindent ($\Longleftarrow$) Vamos supor $v(\alpha) = 0$ ou $v(\beta) = 1$.
+                \casodeprova{$(vCon)$}
 
-                    \noindent Caso $v(\alpha) = 0$, então temos $\alpha \not \in \Gamma$. Supondo $\alpha \to \beta \not \in \Gamma$, temos, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, $\Gamma, \alpha \conhil \phi$ e $\Gamma, \alpha \to \beta \conhil \phi$. Logo, pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, (\alpha \to \beta) \lor \alpha \conhil \phi$. Portanto, pelo axioma \textbf{(Ax9)} e pela monotonicidade da \lfium{}, temos $\Gamma \conhil \alpha$, o que é uma contradição. Portanto, $\alpha \to \beta \in \Gamma$ e, então, $v(\alpha \to \beta) = 1$.
+                    \begin{adjustwidth}{1cm}{}
+                        \noindent Supondo $v(\circ \alpha) = 1$, temos $\circ \alpha \in \Gamma$. Logo, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \circ \alpha$.
 
-                    \noindent Caso $v(\beta) = 1$, então temos $\beta \in \Gamma$. Pelo axioma \textbf{(Ax1)}, temos $\Gamma \conhil \beta \to (\alpha \to \beta)$. Portanto, por MP, temos $\Gamma \conhil \alpha \to \beta$. Logo $\alpha \to \beta \in \Gamma$ e, então, $v(\alpha \to \beta) = 1$.
+                        \noindent Vamos supor $v(\alpha) = 1$ e $v(\neg \alpha) = 1$. Portanto, temos $\alpha \in \Gamma$ e $\neg \alpha \in \Gamma$ e, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, $\Gamma \conhil \alpha$ e $\Gamma \conhil \neg \alpha$.
 
-                    \noindent Logo, $v(\alpha \to \beta) = 1$.
-
+                        \noindent Pelo axioma \textbf{(bc1)}, temos $\Gamma \conhil \circ \alpha \to (\alpha \to (\neg \alpha \to \phi))$. Portanto, aplicando MP três vezes, temos $\Gamma \conhil \phi$, o que é uma contradição. Logo, $v(\alpha) = 0$ ou $v(\neg \alpha) = 0$
                     
-                \end{adjustwidth}
+
+
+                    \end{adjustwidth}
+                
+                \casodeprova{$(vCi)$}
+
+                    \begin{adjustwidth}{1cm}{}
+                        
+                        \noindent Supondo $v(\neg \circ \alpha) = 1$, temos $\neg \circ \alpha \in \Gamma$. Então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg \circ \alpha$.
+
+                        Pelo axioma \textbf{(ci)}, temos $\Gamma \conhil \neg \circ \alpha \to (\alpha \land \neg \alpha)$. Portanto, por MP, temos $\Gamma \conhil \alpha \land \neg \alpha$. 
+                        
+                        Pelo axioma \textbf{(Ax4)}, temos $\Gamma \conhil (\alpha \land \neg \alpha) \to \alpha$. Aplicando MP, temos $\Gamma \conhil \alpha$.
+                        
+                        Pelo axioma \textbf{(Ax5)}, temos $\Gamma \conhil (\alpha \land \neg \alpha) \to \neg \alpha$. Aplicando MP, temos $\Gamma \conhil \neg \alpha$.
+
+                        Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\alpha \in \Gamma$ e $\neg \alpha \in \Gamma$. Logo, $v(\alpha) = 1$ e $v(\neg \alpha) = 1$.
+
+                    \end{adjustwidth}
+
         \end{provaporcasos}
 
 
