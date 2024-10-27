@@ -1426,9 +1426,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
     \begin{proof}[Prova da Proposição~\ref{prop:tarski}]
         Queremos mostrar que a \lfium{} satisfaz as seguintes condições para todo $\Gamma \cup \Delta \cup \{\phi\} \subseteq \ling{}$:
         \begin{itemize}
-            \item [(i)] Se $\phi \in \Gamma$, então $\Gamma \conhil \phi$.
-            \item [(ii)] Se $\Delta \conhil \phi$ e $\Delta \subseteq \Gamma$, então $\Gamma \conhil \phi$.
-            \item [(iii)] Se $\Delta \conhil \phi$ e $\Gamma \conhil \delta$ para todo $\delta \in \Delta$, então $\Gamma \conhil \phi$.
+            \item [(i)] Se $\phi \in \Gamma$, então $\Gamma \conhil \phi$.\hfill(reflexividade)
+            \item [(ii)] Se $\Delta \conhil \phi$ e $\Delta \subseteq \Gamma$, então $\Gamma \conhil \phi$.\hfill(monotonicidade)
+            \item [(iii)] Se $\Delta \conhil \phi$ e $\Gamma \conhil \delta$ para todo $\delta \in \Delta$, então $\Gamma \conhil \phi$.\hfill(corte)
         \end{itemize}
         \begin{adjustwidth}{1cm}{}
             \textbf{Prova do item (i)}. Vamos supor $\phi \in \Gamma$. Então, por definição de derivação, temos que $\Gamma \conhil \phi$.
@@ -1608,7 +1608,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \begin{adjustwidth}{1cm}{}
 
 
-                Vamos supor $\phi_i \in \Delta$ e $\phi_i \not \in \Gamma_i$. Temos, por (3), $\Gamma_{i - 1} \nconhil \phi$. Pela definição de $\Gamma_i$, temos $\Gamma_{i - 1}, \phi_i \conhil \phi$. Portanto, por (2) e pela monotonicidade da \lfium{} (Proposição~\ref{prop:tarski}), temos $\Gamma_k, \phi_i \conhil \phi$, para qualquer $k \geq i$. Então, por (3), $\phi \not \in \Gamma_k$ para qualquer $k > i$. Portanto, $\phi_i \not \in \Delta$, o que contradiz a nossa suposição inicial. Portanto, $\phi_i \in \Gamma_i$.
+                Vamos supor $\phi_i \in \Delta$ e $\phi_i \not \in \Gamma_i$. Temos, por (3), $\Gamma_{i - 1} \nconhil \phi$. Pela definição de $\Gamma_i$, temos $\Gamma_{i - 1}, \phi_i \conhil \phi$. Portanto, por (2) e pela monotonicidade da \lfium{} (Proposição~\ref{prop:tarski}), temos $\Gamma_k, \phi_i \conhil \phi$, para qualquer $k \geq i$. Então, por (3), $\phi_i \not \in \Gamma_k$ para qualquer $k > i$. Portanto, $\phi_i \not \in \Delta$, o que contradiz a nossa suposição inicial. Portanto, $\phi_i \in \Gamma_i$.
 
             \end{adjustwidth}
 
@@ -1640,7 +1640,49 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             
         \end{proof}
         
+    \begin{lema}\label{lem:valoracao}
+        Seja $\Gamma \cup \{\phi\} \subseteq \ling{}$ um conjunto qualquer de fórmulas com $\Gamma$ sendo um conjunto maximal não-trivial em relação a $\phi$ em \lfium{}. A função $v \; : \; \ling \to \{1, 0\}$ definida, para todo $\psi \in \ling$, como:
+        \begin{center}
+            \setbool{@fleqn}{false}
+                $v(\psi) = 1 \Longleftrightarrow \psi \in \Gamma$
+        \end{center}
+
+        é uma valoração para \lfium{}.
+    \end{lema}
+
+    \begin{proof}[Prova do Lema~\ref{lem:valoracao}]
+        Queremos provar que $v$ satisfaz todas as cláusulas da Definição~\ref{def:valoracoes}.
+
+        \begin{provaporcasos}
+            
+            \casodeprova{$\psi = \alpha \land \beta$.}
+
+                \begin{adjustwidth}{1cm}{}
+                    \noindent ($\Longrightarrow$) Vamos supor $v(\alpha \land \beta) = 1$. Logo $(\alpha \land \beta) \in \Gamma$. 
+                    
+                    \noindent Supondo $\alpha \not \in \Gamma$, temos $\Gamma, \alpha \conhil \phi$. Pelo axioma \textbf{(Ax4)} e MP, temos $\Gamma \conhil \alpha$. Logo, pela monotonicidade da \lfium{} (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\alpha \in \Gamma$.
         
+                    \noindent Supondo $\beta \not \in \Gamma$, temos $\Gamma, \beta \conhil \phi$. Pelo axioma \textbf{(Ax5)} e MP, temos $\Gamma \conhil \beta$. Logo, pela monotonicidade da \lfium{} (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\beta \in \Gamma$.
+        
+                    \noindent Logo, temos $v(\alpha) = 1$ e $v(\beta) = 1$.
+
+                \end{adjustwidth}
+
+                \begin{adjustwidth}{1cm}{}
+                    \noindent ($\Longleftarrow$) Vamos supor $v(\alpha) = 1$ e $v(\beta) = 1$. Logo, $\alpha \in \Gamma$ e $\beta \in \Gamma$. Pelo axioma \textbf{(Ax3)} e MP, temos $\Gamma \conhil \alpha \land \beta$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\alpha \land \beta \in \Gamma$.
+
+                    Logo, temos $v(\alpha \land \beta) = 1$/
+
+                \end{adjustwidth}
+
+            \casodeprova{$\psi = \alpha \lor \beta$.}
+
+
+        \end{provaporcasos}
+
+
+    \end{proof}
+    
 
     \begin{teorema}[Completude]\label{teo:completude}
         A lógica {\normalfont\lfium{}} é completa em relação a sua semântica de valorações, ou seja, para todo conjunto de fórmulas $\Gamma \cup \{\alpha\} \subseteq \ling{}$:
