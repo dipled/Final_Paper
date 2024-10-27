@@ -753,7 +753,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
     Com a prova do metateorema da dedução para o cálculo de Hilbert da \lfium{}, os seguintes corolários são imediatos:
 
-    \begin{corolario}\label{cor:intro_ou_esq}
+    \begin{corolario}\label{cor:prova_por_casos}
         Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta, \phi\} \subseteq \ling{}$:
 
         \centering
@@ -779,7 +779,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
     \end{proof}
 
 
-    \begin{corolario}\label{cor:prova_por_casos}
+    \begin{corolario}\label{cor:caso_neg}
         Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta, \phi\} \subseteq \ling{}$:
 
         \centering
@@ -1677,6 +1677,14 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
             \casodeprova{$\psi = \alpha \lor \beta$.}
 
+                \begin{adjustwidth}{1cm}{}
+                    \noindent ($\Longrightarrow$) Vamos supor $v(\alpha \lor \beta) = 1$. Logo, $\alpha \lor \beta \in \Gamma$.
+
+                    \noindent Supondo que não é o caso que $\alpha \in \Gamma$, nem $\beta \in \Gamma$, temos $\Gamma, \alpha \conhil \phi$ e $\Gamma, \beta \conhil \phi$. Logo, pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, \alpha \lor \beta \conhil \phi$. Logo, pela monotonicidade da \lfium{} (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\alpha \in \Gamma$ ou $\beta \in \Gamma$.
+                    
+                    \noindent Logo, temos $v(\alpha) = 1$ ou $v(\beta) = 1$.
+
+                \end{adjustwidth}
 
         \end{provaporcasos}
 
