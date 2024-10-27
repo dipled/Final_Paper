@@ -1684,6 +1684,14 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                     
                     \noindent Logo, temos $v(\alpha) = 1$ ou $v(\beta) = 1$.
 
+                    \noindent ($\Longleftarrow$) Vamos supor $v(\alpha)$ ou $v(\beta)$. Logo, temos $\alpha \in \Gamma$ ou $\beta \in \Gamma$.
+
+                    \noindent Caso tenhamos $\alpha \in \Gamma$, então, pelo axioma \textbf{(Ax6)}, temos $\Gamma \conhil \alpha \to (\alpha \lor \beta)$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \alpha$. Então, por MP, temos $\Gamma \conhil \alpha \lor \beta$. Finalmente, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\alpha \lor \beta \in \Gamma$ e, consequentemente, $v(\alpha \lor \beta) = 1$.
+
+                    \noindent Caso tenhamos $\beta \in \Gamma$, a prova é análoga.
+
+                    \noindent Portanto, temos $v(\alpha \lor \beta) = 1$.
+
                 \end{adjustwidth}
 
         \end{provaporcasos}
