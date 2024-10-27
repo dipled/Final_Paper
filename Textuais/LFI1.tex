@@ -1483,7 +1483,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
     \begin{proof}[Prova da Proposição~\ref{prop:finit}]
         Seja $\Gamma \cup \{\phi\} \subseteq \ling{}$ um conjunto qualquer de fórmulas com $\Gamma \conhil \phi$. Então, existe uma sequência finita de derivação $\phi_1, \ldots, \phi_n$, a partir de $\Gamma$, onde $\phi_n = \phi$. 
         
-        Vamos definir o conjunto $\Gamma_0$ como sendo o conjunto formado somente pelas premissas desta derivação (logo,$\Gamma_0$ é finito). Como todo elemento de $\Gamma_0$ é uma premissa de $\Gamma$, é evidente que $\Gamma_0 \subseteq \Gamma$. Vamos provar $\Gamma_0 \conhil \phi$ por indução no tamanho $n$ da sequência de derivação.
+        Vamos definir o conjunto $\Gamma_0$ como sendo o conjunto formado somente pelas premissas desta derivação (logo, $\Gamma_0$ é finito). Como todo elemento de $\Gamma_0$ é uma premissa de $\Gamma$, é evidente que $\Gamma_0 \subseteq \Gamma$. Vamos provar $\Gamma_0 \conhil \phi$ por indução no tamanho $n$ da sequência de derivação.
 
 
         \begin{adjustwidth}{1cm}{}
@@ -1694,6 +1694,24 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
                 \end{adjustwidth}
 
+                \casodeprova{$\psi = \alpha \to \beta$.}
+
+                \begin{adjustwidth}{1cm}{}
+                    
+                    \noindent ($\Longrightarrow$) Vamos supor $v(\alpha \to \beta) = 1$. Logo, $\alpha \to \beta \in \Gamma$.
+
+                    \noindent Supondo $v(\alpha) = 1$ e $v(\beta) = 0$, temos $\alpha \in \Gamma$ e $\beta \not \in \Gamma$. Então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \alpha$, $\Gamma \nconhil \beta$ e $\Gamma \conhil \alpha \to \beta$. Logo, por MP, $\Gamma \conhil \beta$, o que é uma contradição. Portanto, $v(\alpha) = 0$ ou $v(\beta) = 1$.
+
+                    \noindent ($\Longleftarrow$) Vamos supor $v(\alpha) = 0$ ou $v(\beta) = 1$.
+
+                    \noindent Caso $v(\alpha) = 0$, então temos $\alpha \not \in \Gamma$. Supondo $\alpha \to \beta \not \in \Gamma$, temos, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, $\Gamma, \alpha \conhil \phi$ e $\Gamma, \alpha \to \beta \conhil \phi$. Logo, pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, (\alpha \to \beta) \lor \alpha \conhil \phi$. Portanto, pelo axioma \textbf{(Ax9)} e pela monotonicidade da \lfium{}, temos $\Gamma \conhil \alpha$, o que é uma contradição. Portanto, $\alpha \to \beta \in \Gamma$ e, então, $v(\alpha \to \beta) = 1$.
+
+                    \noindent Caso $v(\beta) = 1$, então temos $\beta \in \Gamma$. Pelo axioma \textbf{(Ax1)}, temos $\Gamma \conhil \beta \to (\alpha \to \beta)$. Portanto, por MP, temos $\Gamma \conhil \alpha \to \beta$. Logo $\alpha \to \beta \in \Gamma$ e, então, $v(\alpha \to \beta) = 1$.
+
+                    \noindent Logo, $v(\alpha \to \beta) = 1$.
+
+                    
+                \end{adjustwidth}
         \end{provaporcasos}
 
 
