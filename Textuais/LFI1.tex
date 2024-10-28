@@ -49,7 +49,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
     A teoria das provas é uma das abordagens para o estudo das relações de consequência, onde a validade de uma inferência é atestada caso haja uma \textit{prova} das conclusões a partir das premissas. Uma prova consiste em uma sequência de passos bem definidos aplicados sobre conjuntos (ocasionalmente unitários) de fórmulas, com base nos princípios de um determinado sistema de provas. A teoria das provas é sintática\footnote{Vale notar que a separação \textit{prova {--} sintaxe {--} semântica {--} modelo} não é tão bem definida, algo que é explorado em~\citeshort{Prawitz2005-PRALCA-2}.} por natureza, ou seja, numa inferência $A \vdash B$, é relevante apenas a estrutura das fórmulas presentes em \textit{A} e \textit{B}, não sua interpretação ou valor-verdade. Essa estrutura é manipulada a fim de obter-se uma sequência de passos que {--} além de atestar sua validade {--} serve como argumento para tal~\cite{sep-logical-consequence}. Desta forma, pode-se definir um sistema de provas sintático para servir como relação de consequência para uma determinada lógica. 
 
-    No contexto da \lfium{}, existem dois sistemas de prova sintáticos estabelecidos até o momento: um cálculo de Hilbert, descrito por~\citeshort{carnielli2000formal,Carnielli_Coniglio_2016} e um sistema de \textit{Tableau}, descrito por~\citeshort{tableaulfi}. No presente trabalho, foi escolhido o cálculo de Hilbert para definir a sintaxe da \lfium{}, dada a maior facilidade para desenvolver metateoremas em contraste ao sistema de \textit{Tableau}.
+    No contexto da \lfium{}, existem dois sistemas de prova sintáticos estabelecidos até o momento: um cálculo de Hilbert, descrito \migscortar{por}{ pelos autores}~\citeshort{carnielli2000formal,Carnielli_Coniglio_2016} e um sistema de \textit{Tableau}, descrito por~\citeshort{tableaulfi}. No presente trabalho, foi escolhido o cálculo de Hilbert para definir a sintaxe da \lfium{}, dada a maior facilidade para desenvolver metateoremas em contraste ao sistema de \textit{Tableau}.
 
     O cálculo de Hilbert (também conhecido como sistema de Hilbert ou axiomatização de Hilbert) é um sistema composto por um conjunto de fórmulas, chamadas de \textit{axiomas} e um conjunto de \textit{regras de inferência}. Uma regra de inferência é formada por uma lista de fórmulas chamadas de premissas da regra e uma fórmula chamada de conclusão da regra~\cite{Restall1999-RESAIT-4}. Uma prova (também chamada de derivação ou dedução) do tipo $\Gamma \vdash \phi$ consiste em uma sequência finita de fórmulas \(\psi_0, \dots, \psi_n\), onde \(\psi_n = \phi\), e cada  $\psi_i\ (0 \leq i \leq n)$ é um axioma, um elemento do conjunto de premissas $\Gamma$ ou o resultado da aplicação de uma regra de inferência em fórmulas anteriores. Usualmente, o cálculo de Hilbert possui apenas uma regra de inferência, esta sendo o \textit{modus ponens}. Este também é o caso para o cálculo de Hilbert que será utilizado para a \lfium{}.
     
@@ -335,9 +335,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \begin{equation*}
                 h(p) =
                 \begin{cases}
-                  1 \text{ sse } v(p) = 1 \text{ e } v(\neg p) = 0 \\
+                  1\ \, \text{ sse } v(p) = 1 \text{ e } v(\neg p) = 0 \\
                   \meio{} \text{ sse } v(p) = 1 \text{ e } v(\neg p) = 1 \\
-                  0 \text{ sse } v(p) = 0
+                  0\ \ \text{ sse } v(p) = 0
                 \end{cases}
               \end{equation*}
         \end{center}
@@ -348,9 +348,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \begin{equation*}
                 h(\phi) =
                 \begin{cases}
-                  1 \text{ sse } v(\phi) = 1 \text{ e } v(\neg \phi) = 0 \\
+                  1\ \,  \text{ sse } v(\phi) = 1 \text{ e } v(\neg \phi) = 0 \\
                   \meio{} \text{ sse } v(\phi) = 1 \text{ e } v(\neg \phi) = 1 \\
-                  0 \text{ sse } v(\phi) = 0
+                  0\ \  \text{ sse } v(\phi) = 0
                 \end{cases}
               \end{equation*}
         \end{center}
@@ -760,7 +760,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
         {\normalfont{}Se $\Gamma, \alpha \conhil \phi \text{ e }\Gamma, \beta \conhil \phi \text{ então } \Gamma, \alpha \lor \beta \conhil \phi$.}
     \end{corolario}
 
-    \begin{proof}[Prova do Corolário~\ref{cor:intro_ou_esq}]
+    \begin{proof}[Prova do Corolário~\ref{cor:prova_por_casos}]
         Seja $\Gamma \cup \{\alpha, \beta, \phi\} \subseteq \ling{}$ um conjunto de fórmulas qualquer.
         
         Suponha $\Gamma, \alpha \conhil \phi \text{ e }\Gamma, \beta \conhil \phi$. 
@@ -786,10 +786,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
         {\normalfont{}Se $\Gamma, \alpha \conhil \phi \text{ e }\Gamma, \neg\alpha \conhil \phi \text{ então } \Gamma \conhil \phi$.}
     \end{corolario}
 
-    \begin{proof}[Prova do Corolário~\ref{cor:prova_por_casos}]
+    \begin{proof}[Prova do Corolário~\ref{cor:caso_neg}]
         Seja $\Gamma \cup \{\alpha, \beta, \phi\} \subseteq \ling{}$ um conjunto de fórmulas qualquer.
 
-        Suponha $\Gamma, \alpha \conhil \phi \text{ e }\Gamma, \neg\alpha \conhil \phi$. Pelo Corolário~\ref{cor:intro_ou_esq}, temos $\Gamma, \alpha \lor \neg \alpha \conhil \phi$. Por MTD (Teorema~\ref{teo:deducao}), temos $\Gamma \conhil (\alpha \lor \neg \alpha) \to \phi$.
+        Suponha $\Gamma, \alpha \conhil \phi \text{ e }\Gamma, \neg\alpha \conhil \phi$. Pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, \alpha \lor \neg \alpha \conhil \phi$. Por MTD (Teorema~\ref{teo:deducao}), temos $\Gamma \conhil (\alpha \lor \neg \alpha) \to \phi$.
 
         A seguinte sequência de derivação mostra $\Gamma\conhil \phi$:
         \begin{align*}
@@ -825,6 +825,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \casodeprova{} $\phi_{1}$ é um axioma. Então vamos mostrar que para toda valoração $h : \ling{} \to M$ sobre $\mat{}$, se $h[\Gamma] \subseteq \ummeio{}$, então $h(\phi_{1}) \in \ummeio{}$. Como $\phi_{1}$ é um axioma, basta analisar todos os casos possíveis:
 
             \helena{usar longtable mas sera que funciona mudar isso?}
+            \migs{Não vejo pq não funcionaria}
             \begin{provaporsubcasos}
                 \subcasodeprova{} $\phi_{1} = \alpha \to (\beta \to \alpha)$
                     \begin{center}
@@ -1436,7 +1437,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             %     1.~& \phi\tag{Premissa}
             % \end{align*}
 
-            \noindent{}\textbf{Prova do item (ii)}. Vamos supor $\Delta \conhil \phi$ e $\Delta \subseteq \Gamma$. Então, existe uma prova (sequência de fórmulas) de $\phi$ a partir do conjunto de fórmulas $\Delta$. Como, pela suposição, temos que essa sequência está inteiramente contida em $\Gamma$ concluímos $\Gamma \conhil \phi$.
+            \noindent{}\textbf{Prova do item (ii)}. Vamos supor $\Delta \conhil \phi$ e $\Delta \subseteq \Gamma$. Então, existe uma prova (sequência de fórmulas) de $\phi$ a partir do conjunto de fórmulas $\Delta$. Como, pela suposição, temos que essa sequência está inteiramente contida em $\Gamma$, concluímos $\Gamma \conhil \phi$.
             
             \noindent{}\textbf{Prova do item (iii)}. Vamos supor $\Delta \conhil \phi$ e $\Gamma \conhil \delta$ para todo $\delta \in \Delta$. Então, existe uma prova $\phi_1, \ldots, \phi_n$ de $\phi_n = \phi$ a partir de $\Delta$. Vamos fazer uma indução no tamanho $n$ desta prova.
             
@@ -1471,7 +1472,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
         \end{adjustwidth}
     \end{adjustwidth}
 
-        Então, a \lfium{} é uma lógica tarskiana.
+        Então, a \lfium{} é uma lógica tarskiana. \qedhere
         
     \end{proof}
 
@@ -1515,7 +1516,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 Então, $\phi_j = \phi_k \to \phi_n$ (ou $\phi_k = \phi_j \to \phi_n$, a prova para este caso é análoga). Além disso, temos $\Gamma \conhil \phi_k$ e $\Gamma \conhil \phi_k \to \phi_n$. Logo, por (HI), temos $\Gamma_0 \conhil \phi_k$ e $\Gamma_0 \conhil \phi_k \to \phi_n$. Então, basta aplicar MP para obter $\phi_n$. Portanto, $\Gamma_0 \conhil \phi_n$.
             \end{provaporcasos}
         \end{adjustwidth}
-        Então, a \lfium{} é finitária.
+        Então, a \lfium{} é finitária. \qedhere
 
     \end{proof}
 
@@ -1555,7 +1556,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
     \end{lema}
 
     \begin{proof}[Prova do Lema~\ref{lem:lindenbaum}]\setbool{@fleqn}{false}
-        Dada $\lfium{} = \langle \ling, \conhil \rangle$ e seja $\Gamma \cup \{\phi\} \subseteq \ling$ um conjunto de fórmulas com $\Gamma \nconhil \phi$. Arranje \migs{Como?}\helena{TAMBÉM NÃO SEI ;-;} as fórmulas de $\ling$ numa sequência $\pazocal{C} = \phi_1, \phi_2, \ldots, \phi_i, \ldots$ e defina $\Gamma_i$ recursivamente da seguinte forma:
+        Dada $\lfium{} = \langle \ling, \conhil \rangle$ e seja $\Gamma \cup \{\phi\} \subseteq \ling$ um conjunto de fórmulas com $\Gamma \nconhil \phi$. Arranje \migs{Como?} \helena{TAMBÉM NÃO SEI ;-;} \migs{Como não sabe mulher, foi tu quem fez a prova!?} as fórmulas de $\ling$ numa sequência $\pazocal{C} = \phi_1, \phi_2, \ldots, \phi_i, \ldots$ e defina $\Gamma_i$ recursivamente da seguinte forma:
         \begin{align*}
                 \text{(i)}\quad&\Gamma_0 = \Gamma\\
                 \text{(ii)}\quad&\Gamma_i =
@@ -1565,7 +1566,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \end{cases}
         \end{align*}
 
-        Então, defina um conjunto de fórmulas $\Delta = \bigcup_{i=0}^{\infty}\Gamma_i$. Dividiremos a prova em algumas partes: \migs{Por que? Faz mais sentido você enumerar as coisas que precisa provar, preferencialmente também explicando o porquê precisa provar isso já que estás fazendo sua própria prova e não tirando de nenhuma outra fonte, e então provar cada uma delas.} \helena{tipo, é só dividir por dividir mesmo. em vez de provar tudo em um textão. Mas tb não acho que seja interessante fazer lemas pra isso, já que são resultados bem ``locais''.}
+        Então, defina um conjunto de fórmulas $\Delta = \bigcup_{i=0}^{\infty}\Gamma_i$. Dividiremos a prova em algumas partes:
         
         \begin{adjustwidth}{1cm}{}
             \noindent(1) $\Gamma \subseteq \Delta \subseteq \ling$.
@@ -1651,7 +1652,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
     \end{lema}
 
     \begin{proof}[Prova do Lema~\ref{lem:valoracao}]
-        Queremos provar que $v$ satisfaz todas as cláusulas da Definição~\ref{def:valoracoes}.
+        Queremos provar que $v$ satisfaz todas as cláusulas da Definição~\ref{def:valoracoes}. \migs{Sugestão: Nomear cada caso como ``Cláusula X'' ao invés só do nome da cláusula.}
 
         \begin{provaporcasos}
             
@@ -1671,7 +1672,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{adjustwidth}{1cm}{}
                     \noindent ($\Longleftarrow$) Vamos supor $v(\alpha) = 1$ e $v(\beta) = 1$. Logo, $\alpha \in \Gamma$ e $\beta \in \Gamma$. Pelo axioma \textbf{(Ax3)} e MP, temos $\Gamma \conhil \alpha \land \beta$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\alpha \land \beta \in \Gamma$.
 
-                    Logo, temos $v(\alpha \land \beta) = 1$/
+                    Logo, temos $v(\alpha \land \beta) = 1$
 
                 \end{adjustwidth}
 
@@ -1680,11 +1681,11 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{adjustwidth}{1cm}{}
                     \noindent ($\Longrightarrow$) Vamos supor $v(\alpha \lor \beta) = 1$. Logo, $\alpha \lor \beta \in \Gamma$.
 
-                    \noindent Supondo que não é o caso que $\alpha \in \Gamma$, nem $\beta \in \Gamma$, temos $\Gamma, \alpha \conhil \phi$ e $\Gamma, \beta \conhil \phi$. Logo, pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, \alpha \lor \beta \conhil \phi$. Logo, pela monotonicidade da \lfium{} (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\alpha \in \Gamma$ ou $\beta \in \Gamma$.
+                    \noindent Supondo que \cortar{não é o caso que} $\alpha \notin \Gamma$ \migscortar{nem}{ e} $\beta \notin \Gamma$. Temos $\Gamma, \alpha \conhil \phi$ e $\Gamma, \beta \conhil \phi$. Logo, pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, \alpha \lor \beta \conhil \phi$. Logo, pela monotonicidade da \lfium{} (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\alpha \in \Gamma$ ou $\beta \in \Gamma$.
                     
                     \noindent Logo, temos $v(\alpha) = 1$ ou $v(\beta) = 1$.
 
-                    \noindent ($\Longleftarrow$) Vamos supor $v(\alpha)$ ou $v(\beta)$. Logo, temos $\alpha \in \Gamma$ ou $\beta \in \Gamma$.
+                    \noindent ($\Longleftarrow$) Vamos supor $v(\alpha) = 1$ ou $v(\beta) = 1$. Logo, temos $\alpha \in \Gamma$ ou $\beta \in \Gamma$.
 
                     \noindent Caso tenhamos $\alpha \in \Gamma$, então, pelo axioma \textbf{(Ax6)}, temos $\Gamma \conhil \alpha \to (\alpha \lor \beta)$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \alpha$. Então, por MP, temos $\Gamma \conhil \alpha \lor \beta$. Finalmente, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\alpha \lor \beta \in \Gamma$ e, consequentemente, $v(\alpha \lor \beta) = 1$.
 
@@ -1715,7 +1716,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \casodeprova{$(vNeg)$}
                     
                     \begin{adjustwidth}{1cm}{}
-                        \noindent Supondo $v(\neg \alpha) = 0$, temos $\neg \alpha \not \in \Gamma$. Então, supondo $v(\alpha) = 0$, temos $\alpha \not \in \Gamma$. 
+                        \noindent Supondo $v(\neg \alpha) = 0$, temos $\neg \alpha \not \in \Gamma$. Então, \migscortar{supondo}{ caso} $v(\alpha) = 0$, temos $\alpha \not \in \Gamma$. 
                         
                         \noindent Portanto, $\Gamma, \alpha \conhil \phi$ e $\Gamma \neg \alpha \conhil \phi$. Pelo Corolário~\ref{cor:caso_neg}, temos $\Gamma \conhil \phi$, o que é uma contradição. Logo, $v(\alpha) = 1$.
 
