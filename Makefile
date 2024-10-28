@@ -1,4 +1,4 @@
-FLAGS  = -f -pdf -quiet
+FLAGS  = -f -pdf -quiet -pv
 CLEANFLAG = -c
 TARGET = Main.tex
 EXTRACLEAN = *.maf *.mtc* *.tdo *.nls *.nlo *.brf
