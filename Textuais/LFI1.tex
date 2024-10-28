@@ -1630,7 +1630,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \noindent(7) $\Delta$ é maximal não-trivial em relação a $\phi$ em \lfium{}.
             
             \begin{adjustwidth}{1cm}{}
-                Seja $\psi$ uma fórmula qualquer com $\psi \not \in \Delta$. Então $\phi = \phi_i$ para algum $i \in \mathbb{N}$. Pela definição de $\Delta$, temos $\phi_i \not \in \Gamma_i$. Por construção de $\phi_{i + 1}$, temos $\Gamma_i, \phi_i \conhil \phi$. Portanto, pela monotonicidade da \lfium{}, temos $\Delta \conhil \phi$. Logo, $\Delta$ é maximal não-trivial em relação a $\phi$ em \lfium{}.
+                Seja $\psi$ uma fórmula qualquer com $\psi \not \in \Delta$. Então $\psi = \phi_i$ para algum $i \in \mathbb{N}$. Supondo $\phi_i \in \Gamma_i$, chegamos numa contradição (já que, por construção de $\Delta$, teríamos $\phi_i \in \Delta$), portanto, temos $\phi_i \not \in \Gamma_i$. Logo, pela construção de $\Gamma_i$, temos $\Gamma_{i - 1}, \phi_i \conhil \phi$. Então, pela monotonicidade da \lfium{}, temos $\Delta, \phi_i \conhil \phi$. Portanto, $\Delta$ é maximal não-trivial em relação a $\phi$ em \lfium{}.
 
             \end{adjustwidth}
 
