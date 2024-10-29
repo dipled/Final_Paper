@@ -1765,7 +1765,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
                     \begin{adjustwidth}{1cm}{}
                         
-                        \noindent ($\Longrightarrow$) Supondo $v(\neg (\alpha \land \beta)) = 1$, temos $\neg (\alpha \land \beta) \in \Gamma$. Então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg (\alpha \land \beta)$. Pelo axioma (\textbf{neg}$\lor_1$), temos $\Gamma \conhil \neg (\alpha \land \beta) \to (\neg \alpha \lor \neg \beta)$. Logo, por MP, temos $\Gamma \conhil (\neg \alpha \lor \neg \beta)$.
+                        \noindent ($\Longrightarrow$) Supondo $v(\neg (\alpha \land \beta)) = 1$, temos $\neg (\alpha \land \beta) \in \Gamma$. Então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg (\alpha \land \beta)$. Pelo axioma (\textbf{neg}$\land_1$), temos $\Gamma \conhil \neg (\alpha \land \beta) \to (\neg \alpha \lor \neg \beta)$. Logo, por MP, temos $\Gamma \conhil (\neg \alpha \lor \neg \beta)$.
 
                         \noindent Vamos então supor $\neg \alpha \not \in \Gamma$ e $\neg \beta \not \in \Gamma$. Então, temos $\Gamma, \neg \alpha \conhil \phi$ e $\Gamma, \neg \beta \conhil \phi$. Pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, \neg \alpha \lor \neg \beta \conhil \phi$. Pela monotonicidade da \lfium{}, temos $\Gamma \conhil \phi$, o que resulta numa contradição. Portanto, temos $\neg \alpha \in \Gamma$ ou $\neg \beta \in \Gamma$ e, consequentemente, $v(\neg \alpha) = 1$ ou $v(\neg \beta) = 1$.
                         
@@ -1776,6 +1776,31 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                         \noindent Caso tenhamos $\neg \beta \in \Gamma$, então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg \beta$. Logo, pelo axioma (\textbf{Ax7}), temos $\Gamma \conhil \neg \beta \to (\neg \alpha \lor \neg \beta)$. Aplicando MP, temos $\Gamma \conhil \neg \alpha \lor \neg \beta$. Pelo axioma (\textbf{neg}$\land_2$), temos $\Gamma \conhil (\neg \alpha \lor \neg \beta) \to \neg (\alpha \land \beta)$. Aplicando MP novamente, temos $\Gamma \conhil \neg (\alpha \land \beta)$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\neg (\alpha \land \beta) \in \Gamma$ e, consequentemente, $v(\neg (\alpha \land \beta)) = 1$.
 
                         Portanto, temos $v(\neg (\alpha \land \beta)) = 1$.
+
+                    \end{adjustwidth}
+
+                \casodeprova{Cláusula $(vDM_{\lor})$}
+
+                    \begin{adjustwidth}{1cm}{}
+                        
+                        \noindent ($\Longrightarrow$) Supondo $v(\neg (\alpha \lor \beta)) = 1$, temos $\neg (\alpha \lor \beta) \in \Gamma$. Logo, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg (\alpha \lor \beta)$. Pelo axioma (\textbf{neg}$\lor_1$), temos $\Gamma \conhil \neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta)$. Logo, por MP, temos $\Gamma \conhil \neg \alpha \land \neg \beta$.
+
+                        \noindent Vamos supor $\neg \alpha \not \in \Gamma$ ou $\neg \beta \not \in \Gamma$. Então, temos $\Gamma, \alpha \conhil \phi$ ou $\Gamma, \beta \conhil \phi$. Pelos axiomas (\textbf{Ax4}) e (\textbf{Ax5}), temos $\Gamma \conhil (\neg \alpha \land \neg \beta) \to \alpha$ e $\Gamma \conhil (\neg \alpha \land \neg \beta) \to \beta$. Aplicando MP duas vezes temos $\Gamma \conhil \alpha$ e $\Gamma \conhil \beta$. Pela monotonicidade da \lfium{}, temos $\Gamma \conhil \phi$, o que é resulta numa contradição. Portanto, $\neg \alpha \in \Gamma$ e $\neg \beta \in \Gamma$ e, consequentemente, temos $v(\neg \alpha) = 1$ e $v(\neg \beta) = 1$. 
+                        
+                        \noindent ($\Longleftarrow$) Supondo $v(\neg \alpha) = 1$ e $v(\neg \beta) = 1$, temos $\neg \alpha \in \Gamma$ e $\neg \beta \in \Gamma$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg \alpha$ e $\Gamma \conhil \neg \beta$. Pelo axioma (\textbf{Ax3}), temos $\Gamma \conhil \neg \alpha \to (\neg \beta \to (\neg \alpha \land \neg \beta))$. Aplicando MP duas vezes, temos $\Gamma \conhil \neg \alpha \land \neg \beta$. Pelo axioma (\textbf{neg}$\lor_2$), temos $\Gamma \conhil (\neg \alpha \land \neg \beta) \to \neg (\alpha \lor \beta)$. Aplicando MP, temos $\Gamma \conhil \neg (\alpha \lor \beta)$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\neg (\alpha \lor \beta) \in \Gamma$ e, consequentemente, $v(\neg (\alpha \lor \beta)) = 1$.
+
+                    \end{adjustwidth}
+
+                \casodeprova{Cláusula $(vCip)$}
+
+                    \begin{adjustwidth}{1cm}{}
+                        
+                        \noindent ($\Longrightarrow$) Supondo $v(\neg (\alpha \to \beta)) = 1$, temos $\neg (\alpha \to \beta) \in \Gamma$. Logo, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg (\alpha \to \beta)$. Pelo axioma (\textbf{neg}$\to_1$), temos $\Gamma \conhil \neg (\alpha \to \beta) \to (\alpha \land \neg \beta)$. Aplicando MP, temos $\Gamma \conhil \alpha \land \neg \beta$. Pelos axiomas (\textbf{Ax4}) e (\textbf{Ax5}), temos $\Gamma \conhil (\alpha \land \neg \beta) \to \alpha$ e $\Gamma \conhil (\alpha \land \neg \beta) \to \beta$. Aplicando MP duas vezes, temos $\Gamma \conhil \alpha$ e $\Gamma \conhil \neg \beta$.
+
+                        \noindent Vamos supor $v(\alpha) = 0$ ou $v(\neg \beta) = 0$. Logo, temos $\alpha \not \in \Gamma$ ou $\neg \beta \not \in \Gamma$. Logo, temos $\Gamma, \alpha \conhil \phi$ ou $\Gamma, \neg \beta \conhil \phi$. Pela monotonicidade da \lfium{}, temos $\Gamma \conhil \phi$, o que resulta numa contradição. Portanto, temos $v(\alpha) = 1$ e $v(\neg \beta) = 1$.
+
+                        \noindent ($\Longleftarrow$) Supondo $v(\alpha) = 1$ e $v(\neg \beta) = 1$, temos $\alpha \in \Gamma$ e $\neg \beta \in \Gamma$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \alpha$ e $\Gamma \conhil \neg \beta$. Pelo axioma (\textbf{Ax3}), temos $\Gamma \conhil \alpha \to (\neg \beta \to (\alpha \land \neg \beta))$. Aplicando MP duas vezes, temos $\Gamma \conhil \alpha \land \neg \beta$. Pelo axioma (\textbf{neg}$\to_2$), temos $\Gamma \conhil (\alpha \land \neg \beta) \to \neg (\alpha \to \beta)$. Aplicando MP, temos $\Gamma \conhil \neg (\alpha \to \beta)$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\neg (\alpha \to \beta) \in \Gamma$ e, consequentemente, $v(\neg (\alpha \to \beta)) = 1$.
+
 
                     \end{adjustwidth}
 
