@@ -89,7 +89,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \RightLabel{MP}
             \UnaryInfC{$\beta$}
         \end{prooftree}
-        Desta forma, a lógica \lfium{} é definida como $\lfium{} = \langle \ling, \conhil \rangle.$\qed{}  
+        Desta forma, a lógica \lfium{} é definida como $\lfium{} = \langle \ling, \conhil \rangle$.\qed{}  
     \end{definicao}
 
     Os axiomas (\textbf{Ax1}) {--} (\textbf{Ax10}) e a regra de inferência \textbf{MP} (\textit{modus ponens}) são importados da lógica proposicional clássica. O axioma (\textbf{bc1}) é chamado de \textit{princípio da explosão gentil}. Os axiomas (\textbf{neg}$\lor_{1}$) {--} (\textbf{neg}$\to_{2}$) expressam as leis de De Morgan em relação a negação paraconsistente $\neg$. Os axiomas (\textbf{ce}) e (\textbf{cf}) expressam, respectivamente, a introdução e a eliminação da dupla negação. O axioma (\textbf{ci}) representa a inconsistência de uma informação.
@@ -172,9 +172,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \begin{minipage}{0.3\textwidth}
                 % Implication (→)
                 \[
-                    \begin{array}{c|ccc}
+                    \begin{array}{c|ccc} %chktex 44%chktex 44
                         \to & 1 & \meio{} & 0 \\
-                        \hline
+                        \hline%chktex 44
                         1           & 1 & \meio{} & 0 \\
                         \meio{} & 1 & \meio{} & 0 \\
                         0           & 1 & 1           & 1 \\
@@ -184,9 +184,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \begin{minipage}{0.3\textwidth}
                 % Conjunction (∧)
                 \[
-                    \begin{array}{c|ccc}
+                    \begin{array}{c|ccc} %chktex 44%chktex 44
                         \land       & 1           & \meio{} & 0 \\
-                        \hline
+                        \hline%chktex 44
                         1           & 1           & \meio{} & 0 \\
                         \meio{} & \meio{} & \meio{} & 0 \\
                         0           & 0           & 0           & 0 \\
@@ -196,9 +196,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \begin{minipage}{0.3\textwidth}
                 % Disjunction (∨)
                 \[
-                    \begin{array}{c|ccc}
+                    \begin{array}{c|ccc} %chktex 44%chktex 44
                         \lor        & 1 & \meio{} & 0           \\
-                        \hline
+                        \hline%chktex 44
                         1           & 1 & 1           & 1           \\
                         \meio{} & 1 & \meio{} & \meio{} \\
                         0           & 1 & \meio{} & 0           \\
@@ -211,9 +211,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \begin{minipage}{0.4\textwidth}
                 % Negation (¬)
                 \[
-                    \begin{array}{c|c}
+                    \begin{array}{c|c}%chktex 44
                                     & \neg        \\
-                        \hline
+                        \hline%chktex 44
                         1           & 0           \\
                         \meio{} & \meio{} \\
                         0           & 1           \\
@@ -222,9 +222,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \end{minipage}
             \begin{minipage}{0.3\textwidth}
                 \[
-                    \begin{array}{c|c}
+                    \begin{array}{c|c}%chktex 44
                                     & \circ   \\
-                        \hline
+                        \hline%chktex 44
                         1           & 1         \\
                         \meio{} & 0         \\
                         0           & 1         \\
@@ -252,14 +252,14 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \begin{center}
                 \setbool{@fleqn}{false}
                 \[
-                    \begin{array}{|c|c|c|}
-                        \hline
+                    \begin{array}{|c|c|c|}%chktex 44
+                        \hline%chktex 44
                         \alpha      & \circ \alpha & \circ \circ \alpha   \\
-                        \hline
+                        \hline%chktex 44
                         1           & 1            &    1\\
                         \meio{    } & 0            &    1\\
                         0           & 1            &    1\\
-                        \hline
+                        \hline%chktex 44
                     \end{array}
                 \]
             \end{center}
@@ -300,16 +300,15 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
         \begin{table}[h]
             \setbool{@fleqn}{false}
             \[
-                \begin{array}{|c|c|c|c}
+                \begin{array}{|c|c|c|c}%chktex 44
                     \cline{1-3}
-                    \phi & \neg\phi & \circ\phi & \\ \hline
-                    0 & 1 & 1 & v_1 \\ \hline
+                    \phi & \neg\phi & \circ\phi & \\ \hline%chktex 44
+                    0 & 1 & 1 & v_1 \\ \hline%chktex 44
                     \multirow{2}{*}{1} & 0 & 1 & v_2 \\ \cline{2-4}
-                    & 1 & 0 & v_3 \\ \hline
+                    & 1 & 0 & v_3 \\ \hline%chktex 44
                 \end{array}
                 \]
-                \caption{Valorações possíveis para $\phi$, $\neg \phi$ e $\circ \phi$, considerando $(vNeg)$, $(vCon)$ e $(vCi)$.}
-                \label{tab:negcirc}
+                \caption{Valorações possíveis para $\phi$, $\neg \phi$ e $\circ \phi$, considerando $(vNeg)$, $(vCon)$ e $(vCi)$.}\label{tab:negcirc}
         \end{table}
 
         Uma semântica de valorações que define funções que mapeiam para conjuntos com somente dois elementos é chamada de \textit{bivaloração}. Este tipo de semântica possui características interessantes que a distinguem da semântica matricial. A semântica de matrizes nos permite mostrar a validade de uma inferência com facilidade, contudo, alguns lógicos e filósofos demonstram descontentamento com a existência de múltiplos valores-verdade designados, argumentando que uma distinção deve ser feita entre ``valorações algébricas'' {--} correspondente às matrizes lógicas {--} e sua ``definição genuína'', em termos de bivalorações~\cite{Suszko1975-SUSROL}. Além disso, as bivalorações servem um papel importante na teoria dos modelos, como na comparação de sistemas lógicos e na associação de outros sistemas semânticos a uma lógica já estabelecida~\cite{bivalence}.
@@ -490,7 +489,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \casodeprova{$\phi = \alpha \land \beta$.}
 
             \migs{Em alguns dos subcasos dessa prova, você escreveu equações tipo ``\(f(\beta) = x\)'' porém devido ao tamanho da linha, \(f(\beta) = \) e \textit{x} ficaram em linhas diferentes,
-            seria bom arrumar isso para ficarem sempre na mesma linha pois essa separação torna a leitura mais difícil (você pode fazer isso encapsulando o bloco matemático com \textbraceleft e \textbraceright).}
+            seria bom arrumar isso para ficarem sempre na mesma linha pois essa separação torna a leitura mais difícil (você pode fazer isso encapsulando o bloco matemático com \textbraceleft{} e \textbraceright{}).}
 
             \begin{provaporsubcasos}
                 \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 1$ sse $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 0$.}
@@ -831,10 +830,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                     \begin{center}
                         \setbool{@fleqn}{false}
                         \[
-                            \begin{array}{|c|c|c|}
-                                \hline
+                            \begin{array}{|c|c|c|}%chktex 44
+                                \hline%chktex 44
                                 \alpha      & \beta & \alpha \to (\beta \to \alpha)  \\
-                                \hline
+                                \hline%chktex 44
                                 1            & 1            &    1\\
                                 1            & \meio{}  &    1\\
                                 1            & 0            &    1\\
@@ -844,7 +843,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 0            & 1            &    1\\
                                 0            & \meio{}  &    1\\
                                 0            & 0            &    1\\
-                                \hline
+                                \hline%chktex 44
                             \end{array}
                         \]
                     \end{center}
@@ -854,10 +853,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                     \begin{center}
                         \setbool{@fleqn}{false}
                         \[
-                            \begin{array}{|c|c|c|c|}
-                                \hline
+                            \begin{array}{|c|c|c|c|}%chktex 44
+                                \hline%chktex 44
                                 \alpha      & \beta & \gamma & (\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma)) \\
-                                \hline
+                                \hline%chktex 44
                                 1           & 1           & 1           & 1 \\
                                 1           & 1           & \meio{} & \meio{} \\
                                 1           & 1           & 0           & 1 \\
@@ -885,7 +884,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 0           & 0           & 1           & 1 \\
                                 0           & 0           & \meio{} & 1 \\
                                 0           & 0           & 0           & 1 \\
-                                \hline
+                                \hline%chktex 44
                             \end{array}
                         \]
                     \end{center}
@@ -896,10 +895,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{center}
                     \setbool{@fleqn}{false}
                     \[
-                        \begin{array}{|c|c|c|}
-                            \hline
+                        \begin{array}{|c|c|c|}%chktex 44
+                            \hline%chktex 44
                             \alpha      & \beta & \alpha \to (\beta \to (\alpha \land \beta)) \\
-                            \hline
+                            \hline%chktex 44
                             1&1&               1\\ 
                             1&\meio{}&\meio{}\\
                             1&0&1\\
@@ -909,7 +908,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             0&1&1\\
                             0&\meio{}&1\\
                             0&0&1\\
-                            \hline
+                            \hline%chktex 44
                         \end{array}
                     \]
                 \end{center}
@@ -922,10 +921,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{center}
                     \setbool{@fleqn}{false}
                     \[
-                        \begin{array}{|c|c|c|}
-                            \hline
+                        \begin{array}{|c|c|c|}%chktex 44
+                            \hline%chktex 44
                             \alpha      & \beta & (\alpha \land \beta) \to \alpha \\
-                            \hline
+                            \hline%chktex 44
                             1 & 1 &                 1\\
                             1 & \meio{} &1\\
                             1 & 0 &1\\
@@ -935,7 +934,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             0 & 1 &1\\
                             0 & \meio{} &1\\
                             0 & 0 &1\\
-                            \hline
+                            \hline%chktex 44
                         \end{array}
                     \]
                 \end{center}
@@ -946,10 +945,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{center}
                     \setbool{@fleqn}{false}
                     \[
-                        \begin{array}{|c|c|c|}
-                            \hline
+                        \begin{array}{|c|c|c|}%chktex 44
+                            \hline%chktex 44
                             \alpha      & \beta & (\alpha \land \beta) \to \beta \\
-                            \hline
+                            \hline%chktex 44
                             1 & 1 & 1\\
                             1 & \meio{} & \meio{}\\
                             1 & 0 & 1\\
@@ -959,7 +958,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             0 & 1 & 1\\
                             0 & \meio{} & 1\\
                             0 & 0 & 1\\
-                            \hline
+                            \hline%chktex 44
                         \end{array}
                     \]
                 \end{center}
@@ -969,10 +968,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{center}
                     \setbool{@fleqn}{false}
                     \[
-                        \begin{array}{|c|c|c|}
-                            \hline
+                        \begin{array}{|c|c|c|}%chktex 44
+                            \hline%chktex 44
                             \alpha      & \beta & \alpha \to (\alpha \lor \beta) \\
-                            \hline
+                            \hline%chktex 44
                             1 & 1 &1\\
                             1 & \meio{} &1\\
                             1 & 0 &1\\
@@ -982,7 +981,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             0 & 1 &1\\
                             0 & \meio{} &1\\
                             0 & 0 &1\\
-                            \hline
+                            \hline%chktex 44
                         \end{array}
                     \]
                 \end{center}
@@ -992,10 +991,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{center}
                     \setbool{@fleqn}{false}
                     \[
-                        \begin{array}{|c|c|c|}
-                            \hline
+                        \begin{array}{|c|c|c|}%chktex 44
+                            \hline%chktex 44
                             \alpha      & \beta & \beta \to (\alpha \lor \beta) \\
-                            \hline
+                            \hline%chktex 44
                             1 & 1 &1\\
                             1 & \meio{} &1\\
                             1 & 0 &1\\
@@ -1005,7 +1004,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             0 & 1 &1\\
                             0 & \meio{} &\meio{}\\
                             0 & 0 &1\\
-                            \hline
+                            \hline%chktex 44
                         \end{array}
                     \]
                 \end{center}
@@ -1015,10 +1014,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{center}
                     \setbool{@fleqn}{false}
                     \[
-                        \begin{array}{|c|c|c|c|}
-                            \hline
+                        \begin{array}{|c|c|c|c|}%chktex 44
+                            \hline%chktex 44
                             \alpha      & \beta & \gamma & (\alpha \to \gamma) \to ((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma)) \\
-                            \hline
+                            \hline%chktex 44
                             1 & 1 & 1 &1\\
                             1 & 1 & \meio{} &\meio{}\\
                             1 & 1 & 0 &1\\
@@ -1046,7 +1045,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             0 & 0 & 1 &1\\
                             0 & 0 & \meio{} &1\\
                             0 & 0 & 0 &1\\
-                            \hline
+                            \hline%chktex 44
                         \end{array}
                     \]
                 \end{center}
@@ -1058,10 +1057,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{center}
                     \setbool{@fleqn}{false}
                     \[
-                        \begin{array}{|c|c|c|}
-                            \hline
+                        \begin{array}{|c|c|c|}%chktex 44
+                            \hline%chktex 44
                             \alpha      & \beta & (\alpha \to \beta) \lor \alpha \\
-                            \hline
+                            \hline%chktex 44
                             1 & 1 & 1\\
                             1 & \meio{} & 1\\
                             1 & 0 & 1\\
@@ -1071,7 +1070,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             0 & 1 & 1\\
                             0 & \meio{} & 1\\
                             0 & 0 & 1\\
-                            \hline
+                            \hline%chktex 44
                         \end{array}
                     \]
                 \end{center}
@@ -1082,14 +1081,14 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{center}
                     \setbool{@fleqn}{false}
                     \[
-                        \begin{array}{|c|c|c|}
-                            \hline
+                        \begin{array}{|c|c|c|}%chktex 44
+                            \hline%chktex 44
                             \alpha      & \neg \alpha & \alpha \lor \neg \alpha \\
-                            \hline
+                            \hline%chktex 44
                             1 & 0 & 1\\
                             \meio{} & \meio{} & \meio{}\\
                             0 & 1 & 1\\
-                            \hline
+                            \hline%chktex 44
                         \end{array}
                     \]
                 \end{center}
@@ -1102,10 +1101,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{center}
                     \setbool{@fleqn}{false}
                     \[
-                        \begin{array}{|c|c|c|c|c|}
-                            \hline
+                        \begin{array}{|c|c|c|c|c|}%chktex 44
+                            \hline%chktex 44
                             \alpha      & \neg \alpha &\circ \alpha & \beta & \circ \alpha \to (\alpha \to (\neg \alpha \to \beta)) \\
-                            \hline
+                            \hline%chktex 44
                             1 & 0 & 1 & 1 & 1 \\
                             1 & 0 & 1 & \meio{} & 1 \\
                             1 & 0 & 1 & 0 & 1 \\
@@ -1115,7 +1114,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             0 & 1 & 1 & 1 & 1 \\
                             0 & 1 & 1 & \meio{} & 1 \\
                             0 & 1 & 1 & 0 & 1 \\
-                            \hline
+                            \hline%chktex 44
                         \end{array}
                     \]
                 \end{center}
@@ -1126,14 +1125,14 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{center}
                     \setbool{@fleqn}{false}
                     \[
-                        \begin{array}{|c|c|c|}
-                            \hline
+                        \begin{array}{|c|c|c|}%chktex 44
+                            \hline%chktex 44
                             \alpha      & \neg \neg \alpha & \neg \neg \alpha \to \alpha \\
-                            \hline
+                            \hline%chktex 44
                             1 & 1 & 1\\
                             \meio{} & \meio{} & \meio{}\\
                             0 & 0 & 1\\
-                            \hline
+                            \hline%chktex 44
                         \end{array}
                     \]
                 \end{center}
@@ -1144,14 +1143,14 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{center}
                     \setbool{@fleqn}{false}
                     \[
-                        \begin{array}{|c|c|c|}
-                            \hline
+                        \begin{array}{|c|c|c|}%chktex 44
+                            \hline%chktex 44
                             \alpha      & \neg \neg \alpha &  \alpha \to \neg \neg \alpha\\
-                            \hline
+                            \hline%chktex 44
                             1 & 1 & 1\\
                             \meio{} & \meio{} & \meio{}\\
                             0 & 0 & 1\\
-                            \hline
+                            \hline%chktex 44
                         \end{array}
                     \]
                 \end{center}
@@ -1162,14 +1161,14 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{center}
                     \setbool{@fleqn}{false}
                     \[
-                        \begin{array}{|c|c|c|c|}
-                            \hline
+                        \begin{array}{|c|c|c|c|}%chktex 44
+                            \hline%chktex 44
                             \alpha      & \neg \alpha & \neg \circ \alpha & \neg \circ \alpha \to (\alpha \land \neg \alpha)\\
-                            \hline
+                            \hline%chktex 44
                             1 & 0 & 0 &1\\
                             \meio{} & \meio{} & 1&\meio{}\\
                             0 & 1 & 0&1\\
-                            \hline
+                            \hline%chktex 44
                         \end{array}
                     \]
                 \end{center}
@@ -1180,10 +1179,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{center}
                     \setbool{@fleqn}{false}
                     \[
-                        \begin{array}{|c|c|c|}
-                            \hline
+                        \begin{array}{|c|c|c|}%chktex 44
+                            \hline%chktex 44
                             \alpha      & \beta & \neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta) \\
-                            \hline
+                            \hline%chktex 44
                             1 & 1 & 1\\
                             1 & \meio{} & 1\\
                             1 & 0 & 1\\
@@ -1193,7 +1192,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             0 & 1 & 1\\
                             0 & \meio{} & \meio{}\\
                             0 & 0 & 1\\
-                            \hline
+                            \hline%chktex 44
                         \end{array}
                     \]
                 \end{center}
@@ -1205,10 +1204,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{center}
                     \setbool{@fleqn}{false}
                     \[
-                        \begin{array}{|c|c|c|}
-                            \hline
+                        \begin{array}{|c|c|c|}%chktex 44
+                            \hline%chktex 44
                             \alpha      & \beta & (\neg \alpha \land \neg \beta) \to \neg (\alpha \lor \beta) \\
-                            \hline
+                            \hline%chktex 44
                             1 & 1 & 1\\
                             1 & \meio{} & 1\\
                             1 & 0 & 1\\
@@ -1218,7 +1217,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             0 & 1 & 1\\
                             0 & \meio{} & \meio{}\\
                             0 & 0 & 1\\
-                            \hline
+                            \hline%chktex 44
                         \end{array}
                     \]
                 \end{center}
@@ -1229,10 +1228,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{center}
                     \setbool{@fleqn}{false}
                     \[
-                        \begin{array}{|c|c|c|}
-                            \hline
+                        \begin{array}{|c|c|c|}%chktex 44
+                            \hline%chktex 44
                             \alpha      & \beta & \neg(\alpha \land \beta) \to (\neg \alpha \lor \neg \beta) \\
-                            \hline
+                            \hline%chktex 44
                             1 & 1 & 1\\
                             1 & \meio{} & \meio{}\\
                             1 & 0 & 1\\
@@ -1242,7 +1241,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             0 & 1 & 1\\
                             0 & \meio{} & 1\\
                             0 & 0 & 1\\
-                            \hline
+                            \hline%chktex 44
                         \end{array}
                     \]
                 \end{center}
@@ -1254,10 +1253,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{center}
                     \setbool{@fleqn}{false}
                     \[
-                        \begin{array}{|c|c|c|}
-                            \hline
+                        \begin{array}{|c|c|c|}%chktex 44
+                            \hline%chktex 44
                             \alpha      & \beta & (\neg \alpha \lor \neg \beta) \to \neg (\alpha \land \beta) \\
-                            \hline
+                            \hline%chktex 44
                             1 & 1 & 1\\
                             1 & \meio{} & \meio{}\\
                             1 & 0 & 1\\
@@ -1267,7 +1266,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             0 & 1 & 1\\
                             0 & \meio{} & 1\\
                             0 & 0 & 1\\
-                            \hline
+                            \hline%chktex 44
                         \end{array}
                     \]
                 \end{center}
@@ -1277,10 +1276,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{center}
                     \setbool{@fleqn}{false}
                     \[
-                        \begin{array}{|c|c|c|}
-                            \hline
+                        \begin{array}{|c|c|c|}%chktex 44
+                            \hline%chktex 44
                             \alpha      & \beta & \neg (\alpha \to \beta) \to(\alpha \land \neg \beta) \\
-                            \hline
+                            \hline%chktex 44
                             1 & 1 & 1\\
                             1 & \meio{} & \meio{}\\
                             1 & 0 & 1\\
@@ -1290,7 +1289,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             0 & 1 & 1\\
                             0 & \meio{} & 1\\
                             0 & 0 & 1\\
-                            \hline
+                            \hline%chktex 44
                         \end{array}
                     \]
                 \end{center}
@@ -1301,10 +1300,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{center}
                     \setbool{@fleqn}{false}
                     \[
-                        \begin{array}{|c|c|c|}
-                            \hline
+                        \begin{array}{|c|c|c|}%chktex 44
+                            \hline%chktex 44
                             \alpha      & \beta & (\alpha \land \neg \beta) \to \neg(\alpha \to \beta) \\
-                            \hline
+                            \hline%chktex 44
                             1 & 1 & 1\\
                             1 & \meio{} & \meio{}\\
                             1 & 0 & 1\\
@@ -1314,7 +1313,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             0 & 1 & 1\\
                             0 & \meio{} & 1\\
                             0 & 0 & 1\\
-                            \hline
+                            \hline%chktex 44
                         \end{array}
                     \]
                 \end{center}
@@ -1478,7 +1477,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
     
     \begin{proposicao}\label{prop:finit}        
-        A lógica $\lfium{} = \langle \ling, \conhil \rangle$ é finitária (Definição ~\ref{def:padrao}).
+        A lógica $\lfium{} = \langle \ling, \conhil \rangle$ é finitária (Definição~\ref{def:padrao}).
     \end{proposicao}
 
     \begin{proof}[Prova da Proposição~\ref{prop:finit}]
@@ -1556,7 +1555,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
     \end{lema}
 
     \begin{proof}[Prova do Lema~\ref{lem:lindenbaum}]\setbool{@fleqn}{false}
-        Dada $\lfium{} = \langle \ling, \conhil \rangle$ e seja $\Gamma \cup \{\phi\} \subseteq \ling$ um conjunto de fórmulas com $\Gamma \nconhil \phi$. Arranje \migs{Como?} \helena{TAMBÉM NÃO SEI ;-;} \migs{Como não sabe mulher, foi tu quem fez a prova!?} \helena{é que eu não parei pra pensar se eu preciso dizer como arranjar as fórmulas. Tipo, existe um jeito de arranjar and that's it} as fórmulas de $\ling$ numa sequência $\pazocal{C} = \phi_1, \phi_2, \ldots, \phi_i, \ldots$ e defina $\Gamma_i$ recursivamente da seguinte forma:
+        Dada $\lfium{} = \langle \ling, \conhil \rangle$ e seja $\Gamma \cup \{\phi\} \subseteq \ling$ um conjunto de fórmulas com $\Gamma \nconhil \phi$. Arranje \migs{Como?} \helena{TAMBÉM NÃO SEI} \migs{Como não sabe mulher, foi tu quem fez a prova!?} \helena{é que eu não parei pra pensar se eu preciso dizer como arranjar as fórmulas. Tipo, existe um jeito de arranjar and that's it} as fórmulas de $\ling$ numa sequência $\pazocal{C} = \phi_1, \phi_2, \ldots, \phi_i, \ldots$ e defina $\Gamma_i$ recursivamente da seguinte forma:
         \begin{align*}
                 \text{(i)}\quad&\Gamma_0 = \Gamma\\
                 \text{(ii)}\quad&\Gamma_i =
@@ -1617,7 +1616,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
             \begin{adjustwidth}{1cm}{}
 
-                Seja $\Delta' \subseteq \Delta$ um subconjunto finito. Como $\Delta$ é formado a partir da sequência $\pazocal{C} = \phi_1, \phi_2, \ldots, \phi_i, \ldots$, então existe um $\phi_{max} \in \Delta'$ tal que $max \geq i$ para qualquer $\phi_i \in \Delta'$. Logo, $\phi_{max} \in \Delta$ e, por (4), temos $\phi_{max} \in \Gamma_{max}$. Para qualquer outro elemento $\phi_k \in \Delta'$, com $max \geq k$, temos, por (4), $\phi_k \in \Gamma_k$, e, por (2), $\Gamma_k \subseteq \Gamma_{max}$. Portanto, $\Delta' \subseteq \Gamma_{max}$.
+                Seja $\Delta' \subseteq \Delta$ um subconjunto finito. Como $\Delta$ é formado a partir da sequência $\pazocal{C} = \phi_1, \phi_2, \ldots, \phi_i, \ldots$, então existe um $\phi_{\max} \in \Delta'$ tal que $\max \geq i$ para qualquer $\phi_i \in \Delta'$. Logo, $\phi_{\max} \in \Delta$ e, por (4), temos $\phi_{\max} \in \Gamma_{\max}$. Para qualquer outro elemento $\phi_k \in \Delta'$, com $\max \geq k$, temos, por (4), $\phi_k \in \Gamma_k$, e, por (2), $\Gamma_k \subseteq \Gamma_{\max}$. Portanto, $\Delta' \subseteq \Gamma_{\max}$.
 
             \end{adjustwidth}
 
@@ -1836,7 +1835,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
         Seja $\Gamma \cup \{\phi\} \subseteq \ling{}$ um conjunto de fórmulas com $\Gamma \conmat \phi$. Pelo Corolário~\ref{cor:matval}, temos $\Gamma \conval \phi$. Portanto, pela completude (Teorema~\ref{teo:completude_val}), temos $\Gamma \conhil \phi$.
     \end{proof}
 
-    \begin{corolario}[Equivalência entre a semântica matricial e a semântica de valorações]\label{cor:matval}
+    \begin{corolario}[Equivalência entre a semântica matricial e a semântica de valorações]\label{cor:matvaleq}
         A semântica matricial e a semântica de valorações para a lógica {\normalfont\lfium{}} são equivalentes, ou seja, para todo conjunto de fórmulas $\Gamma \cup \{\alpha\} \subseteq \ling{}$:
 
         \centering
