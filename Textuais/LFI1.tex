@@ -1608,7 +1608,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \begin{adjustwidth}{1cm}{}
 
 
-                Vamos supor $\phi_i \in \Delta$ e $\phi_i \not \in \Gamma_i$. Temos, por (3), $\Gamma_{i - 1} \nconhil \phi$. Pela definição de $\Gamma_i$, temos $\Gamma_{i - 1}, \phi_i \conhil \phi$. Portanto, por (2) e pela monotonicidade da \lfium{} (Proposição~\ref{prop:tarski}), temos $\Gamma_k, \phi_i \conhil \phi$, para qualquer $k \geq i$. Então, por (3), $\phi_i \not \in \Gamma_k$ para qualquer $k > i$. Portanto, $\phi_i \not \in \Delta$, o que contradiz a nossa suposição inicial. Portanto, $\phi_i \in \Gamma_i$.
+                Vamos supor $\phi_i \in \Delta$ e $\phi_i \not \in \Gamma_i$. Temos, por (3), $\Gamma_{i - 1} \nconhil \phi$. Pela definição de $\Gamma_i$, temos $\Gamma_{i - 1}, \phi_i \conhil \phi$. Portanto, por (2) e já que a \lfium{} é tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma_k, \phi_i \conhil \phi$, para qualquer $k \geq i$. Então, por (3), $\phi_i \not \in \Gamma_k$ para qualquer $k > i$. Portanto, $\phi_i \not \in \Delta$, o que contradiz a nossa suposição inicial. Portanto, $\phi_i \in \Gamma_i$.
 
             \end{adjustwidth}
 
@@ -1630,7 +1630,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \noindent(7) $\Delta$ é maximal não-trivial em relação a $\phi$ em \lfium{}.
             
             \begin{adjustwidth}{1cm}{}
-                Seja $\psi$ uma fórmula qualquer com $\psi \not \in \Delta$. Então $\psi = \phi_i$ para algum $i \in \mathbb{N}$. Supondo $\phi_i \in \Gamma_i$, chegamos numa contradição (já que, por construção de $\Delta$, teríamos $\phi_i \in \Delta$), portanto, temos $\phi_i \not \in \Gamma_i$. Logo, pela construção de $\Gamma_i$, temos $\Gamma_{i - 1}, \phi_i \conhil \phi$. Então, pela monotonicidade da \lfium{}, temos $\Delta, \phi_i \conhil \phi$. Portanto, $\Delta$ é maximal não-trivial em relação a $\phi$ em \lfium{}.
+                Seja $\psi$ uma fórmula qualquer com $\psi \not \in \Delta$. Então $\psi = \phi_i$ para algum $i \in \mathbb{N}$. Supondo $\phi_i \in \Gamma_i$, chegamos numa contradição (já que, por construção de $\Delta$, teríamos $\phi_i \in \Delta$), portanto, temos $\phi_i \not \in \Gamma_i$. Logo, pela construção de $\Gamma_i$, temos $\Gamma_{i - 1}, \phi_i \conhil \phi$. Então, já que a \lfium{} é tarskiana, temos $\Delta, \phi_i \conhil \phi$. Portanto, $\Delta$ é maximal não-trivial em relação a $\phi$ em \lfium{}.
 
             \end{adjustwidth}
 
@@ -1660,9 +1660,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{adjustwidth}{1cm}{}
                     \noindent ($\Longrightarrow$) Vamos supor $v(\alpha \land \beta) = 1$. Logo $(\alpha \land \beta) \in \Gamma$. 
                     
-                    \noindent Supondo $\alpha \not \in \Gamma$, temos $\Gamma, \alpha \conhil \phi$. Pelo axioma (\textbf{Ax4}) e MP, temos $\Gamma \conhil \alpha$. Logo, pela monotonicidade da \lfium{} (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\alpha \in \Gamma$.
+                    \noindent Supondo $\alpha \not \in \Gamma$, temos $\Gamma, \alpha \conhil \phi$. Pelo axioma (\textbf{Ax4}) e MP, temos $\Gamma \conhil \alpha$. Logo, já que a \lfium{} é tarskiana (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\alpha \in \Gamma$.
         
-                    \noindent Supondo $\beta \not \in \Gamma$, temos $\Gamma, \beta \conhil \phi$. Pelo axioma (\textbf{Ax5}) e MP, temos $\Gamma \conhil \beta$. Logo, pela monotonicidade da \lfium{} (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\beta \in \Gamma$.
+                    \noindent Supondo $\beta \not \in \Gamma$, temos $\Gamma, \beta \conhil \phi$. Pelo axioma (\textbf{Ax5}) e MP, temos $\Gamma \conhil \beta$. Logo, já que a \lfium{} é tarskiana (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\beta \in \Gamma$.
         
                     \noindent Logo, temos $v(\alpha) = 1$ e $v(\beta) = 1$.
 
@@ -1680,7 +1680,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{adjustwidth}{1cm}{}
                     \noindent ($\Longrightarrow$) Vamos supor $v(\alpha \lor \beta) = 1$. Logo, $\alpha \lor \beta \in \Gamma$.
 
-                    \noindent Supondo $\alpha \notin \Gamma$ e $\beta \notin \Gamma$. Temos $\Gamma, \alpha \conhil \phi$ e $\Gamma, \beta \conhil \phi$. Logo, pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, \alpha \lor \beta \conhil \phi$. Logo, pela monotonicidade da \lfium{} (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\alpha \in \Gamma$ ou $\beta \in \Gamma$.
+                    \noindent Supondo $\alpha \notin \Gamma$ e $\beta \notin \Gamma$. Temos $\Gamma, \alpha \conhil \phi$ e $\Gamma, \beta \conhil \phi$. Logo, pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, \alpha \lor \beta \conhil \phi$. Logo, já que a \lfium{} é tarskiana (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\alpha \in \Gamma$ ou $\beta \in \Gamma$.
                     
                     \noindent Logo, temos $v(\alpha) = 1$ ou $v(\beta) = 1$.
 
@@ -1704,7 +1704,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
                         \noindent ($\Longleftarrow$) Vamos supor $v(\alpha) = 0$ ou $v(\beta) = 1$.
 
-                        \noindent Caso $v(\alpha) = 0$, então temos $\alpha \not \in \Gamma$. Supondo $\alpha \to \beta \not \in \Gamma$, temos, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, $\Gamma, \alpha \conhil \phi$ e $\Gamma, \alpha \to \beta \conhil \phi$. Logo, pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, (\alpha \to \beta) \lor \alpha \conhil \phi$. Portanto, pelo axioma (\textbf{Ax9}) e pela monotonicidade da \lfium{}, temos $\Gamma \conhil \alpha$, o que é uma contradição. Portanto, $\alpha \to \beta \in \Gamma$ e, então, $v(\alpha \to \beta) = 1$.
+                        \noindent Caso $v(\alpha) = 0$, então temos $\alpha \not \in \Gamma$. Supondo $\alpha \to \beta \not \in \Gamma$, temos, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, $\Gamma, \alpha \conhil \phi$ e $\Gamma, \alpha \to \beta \conhil \phi$. Logo, pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, (\alpha \to \beta) \lor \alpha \conhil \phi$. Portanto, pelo axioma (\textbf{Ax9}) e já que a \lfium{} é tarskiana, temos $\Gamma \conhil \alpha$, o que é uma contradição. Portanto, $\alpha \to \beta \in \Gamma$ e, então, $v(\alpha \to \beta) = 1$.
 
                         \noindent Caso $v(\beta) = 1$, então temos $\beta \in \Gamma$. Pelo axioma (\textbf{Ax1}), temos $\Gamma \conhil \beta \to (\alpha \to \beta)$. Portanto, por MP, temos $\Gamma \conhil \alpha \to \beta$. Logo $\alpha \to \beta \in \Gamma$ e, então, $v(\alpha \to \beta) = 1$.
 
@@ -1766,7 +1766,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                         
                         \noindent ($\Longrightarrow$) Supondo $v(\neg (\alpha \land \beta)) = 1$, temos $\neg (\alpha \land \beta) \in \Gamma$. Então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg (\alpha \land \beta)$. Pelo axioma (\textbf{neg}$\land_1$), temos $\Gamma \conhil \neg (\alpha \land \beta) \to (\neg \alpha \lor \neg \beta)$. Logo, por MP, temos $\Gamma \conhil (\neg \alpha \lor \neg \beta)$.
 
-                        \noindent Vamos então supor $\neg \alpha \not \in \Gamma$ e $\neg \beta \not \in \Gamma$. Então, temos $\Gamma, \neg \alpha \conhil \phi$ e $\Gamma, \neg \beta \conhil \phi$. Pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, \neg \alpha \lor \neg \beta \conhil \phi$. Pela monotonicidade da \lfium{}, temos $\Gamma \conhil \phi$, o que resulta numa contradição. Portanto, temos $\neg \alpha \in \Gamma$ ou $\neg \beta \in \Gamma$ e, consequentemente, $v(\neg \alpha) = 1$ ou $v(\neg \beta) = 1$.
+                        \noindent Vamos então supor $\neg \alpha \not \in \Gamma$ e $\neg \beta \not \in \Gamma$. Então, temos $\Gamma, \neg \alpha \conhil \phi$ e $\Gamma, \neg \beta \conhil \phi$. Pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, \neg \alpha \lor \neg \beta \conhil \phi$. Já que a \lfium{} é tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma \conhil \phi$, o que resulta numa contradição. Portanto, temos $\neg \alpha \in \Gamma$ ou $\neg \beta \in \Gamma$ e, consequentemente, $v(\neg \alpha) = 1$ ou $v(\neg \beta) = 1$.
                         
                         \noindent ($\Longleftarrow$) Supondo $v(\neg \alpha) = 1$ ou $v(\neg \beta) = 1$, temos $\neg \alpha \in \Gamma$ ou $\neg \beta \in \Gamma$.
 
@@ -1784,7 +1784,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                         
                         \noindent ($\Longrightarrow$) Supondo $v(\neg (\alpha \lor \beta)) = 1$, temos $\neg (\alpha \lor \beta) \in \Gamma$. Logo, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg (\alpha \lor \beta)$. Pelo axioma (\textbf{neg}$\lor_1$), temos $\Gamma \conhil \neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta)$. Logo, por MP, temos $\Gamma \conhil \neg \alpha \land \neg \beta$.
 
-                        \noindent Vamos supor $\neg \alpha \not \in \Gamma$ ou $\neg \beta \not \in \Gamma$. Então, temos $\Gamma, \alpha \conhil \phi$ ou $\Gamma, \beta \conhil \phi$. Pelos axiomas (\textbf{Ax4}) e (\textbf{Ax5}), temos $\Gamma \conhil (\neg \alpha \land \neg \beta) \to \alpha$ e $\Gamma \conhil (\neg \alpha \land \neg \beta) \to \beta$. Aplicando MP duas vezes temos $\Gamma \conhil \alpha$ e $\Gamma \conhil \beta$. Pela monotonicidade da \lfium{}, temos $\Gamma \conhil \phi$, o que é resulta numa contradição. Portanto, $\neg \alpha \in \Gamma$ e $\neg \beta \in \Gamma$ e, consequentemente, temos $v(\neg \alpha) = 1$ e $v(\neg \beta) = 1$. 
+                        \noindent Vamos supor $\neg \alpha \not \in \Gamma$ ou $\neg \beta \not \in \Gamma$. Então, temos $\Gamma, \alpha \conhil \phi$ ou $\Gamma, \beta \conhil \phi$. Pelos axiomas (\textbf{Ax4}) e (\textbf{Ax5}), temos $\Gamma \conhil (\neg \alpha \land \neg \beta) \to \alpha$ e $\Gamma \conhil (\neg \alpha \land \neg \beta) \to \beta$. Aplicando MP duas vezes temos $\Gamma \conhil \alpha$ e $\Gamma \conhil \beta$. Já que a \lfium{} é tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma \conhil \phi$, o que é resulta numa contradição. Portanto, $\neg \alpha \in \Gamma$ e $\neg \beta \in \Gamma$ e, consequentemente, temos $v(\neg \alpha) = 1$ e $v(\neg \beta) = 1$. 
                         
                         \noindent ($\Longleftarrow$) Supondo $v(\neg \alpha) = 1$ e $v(\neg \beta) = 1$, temos $\neg \alpha \in \Gamma$ e $\neg \beta \in \Gamma$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg \alpha$ e $\Gamma \conhil \neg \beta$. Pelo axioma (\textbf{Ax3}), temos $\Gamma \conhil \neg \alpha \to (\neg \beta \to (\neg \alpha \land \neg \beta))$. Aplicando MP duas vezes, temos $\Gamma \conhil \neg \alpha \land \neg \beta$. Pelo axioma (\textbf{neg}$\lor_2$), temos $\Gamma \conhil (\neg \alpha \land \neg \beta) \to \neg (\alpha \lor \beta)$. Aplicando MP, temos $\Gamma \conhil \neg (\alpha \lor \beta)$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\neg (\alpha \lor \beta) \in \Gamma$ e, consequentemente, $v(\neg (\alpha \lor \beta)) = 1$.
 
@@ -1796,7 +1796,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                         
                         \noindent ($\Longrightarrow$) Supondo $v(\neg (\alpha \to \beta)) = 1$, temos $\neg (\alpha \to \beta) \in \Gamma$. Logo, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg (\alpha \to \beta)$. Pelo axioma (\textbf{neg}$\to_1$), temos $\Gamma \conhil \neg (\alpha \to \beta) \to (\alpha \land \neg \beta)$. Aplicando MP, temos $\Gamma \conhil \alpha \land \neg \beta$. Pelos axiomas (\textbf{Ax4}) e (\textbf{Ax5}), temos $\Gamma \conhil (\alpha \land \neg \beta) \to \alpha$ e $\Gamma \conhil (\alpha \land \neg \beta) \to \beta$. Aplicando MP duas vezes, temos $\Gamma \conhil \alpha$ e $\Gamma \conhil \neg \beta$.
 
-                        \noindent Vamos supor $v(\alpha) = 0$ ou $v(\neg \beta) = 0$. Logo, temos $\alpha \not \in \Gamma$ ou $\neg \beta \not \in \Gamma$. Logo, temos $\Gamma, \alpha \conhil \phi$ ou $\Gamma, \neg \beta \conhil \phi$. Pela monotonicidade da \lfium{}, temos $\Gamma \conhil \phi$, o que resulta numa contradição. Portanto, temos $v(\alpha) = 1$ e $v(\neg \beta) = 1$.
+                        \noindent Vamos supor $v(\alpha) = 0$ ou $v(\neg \beta) = 0$. Logo, temos $\alpha \not \in \Gamma$ ou $\neg \beta \not \in \Gamma$. Logo, temos $\Gamma, \alpha \conhil \phi$ ou $\Gamma, \neg \beta \conhil \phi$. Já que a \lfium{} é tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma \conhil \phi$, o que resulta numa contradição. Portanto, temos $v(\alpha) = 1$ e $v(\neg \beta) = 1$.
 
                         \noindent ($\Longleftarrow$) Supondo $v(\alpha) = 1$ e $v(\neg \beta) = 1$, temos $\alpha \in \Gamma$ e $\neg \beta \in \Gamma$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \alpha$ e $\Gamma \conhil \neg \beta$. Pelo axioma (\textbf{Ax3}), temos $\Gamma \conhil \alpha \to (\neg \beta \to (\alpha \land \neg \beta))$. Aplicando MP duas vezes, temos $\Gamma \conhil \alpha \land \neg \beta$. Pelo axioma (\textbf{neg}$\to_2$), temos $\Gamma \conhil (\alpha \land \neg \beta) \to \neg (\alpha \to \beta)$. Aplicando MP, temos $\Gamma \conhil \neg (\alpha \to \beta)$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\neg (\alpha \to \beta) \in \Gamma$ e, consequentemente, $v(\neg (\alpha \to \beta)) = 1$.
 
