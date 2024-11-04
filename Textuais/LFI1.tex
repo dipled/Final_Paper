@@ -541,7 +541,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
                     \qquad{}sse, por $(vOr)$, $v(\phi) = v(\alpha \lor \beta) = 1$ e, por $(vDM_{\lor})$, $v(\neg \phi) = v(\neg(\alpha \lor \beta)) = 0$.
 
-                \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = \meio{0}$ sse $v(\phi) = v(\alpha \lor \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \lor \beta)) = 1$.}
+                \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = \meio{}$ sse $v(\phi) = v(\alpha \lor \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \lor \beta)) = 1$.}
 
                     Temos $h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = \meio{}$
 
@@ -1555,7 +1555,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
     \end{lema}
 
     \begin{proof}[Prova do Lema~\ref{lem:lindenbaum}]\setbool{@fleqn}{false}
-        Dada $\lfium{} = \langle \ling, \conhil \rangle$ e seja $\Gamma \cup \{\phi\} \subseteq \ling$ um conjunto de fórmulas com $\Gamma \nconhil \phi$. Arranje \migs{Como?} \helena{TAMBÉM NÃO SEI} \migs{Como não sabe mulher, foi tu quem fez a prova!?} \helena{é que eu não parei pra pensar se eu preciso dizer como arranjar as fórmulas. Tipo, existe um jeito de arranjar and that's it} as fórmulas de $\ling$ numa sequência $\pazocal{C} = \phi_1, \phi_2, \ldots, \phi_i, \ldots$ e defina $\Gamma_i$ recursivamente da seguinte forma:
+        Dada $\lfium{} = \langle \ling, \conhil \rangle$ e seja $\Gamma \cup \{\phi\} \subseteq \ling$ um conjunto de fórmulas com $\Gamma \nconhil \phi$. Arranje \migs{Como?} \helena{TAMBÉM NÃO SEI} \migs{Como não sabe mulher, foi tu quem fez a prova!?} \helena{é que eu não parei pra pensar se eu preciso dizer como arranjar as fórmulas. Tipo, existe um jeito de arranjar and that's it} \migs{Você poderia no mínimo colocar em uma nota de rodapé tipo ``podemos ordenar as fórmulas em ordem lexicográfica blah blah blah''} as fórmulas de $\ling$ numa sequência $\pazocal{C} = \phi_1, \phi_2, \ldots, \phi_i, \ldots$ e defina $\Gamma_i$ recursivamente da seguinte forma:
         \begin{align*}
                 \text{(i)}\quad&\Gamma_0 = \Gamma\\
                 \text{(ii)}\quad&\Gamma_i =
@@ -1834,6 +1834,8 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
     \begin{proof}[Prova do Corolário~\ref{teo:completude_mat}]
         Seja $\Gamma \cup \{\phi\} \subseteq \ling{}$ um conjunto de fórmulas com $\Gamma \conmat \phi$. Pelo Corolário~\ref{cor:matval}, temos $\Gamma \conval \phi$. Portanto, pela completude (Teorema~\ref{teo:completude_val}), temos $\Gamma \conhil \phi$.
     \end{proof}
+
+    \migs{Você prova o corolário acima (Corolário~\ref{teo:completude_mat}) de uma maneira muito semelhante que você prova o segundo caso do corolário abaixo (Corolário~\ref{cor:matvaleq}), talvez seria interessante trocar a ordem deles e adaptar a prova do Corolário~\ref{teo:completude_mat} para depender da prova do Corolário~\ref{cor:matvaleq}.}
 
     \begin{corolario}[Equivalência entre a semântica matricial e a semântica de valorações]\label{cor:matvaleq}
         A semântica matricial e a semântica de valorações para a lógica {\normalfont\lfium{}} são equivalentes, ou seja, para todo conjunto de fórmulas $\Gamma \cup \{\alpha\} \subseteq \ling{}$:
