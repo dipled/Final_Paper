@@ -497,26 +497,28 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 1$ sse $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 0$.}
 
                     Teremos $h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 1$
+                    
+                    $\Longleftrightarrow$ $h(\alpha) = 1$ e {$h(\beta) = 1$} \hfill (Matrix de $\land$)
 
-                    \qquad{}sse, pela matriz de $\land$, $h(\alpha) = 1$ e $h(\beta) = 1$
+                    $\Longleftrightarrow$ $v(\alpha) = 1$, $v(\neg \alpha) = 0$, $v(\beta) = 1$ e $v(\neg \beta) = 0$ \hfill (HI)
 
-                    \qquad{}sse, por (HI), $v(\alpha) = 1$, $v(\neg \alpha) = 0$, $v(\beta) = 1$ e $v(\neg \beta) = 0$
-
-                    \qquad{}sse, por $(vAnd)$, $v(\phi) = v(\alpha \land \beta) = 1$ e, por $(vDM_{\land})$, $v(\neg \phi) = v(\neg(\alpha \land \beta)) = 0$.
+                    $\Longleftrightarrow$ $v(\phi) = v(\alpha \land \beta) = 1$ \hfill $(vAnd)$
+                    
+                    $\Longleftrightarrow$ $v(\neg \phi) = v(\neg(\alpha \land \beta)) = 0$ \hfill $(vDM_{\land})$
             
                 \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = \meio{}$ sse $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 1$.}
 
                     Teremos $h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = \meio{}$
 
-                    \qquad{}sse, pela matriz de $\land$, temos $h(\alpha), h(\beta) \in \{1, \meio{}\}$ e temos $h(\alpha) = \meio{}$ ou $h(\beta) = \meio{}$
+                    $\Longleftrightarrow$ ($h(\alpha), h(\beta) \in \{1, \meio{}\}$) e ($h(\alpha) = \meio{}$ ou $h(\beta) = \meio{}$) \hfill (Matriz de $\land$)
                     
-                    \qquad{}sse, por (HI), temos $v(\alpha) = 1$ e $v(\beta) = 1$ e temos $v(\alpha) = v(\neg \alpha) = 1$ ou $v(\beta) = v(\neg \beta) = 1$
+                    $\Longleftrightarrow$, ($v(\alpha) = 1$ e $v(\beta) = 1$) e ($v(\alpha) = v(\neg \alpha) = 1$ ou $v(\beta) = v(\neg \beta) = 1$) \hfill (HI)
 
-                    \qquad{}sse, pela distributividade da conjunção sobre a disjunção e pela idempotência da conjunção, temos $v(\alpha) = 1$, $v(\neg \alpha) = 1$ e $v(\beta) = 1$ ou temos $v(\alpha) = 1$, $v(\neg \beta) = 1$ e $v(\beta) = 1$
+                    $\Longleftrightarrow$, ($v(\alpha) = 1$, $v(\neg \alpha) = 1$ e $v(\beta) = 1$) ou ($v(\alpha) = 1$, $v(\neg \beta) = 1$ e $v(\beta) = 1$) \hfill (Dist. $\land, \lor$ e Idemp. $\land$)
 
-                    \qquad{}sse, pela distributividade da conjunção sobre a disjunção e pela idempotência da conjunção, temos $v(\alpha) = 1$ e $v(\beta) = 1$ e temos $v(\neg \alpha) = 1$ ou $v(\neg \beta) = 1$
+                    $\Longleftrightarrow$ ($v(\alpha) = 1$ e $v(\beta) = 1$) e ($v(\neg \alpha) = 1$ ou $v(\neg \beta) = 1$) \hfill (Dist. $\land, \lor$ e Idemp. $\land$)
 
-                    \qquad{}sse, por $(vAnd)$ e $(vDM_{\land})$, temos $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 1$.
+                    $\Longleftrightarrow$ ($v(\phi) = v(\alpha \land \beta) = 1$) e ($v(\neg \phi) = v(\neg (\alpha \land \beta)) = 1$) \hfill $(vAnd)$ e $(vDM_{\land})$
 
                 \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 0$ sse $v(\phi) = v(\alpha \land \beta) = 0$.}
 
