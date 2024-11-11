@@ -488,20 +488,15 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
         
             \casodeprova{$\phi = \alpha \land \beta$.}
 
-            \helena{tentar botar isso numa tabela pra que as linhas quebrem corretamente (tipo, uma coluna pra prova e outra coluna pra justificativa)}
-
             \begin{provaporsubcasos}
-                \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 1$ sse $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 0$.}
-                    Teremos $h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 1$
-                    
-                    $\Longleftrightarrow$ $h(\alpha) = 1$ e {$h(\beta) = 1$} \hfill (Matriz de $\land$)
-
-                    $\Longleftrightarrow$ $v(\alpha) = 1$, $v(\neg \alpha) = 0$, $v(\beta) = 1$ e $v(\neg \beta) = 0$ \hfill (HI)
-
-                    $\Longleftrightarrow$ $v(\phi) = v(\alpha \land \beta) = 1$ \hfill $(vAnd)$
-                    
-                    $\Longleftrightarrow$ $v(\neg \phi) = v(\neg(\alpha \land \beta)) = 0$ \hfill $(vDM_{\land})$
-            
+                \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 1$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 0$.}
+                \begin{align*}
+                    &\text{Teremos } h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 1\\
+                    &\Longleftrightarrow h(\alpha) = 1 \text{ e } {h(\beta) = 1} \tag*{ (Matriz de $\land$)}\\
+                    &\Longleftrightarrow v(\alpha) = 1, v(\neg \alpha) = 0, v(\beta) = 1 \text{ e } v(\neg \beta) = 0\tag*{ (HI)}\\
+                    &\Longleftrightarrow v(\phi) = v(\alpha \land \beta) = 1 \tag*{ $(vAnd)$}\\
+                    &\Longleftrightarrow v(\neg \phi) = v(\neg(\alpha \land \beta)) = 0 \tag*{ $(vDM_{\land})$}
+                \end{align*}
                 \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = \meio{}$ sse $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 1$.}
 
                     Teremos $h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = \meio{}$
