@@ -491,7 +491,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \begin{provaporsubcasos}
                 \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 1$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 0$.}
                 \begin{align*}
-                    &\text{Teremos } h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 1\\
+                    &\text{Temos } h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 1\\
                     &\Longleftrightarrow h(\alpha) = 1 \text{ e } {h(\beta) = 1} \tag*{ (Matriz de $\land$)}\\
                     &\Longleftrightarrow v(\alpha) = 1, v(\neg \alpha) = 0, v(\beta) = 1 \text{ e } v(\neg \beta) = 0\tag*{ (HI)}\\
                     &\Longleftrightarrow v(\phi) = v(\alpha \land \beta) = 1 \tag*{ $(vAnd)$}\\
@@ -499,7 +499,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \end{align*}
                 \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = \meio{}$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 1$.}
                 \begin{align*}
-                    &\text{Teremos } h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = \meio{}\\
+                    &\text{Temos } h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = \meio{}\\
                     &\Longleftrightarrow (h(\alpha), h(\beta) \in \{1, \meio{}\}) e (h(\alpha) = \meio{} \text{ ou } h(\beta) = \meio{}) \tag*{(Matriz de $\land$)}\\
                     &\Longleftrightarrow (v(\alpha) = 1 \text{ e } v(\beta) = 1) \text{ e }\\&(v(\alpha) = v(\neg \alpha) = 1 \text{ ou } v(\beta) = v(\neg \beta) = 1) \tag*{(HI)}\\
                     &\Longleftrightarrow (v(\alpha) = 1, v(\neg \alpha) = 1 \text{ e } v(\beta) = 1) \text{ ou }\\&(v(\alpha) = 1, v(\neg \beta) = 1 \text{ e } v(\beta) = 1) \tag*{(Dist. $\land$, $\lor$ \text{ e } Idemp. $\land$)}\\
@@ -507,9 +507,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                     &\Longleftrightarrow (v(\phi) = v(\alpha \land \beta) = 1) \text{ e } \\&(v(\neg \phi) = v(\neg (\alpha \land \beta)) = 1) \tag*{($(vAnd)$ \text{ e } $(vDM_{\land})$)}
                 \end{align*}
 
-                \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 0$ sse $v(\phi) = v(\alpha \land \beta) = 0$.}
+                \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 0$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \land \beta) = 0$.}
                 \begin{align*}
-                    &\text{Teremos } h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 0\\
+                    &\text{Temos } h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 0\\
                     &\Longleftrightarrow h(\alpha) = 0\text{ ou }h(\beta) = 0\tag*{(Matriz de $\land$)}\\
                     &\Longleftrightarrow v(\alpha) = 0\text{ ou }v(\beta) = 0 \tag*{(HI)}\\
                     &\Longleftrightarrow v(\phi) = v(\alpha \land \beta) = 0\tag*{$(vAnd)$}
@@ -520,7 +520,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \casodeprova{$\phi = \alpha \lor \beta$.}
 
             \begin{provaporsubcasos}
-                \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 1$ sse $v(\phi) = v(\alpha \lor \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \lor \beta)) = 0$.}
+                \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 1$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \lor \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \lor \beta)) = 0$.}
                 \begin{align*}
                     &\textnormal{Temos }h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 1\\
                     &\Longleftrightarrow h(\alpha) = 1\textnormal{ ou }h(\beta) = 1\tag*{(Matriz de $\lor$)}\\
@@ -532,7 +532,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                     &\Longleftrightarrow v(\phi) = v(\alpha \lor \beta) = 1\textnormal{ e }v(\neg \phi) = v(\neg(\alpha \lor \beta)) = 0.\tag*{($(vOr)$ e $(vDM_{\lor})$)}
                 \end{align*}
                     
-                \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = \meio{}$ sse $v(\phi) = v(\alpha \lor \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \lor \beta)) = 1$.}
+                \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = \meio{}$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \lor \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \lor \beta)) = 1$.}
                 \begin{align*}
                     &\textnormal{Temos }h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = \meio{}\\
                     &\Longleftrightarrow (h(\alpha) = h(\beta) = \meio{})\textnormal{ ou } (h(\alpha) = \meio{}\textnormal{ e }h(\beta) = 0)\textnormal{ ou }\\&(h(\alpha) = 0\textnormal{ e }h(\beta) = \meio{}).\tag*{(Matriz de $\lor$)}\\
@@ -544,14 +544,12 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \end{align*}
                     
                     \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 0$ sse $v(\phi) = v(\alpha \lor \beta) = 0$.}
-                    
-                    Temos $h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 0$
-
-                    \qquad{}sse, pela matriz de $\lor$, temos $h(\alpha) = 0$ e $h(\beta) = 0$
-
-                    \qquad{}sse, por (HI), temos $v(\alpha) = 0$ e $v(\beta) = 0$
-
-                    \qquad{}sse, por $(vOr)$, temos $v(\phi) = v(\alpha \lor \beta) = 0$.
+                    \begin{align*}
+                        &\textnormal{Temos }h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 0\\
+                        &\Longleftrightarrow h(\alpha) = 0\textnormal{ e }h(\beta) = 0\tag*{(Matriz de $\lor$)}\\
+                        &\Longleftrightarrow v(\alpha) = 0\textnormal{ e }v(\beta) = 0\tag*{(HI)}\\
+                        &\Longleftrightarrow v(\phi) = v(\alpha \lor \beta) = 0\tag*{$(vOr)$}
+                    \end{align*}
 
             \end{provaporsubcasos}
 
@@ -564,7 +562,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
                     \qquad{}sse, pela matriz de $\to$, $h(\alpha) = 0$ ou $h(\beta) = 1$
 
-                    \qquad{}sse, por (HI), temos $v(\alpha) = 0$ ou temos $v(\beta) = 1$ e $v(\neg \beta) = 0$
+                    \qquad{}sse, $v(\alpha) = 0$ ou temos $v(\beta) = 1$ e $v(\neg \beta) = 0$
 
                     \qquad{}sse, por $(vImp)$ e $(vCip)$, temos $v(\alpha \to \beta) = 1$ e $v(\neg (\alpha \to \beta)) = 0$ ou temos $v(\alpha \to \beta) = 1$ e $v(\neg (\alpha \to \beta)) = 0$
 
