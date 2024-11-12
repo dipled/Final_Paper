@@ -538,7 +538,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                     &\Longleftrightarrow (h(\alpha) = h(\beta) = \meio{})\textnormal{ ou } (h(\alpha) = \meio{}\textnormal{ e }h(\beta) = 0)\textnormal{ ou }\\&(h(\alpha) = 0\textnormal{ e }h(\beta) = \meio{}).\tag*{(Matriz de $\lor$)}\\
                     &\Longleftrightarrow (v(\alpha) = 1, v(\neg \alpha) = 1, v(\beta) = 1\textnormal{ e }v(\neg \beta) = 1)\text{ ou }\\&(v(\alpha) = 1, v(\neg \alpha) = 1\textnormal{ e }v(\beta) = 0)\text{ ou }\\&(v(\alpha) = 0, v(\beta) = 1\textnormal{ e }v(\neg \beta) = 1)\tag*{(HI)}\\
                     &\Longleftrightarrow (v(\alpha) = 1, v(\neg \alpha) = 1, v(\beta) = 1\textnormal{ e }v(\neg \beta) = 1)\textnormal{ ou }\\&(v(\alpha) = 1, v(\neg \alpha) = 1, v(\beta) = 0\textnormal{ e }v(\neg \beta) = 1)\textnormal{ ou }\\&(v(\alpha) = 0, v(\neg \alpha) = 1, v(\beta) = 1, v(\neg \beta) = 1)\tag*{$(vNeg)$}\\
-                    &\Longleftrightarrow (v(\neg \alpha) = 1\textnormal{ e }v(\neg \beta) = 1)\textnormal{ e }((v(\alpha) = 1\textnormal{ e }v(\beta) = 1)\text{ ou }\\&(v(\alpha) = 1\textnormal{ e }v(\beta) = 0)\text{ ou }(v(\alpha) = 0\textnormal{ e }v(\beta) = 1)).\tag*{Dist $\lor$, $\land$}\\
+                    &\Longleftrightarrow (v(\neg \alpha) = 1\textnormal{ e }v(\neg \beta) = 1)\textnormal{ e }((v(\alpha) = 1\textnormal{ e }v(\beta) = 1)\text{ ou }\\&(v(\alpha) = 1\textnormal{ e }v(\beta) = 0)\text{ ou }(v(\alpha) = 0\textnormal{ e }v(\beta) = 1)).\tag*{(Dist $\lor$, $\land$)}\\
                     &\Longleftrightarrow (v(\neg \alpha) = 1\textnormal{ e }v(\neg \beta) = 1)\textnormal{ e }\\&(v(\alpha \lor \beta) = 1\textnormal{ ou }v(\alpha \lor \beta) = 1\textnormal{ ou }v(\alpha \lor \beta) = 1)\tag*{$(vOr)$}\\
                     &\Longleftrightarrow v(\phi) = v(\alpha \lor \beta) = 1\textnormal{ e }\\&v(\neg \phi) = v(\neg(\alpha \lor \beta)) = 1.\tag*{($(vDM_{\lor})$ e (Idemp. $\lor$))}
                 \end{align*}
@@ -556,41 +556,32 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \casodeprova{$\phi = \alpha \to \beta$.}
 
             \begin{provaporsubcasos}
-                \subcasodeprova{$h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 1$ sse $v(\phi) = v(\alpha \to \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \to \beta)) = 0$.}
-
-                    Temos $h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 1$
-
-                    \qquad{}sse, pela matriz de $\to$, $h(\alpha) = 0$ ou $h(\beta) = 1$
-
-                    \qquad{}sse, $v(\alpha) = 0$ ou temos $v(\beta) = 1$ e $v(\neg \beta) = 0$
-
-                    \qquad{}sse, por $(vImp)$ e $(vCip)$, temos $v(\alpha \to \beta) = 1$ e $v(\neg (\alpha \to \beta)) = 0$ ou temos $v(\alpha \to \beta) = 1$ e $v(\neg (\alpha \to \beta)) = 0$
-
-                    \qquad{}sse, pela idempotência da disjunção, temos $v(\phi) = v(\alpha \to \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \to \beta)) = 0$
-
-                \subcasodeprova{$h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = \meio{}$ sse $v(\phi) = v(\alpha \to \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \to \beta)) = 1$.}
-
-                    Temos $h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = \meio{}$
-
-                    \qquad{}sse, pela matriz de $\to$, temos $h(\alpha) = 1$ e $h(\beta) = \meio{}$ ou temos $h(\alpha) = \meio{}$ e $h(\beta) = \meio{}$
-
-                    \qquad{}sse, por (HI), temos $v(\alpha) = v(\beta) = v(\neg \beta) = 1$ e $v(\neg \alpha) = 0$ ou temos $v(\alpha) = v(\neg \alpha) = v(\beta) = v(\neg \beta) = 1$
-
-                    \qquad{}sse, por $(vImp)$ e $(vCip)$, temos $v(\alpha \to \beta) = v(\neg (\alpha \to \beta)) = 1$ e $v(\alpha \to \beta) = v(\neg (\alpha \to \beta)) = 1$
-
-                    \qquad{}sse, pela idempotência da disjunção, temos $v(\phi) = v(\alpha \to \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \to \beta)) = 1$.
-
+                \subcasodeprova{$h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 1$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \to \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \to \beta)) = 0$.}
+                    \begin{align*}
+                        &\textnormal{Temos }h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 1\\
+                        &\Longleftrightarrow h(\alpha) = 0\textnormal{ ou } h(\beta) = 1\tag*{(Matriz de $\to$)}\\
+                        &\Longleftrightarrow v(\alpha) = 0\textnormal{ ou } (v(\beta) = 1\textnormal{ e }v(\neg \beta) = 0)\tag*{(HI)}\\
+                        &\Longleftrightarrow (v(\alpha \to \beta) = 1\textnormal{ e }v(\neg (\alpha \to \beta)) = 0)\textnormal{ ou }\\& (v(\alpha \to \beta) = 1\textnormal{ e }v(\neg (\alpha \to \beta)) = 0)\tag*{($(vImp)$ e $(vCip)$)}\\
+                        &\Longleftrightarrow v(\phi) = v(\alpha \to \beta) = 1\textnormal{ e }v(\neg \phi) = v(\neg (\alpha \to \beta)) = 0\tag*{(Idemp. $\lor$)}
+                    \end{align*}
+                        
+                \subcasodeprova{$h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = \meio{}$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \to \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \to \beta)) = 1$.}
+                    \begin{align*}
+                        &\textnormal{Temos }h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = \meio{}\\
+                        &\Longleftrightarrow (h(\alpha) = 1\textnormal{ e }h(\beta) = \meio{})\textnormal{ ou }\\&(h(\alpha) = \meio{}\textnormal{ e }h(\beta) = \meio{})\tag*{(Matriz de $\to$)}\\
+                        &\Longleftrightarrow (v(\alpha) = v(\beta) = v(\neg \beta) = 1\textnormal{ e }v(\neg \alpha) = 0)\textnormal{ ou }\\&(v(\alpha) = v(\neg \alpha) = v(\beta) = v(\neg \beta) = 1)\tag*{(HI)}\\
+                        &\Longleftrightarrow v(\alpha \to \beta) = v(\neg (\alpha \to \beta)) = 1\textnormal{ e }\\&v(\alpha \to \beta) = v(\neg (\alpha \to \beta)) = 1\tag*{($(vImp)$\textnormal{ ou }$(vCip)$)}\\
+                        &\Longleftrightarrow v(\phi) = v(\alpha \to \beta) = 1\textnormal{ e }v(\neg \phi) = v(\neg (\alpha \to \beta)) = 1\tag*{(Idemp $\lor$)}
+                    \end{align*}
+                        
                 \subcasodeprova{$h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 0$ sse $v(\phi) = v(\alpha \to \beta) = 0$.}
-
-                    Temos $h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 0$
-
-                    \qquad{}sse, pela matriz de $\to$, temos $h(\alpha) = 1$ e $h(\beta) = 0$ ou temos $h(\alpha) = \meio{}$ e $h(\beta) = 0$
-
-                    \qquad{}sse, por (HI), temos $v(\alpha) = 1$ e $v(\neg \alpha) = v(\beta) = 0$ ou temos $v(\alpha) = v(\neg \alpha) = 1$ e $v(\beta) = 0$
-
-                    \qquad{}sse, por $(vImp)$, temos $v(\alpha \to \beta) = 0$ ou $v(\alpha \to \beta) = 0$
-
-                    \qquad{}sse, pela idempotência da disjunção, temos $v(\alpha \to \beta) = 0$.
+                    \begin{align*}
+                        &\textnormal{Temos }h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 0\\
+                        &\Longleftrightarrow (h(\alpha) = 1\textnormal{ e }h(\beta) = 0)\textnormal{ ou }(h(\alpha) = \meio{}\textnormal{ e }h(\beta) = 0)\tag*{(Matriz de $\to$)}\\
+                        &\Longleftrightarrow (v(\alpha) = 1\textnormal{ e }v(\neg \alpha) = v(\beta) = 0)\textnormal{ ou }\\&(v(\alpha) = v(\neg \alpha) = 1\textnormal{ e }v(\beta) = 0)\tag*{(HI)}\\
+                        &\Longleftrightarrow v(\alpha \to \beta) = 0\textnormal{ ou }v(\alpha \to \beta) = 0\tag*{$(vImp)$}\\
+                        &\Longleftrightarrow v(\alpha \to \beta) = 0.\tag*{(Idemp. $\lor$)}
+                    \end{align*}
             \end{provaporsubcasos}
         \end{provaporcasos}
     \end{proof}
