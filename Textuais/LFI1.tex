@@ -340,19 +340,31 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \end{cases}
               \end{equation*}
         \end{center}
-
+        
+        
         Então, por indução na complexidade de uma fórmula $\phi \in \ling{}$, será provado o seguinte:
         \begin{center}
             \setbool{@fleqn}{false}
             \begin{equation*}
                 h(\phi) =
                 \begin{cases}
-                  1\ \,  \text{ sse } v(\phi) = 1 \text{ e } v(\neg \phi) = 0 \\
-                  \meio{} \text{ sse } v(\phi) = 1 \text{ e } v(\neg \phi) = 1 \\
-                  0\ \  \text{ sse } v(\phi) = 0
+                    1\ \,  \text{ sse } v(\phi) = 1 \text{ e } v(\neg \phi) = 0 \\
+                    \meio{} \text{ sse } v(\phi) = 1 \text{ e } v(\neg \phi) = 1 \\
+                    0\ \  \text{ sse } v(\phi) = 0
                 \end{cases}
-              \end{equation*}
+            \end{equation*}
         \end{center}
+        
+        \begin{notacao}
+            Antes de desenvolver o lema, convém estabelecer uma notação para as justificativas de cada passo da prova:
+
+            \begin{itemize}
+                \item (Matriz de $\triangle$) refere-se à matriz de um conectivo $\triangle \in \Sigma$ pertencente a $\pazocal{M}_{\lfium{}}$;
+                \item (HI) refere-se à aplicação da hipótese de indução;
+                \item (Dist. $\otimes, \oplus$) refere-se à aplicação da distributividade de $\otimes$ sobre $\oplus$, ou seja, a aplicação do teorema $a \otimes (b \oplus c) \Longleftrightarrow (a \otimes b) \oplus (a \otimes c)$;
+                \item (Idemp. $\otimes$) refere-se à aplicação da idempotência de $\otimes$, ou seja, a aplicação do teorema $a \otimes a \Longrightarrow a$.
+            \end{itemize}
+        \end{notacao}
 
         \noindent \textbf{\textsc{Base.}} $C(\phi) = 1$.
 
@@ -494,13 +506,12 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                     &\text{Temos } h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 1\\
                     &\Longleftrightarrow h(\alpha) = 1 \text{ e } {h(\beta) = 1} \tag*{ (Matriz de $\land$)}\\
                     &\Longleftrightarrow v(\alpha) = 1, v(\neg \alpha) = 0, v(\beta) = 1 \text{ e } v(\neg \beta) = 0\tag*{ (HI)}\\
-                    &\Longleftrightarrow v(\phi) = v(\alpha \land \beta) = 1 \tag*{ $(vAnd)$}\\
-                    &\Longleftrightarrow v(\neg \phi) = v(\neg(\alpha \land \beta)) = 0 \tag*{ $(vDM_{\land})$}
+                    &\Longleftrightarrow v(\phi) = v(\alpha \land \beta) = 1 \textnormal{ e } v(\neg \phi) = v(\neg(\alpha \land \beta)) = 0\tag*{($(vAnd)$ e $(vDM_{\land})$)}\\
                 \end{align*}
                 \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = \meio{}$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 1$.}
                 \begin{align*}
                     &\text{Temos } h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = \meio{}\\
-                    &\Longleftrightarrow (h(\alpha), h(\beta) \in \{1, \meio{}\}) e (h(\alpha) = \meio{} \text{ ou } h(\beta) = \meio{}) \tag*{(Matriz de $\land$)}\\
+                    &\Longleftrightarrow (h(\alpha), h(\beta) \in \{1, \meio{}\})\textnormal{ e }(h(\alpha) = \meio{} \text{ ou } h(\beta) = \meio{}) \tag*{(Matriz de $\land$)}\\
                     &\Longleftrightarrow (v(\alpha) = 1 \text{ e } v(\beta) = 1) \text{ e }\\&(v(\alpha) = v(\neg \alpha) = 1 \text{ ou } v(\beta) = v(\neg \beta) = 1) \tag*{(HI)}\\
                     &\Longleftrightarrow (v(\alpha) = 1, v(\neg \alpha) = 1 \text{ e } v(\beta) = 1) \text{ ou }\\&(v(\alpha) = 1, v(\neg \beta) = 1 \text{ e } v(\beta) = 1) \tag*{(Dist. $\land$, $\lor$ \text{ e } Idemp. $\land$)}\\
                     &\Longleftrightarrow (v(\alpha) = 1 \text{ e } v(\beta) = 1) \text{ e } \\&(v(\neg \alpha) = 1 \text{ ou } v(\neg \beta) = 1) \tag*{(Dist. $\land$, $\lor$ \text{ e }Idemp. $\land$)}\\
@@ -538,7 +549,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                     &\Longleftrightarrow (h(\alpha) = h(\beta) = \meio{})\textnormal{ ou } (h(\alpha) = \meio{}\textnormal{ e }h(\beta) = 0)\textnormal{ ou }\\&(h(\alpha) = 0\textnormal{ e }h(\beta) = \meio{}).\tag*{(Matriz de $\lor$)}\\
                     &\Longleftrightarrow (v(\alpha) = 1, v(\neg \alpha) = 1, v(\beta) = 1\textnormal{ e }v(\neg \beta) = 1)\text{ ou }\\&(v(\alpha) = 1, v(\neg \alpha) = 1\textnormal{ e }v(\beta) = 0)\text{ ou }\\&(v(\alpha) = 0, v(\beta) = 1\textnormal{ e }v(\neg \beta) = 1)\tag*{(HI)}\\
                     &\Longleftrightarrow (v(\alpha) = 1, v(\neg \alpha) = 1, v(\beta) = 1\textnormal{ e }v(\neg \beta) = 1)\textnormal{ ou }\\&(v(\alpha) = 1, v(\neg \alpha) = 1, v(\beta) = 0\textnormal{ e }v(\neg \beta) = 1)\textnormal{ ou }\\&(v(\alpha) = 0, v(\neg \alpha) = 1, v(\beta) = 1, v(\neg \beta) = 1)\tag*{$(vNeg)$}\\
-                    &\Longleftrightarrow (v(\neg \alpha) = 1\textnormal{ e }v(\neg \beta) = 1)\textnormal{ e }((v(\alpha) = 1\textnormal{ e }v(\beta) = 1)\text{ ou }\\&(v(\alpha) = 1\textnormal{ e }v(\beta) = 0)\text{ ou }(v(\alpha) = 0\textnormal{ e }v(\beta) = 1)).\tag*{(Dist $\lor$, $\land$)}\\
+                    &\Longleftrightarrow (v(\neg \alpha) = 1\textnormal{ e }v(\neg \beta) = 1)\textnormal{ e }((v(\alpha) = 1\textnormal{ e }v(\beta) = 1)\text{ ou }\\&(v(\alpha) = 1\textnormal{ e }v(\beta) = 0)\text{ ou }(v(\alpha) = 0\textnormal{ e }v(\beta) = 1)).\tag*{(Dist. $\land$, $\lor$)}\\
                     &\Longleftrightarrow (v(\neg \alpha) = 1\textnormal{ e }v(\neg \beta) = 1)\textnormal{ e }\\&(v(\alpha \lor \beta) = 1\textnormal{ ou }v(\alpha \lor \beta) = 1\textnormal{ ou }v(\alpha \lor \beta) = 1)\tag*{$(vOr)$}\\
                     &\Longleftrightarrow v(\phi) = v(\alpha \lor \beta) = 1\textnormal{ e }\\&v(\neg \phi) = v(\neg(\alpha \lor \beta)) = 1.\tag*{($(vDM_{\lor})$ e (Idemp. $\lor$))}
                 \end{align*}
@@ -571,7 +582,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                         &\Longleftrightarrow (h(\alpha) = 1\textnormal{ e }h(\beta) = \meio{})\textnormal{ ou }\\&(h(\alpha) = \meio{}\textnormal{ e }h(\beta) = \meio{})\tag*{(Matriz de $\to$)}\\
                         &\Longleftrightarrow (v(\alpha) = v(\beta) = v(\neg \beta) = 1\textnormal{ e }v(\neg \alpha) = 0)\textnormal{ ou }\\&(v(\alpha) = v(\neg \alpha) = v(\beta) = v(\neg \beta) = 1)\tag*{(HI)}\\
                         &\Longleftrightarrow v(\alpha \to \beta) = v(\neg (\alpha \to \beta)) = 1\textnormal{ e }\\&v(\alpha \to \beta) = v(\neg (\alpha \to \beta)) = 1\tag*{($(vImp)$\textnormal{ ou }$(vCip)$)}\\
-                        &\Longleftrightarrow v(\phi) = v(\alpha \to \beta) = 1\textnormal{ e }v(\neg \phi) = v(\neg (\alpha \to \beta)) = 1\tag*{(Idemp $\lor$)}
+                        &\Longleftrightarrow v(\phi) = v(\alpha \to \beta) = 1\textnormal{ e }v(\neg \phi) = v(\neg (\alpha \to \beta)) = 1\tag*{(Idemp. $\lor$)}
                     \end{align*}
                         
                 \subcasodeprova{$h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 0$ sse $v(\phi) = v(\alpha \to \beta) = 0$.}
