@@ -808,14 +808,11 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \begin{provaporcasos}
                 
                 \casodeprova{} $\phi_{1}$ é um axioma. Então vamos mostrar que para toda valoração $h : \ling{} \to M$ sobre $\mat{}$, se $h[\Gamma] \subseteq \ummeio{}$, então $h(\phi_{1}) \in \ummeio{}$. Como $\phi_{1}$ é um axioma, basta analisar todos os casos possíveis:
-
-                \helena{MUDAR ISSO PRA LONGTABLE}
                 \begin{provaporsubcasos}
                     \subcasodeprova{} $\phi_{1} = \alpha \to (\beta \to \alpha)$
                         \begin{center}
                             \setbool{@fleqn}{false}
-                            \[
-                                \begin{array}{|c|c|c|}%chktex 44
+                                \begin{longtable}{| C | C | C |}%chktex 44
                                     \hline%chktex 44
                                     \alpha      & \beta & \alpha \to (\beta \to \alpha)  \\
                                     \hline%chktex 44
@@ -829,58 +826,55 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                     0            & \meio{}  &    1\\
                                     0            & 0            &    1\\
                                     \hline%chktex 44
-                                \end{array}
-                            \]
+                                \end{longtable}
                         \end{center}
 
                     \subcasodeprova{} $\phi_{1} = (\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma ))$.
                     
-                        \begin{center}
-                            \setbool{@fleqn}{false}
-                            \[
-                                \begin{array}{|c|c|c|c|}%chktex 44
-                                    \hline%chktex 44
-                                    \alpha      & \beta & \gamma & (\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma)) \\
-                                    \hline%chktex 44
-                                    1           & 1           & 1           & 1 \\
-                                    1           & 1           & \meio{} & \meio{} \\
-                                    1           & 1           & 0           & 1 \\
-                                    1           & \meio{} & 1           & 1 \\
-                                    1           & \meio{} & \meio{} & \meio{} \\
-                                    1           & \meio{} & 0           & \meio{} \\
-                                    1           & 0           & 1           & 1 \\
-                                    1           & 0           & \meio{} & 1 \\
-                                    1           & 0           & 0           & 1 \\
-                                    \meio{} & 1           & 1           & 1 \\
-                                    \meio{} & 1           & \meio{} & \meio{} \\
-                                    \meio{} & 1           & 0           & \meio{} \\
-                                    \meio{} & \meio{} & 1           & 1 \\
-                                    \meio{} & \meio{} & \meio{} & \meio{} \\
-                                    \meio{} & \meio{} & 0           & \meio{} \\
-                                    \meio{} & 0           & 1           & 1 \\
-                                    \meio{} & 0           & \meio{} & \meio{} \\
-                                    \meio{} & 0           & 0           & \meio{} \\
-                                    0           & 1           & 1           & 1 \\
-                                    0           & 1           & \meio{} & 1 \\
-                                    0           & 1           & 0           & 1 \\
-                                    0           & \meio{} & 1           & 1 \\
-                                    0           & \meio{} & \meio{} & 1 \\
-                                    0           & \meio{} & 0           & 1 \\
-                                    0           & 0           & 1           & 1 \\
-                                    0           & 0           & \meio{} & 1 \\
-                                    0           & 0           & 0           & 1 \\
-                                    \hline%chktex 44
-                                \end{array}
-                            \]
-                        \end{center}
+
+                    \begin{center}
+
+                        \begin{longtable}{| C | C | C | C |}
+                            \hline
+                            \alpha      & \beta       & \gamma      & (\alpha \to (\beta \to \gamma)) \to ((\alpha \to \beta) \to (\alpha \to \gamma)) \\
+                            \hline
+                            1           & 1           & 1           & 1 \\
+                            1           & 1           & \meio{}     & \meio{} \\
+                            1           & 1           & 0           & 1 \\
+                            1           & \meio{}     & 1           & 1 \\
+                            1           & \meio{}     & \meio{}     & \meio{} \\
+                            1           & \meio{}     & 0           & \meio{} \\
+                            1           & 0           & 1           & 1 \\
+                            1           & 0           & \meio{}     & 1 \\
+                            1           & 0           & 0           & 1 \\
+                            \meio{}     & 1           & 1           & 1 \\
+                            \meio{}     & 1           & \meio{}     & \meio{} \\
+                            \meio{}     & 1           & 0           & \meio{} \\
+                            \meio{}     & \meio{}     & 1           & 1 \\
+                            \meio{}     & \meio{}     & \meio{}     & \meio{} \\
+                            \meio{}     & \meio{}     & 0           & \meio{} \\
+                            \meio{}     & 0           & 1           & 1 \\
+                            \meio{}     & 0           & \meio{}     & \meio{} \\
+                            \meio{}     & 0           & 0           & \meio{} \\
+                            0           & 1           & 1           & 1 \\
+                            0           & 1           & \meio{}     & 1 \\
+                            0           & 1           & 0           & 1 \\
+                            0           & \meio{}     & 1           & 1 \\
+                            0           & \meio{}     & \meio{}     & 1 \\
+                            0           & \meio{}     & 0           & 1 \\
+                            0           & 0           & 1           & 1 \\
+                            0           & 0           & \meio{}     & 1 \\
+                            0           & 0           & 0           & 1 \\
+                            \hline
+                        \end{longtable}
+                    \end{center}
                     
 
                     \subcasodeprova{} $\phi_{1} = \alpha \to (\beta \to (\alpha \land \beta))$. 
-
                     \begin{center}
                         \setbool{@fleqn}{false}
-                        \[
-                            \begin{array}{|c|c|c|}%chktex 44
+                        
+                            \begin{longtable}{| C | C | C |}%chktex 44
                                 \hline%chktex 44
                                 \alpha      & \beta & \alpha \to (\beta \to (\alpha \land \beta)) \\
                                 \hline%chktex 44
@@ -894,19 +888,14 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 0&\meio{}&1\\
                                 0&0&1\\
                                 \hline%chktex 44
-                            \end{array}
-                        \]
+                            \end{longtable}
                     \end{center}
 
-                    
-
-                    \subcasodeprova{} $\phi_{1} = (\alpha \land \beta) \to \alpha$. 
-
-
+                    \subcasodeprova{} $\phi_{1} = (\alpha \land \beta) \to \alpha$.
                     \begin{center}
                         \setbool{@fleqn}{false}
-                        \[
-                            \begin{array}{|c|c|c|}%chktex 44
+                        
+                            \begin{longtable}{| C | C | C |}%chktex 44
                                 \hline%chktex 44
                                 \alpha      & \beta & (\alpha \land \beta) \to \alpha \\
                                 \hline%chktex 44
@@ -920,17 +909,14 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 0 & \meio{} &1\\
                                 0 & 0 &1\\
                                 \hline%chktex 44
-                            \end{array}
-                        \]
+                            \end{longtable}
                     \end{center}
-                    
 
                     \subcasodeprova{} $\phi_{1} = (\alpha \land \beta) \to \beta$.
-
                     \begin{center}
                         \setbool{@fleqn}{false}
-                        \[
-                            \begin{array}{|c|c|c|}%chktex 44
+                        
+                            \begin{longtable}{| C | C | C |}%chktex 44
                                 \hline%chktex 44
                                 \alpha      & \beta & (\alpha \land \beta) \to \beta \\
                                 \hline%chktex 44
@@ -944,16 +930,15 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 0 & \meio{} & 1\\
                                 0 & 0 & 1\\
                                 \hline%chktex 44
-                            \end{array}
-                        \]
+                            \end{longtable}
+                        
                     \end{center}
 
                     \subcasodeprova{} $\phi_{1} = \alpha \to (\alpha \lor \beta)$. 
-
                     \begin{center}
                         \setbool{@fleqn}{false}
-                        \[
-                            \begin{array}{|c|c|c|}%chktex 44
+                        
+                            \begin{longtable}{| C | C | C |}%chktex 44
                                 \hline%chktex 44
                                 \alpha      & \beta & \alpha \to (\alpha \lor \beta) \\
                                 \hline%chktex 44
@@ -967,16 +952,15 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 0 & \meio{} &1\\
                                 0 & 0 &1\\
                                 \hline%chktex 44
-                            \end{array}
-                        \]
+                            \end{longtable}
+                        
                     \end{center}
                     
-                    \subcasodeprova{} $\phi_{1} = \beta \to (\alpha \lor \beta)$.
-
+                    \subcasodeprova{} $\phi_{1} = \beta \to (\alpha \lor \beta)$.=
                     \begin{center}
                         \setbool{@fleqn}{false}
-                        \[
-                            \begin{array}{|c|c|c|}%chktex 44
+                        
+                            \begin{longtable}{| C | C | C |}%chktex 44
                                 \hline%chktex 44
                                 \alpha      & \beta & \beta \to (\alpha \lor \beta) \\
                                 \hline%chktex 44
@@ -990,16 +974,15 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 0 & \meio{} &\meio{}\\
                                 0 & 0 &1\\
                                 \hline%chktex 44
-                            \end{array}
-                        \]
+                            \end{longtable}
+                        
                     \end{center}
 
                     \subcasodeprova{} $\phi_{1} = (\alpha \to \gamma) \to ((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma))$. 
-
                     \begin{center}
                         \setbool{@fleqn}{false}
-                        \[
-                            \begin{array}{|c|c|c|c|}%chktex 44
+                        
+                            \begin{longtable}{| C | C | C | C |}%chktex 44
                                 \hline%chktex 44
                                 \alpha      & \beta & \gamma & (\alpha \to \gamma) \to ((\beta \to \gamma) \to ((\alpha \lor \beta) \to \gamma)) \\
                                 \hline%chktex 44
@@ -1031,18 +1014,16 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 0 & 0 & \meio{} &1\\
                                 0 & 0 & 0 &1\\
                                 \hline%chktex 44
-                            \end{array}
-                        \]
+                            \end{longtable}
+                        
                     \end{center}
 
                     
                         
                     \subcasodeprova{} $\phi_{1} = (\alpha \to \beta) \lor \alpha$. 
-
                     \begin{center}
                         \setbool{@fleqn}{false}
-                        \[
-                            \begin{array}{|c|c|c|}%chktex 44
+                            \begin{longtable}{| C | C | C |}%chktex 44
                                 \hline%chktex 44
                                 \alpha      & \beta & (\alpha \to \beta) \lor \alpha \\
                                 \hline%chktex 44
@@ -1056,8 +1037,8 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 0 & \meio{} & 1\\
                                 0 & 0 & 1\\
                                 \hline%chktex 44
-                            \end{array}
-                        \]
+                            \end{longtable}
+                        
                     \end{center}
                         
 
@@ -1065,8 +1046,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
                     \begin{center}
                         \setbool{@fleqn}{false}
-                        \[
-                            \begin{array}{|c|c|c|}%chktex 44
+                            \begin{longtable}{| C | C | C |}%chktex 44
                                 \hline%chktex 44
                                 \alpha      & \neg \alpha & \alpha \lor \neg \alpha \\
                                 \hline%chktex 44
@@ -1074,19 +1054,17 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 \meio{} & \meio{} & \meio{}\\
                                 0 & 1 & 1\\
                                 \hline%chktex 44
-                            \end{array}
-                        \]
+                            \end{longtable}
+                        
                     \end{center}
                     
                     
 
                     \subcasodeprova{} $\phi_{1} = \circ \alpha \to (\alpha \to (\neg \alpha \to \beta))$. 
-
-
                     \begin{center}
                         \setbool{@fleqn}{false}
-                        \[
-                            \begin{array}{|c|c|c|c|c|}%chktex 44
+                        
+                            \begin{longtable}{| C | C | C | C | C |}%chktex 44
                                 \hline%chktex 44
                                 \alpha      & \neg \alpha &\circ \alpha & \beta & \circ \alpha \to (\alpha \to (\neg \alpha \to \beta)) \\
                                 \hline%chktex 44
@@ -1100,17 +1078,16 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 0 & 1 & 1 & \meio{} & 1 \\
                                 0 & 1 & 1 & 0 & 1 \\
                                 \hline%chktex 44
-                            \end{array}
-                        \]
+                            \end{longtable}
+                        
                     \end{center}
                     
                     
                     \subcasodeprova{} $\phi_{1} = \neg \neg \alpha \to \alpha$. 
-
                     \begin{center}
                         \setbool{@fleqn}{false}
-                        \[
-                            \begin{array}{|c|c|c|}%chktex 44
+                        
+                            \begin{longtable}{| C | C | C |}%chktex 44
                                 \hline%chktex 44
                                 \alpha      & \neg \neg \alpha & \neg \neg \alpha \to \alpha \\
                                 \hline%chktex 44
@@ -1118,17 +1095,16 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 \meio{} & \meio{} & \meio{}\\
                                 0 & 0 & 1\\
                                 \hline%chktex 44
-                            \end{array}
-                        \]
+                            \end{longtable}
+                        
                     \end{center}
                         
                     
                     \subcasodeprova{} $\phi_{1} = \alpha \to \neg \neg \alpha$. 
-                    
                     \begin{center}
                         \setbool{@fleqn}{false}
-                        \[
-                            \begin{array}{|c|c|c|}%chktex 44
+                        
+                            \begin{longtable}{| C | C | C |}%chktex 44
                                 \hline%chktex 44
                                 \alpha      & \neg \neg \alpha &  \alpha \to \neg \neg \alpha\\
                                 \hline%chktex 44
@@ -1136,17 +1112,15 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 \meio{} & \meio{} & \meio{}\\
                                 0 & 0 & 1\\
                                 \hline%chktex 44
-                            \end{array}
-                        \]
+                            \end{longtable}
                     \end{center}
                     
                     
                     \subcasodeprova{} $\phi_{1} = \neg \circ \alpha \to (\alpha \land \neg \alpha)$. 
-
                     \begin{center}
                         \setbool{@fleqn}{false}
-                        \[
-                            \begin{array}{|c|c|c|c|}%chktex 44
+                        
+                            \begin{longtable}{| C | C | C | C |}%chktex 44
                                 \hline%chktex 44
                                 \alpha      & \neg \alpha & \neg \circ \alpha & \neg \circ \alpha \to (\alpha \land \neg \alpha)\\
                                 \hline%chktex 44
@@ -1154,17 +1128,16 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 \meio{} & \meio{} & 1&\meio{}\\
                                 0 & 1 & 0&1\\
                                 \hline%chktex 44
-                            \end{array}
-                        \]
+                            \end{longtable}
+                        
                     \end{center}
                 
 
                     \subcasodeprova{} $\phi_{1} = \neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta)$. 
-
                     \begin{center}
                         \setbool{@fleqn}{false}
-                        \[
-                            \begin{array}{|c|c|c|}%chktex 44
+                        
+                            \begin{longtable}{| C | C | C |}%chktex 44
                                 \hline%chktex 44
                                 \alpha      & \beta & \neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta) \\
                                 \hline%chktex 44
@@ -1178,18 +1151,17 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 0 & \meio{} & \meio{}\\
                                 0 & 0 & 1\\
                                 \hline%chktex 44
-                            \end{array}
-                        \]
+                            \end{longtable}
+                        
                     \end{center}
                     
                     
 
                     \subcasodeprova{} $\phi_{1} = (\neg \alpha \land \neg \beta) \to \neg (\alpha \lor \beta)$.
-
                     \begin{center}
                         \setbool{@fleqn}{false}
-                        \[
-                            \begin{array}{|c|c|c|}%chktex 44
+                        
+                            \begin{longtable}{| C | C | C |}%chktex 44
                                 \hline%chktex 44
                                 \alpha      & \beta & (\neg \alpha \land \neg \beta) \to \neg (\alpha \lor \beta) \\
                                 \hline%chktex 44
@@ -1203,17 +1175,15 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 0 & \meio{} & \meio{}\\
                                 0 & 0 & 1\\
                                 \hline%chktex 44
-                            \end{array}
-                        \]
+                            \end{longtable}
+                        
                     \end{center}
 
                     \subcasodeprova{} $\phi_{1} = \neg(\alpha \land \beta) \to (\neg \alpha \lor \neg \beta)$. 
-
-    
                     \begin{center}
                         \setbool{@fleqn}{false}
-                        \[
-                            \begin{array}{|c|c|c|}%chktex 44
+                        
+                            \begin{longtable}{| C | C | C |}%chktex 44
                                 \hline%chktex 44
                                 \alpha      & \beta & \neg(\alpha \land \beta) \to (\neg \alpha \lor \neg \beta) \\
                                 \hline%chktex 44
@@ -1227,18 +1197,17 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 0 & \meio{} & 1\\
                                 0 & 0 & 1\\
                                 \hline%chktex 44
-                            \end{array}
-                        \]
+                            \end{longtable}
+                        
                     \end{center}
                     
                 
 
                     \subcasodeprova{} $\phi_{1} = (\neg \alpha \lor \neg \beta) \to \neg (\alpha \land \beta)$. 
-    
                     \begin{center}
                         \setbool{@fleqn}{false}
-                        \[
-                            \begin{array}{|c|c|c|}%chktex 44
+                        
+                            \begin{longtable}{| C | C | C |}%chktex 44
                                 \hline%chktex 44
                                 \alpha      & \beta & (\neg \alpha \lor \neg \beta) \to \neg (\alpha \land \beta) \\
                                 \hline%chktex 44
@@ -1252,16 +1221,15 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 0 & \meio{} & 1\\
                                 0 & 0 & 1\\
                                 \hline%chktex 44
-                            \end{array}
-                        \]
+                            \end{longtable}
+                        
                     \end{center}
 
                     \subcasodeprova{} $\phi_{1} = \neg (\alpha \to \beta) \to(\alpha \land \neg \beta)$. 
-
                     \begin{center}
                         \setbool{@fleqn}{false}
-                        \[
-                            \begin{array}{|c|c|c|}%chktex 44
+                        
+                            \begin{longtable}{| C | C | C |}%chktex 44
                                 \hline%chktex 44
                                 \alpha      & \beta & \neg (\alpha \to \beta) \to(\alpha \land \neg \beta) \\
                                 \hline%chktex 44
@@ -1275,17 +1243,16 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 0 & \meio{} & 1\\
                                 0 & 0 & 1\\
                                 \hline%chktex 44
-                            \end{array}
-                        \]
+                            \end{longtable}
+                        
                     \end{center}
                 
 
                     \subcasodeprova{} $\phi_{1} = (\alpha \land \neg \beta) \to \neg(\alpha \to \beta)$.
-
                     \begin{center}
                         \setbool{@fleqn}{false}
-                        \[
-                            \begin{array}{|c|c|c|}%chktex 44
+                        
+                            \begin{longtable}{| C | C | C |}%chktex 44
                                 \hline%chktex 44
                                 \alpha      & \beta & (\alpha \land \neg \beta) \to \neg(\alpha \to \beta) \\
                                 \hline%chktex 44
@@ -1299,8 +1266,8 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 0 & \meio{} & 1\\
                                 0 & 0 & 1\\
                                 \hline%chktex 44
-                            \end{array}
-                        \]
+                            \end{longtable}
+                        
                     \end{center}
                     
                 \end{provaporsubcasos}
