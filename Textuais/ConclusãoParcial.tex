@@ -1,23 +1,27 @@
 \chapter{Conclusões Parciais}\label{chap:conclusao}
 
-O estudo de lógicas paraconsistentes mostra-se relevante para o desenvolvimento de \textit{softwares} capazes de lidar com informações contraditórias. Dentro desta família de lógicas, os sistemas de inconsistência formal destacam-se no contexto de bases de dado {---} sobretudo bases evolucionárias {---} já que internalizam o conceito de contraditoriedade dentro da sua linguagem.
+O estudo de lógicas paraconsistentes mostra-se relevante para o desenvolvimento de \textit{softwares} capazes de lidar com informações contraditórias. Dentro desta família de lógicas, os sistemas de inconsistência formal destacam-se no contexto de bases de dados {---} sobretudo bases evolucionárias {---} já que internalizam o conceito de contraditoriedade dentro da sua linguagem. A \lfium{} é uma lógica de inconsistência formal com propriedades que facilitam o desenvolvimento de sistemas de gerenciamento de bancos de dados. 
 
-A \lfium{} é uma lógica de inconsistência formal com propriedades que facilitam o desenvolvimento de sistemas de gerenciamento de bancos de dados. Com isso, o presente trabalho define a linguagem, sintaxe e semântica da \lfium{}, além de revisar e desenvolver manualmente metateoremas que evidenciam características deste sistema, como a correção, completude e o metateorema da dedução.
+Assistentes de provas são ferramentas de \textit{software} que permitem ao usuário provar teoremas sobre objetos expressos dentro de si, sem que a verificação destas provas dependa de um julgamento humano para garantir sua validade. O Coq é um assistente de provas, bem como uma linguagem de programação, robusto e com um núcleo axiomático enxuto, que possui aplicações em diferentes áreas da matemática, como lógica, linguagens formais, linguística computacional e desenvolvimento de programas seguros~\cite{coqart}.
 
-Sendo assim, no que segue, é apresentada uma lista de itens que propõem-se serem explorados no TCC2, juntamente com um cronograma para a execução de cada item. Os objetivos explorados no TCC2 serão todos desenvolvidos no assistente de provas Coq.
+O presente trabalho define a linguagem, sintaxe e semântica da \lfium{}, além de revisar e desenvolver manualmente metateoremas que evidenciam características deste sistema, como a correção, completude e o metateorema da dedução, servindo como base para o prosseguimento do TCC2, no qual propõe-se implementar uma biblioteca da lógica \lfium{} em Coq e provar metapropriedades desta lógica dentro do assistente.
+
+Sendo assim, no que segue, é apresentada uma lista de itens que propõem-se serem explorados no TCC2, juntamente com um cronograma para a execução de cada item.
 
 \begin{enumerate}
-    \item Definir a linguagem da \lfium{};
+    \item Definir a linguagem da \lfium{} na biblioteca;
     \item Implementar a sintaxe (cálculo de Hilbert) da \lfium{};
     \item Implementar os sistemas semânticos (matricial e bivaloração) da \lfium{};
-    \item Desenvolver metateoremas da \lfium{}.
+    \item Desenvolver metateoremas da \lfium{} na biblioteca.
 \end{enumerate}
+
+  \setcounter{table}{1}
 
   \begin{table}[htbp]
     \centering
     \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
       \hline
-      \multirow{2}{*}{\textbf{\small{Etapas}}} & \textbf{\small{2024/1}} & \multicolumn{6}{c|}{\textbf{\small{2024/2}}} \\
+      \multirow{2}{*}{\textbf{\small{Item}}} & \textbf{\small{2024/1}} & \multicolumn{6}{c|}{\textbf{\small{2024/2}}} \\
       \cline{2-8}
       & \textbf{Dez} & \textbf{Jan} & \textbf{Fev} & \textbf{Mar} & \textbf{Abr} & \textbf{Maio} & \textbf{Jun} \\
       \hline
@@ -32,4 +36,3 @@ Sendo assim, no que segue, é apresentada uma lista de itens que propõem-se ser
     \end{tabular}
     \caption{Cronograma Proposto para o TCC2}
   \end{table}
-\helena{ARRUMAR REFERENCIAS}
