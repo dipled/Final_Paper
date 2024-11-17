@@ -11,9 +11,9 @@ Definir uma lógica que consiga superar o tabu da \textit{explosividade} e, ao m
 
 Neste capítulo, são apresentadas algumas definições necessárias para caracterizar as lógicas de inconsistência formal, baseadas em~\citeshort{Carnielli_Coniglio_2016} e em~\citeshort{carnielli2007}. Antes de definir as \lfis{} é preciso apresentar alguns conceitos básicos acerca de sistemas lógicos paraconsistentes.
 
-Ademais, o presente trabalho segue o mesmo caminho de~\citeshort{Carnielli_Coniglio_2016}, baseando-se na teoria geral de relações de consequências para definir \textit{lógicas tarskianas}. Neste sentido, como a lógica \lfium{} se trata de uma \textit{lógica tarskiana}, o presente trabalho se restringe a trabalhar somente neste escopo. 
+Ademais, o presente trabalho segue o mesmo caminho de~\citeshort{Carnielli_Coniglio_2016}, baseando-se na teoria geral de relações de consequências para definir \textit{lógicas Tarskianas}. Neste sentido, como a lógica \lfium{} se trata de uma \textit{lógica Tarskiana}, o presente trabalho se restringe a trabalhar somente neste escopo. 
 
-Nas Seções~\ref{sec:paracons} e~\ref{sec:incons}, serão apresentadas definições necessárias para identificar formalmente as lógicas paraconsistentes e lógicas de inconsistência formal. Estas definições se aplicam tanto a relações de consequência semântica quanto a relações de consequência sintática, denotadas genericamente pelo operador $\Vdash$. Este trabalho não se aprofunda em detalhes sobre conceitos envolvendo relações e operações de consequência, suas propriedades e as diferenças entre abordagens prova-teóricas modelo-teóricas. O leitor interessado em tais assuntos pode consultar os trabalhos de Wójcicki~(\citeyear{Wojcicki1984-WJCLOP,Wojcicki1988-WOJAAT,Wojcicki1988-WOJTOL}) e~\citeshort{analysis_and_synthesis_of_logic}.
+Nas Seções~\ref{sec:paracons} e~\ref{sec:incons}, serão apresentadas definições necessárias para identificar formalmente as lógicas paraconsistentes e lógicas de inconsistência formal. Estas definições se aplicam tanto a relações de consequência semântica quanto a relações de consequência sintática, denotadas genericamente pelo operador $\Vdash$. Este trabalho não se aprofunda em detalhes sobre conceitos envolvendo relações e operações de consequência, suas propriedades ou as diferenças entre abordagens prova-teóricas e modelo-teóricas. O leitor interessado em tais assuntos pode consultar os trabalhos de Wójcicki~(\citeyear{Wojcicki1984-WJCLOP,Wojcicki1988-WOJAAT,Wojcicki1988-WOJTOL}) e~\citeshort{analysis_and_synthesis_of_logic}.
 
 \section{Paraconsistência}\label{sec:paracons}
     Um sistema lógico que se atreve a romper com o princípio da explosão {---} o qual afirma que a partir de uma teoria contraditória, qualquer conclusão segue {---} é dito paraconsistente. As justificativas para questionar tal princípio existem em diversos campos do conhecimento, como na linguística~\cite{McGinnis2013-MCGTUA}, na computação~\cite{carnielli2000formal} e até mesmo nas ciências naturais~\cite{Brown2015-BROCAP-9}. Outra justificativa para o desenvolvimento de sistemas lógicos paraconsistentes é um descontentamento com o caráter explosivo das lógicas ortodoxas. Por exemplo, uma discordância de que a partir da evidência de que ``Choveu na tarde de ontem.'' e da evidência de que ``Não choveu na tarde de ontem.'' pode-se concluir que ``Um triângulo tem quatro lados.''~\footnote{Esta forma de explosividade é um exemplo de uma contradição estudada pelas lógicas de relevância, que tratam da conexão entre as premissas e a conclusão de uma inferência~\cite{sep-logic-relevance}.}. Nesta seção, a paraconsistência será definida formalmente, partindo de definições básicas sobre lógica e classificando diferentes sistemas de acordo com propriedades acerca de sua \textit{relação de consequência}.
@@ -35,6 +35,16 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons}, serão apresentadas definiç
         Um sistema lógico $\mathcal{L}$, definido sobre uma linguagem $\pazocal{L}_{\Theta}$ é dito proposicional caso $\pazocal{L}_{\Theta}$ seja definida a partir de um conjunto enumerável de átomos $\pazocal{P} = \{p_{i} \;| \; i \in \mathbb{N} \}$ e uma assinatura proposicional $\Theta$. A linguagem $\pazocal{L}_{\Theta}$ é chamada de linguagem proposicional. Escreveremos $\pazocal{L}$ caso a assinatura da linguagem seja irrelevante ou possa ser inferida sem ambiguidade a partir do contexto.\qed{}% (Já que você já estava fazendo isso, adicionei um comentário na definição.)\qed{}
     \end{definicao}
 
+    No exemplo da lógica proposicional clássica, sua linguagem pode ser definida como segue:
+
+    \begin{definicao}[Linguagem da LPC]
+        A linguagem $\pazocal{L}_{\Theta_{LPC}}$ da LPC é definida indutivamente como o menor conjunto a que respeita as seguintes regras:\label{def:ling}
+        \begin{align*}
+            & \text{1.~}\pazocal{P} \subseteq \pazocal{L}_{\Theta_{LPC}}                                                                                                                        \\
+            & \text{2.~Se } \phi \in \pazocal{L}_{\Theta_{LPC}}, \text{então } \neg  \phi \in \pazocal{L}_{\Theta_{LPC}}                           \\
+            & \text{3.~Se } \phi, \psi \in \pazocal{L}_{\Theta_{LPC}}, \text{então } \phi \otimes \psi \in \pazocal{L}_{\Theta_{LPC}}, \text{com } \otimes \in \{\land, \lor, \to\} \tag*\qed
+        \end{align*}
+    \end{definicao}
 
     No desenvolvimento de metateoremas sobre propriedades de uma determinada lógica, a indução na complexidade de uma fórmula é um método comum de prova. Para isso, dada uma lógica $\mathcal{L}$ sobre uma linguagem $\pazocal{L}$, define-se uma função recursiva $C(\phi) : \pazocal{L} \to \mathbb{N}$ que retorna, para uma dada fórmula, um número natural representando sua complexidade, baseada na quantidade de operadores e átomos:
 
@@ -59,11 +69,8 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons}, serão apresentadas definiç
         Uma fórmula $\alpha$ é dita \textit{instância de substituição} de uma fórmula $\beta$ caso exista uma substituição $\sigma$ tal que $\alpha = \sigma(\beta)$.\qed{}
     \end{definicao}
 
-    \begin{notacao}
-        Dada uma função $f : A \to B$ e um conjunto $A' \subseteq A$, $f[A']$ denota o conjunto $\{f(a) \; | \; a \in A'\}$.
-    \end{notacao}
-
-
+    Uma lógica Tarksiana é uma lógica que goza das propriedades da reflexividade, monotonicidade e corte, definida formalmente como segue:
+    
     \begin{definicao}[Lógica Tarskiana]\label{def:tarski}
         Uma lógica $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$ e munida com uma relação de consequência $\Vdash$ é dita \textit{Tarskiana} caso satisfaça as seguintes propriedades para todo $\Gamma \cup \Delta \cup \{\alpha\} \subseteq \pazocal{L}$:
         \begin{align}
@@ -73,9 +80,14 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons}, serão apresentadas definiç
             &\tag*\qed{}
         \end{align}
     \end{definicao}
-
-    Com a noção de substituição para lógicas proposicionais apresentada na Definição~\ref{def:substituicao}, é possível definir lógica \textit{padrão} como sendo uma lógica tarskiana, \textit{finitária} e \textit{estrutural}:
-
+    
+    A seguir, definiremos uma notação para a aplicação de uma função sobre um conjunto, similar a uma função \textit{map} em programação funcional.
+    \begin{notacao}
+        Dada uma função $f : A \to B$ e um conjunto $A' \subseteq A$, $f[A']$ denota o conjunto $\{f(a) \; | \; a \in A'\}$.
+    \end{notacao}
+    
+    Com a noção de substituição para lógicas proposicionais apresentada na Definição~\ref{def:substituicao}, é possível definir lógica \textit{padrão} como sendo uma lógica Tarskiana, \textit{finitária} e \textit{estrutural}:
+    
     \begin{definicao}[Lógica padrão]\label{def:padrao}
         Uma lógica proposicional $\mathcal{L}$ definida sobre uma linguagem proposicional $\pazocal{L}$ é dita \textit{estrutural} caso respeite a seguinte condição para todo $\Gamma \cup \Delta \cup \{\alpha\} \subseteq \pazocal{L}$:
         \begin{align*}
@@ -89,9 +101,9 @@ Nas Seções~\ref{sec:paracons} e~\ref{sec:incons}, serão apresentadas definiç
     
     \end{definicao}
 
-    Com isto, é possível definir formalmente o conceito de \textit{paraconsistência} para lógicas Tarskianas.
+    Com isto, definiremos formalmente o conceito de \textit{paraconsistência} para lógicas Tarskianas.
 
-    \begin{definicao}[Lógica Tarskiana paraconsistente]\label{def:tarskiana_paracons}
+    \begin{definicao}[Lógica Tarskiana paraconsistente]\label{def:Tarskiana_paracons}
         Uma lógica Tarskiana $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}$, é dita \textit{paraconsistente} se ela possuir uma negação\footnote{Esta negação pode ser primitiva (pertencente à assinatura da linguagem) ou definida a partir de outras fórmulas.} $\neg$ e existirem fórmulas $\alpha, \beta \in \pazocal{L}$ tal que $\alpha, \neg \alpha \nVdash \beta$.\qed{}
     \end{definicao}
 

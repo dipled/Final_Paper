@@ -1,10 +1,10 @@
 \chapter{A Lógica de Inconsistência Formal LFI1}\label{cap:LFI1}
 
-Com os avanços da internet no contexto do gerenciamento de bancos de dados, informações passaram a ser coletadas a partir de diferentes fontes que frequentemente se contradizem. Dada a existência das restrições de integridade {---} que impedem contradições {---} a atualização e manutenção de bancos de dados se torna um processo difícil~\cite{carnielli2000formal}. Portanto, uma lógica capaz de lidar com informações inconsistentes sem necessariamente sofrer com a trivialidade é de grande interesse. A lógica de inconsistência formal \lfium{} é capaz de lidar com contradições ao introduzir na sua assinatura o operador $\circ$ para representar a consistência, internalizando este conceito em sua linguagem. Uma informação é dita consistente caso ela e sua negação não sejam simultaneamente verdadeiras, ou seja, dada uma informação $\alpha$, sua consistência $\circ \alpha$ será equivalente a fórmula $\neg (\alpha \land \neg \alpha)$. Com a introdução deste novo operador, é possível lidar com a inconsistência de informações sem que trivialidade ocorra, já que {---} caso uma informação seja conhecidamente \textit{inconsistente}, ou seja, $\neg \circ \alpha$ {---} então ela se trata de uma contradição inofensiva, fruto do excesso de informações numa dada teoria. Com isso, na \lfium{}, o conjunto $\bigcirc(p)$ de fórmulas dependentes somente na variável $p$ (descrito na Definição~\ref{def:lfi}) assume forma $\{\circ p\}$.
+Com os avanços da internet no contexto do gerenciamento de bancos de dados, informações passaram a ser coletadas a partir de diferentes fontes que frequentemente se contradizem. Dada a existência das restrições de integridade {---} que impedem contradições {---} a atualização e manutenção de bancos de dados se torna um processo difícil~\cite{carnielli2000formal}. Portanto, uma lógica capaz de lidar com informações inconsistentes sem necessariamente sofrer com a trivialidade é de grande interesse. A lógica de inconsistência formal \lfium{} é capaz de lidar com contradições ao introduzir na sua assinatura o operador $\circ$ para representar a consistência, internalizando este conceito em sua linguagem. Uma informação é dita consistente caso ela e sua negação não sejam simultaneamente verdadeiras, ou seja, dada uma informação $\alpha$, sua consistência $\circ \alpha$ será verdade quando $\alpha$ for falsa ou $\neg \alpha$ for falsa. Com a introdução deste novo operador, é possível lidar com a inconsistência de informações sem que trivialidade ocorra, já que {---} caso uma informação seja conhecidamente \textit{inconsistente}, ou seja, $\neg \circ \alpha$ {---} então ela se trata de uma contradição inofensiva, fruto do excesso de informações numa dada teoria. Com isso, na \lfium{}, o conjunto $\bigcirc(p)$ de fórmulas dependentes somente na variável $p$ (descrito na Definição~\ref{def:lfi}) assume forma $\{\circ p\}$.
 
 No trabalho de~\citeshort{carnielli2000formal}, a lógica \textbf{LFI1*} é definida como uma extensão de primeira ordem da lógica proposicional \lfium{}. A motivação para definir-se uma lógica de inconsistência formal de primeira ordem vem da natureza das informações contidas em bancos de dados, estas que podem ser compreendidas como sentenças de primeira ordem fixas~\cite{Codd}, entretanto, o presente trabalho trata somente da lógica proposicional \lfium{}. Ademais,~\citeshort{carnielli2000formal} tomam o operador de \textit{inconsistência} (denotado por $\bullet$) como primitivo. Isto foi feito pois o foco era explorar a \lfium{} como uma ferramenta para lidar com inconsistências em bancos de dados, portanto tomar a inconsistência como primitiva era de grande interesse. Entretanto, no presente trabalho, será utilizada a definição apresentada em~\citeshort{Carnielli_Coniglio_2016}, onde a linguagem é definida utilizando o operador $\circ$ como primitivo. Isto salienta algumas propriedades interessantes da negação $\neg$, como a presença das leis de De Morgan, axiomatizadas na Seção~\ref{sec:axiomatizacao}.
 
-Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é apresentada a linguagem da lógica proposicional \lfium{} bem como definições necessárias para desenvolver as provas de metateoremas. A Seção~\ref{sec:axiomatizacao} contém uma breve explicação sobre sistemas de prova sintáticos e um cálculo de Hilbert para a \lfium{} é definido. Na Seção~\ref{sec:semantica}, a semântica da \lfium{} é definida a partir de matrizes lógicas e de uma semântica de valorações não determinística, assim como é provada a equivalência entre essas dois sistemas.
+Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é apresentada a linguagem da lógica proposicional \lfium{} bem como definições necessárias para desenvolver as provas de metateoremas. A Seção~\ref{sec:axiomatizacao} contém uma breve explicação sobre sistemas de prova sintáticos e um cálculo de Hilbert para a \lfium{} é definido. Na Seção~\ref{sec:semantica}, a semântica da \lfium{} é definida a partir de matrizes lógicas e de uma semântica de valorações não determinística. Finalmente, na Seção~\ref{sec:metateoremas}, são provados os metateoremas da dedução, correção, completude e a equivalência entre os diferentes sistemas semânticos apresentados.
 
 \section{Linguagem}\label{sec:linguagem}
     A lógica proposicional \lfium{} aqui apresentada é definida com base em~\citeshort{Carnielli_Coniglio_2016} sobre a linguagem $\ling{}$, que por sua vez é definida sobre um conjunto enumerável de átomos $\pazocal{P} = \{p_{n} \;|\; n \in \mathbb{N}\}$ e uma assinatura proposicional $\Sigma = \{\land^{2}, \lor^{2}, \to^{2}, \neg^{1}, \circ^{1}\}$. Como de costume, o conectivo $\land$ representa uma conjunção, $\lor$ representa uma disjunção, $\to$ representa uma implicação, $\neg$ representa uma negação e $\circ$ é o conectivo de consistência, definido de forma primitiva. No restante do texto a aridade destes conectivos será omitida. A linguagem $\ling{}$ da \lfium{} é definida da seguinte forma:
@@ -138,7 +138,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 \section{Semântica}\label{sec:semantica}
     De forma geral, a semântica é o estudo de como um sistema de símbolos (uma linguagem) internaliza informações, ou seja, é o estudo de como interpretar os símbolos de uma linguagem~\cite{brown2005encyclopedia}. Num sistema lógico, \textit{matrizes lógicas} são comumente usadas para estabelecer o comportamento esperado dos conectivos lógicos de sua assinatura. Outra forma de compreender a semântica de um sistema lógico é definir condições que caracterizam funções conhecidas como valorações, que define uma \textit{semântica de valorações}. Nesta seção, a semântica da \lfium{} será definida de duas formas distintas: a partir de uma \textit{matriz lógica} e a partir de uma \textit{semântica de valorações}. As definições e notações para os conceitos de \textit{álgebra} definidos aqui baseiam-se nos trabalhos de~\citeshort{Carnielli_Coniglio_2016},~\citeshort{Sikorski1966-SIKAOF} e~\citeshort{Rasiowa1963-RASTMO}.
     
-    \subsection{Semântica Matricial e Bivalorações}
+    \subsection{Semântica Matricial}
         Uma das formas de definir a semântica de uma lógica proposicional é definir uma \textit{matriz lógica} (também chamada de tabela-verdade) para os conectivos de sua assinatura proposicional. Para isso, é necessário definir o conceito de \textit{álgebra} para assinaturas proposicionais:
 
         \begin{definicao}[Álgebra para assinaturas proposicionais]\label{def:algebra}
@@ -157,7 +157,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             Seja $\Theta$ uma assinatura proposicional. Uma \textit{matriz lógica} $\pazocal{M}$ definida sobre $\Theta$ é uma tripla $\pazocal{M} = \langle A, D, O \rangle$, tal que o par $\langle A, O \rangle$ é uma álgebra para $\Theta$ e $D$ é um subconjunto de $A$ cujos elementos são ditos \textit{designados} (estes são elementos de $A$ considerados como verdadeiros).\qed{}
         \end{definicao}
 
-        Com isso, uma matriz lógica $\pazocal{M} = \langle A, D, O \rangle$ induz uma relação de consequência semântica para uma lógica tarskiana $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}_{\Theta}$, da seguinte forma: sendo $\Gamma \cup \{\alpha\} \in \pazocal{L}_{\Theta}$, tem-se $\Gamma \vDash_{\pazocal{M}} \alpha$ sse, para todo homomorfismo $h : \pazocal{L}_{\Theta} \to A$, se $h[\Gamma] \subseteq D$, então $h(\alpha) \in D$. Em particular, $\alpha$ é uma tautologia em $\mathcal{L}$ sse $h(\alpha) \in D$ para todo homomorfismo $h$. Perceba que o homomorfismo $h$ nada mais é do que uma função que associa fórmulas da linguagem $\pazocal{L}_{\Theta}$ a valores do domínio $A$ da matriz $\pazocal{M}$. Desta forma, $h$ é dito uma \textit{valoração} sobre $\pazocal{M}$.
+        Com isso, uma matriz lógica $\pazocal{M} = \langle A, D, O \rangle$ induz uma relação de consequência semântica para uma lógica Tarskiana $\mathcal{L}$, definida sobre uma linguagem $\pazocal{L}_{\Theta}$, da seguinte forma: sendo $\Gamma \cup \{\alpha\} \in \pazocal{L}_{\Theta}$, tem-se $\Gamma \vDash_{\pazocal{M}} \alpha$ sse, para todo homomorfismo $h : \pazocal{L}_{\Theta} \to A$, se $h[\Gamma] \subseteq D$, então $h(\alpha) \in D$. Em particular, $\alpha$ é uma tautologia em $\mathcal{L}$ sse $h(\alpha) \in D$ para todo homomorfismo $h$. Perceba que o homomorfismo $h$ nada mais é do que uma função que associa fórmulas da linguagem $\pazocal{L}_{\Theta}$ a valores do domínio $A$ da matriz $\pazocal{M}$. Desta forma, $h$ é dito uma \textit{valoração} sobre $\pazocal{M}$.
 
 
        Uma lógica que apresenta três elementos no domínio de sua matriz lógica é dita \textit{trivalorada}. Algumas lógicas trivaloradas introduzem um terceiro valor além da verdade e falsidade para representar uma informação desconhecida, como é o caso da lógica de Kleene~\cite{manyvalued}. A \lfium{}, por sua vez, introduz o valor $\meio{}$ além dos valores clássicos $0$ e $1$ para representar uma informação inconsistente. Ou seja, caso $\alpha$ tenha o valor $\meio{}$, então $\neg \alpha$ também terá o valor $\meio{}$.
@@ -270,7 +270,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             
         \end{proof}
 
-        
+        \subsection{Bivalorações}
         Outra forma de definir a relação de consequência semântica de uma lógica é descrever uma semântica de valorações, esta que define um conjunto de cláusulas condicionais sobre funções~\cite{DaCosta1977-NEWASA-3}. Quando uma função respeita estas cláusulas, ela é chamada de valoração para a lógica.
 
         \begin{definicao} [Semântica de valorações para \textbf{$\text{LFI1}$}]\label{def:valoracoes}
@@ -320,301 +320,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 \section{Metateoremas}\label{sec:metateoremas}
     A metalógica é uma área da matemática que estuda sistemas lógicos, desenvolvendo metateoremas~\cite{Jacquette2002-JACACT-7}. Um metateorema é uma prova sobre propriedades de um sistema formal, sobretudo sobre suas relações de consequência, utilizando uma metalinguagem~\cite{Tarski1956-TARLSM, Rasiowa1963-RASTMO, Barile_2024}. Estas propriedades são chamadas de \textit{metapropriedades}. 
     
-    Algumas metapropriedades importantes de serem provadas sobre um sistema lógico munido com uma relação de consequência sintática $\vdash$ e uma relação de consequência semântica $\vDash$ (como é o caso da \lfium{}) são a correção, que afirma que tudo que é derivável em $\vdash$ é válido em $\vDash$, e a completude, que afirma que tudo que é válido em $\vDash$ pode ser provado em $\vdash$. Outra metapropriedade relevante é a equivalência entre a semântica matricial e as bivalorações da \lfium{}, apresentados na Seção~\ref{sec:semantica}, já que ambos sistemas possuem suas particularidades e vantagens. Ademais, o metateorema da dedução (definido como $\Gamma, \alpha \vdash \beta \Longleftrightarrow \Gamma \vdash \alpha \to \beta$) é uma propriedade interessante que possibilita a obtenção de outros resultados pertinentes, como será evidenciado ao longo desta seção. Por fim, caracterizaremos a lógica \lfium{} como sendo uma lógica tarskiana, finitária e \lfi{} forte.
+    Algumas metapropriedades importantes de serem provadas sobre um sistema lógico munido com uma relação de consequência sintática $\vdash$ e uma relação de consequência semântica $\vDash$ (como é o caso da \lfium{}) são a correção, que afirma que tudo que é derivável em $\vdash$ é válido em $\vDash$, e a completude, que afirma que tudo que é válido em $\vDash$ pode ser provado em $\vdash$. Outra metapropriedade relevante é a equivalência entre a semântica matricial e as bivalorações da \lfium{}, apresentados na Seção~\ref{sec:semantica}, já que ambos sistemas possuem suas particularidades e vantagens. Ademais, o metateorema da dedução (definido como $\Gamma, \alpha \vdash \beta \Longleftrightarrow \Gamma \vdash \alpha \to \beta$) é uma propriedade interessante que possibilita a obtenção de outros resultados pertinentes, como será evidenciado ao longo desta seção. Caracterizaremos também a lógica \lfium{} como sendo uma lógica Tarskiana, finitária e \lfi{} forte.
     
     Os lemas e teoremas desenvolvidos nesta seção seguem um caminho baseado no que foi apresentado por~\citeshort{Carnielli_Coniglio_2016} e por~\citeshort{DaCosta1977-NEWASA-3}, com modificações para se adequarem ao presente trabalho.
 
-
-    \begin{lema}\label{lem:matval}
-        Seja $v$ uma valoração em $V^{\lfium}$, então existe uma valoração $h$ sobre $\pazocal{M}_{\lfium}$ tal que, para todo $\phi \in \ling{}$, $v(\phi) = 1$ sse $h(\phi) \in \{1, \meio{}\}$.
-    \end{lema}
-
-    \begin{proof}[Prova do Lema~\ref{lem:matval}]
-        Seja $v$ uma valoração em $V^{\lfium}$. Então, considere a valoração $h$ sobre $\pazocal{M}_{\lfium}$ tal que para toda variável proposicional $p$:
-        \begin{center}
-            \setbool{@fleqn}{false}
-            \begin{equation*}
-                h(p) =
-                \begin{cases}
-                  1\ \, \text{ sse } v(p) = 1 \text{ e } v(\neg p) = 0 \\
-                  \meio{} \text{ sse } v(p) = 1 \text{ e } v(\neg p) = 1 \\
-                  0\ \ \text{ sse } v(p) = 0
-                \end{cases}
-              \end{equation*}
-        \end{center}
-        
-        
-        Então, por indução na complexidade de uma fórmula $\phi \in \ling{}$, será provado o seguinte:
-        \begin{center}
-            \setbool{@fleqn}{false}
-            \begin{equation*}
-                h(\phi) =
-                \begin{cases}
-                    1\ \,  \text{ sse } v(\phi) = 1 \text{ e } v(\neg \phi) = 0 \\
-                    \meio{} \text{ sse } v(\phi) = 1 \text{ e } v(\neg \phi) = 1 \\
-                    0\ \  \text{ sse } v(\phi) = 0
-                \end{cases}
-            \end{equation*}
-        \end{center}
-        
-        \begin{notacao}
-            Antes de desenvolver o lema, convém estabelecer uma notação para as justificativas de cada passo da prova:
-
-            \begin{itemize}
-                \item (Matriz de $\triangle$) refere-se à matriz de um conectivo $\triangle \in \Sigma$ pertencente a $\pazocal{M}_{\lfium{}}$;
-                \item (HI) refere-se à aplicação da hipótese de indução;
-                \item (Dist. $\otimes, \oplus$) refere-se à aplicação da distributividade de $\otimes$ sobre $\oplus$, ou seja, a aplicação do teorema $a \otimes (b \oplus c) \Longleftrightarrow (a \otimes b) \oplus (a \otimes c)$;
-                \item (Idemp. $\otimes$) refere-se à aplicação da idempotência de $\otimes$, ou seja, a aplicação do teorema $a \otimes a \Longrightarrow a$.
-            \end{itemize}
-        \end{notacao}
-
-        \noindent \textbf{\textsc{Base.}} $C(\phi) = 1$.
-
-        Como $C(\phi) = 1$, temos $\phi \in \pazocal{P}$ pela Definição~\ref{def:complex_lfi1}. Com isso, a própria definição de $h$ prova o caso base.
-
-        
-        \noindent \textbf{\textsc{Passo.}} 
-
-        \noindent \textbf{\textsc{Hipótese de indução (HI):}} A propriedade vale para toda fórmula $\phi$ tal que $C(\phi) = k$, com $k < n$.
-
-        Vamos mostrar que a propriedade vale caso $C(\phi) = n$.
-
-        \begin{provaporcasos}
-            \casodeprova{} $\phi = \neg \alpha$.
-                
-                \begin{provaporsubcasos}
-                    \subcasodeprova{$h(\phi) = 1$ sse $v(\phi) = 1$ e $v(\neg \phi) = 0$.}
-                        
-                        ($\Longrightarrow$) Supondo $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 1$, vamos provar $v(\phi) = 1$ e $v(\neg \phi) = 0$. 
-                        
-                        Pela matriz de $\neg$ temos $h(\alpha) = 0$. Então, por (HI), $v(\alpha) = 0$. 
-                        
-                        Por $(vNeg)$ temos $v(\neg \alpha) = v(\phi) = 1$. Enfim, por $(vDNE)$, $v(\neg \phi) = v(\neg \neg \alpha) = v(\alpha) = 0$
-                        
-                        
-                        ($\Longleftarrow$) Supondo $v(\phi) = v(\neg \alpha) = 1$ e $v(\neg \phi) = v(\neg \neg \alpha) = 0$, vamos provar $h(\phi) = h(\neg \alpha) = 1$.
-                        
-                        Por $(vDNE)$ temos $v(\neg \neg \alpha) = v(\alpha) = 0$.
-                        
-                        Por (HI) temos $h(\alpha) = 0$. Então, $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 1$, pela matriz de $\neg$.
-                    
-                    \subcasodeprova{$h(\phi) = \meio{}$ sse $v(\phi) = 1$ e $v(\neg \phi) = 1$.}
-                    
-                        ($\Longrightarrow$) Supondo $h(\phi) = h(\neg \alpha) = \meio{}$, vamos provar $v(\phi) = 1$ e $v(\neg \phi) = 1$.
-                        
-                        Pela matriz de $\neg$ temos $h(\alpha) = \meio{}$. Então, por (HI), $v(\alpha) = 1$ e $v(\neg \alpha) = v(\phi) = 1$.
-                        
-                        Enfim, por $(vDNE)$ temos $v(\neg \phi) = v(\neg \neg \alpha) = v(\alpha) = 1$.
-                        
-                        ($\Longleftarrow$) Supondo $v(\phi) = v(\neg \alpha) = 1$ e $v(\neg \phi) = v(\neg \neg \alpha)= 1$, vamos provar $h(\phi) = \meio{}$.
-
-                        Por $(vDNE)$ temos $v(\alpha) = v(\neg \neg \alpha) = 1$.
-                        
-                        Por (HI), temos $h(\alpha) = \meio{}$. Então, pela matriz de $\neg$, temos $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = \meio{}$.
-                    
-                    \subcasodeprova{$h(\phi) = 0$ sse $v(\phi) = 0$.}
-                        
-                        ($\Longrightarrow$) Supondo $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 0$, vamos provar $v(\phi) = v(\neg \alpha) = 0$.
-                        
-                        Pela matriz de $\neg$ temos $h(\alpha) = 1$. Então, por (HI), $v(\alpha) = 1$ e $v(\phi) = v(\neg \alpha) = 0$.
-                    
-                        ($\Longleftarrow$) Supondo $v(\phi) = v(\neg \alpha) = 0$, vamos provar $h(\phi) = h(\neg \alpha) = 0$.
-                    
-                        Por $(vNeg)$ temos $v(\alpha) = 1$. Logo, por (HI), temos $h(\alpha) = 1$.
-                        
-                        Pela matriz de $\neg$ temos $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 0$.
-                \end{provaporsubcasos}
-                    
-            \casodeprova{} $\phi = \circ \alpha$.
-                    
-                \begin{provaporsubcasos}
-                    
-                    \subcasodeprova{$h(\phi) = 1$ sse $v(\phi) = 1$ e $v(\neg \phi) = 0$.}
-
-                        ($\Longrightarrow$) Supondo $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 1$, vamos provar $v(\phi) = 1$ e $v(\neg \phi) = 0$.
-                        
-                        Pela matriz de $\circ$, temos $h(\alpha) = 1$ ou $h(\alpha) = 0$.
-
-                        \begin{provaporsubsubcasos}
-                            \subsubcasodeprova{$h(\alpha) = 1$.} 
-                                
-                                Por (HI) temos $v(\alpha) = 1$ e $v(\neg \alpha) = 0$.
-                            
-                                Por $(vCi)$ temos $v(\neg \phi) = v(\neg \circ \alpha) = 0$. Então, por $(vNeg)$, temos $v(\phi) = v(\circ \alpha) = 1$.
-                            
-                            \subsubcasodeprova{$h(\alpha) = 0$.}
-                                
-                                Por (HI) temos $v(\alpha) = 0$.
-                            
-                                Por $(vCi)$, temos $v(\neg \phi) = v(\neg \circ \alpha) = 0$. Então, por $(vNeg)$ temos $v(\phi) = 1$.
-
-                                \newcounter{buffer}
-                                \setcounter{buffer}{\theSubSubCasos}
-                        \end{provaporsubsubcasos}
-                        
-                        ($\Longleftarrow$) Supondo $v(\phi) = v(\circ \alpha) = 1$ e $v(\neg \phi) = v(\neg \circ \alpha) = 0$, vamos provar $h(\phi) = h(\circ \alpha) = 1$.
-                        
-                        Por $(vCon)$ temos $v(\alpha) = 0$ ou $v(\neg \alpha) = 0$.
-
-                        \begin{provaporsubsubcasos}
-                            \setcounter{SubSubCasos}{\thebuffer}
-
-                            \subsubcasodeprova{$v(\alpha) = 0$.}
-
-                                Por (HI) temos $h(\alpha) = 0$. Então, pela matriz de $\circ$, temos $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 1$.
-                            
-                            \subsubcasodeprova{$v(\neg \alpha) = 0$.} 
-
-                                Por $(vNeg)$ temos $v(\alpha) = 1$. Então, por (HI), temos $h(\alpha) = 1$. 
-                                
-                                Finalmente, pela matriz de $\circ$, temos $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 1$.
-                        \end{provaporsubsubcasos}
-                        
-                    \subcasodeprova{$h(\phi) = \meio{}$ sse $v(\phi) = 1$ e $v(\neg \phi) = 1$.}
-                        
-                        ($\Longrightarrow$) Pela matriz lógica de $\circ$, nunca temos $h(\phi) = h(\circ \alpha) = \meio{}$.
-                        
-                        ($\Longleftarrow$) Supondo $v(\phi) = 1$ e $v(\neg \phi) = 1$, então, por $(vCon)$ aplicado a $v(\phi) = v(\alpha) = 1$, temos $v(\alpha) = 0$ ou $v(\neg \alpha) = 0$. 
-                        
-                        Entretanto, por $(vCi)$ aplicado a $v(\neg \phi) = v(\neg \alpha) = 1$, temos $v(\alpha) = 1$ e $v(\neg \alpha) = 1$.
-
-                        Portanto, nunca temos $v(\phi) = 1$ e $v(\neg \phi) = 1$.
-
-                        
-                    
-                    \subcasodeprova{$h(\phi) = 0$ sse $v(\phi) = 0$.}
-
-                        ($\Longrightarrow$) Supondo $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 0$, vamos provar $v(\phi) = v(\circ \alpha) = 0$.
-
-                        Pela matriz de $\circ$, temos $h(\alpha) = \meio{}$. Então, por (HI), temos $v(\alpha) = 1$ e $v(\neg \alpha) = 1$. 
-                        
-                        Finalmente, por $(vCon)$, temos $v(\phi) = v(\circ \alpha) = 0$.
-                    
-                        ($\Longleftarrow$) Supondo $v(\phi) = v(\circ \alpha) = 0$, vamos provar $h(\phi) = h(\circ \alpha) = 0$.
-
-                        Por $(vDNE)$ temos $v(\neg \neg \circ \alpha) = 0$. Então, por $(vNeg)$, temos $v(\neg \circ \alpha) = 1$.
-
-                        Por $(vCi)$ temos $v(\alpha) = 1$ e $v(\neg \alpha) = 1$. Logo, por (HI), temos $h(\alpha) = \meio{}$.
-
-                        Finalmente, pela matriz de $\circ$, temos $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 0$.
-                    
-            \end{provaporsubcasos}
-        
-            \casodeprova{$\phi = \alpha \land \beta$.}
-
-            \begin{provaporsubcasos}
-                \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 1$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 0$.}
-                \begin{align*}
-                    &\text{Temos } h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 1\\
-                    &\Longleftrightarrow h(\alpha) = 1 \text{ e } {h(\beta) = 1} \tag*{ (Matriz de $\land$)}\\
-                    &\Longleftrightarrow v(\alpha) = 1, v(\neg \alpha) = 0, v(\beta) = 1 \text{ e } v(\neg \beta) = 0\tag*{ (HI)}\\
-                    &\Longleftrightarrow v(\phi) = v(\alpha \land \beta) = 1 \textnormal{ e } v(\neg \phi) = v(\neg(\alpha \land \beta)) = 0\tag*{($(vAnd)$ e $(vDM_{\land})$)}\\
-                \end{align*}
-                \vspace*{-2\baselineskip}
-                \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = \meio{}$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 1$.}
-                \begin{align*}
-                    &\text{Temos } h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = \meio{}\\
-                    &\Longleftrightarrow (h(\alpha), h(\beta) \in \{1, \meio{}\})\textnormal{ e }(h(\alpha) = \meio{} \text{ ou } h(\beta) = \meio{}) \tag*{(Matriz de $\land$)}\\
-                    &\Longleftrightarrow (v(\alpha) = 1 \text{ e } v(\beta) = 1) \text{ e }\\&(v(\alpha) = v(\neg \alpha) = 1 \text{ ou } v(\beta) = v(\neg \beta) = 1) \tag*{(HI)}\\
-                    &\Longleftrightarrow (v(\alpha) = 1, v(\neg \alpha) = 1 \text{ e } v(\beta) = 1) \text{ ou }\\&(v(\alpha) = 1, v(\neg \beta) = 1 \text{ e } v(\beta) = 1) \tag*{(Dist. $\land$, $\lor$ \text{ e } Idemp. $\land$)}\\
-                    &\Longleftrightarrow (v(\alpha) = 1 \text{ e } v(\beta) = 1) \text{ e } \\&(v(\neg \alpha) = 1 \text{ ou } v(\neg \beta) = 1) \tag*{(Dist. $\land$, $\lor$ \text{ e }Idemp. $\land$)}\\
-                    &\Longleftrightarrow (v(\phi) = v(\alpha \land \beta) = 1) \text{ e } \\&(v(\neg \phi) = v(\neg (\alpha \land \beta)) = 1) \tag*{($(vAnd)$ \text{ e } $(vDM_{\land})$)}
-                \end{align*}
-
-                \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 0$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \land \beta) = 0$.}
-                \begin{align*}
-                    &\text{Temos } h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 0\\
-                    &\Longleftrightarrow h(\alpha) = 0\text{ ou }h(\beta) = 0\tag*{(Matriz de $\land$)}\\
-                    &\Longleftrightarrow v(\alpha) = 0\text{ ou }v(\beta) = 0 \tag*{(HI)}\\
-                    &\Longleftrightarrow v(\phi) = v(\alpha \land \beta) = 0\tag*{$(vAnd)$}
-                \end{align*}
-
-            \end{provaporsubcasos}
-
-            \vspace{\baselineskip}
-
-            \casodeprova{$\phi = \alpha \lor \beta$.}
-
-            \begin{provaporsubcasos}
-                \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 1$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \lor \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \lor \beta)) = 0$.}
-                \begin{align*}
-                    &\textnormal{Temos }h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 1\\
-                    &\Longleftrightarrow h(\alpha) = 1\textnormal{ ou }h(\beta) = 1\tag*{(Matriz de $\lor$)}\\
-                    &\Longleftrightarrow (v(\alpha) = 1 \text{ e } v(\neg \alpha) = 0)\textnormal{ ou }(v(\beta) = 1 \textnormal{ e } v(\neg \beta) = 0)\tag*{(HI)}\\
-                    &\Longleftrightarrow (((v(\alpha) = 1 \text{ e } v(\neg \alpha) = 0))\text{ ou }v(\beta) = 1) \text{ e }\\&(((v(\alpha) = 1 \text{ e } v(\neg \alpha) = 0))\text{ ou }v(\neg\beta) = 0)\tag*{(Dist. $\lor$, $\land$)}\\
-                    &\Longleftrightarrow ((v(\alpha) = 1 \textnormal{ ou } v(\beta) = 1) \text{ e } (v(\neg \alpha) = 0 \text{ ou } v(\beta) = 1)) \text{ e }\\&((v(\alpha) = 1 \textnormal{ ou } v(\neg \beta) = 0) \text{ e } (v(\neg \alpha) = 0 \text{ ou } v(\neg \beta) = 0))\tag*{(Dist. $\lor$, $\land$)}\\
-                    &\Longleftrightarrow ((v(\alpha) = 1 \textnormal{ ou } v(\beta) = 1) \text{ e } (v(\alpha) = 1 \text{ ou } v(\beta) = 1)) \text{ e }\\&((v(\alpha) = 1 \textnormal{ ou } v(\beta) = 1) \text{ e } (v(\neg \alpha) = 0 \text{ ou } v(\neg \beta) = 0))\tag*{$(vNeg)$}\\
-                    &\Longleftrightarrow ((v(\alpha) = 1 \textnormal{ ou } v(\beta) = 1) \text{ e } (v(\neg \alpha) = 0 \text{ ou } v(\neg \beta) = 0))\tag*{(Idemp. $\land$)}\\
-                    &\Longleftrightarrow v(\phi) = v(\alpha \lor \beta) = 1\textnormal{ e }v(\neg \phi) = v(\neg(\alpha \lor \beta)) = 0.\tag*{($(vOr)$ e $(vDM_{\lor})$)}
-                \end{align*}
-                    
-                \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = \meio{}$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \lor \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \lor \beta)) = 1$.}
-                \begin{align*}
-                    &\textnormal{Temos }h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = \meio{}\\
-                    &\Longleftrightarrow (h(\alpha) = h(\beta) = \meio{})\textnormal{ ou } (h(\alpha) = \meio{}\textnormal{ e }h(\beta) = 0)\textnormal{ ou }\\&(h(\alpha) = 0\textnormal{ e }h(\beta) = \meio{}).\tag*{(Matriz de $\lor$)}\\
-                    &\Longleftrightarrow (v(\alpha) = 1, v(\neg \alpha) = 1, v(\beta) = 1\textnormal{ e }v(\neg \beta) = 1)\text{ ou }\\&(v(\alpha) = 1, v(\neg \alpha) = 1\textnormal{ e }v(\beta) = 0)\text{ ou }\\&(v(\alpha) = 0, v(\beta) = 1\textnormal{ e }v(\neg \beta) = 1)\tag*{(HI)}\\
-                    &\Longleftrightarrow (v(\alpha) = 1, v(\neg \alpha) = 1, v(\beta) = 1\textnormal{ e }v(\neg \beta) = 1)\textnormal{ ou }\\&(v(\alpha) = 1, v(\neg \alpha) = 1, v(\beta) = 0\textnormal{ e }v(\neg \beta) = 1)\textnormal{ ou }\\&(v(\alpha) = 0, v(\neg \alpha) = 1, v(\beta) = 1, v(\neg \beta) = 1)\tag*{$(vNeg)$}\\
-                    &\Longleftrightarrow (v(\neg \alpha) = 1\textnormal{ e }v(\neg \beta) = 1)\textnormal{ e }((v(\alpha) = 1\textnormal{ e }v(\beta) = 1)\text{ ou }\\&(v(\alpha) = 1\textnormal{ e }v(\beta) = 0)\text{ ou }(v(\alpha) = 0\textnormal{ e }v(\beta) = 1)).\tag*{(Dist. $\land$, $\lor$)}\\
-                    &\Longleftrightarrow (v(\neg \alpha) = 1\textnormal{ e }v(\neg \beta) = 1)\textnormal{ e }\\&(v(\alpha \lor \beta) = 1\textnormal{ ou }v(\alpha \lor \beta) = 1\textnormal{ ou }v(\alpha \lor \beta) = 1)\tag*{$(vOr)$}\\
-                    &\Longleftrightarrow v(\phi) = v(\alpha \lor \beta) = 1\textnormal{ e }\\&v(\neg \phi) = v(\neg(\alpha \lor \beta)) = 1.\tag*{($(vDM_{\lor})$ e (Idemp. $\lor$))}
-                \end{align*}
-                    
-                    \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 0$ sse $v(\phi) = v(\alpha \lor \beta) = 0$.}
-                    \begin{align*}
-                        &\textnormal{Temos }h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 0\\
-                        &\Longleftrightarrow h(\alpha) = 0\textnormal{ e }h(\beta) = 0\tag*{(Matriz de $\lor$)}\\
-                        &\Longleftrightarrow v(\alpha) = 0\textnormal{ e }v(\beta) = 0\tag*{(HI)}\\
-                        &\Longleftrightarrow v(\phi) = v(\alpha \lor \beta) = 0\tag*{$(vOr)$}
-                    \end{align*}
-
-            \end{provaporsubcasos}
-
-            \casodeprova{$\phi = \alpha \to \beta$.}
-
-            \begin{provaporsubcasos}
-                \subcasodeprova{$h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 1$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \to \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \to \beta)) = 0$.}
-                    \begin{align*}
-                        &\textnormal{Temos }h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 1\\
-                        &\Longleftrightarrow h(\alpha) = 0\textnormal{ ou } h(\beta) = 1\tag*{(Matriz de $\to$)}\\
-                        &\Longleftrightarrow v(\alpha) = 0\textnormal{ ou } (v(\beta) = 1\textnormal{ e }v(\neg \beta) = 0)\tag*{(HI)}\\
-                        &\Longleftrightarrow (v(\alpha \to \beta) = 1\textnormal{ e }v(\neg (\alpha \to \beta)) = 0)\textnormal{ ou }\\& (v(\alpha \to \beta) = 1\textnormal{ e }v(\neg (\alpha \to \beta)) = 0)\tag*{($(vImp)$ e $(vCip)$)}\\
-                        &\Longleftrightarrow v(\phi) = v(\alpha \to \beta) = 1\textnormal{ e }v(\neg \phi) = v(\neg (\alpha \to \beta)) = 0\tag*{(Idemp. $\lor$)}
-                    \end{align*}
-                        
-                \subcasodeprova{$h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = \meio{}$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \to \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \to \beta)) = 1$.}
-                    \begin{align*}
-                        &\textnormal{Temos }h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = \meio{}\\
-                        &\Longleftrightarrow (h(\alpha) = 1\textnormal{ e }h(\beta) = \meio{})\textnormal{ ou }\\&(h(\alpha) = \meio{}\textnormal{ e }h(\beta) = \meio{})\tag*{(Matriz de $\to$)}\\
-                        &\Longleftrightarrow (v(\alpha) = v(\beta) = v(\neg \beta) = 1\textnormal{ e }v(\neg \alpha) = 0)\textnormal{ ou }\\&(v(\alpha) = v(\neg \alpha) = v(\beta) = v(\neg \beta) = 1)\tag*{(HI)}\\
-                        &\Longleftrightarrow v(\alpha \to \beta) = v(\neg (\alpha \to \beta)) = 1\textnormal{ e }\\&v(\alpha \to \beta) = v(\neg (\alpha \to \beta)) = 1\tag*{($(vImp)$\textnormal{ ou }$(vCip)$)}\\
-                        &\Longleftrightarrow v(\phi) = v(\alpha \to \beta) = 1\textnormal{ e }v(\neg \phi) = v(\neg (\alpha \to \beta)) = 1\tag*{(Idemp. $\lor$)}
-                    \end{align*}
-                        
-                \subcasodeprova{$h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 0$ sse $v(\phi) = v(\alpha \to \beta) = 0$.}
-                    \begin{align*}
-                        &\textnormal{Temos }h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 0\\
-                        &\Longleftrightarrow (h(\alpha) = 1\textnormal{ e }h(\beta) = 0)\textnormal{ ou }(h(\alpha) = \meio{}\textnormal{ e }h(\beta) = 0)\tag*{(Matriz de $\to$)}\\
-                        &\Longleftrightarrow (v(\alpha) = 1\textnormal{ e }v(\neg \alpha) = v(\beta) = 0)\textnormal{ ou }\\&(v(\alpha) = v(\neg \alpha) = 1\textnormal{ e }v(\beta) = 0)\tag*{(HI)}\\
-                        &\Longleftrightarrow v(\alpha \to \beta) = 0\textnormal{ ou }v(\alpha \to \beta) = 0\tag*{$(vImp)$}\\
-                        &\Longleftrightarrow v(\alpha \to \beta) = 0.\tag*{(Idemp. $\lor$)}
-                    \end{align*}
-            \end{provaporsubcasos}
-        \end{provaporcasos}
-    \end{proof}
-
-    \begin{corolario}\label{cor:matval}
-        Para todo conjunto de fórmulas $\Gamma \cup \{\phi\} \subseteq \ling{}$:
-
-        \centering
-        $\Gamma \conmat \phi \Longrightarrow \Gamma \conval \phi$. 
-    \end{corolario}
-
-    \begin{proof}[Prova do Corolário~\ref{cor:matval}]
-        Seja $\Gamma \cup \{\phi\} \subseteq \ling{}$ um conjunto de fórmulas e seja $v \in V^{\lfium{}}$ uma valoração. Vamos supor $\Gamma \conmat \phi$.
-
-        Pelo Lema~\ref{lem:matval}, então existe uma valoração $h$ tal que, para todo $\psi \in \ling{}$, $v(\psi) = 1$ sse $h(\psi) \subseteq \{1, \meio{}\}$. Supondo $v[\Gamma] = 1$, então temos $h[\Gamma] \subseteq \ummeio{}$. Pela nossa suposição de $\Gamma \conmat \phi$, temos $h(\phi) \in \{1, \meio{}\}$. Novamente, pelo Lema~\ref{lem:matval}, temos $v(\phi) = 1$. Portanto, segue $\Gamma \conval \phi$.
-
-    \end{proof}
     \subsection{Metateorema da dedução}\label{sec:mtd}
         O metateorema da dedução é uma propriedade conveniente de ser provada, já que nos fornece corolários importantes a fim de desenvolver provas de outros metateoremas.
         
@@ -786,7 +495,303 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 3. ~& \phi \tag{MP 1,2}
             \end{align*}
         \end{proof}
+
     \subsection{Correção}\label{sec:cor}
+        A metapropriedade da correção garante que o sistema dedutivo de uma determinada lógica prova somente sentenças válidas de acordo com sua semântica. Esta é uma característica fundamental para qualquer sistema lógico que se preste. 
+
+        Antes de provar a correção, todavia, provaremos primeiro o seguinte lema que facilitará a obtenção dos resultados pertinentes:
+
+        \begin{lema}\label{lem:matval}
+            Seja $v$ uma valoração em $V^{\lfium}$, então existe uma valoração $h$ sobre $\pazocal{M}_{\lfium}$ tal que, para todo $\phi \in \ling{}$, $v(\phi) = 1$ sse $h(\phi) \in \{1, \meio{}\}$.
+        \end{lema}
+
+        \begin{proof}[Prova do Lema~\ref{lem:matval}]
+            Seja $v$ uma valoração em $V^{\lfium}$. Então, considere a valoração $h$ sobre $\pazocal{M}_{\lfium}$ tal que para toda variável proposicional $p$:
+            \begin{center}
+                \setbool{@fleqn}{false}
+                \begin{equation*}
+                    h(p) =
+                    \begin{cases}
+                    1\ \, \text{ sse } v(p) = 1 \text{ e } v(\neg p) = 0 \\
+                    \meio{} \text{ sse } v(p) = 1 \text{ e } v(\neg p) = 1 \\
+                    0\ \ \text{ sse } v(p) = 0
+                    \end{cases}
+                \end{equation*}
+            \end{center}
+            
+            
+            Então, por indução na complexidade de uma fórmula $\phi \in \ling{}$, será provado o seguinte:
+            \begin{center}
+                \setbool{@fleqn}{false}
+                \begin{equation*}
+                    h(\phi) =
+                    \begin{cases}
+                        1\ \,  \text{ sse } v(\phi) = 1 \text{ e } v(\neg \phi) = 0 \\
+                        \meio{} \text{ sse } v(\phi) = 1 \text{ e } v(\neg \phi) = 1 \\
+                        0\ \  \text{ sse } v(\phi) = 0
+                    \end{cases}
+                \end{equation*}
+            \end{center}
+            
+            \begin{notacao}
+                Antes de desenvolver o lema, convém estabelecer uma notação para as justificativas de cada passo da prova:
+
+                \begin{itemize}
+                    \item (Matriz de $\triangle$) refere-se à matriz de um conectivo $\triangle \in \Sigma$ pertencente a $\pazocal{M}_{\lfium{}}$;
+                    \item (HI) refere-se à aplicação da hipótese de indução;
+                    \item (Dist. $\otimes, \oplus$) refere-se à aplicação da distributividade de $\otimes$ sobre $\oplus$, ou seja, a aplicação do teorema $a \otimes (b \oplus c) \Longleftrightarrow (a \otimes b) \oplus (a \otimes c)$;
+                    \item (Idemp. $\otimes$) refere-se à aplicação da idempotência de $\otimes$, ou seja, a aplicação do teorema $a \otimes a \Longrightarrow a$.
+                \end{itemize}
+            \end{notacao}
+
+            \noindent \textbf{\textsc{Base.}} $C(\phi) = 1$.
+
+            Como $C(\phi) = 1$, temos $\phi \in \pazocal{P}$ pela Definição~\ref{def:complex_lfi1}. Com isso, a própria definição de $h$ prova o caso base.
+
+            
+            \noindent \textbf{\textsc{Passo.}} 
+
+            \noindent \textbf{\textsc{Hipótese de indução (HI):}} A propriedade vale para toda fórmula $\phi$ tal que $C(\phi) = k$, com $k < n$.
+
+            Vamos mostrar que a propriedade vale caso $C(\phi) = n$.
+
+            \begin{provaporcasos}
+                \casodeprova{} $\phi = \neg \alpha$.
+                    
+                    \begin{provaporsubcasos}
+                        \subcasodeprova{$h(\phi) = 1$ sse $v(\phi) = 1$ e $v(\neg \phi) = 0$.}
+                            
+                            ($\Longrightarrow$) Supondo $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 1$, vamos provar $v(\phi) = 1$ e $v(\neg \phi) = 0$. 
+                            
+                            Pela matriz de $\neg$ temos $h(\alpha) = 0$. Então, por (HI), $v(\alpha) = 0$. 
+                            
+                            Por $(vNeg)$ temos $v(\neg \alpha) = v(\phi) = 1$. Enfim, por $(vDNE)$, $v(\neg \phi) = v(\neg \neg \alpha) = v(\alpha) = 0$
+                            
+                            
+                            ($\Longleftarrow$) Supondo $v(\phi) = v(\neg \alpha) = 1$ e $v(\neg \phi) = v(\neg \neg \alpha) = 0$, vamos provar $h(\phi) = h(\neg \alpha) = 1$.
+                            
+                            Por $(vDNE)$ temos $v(\neg \neg \alpha) = v(\alpha) = 0$.
+                            
+                            Por (HI) temos $h(\alpha) = 0$. Então, $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 1$, pela matriz de $\neg$.
+                        
+                        \subcasodeprova{$h(\phi) = \meio{}$ sse $v(\phi) = 1$ e $v(\neg \phi) = 1$.}
+                        
+                            ($\Longrightarrow$) Supondo $h(\phi) = h(\neg \alpha) = \meio{}$, vamos provar $v(\phi) = 1$ e $v(\neg \phi) = 1$.
+                            
+                            Pela matriz de $\neg$ temos $h(\alpha) = \meio{}$. Então, por (HI), $v(\alpha) = 1$ e $v(\neg \alpha) = v(\phi) = 1$.
+                            
+                            Enfim, por $(vDNE)$ temos $v(\neg \phi) = v(\neg \neg \alpha) = v(\alpha) = 1$.
+                            
+                            ($\Longleftarrow$) Supondo $v(\phi) = v(\neg \alpha) = 1$ e $v(\neg \phi) = v(\neg \neg \alpha)= 1$, vamos provar $h(\phi) = \meio{}$.
+
+                            Por $(vDNE)$ temos $v(\alpha) = v(\neg \neg \alpha) = 1$.
+                            
+                            Por (HI), temos $h(\alpha) = \meio{}$. Então, pela matriz de $\neg$, temos $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = \meio{}$.
+                        
+                        \subcasodeprova{$h(\phi) = 0$ sse $v(\phi) = 0$.}
+                            
+                            ($\Longrightarrow$) Supondo $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 0$, vamos provar $v(\phi) = v(\neg \alpha) = 0$.
+                            
+                            Pela matriz de $\neg$ temos $h(\alpha) = 1$. Então, por (HI), $v(\alpha) = 1$ e $v(\phi) = v(\neg \alpha) = 0$.
+                        
+                            ($\Longleftarrow$) Supondo $v(\phi) = v(\neg \alpha) = 0$, vamos provar $h(\phi) = h(\neg \alpha) = 0$.
+                        
+                            Por $(vNeg)$ temos $v(\alpha) = 1$. Logo, por (HI), temos $h(\alpha) = 1$.
+                            
+                            Pela matriz de $\neg$ temos $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 0$.
+                    \end{provaporsubcasos}
+                        
+                \casodeprova{} $\phi = \circ \alpha$.
+                        
+                    \begin{provaporsubcasos}
+                        
+                        \subcasodeprova{$h(\phi) = 1$ sse $v(\phi) = 1$ e $v(\neg \phi) = 0$.}
+
+                            ($\Longrightarrow$) Supondo $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 1$, vamos provar $v(\phi) = 1$ e $v(\neg \phi) = 0$.
+                            
+                            Pela matriz de $\circ$, temos $h(\alpha) = 1$ ou $h(\alpha) = 0$.
+
+                            \begin{provaporsubsubcasos}
+                                \subsubcasodeprova{$h(\alpha) = 1$.} 
+                                    
+                                    Por (HI) temos $v(\alpha) = 1$ e $v(\neg \alpha) = 0$.
+                                
+                                    Por $(vCi)$ temos $v(\neg \phi) = v(\neg \circ \alpha) = 0$. Então, por $(vNeg)$, temos $v(\phi) = v(\circ \alpha) = 1$.
+                                
+                                \subsubcasodeprova{$h(\alpha) = 0$.}
+                                    
+                                    Por (HI) temos $v(\alpha) = 0$.
+                                
+                                    Por $(vCi)$, temos $v(\neg \phi) = v(\neg \circ \alpha) = 0$. Então, por $(vNeg)$ temos $v(\phi) = 1$.
+
+                                    \newcounter{buffer}
+                                    \setcounter{buffer}{\theSubSubCasos}
+                            \end{provaporsubsubcasos}
+                            
+                            ($\Longleftarrow$) Supondo $v(\phi) = v(\circ \alpha) = 1$ e $v(\neg \phi) = v(\neg \circ \alpha) = 0$, vamos provar $h(\phi) = h(\circ \alpha) = 1$.
+                            
+                            Por $(vCon)$ temos $v(\alpha) = 0$ ou $v(\neg \alpha) = 0$.
+
+                            \begin{provaporsubsubcasos}
+                                \setcounter{SubSubCasos}{\thebuffer}
+
+                                \subsubcasodeprova{$v(\alpha) = 0$.}
+
+                                    Por (HI) temos $h(\alpha) = 0$. Então, pela matriz de $\circ$, temos $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 1$.
+                                
+                                \subsubcasodeprova{$v(\neg \alpha) = 0$.} 
+
+                                    Por $(vNeg)$ temos $v(\alpha) = 1$. Então, por (HI), temos $h(\alpha) = 1$. 
+                                    
+                                    Finalmente, pela matriz de $\circ$, temos $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 1$.
+                            \end{provaporsubsubcasos}
+                            
+                        \subcasodeprova{$h(\phi) = \meio{}$ sse $v(\phi) = 1$ e $v(\neg \phi) = 1$.}
+                            
+                            ($\Longrightarrow$) Pela matriz lógica de $\circ$, nunca temos $h(\phi) = h(\circ \alpha) = \meio{}$.
+                            
+                            ($\Longleftarrow$) Supondo $v(\phi) = 1$ e $v(\neg \phi) = 1$, então, por $(vCon)$ aplicado a $v(\phi) = v(\alpha) = 1$, temos $v(\alpha) = 0$ ou $v(\neg \alpha) = 0$. 
+                            
+                            Entretanto, por $(vCi)$ aplicado a $v(\neg \phi) = v(\neg \alpha) = 1$, temos $v(\alpha) = 1$ e $v(\neg \alpha) = 1$.
+
+                            Portanto, nunca temos $v(\phi) = 1$ e $v(\neg \phi) = 1$.
+
+                            
+                        
+                        \subcasodeprova{$h(\phi) = 0$ sse $v(\phi) = 0$.}
+
+                            ($\Longrightarrow$) Supondo $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 0$, vamos provar $v(\phi) = v(\circ \alpha) = 0$.
+
+                            Pela matriz de $\circ$, temos $h(\alpha) = \meio{}$. Então, por (HI), temos $v(\alpha) = 1$ e $v(\neg \alpha) = 1$. 
+                            
+                            Finalmente, por $(vCon)$, temos $v(\phi) = v(\circ \alpha) = 0$.
+                        
+                            ($\Longleftarrow$) Supondo $v(\phi) = v(\circ \alpha) = 0$, vamos provar $h(\phi) = h(\circ \alpha) = 0$.
+
+                            Por $(vDNE)$ temos $v(\neg \neg \circ \alpha) = 0$. Então, por $(vNeg)$, temos $v(\neg \circ \alpha) = 1$.
+
+                            Por $(vCi)$ temos $v(\alpha) = 1$ e $v(\neg \alpha) = 1$. Logo, por (HI), temos $h(\alpha) = \meio{}$.
+
+                            Finalmente, pela matriz de $\circ$, temos $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 0$.
+                        
+                \end{provaporsubcasos}
+            
+                \casodeprova{$\phi = \alpha \land \beta$.}
+
+                \begin{provaporsubcasos}
+                    \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 1$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 0$.}
+                    \begin{align*}
+                        &\text{Temos } h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 1\\
+                        &\Longleftrightarrow h(\alpha) = 1 \text{ e } {h(\beta) = 1} \tag*{ (Matriz de $\land$)}\\
+                        &\Longleftrightarrow v(\alpha) = 1, v(\neg \alpha) = 0, v(\beta) = 1 \text{ e } v(\neg \beta) = 0\tag*{ (HI)}\\
+                        &\Longleftrightarrow v(\phi) = v(\alpha \land \beta) = 1 \textnormal{ e } v(\neg \phi) = v(\neg(\alpha \land \beta)) = 0\tag*{($(vAnd)$ e $(vDM_{\land})$)}\\
+                    \end{align*}
+                    \vspace*{-2\baselineskip}
+                    \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = \meio{}$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 1$.}
+                    \begin{align*}
+                        &\text{Temos } h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = \meio{}\\
+                        &\Longleftrightarrow (h(\alpha), h(\beta) \in \{1, \meio{}\})\textnormal{ e }(h(\alpha) = \meio{} \text{ ou } h(\beta) = \meio{}) \tag*{(Matriz de $\land$)}\\
+                        &\Longleftrightarrow (v(\alpha) = 1 \text{ e } v(\beta) = 1) \text{ e }\\&(v(\alpha) = v(\neg \alpha) = 1 \text{ ou } v(\beta) = v(\neg \beta) = 1) \tag*{(HI)}\\
+                        &\Longleftrightarrow (v(\alpha) = 1, v(\neg \alpha) = 1 \text{ e } v(\beta) = 1) \text{ ou }\\&(v(\alpha) = 1, v(\neg \beta) = 1 \text{ e } v(\beta) = 1) \tag*{(Dist. $\land$, $\lor$ \text{ e } Idemp. $\land$)}\\
+                        &\Longleftrightarrow (v(\alpha) = 1 \text{ e } v(\beta) = 1) \text{ e } \\&(v(\neg \alpha) = 1 \text{ ou } v(\neg \beta) = 1) \tag*{(Dist. $\land$, $\lor$ \text{ e }Idemp. $\land$)}\\
+                        &\Longleftrightarrow (v(\phi) = v(\alpha \land \beta) = 1) \text{ e } \\&(v(\neg \phi) = v(\neg (\alpha \land \beta)) = 1) \tag*{($(vAnd)$ \text{ e } $(vDM_{\land})$)}
+                    \end{align*}
+
+                    \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 0$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \land \beta) = 0$.}
+                    \begin{align*}
+                        &\text{Temos } h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 0\\
+                        &\Longleftrightarrow h(\alpha) = 0\text{ ou }h(\beta) = 0\tag*{(Matriz de $\land$)}\\
+                        &\Longleftrightarrow v(\alpha) = 0\text{ ou }v(\beta) = 0 \tag*{(HI)}\\
+                        &\Longleftrightarrow v(\phi) = v(\alpha \land \beta) = 0\tag*{$(vAnd)$}
+                    \end{align*}
+
+                \end{provaporsubcasos}
+
+                \vspace{\baselineskip}
+
+                \casodeprova{$\phi = \alpha \lor \beta$.}
+
+                \begin{provaporsubcasos}
+                    \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 1$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \lor \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \lor \beta)) = 0$.}
+                    \begin{align*}
+                        &\textnormal{Temos }h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 1\\
+                        &\Longleftrightarrow h(\alpha) = 1\textnormal{ ou }h(\beta) = 1\tag*{(Matriz de $\lor$)}\\
+                        &\Longleftrightarrow (v(\alpha) = 1 \text{ e } v(\neg \alpha) = 0)\textnormal{ ou }(v(\beta) = 1 \textnormal{ e } v(\neg \beta) = 0)\tag*{(HI)}\\
+                        &\Longleftrightarrow (((v(\alpha) = 1 \text{ e } v(\neg \alpha) = 0))\text{ ou }v(\beta) = 1) \text{ e }\\&(((v(\alpha) = 1 \text{ e } v(\neg \alpha) = 0))\text{ ou }v(\neg\beta) = 0)\tag*{(Dist. $\lor$, $\land$)}\\
+                        &\Longleftrightarrow ((v(\alpha) = 1 \textnormal{ ou } v(\beta) = 1) \text{ e } (v(\neg \alpha) = 0 \text{ ou } v(\beta) = 1)) \text{ e }\\&((v(\alpha) = 1 \textnormal{ ou } v(\neg \beta) = 0) \text{ e } (v(\neg \alpha) = 0 \text{ ou } v(\neg \beta) = 0))\tag*{(Dist. $\lor$, $\land$)}\\
+                        &\Longleftrightarrow ((v(\alpha) = 1 \textnormal{ ou } v(\beta) = 1) \text{ e } (v(\alpha) = 1 \text{ ou } v(\beta) = 1)) \text{ e }\\&((v(\alpha) = 1 \textnormal{ ou } v(\beta) = 1) \text{ e } (v(\neg \alpha) = 0 \text{ ou } v(\neg \beta) = 0))\tag*{$(vNeg)$}\\
+                        &\Longleftrightarrow ((v(\alpha) = 1 \textnormal{ ou } v(\beta) = 1) \text{ e } (v(\neg \alpha) = 0 \text{ ou } v(\neg \beta) = 0))\tag*{(Idemp. $\land$)}\\
+                        &\Longleftrightarrow v(\phi) = v(\alpha \lor \beta) = 1\textnormal{ e }v(\neg \phi) = v(\neg(\alpha \lor \beta)) = 0.\tag*{($(vOr)$ e $(vDM_{\lor})$)}
+                    \end{align*}
+                        
+                    \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = \meio{}$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \lor \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \lor \beta)) = 1$.}
+                    \begin{align*}
+                        &\textnormal{Temos }h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = \meio{}\\
+                        &\Longleftrightarrow (h(\alpha) = h(\beta) = \meio{})\textnormal{ ou } (h(\alpha) = \meio{}\textnormal{ e }h(\beta) = 0)\textnormal{ ou }\\&(h(\alpha) = 0\textnormal{ e }h(\beta) = \meio{}).\tag*{(Matriz de $\lor$)}\\
+                        &\Longleftrightarrow (v(\alpha) = 1, v(\neg \alpha) = 1, v(\beta) = 1\textnormal{ e }v(\neg \beta) = 1)\text{ ou }\\&(v(\alpha) = 1, v(\neg \alpha) = 1\textnormal{ e }v(\beta) = 0)\text{ ou }\\&(v(\alpha) = 0, v(\beta) = 1\textnormal{ e }v(\neg \beta) = 1)\tag*{(HI)}\\
+                        &\Longleftrightarrow (v(\alpha) = 1, v(\neg \alpha) = 1, v(\beta) = 1\textnormal{ e }v(\neg \beta) = 1)\textnormal{ ou }\\&(v(\alpha) = 1, v(\neg \alpha) = 1, v(\beta) = 0\textnormal{ e }v(\neg \beta) = 1)\textnormal{ ou }\\&(v(\alpha) = 0, v(\neg \alpha) = 1, v(\beta) = 1, v(\neg \beta) = 1)\tag*{$(vNeg)$}\\
+                        &\Longleftrightarrow (v(\neg \alpha) = 1\textnormal{ e }v(\neg \beta) = 1)\textnormal{ e }((v(\alpha) = 1\textnormal{ e }v(\beta) = 1)\text{ ou }\\&(v(\alpha) = 1\textnormal{ e }v(\beta) = 0)\text{ ou }(v(\alpha) = 0\textnormal{ e }v(\beta) = 1)).\tag*{(Dist. $\land$, $\lor$)}\\
+                        &\Longleftrightarrow (v(\neg \alpha) = 1\textnormal{ e }v(\neg \beta) = 1)\textnormal{ e }\\&(v(\alpha \lor \beta) = 1\textnormal{ ou }v(\alpha \lor \beta) = 1\textnormal{ ou }v(\alpha \lor \beta) = 1)\tag*{$(vOr)$}\\
+                        &\Longleftrightarrow v(\phi) = v(\alpha \lor \beta) = 1\textnormal{ e }\\&v(\neg \phi) = v(\neg(\alpha \lor \beta)) = 1.\tag*{($(vDM_{\lor})$ e (Idemp. $\lor$))}
+                    \end{align*}
+                        
+                        \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 0$ sse $v(\phi) = v(\alpha \lor \beta) = 0$.}
+                        \begin{align*}
+                            &\textnormal{Temos }h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 0\\
+                            &\Longleftrightarrow h(\alpha) = 0\textnormal{ e }h(\beta) = 0\tag*{(Matriz de $\lor$)}\\
+                            &\Longleftrightarrow v(\alpha) = 0\textnormal{ e }v(\beta) = 0\tag*{(HI)}\\
+                            &\Longleftrightarrow v(\phi) = v(\alpha \lor \beta) = 0\tag*{$(vOr)$}
+                        \end{align*}
+
+                \end{provaporsubcasos}
+
+                \casodeprova{$\phi = \alpha \to \beta$.}
+
+                \begin{provaporsubcasos}
+                    \subcasodeprova{$h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 1$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \to \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \to \beta)) = 0$.}
+                        \begin{align*}
+                            &\textnormal{Temos }h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 1\\
+                            &\Longleftrightarrow h(\alpha) = 0\textnormal{ ou } h(\beta) = 1\tag*{(Matriz de $\to$)}\\
+                            &\Longleftrightarrow v(\alpha) = 0\textnormal{ ou } (v(\beta) = 1\textnormal{ e }v(\neg \beta) = 0)\tag*{(HI)}\\
+                            &\Longleftrightarrow (v(\alpha \to \beta) = 1\textnormal{ e }v(\neg (\alpha \to \beta)) = 0)\textnormal{ ou }\\& (v(\alpha \to \beta) = 1\textnormal{ e }v(\neg (\alpha \to \beta)) = 0)\tag*{($(vImp)$ e $(vCip)$)}\\
+                            &\Longleftrightarrow v(\phi) = v(\alpha \to \beta) = 1\textnormal{ e }v(\neg \phi) = v(\neg (\alpha \to \beta)) = 0\tag*{(Idemp. $\lor$)}
+                        \end{align*}
+                            
+                    \subcasodeprova{$h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = \meio{}$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \to \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \to \beta)) = 1$.}
+                        \begin{align*}
+                            &\textnormal{Temos }h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = \meio{}\\
+                            &\Longleftrightarrow (h(\alpha) = 1\textnormal{ e }h(\beta) = \meio{})\textnormal{ ou }\\&(h(\alpha) = \meio{}\textnormal{ e }h(\beta) = \meio{})\tag*{(Matriz de $\to$)}\\
+                            &\Longleftrightarrow (v(\alpha) = v(\beta) = v(\neg \beta) = 1\textnormal{ e }v(\neg \alpha) = 0)\textnormal{ ou }\\&(v(\alpha) = v(\neg \alpha) = v(\beta) = v(\neg \beta) = 1)\tag*{(HI)}\\
+                            &\Longleftrightarrow v(\alpha \to \beta) = v(\neg (\alpha \to \beta)) = 1\textnormal{ e }\\&v(\alpha \to \beta) = v(\neg (\alpha \to \beta)) = 1\tag*{($(vImp)$\textnormal{ ou }$(vCip)$)}\\
+                            &\Longleftrightarrow v(\phi) = v(\alpha \to \beta) = 1\textnormal{ e }v(\neg \phi) = v(\neg (\alpha \to \beta)) = 1\tag*{(Idemp. $\lor$)}
+                        \end{align*}
+                            
+                    \subcasodeprova{$h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 0$ sse $v(\phi) = v(\alpha \to \beta) = 0$.}
+                        \begin{align*}
+                            &\textnormal{Temos }h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 0\\
+                            &\Longleftrightarrow (h(\alpha) = 1\textnormal{ e }h(\beta) = 0)\textnormal{ ou }(h(\alpha) = \meio{}\textnormal{ e }h(\beta) = 0)\tag*{(Matriz de $\to$)}\\
+                            &\Longleftrightarrow (v(\alpha) = 1\textnormal{ e }v(\neg \alpha) = v(\beta) = 0)\textnormal{ ou }\\&(v(\alpha) = v(\neg \alpha) = 1\textnormal{ e }v(\beta) = 0)\tag*{(HI)}\\
+                            &\Longleftrightarrow v(\alpha \to \beta) = 0\textnormal{ ou }v(\alpha \to \beta) = 0\tag*{$(vImp)$}\\
+                            &\Longleftrightarrow v(\alpha \to \beta) = 0.\tag*{(Idemp. $\lor$)}
+                        \end{align*}
+                \end{provaporsubcasos}
+            \end{provaporcasos}
+        \end{proof}
+
+        \begin{corolario}\label{cor:matval}
+            Para todo conjunto de fórmulas $\Gamma \cup \{\phi\} \subseteq \ling{}$:
+
+            \centering
+            $\Gamma \conmat \phi \Longrightarrow \Gamma \conval \phi$. 
+        \end{corolario}
+
+        \begin{proof}[Prova do Corolário~\ref{cor:matval}]
+            Seja $\Gamma \cup \{\phi\} \subseteq \ling{}$ um conjunto de fórmulas e seja $v \in V^{\lfium{}}$ uma valoração. Vamos supor $\Gamma \conmat \phi$.
+
+            Pelo Lema~\ref{lem:matval}, então existe uma valoração $h$ tal que, para todo $\psi \in \ling{}$, $v(\psi) = 1$ sse $h(\psi) \subseteq \{1, \meio{}\}$. Supondo $v[\Gamma] = 1$, então temos $h[\Gamma] \subseteq \ummeio{}$. Pela nossa suposição de $\Gamma \conmat \phi$, temos $h(\phi) \in \{1, \meio{}\}$. Novamente, pelo Lema~\ref{lem:matval}, temos $v(\phi) = 1$. Portanto, segue $\Gamma \conval \phi$.
+
+        \end{proof}
+
         A ideia da prova da correção para a \lfium{} é, como de costume, provar que todo axioma do cálculo de Hilbert $\conhil$ é válido na semântica matricial $\conmat$ e mostrar que a regra de inferência \textit{modus ponens} preserva sua validade. No desenvolvimento da prova, as igualdades do tipo $h(\triangle \phi) = \triangle h(\phi)$ e $h(\phi \otimes \psi) = h(\phi) \otimes h(\psi)$, onde $\triangle, \otimes$ são conectivos quaisquer, ficam implícitas.
 
 
@@ -1334,7 +1339,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             Seja $\Gamma \cup \{\alpha\} \subseteq \ling{}$ um conjunto de fórmulas. Então, supondo $\Gamma \conhil \alpha$, temos, pelo Teorema~\ref{teo:correcao_mat}, $\Gamma \conmat \alpha$. Finalmente, pelo Corolário~\ref{cor:matval}, temos $\Gamma \conval \alpha$.
         \end{proof}
 
-        Com o resultado anterior, a prova de que a lógica \lfium{} se trata de uma \lfi{} forte como apresentado na Definição~\ref{def:lfi_forte_prop} é imediata.
+        Com o resultado anterior, a prova de que a lógica \lfium{} se trata de uma \lfi{} forte, como apresentado na Definição~\ref{def:lfi_forte_prop}, segue naturalmente.
 
         \begin{corolario}\label{cor:lfi_forte}
             Seja $p$ uma variável proposicional qualquer e $\bigcirc(p) = \{\circ p\}$ um conjunto de fórmulas dependente somente de $p$. A lógica \lfium{} é uma \lfi{} forte em relação a $\neg$ e $\bigcirc(p)$.
@@ -1374,10 +1379,12 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
         \end{proof}
 
     \subsection{Completude em relação às bivalorações}\label{sec:comp}
+        A completude é uma metapropriedade que garante que tudo aquilo que é válido segundo um sistema semântico de uma lógica pode ser provado pelo seu sistema dedutivo, ou seja, se uma fórmula não pode ser derivada no sistema dedutivo, então ela é inválida.
+
         A prova da completude para a lógica \lfium{} depende das seguintes definições e lemas auxiliares para ser desenvolvida:
 
         \begin{proposicao}\label{prop:tarski}        
-            A lógica $\lfium{} = \langle \ling, \conhil \rangle$ é tarskiana (Definição~\ref{def:tarski}).
+            A lógica $\lfium{} = \langle \ling, \conhil \rangle$ é Tarskiana (Definição~\ref{def:tarski}).
         \end{proposicao}
 
         \begin{proof}[Prova da Proposição~\ref{prop:tarski}]
@@ -1388,27 +1395,65 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \item [(iii)] Se $\Delta \conhil \phi$ e $\Gamma \conhil \delta$ para todo $\delta \in \Delta$, então $\Gamma \conhil \phi$.\hfill(corte)
             \end{itemize}
             \begin{adjustwidth}{1cm}{}
-                \textbf{Prova do item (i)}. Vamos supor $\phi \in \Gamma$. Então, por definição de derivação, temos que $\Gamma \conhil \phi$.
+                \textbf{Prova do item (i)}. Vamos supor $\phi \in \Gamma$. Então, pela definição de $\conhil$, temos $\Gamma \conhil \phi$.
                 % \begin{align*}
                 %     1.~& \phi\tag{Premissa}
                 % \end{align*}
 
-                \noindent{}\textbf{Prova do item (ii)}. Vamos supor $\Delta \conhil \phi$ e $\Delta \subseteq \Gamma$. Então, existe uma prova (sequência de fórmulas) de $\phi$ a partir do conjunto de fórmulas $\Delta$. Como, pela suposição, temos que essa sequência está inteiramente contida em $\Gamma$, concluímos $\Gamma \conhil \phi$.
+                \noindent{}\textbf{Prova do item (ii)}. Vamos supor $\Delta \conhil \phi$ e $\Delta \subseteq \Gamma$. Então, existe uma prova $\phi_1, \ldots, \phi_n$ de $\phi_n = \phi$ a partir de $\Delta$. Provaremos $\Gamma \conhil \phi$ por indução no tamanho $n$ da prova.
+
+                \begin{adjustwidth}{1cm}{}
+
+                    \textbf{\textsc{Base.}} $n = 1$.
+                    Analisando a obtenção de $\phi = \phi_1$, existem dois casos:
+
+                    \begin{provaporcasos}
+
+                    \casodeprova{$\phi_1$ é um axioma}. 
+
+                        Neste caso, basta aplicar o mesmo axioma para mostrar $\Gamma \conhil \phi_1$.
+
+                    \casodeprova{$\phi_1 \in \Delta$}.
+
+                        Como $\Delta \subseteq \Gamma$, então $\Gamma \conhil \phi_1$ aplicando a premissa $\phi_1$.
+                        
+                    \end{provaporcasos}
+
+                    \noindent\textbf{\textsc{Passo.}} 
+                
+                    \noindent \textbf{\textsc{Hipótese de indução (HI):}} A propriedade segue para todo $i < n$.
+    
+                    Analisando a obtenção de $\phi_n$, existem três casos:
+
+                    \begin{provaporsubcasos}
+
+                        \casodeprova{$\phi_n$ é um axioma}. Análogo ao caso da base.
+                    
+                        \casodeprova{$\phi_n \in \Delta$}. Análogo ao caso da base.
+
+                        \casodeprova{$\phi_n$ é resultado de MP em duas fórmulas $\phi_j, \phi_k$ com $j, k < n$}.
+
+                        Neste caso, $\phi_j = \phi_k \to \phi_n$ (ou $\phi_k = \phi_j \to \phi_n$, a prova para este caso é análoga). Então, temos $\Delta \conhil \phi_k$ e $\Delta \conhil \phi_k \to \phi_n$. Pela (HI), temos $\Gamma \conhil \phi_k$ e $\Gamma \conhil \phi_k \to \phi_n$. Portanto, basta aplicar MP para obter $\Gamma \conhil \phi_n$.
+                    \end{provaporsubcasos}
+
+                \end{adjustwidth}
                 
                 \noindent{}\textbf{Prova do item (iii)}. Vamos supor $\Delta \conhil \phi$ e $\Gamma \conhil \delta$ para todo $\delta \in \Delta$. Então, existe uma prova $\phi_1, \ldots, \phi_n$ de $\phi_n = \phi$ a partir de $\Delta$. Vamos fazer uma indução no tamanho $n$ desta prova.
                 
                 \begin{adjustwidth}{1cm}{}
                     
                     \textbf{\textsc{Base.}} $n = 1$.
-                    Analisando a obtenção de $\phi$, existem dois casos:
+                    Analisando a obtenção de $\phi = \phi_1$, existem dois casos:
+
                     \begin{provaporcasos}
+
                     \casodeprova{$\phi_1$ é um axioma}. 
                     
-                    Neste caso, basta aplicar o mesmo axioma para mostrar $\Gamma \conhil \phi_1$.
+                        Neste caso, basta aplicar o mesmo axioma para mostrar $\Gamma \conhil \phi_1$.
                     
                     \casodeprova{$\phi_1 \in \Delta$}. 
                     
-                    Neste caso, $\Gamma \conhil \phi_1$ por suposição.
+                        Neste caso, $\Gamma \conhil \phi_1$ por suposição.
                 \end{provaporcasos}
 
                 \noindent\textbf{\textsc{Passo.}} 
@@ -1428,7 +1473,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             \end{adjustwidth}
         \end{adjustwidth}
 
-            Então, a \lfium{} é uma lógica tarskiana. \qedhere
+            Então, a \lfium{} é uma lógica Tarskiana. \qedhere
             
         \end{proof}
 
@@ -1465,7 +1510,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{provaporcasos}
                     \casodeprova{$\phi_n$ é um axioma}. Análogo ao caso da base.
         
-                    \casodeprova{$\phi_n \in \Delta$}. Análogo ao caso da base.
+                    \casodeprova{$\phi_n \in \Gamma$}. Análogo ao caso da base.
 
                     \casodeprova{$\phi_n$ é resultado de MP em duas fórmulas $\phi_j, \phi_k$ com $j, k < n$}.
                     
@@ -1479,12 +1524,12 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
 
         \begin{definicao}[Conjunto de fórmulas maximal não-trivial]\label{def:nao-trivial_maximal}
-            Seja $\mathcal{L}$ uma lógica tarskiana definida sobre uma linguagem $\pazocal{L}$ e sejam $\Gamma, \{\phi\}$ conjuntos de fórmulas de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. O conjunto $\Gamma$ é dito maximal não-trivial em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
+            Seja $\mathcal{L}$ uma lógica Tarskiana definida sobre uma linguagem $\pazocal{L}$ e sejam $\Gamma, \{\phi\}$ conjuntos de fórmulas de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. O conjunto $\Gamma$ é dito maximal não-trivial em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
         \end{definicao}
 
         \begin{definicao}[Teoria fechada]\label{def:fechada}
 
-            Seja $\mathcal{L}$ uma lógica tarskiana. Um conjunto de fórmulas $\Gamma$ é dito fechado em $\mathcal{L}$ (ou dito uma \textit{teoria fechada} em $\mathcal{L}$) se, para toda fórmula $\phi$, tem-se $\Gamma \Vdash_{\mathcal{L}} \phi$ sse $\phi \in \Gamma$.\qed{}
+            Seja $\mathcal{L}$ uma lógica Tarskiana. Um conjunto de fórmulas $\Gamma$ é dito fechado em $\mathcal{L}$ (ou dito uma \textit{teoria fechada} em $\mathcal{L}$) se, para toda fórmula $\phi$, tem-se $\Gamma \Vdash_{\mathcal{L}} \phi$ sse $\phi \in \Gamma$.\qed{}
         \end{definicao}
 
         \begin{lema}\label{lem:nao_trivial_maximal_fechado}
@@ -1494,7 +1539,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
         \begin{proof}[Prova do Lema~\ref{lem:nao_trivial_maximal_fechado}]
             Seja $\Gamma$ uma conjunto de fórmulas maximal não-trivial em relação a $\phi$ em $\mathcal{L}$. 
             
-            \noindent($\Longrightarrow$) Se $\psi \in \Gamma$, então $\Gamma \Vdash_{\mathcal{L}} \psi$, já que $\mathcal{L}$ é tarskiana. 
+            \noindent($\Longrightarrow$) Se $\psi \in \Gamma$, então $\Gamma \Vdash_{\mathcal{L}} \psi$, já que $\mathcal{L}$ é Tarskiana. 
             
             \noindent($\Longleftarrow$) Se $\Gamma \Vdash_{\mathcal{L}} \psi$, então supondo $\psi \notin \Gamma$, temos $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$, pela Definição~\ref{def:nao-trivial_maximal}. Pela propriedade do corte, segue que $\Gamma \Vdash_{\mathcal{L}} \phi$, o que contradiz o fato de $\Gamma$ ser maximal não-trivial em relação a $\phi$ em $\mathcal{L}$. Portanto, $\psi \in \Gamma$.
             
@@ -1565,7 +1610,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \begin{adjustwidth}{1cm}{}
 
 
-                    Vamos supor $\phi_i \in \Delta$ e $\phi_i \not \in \Gamma_i$. Temos, por (3), $\Gamma_{i - 1} \nconhil \phi$. Pela definição de $\Gamma_i$, temos $\Gamma_{i - 1}, \phi_i \conhil \phi$. Portanto, por (2) e já que a \lfium{} é tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma_k, \phi_i \conhil \phi$, para qualquer $k \geq i$. Então, por (3), $\phi_i \not \in \Gamma_k$ para qualquer $k > i$. Portanto, $\phi_i \not \in \Delta$, o que contradiz a nossa suposição inicial. Portanto, $\phi_i \in \Gamma_i$.
+                    Vamos supor $\phi_i \in \Delta$ e $\phi_i \not \in \Gamma_i$. Temos, por (3), $\Gamma_{i - 1} \nconhil \phi$. Pela definição de $\Gamma_i$, temos $\Gamma_{i - 1}, \phi_i \conhil \phi$. Portanto, por (2) e já que a \lfium{} é Tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma_k, \phi_i \conhil \phi$, para qualquer $k \geq i$. Então, por (3), $\phi_i \not \in \Gamma_k$ para qualquer $k > i$. Portanto, $\phi_i \not \in \Delta$, o que contradiz a nossa suposição inicial. Portanto, $\phi_i \in \Gamma_i$.
 
                 \end{adjustwidth}
 
@@ -1581,13 +1626,13 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \noindent(6) $\Delta \nconhil \phi$.
 
                 \begin{adjustwidth}{1cm}{}
-                    Vamos supor $\Delta \conhil \phi$. Portanto, como a \lfium{} é finitária (Proposição~\ref{prop:finit}), existe um $\Delta' \subseteq \Delta$ finito com $\Delta' \conhil \phi$. Logo, por (3), existe um $\Gamma_i$ na sequência tal que $\Delta' \subseteq \Gamma_i$. Então, como a \lfium{} é tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma_i \conhil \phi$, o que é uma contradição (por (2)). Portanto, $\Delta \nconhil \phi$.
+                    Vamos supor $\Delta \conhil \phi$. Portanto, como a \lfium{} é finitária (Proposição~\ref{prop:finit}), existe um $\Delta' \subseteq \Delta$ finito com $\Delta' \conhil \phi$. Logo, por (3), existe um $\Gamma_i$ na sequência tal que $\Delta' \subseteq \Gamma_i$. Então, como a \lfium{} é Tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma_i \conhil \phi$, o que é uma contradição (por (2)). Portanto, $\Delta \nconhil \phi$.
                 \end{adjustwidth}
 
                 \noindent(7) $\Delta$ é maximal não-trivial em relação a $\phi$ em \lfium{}.
                 
                 \begin{adjustwidth}{1cm}{}
-                    Seja $\psi$ uma fórmula qualquer com $\psi \not \in \Delta$. Então $\psi = \phi_i$ para algum $i \in \mathbb{N}$. Supondo $\phi_i \in \Gamma_i$, chegamos numa contradição (já que, por construção de $\Delta$, teríamos $\phi_i \in \Delta$), portanto, temos $\phi_i \not \in \Gamma_i$. Logo, pela construção de $\Gamma_i$, temos $\Gamma_{i - 1}, \phi_i \conhil \phi$. Então, já que a \lfium{} é tarskiana, temos $\Delta, \phi_i \conhil \phi$. Portanto, $\Delta$ é maximal não-trivial em relação a $\phi$ em \lfium{}.
+                    Seja $\psi$ uma fórmula qualquer com $\psi \not \in \Delta$. Então $\psi = \phi_i$ para algum $i \in \mathbb{N}$. Supondo $\phi_i \in \Gamma_i$, chegamos numa contradição (já que, por construção de $\Delta$, teríamos $\phi_i \in \Delta$), portanto, temos $\phi_i \not \in \Gamma_i$. Logo, pela construção de $\Gamma_i$, temos $\Gamma_{i - 1}, \phi_i \conhil \phi$. Então, já que a \lfium{} é Tarskiana, temos $\Delta, \phi_i \conhil \phi$. Portanto, $\Delta$ é maximal não-trivial em relação a $\phi$ em \lfium{}.
 
                 \end{adjustwidth}
 
@@ -1617,9 +1662,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                     \begin{adjustwidth}{1cm}{}
                         \noindent ($\Longrightarrow$) Vamos supor $v(\alpha \land \beta) = 1$. Logo $(\alpha \land \beta) \in \Gamma$. 
                         
-                        \noindent Supondo $\alpha \not \in \Gamma$, temos $\Gamma, \alpha \conhil \phi$. Pelo axioma (\textbf{Ax4}) e MP, temos $\Gamma \conhil \alpha$. Logo, já que a \lfium{} é tarskiana (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\alpha \in \Gamma$.
+                        \noindent Supondo $\alpha \not \in \Gamma$, temos $\Gamma, \alpha \conhil \phi$. Pelo axioma (\textbf{Ax4}) e MP, temos $\Gamma \conhil \alpha$. Logo, já que a \lfium{} é Tarskiana (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\alpha \in \Gamma$.
             
-                        \noindent Supondo $\beta \not \in \Gamma$, temos $\Gamma, \beta \conhil \phi$. Pelo axioma (\textbf{Ax5}) e MP, temos $\Gamma \conhil \beta$. Logo, já que a \lfium{} é tarskiana (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\beta \in \Gamma$.
+                        \noindent Supondo $\beta \not \in \Gamma$, temos $\Gamma, \beta \conhil \phi$. Pelo axioma (\textbf{Ax5}) e MP, temos $\Gamma \conhil \beta$. Logo, já que a \lfium{} é Tarskiana (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\beta \in \Gamma$.
             
                         \noindent Logo, temos $v(\alpha) = 1$ e $v(\beta) = 1$.
 
@@ -1637,7 +1682,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                     \begin{adjustwidth}{1cm}{}
                         \noindent ($\Longrightarrow$) Vamos supor $v(\alpha \lor \beta) = 1$. Logo, $\alpha \lor \beta \in \Gamma$.
 
-                        \noindent Supondo $\alpha \notin \Gamma$ e $\beta \notin \Gamma$. Temos $\Gamma, \alpha \conhil \phi$ e $\Gamma, \beta \conhil \phi$. Logo, pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, \alpha \lor \beta \conhil \phi$. Logo, já que a \lfium{} é tarskiana (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\alpha \in \Gamma$ ou $\beta \in \Gamma$.
+                        \noindent Supondo $\alpha \notin \Gamma$ e $\beta \notin \Gamma$. Temos $\Gamma, \alpha \conhil \phi$ e $\Gamma, \beta \conhil \phi$. Logo, pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, \alpha \lor \beta \conhil \phi$. Logo, já que a \lfium{} é Tarskiana (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\alpha \in \Gamma$ ou $\beta \in \Gamma$.
                         
                         \noindent Logo, temos $v(\alpha) = 1$ ou $v(\beta) = 1$.
 
@@ -1661,7 +1706,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
                             \noindent ($\Longleftarrow$) Vamos supor $v(\alpha) = 0$ ou $v(\beta) = 1$.
 
-                            \noindent Caso $v(\alpha) = 0$, então temos $\alpha \not \in \Gamma$. Supondo $\alpha \to \beta \not \in \Gamma$, temos, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, $\Gamma, \alpha \conhil \phi$ e $\Gamma, \alpha \to \beta \conhil \phi$. Logo, pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, (\alpha \to \beta) \lor \alpha \conhil \phi$. Portanto, pelo axioma (\textbf{Ax9}) e já que a \lfium{} é tarskiana, temos $\Gamma \conhil \alpha$, o que é uma contradição. Portanto, $\alpha \to \beta \in \Gamma$ e, então, $v(\alpha \to \beta) = 1$.
+                            \noindent Caso $v(\alpha) = 0$, então temos $\alpha \not \in \Gamma$. Supondo $\alpha \to \beta \not \in \Gamma$, temos, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, $\Gamma, \alpha \conhil \phi$ e $\Gamma, \alpha \to \beta \conhil \phi$. Logo, pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, (\alpha \to \beta) \lor \alpha \conhil \phi$. Portanto, pelo axioma (\textbf{Ax9}) e já que a \lfium{} é Tarskiana, temos $\Gamma \conhil \alpha$, o que é uma contradição. Portanto, $\alpha \to \beta \in \Gamma$ e, então, $v(\alpha \to \beta) = 1$.
 
                             \noindent Caso $v(\beta) = 1$, então temos $\beta \in \Gamma$. Pelo axioma (\textbf{Ax1}), temos $\Gamma \conhil \beta \to (\alpha \to \beta)$. Portanto, por MP, temos $\Gamma \conhil \alpha \to \beta$. Logo $\alpha \to \beta \in \Gamma$ e, então, $v(\alpha \to \beta) = 1$.
 
@@ -1723,7 +1768,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             
                             \noindent ($\Longrightarrow$) Supondo $v(\neg (\alpha \land \beta)) = 1$, temos $\neg (\alpha \land \beta) \in \Gamma$. Então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg (\alpha \land \beta)$. Pelo axioma (\textbf{neg}$\land_1$), temos $\Gamma \conhil \neg (\alpha \land \beta) \to (\neg \alpha \lor \neg \beta)$. Logo, por MP, temos $\Gamma \conhil (\neg \alpha \lor \neg \beta)$.
 
-                            \noindent Vamos então supor $\neg \alpha \not \in \Gamma$ e $\neg \beta \not \in \Gamma$. Então, temos $\Gamma, \neg \alpha \conhil \phi$ e $\Gamma, \neg \beta \conhil \phi$. Pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, \neg \alpha \lor \neg \beta \conhil \phi$. Já que a \lfium{} é tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma \conhil \phi$, o que resulta numa contradição. Portanto, temos $\neg \alpha \in \Gamma$ ou $\neg \beta \in \Gamma$ e, consequentemente, $v(\neg \alpha) = 1$ ou $v(\neg \beta) = 1$.
+                            \noindent Vamos então supor $\neg \alpha \not \in \Gamma$ e $\neg \beta \not \in \Gamma$. Então, temos $\Gamma, \neg \alpha \conhil \phi$ e $\Gamma, \neg \beta \conhil \phi$. Pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, \neg \alpha \lor \neg \beta \conhil \phi$. Já que a \lfium{} é Tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma \conhil \phi$, o que resulta numa contradição. Portanto, temos $\neg \alpha \in \Gamma$ ou $\neg \beta \in \Gamma$ e, consequentemente, $v(\neg \alpha) = 1$ ou $v(\neg \beta) = 1$.
                             
                             \noindent ($\Longleftarrow$) Supondo $v(\neg \alpha) = 1$ ou $v(\neg \beta) = 1$, temos $\neg \alpha \in \Gamma$ ou $\neg \beta \in \Gamma$.
 
@@ -1741,7 +1786,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             
                             \noindent ($\Longrightarrow$) Supondo $v(\neg (\alpha \lor \beta)) = 1$, temos $\neg (\alpha \lor \beta) \in \Gamma$. Logo, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg (\alpha \lor \beta)$. Pelo axioma (\textbf{neg}$\lor_1$), temos $\Gamma \conhil \neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta)$. Logo, por MP, temos $\Gamma \conhil \neg \alpha \land \neg \beta$.
 
-                            \noindent Vamos supor $\neg \alpha \not \in \Gamma$ ou $\neg \beta \not \in \Gamma$. Então, temos $\Gamma, \alpha \conhil \phi$ ou $\Gamma, \beta \conhil \phi$. Pelos axiomas (\textbf{Ax4}) e (\textbf{Ax5}), temos $\Gamma \conhil (\neg \alpha \land \neg \beta) \to \alpha$ e $\Gamma \conhil (\neg \alpha \land \neg \beta) \to \beta$. Aplicando MP duas vezes temos $\Gamma \conhil \alpha$ e $\Gamma \conhil \beta$. Já que a \lfium{} é tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma \conhil \phi$, o que é resulta numa contradição. Portanto, $\neg \alpha \in \Gamma$ e $\neg \beta \in \Gamma$ e, consequentemente, temos $v(\neg \alpha) = 1$ e $v(\neg \beta) = 1$. 
+                            \noindent Vamos supor $\neg \alpha \not \in \Gamma$ ou $\neg \beta \not \in \Gamma$. Então, temos $\Gamma, \alpha \conhil \phi$ ou $\Gamma, \beta \conhil \phi$. Pelos axiomas (\textbf{Ax4}) e (\textbf{Ax5}), temos $\Gamma \conhil (\neg \alpha \land \neg \beta) \to \alpha$ e $\Gamma \conhil (\neg \alpha \land \neg \beta) \to \beta$. Aplicando MP duas vezes temos $\Gamma \conhil \alpha$ e $\Gamma \conhil \beta$. Já que a \lfium{} é Tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma \conhil \phi$, o que é resulta numa contradição. Portanto, $\neg \alpha \in \Gamma$ e $\neg \beta \in \Gamma$ e, consequentemente, temos $v(\neg \alpha) = 1$ e $v(\neg \beta) = 1$. 
                             
                             \noindent ($\Longleftarrow$) Supondo $v(\neg \alpha) = 1$ e $v(\neg \beta) = 1$, temos $\neg \alpha \in \Gamma$ e $\neg \beta \in \Gamma$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg \alpha$ e $\Gamma \conhil \neg \beta$. Pelo axioma (\textbf{Ax3}), temos $\Gamma \conhil \neg \alpha \to (\neg \beta \to (\neg \alpha \land \neg \beta))$. Aplicando MP duas vezes, temos $\Gamma \conhil \neg \alpha \land \neg \beta$. Pelo axioma (\textbf{neg}$\lor_2$), temos $\Gamma \conhil (\neg \alpha \land \neg \beta) \to \neg (\alpha \lor \beta)$. Aplicando MP, temos $\Gamma \conhil \neg (\alpha \lor \beta)$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\neg (\alpha \lor \beta) \in \Gamma$ e, consequentemente, $v(\neg (\alpha \lor \beta)) = 1$.
 
@@ -1753,7 +1798,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             
                             \noindent ($\Longrightarrow$) Supondo $v(\neg (\alpha \to \beta)) = 1$, temos $\neg (\alpha \to \beta) \in \Gamma$. Logo, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg (\alpha \to \beta)$. Pelo axioma (\textbf{neg}$\to_1$), temos $\Gamma \conhil \neg (\alpha \to \beta) \to (\alpha \land \neg \beta)$. Aplicando MP, temos $\Gamma \conhil \alpha \land \neg \beta$. Pelos axiomas (\textbf{Ax4}) e (\textbf{Ax5}), temos $\Gamma \conhil (\alpha \land \neg \beta) \to \alpha$ e $\Gamma \conhil (\alpha \land \neg \beta) \to \beta$. Aplicando MP duas vezes, temos $\Gamma \conhil \alpha$ e $\Gamma \conhil \neg \beta$.
 
-                            \noindent Vamos supor $v(\alpha) = 0$ ou $v(\neg \beta) = 0$. Logo, temos $\alpha \not \in \Gamma$ ou $\neg \beta \not \in \Gamma$. Logo, temos $\Gamma, \alpha \conhil \phi$ ou $\Gamma, \neg \beta \conhil \phi$. Já que a \lfium{} é tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma \conhil \phi$, o que resulta numa contradição. Portanto, temos $v(\alpha) = 1$ e $v(\neg \beta) = 1$.
+                            \noindent Vamos supor $v(\alpha) = 0$ ou $v(\neg \beta) = 0$. Logo, temos $\alpha \not \in \Gamma$ ou $\neg \beta \not \in \Gamma$. Logo, temos $\Gamma, \alpha \conhil \phi$ ou $\Gamma, \neg \beta \conhil \phi$. Já que a \lfium{} é Tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma \conhil \phi$, o que resulta numa contradição. Portanto, temos $v(\alpha) = 1$ e $v(\neg \beta) = 1$.
 
                             \noindent ($\Longleftarrow$) Supondo $v(\alpha) = 1$ e $v(\neg \beta) = 1$, temos $\alpha \in \Gamma$ e $\neg \beta \in \Gamma$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \alpha$ e $\Gamma \conhil \neg \beta$. Pelo axioma (\textbf{Ax3}), temos $\Gamma \conhil \alpha \to (\neg \beta \to (\alpha \land \neg \beta))$. Aplicando MP duas vezes, temos $\Gamma \conhil \alpha \land \neg \beta$. Pelo axioma (\textbf{neg}$\to_2$), temos $\Gamma \conhil (\alpha \land \neg \beta) \to \neg (\alpha \to \beta)$. Aplicando MP, temos $\Gamma \conhil \neg (\alpha \to \beta)$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\neg (\alpha \to \beta) \in \Gamma$ e, consequentemente, $v(\neg (\alpha \to \beta)) = 1$. \qedhere
 
@@ -1812,5 +1857,5 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
         \end{corolario}
 
         \begin{proof}[Prova do Corolário~\ref{teo:completude_mat}]
-            Seja $\Gamma \cup \{\phi\} \subseteq \ling{}$ um conjunto de fórmulas com $\Gamma \conmat \phi$. Pela equivalência entre a semântica matricial e as bivalorações (Corolário~\ref{cor:matvaleq}), temos $\Gamma \conval \phi$. Logo, pela completude em relação às bivalorações (Teorema~\ref{teo:completude_val}), temos $\Gamma \conhil \phi$
+            Seja $\Gamma \cup \{\phi\} \subseteq \ling{}$ um conjunto de fórmulas com $\Gamma \conmat \phi$. Pela equivalência entre a semântica matricial e as bivalorações (Corolário~\ref{cor:matvaleq}), temos $\Gamma \conval \phi$. Logo, pela completude em relação às bivalorações (Teorema~\ref{teo:completude_val}), temos $\Gamma \conhil \phi$.
         \end{proof}
