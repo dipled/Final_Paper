@@ -81,7 +81,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             & (\neg \alpha \lor \neg \beta) \to \neg (\alpha \land \beta)                       \tag{\textbf{neg}$\land_{2}$} \label{ax:axnegland2}\\
             & \neg (\alpha \to \beta) \to(\alpha \land \neg \beta)                              \tag{\textbf{neg}$\to_{1}$}   \label{ax:axnegto1}\\
             & (\alpha \land \neg \beta) \to \neg(\alpha \to \beta)                              \tag{\textbf{neg}$\to_{2}$}   \label{ax:axnegto2}\\
-    \end{align*}
+    \end{align*}    
         \\
         \noindent\textbf{Regra de inferência:}
         \begin{prooftree}
@@ -93,7 +93,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
         Desta forma, a lógica \lfium{} é definida como $\lfium{} = \langle \ling, \conhil \rangle$.\qed{}  
     \end{definicao}
 
-    Os axiomas (\textbf{Ax1}) {---} (\textbf{Ax10}) e a regra de inferência \textbf{MP} (\textit{modus ponens}) são importados da lógica proposicional clássica. O axioma (\textbf{bc1}) é chamado de \textit{princípio da explosão gentil}. Os axiomas (\textbf{neg}$\lor_{1}$) {---} (\textbf{neg}$\to_{2}$) expressam as leis de De Morgan em relação a negação paraconsistente $\neg$. Os axiomas (\textbf{ce}) e (\textbf{cf}) expressam, respectivamente, a introdução e a eliminação da dupla negação. O axioma (\textbf{ci}) representa a inconsistência de uma informação.
+    Os axiomas (\textbf{\ref{ax:ax1}}) {---} (\textbf{\ref{ax:ax10}}) e a regra de inferência \textbf{MP} (\textit{modus ponens}) são importados da lógica proposicional clássica. O axioma (\textbf{\ref{ax:axbc1}}) é chamado de \textit{princípio da explosão gentil}. Os axiomas (\ref{ax:axneglor1}) {---} (\ref{ax:axnegto2}) expressam as leis de De Morgan em relação a negação paraconsistente $\neg$. Os axiomas (\textbf{\ref{ax:axce}}) e (\textbf{\ref{ax:axcf}}) expressam, respectivamente, a introdução e a eliminação da dupla negação. O axioma (\textbf{\ref{ax:axci}}) representa a inconsistência de uma informação.
 
     Com isso, uma derivação em \lfium{} pode ser definida:
     
@@ -118,16 +118,16 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             1.~& \circ \psi \tag{Premissa} \\
             2.~& \alpha \to (\psi \land \neg \psi) \tag{Premissa} \\
             3.~& \neg \alpha \to (\psi \land \neg \psi) \tag{Premissa} \\
-            4.~& \alpha \lor \neg \alpha \tag{Ax10} \\
-            5.~& (\alpha \to (\psi \land \neg \psi)) \to ((\neg \alpha \to (\psi \land \neg \psi)) \to ((\alpha \lor \neg \alpha) \to (\psi \land \neg \psi))) \tag{Ax8} \\
+            4.~& \alpha \lor \neg \alpha \tag{\ref{ax:ax10}} \\
+            5.~& (\alpha \to (\psi \land \neg \psi)) \to ((\neg \alpha \to (\psi \land \neg \psi)) \to ((\alpha \lor \neg \alpha) \to (\psi \land \neg \psi))) \tag{\ref{ax:ax8}} \\
             6.~& (\neg \alpha \to (\psi \land \neg \psi)) \to ((\alpha \lor \neg \alpha) \to (\psi \land \neg \psi)) \tag{MP 2, 5}\\
             7.~& (\alpha \lor \neg \alpha) \to (\psi \land \neg \psi) \tag{MP 3, 6}\\
             8.~& \psi \land \neg \psi \tag{MP 4, 7} \\
-            9.~& (\psi \land \neg \psi) \to \psi \tag{Ax4} \\
-            10.~& (\psi \land \neg \psi) \to \neg \psi \tag{Ax5} \\
+            9.~& (\psi \land \neg \psi) \to \psi \tag{\ref{ax:ax4}} \\
+            10.~& (\psi \land \neg \psi) \to \neg \psi \tag{\ref{ax:ax5}} \\
             11.~& \psi \tag{MP 8, 9}\\
             12.~& \neg \psi \tag{MP 8, 10}\\
-            13.~& \circ \psi \to (\psi \to (\neg \psi \to \phi)) \tag{bc1}\\
+            13.~& \circ \psi \to (\psi \to (\neg \psi \to \phi)) \tag{\ref{ax:axbc1}}\\
             14.~& \psi \to (\neg \psi \to \phi) \tag{MP 1, 13}\\
             15.~& \neg \psi \to \phi \tag{MP 11, 14} \\
             16.~& \phi \tag{MP, 12, 15}
@@ -276,16 +276,16 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
         \begin{definicao} [Semântica de valorações para \textbf{$\text{LFI1}$}]\label{def:valoracoes}
             Uma função $v : \ling{} \to \{1, 0\}$ é uma valoração para a lógica \lfium{} caso ela satisfaça as seguintes cláusulas:
             \begin{align*}
-                & v(\alpha \land \beta) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\beta) = 1\tag{\textbf{$vAnd$}}\\
-                & v(\alpha \lor \beta) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ ou } v(\beta) = 1\tag{\textbf{$vOr$}}\\
-                & v(\alpha \to \beta) = 1 \Longleftrightarrow v(\alpha) = 0 \text{ ou } v(\beta) = 1\tag{\textbf{$vImp$}}\\
-                & v(\neg \alpha) = 0 \Longrightarrow v(\alpha) = 1\tag{\textbf{$vNeg$}}\\
-                & v(\circ \alpha) = 1 \Longrightarrow v(\alpha) = 0 \text{ ou } v(\neg \alpha) = 0\tag{\textbf{$vCon$}}\\
-                & v(\neg \circ \alpha) = 1 \Longrightarrow v(\alpha) = 1 \text{ e } v(\neg \alpha) = 1\tag{\textbf{$vCi$}}\\
-                & v(\neg \neg \alpha) = 1 \Longleftrightarrow v(\alpha) = 1\tag{\textbf{$vDNE$}}\\
-                & v(\neg (\alpha \land \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ ou } v(\neg \beta) = 1\tag{\textbf{$vDM_{\land}$}}\\
-                & v(\neg (\alpha \lor \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vDM_{\lor}$}}\\
-                & v(\neg (\alpha \to \beta)) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vCip_{\to}$}}
+                & v(\alpha \land \beta) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\beta) = 1\tag{\textbf{$vAnd$}}\label{val:vand}\\
+                & v(\alpha \lor \beta) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ ou } v(\beta) = 1\tag{\textbf{$vOr$}}\label{val:vor}\\
+                & v(\alpha \to \beta) = 1 \Longleftrightarrow v(\alpha) = 0 \text{ ou } v(\beta) = 1\tag{\textbf{$vImp$}}\label{val:vimp}\\
+                & v(\neg \alpha) = 0 \Longrightarrow v(\alpha) = 1\tag{\textbf{$vNeg$}}\label{val:vneg}\\
+                & v(\circ \alpha) = 1 \Longrightarrow v(\alpha) = 0 \text{ ou } v(\neg \alpha) = 0\tag{\textbf{$vCon$}}\label{val:vcon}\\
+                & v(\neg \circ \alpha) = 1 \Longrightarrow v(\alpha) = 1 \text{ e } v(\neg \alpha) = 1\tag{\textbf{$vCi$}}\label{val:vci}\\
+                & v(\neg \neg \alpha) = 1 \Longleftrightarrow v(\alpha) = 1\tag{\textbf{$vDNE$}}\label{val:vdne}\\
+                & v(\neg (\alpha \land \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ ou } v(\neg \beta) = 1\tag{\textbf{$vDM_{\land}$}}\label{val:vdmand}\\
+                & v(\neg (\alpha \lor \beta)) = 1 \Longleftrightarrow v(\neg \alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vDM_{\lor}$}}\label{val:vdmor}\\
+                & v(\neg (\alpha \to \beta)) = 1 \Longleftrightarrow v(\alpha) = 1 \text{ e } v(\neg \beta) = 1\tag{\textbf{$vCip_{\to}$}}\label{val:vcip}
             \end{align*}
             O conjunto de todas as valorações para a lógica \lfium{} será denotado por $V^{\lfium{}}$.\qed{}
         \end{definicao}
@@ -297,7 +297,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
         \end{definicao}
 
 
-        Note que, por conta de $(vNeg)$ e $(vCon)$, o valor $v(\triangle \alpha)$ {---} para $\triangle \in \{\neg, \circ\}$ {---} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, pode-se ter $v(\neg \alpha)$ tanto $0$ como $1$ (mas não ambos). Isto pode ser observado na seguinte tabela de possíveis valorações para $\neg \phi$ e $\circ \phi$, dada uma fórmula $\phi$:
+        Note que, por conta de (\ref{val:vneg}) e (\ref{val:vcon}), o valor $v(\triangle \alpha)$ {---} para $\triangle \in \{\neg, \circ\}$ {---} não é determinado pelo valor $v(\alpha)$ da subfórmula $\alpha$. Ou seja, os conectivos $\neg$ e $\circ$ apresentam um comportamento não determinístico em relação a esta semântica de valorações. Por exemplo, caso $v(\alpha)$ seja $1$, pode-se ter $v(\neg \alpha)$ tanto $0$ como $1$ (mas não ambos). Isto pode ser observado na seguinte tabela de possíveis valorações para $\neg \phi$ e $\circ \phi$, dada uma fórmula $\phi$:
 
         \begin{table}[h]
             \setbool{@fleqn}{false}
@@ -310,7 +310,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                     & 1 & 0 & v_3 \\ \hline%chktex 44
                 \end{array}
                 \]
-                \caption{Valorações possíveis para $\phi$, $\neg \phi$ e $\circ \phi$, considerando $(vNeg)$, $(vCon)$ e $(vCi)$.}\label{tab:negcirc}
+                \caption{Valorações possíveis para $\phi$, $\neg \phi$ e $\circ \phi$, considerando (\ref{val:vneg}), (\ref{val:vcon}) e (\ref{val:vci}).}\label{tab:negcirc}
         \end{table}
 
         Uma semântica de valorações que define funções que mapeiam para conjuntos com somente dois elementos é chamada de \textit{bivaloração}. Este tipo de semântica possui características interessantes que a distinguem da semântica matricial. A semântica de matrizes nos permite mostrar a validade de uma inferência com facilidade, contudo, alguns lógicos e filósofos demonstram descontentamento com a existência de múltiplos valores-verdade designados, argumentando que uma distinção deve ser feita entre ``valorações algébricas'' {---} correspondente às matrizes lógicas {---} e sua ``definição genuína'', em termos de bivalorações~\cite{Suszko1975-SUSROL}. Além disso, as bivalorações servem um papel importante na teoria dos modelos, como na comparação de sistemas lógicos e na associação de outros sistemas semânticos a uma lógica já estabelecida~\cite{bivalence}.
@@ -342,9 +342,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
         \begin{proof}[Prova do Lema~\ref{lem:id}]
             A seguinte sequência de derivação demonstra o lema:
             \begin{align*}
-                & \text{1. } (\alpha \to ((\alpha \to \alpha) \to \alpha)) \to ((\alpha \to (\alpha \to \alpha)) \to (\alpha \to \alpha))\tag{Ax2}\\
-                & \text{2. } \alpha \to ((\alpha \to \alpha) \to \alpha)\tag{Ax1}\\
-                & \text{3. } \alpha \to (\alpha \to \alpha)\tag{Ax1}\\
+                & \text{1. } (\alpha \to ((\alpha \to \alpha) \to \alpha)) \to ((\alpha \to (\alpha \to \alpha)) \to (\alpha \to \alpha))\tag{\ref{ax:ax2}}\\
+                & \text{2. } \alpha \to ((\alpha \to \alpha) \to \alpha)\tag{\ref{ax:ax1}}\\
+                & \text{3. } \alpha \to (\alpha \to \alpha)\tag{\ref{ax:ax1}}\\
                 & \text{4. } (\alpha \to (\alpha \to \alpha)) \to (\alpha \to \alpha)\tag{MP 1,2}\\
                 & \text{5. } \alpha \to \alpha\tag{MP 3,4}
             \end{align*}
@@ -377,7 +377,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                     A seguinte derivação mostra $\Gamma \conhil \alpha \to \phi_{1}$:
                     \begin{align*}
                         & \text{1. } \phi_{1} \tag{Axioma}\\
-                        & \text{2. } \phi_{1} \to (\alpha \to \phi_{1}) \tag{Ax1}\\
+                        & \text{2. } \phi_{1} \to (\alpha \to \phi_{1}) \tag{\ref{ax:ax1}}\\
                         & \text{3. } \alpha \to \phi_{1} \tag{MP 1,2}
                     \end{align*}
 
@@ -400,7 +400,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             Então $\Gamma \conhil \alpha \to \phi_{1}$ é provado pela seguinte sequência de derivações:
                             \begin{align*}
                                 & \text{1. } \phi_{1} \tag{Premissa}\\
-                                & \text{2. } \phi_{1} \to (\alpha \to \phi_{1}) \tag{Ax1}\\
+                                & \text{2. } \phi_{1} \to (\alpha \to \phi_{1}) \tag{\ref{ax:ax1}}\\
                                 & \text{3. } \alpha \to \phi_{1} \tag{MP 1, 2}
                             \end{align*}
                     \end{provaporsubcasos}
@@ -439,7 +439,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \text{$j$}&.~ \alpha \to \phi_{j} \tag{HI sobre $\phi_{j}$}\\
                 &\vdots \; ~\ddots\\
                 \text{$j + k$}&.~ \alpha \to (\phi_{j} \to \phi_{n}) \tag{HI sobre $\phi_{k}$}\\
-                \text{$j + k + 1$}&.~ (\alpha \to (\phi_{j} \to \phi_{n})) \to ((\alpha \to \phi_{j}) \to (\alpha \to \phi_{n})) \tag{Ax2}\\
+                \text{$j + k + 1$}&.~ (\alpha \to (\phi_{j} \to \phi_{n})) \to ((\alpha \to \phi_{j}) \to (\alpha \to \phi_{n})) \tag{\ref{ax:ax2}}\\
                 \text{$j + k + 2$}&.~ (\alpha \to \phi_{j}) \to (\alpha \to \phi_{n}) \tag{MP $j + k$\text{,}$j + k + 1$}\\
                 \text{$j + k + 3$}&.~ \alpha \to \phi_{n} \tag{MP $j$\text{,}$j + k + 2$}
             \end{align*}
@@ -468,7 +468,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 1. ~& \alpha \to \phi \tag{MTD aplicado à suposição} \\
                 2. ~& \beta \to \phi \tag{MTD aplicado à suposição} \\
                 3. ~& \alpha \lor \beta \tag{Premissa} \\
-                4. ~& (\alpha \to \phi) \to ((\beta \to \phi) \to ((\alpha \lor \beta) \to \phi)) \tag{Ax8} \\
+                4. ~& (\alpha \to \phi) \to ((\beta \to \phi) \to ((\alpha \lor \beta) \to \phi)) \tag{\ref{ax:ax8}} \\
                 5. ~& (\beta \to \phi) \to ((\alpha \lor \beta) \to \phi) \tag{MP 1, 4}\\
                 6. ~& (\alpha \lor \beta) \to \phi \tag{MP 2, 5} \\
                 7. ~& \phi \tag{MP 3, 6}
@@ -491,7 +491,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             A seguinte sequência de derivação mostra $\Gamma\conhil \phi$:
             \begin{align*}
                 1. ~& (\alpha \lor \neg \alpha) \to \phi\tag{MTD aplicado à suposição} \\
-                2. ~& \alpha \lor \neg \alpha \tag{Ax10} \\
+                2. ~& \alpha \lor \neg \alpha \tag{\ref{ax:ax10}} \\
                 3. ~& \phi \tag{MP 1,2}
             \end{align*}
         \end{proof}
@@ -565,12 +565,12 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             
                             Pela matriz de $\neg$ temos $h(\alpha) = 0$. Então, por (HI), $v(\alpha) = 0$. 
                             
-                            Por $(vNeg)$ temos $v(\neg \alpha) = v(\phi) = 1$. Enfim, por $(vDNE)$, $v(\neg \phi) = v(\neg \neg \alpha) = v(\alpha) = 0$
+                            Por (\ref{val:vneg}) temos $v(\neg \alpha) = v(\phi) = 1$. Enfim, por (\ref{val:vdne}), $v(\neg \phi) = v(\neg \neg \alpha) = v(\alpha) = 0$
                             
                             
                             ($\Longleftarrow$) Supondo $v(\phi) = v(\neg \alpha) = 1$ e $v(\neg \phi) = v(\neg \neg \alpha) = 0$, vamos provar $h(\phi) = h(\neg \alpha) = 1$.
                             
-                            Por $(vDNE)$ temos $v(\neg \neg \alpha) = v(\alpha) = 0$.
+                            Por (\ref{val:vdne}) temos $v(\neg \neg \alpha) = v(\alpha) = 0$.
                             
                             Por (HI) temos $h(\alpha) = 0$. Então, $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 1$, pela matriz de $\neg$.
                         
@@ -580,11 +580,11 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             
                             Pela matriz de $\neg$ temos $h(\alpha) = \meio{}$. Então, por (HI), $v(\alpha) = 1$ e $v(\neg \alpha) = v(\phi) = 1$.
                             
-                            Enfim, por $(vDNE)$ temos $v(\neg \phi) = v(\neg \neg \alpha) = v(\alpha) = 1$.
+                            Enfim, por (\ref{val:vdne}) temos $v(\neg \phi) = v(\neg \neg \alpha) = v(\alpha) = 1$.
                             
                             ($\Longleftarrow$) Supondo $v(\phi) = v(\neg \alpha) = 1$ e $v(\neg \phi) = v(\neg \neg \alpha)= 1$, vamos provar $h(\phi) = \meio{}$.
 
-                            Por $(vDNE)$ temos $v(\alpha) = v(\neg \neg \alpha) = 1$.
+                            Por (\ref{val:vdne}) temos $v(\alpha) = v(\neg \neg \alpha) = 1$.
                             
                             Por (HI), temos $h(\alpha) = \meio{}$. Então, pela matriz de $\neg$, temos $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = \meio{}$.
                         
@@ -596,7 +596,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                         
                             ($\Longleftarrow$) Supondo $v(\phi) = v(\neg \alpha) = 0$, vamos provar $h(\phi) = h(\neg \alpha) = 0$.
                         
-                            Por $(vNeg)$ temos $v(\alpha) = 1$. Logo, por (HI), temos $h(\alpha) = 1$.
+                            Por (\ref{val:vneg}) temos $v(\alpha) = 1$. Logo, por (HI), temos $h(\alpha) = 1$.
                             
                             Pela matriz de $\neg$ temos $h(\phi) = h(\neg \alpha) = \neg h(\alpha) = 0$.
                     \end{provaporsubcasos}
@@ -616,13 +616,13 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                     
                                     Por (HI) temos $v(\alpha) = 1$ e $v(\neg \alpha) = 0$.
                                 
-                                    Por $(vCi)$ temos $v(\neg \phi) = v(\neg \circ \alpha) = 0$. Então, por $(vNeg)$, temos $v(\phi) = v(\circ \alpha) = 1$.
+                                    Por (\ref{val:vci}) temos $v(\neg \phi) = v(\neg \circ \alpha) = 0$. Então, por (\ref{val:vneg}), temos $v(\phi) = v(\circ \alpha) = 1$.
                                 
                                 \subsubcasodeprova{$h(\alpha) = 0$.}
                                     
                                     Por (HI) temos $v(\alpha) = 0$.
                                 
-                                    Por $(vCi)$, temos $v(\neg \phi) = v(\neg \circ \alpha) = 0$. Então, por $(vNeg)$ temos $v(\phi) = 1$.
+                                    Por (\ref{val:vci}), temos $v(\neg \phi) = v(\neg \circ \alpha) = 0$. Então, por (\ref{val:vneg}) temos $v(\phi) = 1$.
 
                                     \newcounter{buffer}
                                     \setcounter{buffer}{\theSubSubCasos}
@@ -630,7 +630,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             
                             ($\Longleftarrow$) Supondo $v(\phi) = v(\circ \alpha) = 1$ e $v(\neg \phi) = v(\neg \circ \alpha) = 0$, vamos provar $h(\phi) = h(\circ \alpha) = 1$.
                             
-                            Por $(vCon)$ temos $v(\alpha) = 0$ ou $v(\neg \alpha) = 0$.
+                            Por (\ref{val:vcon}) temos $v(\alpha) = 0$ ou $v(\neg \alpha) = 0$.
 
                             \begin{provaporsubsubcasos}
                                 \setcounter{SubSubCasos}{\thebuffer}
@@ -641,7 +641,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                                 
                                 \subsubcasodeprova{$v(\neg \alpha) = 0$.} 
 
-                                    Por $(vNeg)$ temos $v(\alpha) = 1$. Então, por (HI), temos $h(\alpha) = 1$. 
+                                    Por (\ref{val:vneg}) temos $v(\alpha) = 1$. Então, por (HI), temos $h(\alpha) = 1$. 
                                     
                                     Finalmente, pela matriz de $\circ$, temos $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 1$.
                             \end{provaporsubsubcasos}
@@ -650,9 +650,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             
                             ($\Longrightarrow$) Pela matriz lógica de $\circ$, nunca temos $h(\phi) = h(\circ \alpha) = \meio{}$.
                             
-                            ($\Longleftarrow$) Supondo $v(\phi) = 1$ e $v(\neg \phi) = 1$, então, por $(vCon)$ aplicado a $v(\phi) = v(\alpha) = 1$, temos $v(\alpha) = 0$ ou $v(\neg \alpha) = 0$. 
+                            ($\Longleftarrow$) Supondo $v(\phi) = 1$ e $v(\neg \phi) = 1$, então, por (\ref{val:vcon}) aplicado a $v(\phi) = v(\alpha) = 1$, temos $v(\alpha) = 0$ ou $v(\neg \alpha) = 0$. 
                             
-                            Entretanto, por $(vCi)$ aplicado a $v(\neg \phi) = v(\neg \alpha) = 1$, temos $v(\alpha) = 1$ e $v(\neg \alpha) = 1$.
+                            Entretanto, por (\ref{val:vci}) aplicado a $v(\neg \phi) = v(\neg \alpha) = 1$, temos $v(\alpha) = 1$ e $v(\neg \alpha) = 1$.
 
                             Portanto, nunca temos $v(\phi) = 1$ e $v(\neg \phi) = 1$.
 
@@ -664,13 +664,13 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
                             Pela matriz de $\circ$, temos $h(\alpha) = \meio{}$. Então, por (HI), temos $v(\alpha) = 1$ e $v(\neg \alpha) = 1$. 
                             
-                            Finalmente, por $(vCon)$, temos $v(\phi) = v(\circ \alpha) = 0$.
+                            Finalmente, por (\ref{val:vcon}), temos $v(\phi) = v(\circ \alpha) = 0$.
                         
                             ($\Longleftarrow$) Supondo $v(\phi) = v(\circ \alpha) = 0$, vamos provar $h(\phi) = h(\circ \alpha) = 0$.
 
-                            Por $(vDNE)$ temos $v(\neg \neg \circ \alpha) = 0$. Então, por $(vNeg)$, temos $v(\neg \circ \alpha) = 1$.
+                            Por (\ref{val:vdne}) temos $v(\neg \neg \circ \alpha) = 0$. Então, por (\ref{val:vneg}), temos $v(\neg \circ \alpha) = 1$.
 
-                            Por $(vCi)$ temos $v(\alpha) = 1$ e $v(\neg \alpha) = 1$. Logo, por (HI), temos $h(\alpha) = \meio{}$.
+                            Por (\ref{val:vci}) temos $v(\alpha) = 1$ e $v(\neg \alpha) = 1$. Logo, por (HI), temos $h(\alpha) = \meio{}$.
 
                             Finalmente, pela matriz de $\circ$, temos $h(\phi) = h(\circ \alpha) = \circ h(\alpha) = 0$.
                         
@@ -684,7 +684,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                         &\text{Temos } h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 1\\
                         &\Longleftrightarrow h(\alpha) = 1 \text{ e } {h(\beta) = 1} \tag*{ (Matriz de $\land$)}\\
                         &\Longleftrightarrow v(\alpha) = 1, v(\neg \alpha) = 0, v(\beta) = 1 \text{ e } v(\neg \beta) = 0\tag*{ (HI)}\\
-                        &\Longleftrightarrow v(\phi) = v(\alpha \land \beta) = 1 \textnormal{ e } v(\neg \phi) = v(\neg(\alpha \land \beta)) = 0\tag*{($(vAnd)$ e $(vDM_{\land})$)}\\
+                        &\Longleftrightarrow v(\phi) = v(\alpha \land \beta) = 1 \textnormal{ e } v(\neg \phi) = v(\neg(\alpha \land \beta)) = 0\tag*{((\ref{val:vand}) e (\ref{val:vdmand}))}\\
                     \end{align*}
                     \vspace*{-2\baselineskip}
                     \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = \meio{}$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \land \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \land \beta)) = 1$.}
@@ -694,7 +694,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                         &\Longleftrightarrow (v(\alpha) = 1 \text{ e } v(\beta) = 1) \text{ e }\\&(v(\alpha) = v(\neg \alpha) = 1 \text{ ou } v(\beta) = v(\neg \beta) = 1) \tag*{(HI)}\\
                         &\Longleftrightarrow (v(\alpha) = 1, v(\neg \alpha) = 1 \text{ e } v(\beta) = 1) \text{ ou }\\&(v(\alpha) = 1, v(\neg \beta) = 1 \text{ e } v(\beta) = 1) \tag*{(Dist. $\land$, $\lor$ \text{ e } Idemp. $\land$)}\\
                         &\Longleftrightarrow (v(\alpha) = 1 \text{ e } v(\beta) = 1) \text{ e } \\&(v(\neg \alpha) = 1 \text{ ou } v(\neg \beta) = 1) \tag*{(Dist. $\land$, $\lor$ \text{ e }Idemp. $\land$)}\\
-                        &\Longleftrightarrow (v(\phi) = v(\alpha \land \beta) = 1) \text{ e } \\&(v(\neg \phi) = v(\neg (\alpha \land \beta)) = 1) \tag*{($(vAnd)$ \text{ e } $(vDM_{\land})$)}
+                        &\Longleftrightarrow (v(\phi) = v(\alpha \land \beta) = 1) \text{ e } \\&(v(\neg \phi) = v(\neg (\alpha \land \beta)) = 1) \tag*{((\ref{val:vand}) \text{ e } (\ref{val:vdmand}))}
                     \end{align*}
 
                     \subcasodeprova{$h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 0$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \land \beta) = 0$.}
@@ -702,7 +702,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                         &\text{Temos } h(\phi) = h(\alpha \land \beta) = h(\alpha) \land h(\beta) = 0\\
                         &\Longleftrightarrow h(\alpha) = 0\text{ ou }h(\beta) = 0\tag*{(Matriz de $\land$)}\\
                         &\Longleftrightarrow v(\alpha) = 0\text{ ou }v(\beta) = 0 \tag*{(HI)}\\
-                        &\Longleftrightarrow v(\phi) = v(\alpha \land \beta) = 0\tag*{$(vAnd)$}
+                        &\Longleftrightarrow v(\phi) = v(\alpha \land \beta) = 0\tag*{(\ref{val:vand})}
                     \end{align*}
 
                 \end{provaporsubcasos}
@@ -719,9 +719,9 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                         &\Longleftrightarrow (v(\alpha) = 1 \text{ e } v(\neg \alpha) = 0)\textnormal{ ou }(v(\beta) = 1 \textnormal{ e } v(\neg \beta) = 0)\tag*{(HI)}\\
                         &\Longleftrightarrow (((v(\alpha) = 1 \text{ e } v(\neg \alpha) = 0))\text{ ou }v(\beta) = 1) \text{ e }\\&(((v(\alpha) = 1 \text{ e } v(\neg \alpha) = 0))\text{ ou }v(\neg\beta) = 0)\tag*{(Dist. $\lor$, $\land$)}\\
                         &\Longleftrightarrow ((v(\alpha) = 1 \textnormal{ ou } v(\beta) = 1) \text{ e } (v(\neg \alpha) = 0 \text{ ou } v(\beta) = 1)) \text{ e }\\&((v(\alpha) = 1 \textnormal{ ou } v(\neg \beta) = 0) \text{ e } (v(\neg \alpha) = 0 \text{ ou } v(\neg \beta) = 0))\tag*{(Dist. $\lor$, $\land$)}\\
-                        &\Longleftrightarrow ((v(\alpha) = 1 \textnormal{ ou } v(\beta) = 1) \text{ e } (v(\alpha) = 1 \text{ ou } v(\beta) = 1)) \text{ e }\\&((v(\alpha) = 1 \textnormal{ ou } v(\beta) = 1) \text{ e } (v(\neg \alpha) = 0 \text{ ou } v(\neg \beta) = 0))\tag*{$(vNeg)$}\\
+                        &\Longleftrightarrow ((v(\alpha) = 1 \textnormal{ ou } v(\beta) = 1) \text{ e } (v(\alpha) = 1 \text{ ou } v(\beta) = 1)) \text{ e }\\&((v(\alpha) = 1 \textnormal{ ou } v(\beta) = 1) \text{ e } (v(\neg \alpha) = 0 \text{ ou } v(\neg \beta) = 0))\tag*{(\ref{val:vneg})}\\
                         &\Longleftrightarrow ((v(\alpha) = 1 \textnormal{ ou } v(\beta) = 1) \text{ e } (v(\neg \alpha) = 0 \text{ ou } v(\neg \beta) = 0))\tag*{(Idemp. $\land$)}\\
-                        &\Longleftrightarrow v(\phi) = v(\alpha \lor \beta) = 1\textnormal{ e }v(\neg \phi) = v(\neg(\alpha \lor \beta)) = 0.\tag*{($(vOr)$ e $(vDM_{\lor})$)}
+                        &\Longleftrightarrow v(\phi) = v(\alpha \lor \beta) = 1\textnormal{ e }v(\neg \phi) = v(\neg(\alpha \lor \beta)) = 0.\tag*{((\ref{val:vor}) e (\ref{val:vdmor}))}
                     \end{align*}
                         
                     \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = \meio{}$ $\Longleftrightarrow$ $v(\phi) = v(\alpha \lor \beta) = 1$ e $v(\neg \phi) = v(\neg (\alpha \lor \beta)) = 1$.}
@@ -729,10 +729,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                         &\textnormal{Temos }h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = \meio{}\\
                         &\Longleftrightarrow (h(\alpha) = h(\beta) = \meio{})\textnormal{ ou } (h(\alpha) = \meio{}\textnormal{ e }h(\beta) = 0)\textnormal{ ou }\\&(h(\alpha) = 0\textnormal{ e }h(\beta) = \meio{}).\tag*{(Matriz de $\lor$)}\\
                         &\Longleftrightarrow (v(\alpha) = 1, v(\neg \alpha) = 1, v(\beta) = 1\textnormal{ e }v(\neg \beta) = 1)\text{ ou }\\&(v(\alpha) = 1, v(\neg \alpha) = 1\textnormal{ e }v(\beta) = 0)\text{ ou }\\&(v(\alpha) = 0, v(\beta) = 1\textnormal{ e }v(\neg \beta) = 1)\tag*{(HI)}\\
-                        &\Longleftrightarrow (v(\alpha) = 1, v(\neg \alpha) = 1, v(\beta) = 1\textnormal{ e }v(\neg \beta) = 1)\textnormal{ ou }\\&(v(\alpha) = 1, v(\neg \alpha) = 1, v(\beta) = 0\textnormal{ e }v(\neg \beta) = 1)\textnormal{ ou }\\&(v(\alpha) = 0, v(\neg \alpha) = 1, v(\beta) = 1, v(\neg \beta) = 1)\tag*{$(vNeg)$}\\
+                        &\Longleftrightarrow (v(\alpha) = 1, v(\neg \alpha) = 1, v(\beta) = 1\textnormal{ e }v(\neg \beta) = 1)\textnormal{ ou }\\&(v(\alpha) = 1, v(\neg \alpha) = 1, v(\beta) = 0\textnormal{ e }v(\neg \beta) = 1)\textnormal{ ou }\\&(v(\alpha) = 0, v(\neg \alpha) = 1, v(\beta) = 1, v(\neg \beta) = 1)\tag*{(\ref{val:vneg})}\\
                         &\Longleftrightarrow (v(\neg \alpha) = 1\textnormal{ e }v(\neg \beta) = 1)\textnormal{ e }((v(\alpha) = 1\textnormal{ e }v(\beta) = 1)\text{ ou }\\&(v(\alpha) = 1\textnormal{ e }v(\beta) = 0)\text{ ou }(v(\alpha) = 0\textnormal{ e }v(\beta) = 1)).\tag*{(Dist. $\land$, $\lor$)}\\
-                        &\Longleftrightarrow (v(\neg \alpha) = 1\textnormal{ e }v(\neg \beta) = 1)\textnormal{ e }\\&(v(\alpha \lor \beta) = 1\textnormal{ ou }v(\alpha \lor \beta) = 1\textnormal{ ou }v(\alpha \lor \beta) = 1)\tag*{$(vOr)$}\\
-                        &\Longleftrightarrow v(\phi) = v(\alpha \lor \beta) = 1\textnormal{ e }\\&v(\neg \phi) = v(\neg(\alpha \lor \beta)) = 1.\tag*{($(vDM_{\lor})$ e (Idemp. $\lor$))}
+                        &\Longleftrightarrow (v(\neg \alpha) = 1\textnormal{ e }v(\neg \beta) = 1)\textnormal{ e }\\&(v(\alpha \lor \beta) = 1\textnormal{ ou }v(\alpha \lor \beta) = 1\textnormal{ ou }v(\alpha \lor \beta) = 1)\tag*{(\ref{val:vor})}\\
+                        &\Longleftrightarrow v(\phi) = v(\alpha \lor \beta) = 1\textnormal{ e }\\&v(\neg \phi) = v(\neg(\alpha \lor \beta)) = 1.\tag*{((\ref{val:vdmor}) e (Idemp. $\lor$))}
                     \end{align*}
                         
                         \subcasodeprova{$h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 0$ sse $v(\phi) = v(\alpha \lor \beta) = 0$.}
@@ -740,7 +740,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             &\textnormal{Temos }h(\phi) = h(\alpha \lor \beta) = h(\alpha) \lor h(\beta) = 0\\
                             &\Longleftrightarrow h(\alpha) = 0\textnormal{ e }h(\beta) = 0\tag*{(Matriz de $\lor$)}\\
                             &\Longleftrightarrow v(\alpha) = 0\textnormal{ e }v(\beta) = 0\tag*{(HI)}\\
-                            &\Longleftrightarrow v(\phi) = v(\alpha \lor \beta) = 0\tag*{$(vOr)$}
+                            &\Longleftrightarrow v(\phi) = v(\alpha \lor \beta) = 0\tag*{(\ref{val:vor})}
                         \end{align*}
 
                 \end{provaporsubcasos}
@@ -753,7 +753,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             &\textnormal{Temos }h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 1\\
                             &\Longleftrightarrow h(\alpha) = 0\textnormal{ ou } h(\beta) = 1\tag*{(Matriz de $\to$)}\\
                             &\Longleftrightarrow v(\alpha) = 0\textnormal{ ou } (v(\beta) = 1\textnormal{ e }v(\neg \beta) = 0)\tag*{(HI)}\\
-                            &\Longleftrightarrow (v(\alpha \to \beta) = 1\textnormal{ e }v(\neg (\alpha \to \beta)) = 0)\textnormal{ ou }\\& (v(\alpha \to \beta) = 1\textnormal{ e }v(\neg (\alpha \to \beta)) = 0)\tag*{($(vImp)$ e $(vCip)$)}\\
+                            &\Longleftrightarrow (v(\alpha \to \beta) = 1\textnormal{ e }v(\neg (\alpha \to \beta)) = 0)\textnormal{ ou }\\& (v(\alpha \to \beta) = 1\textnormal{ e }v(\neg (\alpha \to \beta)) = 0)\tag*{((\ref{val:vimp}) e (\ref{val:vcip}))}\\
                             &\Longleftrightarrow v(\phi) = v(\alpha \to \beta) = 1\textnormal{ e }v(\neg \phi) = v(\neg (\alpha \to \beta)) = 0\tag*{(Idemp. $\lor$)}
                         \end{align*}
                             
@@ -762,7 +762,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             &\textnormal{Temos }h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = \meio{}\\
                             &\Longleftrightarrow (h(\alpha) = 1\textnormal{ e }h(\beta) = \meio{})\textnormal{ ou }\\&(h(\alpha) = \meio{}\textnormal{ e }h(\beta) = \meio{})\tag*{(Matriz de $\to$)}\\
                             &\Longleftrightarrow (v(\alpha) = v(\beta) = v(\neg \beta) = 1\textnormal{ e }v(\neg \alpha) = 0)\textnormal{ ou }\\&(v(\alpha) = v(\neg \alpha) = v(\beta) = v(\neg \beta) = 1)\tag*{(HI)}\\
-                            &\Longleftrightarrow v(\alpha \to \beta) = v(\neg (\alpha \to \beta)) = 1\textnormal{ e }\\&v(\alpha \to \beta) = v(\neg (\alpha \to \beta)) = 1\tag*{($(vImp)$\textnormal{ ou }$(vCip)$)}\\
+                            &\Longleftrightarrow v(\alpha \to \beta) = v(\neg (\alpha \to \beta)) = 1\textnormal{ e }\\&v(\alpha \to \beta) = v(\neg (\alpha \to \beta)) = 1\tag*{((\ref{val:vimp})\textnormal{ ou }(\ref{val:vcip}))}\\
                             &\Longleftrightarrow v(\phi) = v(\alpha \to \beta) = 1\textnormal{ e }v(\neg \phi) = v(\neg (\alpha \to \beta)) = 1\tag*{(Idemp. $\lor$)}
                         \end{align*}
                             
@@ -771,7 +771,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                             &\textnormal{Temos }h(\phi) = h(\alpha \to \beta) = h(\alpha) \to h(\beta) = 0\\
                             &\Longleftrightarrow (h(\alpha) = 1\textnormal{ e }h(\beta) = 0)\textnormal{ ou }(h(\alpha) = \meio{}\textnormal{ e }h(\beta) = 0)\tag*{(Matriz de $\to$)}\\
                             &\Longleftrightarrow (v(\alpha) = 1\textnormal{ e }v(\neg \alpha) = v(\beta) = 0)\textnormal{ ou }\\&(v(\alpha) = v(\neg \alpha) = 1\textnormal{ e }v(\beta) = 0)\tag*{(HI)}\\
-                            &\Longleftrightarrow v(\alpha \to \beta) = 0\textnormal{ ou }v(\alpha \to \beta) = 0\tag*{$(vImp)$}\\
+                            &\Longleftrightarrow v(\alpha \to \beta) = 0\textnormal{ ou }v(\alpha \to \beta) = 0\tag*{(\ref{val:vimp})}\\
                             &\Longleftrightarrow v(\alpha \to \beta) = 0.\tag*{(Idemp. $\lor$)}
                         \end{align*}
                 \end{provaporsubcasos}
@@ -1366,7 +1366,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                     1.~ & \phi \tag{Premissa}       \\
                     2.~ & \neg \phi \tag{Premissa}  \\
                     3.~ & \circ \phi \tag{Premissa} \\
-                    4.~ & \circ \phi \to (\phi \to (\neg \phi \to \psi)) \tag{bc1} \\
+                    4.~ & \circ \phi \to (\phi \to (\neg \phi \to \psi)) \tag{\ref{ax:axbc1}} \\
                     5.~ & \phi \to (\neg \phi \to \psi) \tag{MP 3, 4} \\
                     6.~ & \neg \phi \to \psi \tag{MP 1, 5} \\
                     7.~ & \psi \tag{MP 2, 6}
@@ -1460,7 +1460,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 
                 \noindent \textbf{\textsc{Hipótese de indução (HI):}} A propriedade segue para todo $i < n$.
 
-                Analisando a obtenção de $\phi_n$, existem três casos:
+                Analisando a obtenção de $\phi = \phi_n$, existem três casos:
                 \begin{provaporcasos}
                     \casodeprova{$\phi_n$ é um axioma}. Análogo ao caso da base.
                     
@@ -1632,7 +1632,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
                 \noindent(7) $\Delta$ é maximal não-trivial em relação a $\phi$ em \lfium{}.
                 
                 \begin{adjustwidth}{1cm}{}
-                    Seja $\psi$ uma fórmula qualquer com $\psi \not \in \Delta$. Então $\psi = \phi_i$ para algum $i \in \mathbb{N}$. Supondo $\phi_i \in \Gamma_i$, chegamos numa contradição (já que, por construção de $\Delta$, teríamos $\phi_i \in \Delta$), portanto, temos $\phi_i \not \in \Gamma_i$. Logo, pela construção de $\Gamma_i$, temos $\Gamma_{i - 1}, \phi_i \conhil \phi$. Então, já que a \lfium{} é Tarskiana, temos $\Delta, \phi_i \conhil \phi$. Portanto, $\Delta$ é maximal não-trivial em relação a $\phi$ em \lfium{}.
+                    Seja $\psi$ uma fórmula qualquer com $\psi \not \in \Delta$. Então $\psi = \phi_i$ para algum $i \in \mathbb{N}$. Supondo $\phi_i \in \Gamma_i$, chegamos numa contradição (já que, por construção de $\Delta$, teríamos $\phi_i \in \Delta$), portanto, temos $\phi_i \not \in \Gamma_i$. Logo, pela construção de $\Gamma_i$, temos $\Gamma_{i - 1}, \phi_i \conhil \phi$. Então, já que a \lfium{} é Tarskiana, temos $\Delta, \phi_i \conhil \phi$, ou seja, $\Delta , \psi \conhil \phi$. Portanto, $\Delta$ é maximal não-trivial em relação a $\phi$ em \lfium{}.
 
                 \end{adjustwidth}
 
@@ -1657,27 +1657,27 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
             \begin{provaporcasos}
                 
-                \casodeprova{Cláusula $(vAnd)$}
+                \casodeprova{Cláusula (\ref{val:vand})}
 
                     \begin{adjustwidth}{1cm}{}
                         \noindent ($\Longrightarrow$) Vamos supor $v(\alpha \land \beta) = 1$. Logo $(\alpha \land \beta) \in \Gamma$. 
                         
-                        \noindent Supondo $\alpha \not \in \Gamma$, temos $\Gamma, \alpha \conhil \phi$. Pelo axioma (\textbf{Ax4}) e MP, temos $\Gamma \conhil \alpha$. Logo, já que a \lfium{} é Tarskiana (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\alpha \in \Gamma$.
+                        \noindent Supondo $\alpha \not \in \Gamma$, temos $\Gamma, \alpha \conhil \phi$. Pelo axioma (\ref{ax:ax4}) e MP, temos $\Gamma \conhil \alpha$. Logo, já que a \lfium{} é Tarskiana (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\alpha \in \Gamma$.
             
-                        \noindent Supondo $\beta \not \in \Gamma$, temos $\Gamma, \beta \conhil \phi$. Pelo axioma (\textbf{Ax5}) e MP, temos $\Gamma \conhil \beta$. Logo, já que a \lfium{} é Tarskiana (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\beta \in \Gamma$.
+                        \noindent Supondo $\beta \not \in \Gamma$, temos $\Gamma, \beta \conhil \phi$. Pelo axioma (\ref{ax:ax5}) e MP, temos $\Gamma \conhil \beta$. Logo, já que a \lfium{} é Tarskiana (Proposição~\ref{def:tarski}), temos $\Gamma \conhil \phi$, o que é uma contradição. Portanto $\beta \in \Gamma$.
             
                         \noindent Logo, temos $v(\alpha) = 1$ e $v(\beta) = 1$.
 
                     \end{adjustwidth}
 
                     \begin{adjustwidth}{1cm}{}
-                        \noindent ($\Longleftarrow$) Vamos supor $v(\alpha) = 1$ e $v(\beta) = 1$. Logo, $\alpha \in \Gamma$ e $\beta \in \Gamma$. Pelo axioma (\textbf{Ax3}) e MP, temos $\Gamma \conhil \alpha \land \beta$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\alpha \land \beta \in \Gamma$.
+                        \noindent ($\Longleftarrow$) Vamos supor $v(\alpha) = 1$ e $v(\beta) = 1$. Logo, $\alpha \in \Gamma$ e $\beta \in \Gamma$. Pelo axioma (\ref{ax:ax3}) e MP, temos $\Gamma \conhil \alpha \land \beta$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\alpha \land \beta \in \Gamma$.
 
                         Logo, temos $v(\alpha \land \beta) = 1$
 
                     \end{adjustwidth}
 
-                \casodeprova{Cláusula $(vOr)$}
+                \casodeprova{Cláusula (\ref{val:vor})}
 
                     \begin{adjustwidth}{1cm}{}
                         \noindent ($\Longrightarrow$) Vamos supor $v(\alpha \lor \beta) = 1$. Logo, $\alpha \lor \beta \in \Gamma$.
@@ -1688,7 +1688,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
                         \noindent ($\Longleftarrow$) Vamos supor $v(\alpha) = 1$ ou $v(\beta) = 1$. Logo, temos $\alpha \in \Gamma$ ou $\beta \in \Gamma$.
 
-                        \noindent Caso tenhamos $\alpha \in \Gamma$, então, pelo axioma (\textbf{Ax6}), temos $\Gamma \conhil \alpha \to (\alpha \lor \beta)$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \alpha$. Então, por MP, temos $\Gamma \conhil \alpha \lor \beta$. Finalmente, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\alpha \lor \beta \in \Gamma$ e, consequentemente, $v(\alpha \lor \beta) = 1$.
+                        \noindent Caso tenhamos $\alpha \in \Gamma$, então, pelo axioma (\ref{ax:ax6}), temos $\Gamma \conhil \alpha \to (\alpha \lor \beta)$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \alpha$. Então, por MP, temos $\Gamma \conhil \alpha \lor \beta$. Finalmente, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\alpha \lor \beta \in \Gamma$ e, consequentemente, $v(\alpha \lor \beta) = 1$.
 
                         \noindent Caso tenhamos $\beta \in \Gamma$, a prova é análoga.
 
@@ -1696,7 +1696,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
                     \end{adjustwidth}
 
-                    \casodeprova{Cláusula $(vImp)$}
+                    \casodeprova{Cláusula (\ref{val:vimp})}
 
                         \begin{adjustwidth}{1cm}{}
                             
@@ -1706,15 +1706,15 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
                             \noindent ($\Longleftarrow$) Vamos supor $v(\alpha) = 0$ ou $v(\beta) = 1$.
 
-                            \noindent Caso $v(\alpha) = 0$, então temos $\alpha \not \in \Gamma$. Supondo $\alpha \to \beta \not \in \Gamma$, temos, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, $\Gamma, \alpha \conhil \phi$ e $\Gamma, \alpha \to \beta \conhil \phi$. Logo, pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, (\alpha \to \beta) \lor \alpha \conhil \phi$. Portanto, pelo axioma (\textbf{Ax9}) e já que a \lfium{} é Tarskiana, temos $\Gamma \conhil \alpha$, o que é uma contradição. Portanto, $\alpha \to \beta \in \Gamma$ e, então, $v(\alpha \to \beta) = 1$.
+                            \noindent Caso $v(\alpha) = 0$, então temos $\alpha \not \in \Gamma$. Supondo $\alpha \to \beta \not \in \Gamma$, temos, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, $\Gamma, \alpha \conhil \phi$ e $\Gamma, \alpha \to \beta \conhil \phi$. Logo, pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, (\alpha \to \beta) \lor \alpha \conhil \phi$. Portanto, pelo axioma (\ref{ax:ax9}) e já que a \lfium{} é Tarskiana, temos $\Gamma \conhil \alpha$, o que é uma contradição. Portanto, $\alpha \to \beta \in \Gamma$ e, então, $v(\alpha \to \beta) = 1$.
 
-                            \noindent Caso $v(\beta) = 1$, então temos $\beta \in \Gamma$. Pelo axioma (\textbf{Ax1}), temos $\Gamma \conhil \beta \to (\alpha \to \beta)$. Portanto, por MP, temos $\Gamma \conhil \alpha \to \beta$. Logo $\alpha \to \beta \in \Gamma$ e, então, $v(\alpha \to \beta) = 1$.
+                            \noindent Caso $v(\beta) = 1$, então temos $\beta \in \Gamma$. Pelo axioma (\ref{ax:ax1}), temos $\Gamma \conhil \beta \to (\alpha \to \beta)$. Portanto, por MP, temos $\Gamma \conhil \alpha \to \beta$. Logo $\alpha \to \beta \in \Gamma$ e, então, $v(\alpha \to \beta) = 1$.
 
                             \noindent Logo, $v(\alpha \to \beta) = 1$.
 
                         \end{adjustwidth}
 
-                    \casodeprova{Cláusula $(vNeg)$}
+                    \casodeprova{Cláusula (\ref{val:vneg})}
                         
                         \begin{adjustwidth}{1cm}{}
                             \noindent Supondo $v(\neg \alpha) = 0$, temos $\neg \alpha \not \in \Gamma$. Então, caso $v(\alpha) = 0$, temos $\alpha \not \in \Gamma$. 
@@ -1723,84 +1723,84 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
                         \end{adjustwidth}
 
-                    \casodeprova{Cláusula $(vCon)$}
+                    \casodeprova{Cláusula (\ref{val:vcon})}
 
                         \begin{adjustwidth}{1cm}{}
                             \noindent Supondo $v(\circ \alpha) = 1$, temos $\circ \alpha \in \Gamma$. Logo, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \circ \alpha$.
 
                             \noindent Vamos supor $v(\alpha) = 1$ e $v(\neg \alpha) = 1$. Portanto, temos $\alpha \in \Gamma$ e $\neg \alpha \in \Gamma$ e, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, $\Gamma \conhil \alpha$ e $\Gamma \conhil \neg \alpha$.
 
-                            \noindent Pelo axioma (\textbf{bc1}), temos $\Gamma \conhil \circ \alpha \to (\alpha \to (\neg \alpha \to \phi))$. Portanto, aplicando MP três vezes, temos $\Gamma \conhil \phi$, o que é uma contradição. Logo, $v(\alpha) = 0$ ou $v(\neg \alpha) = 0$
+                            \noindent Pelo axioma (\ref{ax:axbc1}), temos $\Gamma \conhil \circ \alpha \to (\alpha \to (\neg \alpha \to \phi))$. Portanto, aplicando MP três vezes, temos $\Gamma \conhil \phi$, o que é uma contradição. Logo, $v(\alpha) = 0$ ou $v(\neg \alpha) = 0$
                         
 
 
                         \end{adjustwidth}
                     
-                    \casodeprova{Cláusula $(vCi)$}
+                    \casodeprova{Cláusula (\ref{val:vci})}
 
                         \begin{adjustwidth}{1cm}{}
                             
                             \noindent Supondo $v(\neg \circ \alpha) = 1$, temos $\neg \circ \alpha \in \Gamma$. Então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg \circ \alpha$.
 
-                            Pelo axioma (\textbf{ci}), temos $\Gamma \conhil \neg \circ \alpha \to (\alpha \land \neg \alpha)$. Portanto, por MP, temos $\Gamma \conhil \alpha \land \neg \alpha$. 
+                            Pelo axioma (\ref{ax:axci}), temos $\Gamma \conhil \neg \circ \alpha \to (\alpha \land \neg \alpha)$. Portanto, por MP, temos $\Gamma \conhil \alpha \land \neg \alpha$. 
                             
-                            Pelo axioma (\textbf{Ax4}), temos $\Gamma \conhil (\alpha \land \neg \alpha) \to \alpha$. Aplicando MP, temos $\Gamma \conhil \alpha$.
+                            Pelo axioma (\ref{ax:ax4}), temos $\Gamma \conhil (\alpha \land \neg \alpha) \to \alpha$. Aplicando MP, temos $\Gamma \conhil \alpha$.
                             
-                            Pelo axioma (\textbf{Ax5}), temos $\Gamma \conhil (\alpha \land \neg \alpha) \to \neg \alpha$. Aplicando MP, temos $\Gamma \conhil \neg \alpha$.
+                            Pelo axioma (\ref{ax:ax5}), temos $\Gamma \conhil (\alpha \land \neg \alpha) \to \neg \alpha$. Aplicando MP, temos $\Gamma \conhil \neg \alpha$.
 
                             Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\alpha \in \Gamma$ e $\neg \alpha \in \Gamma$. Logo, $v(\alpha) = 1$ e $v(\neg \alpha) = 1$.
 
                         \end{adjustwidth}
 
-                    \casodeprova{Cláusula $(vDNE)$}
+                    \casodeprova{Cláusula (\ref{val:vdne})}
 
                         \begin{adjustwidth}{1cm}{}
                             
-                            \noindent ($\Longrightarrow$) Supondo $v(\neg \neg \alpha) = 1$, temos $\neg \neg \alpha \in \Gamma$. Então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg \neg \alpha$. Pelo axioma (\textbf{cf}), temos $\Gamma \conhil \neg \neg \alpha \to \alpha$. Logo, por MP, temos $\Gamma \conhil \alpha$. Finalmente, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\alpha \in \Gamma$ e, portanto, $v(\alpha) = 1$.
+                            \noindent ($\Longrightarrow$) Supondo $v(\neg \neg \alpha) = 1$, temos $\neg \neg \alpha \in \Gamma$. Então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg \neg \alpha$. Pelo axioma (\ref{ax:axcf}), temos $\Gamma \conhil \neg \neg \alpha \to \alpha$. Logo, por MP, temos $\Gamma \conhil \alpha$. Finalmente, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\alpha \in \Gamma$ e, portanto, $v(\alpha) = 1$.
 
-                            \noindent ($\Longrightarrow$) Supondo $v(\alpha) = 1$, temos $\alpha \in \Gamma$. Então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \alpha$. Pelo axioma (\textbf{ce}), temos $\Gamma \conhil \alpha \to \neg \neg \alpha$. Logo, por MP, temos $\Gamma \conhil \neg \neg \alpha$. Finalmente, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\neg \neg \alpha \in \Gamma$ e, portanto, $v(\neg \neg \alpha) = 1$.
+                            \noindent ($\Longleftarrow$) Supondo $v(\alpha) = 1$, temos $\alpha \in \Gamma$. Então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \alpha$. Pelo axioma (\ref{ax:axce}), temos $\Gamma \conhil \alpha \to \neg \neg \alpha$. Logo, por MP, temos $\Gamma \conhil \neg \neg \alpha$. Finalmente, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\neg \neg \alpha \in \Gamma$ e, portanto, $v(\neg \neg \alpha) = 1$.
 
                         \end{adjustwidth}
 
-                    \casodeprova{Cláusula $(vDM_{\land})$}
+                    \casodeprova{Cláusula (\ref{val:vdmand})}
 
                         \begin{adjustwidth}{1cm}{}
                             
-                            \noindent ($\Longrightarrow$) Supondo $v(\neg (\alpha \land \beta)) = 1$, temos $\neg (\alpha \land \beta) \in \Gamma$. Então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg (\alpha \land \beta)$. Pelo axioma (\textbf{neg}$\land_1$), temos $\Gamma \conhil \neg (\alpha \land \beta) \to (\neg \alpha \lor \neg \beta)$. Logo, por MP, temos $\Gamma \conhil (\neg \alpha \lor \neg \beta)$.
+                            \noindent ($\Longrightarrow$) Supondo $v(\neg (\alpha \land \beta)) = 1$, temos $\neg (\alpha \land \beta) \in \Gamma$. Então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg (\alpha \land \beta)$. Pelo axioma (\ref{ax:axnegland1}), temos $\Gamma \conhil \neg (\alpha \land \beta) \to (\neg \alpha \lor \neg \beta)$. Logo, por MP, temos $\Gamma \conhil (\neg \alpha \lor \neg \beta)$.
 
                             \noindent Vamos então supor $\neg \alpha \not \in \Gamma$ e $\neg \beta \not \in \Gamma$. Então, temos $\Gamma, \neg \alpha \conhil \phi$ e $\Gamma, \neg \beta \conhil \phi$. Pelo Corolário~\ref{cor:prova_por_casos}, temos $\Gamma, \neg \alpha \lor \neg \beta \conhil \phi$. Já que a \lfium{} é Tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma \conhil \phi$, o que resulta numa contradição. Portanto, temos $\neg \alpha \in \Gamma$ ou $\neg \beta \in \Gamma$ e, consequentemente, $v(\neg \alpha) = 1$ ou $v(\neg \beta) = 1$.
                             
                             \noindent ($\Longleftarrow$) Supondo $v(\neg \alpha) = 1$ ou $v(\neg \beta) = 1$, temos $\neg \alpha \in \Gamma$ ou $\neg \beta \in \Gamma$.
 
-                            \noindent Caso tenhamos $\neg \alpha \in \Gamma$, então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg \alpha$. Logo, pelo axioma (\textbf{Ax6}), temos $\Gamma \conhil \neg \alpha \to (\neg \alpha \lor \neg \beta)$. Aplicando MP, temos $\Gamma \conhil \neg \alpha \lor \neg \beta$. Pelo axioma (\textbf{neg}$\land_2$), temos $\Gamma \conhil (\neg \alpha \lor \neg \beta) \to \neg (\alpha \land \beta)$. Aplicando MP novamente, temos $\Gamma \conhil \neg (\alpha \land \beta)$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\neg (\alpha \land \beta) \in \Gamma$ e, consequentemente, $v(\neg (\alpha \land \beta)) = 1$.
+                            \noindent Caso tenhamos $\neg \alpha \in \Gamma$, então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg \alpha$. Logo, pelo axioma (\ref{ax:ax6}), temos $\Gamma \conhil \neg \alpha \to (\neg \alpha \lor \neg \beta)$. Aplicando MP, temos $\Gamma \conhil \neg \alpha \lor \neg \beta$. Pelo axioma (\ref{ax:axnegland2}), temos $\Gamma \conhil (\neg \alpha \lor \neg \beta) \to \neg (\alpha \land \beta)$. Aplicando MP novamente, temos $\Gamma \conhil \neg (\alpha \land \beta)$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\neg (\alpha \land \beta) \in \Gamma$ e, consequentemente, $v(\neg (\alpha \land \beta)) = 1$.
 
-                            \noindent Caso tenhamos $\neg \beta \in \Gamma$, então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg \beta$. Logo, pelo axioma (\textbf{Ax7}), temos $\Gamma \conhil \neg \beta \to (\neg \alpha \lor \neg \beta)$. Aplicando MP, temos $\Gamma \conhil \neg \alpha \lor \neg \beta$. Pelo axioma (\textbf{neg}$\land_2$), temos $\Gamma \conhil (\neg \alpha \lor \neg \beta) \to \neg (\alpha \land \beta)$. Aplicando MP novamente, temos $\Gamma \conhil \neg (\alpha \land \beta)$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\neg (\alpha \land \beta) \in \Gamma$ e, consequentemente, $v(\neg (\alpha \land \beta)) = 1$.
+                            \noindent Caso tenhamos $\neg \beta \in \Gamma$, então, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg \beta$. Logo, pelo axioma (\ref{ax:ax7}), temos $\Gamma \conhil \neg \beta \to (\neg \alpha \lor \neg \beta)$. Aplicando MP, temos $\Gamma \conhil \neg \alpha \lor \neg \beta$. Pelo axioma (\ref{ax:axnegland2}), temos $\Gamma \conhil (\neg \alpha \lor \neg \beta) \to \neg (\alpha \land \beta)$. Aplicando MP novamente, temos $\Gamma \conhil \neg (\alpha \land \beta)$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\neg (\alpha \land \beta) \in \Gamma$ e, consequentemente, $v(\neg (\alpha \land \beta)) = 1$.
 
                             Portanto, temos $v(\neg (\alpha \land \beta)) = 1$.
 
                         \end{adjustwidth}
 
-                    \casodeprova{Cláusula $(vDM_{\lor})$}
+                    \casodeprova{Cláusula (\ref{val:vdmor})}
 
                         \begin{adjustwidth}{1cm}{}
                             
-                            \noindent ($\Longrightarrow$) Supondo $v(\neg (\alpha \lor \beta)) = 1$, temos $\neg (\alpha \lor \beta) \in \Gamma$. Logo, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg (\alpha \lor \beta)$. Pelo axioma (\textbf{neg}$\lor_1$), temos $\Gamma \conhil \neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta)$. Logo, por MP, temos $\Gamma \conhil \neg \alpha \land \neg \beta$.
+                            \noindent ($\Longrightarrow$) Supondo $v(\neg (\alpha \lor \beta)) = 1$, temos $\neg (\alpha \lor \beta) \in \Gamma$. Logo, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg (\alpha \lor \beta)$. Pelo axioma (\ref{ax:axneglor1}), temos $\Gamma \conhil \neg (\alpha \lor \beta) \to (\neg \alpha \land \neg \beta)$. Logo, por MP, temos $\Gamma \conhil \neg \alpha \land \neg \beta$.
 
-                            \noindent Vamos supor $\neg \alpha \not \in \Gamma$ ou $\neg \beta \not \in \Gamma$. Então, temos $\Gamma, \alpha \conhil \phi$ ou $\Gamma, \beta \conhil \phi$. Pelos axiomas (\textbf{Ax4}) e (\textbf{Ax5}), temos $\Gamma \conhil (\neg \alpha \land \neg \beta) \to \alpha$ e $\Gamma \conhil (\neg \alpha \land \neg \beta) \to \beta$. Aplicando MP duas vezes temos $\Gamma \conhil \alpha$ e $\Gamma \conhil \beta$. Já que a \lfium{} é Tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma \conhil \phi$, o que é resulta numa contradição. Portanto, $\neg \alpha \in \Gamma$ e $\neg \beta \in \Gamma$ e, consequentemente, temos $v(\neg \alpha) = 1$ e $v(\neg \beta) = 1$. 
+                            \noindent Vamos supor $\neg \alpha \not \in \Gamma$ ou $\neg \beta \not \in \Gamma$. Então, temos $\Gamma, \alpha \conhil \phi$ ou $\Gamma, \beta \conhil \phi$. Pelos axiomas (\ref{ax:ax4}) e (\ref{ax:ax5}), temos $\Gamma \conhil (\neg \alpha \land \neg \beta) \to \alpha$ e $\Gamma \conhil (\neg \alpha \land \neg \beta) \to \beta$. Aplicando MP duas vezes temos $\Gamma \conhil \alpha$ e $\Gamma \conhil \beta$. Já que a \lfium{} é Tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma \conhil \phi$, o que é resulta numa contradição. Portanto, $\neg \alpha \in \Gamma$ e $\neg \beta \in \Gamma$ e, consequentemente, temos $v(\neg \alpha) = 1$ e $v(\neg \beta) = 1$. 
                             
-                            \noindent ($\Longleftarrow$) Supondo $v(\neg \alpha) = 1$ e $v(\neg \beta) = 1$, temos $\neg \alpha \in \Gamma$ e $\neg \beta \in \Gamma$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg \alpha$ e $\Gamma \conhil \neg \beta$. Pelo axioma (\textbf{Ax3}), temos $\Gamma \conhil \neg \alpha \to (\neg \beta \to (\neg \alpha \land \neg \beta))$. Aplicando MP duas vezes, temos $\Gamma \conhil \neg \alpha \land \neg \beta$. Pelo axioma (\textbf{neg}$\lor_2$), temos $\Gamma \conhil (\neg \alpha \land \neg \beta) \to \neg (\alpha \lor \beta)$. Aplicando MP, temos $\Gamma \conhil \neg (\alpha \lor \beta)$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\neg (\alpha \lor \beta) \in \Gamma$ e, consequentemente, $v(\neg (\alpha \lor \beta)) = 1$.
+                            \noindent ($\Longleftarrow$) Supondo $v(\neg \alpha) = 1$ e $v(\neg \beta) = 1$, temos $\neg \alpha \in \Gamma$ e $\neg \beta \in \Gamma$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg \alpha$ e $\Gamma \conhil \neg \beta$. Pelo axioma (\ref{ax:ax3}), temos $\Gamma \conhil \neg \alpha \to (\neg \beta \to (\neg \alpha \land \neg \beta))$. Aplicando MP duas vezes, temos $\Gamma \conhil \neg \alpha \land \neg \beta$. Pelo axioma (\ref{ax:axneglor2}), temos $\Gamma \conhil (\neg \alpha \land \neg \beta) \to \neg (\alpha \lor \beta)$. Aplicando MP, temos $\Gamma \conhil \neg (\alpha \lor \beta)$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\neg (\alpha \lor \beta) \in \Gamma$ e, consequentemente, $v(\neg (\alpha \lor \beta)) = 1$.
 
                         \end{adjustwidth}
 
-                    \casodeprova{Cláusula $(vCip)$}
+                    \casodeprova{Cláusula (\ref{val:vcip})}
 
                         \begin{adjustwidth}{1cm}{}
                             
-                            \noindent ($\Longrightarrow$) Supondo $v(\neg (\alpha \to \beta)) = 1$, temos $\neg (\alpha \to \beta) \in \Gamma$. Logo, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg (\alpha \to \beta)$. Pelo axioma (\textbf{neg}$\to_1$), temos $\Gamma \conhil \neg (\alpha \to \beta) \to (\alpha \land \neg \beta)$. Aplicando MP, temos $\Gamma \conhil \alpha \land \neg \beta$. Pelos axiomas (\textbf{Ax4}) e (\textbf{Ax5}), temos $\Gamma \conhil (\alpha \land \neg \beta) \to \alpha$ e $\Gamma \conhil (\alpha \land \neg \beta) \to \beta$. Aplicando MP duas vezes, temos $\Gamma \conhil \alpha$ e $\Gamma \conhil \neg \beta$.
+                            \noindent ($\Longrightarrow$) Supondo $v(\neg (\alpha \to \beta)) = 1$, temos $\neg (\alpha \to \beta) \in \Gamma$. Logo, pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \neg (\alpha \to \beta)$. Pelo axioma (\ref{ax:axnegto1}), temos $\Gamma \conhil \neg (\alpha \to \beta) \to (\alpha \land \neg \beta)$. Aplicando MP, temos $\Gamma \conhil \alpha \land \neg \beta$. Pelos axiomas (\ref{ax:ax4}) e (\ref{ax:ax5}), temos $\Gamma \conhil (\alpha \land \neg \beta) \to \alpha$ e $\Gamma \conhil (\alpha \land \neg \beta) \to \beta$. Aplicando MP duas vezes, temos $\Gamma \conhil \alpha$ e $\Gamma \conhil \neg \beta$.
 
                             \noindent Vamos supor $v(\alpha) = 0$ ou $v(\neg \beta) = 0$. Logo, temos $\alpha \not \in \Gamma$ ou $\neg \beta \not \in \Gamma$. Logo, temos $\Gamma, \alpha \conhil \phi$ ou $\Gamma, \neg \beta \conhil \phi$. Já que a \lfium{} é Tarskiana (Proposição~\ref{prop:tarski}), temos $\Gamma \conhil \phi$, o que resulta numa contradição. Portanto, temos $v(\alpha) = 1$ e $v(\neg \beta) = 1$.
 
-                            \noindent ($\Longleftarrow$) Supondo $v(\alpha) = 1$ e $v(\neg \beta) = 1$, temos $\alpha \in \Gamma$ e $\neg \beta \in \Gamma$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \alpha$ e $\Gamma \conhil \neg \beta$. Pelo axioma (\textbf{Ax3}), temos $\Gamma \conhil \alpha \to (\neg \beta \to (\alpha \land \neg \beta))$. Aplicando MP duas vezes, temos $\Gamma \conhil \alpha \land \neg \beta$. Pelo axioma (\textbf{neg}$\to_2$), temos $\Gamma \conhil (\alpha \land \neg \beta) \to \neg (\alpha \to \beta)$. Aplicando MP, temos $\Gamma \conhil \neg (\alpha \to \beta)$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\neg (\alpha \to \beta) \in \Gamma$ e, consequentemente, $v(\neg (\alpha \to \beta)) = 1$. \qedhere
+                            \noindent ($\Longleftarrow$) Supondo $v(\alpha) = 1$ e $v(\neg \beta) = 1$, temos $\alpha \in \Gamma$ e $\neg \beta \in \Gamma$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\Gamma \conhil \alpha$ e $\Gamma \conhil \neg \beta$. Pelo axioma (\ref{ax:ax3}), temos $\Gamma \conhil \alpha \to (\neg \beta \to (\alpha \land \neg \beta))$. Aplicando MP duas vezes, temos $\Gamma \conhil \alpha \land \neg \beta$. Pelo axioma (\ref{ax:axnegto2}), temos $\Gamma \conhil (\alpha \land \neg \beta) \to \neg (\alpha \to \beta)$. Aplicando MP, temos $\Gamma \conhil \neg (\alpha \to \beta)$. Pelo Lema~\ref{lem:nao_trivial_maximal_fechado}, temos $\neg (\alpha \to \beta) \in \Gamma$ e, consequentemente, $v(\neg (\alpha \to \beta)) = 1$. \qedhere
 
 
                         \end{adjustwidth}
