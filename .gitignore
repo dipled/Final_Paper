@@ -69,5 +69,3 @@ CoqMakefile.conf
 *.nls
 .vscode
 .latexmkrc
-*.pdf
-Main.pdf
