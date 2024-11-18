@@ -546,7 +546,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
             \noindent \textbf{\textsc{Base.}} $C(\phi) = 1$.
 
-            Como $C(\phi) = 1$, temos $\phi \in \pazocal{P}$ pela Definição~\ref{def:complex_lfi1}. Com isso, a própria definição de $h$ prova o caso base.
+            Como $C(\phi) = 1$, temos $\phi \in \pazocal{P}$ pela Definição~\ref{def:complex_lfi1}. Com isso, a construção de $h$ prova o caso base.
 
             
             \noindent \textbf{\textsc{Passo.}} 
@@ -1479,7 +1479,10 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
         
         \begin{proposicao}\label{prop:finit}        
-            A lógica $\lfium{} = \langle \ling, \conhil \rangle$ é finitária \textnormal{(Definição~\ref{def:padrao})}.
+            A lógica $\lfium{} = \langle \ling, \conhil \rangle$ é finitária, ou seja, para todo $\Gamma \cup \{\alpha\} \subseteq \ling{}$,
+            \begin{align*}
+                & \text{Se } \Gamma \conhil \alpha \text{, então existe conjunto finito } \Gamma_{0} \subseteq \Gamma \text{ tal que } \Gamma_{0} \conhil \alpha.
+            \end{align*}
         \end{proposicao}
 
         \begin{proof}[Prova da Proposição~\ref{prop:finit}]
