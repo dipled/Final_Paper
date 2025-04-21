@@ -12,15 +12,15 @@ Um sistema lógico capaz de lidar com informações inconsistentes é de grande 
 
 Concomitante aos estudos das lógicas paraconsistentes, avanços nas áreas da computação e da matemática {---} como a definição de teoria de tipos por Russell~(\citeyear{russell1903principles,Russell1908-RUSMLA}), a formulação desta teoria com base na sintaxe do Cálculo-$\lambda$ por~\citeshort{church1940formulation} e o descobrimento da correspondência de Curry-Howard por~\citeshort{curry1958combinatory} e \citeshort{howard1980formulae} {---} possibilitaram o desenvolvimento de assistentes de provas~\cite{harrison2014history}. Assistentes de provas são ferramentas da área de verificação formal, que buscam garantir que um programa está correto de acordo com uma especificação formal. Isto é feito a partir de provas desenvolvidas utilizando métodos matemáticos para a correção de propriedades de um \textit{software}~\cite{Chlipala_2013}. Tradicionalmente, a verificação da validade de provas é feita manualmente por avaliadores, que seguem o raciocínio do autor e dão um veredito baseado no quão convincente a prova é. Os assistentes de provas surgem como alternativas à verificação manual, possibilitando ao matemático {---} ou programador {---} verificar provas na medida em que elas são desenvolvidas, tornando este processo mais fácil e confiável~\cite{paulinmohring:hal-01094195}.
 
-Assistentes de provas como Coq, Lean e Isabelle permitem ao usuário definir e provar propriedades sobre objetos matemáticos com valor computacional~\cite{geuvers2009proof}. No presente trabalho será utilizado o Coq, que utiliza o cálculo de construções indutivas (CIC) como formalismo para o desenvolvimento de provas~\cite{TEAM_2024}. O Coq ganhou notoriedade como ferramenta de verificação formal após seu uso na prova de correção de diversos teoremas e sistemas computacionais complexos, como a prova do teorema das quatro cores~\cite{geuvers2009proof}, a certificação de um compilador para a linguagem de programação C~\cite{leroy2021compcert} e a prova da correção do algoritmo união-busca~\cite{union-find}.
+Assistentes de provas como Rocq, Lean e Isabelle permitem ao usuário definir e provar propriedades sobre objetos matemáticos com valor computacional~\cite{geuvers2009proof}. No presente trabalho será utilizado o Rocq (anteriormente conhecido como Coq), que utiliza o cálculo de construções indutivas (CIC) como formalismo para o desenvolvimento de provas~\cite{TEAM_2024}. O Rocq ganhou notoriedade como ferramenta de verificação formal após seu uso na prova de correção de diversos teoremas e sistemas computacionais complexos, como a prova do teorema das quatro cores~\cite{geuvers2009proof}, a certificação de um compilador para a linguagem de programação C~\cite{leroy2021compcert} e a prova da correção do algoritmo união-busca~\cite{union-find}.
 
-A proposta deste trabalho é desenvolver uma biblioteca da lógica de inconsistência formal \lfium{} em Coq, de maneira análoga como foi feito para a lógica modal por~\citeshort{silveira2020implementacao}. Após a implementação da biblioteca, propõe-se que sejam provados metateoremas relevantes para a \lfium{} utilizando o Coq.
+A proposta deste trabalho é desenvolver uma biblioteca da lógica de inconsistência formal \lfium{} em Rocq, de maneira análoga como foi feito para a lógica modal por~\citeshort{silveira2020implementacao}. Após a implementação da biblioteca, propõe-se que sejam provados metateoremas relevantes para a \lfium{} utilizando o Rocq.
 %os conceitos de inconsistência e consistência são introduzidos à linguagem por meio do operador $\bullet$ para a incositência, definido\footnote{Esta definição diz que uma informação inconsistente é equivalente a uma informação contraditória.} como $\bullet \alpha \eqdef \alpha \land \neg \alpha$, ou $\circ$ para a consitência, definido\footnote{Esta definição diz que uma informação consistente é equivalente a uma informação não-contraditória.} como $\circ \alpha \eqdef \neg(\alpha \land \neg \alpha)$. A linguagem da \lfium{} pode ser definida com qualquer um destes operadores. Isto será indicado subscrevendo-se o operador utilizado, como $\text{\lfium{}}_{\circ}$ e $\text{\lfium{}}_{\bullet}$.
 
 
 
     \section{Objetivo Geral}
-        O objetivo geral deste trabalho é implementar uma biblioteca de \lfium{} em Coq, assim como desenvolver provas dos metateoremas da dedução, correção e completude dentro da biblioteca.
+        O objetivo geral deste trabalho é implementar uma biblioteca de \lfium{} em Rocq, assim como desenvolver provas dos metateoremas da dedução, correção e completude dentro da biblioteca.
 
 
     \section{Objetivos Específicos}
@@ -28,8 +28,8 @@ A proposta deste trabalho é desenvolver uma biblioteca da lógica de inconsist�
             \item Estudar conceitos relevantes sobre lógicas paraconsistentes, em especial a \lfium{};
             \item Estudar e revisar as provas manuais para os metateoremas da dedução, correção e completude da \lfium{};
             \item Realizar um levantamento do estado da arte do desenvolvimento de lógicas paraconsistentes em assistentes de provas;
-            \item Desenvolver uma biblioteca da \lfium{} em Coq, baseada na semântica e sintaxe previamente definidas;
-            \item Desenvolver e verificar formalmente as provas para os metateoremas da dedução, correção e completude em Coq.
+            \item Desenvolver uma biblioteca da \lfium{} em Rocq, baseada na semântica e sintaxe previamente definidas;
+            \item Desenvolver e verificar formalmente as provas para os metateoremas da dedução, correção e completude em Rocq.
         \end{itemize}
 
 
