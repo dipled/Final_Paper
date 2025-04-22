@@ -16,12 +16,14 @@ Neste capítulo será descrita a implementação da biblioteca da lógica de inc
 
     No restante desse trabalho, conceitos básicos sobre o funcionamento do assistente de provas Rocq e sobre seu uso no desenvolvimento de provas e verificação de provas não serão apresentados em grandes detalhes. Ao leitor interessado em tais assuntos, é recomendada uma consulta aos trabalhos de~\citeshort{Pierce2017Logical} e~\citeshort{silveira2020implementacao}.
 
-\section{Biblioteca em Rocq}
-    Nesta seção será apresentada a biblioteca para a lógica \lfium{}, com todos os artefatos semânticos e sintáticos apresentados ao longo do trabalho, bem como provas para os metateoremas manualmente provados. A biblioteca foi desenvolvida utilizando a versão 9.0.0 do Rocq e está disponível em \url{https://github.com/dipled/LFI1_Library}.
+\section{Biblioteca em Rocq}\label{sec:biblioteca}
+    Nesta seção será apresentada a biblioteca para a lógica \lfium{}, com todos os artefatos semânticos e sintáticos apresentados ao longo do trabalho, bem como provas para os metateoremas manualmente provados. A biblioteca foi desenvolvida utilizando a versão 9.0.0 do Rocq e está disponível em \url{https://github.com/dipled/LFI1_Library}. Cada subseção representa um arquivo da biblioteca.
 
-    Primeiro, algumas notações, definições e propriedades úteis foram estabelecidas para facilitar a implementação.
+    \subsection{Utils.v}\label{sec:utils}
 
-    \begin{lstlisting}[name=Utils, numbers=left, frame=single, language=coq]
+      Primeiro, algumas notações, definições e propriedades úteis foram estabelecidas para facilitar a implementação.
+
+      \begin{lstlisting}[name=Utils, numbers=left, frame=single, language=coq]
 Require Import Arith Constructive_sets.
 
 Arguments In {U}.
@@ -38,11 +40,11 @@ Notation " B $\cup$ C " := (Union B C) (at level 48, left associativity).
 Notation " [ a ] " := (Singleton a) (at level 0, right associativity).
 Notation " A $\subseteq$ B " := (Included A B) (at level 71). 
 Notation " $\varnothing$ "     := (Empty_set).
-    \end{lstlisting}
+      \end{lstlisting}
 
-    As bibliotecas \texttt{Arith} e \texttt{Constructive\_sets} fornecem alguns teoremas e definições fundamentais para trabalhar com conjuntos em Rocq, na forma de estruturas chamadas de \texttt{Ensembles}, que são mapeamentos de um tipo qualquer \texttt{U} para \texttt{Prop}. A fim de facilitar a leitura do código, as linhas 11 a 16 estabelecem notações para conceitos de pertinência, união e contingência de conjuntos e conjuntos vazio e \textit{singleton}.
+      As bibliotecas \texttt{Arith} e \texttt{Constructive\_sets} fornecem alguns teoremas e definições fundamentais para trabalhar com conjuntos em Rocq, na forma de estruturas chamadas de \texttt{Ensembles}, que são mapeamentos de um tipo qualquer \texttt{U} para \texttt{Prop}. A fim de facilitar a leitura do código, as linhas 11 a 16 estabelecem notações para conceitos de pertinência, união e contingência de conjuntos e conjuntos vazio e \textit{singleton}.
 
-    \begin{lstlisting}[name=Utils, numbers=left, frame=single, language=coq]
+      \begin{lstlisting}[name=Utils, numbers=left, frame=single, language=coq]
 Theorem iff_neg : forall A B : Prop, (A <-> B) -> (~A <-> ~B).
 Proof.
   intros. split; intros; intro; apply H0; apply H; apply H1.
@@ -61,6 +63,116 @@ match type of H with
   destruct H as [L R]; destruct_conjunction L; destruct_conjunction R
 | _ => idtac
 end.
-    \end{lstlisting}
+      \end{lstlisting}
 
-    O $\pazocal{L}$tac  \texttt{destruct\_conjunction} é uma tática que recebe como argumento uma hipótese \texttt{H} e caso esta hipótese seja uma conjunção, ela é destruída em duas novas hipóteses \texttt{L} e \texttt{R} e a tática é repetida recursivamente para cada uma destas hipóteses.
+      O $\pazocal{L}$tac  \texttt{destruct\_conjunction} é uma tática que recebe como argumento uma hipótese \texttt{H} e caso esta hipótese seja uma conjunção, ela é destruída em duas novas hipóteses \texttt{L} e \texttt{R} e a tática é repetida recursivamente para cada uma destas hipóteses.
+
+      \subsection{Language.v}\label{sec:language}
+
+      Este arquivo contem a definição da linguagem da \lfium{}, como apresentada na Seção~\ref{sec:linguagem}.
+
+      \begin{lstlisting}[name=Language, numbers=left, frame=single, language=coq]
+Require Import LFI1.Utils.
+From Stdlib Require Import Arith Constructive_sets.
+
+Definition Atom := nat.
+
+Inductive Formula : Set :=
+  | Lit    : Atom -> Formula
+  | Neg    : Formula -> Formula
+  | And    : Formula -> Formula -> Formula
+  | Or     : Formula -> Formula -> Formula
+  | Imp    : Formula -> Formula -> Formula
+  | Consistency   : Formula -> Formula.
+
+Notation " x $\to$ y " := 
+(Imp x y) (at level 8, right associativity).
+
+Notation " x $\land$ y " := 
+(And x y) (at level 6, left associativity).
+
+Notation " x $\lor$ y " := 
+(Or x y) (at level 7, left associativity).
+
+Notation " $\neg$ x " := 
+(Neg x) (at level 5, right associativity, format "\neg x").
+
+Notation " $\circ$ x " := 
+(Consistency x) (at level 5, right associativity, format "$\circ$ x").
+
+Notation " $\#$ x " :=
+(Lit x) (at level 2, no associativity, x constr at level 1, format "$\#$ x").
+      \end{lstlisting}
+      
+      Note que \texttt{Lit} é construído a partir de um \texttt{Atom}, que por sua vez é só um \textit{alias} para o tipo \texttt{nat} (um número natural), portanto o tipo \textit{Formula} é enumerável.
+
+      \subsection{Syntax.v}\label{sec:syntax}
+
+      Este arquivo contem a definição da sintaxe da \lfium{}, através do cáclulo de Hilbert definido na Seção~\ref{sec:axiomatizacao}.
+
+      \begin{lstlisting}[name=Syntax, numbers=left, frame=single, language=coq]
+Require Import LFI1.Utils LFI1.Language.
+From Stdlib Require Import Arith Constructive_sets.
+
+(* Hilbert calculus: *)
+
+Inductive Ax : Set :=
+  | Ax1      : Formula -> Formula -> Ax
+  | Ax2      : Formula -> Formula -> Formula -> Ax
+  | Ax3      : Formula -> Formula -> Ax
+  | Ax4      : Formula -> Formula -> Ax
+  | Ax5      : Formula -> Formula -> Ax
+  | Ax6      : Formula -> Formula -> Ax
+  | Ax7      : Formula -> Formula -> Ax
+  | Ax8      : Formula -> Formula -> Formula -> Ax
+  | Ax9      : Formula -> Formula -> Ax
+  | Ax10     : Formula -> Ax
+  | bc1      : Formula -> Formula -> Ax
+  | cf       : Formula -> Ax
+  | ce       : Formula -> Ax
+  | ci       : Formula -> Ax
+  | negland1 : Formula -> Formula -> Ax
+  | negland2 : Formula -> Formula -> Ax
+  | neglor1  : Formula -> Formula -> Ax
+  | neglor2  : Formula -> Formula -> Ax
+  | negto1   : Formula -> Formula -> Ax
+  | negto2   : Formula -> Formula -> Ax.
+
+Definition instantiate (a : Ax) : Formula :=
+  match a with 
+  | Ax1 $\alpha$ $\beta$      => $\alpha$ $\to$ ($\beta$ $\to$ $\alpha$)
+  | Ax2 $\alpha$ $\beta$ $\gamma$    => ($\alpha$ $\to$ ($\beta$ $\to$ $\gamma$)) $\to$ (($\alpha$ $\to$ $\beta$) $\to$ ($\alpha$ $\to$ $\gamma$))
+  | Ax3 $\alpha$ $\beta$      => $\alpha$ $\to$ ($\beta$ $\to$ ($\alpha$ $\land$ $\beta$))
+  | Ax4 $\alpha$ $\beta$      => ($\alpha$ $\land$ $\beta$) $\to$ $\alpha$
+  | Ax5 $\alpha$ $\beta$      => ($\alpha$ $\land$ $\beta$) $\to$ $\beta$
+  | Ax6 $\alpha$ $\beta$      => $\alpha$ $\to$ ($\alpha$ $\lor$ $\beta$)
+  | Ax7 $\alpha$ $\beta$      => $\beta$ $\to$ ($\alpha$ $\lor$ $\beta$)
+  | Ax8 $\alpha$ $\beta$ $\gamma$    => ($\alpha$ $\to$ $\gamma$) $\to$ (($\beta$ $\to$ $\gamma$) $\to$ (($\alpha$ $\lor$ $\beta$) $\to$ $\gamma$))
+  | Ax9 $\alpha$ $\beta$      => ($\alpha$ $\to$ $\beta$) $\lor$ $\alpha$
+  | Ax10 $\alpha$       => $\alpha$ $\lor$ $\neg$$\alpha$
+  | bc1 $\alpha$ $\beta$      => $\circ$$\alpha$ $\to$ ($\alpha$ $\to$ ($\neg$$\alpha$ $\to$ $\beta$))
+  | cf $\alpha$         => $\neg$$\neg$$\alpha$ $\to$ $\alpha$
+  | ce $\alpha$         => $\alpha$ $\to$ $\neg$$\neg$$\alpha$
+  | ci $\alpha$         => $\neg$$\circ$$\alpha$ $\to$ ($\alpha$ $\land$ $\neg$ $\alpha$)
+  | neglor1 $\alpha$ $\beta$  => $\neg$($\alpha$ $\lor$ $\beta$) $\to$ ($\neg$$\alpha$ $\land$ $\neg$$\beta$)
+  | neglor2 $\alpha$ $\beta$  => ($\neg$$\alpha$ $\land$ $\neg$$\beta$) $\to$ $\neg$($\alpha$ $\lor$ $\beta$)
+  | negland1 $\alpha$ $\beta$ => $\neg$($\alpha$ $\land$ $\beta$) $\to$ ($\neg$$\alpha$ $\lor$ $\neg$$\beta$)
+  | negland2 $\alpha$ $\beta$ => ($\neg$$\alpha$ $\lor$ $\neg$$\beta$) $\to$ $\neg$($\alpha$ $\land$ $\beta$)
+  | negto1 $\alpha$ $\beta$   => $\neg$($\alpha$ $\to$ $\beta$) $\to$ ($\alpha$ $\land$ $\neg$$\beta$)
+  | negto2 $\alpha$ $\beta$   => ($\alpha$ $\land$ $\neg$$\beta$) $\to$ $\neg$($\alpha$ $\to$ $\beta$)
+  end.
+  
+Inductive deduction : Ensemble Formula -> Formula -> Prop :=
+  | Premisse : forall ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula), $\phi$ $\in$ $\Gamma$ -> deduction $\Gamma$ $\phi$
+  | AxiomInstance : forall ($\Gamma$ : Ensemble Formula) (a : Ax), deduction $\Gamma$ (instantiate a)
+  | MP : forall ($\Gamma$ : Ensemble Formula) ($\phi$ $\psi$ : Formula), (deduction $\Gamma$ ($\phi$ $\to$ $\psi$)) -> 
+    (deduction $\Gamma$ $\phi$) -> deduction $\Gamma$ $\psi$.
+
+Notation " $\Gamma$ $\vdash$ $\phi$ " := (deduction $\Gamma$ $\phi$) (at level 50, no associativity).
+              \end{lstlisting}
+
+              Primeiro, o tipo \texttt{Ax} foi definido como um tipo indutivo (também chamado de tipo algébrico), com construtores que recebem como argumentos fórmulas correspondentes ao número de fórmulas dos axiomas definidos na Definição~\ref{def:hilbert_lfi1}. 
+              
+              Depois, a função \texttt{instantiate} é definida. Ela recebe como argumento um axioma (que por sua vez foi construído a partir de fórmulas) e retorna uma formula correspondente àquela representada pelo axioma, por exemplo, o axioma~\ref{ax:axcf} representa a eliminação da dupla negação, portanto, a função \texttt{instantiate} receberia um dado \texttt{cf $\alpha$} do tipo \texttt{Ax}, onde $\alpha$ é uma fórmula qualquer da linguagem, e retornaria um dado $\neg\neg\alpha \to \alpha$ do tipo \texttt{Formula}.
+
+              Finalmente, o tipo \texttt{deduction} é definido indutivamente a partir de um conjunto de fórmulas (conjunto de premissas) e uma fórmula (conclusão) e retornando um dado do tipo \texttt{Prop} caso seja possível construir uma derivação da conclusão a partir do conjunto de premissas, aplicando uma sequência de construtores, que representam os três casos de derivação descritos na Definição~\ref{def:derivacao}. O construtor \texttt{Premisse} diz que se uma fórmula qualquer pertence ao conjunto de premissas, então ela é derivável a partir deste conjunto. O construtor \texttt{AxiomInstance} diz que um axioma é sempre derivável a partir de qualquer conjunto de premissas. O construtor \texttt{MP} diz que, dadas duas fórmulas $\phi$ e $\psi$ quaisquer, se for possível derivar $\phi \to \psi$ e $\phi$ a partir de um conjunto de fórmulas, então podemos derivar $\psi$ a partir deste mesmo conjunto. Então, uma notação com o operador infixo $\vdash$ é estabelecida para facilitar a leitura de derivações.
