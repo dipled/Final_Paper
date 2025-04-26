@@ -17,23 +17,15 @@ Neste capítulo será descrita a implementação da biblioteca da lógica de inc
     No restante desse trabalho, conceitos básicos sobre o funcionamento do assistente de provas Rocq e sobre seu uso no desenvolvimento de provas e verificação de provas não serão apresentados em grandes detalhes. Ao leitor interessado em tais assuntos, é recomendada uma consulta aos trabalhos de~\citeshort{Pierce2017Logical} e~\citeshort{silveira2020implementacao}.
 
 \section{Biblioteca em Rocq}\label{sec:biblioteca}
-    Nesta seção será apresentada a biblioteca para a lógica \lfium{}, com todos os artefatos semânticos e sintáticos apresentados ao longo do trabalho, bem como provas para os metateoremas manualmente provados. A biblioteca foi desenvolvida utilizando a versão 9.0.0 do Rocq e está disponível em \url{https://github.com/dipled/LFI1_Library}. Cada subseção representa um arquivo da biblioteca.
+    Nesta seção será apresentada a biblioteca para a lógica \lfium{}, com os principais artefatos semânticos e sintáticos apresentados ao longo do trabalho, bem como provas para os metateoremas manualmente provados. A biblioteca foi desenvolvida utilizando a versão 9.0.0 do Rocq e está disponível em \url{https://github.com/dipled/LFI1_Library}. Cada subseção representa um arquivo da biblioteca e as partes mais importantes de cada um destes será comentada ao longo do texto.
 
     \subsection{Utils.v}\label{sec:utils}
 
-      Primeiro, algumas notações, definições e propriedades úteis foram estabelecidas para facilitar a implementação.
+      Este arquivo contem algumas notações, definições e propriedades úteis que foram estabelecidas para facilitar a implementação.
 
-      \begin{lstlisting}[name=Utils, numbers=left, frame=single, language=coq]
+      \begin{lstlisting}[name=Utils, frame=single, language=coq]
 Require Import Arith Constructive_sets.
-
-Arguments In {U}.
-Arguments Add {U}.
-Arguments Empty_set {U}.
-Arguments Union {U}.
-Arguments Included {U}.
-Arguments Singleton {U}.
-Arguments Complement {U}.
-
+$\qquad\vdots$
 Notation " a $\in$ A " := (In A a) (at level 10).
 Notation " a $\not \in$ A " := (~In A a) (at level 10).
 Notation " B $\cup$ C " := (Union B C) (at level 48, left associativity).
@@ -42,19 +34,13 @@ Notation " A $\subseteq$ B " := (Included A B) (at level 71).
 Notation " $\varnothing$ "     := (Empty_set).
       \end{lstlisting}
 
-      As bibliotecas \texttt{Arith} e \texttt{Constructive\_sets} fornecem alguns teoremas e definições fundamentais para trabalhar com conjuntos em Rocq, na forma de estruturas chamadas de \texttt{Ensembles}, que são mapeamentos de um tipo qualquer \texttt{U} para \texttt{Prop}. A fim de facilitar a leitura do código, as linhas 11 a 16 estabelecem notações para conceitos de pertinência, união e contingência de conjuntos e conjuntos vazio e \textit{singleton}.
+      As bibliotecas \texttt{Arith} e \texttt{Constructive\_sets} fornecem alguns teoremas e definições fundamentais para trabalhar com conjuntos em Rocq, na forma de estruturas chamadas de \texttt{Ensembles}, que são mapeamentos de um tipo qualquer \texttt{U} para \texttt{Prop}. A fim de facilitar a leitura do código, foram estabelecidas notações para conceitos de pertinência, união e contingência de conjuntos e conjuntos vazio e \textit{singleton}.
 
-      \begin{lstlisting}[name=Utils, numbers=left, frame=single, language=coq]
+      \begin{lstlisting}[name=Utils, frame=single, language=coq]
 Theorem iff_neg : forall A B : Prop, (A <-> B) -> (~A <-> ~B).
-Proof.
-  intros. split; intros; intro; apply H0; apply H; apply H1.
-Qed.
-
+$\qquad\vdots$
 Theorem contra : forall A B : Prop, (A -> B) -> (~B -> ~A).
-Proof.
-  intros. intro. apply H0. apply H. apply H1.
-Qed. 
-
+$\qquad\vdots$
 Ltac destruct_conjunction H :=
 match type of H with
 | _ /\ _ => 
@@ -71,7 +57,7 @@ end.
 
       Este arquivo contem a definição da linguagem da \lfium{}, como apresentada na Seção~\ref{sec:linguagem}.
 
-      \begin{lstlisting}[name=Language, numbers=left, frame=single, language=coq]
+      \begin{lstlisting}[name=Language, frame=single, language=coq]
 Require Import LFI1.Utils.
 From Stdlib Require Import Arith Constructive_sets.
 
@@ -106,11 +92,11 @@ Notation " $\#$ x " :=
       
       Note que \texttt{Lit} é construído a partir de um \texttt{Atom}, que por sua vez é só um \textit{alias} para o tipo \texttt{nat} (um número natural), portanto o tipo \textit{Formula} é enumerável.
 
-      \subsection{Syntax.v}\label{sec:syntax}
+    \subsection{Syntax.v}\label{sec:syntax}
 
       Este arquivo contem a definição da sintaxe da \lfium{}, através do cáclulo de Hilbert definido na Seção~\ref{sec:axiomatizacao}.
 
-      \begin{lstlisting}[name=Syntax, numbers=left, frame=single, language=coq]
+      \begin{lstlisting}[name=Syntax, frame=single, language=coq]
 Require Import LFI1.Utils LFI1.Language.
 From Stdlib Require Import Arith Constructive_sets.
 
@@ -119,47 +105,22 @@ From Stdlib Require Import Arith Constructive_sets.
 Inductive Ax : Set :=
   | Ax1      : Formula -> Formula -> Ax
   | Ax2      : Formula -> Formula -> Formula -> Ax
-  | Ax3      : Formula -> Formula -> Ax
-  | Ax4      : Formula -> Formula -> Ax
-  | Ax5      : Formula -> Formula -> Ax
-  | Ax6      : Formula -> Formula -> Ax
-  | Ax7      : Formula -> Formula -> Ax
-  | Ax8      : Formula -> Formula -> Formula -> Ax
-  | Ax9      : Formula -> Formula -> Ax
-  | Ax10     : Formula -> Ax
+$\qquad\vdots$
   | bc1      : Formula -> Formula -> Ax
   | cf       : Formula -> Ax
   | ce       : Formula -> Ax
   | ci       : Formula -> Ax
-  | negland1 : Formula -> Formula -> Ax
-  | negland2 : Formula -> Formula -> Ax
-  | neglor1  : Formula -> Formula -> Ax
-  | neglor2  : Formula -> Formula -> Ax
-  | negto1   : Formula -> Formula -> Ax
-  | negto2   : Formula -> Formula -> Ax.
-
+$\qquad\vdots$
 Definition instantiate (a : Ax) : Formula :=
   match a with 
   | Ax1 $\alpha$ $\beta$      => $\alpha$ $\to$ ($\beta$ $\to$ $\alpha$)
   | Ax2 $\alpha$ $\beta$ $\gamma$    => ($\alpha$ $\to$ ($\beta$ $\to$ $\gamma$)) $\to$ (($\alpha$ $\to$ $\beta$) $\to$ ($\alpha$ $\to$ $\gamma$))
-  | Ax3 $\alpha$ $\beta$      => $\alpha$ $\to$ ($\beta$ $\to$ ($\alpha$ $\land$ $\beta$))
-  | Ax4 $\alpha$ $\beta$      => ($\alpha$ $\land$ $\beta$) $\to$ $\alpha$
-  | Ax5 $\alpha$ $\beta$      => ($\alpha$ $\land$ $\beta$) $\to$ $\beta$
-  | Ax6 $\alpha$ $\beta$      => $\alpha$ $\to$ ($\alpha$ $\lor$ $\beta$)
-  | Ax7 $\alpha$ $\beta$      => $\beta$ $\to$ ($\alpha$ $\lor$ $\beta$)
-  | Ax8 $\alpha$ $\beta$ $\gamma$    => ($\alpha$ $\to$ $\gamma$) $\to$ (($\beta$ $\to$ $\gamma$) $\to$ (($\alpha$ $\lor$ $\beta$) $\to$ $\gamma$))
-  | Ax9 $\alpha$ $\beta$      => ($\alpha$ $\to$ $\beta$) $\lor$ $\alpha$
-  | Ax10 $\alpha$       => $\alpha$ $\lor$ $\neg$$\alpha$
+$\qquad\vdots$
   | bc1 $\alpha$ $\beta$      => $\circ$$\alpha$ $\to$ ($\alpha$ $\to$ ($\neg$$\alpha$ $\to$ $\beta$))
   | cf $\alpha$         => $\neg$$\neg$$\alpha$ $\to$ $\alpha$
   | ce $\alpha$         => $\alpha$ $\to$ $\neg$$\neg$$\alpha$
   | ci $\alpha$         => $\neg$$\circ$$\alpha$ $\to$ ($\alpha$ $\land$ $\neg$ $\alpha$)
-  | neglor1 $\alpha$ $\beta$  => $\neg$($\alpha$ $\lor$ $\beta$) $\to$ ($\neg$$\alpha$ $\land$ $\neg$$\beta$)
-  | neglor2 $\alpha$ $\beta$  => ($\neg$$\alpha$ $\land$ $\neg$$\beta$) $\to$ $\neg$($\alpha$ $\lor$ $\beta$)
-  | negland1 $\alpha$ $\beta$ => $\neg$($\alpha$ $\land$ $\beta$) $\to$ ($\neg$$\alpha$ $\lor$ $\neg$$\beta$)
-  | negland2 $\alpha$ $\beta$ => ($\neg$$\alpha$ $\lor$ $\neg$$\beta$) $\to$ $\neg$($\alpha$ $\land$ $\beta$)
-  | negto1 $\alpha$ $\beta$   => $\neg$($\alpha$ $\to$ $\beta$) $\to$ ($\alpha$ $\land$ $\neg$$\beta$)
-  | negto2 $\alpha$ $\beta$   => ($\alpha$ $\land$ $\neg$$\beta$) $\to$ $\neg$($\alpha$ $\to$ $\beta$)
+$\qquad\vdots$
   end.
   
 Inductive deduction : Ensemble Formula -> Formula -> Prop :=
@@ -169,10 +130,126 @@ Inductive deduction : Ensemble Formula -> Formula -> Prop :=
     (deduction $\Gamma$ $\phi$) -> deduction $\Gamma$ $\psi$.
 
 Notation " $\Gamma$ $\vdash$ $\phi$ " := (deduction $\Gamma$ $\phi$) (at level 50, no associativity).
-              \end{lstlisting}
+      \end{lstlisting}
 
-              Primeiro, o tipo \texttt{Ax} foi definido como um tipo indutivo (também chamado de tipo algébrico), com construtores que recebem como argumentos fórmulas correspondentes ao número de fórmulas dos axiomas definidos na Definição~\ref{def:hilbert_lfi1}. 
-              
-              Depois, a função \texttt{instantiate} é definida. Ela recebe como argumento um axioma (que por sua vez foi construído a partir de fórmulas) e retorna uma formula correspondente àquela representada pelo axioma, por exemplo, o axioma~\ref{ax:axcf} representa a eliminação da dupla negação, portanto, a função \texttt{instantiate} receberia um dado \texttt{cf $\alpha$} do tipo \texttt{Ax}, onde $\alpha$ é uma fórmula qualquer da linguagem, e retornaria um dado $\neg\neg\alpha \to \alpha$ do tipo \texttt{Formula}.
+      Primeiro, o tipo \texttt{Ax} foi definido como um tipo indutivo (também chamado de tipo algébrico), com construtores que recebem como argumentos fórmulas correspondentes ao número de fórmulas dos axiomas definidos na Definição~\ref{def:hilbert_lfi1}. 
+      
+      Depois, a função \texttt{instantiate} é definida. Ela recebe como argumento um axioma (que por sua vez foi construído a partir de fórmulas) e retorna uma formula correspondente àquela representada pelo axioma, por exemplo, o axioma~\ref{ax:axcf} representa a eliminação da dupla negação, portanto, a função \texttt{instantiate} receberia um dado \texttt{cf $\alpha$} do tipo \texttt{Ax}, onde $\alpha$ é uma fórmula qualquer da linguagem, e retornaria um dado $\neg\neg\alpha \to \alpha$ do tipo \texttt{Formula}.
 
-              Finalmente, o tipo \texttt{deduction} é definido indutivamente a partir de um conjunto de fórmulas (conjunto de premissas) e uma fórmula (conclusão) e retornando um dado do tipo \texttt{Prop} caso seja possível construir uma derivação da conclusão a partir do conjunto de premissas, aplicando uma sequência de construtores, que representam os três casos de derivação descritos na Definição~\ref{def:derivacao}. O construtor \texttt{Premisse} diz que se uma fórmula qualquer pertence ao conjunto de premissas, então ela é derivável a partir deste conjunto. O construtor \texttt{AxiomInstance} diz que um axioma é sempre derivável a partir de qualquer conjunto de premissas. O construtor \texttt{MP} diz que, dadas duas fórmulas $\phi$ e $\psi$ quaisquer, se for possível derivar $\phi \to \psi$ e $\phi$ a partir de um conjunto de fórmulas, então podemos derivar $\psi$ a partir deste mesmo conjunto. Então, uma notação com o operador infixo $\vdash$ é estabelecida para facilitar a leitura de derivações.
+      Finalmente, o tipo \texttt{deduction} é definido indutivamente a partir de um conjunto de fórmulas (conjunto de premissas) e uma fórmula (conclusão) e retornando um dado do tipo \texttt{Prop} referente a possibilidade de construir uma derivação da conclusão a partir do conjunto de premissas, aplicando uma sequência de construtores, que representam os três casos de derivação descritos na Definição~\ref{def:derivacao}. O construtor \texttt{Premisse} diz que se uma fórmula qualquer pertence ao conjunto de premissas, então ela é derivável a partir deste conjunto. O construtor \texttt{AxiomInstance} diz que um axioma é sempre derivável a partir de qualquer conjunto de premissas. O construtor \texttt{MP} diz que, dadas duas fórmulas $\phi$ e $\psi$ quaisquer, se for possível derivar $\phi \to \psi$ e $\phi$ a partir de um conjunto de fórmulas, então podemos derivar $\psi$ a partir deste mesmo conjunto. Por último, uma notação com o operador infixo $\vdash$ é estabelecida para facilitar a leitura de derivações.
+    
+    \subsection{Semantics.v}
+
+      Este arquivo contem a definição dos dois sistemas semânticos apresentados na Seção~\ref{sec:semantica}.
+
+      O primeiro sistema definido foi a semântica matricial, conforme as Definições~\ref{def:mat} e~\ref{def:conmat}.
+      \begin{lstlisting}[name=Semantics, frame=single, language=coq]
+Require Import LFI1.Utils LFI1.Language.
+From Stdlib Require Import Arith Constructive_sets.
+
+(* Matrix Semantics: *)
+
+Inductive MatrixDomain : Set :=
+  | One
+  | Half
+  | Zero.
+
+Definition designatedValue (a : MatrixDomain) : Prop :=
+  match a with
+  | Zero => False
+  | _ => True
+  end.
+
+Definition andM (a b : MatrixDomain) : MatrixDomain :=
+  match a, b with
+  | Zero, _  => Zero
+  | _, Zero  => Zero
+  | One, One => One
+  | _, _     => Half
+  end.
+
+Definition orM (a b : MatrixDomain) : MatrixDomain :=
+  match a, b with
+  | One, _     => One
+  | _, One     => One
+  | Zero, Zero => Zero
+  | _, _       => Half
+  end.
+
+Definition impM (a b : MatrixDomain) : MatrixDomain :=
+  match a, b with
+  | Zero, _ => One
+  | _, One  => One
+  | _, Half => Half
+
+  | _, Zero => Zero
+  end.
+
+Definition negM (a : MatrixDomain) : MatrixDomain :=
+  match a with
+  | One  => Zero
+  | Half => Half
+  | Zero => One
+  end.
+
+Definition consM (a : MatrixDomain) : MatrixDomain :=
+  match a with
+  | Half => Zero
+  | _    => One
+  end.
+
+Notation " x $\to_{m}$ y " := 
+(impM x y) (at level 21, right associativity).
+
+Notation " x $\land_{m}$ y " := 
+(andM x y) (at level 20, left associativity).
+
+Notation " x $\lor_{m}$ y " := 
+(orM x y) (at level 22, left associativity).
+
+Notation " $\neg_{m}$ x " := 
+(negM x) (at level 9, right associativity, format "$\neg_{m}$ x").
+
+Notation " $\circ_{m}$ x " := 
+(consM x) (at level 9, right associativity, format "$\circ_{m}$ x").
+        
+      \end{lstlisting}
+      Note que \texttt{designatedValue} é um predicado sobre o domínio da matriz lógica, e retorna um \texttt{Prop} referente a pertinência de um dado valor ao conjunto $\{1,\meio{}\}$.
+
+      Após definir a matriz lógica, é preciso estabelecer a noção de valorações sobre essa matriz, conforme apresentada na Definição~\ref{def:matlog}, que define valoração como um homomorfismo entre linguagem e a álgebra da matriz, preservando a estrutura dos seus operadores.
+    
+      \begin{lstlisting}[name=Semantics, frame=single, language=coq]
+(* Defining the conditions for a function to be a valuation over the matrix,
+i.e., it must be a homomorphism from Formula to MatrixDomain.
+*)
+
+Definition preserveAnd (v : Formula -> MatrixDomain) : Prop := 
+forall $\phi$ $\psi$: Formula, (v ($\phi$ $\land$ $\psi$)) = (v $\phi$) $\land_{m}$ (v $\psi$).
+
+Definition preserveOr (v : Formula -> MatrixDomain) : Prop := 
+forall $\phi$ $\psi$: Formula, (v ($\phi$ $\lor$ $\psi$)) = (v $\phi$) $\lor_{m}$ (v $\psi$).
+
+Definition preserveTo (v : Formula -> MatrixDomain) : Prop := 
+forall $\phi$ $\psi$: Formula, (v ($\phi$ $\to$ $\psi$)) = (v $\phi$) $\to_{m}$ (v $\psi$).
+
+Definition preserveNeg (v : Formula -> MatrixDomain) : Prop := 
+forall $\phi$: Formula, (v ($\neg$$\phi$)) = $\neg_{m}$(v $\phi$).
+
+Definition preserveCirc (v : Formula -> MatrixDomain) : Prop := 
+forall $\phi$: Formula, (v ($\circ$$\phi$)) = $\circ_{m}$(v $\phi$).
+
+Definition valuation (v : Formula -> MatrixDomain) : Prop :=
+preserveOr v /\ preserveTo v /\ preserveAnd v /\ preserveNeg v /\ preserveCirc v.
+
+(* Defining the semantic consequence relation w.r.t matrices *)
+Definition matrixEntails ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula) := 
+forall v : (Formula -> MatrixDomain),
+valuation v -> 
+(forall ($\psi$: Formula), 
+  $\psi$ $\in$ $\Gamma$ -> designatedValue (v $\psi$)) -> 
+    designatedValue (v $\phi$).
+
+Notation " $\Gamma$ $\vDash$m $\phi$ " := (matrixEntails $\Gamma$ $\phi$) (at level 50, no associativity).
+      \end{lstlisting}
+
+      A definição \texttt{valuation} representa um predicado sobre qualquer mapeamento de \texttt{Formula} para \texttt{MatrixDomain}, que retorna \texttt{True} caso este mapeamento seja um homomorfismo sobre a linguagem e o domínio da matriz e retorna \texttt{False} caso contrário. A relação de consequência semântica é definida em \texttt{matrixEntails} (conforme a Definição~\ref{def:conmat}), que diz que, dado um conjunto de fórmulas (conjunto de premissas) e uma fórmula (conclusão), esta fórmula será uma consequência semântica do conjunto de premissas caso toda valoração que satisfaz todas as fórmulas deste conjunto também satisfizer a conclusão.

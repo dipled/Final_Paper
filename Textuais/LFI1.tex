@@ -153,7 +153,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
         Duas álgebras $\langle A, o_1, \ldots, o_n \rangle$ e $\langle B, o'_1, \ldots, o'_n \rangle$ definidas sobre uma mesma assinatura proposicional são ditas \textit{similares} caso, para todo $1 \leq j \leq n$, as operações $o_j$ e $o'_j$ tenham mesma aridade. Uma função (mapeamento) entre duas estruturas algébricas similares que preserva sua estrutura é chamada de \textit{homomorfismo}. Ou seja, dadas duas álgebras similares $\langle A, O \rangle$, $\langle B, O' \rangle$ definidas sobre uma assinatura proposicional $\Theta$, um mapeamento $h : A \to B$ será um \textit{homomorfismo} caso, para todo conectivo $c \in \Theta$ de aridade $n$, e para todo $a_{0},\ldots,a_{n} \in A$, tem-se $h(c(a_{0},\ldots, a_{n})) = c(h(a_{0}),\ldots, h(a_{n}))$.
 
-        \begin{definicao}[Matriz Lógica]
+        \begin{definicao}[Matriz Lógica]\label{def:matlog}
             Seja $\Theta$ uma assinatura proposicional. Uma \textit{matriz lógica} $\pazocal{M}$ definida sobre $\Theta$ é uma tripla $\pazocal{M} = \langle A, D, O \rangle$, tal que o par $\langle A, O \rangle$ é uma álgebra para $\Theta$ e $D$ é um subconjunto de $A$ cujos elementos são ditos \textit{designados} (estes são elementos de $A$ considerados como verdadeiros).\qed{}
         \end{definicao}
 
@@ -162,7 +162,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
        Uma lógica que apresenta três elementos no domínio de sua matriz lógica é dita \textit{trivalorada}. Algumas lógicas trivaloradas introduzem um terceiro valor além da verdade e falsidade para representar uma informação desconhecida, como é o caso da lógica de Kleene~\cite{manyvalued}. A \lfium{}, por sua vez, introduz o valor $\meio{}$ além dos valores clássicos $0$ e $1$ para representar uma informação inconsistente. Ou seja, caso $\alpha$ tenha o valor $\meio{}$, então $\neg \alpha$ também terá o valor $\meio{}$.
 
-        \begin{definicao}[Matriz lógica da \lfium{}]
+        \begin{definicao}[Matriz lógica da \lfium{}]\label{def:mat}
             A matriz lógica $\pazocal{M}_{\lfium{}} = \langle M, D, O \rangle$ com domínio $M = \{1, \meio{}, 0\}$ e um conjunto de valores designados $D = \{1, \meio{}\}$ é definida da seguinte forma:
             
             \setbool{@fleqn}{false}
@@ -239,7 +239,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
         A partir disso, definimos a relação de consequência semântica $\conmat$ da seguinte forma:
 
-        \begin{definicao}[Relação de consequência semântica $\conmat$]
+        \begin{definicao}[Relação de consequência semântica $\conmat$]\label{def:conmat}
             Dado um conjunto de fórmulas $\Gamma \cup \{\phi\} \subseteq \ling{}$, tem-se $\Gamma \conmat \phi$ sse, para toda valoração $h : \ling{} \to M$ de $\pazocal{M}_{\lfium{}}$, se $h[\Gamma] \subseteq \{1, \meio{}\}$ então $h(\phi) \in \{1, \meio{}\}$.\qed{}
         \end{definicao}
         Para ilustrar, provaremos um exemplo de inferência na semântica matricial apresentada:
