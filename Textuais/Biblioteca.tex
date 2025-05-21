@@ -457,7 +457,7 @@ $\quad\vdots$
 Qed.
         \end{lstlisting}
 
-        A primeira definição feita é a da função \texttt{h\_formula} que constrói uma valoração sobre as matrizes a partir de uma bivaloração recebida como argumento, similar a função apresentada no Lema~\ref{lem:matval}. Na prova manual deste lema, o fato desta função ser uma valoração sobre as matrizes {--} um homomorfismo entre a linguagem e as matrizes {--} foi tomado como trivial. Para o Rocq, entretando, este fato não é imediato e deve ser demonstrado, o que é feito pelo lema \texttt{h\_valuation}, que segue por análise de caso nos valores de $v(\alpha)$ e $v(\neg \alpha)$ da função \texttt{h\_formula}.
+        A primeira definição feita é a da função \texttt{h\_formula} que constrói uma valoração sobre as matrizes a partir de uma bivaloração recebida como argumento, similar a função apresentada no Lema~\ref{lem:matval}. Na prova manual deste lema, o fato desta função ser uma valoração sobre as matrizes {--} um homomorfismo entre a linguagem e as matrizes {--} foi tomado como trivial. Para o Rocq, entretando, este fato não é imediato e deve ser demonstrado, o que é feito pelo lema \texttt{h\_valuation}, que segue por análise de caso nos valores de v$(\alpha)$ e v$(\neg \alpha)$ da função \texttt{h\_formula}.
 
         Depois disso, a prova do Lema~\ref{lem:matval} é desenvolvida.
 
@@ -477,4 +477,4 @@ $\quad\vdots$
 Qed.
         \end{lstlisting}
 
-        O lema \texttt{bivaluation\_matrix\_lemma} segue por análise de caso em $v(\phi)$ e $v(\neg \phi)$, utilizando a valoração obtida ao aplicar a função \texttt{h\_formula} em $v$ e o resultado obtido no lema \texttt{h\_valuation}. Com este resultado, a prova da ida da equivalência entre os sistemas semânticos é desenvolvida em \texttt{bivaluation\_matrix\_imp1}, utilizando as definições de 
+        O lema \texttt{bivaluation\_matrix\_lemma} segue por análise de caso em v$(\phi)$ e v$(\neg \phi)$, utilizando a valoração obtida ao aplicar a função \texttt{h\_formula} numa bivaloração $v$ qualquer e o resultado obtido no lema \texttt{h\_valuation}. Com este resultado, a prova da ida da equivalência entre os sistemas semânticos é desenvolvida em \texttt{bivaluation\_matrix\_imp1}, utilizando as definições das relações de consequência semântica matricial e de bivalorações, como feito no Corolário~\ref{cor:matval}.
