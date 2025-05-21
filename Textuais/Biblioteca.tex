@@ -433,4 +433,47 @@ $\quad\vdots$
 Qed.
           \end{lstlisting}
 
-          A prova segue por indução estrutural na derivação $\Gamma \cup [\alpha] \vdash \beta$ na ida e na derivação $\Gamma \vdash \alpha \to \beta$ na volta. O teorema nos cede dois corolários (\texttt{proof\_by\_cases} e \texttt{proof\_by\_cases\_neg}) que facilitam a prova da completude em relação à semântica de bivalorações. Ambos corolários seguem por derivações no cálculo de Hilbert utilizando o recém provado teorema da dedução.
+          A prova segue por indução estrutural na derivação $\Gamma \cup [\alpha] \vdash \beta$ na ida e na derivação $\Gamma \vdash \alpha \to \beta$ na volta. O teorema nos cede dois corolários (\texttt{proof\_by\_cases} e \texttt{proof\_by\_cases\_neg}) que facilitam a prova da completude em relação à semântica de bivalorações. Ambos corolários seguem por derivações no cálculo de Hilbert utilizando o recém-provado teorema da dedução.
+
+        \subsection{Soundness.v}
+        
+        Este arquivo implementa as provas desenvolvidas ao longo da Seção~\ref{sec:cor}, necessárias para desenvolver o metateorema da correção.
+        \begin{lstlisting}[name=Soundness, frame=single, language=coq]
+(* Function used to prove $\Gamma$ $\vDash$m $\alpha$ -> $\Gamma$ $\vDash$ $\alpha$ *)
+Definition h_formula ($\alpha$ : Formula) (v : Formula -> BivaluationDomain) : MatrixDomain :=
+  match (v $\alpha$), (v $\neg$$\alpha$) with
+  | $\top$, $\bot$ => One
+  | $\top$, $\top$ => Half
+  | $\bot$, _ => Zero
+  end.
+
+(* Proof that if v is a bivaluation, then h_formula is a valuation over the matrices i.e., h_formula is a homomorphism.
+*)
+
+Lemma h_valuation : forall (v : Formula -> BivaluationDomain),
+bivaluation v -> valuation (fun x => h_formula x v).
+Proof.
+$\quad\vdots$
+Qed.
+        \end{lstlisting}
+
+        A primeira definição feita é a da função \texttt{h\_formula} que constrói uma valoração sobre as matrizes a partir de uma bivaloração recebida como argumento, similar a função apresentada no Lema~\ref{lem:matval}. Na prova manual deste lema, o fato desta função ser uma valoração sobre as matrizes {--} um homomorfismo entre a linguagem e as matrizes {--} foi tomado como trivial. Para o Rocq, entretando, este fato não é imediato e deve ser demonstrado, o que é feito pelo lema \texttt{h\_valuation}, que segue por análise de caso nos valores de $v(\alpha)$ e $v(\neg \alpha)$ da função \texttt{h\_formula}.
+
+        Depois disso, a prova de que, dada 
+
+        \begin{lstlisting}[name=Soundness, frame=single, language=coq]
+Lemma bivaluation_matrix_lemma : forall (v : Formula -> BivaluationDomain),
+bivaluation v -> 
+(exists (h : Formula -> MatrixDomain),
+  (forall $\phi$ : Formula, v $\phi$ = $\top$ <-> designatedValue (h $\phi$)) /\ valuation h
+).
+Proof. 
+$\quad\vdots$
+Qed.
+
+Corollary bivaluation_matrix_imp1 : forall ($\Gamma$ : Ensemble Formula) ($\alpha$ : Formula), 
+($\Gamma$ $\vDash$m $\alpha$) -> ($\Gamma$ $\vDash$ $\alpha$).
+Proof.
+$\quad\vdots$
+Qed.
+        \end{lstlisting}
