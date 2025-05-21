@@ -17,7 +17,7 @@ Neste capítulo será descrita a implementação da biblioteca da lógica de inc
     No restante desse trabalho, conceitos básicos sobre o funcionamento do assistente de provas Rocq e sobre seu uso no desenvolvimento de provas e verificação de provas não serão apresentados em grandes detalhes. Ao leitor interessado em tais assuntos, é recomendada uma consulta aos trabalhos de~\citeshort{Pierce2017Logical} e~\citeshort{silveira2020implementacao}.
 
 \section{Biblioteca em Rocq}\label{sec:biblioteca}
-    Nesta seção será apresentada a biblioteca para a lógica \lfium{}, com os principais artefatos semânticos e sintáticos apresentados ao longo do trabalho, bem como provas para os metateoremas manualmente provados. A biblioteca foi desenvolvida utilizando a versão 9.0.0 do Rocq e está disponível em \url{https://github.com/dipled/LFI1_Library}. Cada subseção representa um arquivo da biblioteca e as partes mais importantes de cada um destes será comentada ao longo do texto.
+    Nesta seção será apresentada a biblioteca para a lógica \lfium{}, com os principais artefatos semânticos e sintáticos apresentados ao longo do trabalho, bem como provas para os metateoremas que foram provados manualmente. A biblioteca foi desenvolvida utilizando a versão 9.0.0 do Rocq e está disponível em \url{https://github.com/dipled/LFI1_Library}. Cada subseção representa um arquivo da biblioteca e as partes mais importantes de cada um destes será comentada ao longo do texto.
 
     \subsection{Utils.v}\label{sec:utils}
 
@@ -90,7 +90,7 @@ Notation " $\#$ x " :=
 (Lit x) (at level 2, no associativity, x constr at level 1, format "$\#$ x").
       \end{lstlisting}
       
-      Note que \texttt{Lit} é construído a partir de um \texttt{Atom}, que por sua vez é só um \textit{alias} para o tipo \texttt{nat} (um número natural), portanto o tipo \textit{Formula} é enumerável.
+      Note que \texttt{Lit} é construído a partir de um \texttt{Atom}, que por sua vez é só um \textit{alias} para o tipo \texttt{nat} (um número natural), portanto o tipo indutivo \texttt{Formula} é enumerável.
 
     \subsection{Syntax.v}\label{sec:syntax}
 
@@ -253,3 +253,184 @@ Notation " $\Gamma$ $\vDash$m $\phi$ " := (matrixEntails $\Gamma$ $\phi$) (at le
       \end{lstlisting}
 
       A definição \texttt{valuation} representa um predicado sobre qualquer mapeamento de \texttt{Formula} para \texttt{MatrixDomain}, que retorna \texttt{True} caso este mapeamento seja um homomorfismo sobre a linguagem e o domínio da matriz e retorna \texttt{False} caso contrário. A relação de consequência semântica é definida em \texttt{matrixEntails} (conforme a Definição~\ref{def:conmat}), que diz que, dado um conjunto de fórmulas (conjunto de premissas) e uma fórmula (conclusão), esta fórmula será uma consequência semântica do conjunto de premissas caso toda valoração que satisfaz todas as fórmulas deste conjunto também satisfizer a conclusão.
+
+      Depois disso, a semântica de bivalorações foi implementada, com base nas Definições~\ref{def:valoracoes} e~\ref{def:conval}.
+
+      \begin{lstlisting}[name=Semantics, frame=single, language=coq]
+(* Bivaluation semantics *)
+
+Inductive BivaluationDomain : Set :=
+  | Bot
+  | Top.
+
+Notation " $\bot$ " := Bot.
+Notation " $\top$ " := Top.
+
+(* Defining the conditions a given map from Formula to BivaluationDomain must
+    follow in order to be a bivaluation (it doesn't have to be a homomorphism)
+*)
+Definition vAnd (v : Formula -> BivaluationDomain) : Prop :=
+  forall $\phi$ $\psi$ : Formula, (v ($\phi$ $\land$ $\psi$)) = $\top$ <-> (v $\phi$ = $\top$) /\ (v $\psi$ = $\top$).
+
+Definition vOr (v : Formula -> BivaluationDomain) : Prop :=
+  forall $\phi$ $\psi$ : Formula, (v ($\phi$ $\lor$ $\psi$)) = $\top$ <-> (v $\phi$ = $\top$) \/ (v $\psi$ = $\top$).
+
+Definition vImp (v : Formula -> BivaluationDomain) : Prop :=
+  forall $\phi$ $\psi$ : Formula, (v ($\phi$ $\to$ $\psi$)) = $\top$ <-> (v $\phi$ = $\bot$) \/ (v $\psi$ = $\top$).
+
+Definition vNeg (v : Formula -> BivaluationDomain) : Prop :=
+  forall $\phi$ : Formula, (v $\neg$$\phi$) = $\bot$ -> v $\phi$ = $\top$.
+
+Definition vCon (v : Formula -> BivaluationDomain) : Prop :=
+  forall $\phi$ : Formula, (v $\circ$$\phi$) = $\top$ -> (v $\phi$ = $\bot$) \/ (v $\neg$$\phi$ = $\bot$).
+
+Definition vCi (v : Formula -> BivaluationDomain) : Prop :=
+  forall $\phi$ : Formula, (v $\neg$$\circ$$\phi$) = $\top$ -> (v $\phi$ = $\top$) /\ (v $\neg$$\phi$ = $\top$).
+
+Definition vDne (v : Formula -> BivaluationDomain) : Prop :=
+  forall $\phi$ : Formula, (v $\neg$$\neg$$\phi$) = $\top$ <-> v $\phi$ = $\top$.
+
+Definition vDmAND (v : Formula -> BivaluationDomain) : Prop :=
+  forall $\phi$ $\psi$ : Formula, (v $\neg$($\phi$ $\land$ $\psi$)) = $\top$ <-> (v $\neg$$\phi$ = $\top$) \/ (v $\neg$$\psi$ = $\top$).
+
+Definition vDmOR (v : Formula -> BivaluationDomain) : Prop :=
+  forall $\phi$ $\psi$ : Formula, (v $\neg$($\phi$ $\lor$ $\psi$)) = $\top$ <-> (v $\neg$$\phi$ = $\top$) /\ (v $\neg$$\psi$ = $\top$).
+
+Definition vCip (v : Formula -> BivaluationDomain) : Prop :=
+  forall $\phi$ $\psi$ : Formula, (v $\neg$($\phi$ $\to$ $\psi$)) = $\top$ <-> (v $\phi$ = $\top$) /\ (v $\neg$$\psi$ = $\top$).
+  
+Definition bivaluation (v : Formula -> BivaluationDomain) : Prop :=
+  vAnd v /\ vOr v /\ vImp v /\ vNeg v /\ vCon v /\ vCi v /\
+  vDne v /\ vDmAND v /\ vDmOR v /\ vCip v.
+              \end{lstlisting}
+
+              A bivaloração é definida sobre um tipo indutivo com construtores $\top$ e $\bot$, representando respectivamente os valores para verdade e falsidade do domínio. As cláusulas \texttt{vAnd} até \texttt{vCip} definem as condições que um mapeamento entre \texttt{Formula} e \texttt{BivaluationDomain} precisam respeitar para serem consideradas bivalorações, caracterizadas pelo predicado \texttt{bivaluation}. Estes mapeamentos apresentam um comportamento não-determinístico em algumas cláusulas, como na cláusula \texttt{vNeg}.
+
+              Após definir estas cláusulas, algumas propriedades úteis sobre a semântica de bivalorações (como o terceiro excluído em \texttt{bivaluation\_lem}) são provadas.
+
+              \begin{lstlisting}[name=Semantics, frame=single, language=coq]
+Lemma bivaluation_lem : forall (v : Formula -> BivaluationDomain) ($\phi$ : Formula),
+(v $\phi$ = $\top$) \/ (v $\phi$ = $\bot$).
+Proof.
+$\quad\vdots$
+Qed.
+
+Lemma bivaluation_dec1 : forall (v : Formula -> BivaluationDomain) ($\phi$ : Formula),
+v $\phi$ = $\top$ <-> ~ v $\phi$ = $\bot$.
+Proof.
+$\quad\vdots$
+Qed.
+
+Lemma bivaluation_dec2 : forall (v : Formula -> BivaluationDomain) ($\phi$ : Formula),
+v $\phi$ = $\bot$ <-> ~ v $\phi$ = $\top$.
+Proof.
+$\quad\vdots$
+Qed.
+
+Definition vAndf (v : Formula -> BivaluationDomain) : Prop :=
+forall $\phi$ $\psi$ : Formula, (v ($\phi$ $\land$ $\psi$)) = $\bot$ <-> (v $\phi$ = $\bot$) \/ (v $\psi$ = $\bot$).
+
+Definition vOrf (v : Formula -> BivaluationDomain) : Prop :=
+forall $\phi$ $\psi$ : Formula, (v ($\phi$ $\lor$ $\psi$)) = $\bot$ <-> (v $\phi$ = $\bot$) /\ (v $\psi$ = $\bot$).
+
+Definition vImpf (v : Formula -> BivaluationDomain) : Prop :=
+forall $\phi$ $\psi$ : Formula, (v ($\phi$ $\to$ $\psi$)) = $\bot$ <-> (v $\phi$ = $\top$) /\ (v $\psi$ = $\bot$).
+
+Definition vNegf (v : Formula -> BivaluationDomain) : Prop :=
+forall $\phi$ : Formula, (v $\phi$) = $\bot$ -> (v $\neg$$\phi$) = $\top$.
+
+Definition vConf (v : Formula -> BivaluationDomain) : Prop :=
+forall $\phi$ : Formula, (v $\phi$ = $\top$) /\ (v $\neg$$\phi$ = $\top$) -> (v $\circ$$\phi$) = $\bot$.
+
+Definition vCif (v : Formula -> BivaluationDomain) : Prop :=
+forall $\phi$ : Formula, (v $\phi$ = $\bot$) \/ (v $\neg$$\phi$ = $\bot$) -> (v $\neg$$\circ$$\phi$) = $\bot$.
+
+Definition vDnef (v : Formula -> BivaluationDomain) : Prop :=
+forall $\phi$ : Formula, (v $\neg$$\neg$$\phi$) = $\bot$ <-> v $\phi$ = $\bot$.
+
+Definition vDmANDf (v : Formula -> BivaluationDomain) : Prop :=
+forall $\phi$ $\psi$ : Formula, (v $\neg$($\phi$ $\land$ $\psi$)) = $\bot$ <-> (v $\neg$$\phi$ = $\bot$) /\ (v $\neg$$\psi$ = $\bot$).
+
+Definition vDmORf (v : Formula -> BivaluationDomain) : Prop :=
+forall $\phi$ $\psi$ : Formula, (v $\neg$($\phi$ $\lor$ $\psi$)) = $\bot$ <-> (v $\neg$$\phi$ = $\bot$) \/ (v $\neg$$\psi$ = $\bot$).
+
+Definition vCipf (v : Formula -> BivaluationDomain) : Prop :=
+forall $\phi$ $\psi$ : Formula, (v $\neg$($\phi$ $\to$ $\psi$)) = $\bot$ <-> (v $\phi$ = $\bot$) \/ (v $\neg$$\psi$ = $\bot$).
+
+Lemma bivaluation_additional : 
+forall (v : Formula -> BivaluationDomain),
+bivaluation v ->
+vAndf v /\ vOrf v /\ vImpf v /\ vNegf v /\ vConf v /\ vCif v /\
+vDnef v /\ vDmANDf v /\ vDmORf v /\ vCipf v.
+Proof.
+$\quad\vdots$
+Qed.
+            \end{lstlisting}
+            As provas de \texttt{bivaluation\_lem}, \texttt{bivaluation\_dec1} e \texttt{bivaluation\_dec2} seguem por análise de caso em \texttt{v($\phi$)}.
+
+            O lema \texttt{bivaluation\_additional} demonstra cláusulas úteis na prova da completude em relação a semântica de bivalorações, que são derivadas das cláusulas estabelecidas originalmente. Nas provas manuais estas cláusulas foram consideradas triviais e, portanto, não foram demonstradas. Este lema segue por análise de caso em \texttt{v($\phi$)} e \texttt{v($\psi$)}.
+
+          \subsection{Deduction\_metatheorem.v}
+
+            Este arquivo contém a prova do metateorema da dedução dentro da biblioteca, análoga à prova manual do Teorema~\ref{teo:deducao}. Antes de provar este teorema, alguns lemas e proposições auxiliares foram demonstrados.
+          
+          \begin{lstlisting}[name=Deduction, frame=single, language=coq]
+Require Import LFI1.Utils LFI1.Language LFI1.Syntax.
+From Stdlib Require Import Arith Constructive_sets.
+
+(* LFI1 is tarskian, i.e., it enjoys reflexivity, monotonicity
+   and cut
+*)
+Proposition lfi1_reflexivity : 
+forall ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula),
+  $\phi$ $\in$ $\Gamma$ -> $\Gamma$ $\vdash$ $\phi$.
+Proof.
+$\quad\vdots$
+Qed.
+
+Proposition lfi1_monotonicity :
+forall ($\Gamma$ $\Delta$ : Ensemble Formula) ($\phi$ : Formula),
+  $\Delta$ $\vdash$ $\phi$ /\ $\Delta$ $\subseteq$ $\Gamma$ -> $\Gamma$ $\vdash$ $\phi$.
+Proof.
+$\quad\vdots$
+Qed.
+
+Proposition lfi1_cut :
+forall ($\Gamma$ $\Delta$ : Ensemble Formula) ($\phi$ : Formula),
+  $\Delta$ $\vdash$ $\phi$ /\ (forall ($\delta$ : Formula), $\delta$ $\in$ $\Delta$ -> $\Gamma$ $\vdash$ $\delta$) -> $\Gamma$ $\vdash$ $\phi$.
+Proof.
+$\quad\vdots$
+Qed.
+
+Lemma id : forall ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula), $\Gamma$ $\vdash$ $\phi$ $\to$ $\phi$.
+Proof.
+$\quad\vdots$
+Qed.
+
+          \end{lstlisting}
+
+          Em particular, a prova da monotonicidade em \texttt{lfi1\_monotonicity} é de suma importância no desenvolvimento das demonstrações das metapropriedades mais elaboradas. A prova desta propriedade se dá por indução estrutural na derivação $\Delta \vdash \phi$.
+
+          Depois disso, o teorema da dedução é finalmente provado.
+
+          \begin{lstlisting}[name=Deduction, frame=single, language=coq]
+Theorem deduction_metatheorem : forall ($\Gamma$ : Ensemble Formula) ($\alpha$ $\beta$ : Formula), 
+(($\Gamma$ $\cup$ [$\alpha$]) $\vdash$ $\beta$) <-> ($\Gamma$ $\vdash$ $\alpha$ $\to$ $\beta$).
+Proof. 
+$\quad\vdots$
+Qed.
+
+Corollary proof_by_cases : forall ($\Gamma$ : Ensemble Formula) ($\alpha$ $\beta$ $\phi$ : Formula), 
+($\Gamma$ $\cup$ [$\alpha$] $\vdash$ $\phi$) /\ ($\Gamma$ $\cup$ [$\beta$] $\vdash$ $\phi$) -> ($\Gamma$ $\cup$ [$\alpha$ $\lor$ $\beta$] $\vdash$ $\phi$).
+Proof.
+$\quad\vdots$
+Qed.
+  
+Corollary proof_by_cases_neg : forall ($\Gamma$ : Ensemble Formula) ($\alpha$ $\phi$ : Formula), 
+($\Gamma$ $\cup$ [$\alpha$] $\vdash$ $\phi$) /\ ($\Gamma$ $\cup$ [$\neg$$\alpha$] $\vdash$ $\phi$) -> ($\Gamma$ $\vdash$ $\phi$).
+Proof.
+$\quad\vdots$
+Qed.
+          \end{lstlisting}
+
+          A prova segue por indução estrutural na derivação $\Gamma \cup [\alpha] \vdash \beta$ na ida e na derivação $\Gamma \vdash \alpha \to \beta$ na volta. O teorema nos cede dois corolários (\texttt{proof\_by\_cases} e \texttt{proof\_by\_cases\_neg}) que facilitam a prova da completude em relação à semântica de bivalorações. Ambos corolários seguem por derivações no cálculo de Hilbert utilizando o recém provado teorema da dedução.
