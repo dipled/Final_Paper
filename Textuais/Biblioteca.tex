@@ -470,11 +470,84 @@ Proof.
 $\quad\vdots$
 Qed.
 
-Corollary bivaluation_matrix_imp1 : forall ($\Gamma$ : Ensemble Formula) ($\alpha$ : Formula), 
+Corollary matrix_bivaluation_imp : forall ($\Gamma$ : Ensemble Formula) ($\alpha$ : Formula), 
 ($\Gamma$ $\vDash$m $\alpha$) -> ($\Gamma$ $\vDash$ $\alpha$).
 Proof.
 $\quad\vdots$
 Qed.
         \end{lstlisting}
 
-        O lema \texttt{bivaluation\_matrix\_lemma} segue por análise de caso em v$(\phi)$ e v$(\neg \phi)$, utilizando a valoração obtida ao aplicar a função \texttt{h\_formula} numa bivaloração $v$ qualquer e o resultado obtido no lema \texttt{h\_valuation}. Com este resultado, a prova da ida da equivalência entre os sistemas semânticos é desenvolvida em \texttt{bivaluation\_matrix\_imp1}, utilizando as definições das relações de consequência semântica matricial e de bivalorações, como feito no Corolário~\ref{cor:matval}.
+        O lema \texttt{bivaluation\_matrix\_lemma} segue por análise de caso em v$(\phi)$ e v$(\neg \phi)$, utilizando a valoração obtida ao aplicar a função \texttt{h\_formula} numa bivaloração $v$ qualquer e o resultado obtido no lema \texttt{h\_valuation}. Com este resultado, a prova da ida da equivalência entre os sistemas semânticos é desenvolvida em \texttt{matrix\_bivaluation\_imp}, utilizando as definições das relações de consequência semântica matricial e de bivalorações, como feito no Corolário~\ref{cor:matval}.
+
+        Finalmente, o Teorema~\ref{teo:correcao_mat} e o Corolário~\ref{cor:correcao_val} são desenvolvidos.
+
+        \begin{lstlisting}[name=Soundness, frame=single, language=coq]
+Theorem soundness_matrix : forall ($\Gamma$ : Ensemble Formula) ($\alpha$ : Formula), 
+($\Gamma$ $\vdash$ $\alpha$) -> ($\Gamma$ $\vDash$m $\alpha$).
+Proof.
+$\quad\vdots$
+Qed.
+
+Corollary soundness_bivaluations : forall ($\Gamma$ : Ensemble Formula) ($\alpha$ : Formula), 
+($\Gamma$ $\vdash$ $\alpha$) -> ($\Gamma$ $\vDash$ $\alpha$).
+Proof.
+$\quad\vdots$
+Qed.
+        \end{lstlisting}
+
+        Em \texttt{soundness\_matrix}, a correção em relação à semântica matricial é provada por indução na derivação $\Gamma \vdash \alpha$, mostrando a validade de todos os axiomas e da regra \textit{modus ponens}. Esta análise de caso é facilitada pelas táticas \texttt{repeat} e \texttt{try} aplicadas em todos os \textit{subgoals} de prova simultaneamente, evitando repetições desnecessárias de casos de prova análogos entre si.
+
+        O corolário \texttt{soundness\_bivaluations} segue pela aplicação de \texttt{soundness\_matrix} na hipótese $\Gamma \vdash \alpha$, o que resulta em $\Gamma \vDash_\text{m}\alpha$. Depois disso, a aplicação de \texttt{matrix\_bivaluation\_imp} em $\Gamma \vDash_\text{m}\alpha$ nos dá $\Gamma \vDash \alpha$, completando a prova.
+
+        Com estes resultados, a prova de que a lógica \lfium{} se trata, de fato, de uma \lfi{} forte (em relação a $\neg$ e $\circ$) é desenvolvida, analogamente ao que foi feito no Corolário~\ref{cor:lfi_forte}.
+
+        \begin{lstlisting}[name=LFI, frame=single, language=coq]
+(** LFI1 is an LFI w.r.t $\neg$ and $\circ$, i.e. 
+1) exists ($\alpha$ $\beta$ : Formula), ~($\alpha$, $\neg$$\alpha$ $\vdash$ $\beta$)
+2) exists ($\alpha$ $\beta$ : Formula), ~($\alpha$, $\circ$$\alpha$ $\vdash$ $\beta$) /\ ~($\neg$$\alpha$, $\circ$$\alpha$ $\vdash$ $\beta$)
+3) forall ($\alpha$ $\beta$ : Formula), $\circ$$\alpha$, $\alpha$, $\neg$$\alpha$ $\vdash$ $\beta$
+*)
+Fixpoint valuation_condition_1 (x : Formula) : MatrixDomain :=
+match x with 
+|$\#$0 => Half
+| a $\land$ b => (valuation_condition_1 a) $\land_{m}$ (valuation_condition_1 b)
+| a $\lor$ b => (valuation_condition_1 a) $\lor_{m}$ (valuation_condition_1 b)
+| a $\to$ b => (valuation_condition_1 a) $\to_{m}$ (valuation_condition_1 b)
+| $\neg$a => $\neg_{m}$(valuation_condition_1 a)
+| $\circ$a => $\circ_{m}$(valuation_condition_1 a)
+|_ => Zero 
+end.
+
+Fixpoint valuation_condition_2 (x : Formula) : MatrixDomain :=
+match x with 
+|$\#$0 => One
+| a $\land$ b => (valuation_condition_2 a) $\land_{m}$ (valuation_condition_2 b)
+| a $\lor$ b => (valuation_condition_2 a) $\lor_{m}$ (valuation_condition_2 b)
+| a $\to$ b => (valuation_condition_2 a) $\to_{m}$ (valuation_condition_2 b)
+| $\neg$a => $\neg_{m}$(valuation_condition_2 a)
+| $\circ$a => $\circ_{m}$(valuation_condition_2 a)
+|_ => Zero 
+end.
+
+Fixpoint valuation_condition_2' (x : Formula) : MatrixDomain :=
+match x with 
+|$\#$0 => Zero
+|$\neg$$\#$0 => One
+| a $\land$ b => (valuation_condition_2' a) $\land_{m}$ (valuation_condition_2' b)
+| a $\lor$ b => (valuation_condition_2' a) $\lor_{m}$ (valuation_condition_2' b)
+| a $\to$ b => (valuation_condition_2' a) $\to_{m}$ (valuation_condition_2' b)
+| $\neg$a => $\neg_{m}$(valuation_condition_2' a)
+| $\circ$a => $\circ_{m}$(valuation_condition_2' a)
+|_ => Zero 
+end.
+
+Proposition lfi1_is_lfi :
+(exists ($\alpha$ $\beta$ : Formula), ~([$\alpha$] $\cup$ [$\neg$$\alpha$] $\vdash$ $\beta$)) /\
+(exists ($\alpha$ $\beta$ : Formula), ~([$\circ$$\alpha$] $\cup$ [$\alpha$] $\vdash$ $\beta$) /\ ~([$\circ$$\alpha$] $\cup$ [$\neg$$\alpha$] $\vdash$ $\beta$)) /\
+(forall ($\alpha$ $\beta$ : Formula), ([$\circ$$\alpha$] $\cup$ [$\alpha$] $\cup$ [$\neg$$\alpha$]) $\vdash$ $\beta$).
+Proof.
+$\quad\vdots$
+Qed.
+        \end{lstlisting}
+
+        A prova das condições 1 e 2 dependem da definição de valorações específicas que servem de contraexemplo para a validade da derivação, utilizando a contrapositiva da recém-provada correção (\texttt{soundness\_matrix}). Estas valorações são definidas recursivamente em \texttt{valuation\_condition\_1}, \texttt{valuation\_condition\_2} e \texttt{valuation\_condition\_2\textquotesingle}. A prova da condição 3 é feita por derivação no cálculo de Hilbert, utilizando do teorema da dedução (\texttt{deduction\_metatheorem}) para facilitar o desenvolvimento. 
