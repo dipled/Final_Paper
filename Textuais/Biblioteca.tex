@@ -600,8 +600,6 @@ Record surjection (A B: Type): Type := Build_surjection {
         
         Este arquivo implementa as provas desenvolvidas ao longo das Seções~\ref{sec:comp},~\ref{sec:equiv} e~\ref{sec:comp_mat}, referentes aos metateoremas da completude (tanto em relação às matrizes, quanto às bivalorações) e da equivalência entre os sistemas semânticos.
 
-        No início do arquivo, os módulos \texttt{Classical\_sets} e \texttt{Epsilon} são importados. O primeiro contem o princípio do terceiro excluído como axioma, já que a prova da completude desenvolvida no Teorema~\ref{teo:completude_val} se dá indiretamente. O segundo
-
         \begin{lstlisting}[name=LFI, frame=single, language=coq]
 From Stdlib Require Import Classical_sets Epsilon.
 From LFI1 Require Import Countability.
