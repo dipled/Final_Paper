@@ -552,10 +552,76 @@ Qed.
 
         A prova das condições 1 e 2 dependem da definição de valorações específicas que servem de contraexemplo para a validade da derivação, utilizando a contrapositiva da recém-provada correção (\texttt{soundness\_matrix}). Estas valorações são definidas recursivamente em \texttt{valuation\_condition\_1}, \texttt{valuation\_condition\_2} e \texttt{valuation\_condition\_2\textquotesingle}. A prova da condição 3 é feita por derivação no cálculo de Hilbert, utilizando do teorema da dedução (\texttt{deduction\_metatheorem}) para facilitar o desenvolvimento.
     
+    \subsection{Cardinality.v}\label{sec:cardinality}
+
+        Este arquivo implementa alguns conceitos relacionados a cardinalidade de tipos indutivos, utilizados para provar que um dado tipo possui o mesmo número de elementos que outro.
+
+        \begin{lstlisting}[name=LFI, frame=single, language=coq]
+From Stdlib Require Import Epsilon Classical_sets Lia Arith.
+Require Import Utils Language.
+
+Theorem strong_lem : forall P : Prop, {P} + {~P}.
+Proof.
+$\quad\vdots$
+Qed. 
+
+Theorem le_lt_or_eq : forall n m, n <= m -> n < m \/ n = m.
+Proof.
+$\quad\vdots$
+Qed.
+
+Inductive image_set {A B : Type} (f : A -> B) (M: Ensemble A) : Ensemble B :=
+image_intro : forall a, a $\in$ M -> (f a) $\in$ (image_set f M).
+
+Definition function_injective {A B : Type} (f: A -> B): Prop :=
+  forall a1 a2, f a1 = f a2 -> a1 = a2.
+
+Definition function_surjective {A B : Type} (f: A -> B): Prop :=
+  forall b, exists a, f a = b.
+
+  
+Definition inverse_function {A B : Type} (f : A -> B) (g : B -> A) : Prop :=
+  forall x : A, g (f x) = x.
+
+Record injection (A B: Type): Type := Build_injection {
+  inj_f :> A -> B;
+  in_inj : function_injective inj_f
+}.
+
+Record surjection (A B: Type): Type := Build_surjection {
+  sur_f :> A -> B;
+  su_surj : function_surjective sur_f
+}.
+          \end{lstlisting}
+
+          O módulo \texttt{Classical\_sets} 
+    
     \subsection{Completeness.v}\label{sec:completeness}
         
         Este arquivo implementa as provas desenvolvidas ao longo das Seções~\ref{sec:comp},~\ref{sec:equiv} e~\ref{sec:comp_mat}, referentes aos metateoremas da completude (tanto em relação às matrizes, quanto às bivalorações) e da equivalência entre os sistemas semânticos.
 
-        
+        No início do arquivo, os módulos \texttt{Classical\_sets} e \texttt{Epsilon} são importados. O primeiro contem o princípio do terceiro excluído como axioma, já que a prova da completude desenvolvida no Teorema~\ref{teo:completude_val} se dá indiretamente. O segundo
+
+        \begin{lstlisting}[name=LFI, frame=single, language=coq]
+From Stdlib Require Import Classical_sets Epsilon.
+From LFI1 Require Import Countability.
+
+Proposition In_lem {U : Type} : forall (A : Ensemble U) (x : U),
+  x $\in$ A \/ x $\not \in$ A.
+Proof. intros. apply classic. Qed.
+
+Definition maximal_nontrivial ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula) : Prop :=
+  ~ $\Gamma$ $\vdash$ $\phi$ /\ (forall ($\psi$ : Formula), ~$\psi$ $\in$ $\Gamma$ -> ($\Gamma$ $\cup$ [$\psi$] $\vdash$ $\phi$)).
+
+Definition closed_theory ($\Gamma$ : Ensemble Formula) : Prop := forall $\phi$ : Formula, 
+  $\Gamma$ $\vdash$ $\phi$ <-> $\phi$ $\in$ $\Gamma$.
+
+Lemma maximal_nontrivial_is_closed : forall ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula),
+  maximal_nontrivial $\Gamma$ $\phi$ -> closed_theory $\Gamma$.
+Proof.
+$\quad\vdots$
+Qed.
+        \end{lstlisting}
+
     
     
