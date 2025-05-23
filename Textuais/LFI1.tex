@@ -326,6 +326,151 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
 
     \subsection{Metateorema da dedução}\label{sec:mtd}
         O metateorema da dedução é uma propriedade conveniente de ser provada, já que nos fornece corolários importantes a fim de desenvolver provas de outros metateoremas.
+
+        Primeiro, algumas proposições sobre a \lfium{} que tornam o desenvolvimento do teorema da dedução mais simples serão provadas.
+        
+        \begin{proposicao}\label{prop:tarski}        
+            A lógica $\lfium{} = \langle \ling, \conhil \rangle$ é Tarskiana (Definição~\ref{def:tarski}).
+        \end{proposicao}
+
+        \begin{proof}[Prova da Proposição~\ref{prop:tarski}]
+            Queremos mostrar que a \lfium{} satisfaz as seguintes condições para todo $\Gamma \cup \Delta \cup \{\phi\} \subseteq \ling{}$:
+            \begin{itemize}
+                \item [(i)] Se $\phi \in \Gamma$, então $\Gamma \conhil \phi$.\hfill(reflexividade)
+                \item [(ii)] Se $\Delta \conhil \phi$ e $\Delta \subseteq \Gamma$, então $\Gamma \conhil \phi$.\hfill(monotonicidade)
+                \item [(iii)] Se $\Delta \conhil \phi$ e $\Gamma \conhil \delta$ para todo $\delta \in \Delta$, então $\Gamma \conhil \phi$.\hfill(corte)
+            \end{itemize}
+            \begin{adjustwidth}{1cm}{}
+                \textbf{Prova do item (i)}. Vamos supor $\phi \in \Gamma$. Então basta aplicar a premissa $\phi$ para mostrar $\Gamma \conhil \phi$.
+                % \begin{align*}
+                %     1.~& \phi\tag{Premissa}
+                % \end{align*}
+
+                \noindent{}\textbf{Prova do item (ii)}. Vamos supor $\Delta \conhil \phi$ e $\Delta \subseteq \Gamma$. Então, existe uma prova $\phi_1, \ldots, \phi_n$ de $\phi_n = \phi$ a partir de $\Delta$. Provaremos $\Gamma \conhil \phi$ por indução no tamanho $n$ da prova.
+
+                \begin{adjustwidth}{1cm}{}
+
+                    \textbf{\textsc{Base.}} $n = 1$.
+                    Analisando a obtenção de $\phi = \phi_1$, existem dois casos:
+
+                    \begin{provaporcasos}
+
+                    \casodeprova{$\phi_1$ é um axioma}. 
+
+                        Neste caso, basta aplicar o mesmo axioma para mostrar $\Gamma \conhil \phi_1$.
+
+                    \casodeprova{$\phi_1 \in \Delta$}.
+
+                        Como $\Delta \subseteq \Gamma$, então temos $\phi_1 \in \Gamma$ e, portanto, $\Gamma \conhil \phi_1$ aplicando a premissa $\phi_1$.
+                        
+                    \end{provaporcasos}
+
+                    \noindent\textbf{\textsc{Passo.}} 
+                
+                    \noindent \textbf{\textsc{Hipótese de indução (HI):}} A propriedade segue para todo $i < n$.
+    
+                    Analisando a obtenção de $\phi_n$, existem três casos:
+
+                    \begin{provaporsubcasos}
+
+                        \casodeprova{$\phi_n$ é um axioma}. Análogo ao caso da base.
+                    
+                        \casodeprova{$\phi_n \in \Delta$}. Análogo ao caso da base.
+
+                        \casodeprova{$\phi_n$ é resultado de MP em duas fórmulas $\phi_j, \phi_k$ com $j, k < n$}.
+
+                        Neste caso, $\phi_j = \phi_k \to \phi_n$ (ou $\phi_k = \phi_j \to \phi_n$, a prova para este caso é análoga). Então, temos $\Delta \conhil \phi_k$ e $\Delta \conhil \phi_k \to \phi_n$. Pela (HI), temos $\Gamma \conhil \phi_k$ e $\Gamma \conhil \phi_k \to \phi_n$. Portanto, basta aplicar MP para obter $\Gamma \conhil \phi_n$.
+                    \end{provaporsubcasos}
+
+                \end{adjustwidth}
+                
+                \noindent{}\textbf{Prova do item (iii)}. Vamos supor $\Delta \conhil \phi$ e $\Gamma \conhil \delta$ para todo $\delta \in \Delta$. Então, existe uma prova $\phi_1, \ldots, \phi_n$ de $\phi_n = \phi$ a partir de $\Delta$. Vamos fazer uma indução no tamanho $n$ desta prova.
+                
+                \begin{adjustwidth}{1cm}{}
+                    
+                    \textbf{\textsc{Base.}} $n = 1$.
+                    Analisando a obtenção de $\phi = \phi_1$, existem dois casos:
+
+                    \begin{provaporcasos}
+
+                    \casodeprova{$\phi_1$ é um axioma}. 
+                    
+                        Neste caso, basta aplicar o mesmo axioma para mostrar $\Gamma \conhil \phi_1$.
+                    
+                    \casodeprova{$\phi_1 \in \Delta$}. 
+                    
+                        Neste caso, $\Gamma \conhil \phi_1$ por suposição.
+                \end{provaporcasos}
+
+                \noindent\textbf{\textsc{Passo.}} 
+                
+                \noindent \textbf{\textsc{Hipótese de indução (HI):}} A propriedade segue para todo $i < n$.
+
+                Analisando a obtenção de $\phi = \phi_n$, existem três casos:
+                \begin{provaporcasos}
+                    \casodeprova{$\phi_n$ é um axioma}. Análogo ao caso da base.
+                    
+                    \casodeprova{$\phi_n \in \Delta$}. Análogo ao caso da base.
+                    
+                    \casodeprova{$\phi_n$ é resultado de MP em duas fórmulas $\phi_j, \phi_k$ com $j, k < n$}.
+                    
+                    Então, $\phi_j = \phi_k \to \phi_n$ (ou $\phi_k = \phi_j \to \phi_n$, a prova para este caso é análoga). Além disso, temos $\Delta \conhil \phi_k$ e $\Delta \conhil \phi_k \to \phi_n$. Logo, por (HI), temos $\Gamma \conhil \phi_k$ e $\Gamma \conhil \phi_k \to \phi_n$. Então, basta aplicar MP para obter $\phi_n$. Portanto, $\Gamma \conhil \phi_n$.
+                \end{provaporcasos}
+            \end{adjustwidth}
+        \end{adjustwidth}
+
+            Então, a \lfium{} é uma lógica Tarskiana. \qedhere
+            
+        \end{proof}
+
+        
+        \begin{proposicao}\label{prop:finit}        
+            A lógica $\lfium{} = \langle \ling, \conhil \rangle$ é finitária, ou seja, para todo $\Gamma \cup \{\alpha\} \subseteq \ling{}$,
+            \begin{align*}
+                & \text{Se } \Gamma \conhil \alpha \text{, então existe conjunto finito } \Gamma_{0} \subseteq \Gamma \text{ tal que } \Gamma_{0} \conhil \alpha.
+            \end{align*}
+        \end{proposicao}
+
+        \begin{proof}[Prova da Proposição~\ref{prop:finit}]
+            Seja $\Gamma \cup \{\phi\} \subseteq \ling{}$ um conjunto qualquer de fórmulas com $\Gamma \conhil \phi$. Então, existe uma sequência finita de derivação $\phi_1, \ldots, \phi_n$, a partir de $\Gamma$, onde $\phi_n = \phi$. 
+            
+            Vamos definir o conjunto $\Gamma_0$ como sendo o conjunto formado somente pelas premissas desta derivação (logo, $\Gamma_0$ é finito). Como todo elemento de $\Gamma_0$ é uma premissa de $\Gamma$, é evidente que $\Gamma_0 \subseteq \Gamma$. Vamos provar $\Gamma_0 \conhil \phi$ por indução no tamanho $n$ da sequência de derivação.
+
+
+            \begin{adjustwidth}{1cm}{}
+
+                \textbf{\textsc{Base.}} $n = 1$.
+                Analisando a obtenção de $\phi_1$ em $\Gamma \conhil \phi_1$, existem dois casos:
+                \begin{provaporcasos}
+                    \casodeprova{$\phi_1$ é um axioma}. 
+                    
+                        Neste caso, basta aplicar o mesmo axioma para mostrar $\Gamma_0 \conhil \phi_1$.
+        
+                    \casodeprova{$\phi_1 \in \Gamma$}. 
+                    
+                        Neste caso, $\Gamma_0 \conhil \phi_1$ pela construção de $\Gamma_0$.
+                \end{provaporcasos}
+
+                \noindent\textbf{\textsc{Passo.}} 
+                
+                \noindent \textbf{\textsc{Hipótese de indução (HI):}} A propriedade segue para todo $i < n$.
+
+                Analisando a obtenção de $\phi_n$ em $\Gamma \conhil \phi_n$, existem três casos:
+                \begin{provaporcasos}
+                    \casodeprova{$\phi_n$ é um axioma}. Análogo ao caso da base.
+        
+                    \casodeprova{$\phi_n \in \Gamma$}. Análogo ao caso da base.
+
+                    \casodeprova{$\phi_n$ é resultado de MP em duas fórmulas $\phi_j, \phi_k$ com $j, k < n$}.
+                    
+                    Então, $\phi_j = \phi_k \to \phi_n$ (ou $\phi_k = \phi_j \to \phi_n$, a prova para este caso é análoga). Além disso, temos $\Gamma \conhil \phi_k$ e $\Gamma \conhil \phi_k \to \phi_n$. Logo, por (HI), temos $\Gamma_0 \conhil \phi_k$ e $\Gamma_0 \conhil \phi_k \to \phi_n$. Então, basta aplicar MP para obter $\phi_n$. Portanto, $\Gamma_0 \conhil \phi_n$.
+                \end{provaporcasos}
+            \end{adjustwidth}
+
+            Então, a \lfium{} é finitária. \qedhere
+
+        \end{proof}
+
         
         \begin{teorema}[Metateorema da dedução para $\conhil$]\label{teo:deducao}
             Para todo conjunto de fórmulas $\Gamma \cup \{\alpha, \beta \} \subseteq \ling{}$:
@@ -351,13 +496,13 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
         \end{proof}
 
         \begin{proof}[Prova do Teorema~\ref{teo:deducao}] A prova será dividida em duas partes:\\
-            ($\Longleftarrow$) Supondo $\Gamma \conhil \alpha \to \beta$, então existe uma sequência de derivação $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha \to \beta$. 
+            ($\Longleftarrow$) Supondo $\Gamma \conhil \alpha \to \beta$, então existe uma sequência de derivação $\phi_{1} \ldots \phi_{n}$ onde $\phi_{n} = \alpha \to \beta$. Temos $\Gamma \subseteq \Gamma \cup \{\alpha\}$, logo, pela monotonicidade da \lfium{}, $\Gamma, \alpha \conhil \alpha \to \beta$.
             
             A seguinte sequência de derivação completa a prova de $\Gamma, \alpha \conhil \beta$:
             \begin{align*}
                 \text{1}&.~ \; \ldots\\
                 & \vdots \; ~\ddots\\
-                \text{$n$}&.~ \alpha \to \beta\tag{Suposição}\\
+                \text{$n$}&.~ \alpha \to \beta\tag{Resultado da suposição}\\
                 \text{$n + 1$}&.~ \alpha\tag{Premissa}\\
                 \text{$n + 2$}&.~ \beta\tag{MP $n, n + 1$}
             \end{align*}
@@ -1382,150 +1527,7 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
     \subsection{Completude em relação às bivalorações}\label{sec:comp}
         A completude é uma metapropriedade que garante que tudo aquilo que é válido segundo um sistema semântico de uma lógica pode ser provado pelo seu sistema dedutivo, ou seja, se uma fórmula não pode ser derivada no sistema dedutivo, então ela é inválida.
 
-        A prova da completude para a lógica \lfium{} depende das seguintes definições e lemas auxiliares para ser desenvolvida:
-
-        \begin{proposicao}\label{prop:tarski}        
-            A lógica $\lfium{} = \langle \ling, \conhil \rangle$ é Tarskiana (Definição~\ref{def:tarski}).
-        \end{proposicao}
-
-        \begin{proof}[Prova da Proposição~\ref{prop:tarski}]
-            Queremos mostrar que a \lfium{} satisfaz as seguintes condições para todo $\Gamma \cup \Delta \cup \{\phi\} \subseteq \ling{}$:
-            \begin{itemize}
-                \item [(i)] Se $\phi \in \Gamma$, então $\Gamma \conhil \phi$.\hfill(reflexividade)
-                \item [(ii)] Se $\Delta \conhil \phi$ e $\Delta \subseteq \Gamma$, então $\Gamma \conhil \phi$.\hfill(monotonicidade)
-                \item [(iii)] Se $\Delta \conhil \phi$ e $\Gamma \conhil \delta$ para todo $\delta \in \Delta$, então $\Gamma \conhil \phi$.\hfill(corte)
-            \end{itemize}
-            \begin{adjustwidth}{1cm}{}
-                \textbf{Prova do item (i)}. Vamos supor $\phi \in \Gamma$. Então basta aplicar a premissa $\phi$ para mostrar $\Gamma \conhil \phi$.
-                % \begin{align*}
-                %     1.~& \phi\tag{Premissa}
-                % \end{align*}
-
-                \noindent{}\textbf{Prova do item (ii)}. Vamos supor $\Delta \conhil \phi$ e $\Delta \subseteq \Gamma$. Então, existe uma prova $\phi_1, \ldots, \phi_n$ de $\phi_n = \phi$ a partir de $\Delta$. Provaremos $\Gamma \conhil \phi$ por indução no tamanho $n$ da prova.
-
-                \begin{adjustwidth}{1cm}{}
-
-                    \textbf{\textsc{Base.}} $n = 1$.
-                    Analisando a obtenção de $\phi = \phi_1$, existem dois casos:
-
-                    \begin{provaporcasos}
-
-                    \casodeprova{$\phi_1$ é um axioma}. 
-
-                        Neste caso, basta aplicar o mesmo axioma para mostrar $\Gamma \conhil \phi_1$.
-
-                    \casodeprova{$\phi_1 \in \Delta$}.
-
-                        Como $\Delta \subseteq \Gamma$, então $\Gamma \conhil \phi_1$ aplicando a premissa $\phi_1$.
-                        
-                    \end{provaporcasos}
-
-                    \noindent\textbf{\textsc{Passo.}} 
-                
-                    \noindent \textbf{\textsc{Hipótese de indução (HI):}} A propriedade segue para todo $i < n$.
-    
-                    Analisando a obtenção de $\phi_n$, existem três casos:
-
-                    \begin{provaporsubcasos}
-
-                        \casodeprova{$\phi_n$ é um axioma}. Análogo ao caso da base.
-                    
-                        \casodeprova{$\phi_n \in \Delta$}. Análogo ao caso da base.
-
-                        \casodeprova{$\phi_n$ é resultado de MP em duas fórmulas $\phi_j, \phi_k$ com $j, k < n$}.
-
-                        Neste caso, $\phi_j = \phi_k \to \phi_n$ (ou $\phi_k = \phi_j \to \phi_n$, a prova para este caso é análoga). Então, temos $\Delta \conhil \phi_k$ e $\Delta \conhil \phi_k \to \phi_n$. Pela (HI), temos $\Gamma \conhil \phi_k$ e $\Gamma \conhil \phi_k \to \phi_n$. Portanto, basta aplicar MP para obter $\Gamma \conhil \phi_n$.
-                    \end{provaporsubcasos}
-
-                \end{adjustwidth}
-                
-                \noindent{}\textbf{Prova do item (iii)}. Vamos supor $\Delta \conhil \phi$ e $\Gamma \conhil \delta$ para todo $\delta \in \Delta$. Então, existe uma prova $\phi_1, \ldots, \phi_n$ de $\phi_n = \phi$ a partir de $\Delta$. Vamos fazer uma indução no tamanho $n$ desta prova.
-                
-                \begin{adjustwidth}{1cm}{}
-                    
-                    \textbf{\textsc{Base.}} $n = 1$.
-                    Analisando a obtenção de $\phi = \phi_1$, existem dois casos:
-
-                    \begin{provaporcasos}
-
-                    \casodeprova{$\phi_1$ é um axioma}. 
-                    
-                        Neste caso, basta aplicar o mesmo axioma para mostrar $\Gamma \conhil \phi_1$.
-                    
-                    \casodeprova{$\phi_1 \in \Delta$}. 
-                    
-                        Neste caso, $\Gamma \conhil \phi_1$ por suposição.
-                \end{provaporcasos}
-
-                \noindent\textbf{\textsc{Passo.}} 
-                
-                \noindent \textbf{\textsc{Hipótese de indução (HI):}} A propriedade segue para todo $i < n$.
-
-                Analisando a obtenção de $\phi = \phi_n$, existem três casos:
-                \begin{provaporcasos}
-                    \casodeprova{$\phi_n$ é um axioma}. Análogo ao caso da base.
-                    
-                    \casodeprova{$\phi_n \in \Delta$}. Análogo ao caso da base.
-                    
-                    \casodeprova{$\phi_n$ é resultado de MP em duas fórmulas $\phi_j, \phi_k$ com $j, k < n$}.
-                    
-                    Então, $\phi_j = \phi_k \to \phi_n$ (ou $\phi_k = \phi_j \to \phi_n$, a prova para este caso é análoga). Além disso, temos $\Delta \conhil \phi_k$ e $\Delta \conhil \phi_k \to \phi_n$. Logo, por (HI), temos $\Gamma \conhil \phi_k$ e $\Gamma \conhil \phi_k \to \phi_n$. Então, basta aplicar MP para obter $\phi_n$. Portanto, $\Gamma \conhil \phi_n$.
-                \end{provaporcasos}
-            \end{adjustwidth}
-        \end{adjustwidth}
-
-            Então, a \lfium{} é uma lógica Tarskiana. \qedhere
-            
-        \end{proof}
-
-        
-        \begin{proposicao}\label{prop:finit}        
-            A lógica $\lfium{} = \langle \ling, \conhil \rangle$ é finitária, ou seja, para todo $\Gamma \cup \{\alpha\} \subseteq \ling{}$,
-            \begin{align*}
-                & \text{Se } \Gamma \conhil \alpha \text{, então existe conjunto finito } \Gamma_{0} \subseteq \Gamma \text{ tal que } \Gamma_{0} \conhil \alpha.
-            \end{align*}
-        \end{proposicao}
-
-        \begin{proof}[Prova da Proposição~\ref{prop:finit}]
-            Seja $\Gamma \cup \{\phi\} \subseteq \ling{}$ um conjunto qualquer de fórmulas com $\Gamma \conhil \phi$. Então, existe uma sequência finita de derivação $\phi_1, \ldots, \phi_n$, a partir de $\Gamma$, onde $\phi_n = \phi$. 
-            
-            Vamos definir o conjunto $\Gamma_0$ como sendo o conjunto formado somente pelas premissas desta derivação (logo, $\Gamma_0$ é finito). Como todo elemento de $\Gamma_0$ é uma premissa de $\Gamma$, é evidente que $\Gamma_0 \subseteq \Gamma$. Vamos provar $\Gamma_0 \conhil \phi$ por indução no tamanho $n$ da sequência de derivação.
-
-
-            \begin{adjustwidth}{1cm}{}
-
-                \textbf{\textsc{Base.}} $n = 1$.
-                Analisando a obtenção de $\phi_1$ em $\Gamma \conhil \phi_1$, existem dois casos:
-                \begin{provaporcasos}
-                    \casodeprova{$\phi_1$ é um axioma}. 
-                    
-                        Neste caso, basta aplicar o mesmo axioma para mostrar $\Gamma_0 \conhil \phi_1$.
-        
-                    \casodeprova{$\phi_1 \in \Gamma$}. 
-                    
-                        Neste caso, $\Gamma_0 \conhil \phi_1$ pela construção de $\Gamma_0$.
-                \end{provaporcasos}
-
-                \noindent\textbf{\textsc{Passo.}} 
-                
-                \noindent \textbf{\textsc{Hipótese de indução (HI):}} A propriedade segue para todo $i < n$.
-
-                Analisando a obtenção de $\phi_n$ em $\Gamma \conhil \phi_n$, existem três casos:
-                \begin{provaporcasos}
-                    \casodeprova{$\phi_n$ é um axioma}. Análogo ao caso da base.
-        
-                    \casodeprova{$\phi_n \in \Gamma$}. Análogo ao caso da base.
-
-                    \casodeprova{$\phi_n$ é resultado de MP em duas fórmulas $\phi_j, \phi_k$ com $j, k < n$}.
-                    
-                    Então, $\phi_j = \phi_k \to \phi_n$ (ou $\phi_k = \phi_j \to \phi_n$, a prova para este caso é análoga). Além disso, temos $\Gamma \conhil \phi_k$ e $\Gamma \conhil \phi_k \to \phi_n$. Logo, por (HI), temos $\Gamma_0 \conhil \phi_k$ e $\Gamma_0 \conhil \phi_k \to \phi_n$. Então, basta aplicar MP para obter $\phi_n$. Portanto, $\Gamma_0 \conhil \phi_n$.
-                \end{provaporcasos}
-            \end{adjustwidth}
-            Então, a \lfium{} é finitária. \qedhere
-
-        \end{proof}
-
-
+        A prova da completude para a lógica \lfium{} depende das seguintes definiçõespara ser desenvolvida:
 
         \begin{definicao}[Conjunto de fórmulas maximal não-trivial]\label{def:nao-trivial_maximal}
             Seja $\mathcal{L}$ uma lógica Tarskiana definida sobre uma linguagem $\pazocal{L}$ e sejam $\Gamma, \{\phi\}$ conjuntos de fórmulas de modo que $\Gamma \cup \{\phi\} \subseteq \pazocal{L}$. O conjunto $\Gamma$ é dito maximal não-trivial em relação a $\phi$ em $\mathcal{L}$ se $\Gamma \nVdash_{\mathcal{L}} \phi$ mas $\Gamma, \psi \Vdash_{\mathcal{L}} \phi$ para qualquer $\psi \notin \Gamma$.\qed{}
@@ -1549,10 +1551,6 @@ Este capítulo é dividido da seguinte forma: na Seção~\ref{sec:linguagem}, é
             
             Então $\Gamma$ é fechado em $\mathcal{L}$.
         \end{proof}
-
-
-
-
 
         Provaremos agora o lema de Lindenbaum, proposto originalmente por Adolf Lindenbaum (de acordo com~\citeshort{Tarski1956-TARLSM}) e adaptado por~\citeshort{los_lindenbaum,Wojcicki1984-WJCLOP}. A versão apresentada por~\citeshort{Carnielli_Coniglio_2016} utiliza o princípio da boa ordem e aplica uma recursão transfinita para que o lema siga verdadeiro mesmo quando se tratando de sistemas definidos sobre linguagens não enumeráveis. Para o propósito do presente trabalho, isso não se mostra necessário, tendo em vista que a linguagem da \lfium{} (Definição~\ref{def:ling}) é enumerável.
 
