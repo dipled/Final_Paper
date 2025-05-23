@@ -554,10 +554,10 @@ Qed.
     
     \subsection{Cardinality.v}\label{sec:cardinality}
 
-        Este arquivo implementa alguns conceitos relacionados a cardinalidade de tipos indutivos, utilizados para provar que um dado tipo possui o mesmo número de elementos que outro.
+        Este arquivo implementa alguns conceitos relacionados a cardinalidade de tipos indutivos, utilizados para provar que um dado tipo possui o mesmo número de elementos que outro. O módulo \texttt{IndefiniteDescription} contém um axioma chamado \texttt{constructive\_indefinite\\\_description}, que torna possível a definição de funções de escolha, necessárias para a prova do lema de Lindenbaum (Lema~\ref{lem:lindenbaum}). Este módulo também importa arquivos que implementam o axioma da escolha. Já o módulo \texttt{Classical\_sets} contém o princípio do terceiro excluído como axioma.
 
         \begin{lstlisting}[name=LFI, frame=single, language=coq]
-From Stdlib Require Import Epsilon Classical_sets Lia Arith.
+From Stdlib Require Import IndefiniteDescription Classical_sets Lia Arith.
 Require Import Utils Language.
 
 Theorem strong_lem : forall P : Prop, {P} + {~P}.
@@ -594,14 +594,15 @@ Record surjection (A B: Type): Type := Build_surjection {
 }.
           \end{lstlisting}
 
-          O módulo \texttt{Classical\_sets} 
+          O teorema \texttt{strong\_lem} representa uma versão forte do princípio do terceiro excluído, provado utilizando a versão normal do terceiro excluído juntamente com o axioma \texttt{constructive\\\_indefinite\_description}, que possibilita a definição do conjunto de Lindenbaum.
+
     
     \subsection{Completeness.v}\label{sec:completeness}
         
         Este arquivo implementa as provas desenvolvidas ao longo das Seções~\ref{sec:comp},~\ref{sec:equiv} e~\ref{sec:comp_mat}, referentes aos metateoremas da completude (tanto em relação às matrizes, quanto às bivalorações) e da equivalência entre os sistemas semânticos.
 
         \begin{lstlisting}[name=LFI, frame=single, language=coq]
-From Stdlib Require Import Classical_sets Epsilon.
+From Stdlib Require Import Classical_sets IndefiniteDescription.
 From LFI1 Require Import Countability.
 
 Proposition In_lem {U : Type} : forall (A : Ensemble U) (x : U),
