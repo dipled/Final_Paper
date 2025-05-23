@@ -3,7 +3,7 @@
 Neste capítulo será descrita a implementação da biblioteca da lógica de inconsistência formal \lfium{} no assistente de provas Rocq (anteriormente conhecido como Coq), bem como o desenvolvimento de alguns metateoremas apresentados na Seção~\ref{sec:metateoremas} dentro da biblioteca. A implementação será análoga àquela feita por~\citeshort{silveira2020implementacao}, que implementou uma biblioteca de lógica modal. Antes de tratar especificamente da implementação, o Rocq será brevemente apresentado e caracterizado.
 
 \section{Assistente de provas Rocq}\label{sec:rocq}
-    Os assistentes de provas são ferramentas de \textit{software} que auxiliam o usuário no desenvolvimento de teoremas, permitindo que provas sejam verificadas na medida em que são escritas~\cite{geuvers2009proof}, conferindo a estes programas uma importância significativa na verificação e especificação formal de \textit{software}. Atualmente, existem diversos assistentes de provas como: Agda, Isabelle, Rocq, Lean, HOL, Idris e Twelf. Cada um destes tem suas particularidades e diferenças em relação ao formalismo matemático utilizado como base.
+    Os assistentes de provas são ferramentas de \textit{software} que auxiliam o usuário no desenvolvimento de teoremas, permitindo que provas sejam verificadas na medida em que são escritas~\cite{geuvers2009proof}, conferindo a estes programas uma importância significativa na verificação e especificação formal de \textit{software}. Atualmente, existem diversos assistentes de provas como: Agda, Isabelle, Rocq, Lean, Idris e Twelf. Cada um destes tem suas particularidades e diferenças em relação ao formalismo matemático utilizado como base.
 
     O Rocq é um assistente de provas baseado no Cálculo de Construções Indutivas (CCI) que possui aplicações em diferentes áreas da matemática e da computação como (mas não limitado a) lógica, linguagens formais, linguística computacional e desenvolvimento de programas seguros~\cite{coqart}. Sob a ótica da Correspondência de Curry{-}Howard, o Rocq é tanto uma linguagem de programação funcional quanto uma linguagem de prova, podendo ser dividido em quatro partes~\cite{silva2019certificaccao}:
     
@@ -14,7 +14,7 @@ Neste capítulo será descrita a implementação da biblioteca da lógica de inc
         \item A linguagem $\pazocal{L}$tac, utilizada para implementar novas táticas e automatizar provas.
     \end{itemize}
 
-    No restante desse trabalho, conceitos básicos sobre o funcionamento do assistente de provas Rocq e sobre seu uso no desenvolvimento de provas e verificação de provas não serão apresentados em grandes detalhes. Ao leitor interessado em tais assuntos, é recomendada uma consulta aos trabalhos de~\citeshort{Pierce2017Logical} e~\citeshort{silveira2020implementacao}.
+    No restante desse trabalho, conceitos básicos sobre o funcionamento do assistente de provas Rocq e sobre seu uso no desenvolvimento e verificação de provas não serão apresentados em grandes detalhes. Ao leitor interessado em tais assuntos, é recomendada uma consulta aos trabalhos de~\citeshort{Pierce2017Logical} e~\citeshort{silveira2020implementacao}.
 
 \section{Biblioteca em Rocq}\label{sec:biblioteca}
     Nesta seção será apresentada a biblioteca para a lógica \lfium{}, com os principais artefatos semânticos e sintáticos apresentados ao longo do trabalho, bem como provas para os metateoremas que foram provados manualmente. A biblioteca foi desenvolvida utilizando a versão 9.0.0 do Rocq e está disponível em \url{https://github.com/dipled/LFI1_Library}. Cada subseção representa um arquivo da biblioteca e as partes mais importantes de cada um destes será comentada ao longo do texto.
@@ -601,7 +601,7 @@ Record surjection (A B: Type): Type := Build_surjection {
         
         Este arquivo implementa as provas desenvolvidas ao longo das Seções~\ref{sec:comp},~\ref{sec:equiv} e~\ref{sec:comp_mat}, referentes aos metateoremas da completude (tanto em relação às matrizes, quanto às bivalorações) e da equivalência entre os sistemas semânticos.
 
-        \begin{lstlisting}[name=LFI, frame=single, language=coq]
+        \begin{lstlisting}[name=Completeness, frame=single, language=coq]
 From Stdlib Require Import Classical_sets IndefiniteDescription.
 From LFI1 Require Import Countability.
 
@@ -610,7 +610,7 @@ Proposition In_lem {U : Type} : forall (A : Ensemble U) (x : U),
 Proof. intros. apply classic. Qed.
 
 Definition maximal_nontrivial ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula) : Prop :=
-  ~ $\Gamma$ $\vdash$ $\phi$ /\ (forall ($\psi$ : Formula), ~$\psi$ $\in$ $\Gamma$ -> ($\Gamma$ $\cup$ [$\psi$] $\vdash$ $\phi$)).
+  ~ $\Gamma$ $\vdash$ $\phi$ /\ (forall ($\psi$ : Formula), $\psi$ $\not \in$ $\Gamma$ -> ($\Gamma$ $\cup$ [$\psi$] $\vdash$ $\phi$)).
 
 Definition closed_theory ($\Gamma$ : Ensemble Formula) : Prop := forall $\phi$ : Formula, 
   $\Gamma$ $\vdash$ $\phi$ <-> $\phi$ $\in$ $\Gamma$.
@@ -622,5 +622,25 @@ $\quad\vdots$
 Qed.
         \end{lstlisting}
 
-    
+        O teorema \texttt{In\_lem} representa o princípio do terceiro excluído aplicado a pertinência de um dado elemento a um conjunto. Os predicados \texttt{maximal\_nontrivial} e \texttt{closed\_theory} implementam, respectivamente, as Definições~\ref{def:nao-trivial_maximal} e~\ref{def:fechada} sobre conjuntos de fórmulas bem formadas. O lema \texttt{maximal\_nontrivial\_is\_closed} prova que todo conjunto maximal não trivial de fórmulas é uma teoria fechada (Lema~\ref{lem:nao_trivial_maximal_fechado}). Isto é feito por análise de caso em $\gamma \in \Gamma$, onde $\gamma$ é uma fórmula qualquer.
+
+        Depois destas definições e lemas, é preciso estabelecer uma bivaloração específica que permite o desenvolvimento da prova de completude.
+        
+        \begin{lstlisting}[name=Completeness, frame=single, language=coq]
+Definition completeness_valuation ($\Gamma$ : Ensemble Formula) : 
+Formula -> BivaluationDomain :=
+fun x =>
+  match (strong_lem (x $\in$ $\Gamma$)) with
+  | left _ => $\top$
+  | right _ => $\bot$
+  end.
+
+Lemma completeness_valuation_is_bivaluation : forall ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula),
+(maximal_nontrivial $\Gamma$ $\phi$) -> bivaluation (completeness_valuation $\Gamma$).
+Proof.
+$\quad\vdots$
+Qed.
+        \end{lstlisting}
+
+        A função \texttt{completeness\_valuation} é provada uma bivaloração pelo lema \texttt{complete-\\ness\_valuation\_is\_bivaluation}, por análise de caso, como feito no Lema~\ref{lem:valoracao}.
     
