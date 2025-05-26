@@ -21,7 +21,7 @@ Neste capítulo será descrita a implementação da biblioteca da lógica de inc
 
     \subsection{Utils.v}\label{sec:utils}
 
-      Este arquivo contem algumas notações, definições e propriedades úteis que foram estabelecidas para facilitar a implementação.
+      Este arquivo contém algumas notações, definições e propriedades úteis que foram estabelecidas para facilitar a implementação.
 
       \begin{lstlisting}[name=Utils, frame=single, language=coq]
 Require Import Arith Constructive_sets.
@@ -55,12 +55,9 @@ end.
 
       \subsection{Language.v}\label{sec:language}
 
-      Este arquivo contem a definição da linguagem da \lfium{}, como apresentada na Seção~\ref{sec:linguagem}.
+      Este arquivo contém a definição da linguagem da \lfium{}, como apresentada na Seção~\ref{sec:linguagem}.
 
       \begin{lstlisting}[name=Language, frame=single, language=coq]
-Require Import LFI1.Utils.
-From Stdlib Require Import Arith Constructive_sets.
-
 Definition Atom := nat.
 
 Inductive Formula : Set :=
@@ -73,19 +70,7 @@ Inductive Formula : Set :=
 
 Notation " x $\to$ y " := 
 (Imp x y) (at level 8, right associativity).
-
-Notation " x $\land$ y " := 
-(And x y) (at level 6, left associativity).
-
-Notation " x $\lor$ y " := 
-(Or x y) (at level 7, left associativity).
-
-Notation " $\neg$ x " := 
-(Neg x) (at level 5, right associativity, format "\neg x").
-
-Notation " $\circ$ x " := 
-(Consistency x) (at level 5, right associativity, format "$\circ$ x").
-
+$\qquad\vdots$
 Notation " $\#$ x " :=
 (Lit x) (at level 2, no associativity, x constr at level 1, format "$\#$ x").
       \end{lstlisting}
@@ -94,14 +79,9 @@ Notation " $\#$ x " :=
 
     \subsection{Syntax.v}\label{sec:syntax}
 
-      Este arquivo contem a definição da sintaxe da \lfium{}, através do cáclulo de Hilbert definido na Seção~\ref{sec:axiomatizacao}.
+      Este arquivo contém a definição da sintaxe da \lfium{}, através do cáclulo de Hilbert definido na Seção~\ref{sec:axiomatizacao}.
 
       \begin{lstlisting}[name=Syntax, frame=single, language=coq]
-Require Import LFI1.Utils LFI1.Language.
-From Stdlib Require Import Arith Constructive_sets.
-
-(* Hilbert calculus: *)
-
 Inductive Ax : Set :=
   | Ax1      : Formula -> Formula -> Ax
   | Ax2      : Formula -> Formula -> Formula -> Ax
@@ -122,7 +102,13 @@ $\qquad\vdots$
   | ci $\alpha$         => $\neg$$\circ$$\alpha$ $\to$ ($\alpha$ $\land$ $\neg$ $\alpha$)
 $\qquad\vdots$
   end.
-  
+      \end{lstlisting}
+
+      Primeiro, o tipo \texttt{Ax} foi definido como um tipo indutivo (também chamado de tipo algébrico), com construtores que recebem como argumentos fórmulas correspondentes ao número de fórmulas dos axiomas definidos na Definição~\ref{def:hilbert_lfi1}. 
+      
+      Depois, a função \texttt{instantiate} é definida. Ela recebe como argumento um axioma (que por sua vez foi construído a partir de fórmulas) e retorna uma fórmula correspondente àquela representada pelo axioma, por exemplo, o axioma~\ref{ax:axcf} representa a eliminação da dupla negação, portanto, a função \texttt{instantiate} receberia um dado \texttt{cf $\alpha$} do tipo \texttt{Ax}, onde $\alpha$ é uma fórmula qualquer da linguagem, e retornaria um dado $\neg\neg\alpha \to \alpha$ do tipo \texttt{Formula}.
+
+      \begin{lstlisting}[name=Syntax, frame=single, language=coq]
 Inductive deduction : Ensemble Formula -> Formula -> Prop :=
   | Premisse : forall ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula), $\phi$ $\in$ $\Gamma$ -> deduction $\Gamma$ $\phi$
   | AxiomInstance : forall ($\Gamma$ : Ensemble Formula) (a : Ax), deduction $\Gamma$ (instantiate a)
@@ -132,23 +118,14 @@ Inductive deduction : Ensemble Formula -> Formula -> Prop :=
 Notation " $\Gamma$ $\vdash$ $\phi$ " := (deduction $\Gamma$ $\phi$) (at level 50, no associativity).
       \end{lstlisting}
 
-      Primeiro, o tipo \texttt{Ax} foi definido como um tipo indutivo (também chamado de tipo algébrico), com construtores que recebem como argumentos fórmulas correspondentes ao número de fórmulas dos axiomas definidos na Definição~\ref{def:hilbert_lfi1}. 
-      
-      Depois, a função \texttt{instantiate} é definida. Ela recebe como argumento um axioma (que por sua vez foi construído a partir de fórmulas) e retorna uma formula correspondente àquela representada pelo axioma, por exemplo, o axioma~\ref{ax:axcf} representa a eliminação da dupla negação, portanto, a função \texttt{instantiate} receberia um dado \texttt{cf $\alpha$} do tipo \texttt{Ax}, onde $\alpha$ é uma fórmula qualquer da linguagem, e retornaria um dado $\neg\neg\alpha \to \alpha$ do tipo \texttt{Formula}.
-
-      Finalmente, o tipo \texttt{deduction} é definido indutivamente a partir de um conjunto de fórmulas (conjunto de premissas) e uma fórmula (conclusão) e retornando um dado do tipo \texttt{Prop} referente a possibilidade de construir uma derivação da conclusão a partir do conjunto de premissas, aplicando uma sequência de construtores, que representam os três casos de derivação descritos na Definição~\ref{def:derivacao}. O construtor \texttt{Premisse} diz que se uma fórmula qualquer pertence ao conjunto de premissas, então ela é derivável a partir deste conjunto. O construtor \texttt{AxiomInstance} diz que um axioma é sempre derivável a partir de qualquer conjunto de premissas. O construtor \texttt{MP} diz que, dadas duas fórmulas $\phi$ e $\psi$ quaisquer, se for possível derivar $\phi \to \psi$ e $\phi$ a partir de um conjunto de fórmulas, então podemos derivar $\psi$ a partir deste mesmo conjunto. Por último, uma notação com o operador infixo $\vdash$ é estabelecida para facilitar a leitura de derivações.
+      O tipo \texttt{deduction} é definido indutivamente a partir de um conjunto de fórmulas (conjunto de premissas) e uma fórmula (conclusão) e retornando um dado do tipo \texttt{Prop} referente a possibilidade de construir uma derivação da conclusão a partir do conjunto de premissas, aplicando uma sequência de construtores, que representam os três casos de derivação descritos na Definição~\ref{def:derivacao}. O construtor \texttt{Premisse} diz que se uma fórmula qualquer pertence ao conjunto de premissas, então ela é derivável a partir deste conjunto. O construtor \texttt{AxiomInstance} diz que um axioma é sempre derivável a partir de qualquer conjunto de premissas. O construtor \texttt{MP} diz que, dadas duas fórmulas $\phi$ e $\psi$ quaisquer, se for possível derivar $\phi \to \psi$ e $\phi$ a partir de um conjunto de fórmulas, então podemos derivar $\psi$ a partir deste mesmo conjunto. Por último, uma notação com o operador infixo $\vdash$ é estabelecida para facilitar a leitura de derivações.
     
     \subsection{Semantics.v}
 
-      Este arquivo contem a definição dos dois sistemas semânticos apresentados na Seção~\ref{sec:semantica}.
+      Este arquivo contém a definição dos dois sistemas semânticos apresentados na Seção~\ref{sec:semantica}.
 
       O primeiro sistema definido foi a semântica matricial, conforme as Definições~\ref{def:mat} e~\ref{def:conmat}.
       \begin{lstlisting}[name=Semantics, frame=single, language=coq]
-Require Import LFI1.Utils LFI1.Language.
-From Stdlib Require Import Arith Constructive_sets.
-
-(* Matrix Semantics: *)
-
 Inductive MatrixDomain : Set :=
   | One
   | Half
@@ -167,81 +144,23 @@ Definition andM (a b : MatrixDomain) : MatrixDomain :=
   | One, One => One
   | _, _     => Half
   end.
-
-Definition orM (a b : MatrixDomain) : MatrixDomain :=
-  match a, b with
-  | One, _     => One
-  | _, One     => One
-  | Zero, Zero => Zero
-  | _, _       => Half
-  end.
-
-Definition impM (a b : MatrixDomain) : MatrixDomain :=
-  match a, b with
-  | Zero, _ => One
-  | _, One  => One
-  | _, Half => Half
-
-  | _, Zero => Zero
-  end.
-
-Definition negM (a : MatrixDomain) : MatrixDomain :=
-  match a with
-  | One  => Zero
-  | Half => Half
-  | Zero => One
-  end.
-
-Definition consM (a : MatrixDomain) : MatrixDomain :=
-  match a with
-  | Half => Zero
-  | _    => One
-  end.
-
-Notation " x $\to_{m}$ y " := 
-(impM x y) (at level 21, right associativity).
-
+$\qquad\vdots$
 Notation " x $\land_{m}$ y " := 
 (andM x y) (at level 20, left associativity).
-
-Notation " x $\lor_{m}$ y " := 
-(orM x y) (at level 22, left associativity).
-
-Notation " $\neg_{m}$ x " := 
-(negM x) (at level 9, right associativity, format "$\neg_{m}$ x").
-
-Notation " $\circ_{m}$ x " := 
-(consM x) (at level 9, right associativity, format "$\circ_{m}$ x").
+$\qquad\vdots$
         
       \end{lstlisting}
-      Note que \texttt{designatedValue} é um predicado sobre o domínio da matriz lógica, e retorna um \texttt{Prop} referente a pertinência de um dado valor ao conjunto $\{1,\meio{}\}$.
+      Note que \texttt{designatedValue} é um predicado sobre o domínio da matriz lógica, e retorna um \texttt{Prop} referente à pertinência de um dado valor ao conjunto $\{1,\meio{}\}$.
 
       Após definir a matriz lógica, é preciso estabelecer a noção de valorações sobre essa matriz, conforme apresentada na Definição~\ref{def:matlog}, que define valoração como um homomorfismo entre linguagem e a álgebra da matriz, preservando a estrutura dos seus operadores.
     
       \begin{lstlisting}[name=Semantics, frame=single, language=coq]
-(* Defining the conditions for a function to be a valuation over the matrix,
-i.e., it must be a homomorphism from Formula to MatrixDomain.
-*)
-
 Definition preserveAnd (v : Formula -> MatrixDomain) : Prop := 
 forall $\phi$ $\psi$: Formula, (v ($\phi$ $\land$ $\psi$)) = (v $\phi$) $\land_{m}$ (v $\psi$).
-
-Definition preserveOr (v : Formula -> MatrixDomain) : Prop := 
-forall $\phi$ $\psi$: Formula, (v ($\phi$ $\lor$ $\psi$)) = (v $\phi$) $\lor_{m}$ (v $\psi$).
-
-Definition preserveTo (v : Formula -> MatrixDomain) : Prop := 
-forall $\phi$ $\psi$: Formula, (v ($\phi$ $\to$ $\psi$)) = (v $\phi$) $\to_{m}$ (v $\psi$).
-
-Definition preserveNeg (v : Formula -> MatrixDomain) : Prop := 
-forall $\phi$: Formula, (v ($\neg$$\phi$)) = $\neg_{m}$(v $\phi$).
-
-Definition preserveCirc (v : Formula -> MatrixDomain) : Prop := 
-forall $\phi$: Formula, (v ($\circ$$\phi$)) = $\circ_{m}$(v $\phi$).
-
+$\qquad\vdots$
 Definition valuation (v : Formula -> MatrixDomain) : Prop :=
 preserveOr v /\ preserveTo v /\ preserveAnd v /\ preserveNeg v /\ preserveCirc v.
 
-(* Defining the semantic consequence relation w.r.t matrices *)
 Definition matrixEntails ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula) := 
 forall v : (Formula -> MatrixDomain),
 valuation v -> 
@@ -257,8 +176,6 @@ Notation " $\Gamma$ $\vDash$m $\phi$ " := (matrixEntails $\Gamma$ $\phi$) (at le
       Depois disso, a semântica de bivalorações foi implementada, com base nas Definições~\ref{def:valoracoes} e~\ref{def:conval}.
 
       \begin{lstlisting}[name=Semantics, frame=single, language=coq]
-(* Bivaluation semantics *)
-
 Inductive BivaluationDomain : Set :=
   | Bot
   | Top.
@@ -266,18 +183,9 @@ Inductive BivaluationDomain : Set :=
 Notation " $\bot$ " := Bot.
 Notation " $\top$ " := Top.
 
-(* Defining the conditions a given map from Formula to BivaluationDomain must
-    follow in order to be a bivaluation (it doesn't have to be a homomorphism)
-*)
 Definition vAnd (v : Formula -> BivaluationDomain) : Prop :=
   forall $\phi$ $\psi$ : Formula, (v ($\phi$ $\land$ $\psi$)) = $\top$ <-> (v $\phi$ = $\top$) /\ (v $\psi$ = $\top$).
-
-Definition vOr (v : Formula -> BivaluationDomain) : Prop :=
-  forall $\phi$ $\psi$ : Formula, (v ($\phi$ $\lor$ $\psi$)) = $\top$ <-> (v $\phi$ = $\top$) \/ (v $\psi$ = $\top$).
-
-Definition vImp (v : Formula -> BivaluationDomain) : Prop :=
-  forall $\phi$ $\psi$ : Formula, (v ($\phi$ $\to$ $\psi$)) = $\top$ <-> (v $\phi$ = $\bot$) \/ (v $\psi$ = $\top$).
-
+$\qquad\vdots$
 Definition vNeg (v : Formula -> BivaluationDomain) : Prop :=
   forall $\phi$ : Formula, (v $\neg$$\phi$) = $\bot$ -> v $\phi$ = $\top$.
 
@@ -286,19 +194,7 @@ Definition vCon (v : Formula -> BivaluationDomain) : Prop :=
 
 Definition vCi (v : Formula -> BivaluationDomain) : Prop :=
   forall $\phi$ : Formula, (v $\neg$$\circ$$\phi$) = $\top$ -> (v $\phi$ = $\top$) /\ (v $\neg$$\phi$ = $\top$).
-
-Definition vDne (v : Formula -> BivaluationDomain) : Prop :=
-  forall $\phi$ : Formula, (v $\neg$$\neg$$\phi$) = $\top$ <-> v $\phi$ = $\top$.
-
-Definition vDmAND (v : Formula -> BivaluationDomain) : Prop :=
-  forall $\phi$ $\psi$ : Formula, (v $\neg$($\phi$ $\land$ $\psi$)) = $\top$ <-> (v $\neg$$\phi$ = $\top$) \/ (v $\neg$$\psi$ = $\top$).
-
-Definition vDmOR (v : Formula -> BivaluationDomain) : Prop :=
-  forall $\phi$ $\psi$ : Formula, (v $\neg$($\phi$ $\lor$ $\psi$)) = $\top$ <-> (v $\neg$$\phi$ = $\top$) /\ (v $\neg$$\psi$ = $\top$).
-
-Definition vCip (v : Formula -> BivaluationDomain) : Prop :=
-  forall $\phi$ $\psi$ : Formula, (v $\neg$($\phi$ $\to$ $\psi$)) = $\top$ <-> (v $\phi$ = $\top$) /\ (v $\neg$$\psi$ = $\top$).
-  
+$\qquad\vdots$
 Definition bivaluation (v : Formula -> BivaluationDomain) : Prop :=
   vAnd v /\ vOr v /\ vImp v /\ vNeg v /\ vCon v /\ vCi v /\
   vDne v /\ vDmAND v /\ vDmOR v /\ vCip v.
@@ -311,31 +207,19 @@ Definition bivaluation (v : Formula -> BivaluationDomain) : Prop :=
               \begin{lstlisting}[name=Semantics, frame=single, language=coq]
 Lemma bivaluation_lem : forall (v : Formula -> BivaluationDomain) ($\phi$ : Formula),
 (v $\phi$ = $\top$) \/ (v $\phi$ = $\bot$).
-Proof.
-$\quad\vdots$
-Qed.
+Proof.$\;\ldots\;$Qed.
 
 Lemma bivaluation_dec1 : forall (v : Formula -> BivaluationDomain) ($\phi$ : Formula),
 v $\phi$ = $\top$ <-> ~ v $\phi$ = $\bot$.
-Proof.
-$\quad\vdots$
-Qed.
+Proof.$\;\ldots\;$Qed.
 
 Lemma bivaluation_dec2 : forall (v : Formula -> BivaluationDomain) ($\phi$ : Formula),
 v $\phi$ = $\bot$ <-> ~ v $\phi$ = $\top$.
-Proof.
-$\quad\vdots$
-Qed.
+Proof.$\;\ldots\;$Qed.
 
 Definition vAndf (v : Formula -> BivaluationDomain) : Prop :=
 forall $\phi$ $\psi$ : Formula, (v ($\phi$ $\land$ $\psi$)) = $\bot$ <-> (v $\phi$ = $\bot$) \/ (v $\psi$ = $\bot$).
-
-Definition vOrf (v : Formula -> BivaluationDomain) : Prop :=
-forall $\phi$ $\psi$ : Formula, (v ($\phi$ $\lor$ $\psi$)) = $\bot$ <-> (v $\phi$ = $\bot$) /\ (v $\psi$ = $\bot$).
-
-Definition vImpf (v : Formula -> BivaluationDomain) : Prop :=
-forall $\phi$ $\psi$ : Formula, (v ($\phi$ $\to$ $\psi$)) = $\bot$ <-> (v $\phi$ = $\top$) /\ (v $\psi$ = $\bot$).
-
+$\qquad\vdots$
 Definition vNegf (v : Formula -> BivaluationDomain) : Prop :=
 forall $\phi$ : Formula, (v $\phi$) = $\bot$ -> (v $\neg$$\phi$) = $\top$.
 
@@ -344,68 +228,38 @@ forall $\phi$ : Formula, (v $\phi$ = $\top$) /\ (v $\neg$$\phi$ = $\top$) -> (v 
 
 Definition vCif (v : Formula -> BivaluationDomain) : Prop :=
 forall $\phi$ : Formula, (v $\phi$ = $\bot$) \/ (v $\neg$$\phi$ = $\bot$) -> (v $\neg$$\circ$$\phi$) = $\bot$.
-
-Definition vDnef (v : Formula -> BivaluationDomain) : Prop :=
-forall $\phi$ : Formula, (v $\neg$$\neg$$\phi$) = $\bot$ <-> v $\phi$ = $\bot$.
-
-Definition vDmANDf (v : Formula -> BivaluationDomain) : Prop :=
-forall $\phi$ $\psi$ : Formula, (v $\neg$($\phi$ $\land$ $\psi$)) = $\bot$ <-> (v $\neg$$\phi$ = $\bot$) /\ (v $\neg$$\psi$ = $\bot$).
-
-Definition vDmORf (v : Formula -> BivaluationDomain) : Prop :=
-forall $\phi$ $\psi$ : Formula, (v $\neg$($\phi$ $\lor$ $\psi$)) = $\bot$ <-> (v $\neg$$\phi$ = $\bot$) \/ (v $\neg$$\psi$ = $\bot$).
-
-Definition vCipf (v : Formula -> BivaluationDomain) : Prop :=
-forall $\phi$ $\psi$ : Formula, (v $\neg$($\phi$ $\to$ $\psi$)) = $\bot$ <-> (v $\phi$ = $\bot$) \/ (v $\neg$$\psi$ = $\bot$).
-
+$\qquad\vdots$
 Lemma bivaluation_additional : 
 forall (v : Formula -> BivaluationDomain),
 bivaluation v ->
 vAndf v /\ vOrf v /\ vImpf v /\ vNegf v /\ vConf v /\ vCif v /\
 vDnef v /\ vDmANDf v /\ vDmORf v /\ vCipf v.
-Proof.
-$\quad\vdots$
-Qed.
+Proof.$\;\ldots\;$Qed.
             \end{lstlisting}
-            As provas de \texttt{bivaluation\_lem}, \texttt{bivaluation\_dec1} e \texttt{bivaluation\_dec2} seguem por análise de caso em \texttt{v($\phi$)}.
-
-            O lema \texttt{bivaluation\_additional} demonstra cláusulas úteis na prova da completude em relação a semântica de bivalorações, que são derivadas das cláusulas estabelecidas originalmente. Nas provas manuais estas cláusulas foram consideradas triviais e, portanto, não foram demonstradas. Este lema segue por análise de caso em \texttt{v($\phi$)} e \texttt{v($\psi$)}.
+            As provas de \texttt{bivaluation\_lem}, \texttt{bivaluation\_dec1} e \texttt{bivaluation\_dec2} seguem por análise de caso em \texttt{v($\phi$)}. O lema \texttt{bivaluation\_additional} demonstra cláusulas úteis na prova da completude em relação a semântica de bivalorações, que são derivadas das cláusulas estabelecidas originalmente. Nas provas manuais estas cláusulas foram consideradas triviais e, portanto, não foram demonstradas. Este lema segue por análise de caso em \texttt{v($\phi$)} e \texttt{v($\psi$)}.
 
           \subsection{Deduction\_metatheorem.v}
 
             Este arquivo contém a prova do metateorema da dedução dentro da biblioteca, análoga à prova manual do Teorema~\ref{teo:deducao}. Antes de provar este teorema, alguns lemas e proposições auxiliares foram demonstrados.
           
           \begin{lstlisting}[name=Deduction, frame=single, language=coq]
-Require Import LFI1.Utils LFI1.Language LFI1.Syntax.
-From Stdlib Require Import Arith Constructive_sets.
-
-(* LFI1 is tarskian, i.e., it enjoys reflexivity, monotonicity
-   and cut
-*)
 Proposition lfi1_reflexivity : 
 forall ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula),
   $\phi$ $\in$ $\Gamma$ -> $\Gamma$ $\vdash$ $\phi$.
-Proof.
-$\quad\vdots$
-Qed.
+Proof.$\;\ldots\;$Qed.
 
 Proposition lfi1_monotonicity :
 forall ($\Gamma$ $\Delta$ : Ensemble Formula) ($\phi$ : Formula),
   $\Delta$ $\vdash$ $\phi$ /\ $\Delta$ $\subseteq$ $\Gamma$ -> $\Gamma$ $\vdash$ $\phi$.
-Proof.
-$\quad\vdots$
-Qed.
+Proof.$\;\ldots\;$Qed.
 
 Proposition lfi1_cut :
 forall ($\Gamma$ $\Delta$ : Ensemble Formula) ($\phi$ : Formula),
   $\Delta$ $\vdash$ $\phi$ /\ (forall ($\delta$ : Formula), $\delta$ $\in$ $\Delta$ -> $\Gamma$ $\vdash$ $\delta$) -> $\Gamma$ $\vdash$ $\phi$.
-Proof.
-$\quad\vdots$
-Qed.
+Proof.$\;\ldots\;$Qed.
 
 Lemma id : forall ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula), $\Gamma$ $\vdash$ $\phi$ $\to$ $\phi$.
-Proof.
-$\quad\vdots$
-Qed.
+Proof.$\;\ldots\;$Qed.
 
           \end{lstlisting}
 
@@ -422,15 +276,11 @@ Qed.
 
 Corollary proof_by_cases : forall ($\Gamma$ : Ensemble Formula) ($\alpha$ $\beta$ $\phi$ : Formula), 
 ($\Gamma$ $\cup$ [$\alpha$] $\vdash$ $\phi$) /\ ($\Gamma$ $\cup$ [$\beta$] $\vdash$ $\phi$) -> ($\Gamma$ $\cup$ [$\alpha$ $\lor$ $\beta$] $\vdash$ $\phi$).
-Proof.
-$\quad\vdots$
-Qed.
+Proof.$\;\ldots\;$Qed.
   
 Corollary proof_by_cases_neg : forall ($\Gamma$ : Ensemble Formula) ($\alpha$ $\phi$ : Formula), 
 ($\Gamma$ $\cup$ [$\alpha$] $\vdash$ $\phi$) /\ ($\Gamma$ $\cup$ [$\neg$$\alpha$] $\vdash$ $\phi$) -> ($\Gamma$ $\vdash$ $\phi$).
-Proof.
-$\quad\vdots$
-Qed.
+Proof.$\;\ldots\;$Qed.
           \end{lstlisting}
 
           A prova segue por indução estrutural na derivação $\Gamma \cup [\alpha] \vdash \beta$ na ida e na derivação $\Gamma \vdash \alpha \to \beta$ na volta. O teorema nos cede dois corolários (\texttt{proof\_by\_cases} e \texttt{proof\_by\_cases\_neg}) que facilitam a prova da completude em relação à semântica de bivalorações. Ambos corolários seguem por derivações no cálculo de Hilbert utilizando o recém-provado teorema da dedução.
@@ -439,7 +289,6 @@ Qed.
         
         Este arquivo implementa as provas desenvolvidas ao longo da Seção~\ref{sec:cor}, necessárias para desenvolver o metateorema da correção.
         \begin{lstlisting}[name=Soundness, frame=single, language=coq]
-(* Function used to prove $\Gamma$ $\vDash$m $\alpha$ -> $\Gamma$ $\vDash$ $\alpha$ *)
 Definition h_formula ($\alpha$ : Formula) (v : Formula -> BivaluationDomain) : MatrixDomain :=
   match (v $\alpha$), (v $\neg$$\alpha$) with
   | $\top$, $\bot$ => One
@@ -447,14 +296,9 @@ Definition h_formula ($\alpha$ : Formula) (v : Formula -> BivaluationDomain) : M
   | $\bot$, _ => Zero
   end.
 
-(* Proof that if v is a bivaluation, then h_formula is a valuation over the matrices i.e., h_formula is a homomorphism.
-*)
-
 Lemma h_valuation : forall (v : Formula -> BivaluationDomain),
 bivaluation v -> valuation (fun x => h_formula x v).
-Proof.
-$\quad\vdots$
-Qed.
+Proof.$\;\ldots\;$Qed.
         \end{lstlisting}
 
         A primeira definição feita é a da função \texttt{h\_formula} que constrói uma valoração sobre as matrizes a partir de uma bivaloração recebida como argumento, similar a função apresentada no Lema~\ref{lem:matval}. Na prova manual deste lema, o fato desta função ser uma valoração sobre as matrizes {--} um homomorfismo entre a linguagem e as matrizes {--} foi tomado como trivial. Para o Rocq, entretando, este fato não é imediato e deve ser demonstrado, o que é feito pelo lema \texttt{h\_valuation}, que segue por análise de caso nos valores de v$(\alpha)$ e v$(\neg \alpha)$ da função \texttt{h\_formula}.
@@ -472,9 +316,7 @@ Qed.
 
 Corollary matrix_bivaluation_imp : forall ($\Gamma$ : Ensemble Formula) ($\alpha$ : Formula), 
 ($\Gamma$ $\vDash$m $\alpha$) -> ($\Gamma$ $\vDash$ $\alpha$).
-Proof.
-$\quad\vdots$
-Qed.
+Proof.$\;\ldots\;$Qed.
         \end{lstlisting}
 
         O lema \texttt{bivaluation\_matrix\_lemma} segue por análise de caso em v$(\phi)$ e v$(\neg \phi)$, utilizando a valoração obtida ao aplicar a função \texttt{h\_formula} numa bivaloração $v$ qualquer e o resultado obtido no lema \texttt{h\_valuation}. Com este resultado, a prova da ida da equivalência entre os sistemas semânticos é desenvolvida em \texttt{matrix\_bivaluation\_imp}, utilizando as definições das relações de consequência semântica matricial e de bivalorações, como feito no Corolário~\ref{cor:matval}.
@@ -484,15 +326,11 @@ Qed.
         \begin{lstlisting}[name=Soundness, frame=single, language=coq]
 Theorem soundness_matrix : forall ($\Gamma$ : Ensemble Formula) ($\alpha$ : Formula), 
 ($\Gamma$ $\vdash$ $\alpha$) -> ($\Gamma$ $\vDash$m $\alpha$).
-Proof.
-$\quad\vdots$
-Qed.
+Proof.$\;\ldots\;$Qed.
 
 Corollary soundness_bivaluations : forall ($\Gamma$ : Ensemble Formula) ($\alpha$ : Formula), 
 ($\Gamma$ $\vdash$ $\alpha$) -> ($\Gamma$ $\vDash$ $\alpha$).
-Proof.
-$\quad\vdots$
-Qed.
+Proof.$\;\ldots\;$Qed.
         \end{lstlisting}
 
         Em \texttt{soundness\_matrix}, a correção em relação à semântica matricial é provada por indução na derivação $\Gamma \vdash \alpha$, mostrando a validade de todos os axiomas e da regra \textit{modus ponens}. Esta análise de caso é facilitada pelas táticas \texttt{repeat} e \texttt{try} aplicadas em todos os \textit{subgoals} de prova simultaneamente, evitando repetições desnecessárias de casos de prova análogos entre si.
@@ -503,8 +341,8 @@ Qed.
 
         \begin{lstlisting}[name=LFI, frame=single, language=coq]
 (** LFI1 is an LFI w.r.t $\neg$ and $\circ$, i.e. 
-1) exists ($\alpha$ $\beta$ : Formula), ~($\alpha$, $\neg$$\alpha$ $\vdash$ $\beta$)
-2) exists ($\alpha$ $\beta$ : Formula), ~($\alpha$, $\circ$$\alpha$ $\vdash$ $\beta$) /\ ~($\neg$$\alpha$, $\circ$$\alpha$ $\vdash$ $\beta$)
+1) exists ($\alpha$ $\beta$ : Formula), $\sim$($\alpha$, $\neg$$\alpha$ $\vdash$ $\beta$)
+2) exists ($\alpha$ $\beta$ : Formula), $\sim$($\alpha$, $\circ$$\alpha$ $\vdash$ $\beta$) /\ $\sim$($\neg$$\alpha$, $\circ$$\alpha$ $\vdash$ $\beta$)
 3) forall ($\alpha$ $\beta$ : Formula), $\circ$$\alpha$, $\alpha$, $\neg$$\alpha$ $\vdash$ $\beta$
 *)
 Fixpoint valuation_condition_1 (x : Formula) : MatrixDomain :=
@@ -518,26 +356,26 @@ match x with
 |_ => Zero 
 end.
 
-Fixpoint valuation_condition_2 (x : Formula) : MatrixDomain :=
+Fixpoint valuation_condition_2_l (x : Formula) : MatrixDomain :=
 match x with 
 |$\#$0 => One
-| a $\land$ b => (valuation_condition_2 a) $\land_{m}$ (valuation_condition_2 b)
-| a $\lor$ b => (valuation_condition_2 a) $\lor_{m}$ (valuation_condition_2 b)
-| a $\to$ b => (valuation_condition_2 a) $\to_{m}$ (valuation_condition_2 b)
-| $\neg$a => $\neg_{m}$(valuation_condition_2 a)
-| $\circ$a => $\circ_{m}$(valuation_condition_2 a)
+| a $\land$ b => (valuation_condition_2_l a) $\land_{m}$ (valuation_condition_2_l b)
+| a $\lor$ b => (valuation_condition_2_l a) $\lor_{m}$ (valuation_condition_2_l b)
+| a $\to$ b => (valuation_condition_2_l a) $\to_{m}$ (valuation_condition_2_l b)
+| $\neg$a => $\neg_{m}$(valuation_condition_2_l a)
+| $\circ$a => $\circ_{m}$(valuation_condition_2_l a)
 |_ => Zero 
 end.
 
-Fixpoint valuation_condition_2' (x : Formula) : MatrixDomain :=
+Fixpoint valuation_condition_2_r (x : Formula) : MatrixDomain :=
 match x with 
 |$\#$0 => Zero
 |$\neg$$\#$0 => One
-| a $\land$ b => (valuation_condition_2' a) $\land_{m}$ (valuation_condition_2' b)
-| a $\lor$ b => (valuation_condition_2' a) $\lor_{m}$ (valuation_condition_2' b)
-| a $\to$ b => (valuation_condition_2' a) $\to_{m}$ (valuation_condition_2' b)
-| $\neg$a => $\neg_{m}$(valuation_condition_2' a)
-| $\circ$a => $\circ_{m}$(valuation_condition_2' a)
+| a $\land$ b => (valuation_condition_2_r a) $\land_{m}$ (valuation_condition_2_r b)
+| a $\lor$ b => (valuation_condition_2_r a) $\lor_{m}$ (valuation_condition_2_r b)
+| a $\to$ b => (valuation_condition_2_r a) $\to_{m}$ (valuation_condition_2_r b)
+| $\neg$a => $\neg_{m}$(valuation_condition_2_r a)
+| $\circ$a => $\circ_{m}$(valuation_condition_2_r a)
 |_ => Zero 
 end.
 
@@ -545,30 +383,20 @@ Proposition lfi1_is_lfi :
 (exists ($\alpha$ $\beta$ : Formula), ~([$\alpha$] $\cup$ [$\neg$$\alpha$] $\vdash$ $\beta$)) /\
 (exists ($\alpha$ $\beta$ : Formula), ~([$\circ$$\alpha$] $\cup$ [$\alpha$] $\vdash$ $\beta$) /\ ~([$\circ$$\alpha$] $\cup$ [$\neg$$\alpha$] $\vdash$ $\beta$)) /\
 (forall ($\alpha$ $\beta$ : Formula), ([$\circ$$\alpha$] $\cup$ [$\alpha$] $\cup$ [$\neg$$\alpha$]) $\vdash$ $\beta$).
-Proof.
-$\quad\vdots$
-Qed.
+Proof.$\;\ldots\;$Qed.
         \end{lstlisting}
 
-        A prova das condições 1 e 2 dependem da definição de valorações específicas que servem de contraexemplo para a validade da derivação, utilizando a contrapositiva da recém-provada correção (\texttt{soundness\_matrix}). Estas valorações são definidas recursivamente em \texttt{valuation\_condition\_1}, \texttt{valuation\_condition\_2} e \texttt{valuation\_condition\_2\textquotesingle}. A prova da condição 3 é feita por derivação no cálculo de Hilbert, utilizando do teorema da dedução (\texttt{deduction\_metatheorem}) para facilitar o desenvolvimento.
+        A prova das condições 1 e 2 dependem da definição de valorações específicas que servem de contraexemplo para a validade da derivação, utilizando a contrapositiva da recém-provada correção (\texttt{soundness\_matrix}). Estas valorações são definidas recursivamente em \texttt{valuation\_condition\_1}, \texttt{valuation\_condition\_2\_l} e \texttt{valuation\_condition\_2\_r}. A prova da condição 3 é feita por derivação no cálculo de Hilbert, utilizando do teorema da dedução (\texttt{deduction\_metatheorem}) para facilitar o desenvolvimento.
     
     \subsection{Cardinality.v}\label{sec:cardinality}
 
-        Este arquivo implementa alguns conceitos relacionados a cardinalidade de tipos indutivos, utilizados para provar que um dado tipo possui o mesmo número de elementos que outro. O módulo \texttt{IndefiniteDescription} contém um axioma chamado \texttt{constructive\_indefinite\\\_description}, que torna possível a definição de funções de escolha, necessárias para a prova do lema de Lindenbaum (Lema~\ref{lem:lindenbaum}). Este módulo também importa arquivos que implementam o axioma da escolha. Já o módulo \texttt{Classical\_sets} contém o princípio do terceiro excluído como axioma.
+        Este arquivo implementa alguns conceitos relacionados à cardinalidade de tipos indutivos, utilizados para provar que um dado tipo possui o mesmo número de elementos que outro. O módulo \texttt{IndefiniteDescription} contém um axioma chamado \texttt{constructive\_indefinite\\\_description}, que torna possível a definição de funções de escolha, necessárias para a prova do lema de Lindenbaum (Lema~\ref{lem:lindenbaum}). Este módulo também importa arquivos que implementam o axioma da escolha. Já o módulo \texttt{Classical\_sets} contém o princípio do terceiro excluído como axioma.
 
         \begin{lstlisting}[name=LFI, frame=single, language=coq]
-From Stdlib Require Import IndefiniteDescription Classical_sets Lia Arith.
-Require Import Utils Language.
+          From Stdlib Require Import Classical_sets IndefiniteDescription.
 
 Theorem strong_lem : forall P : Prop, {P} + {~P}.
-Proof.
-$\quad\vdots$
-Qed. 
-
-Theorem le_lt_or_eq : forall n m, n <= m -> n < m \/ n = m.
-Proof.
-$\quad\vdots$
-Qed.
+Proof.$\;\ldots\;$Qed. 
 
 Inductive image_set {A B : Type} (f : A -> B) (M: Ensemble A) : Ensemble B :=
 image_intro : forall a, a $\in$ M -> (f a) $\in$ (image_set f M).
@@ -594,7 +422,9 @@ Record surjection (A B: Type): Type := Build_surjection {
 }.
           \end{lstlisting}
 
-          O teorema \texttt{strong\_lem} representa uma versão forte do princípio do terceiro excluído, provado utilizando a versão normal do terceiro excluído juntamente com o axioma \texttt{constructive\\\_indefinite\_description}, que possibilita a definição do conjunto de Lindenbaum.
+          O teorema \texttt{strong\_lem} representa uma versão forte do princípio do terceiro excluído, provado utilizando a versão normal do terceiro excluído juntamente com o axioma \texttt{constructive\\\_indefinite\_description}, que possibilita a definição do conjunto de Lindenbaum. 
+          
+          Os \texttt{Records} \texttt{injection} e \texttt{surjection} facilitam o uso de funções injetoras e sobrejetoras, pois elementos destes tipos carregam consigo predicados sobre suas funções, que caracterizam-nas de acordo com sua injetividade e sobrejetividade.
 
     
     \subsection{Completeness.v}\label{sec:completeness}
@@ -602,9 +432,6 @@ Record surjection (A B: Type): Type := Build_surjection {
         Este arquivo implementa as provas desenvolvidas ao longo das Seções~\ref{sec:comp},~\ref{sec:equiv} e~\ref{sec:comp_mat}, referentes aos metateoremas da completude (tanto em relação às matrizes, quanto às bivalorações) e da equivalência entre os sistemas semânticos.
 
         \begin{lstlisting}[name=Completeness, frame=single, language=coq]
-From Stdlib Require Import Classical_sets IndefiniteDescription.
-From LFI1 Require Import Countability.
-
 Proposition In_lem {U : Type} : forall (A : Ensemble U) (x : U),
   x $\in$ A \/ x $\not \in$ A.
 Proof. intros. apply classic. Qed.
@@ -617,12 +444,10 @@ Definition closed_theory ($\Gamma$ : Ensemble Formula) : Prop := forall $\phi$ :
 
 Lemma maximal_nontrivial_is_closed : forall ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula),
   maximal_nontrivial $\Gamma$ $\phi$ -> closed_theory $\Gamma$.
-Proof.
-$\quad\vdots$
-Qed.
+Proof.$\;\ldots\;$Qed.
         \end{lstlisting}
 
-        O teorema \texttt{In\_lem} representa o princípio do terceiro excluído aplicado a pertinência de um dado elemento a um conjunto. Os predicados \texttt{maximal\_nontrivial} e \texttt{closed\_theory} implementam, respectivamente, as Definições~\ref{def:nao-trivial_maximal} e~\ref{def:fechada} sobre conjuntos de fórmulas bem formadas. O lema \texttt{maximal\_nontrivial\_is\_closed} prova que todo conjunto maximal não trivial de fórmulas é uma teoria fechada (Lema~\ref{lem:nao_trivial_maximal_fechado}). Isto é feito por análise de caso em $\gamma \in \Gamma$, onde $\gamma$ é uma fórmula qualquer.
+        O teorema \texttt{In\_lem} representa o princípio do terceiro excluído aplicado à pertinência de um dado elemento a um conjunto. Os predicados \texttt{maximal\_nontrivial} e \texttt{closed\_theory} implementam, respectivamente, as Definições~\ref{def:nao-trivial_maximal} e~\ref{def:fechada} sobre conjuntos de fórmulas bem formadas. O lema \texttt{maximal\_nontrivial\_is\_closed} prova que todo conjunto maximal não trivial de fórmulas é uma teoria fechada (Lema~\ref{lem:nao_trivial_maximal_fechado}). Isto é feito por análise de caso em $\gamma \in \Gamma$, onde $\gamma$ é uma fórmula qualquer.
 
         Depois destas definições e lemas, é preciso estabelecer uma bivaloração específica que permite o desenvolvimento da prova de completude.
         
@@ -637,9 +462,7 @@ fun x =>
 
 Lemma completeness_valuation_is_bivaluation : forall ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula),
 (maximal_nontrivial $\Gamma$ $\phi$) -> bivaluation (completeness_valuation $\Gamma$).
-Proof.
-$\quad\vdots$
-Qed.
+Proof.$\;\ldots\;$Qed.
         \end{lstlisting}
 
         A função \texttt{completeness\_valuation} é provada uma bivaloração pelo lema \texttt{complete-\\ness\_valuation\_is\_bivaluation}, por análise de caso, como feito no Lema~\ref{lem:valoracao}.
