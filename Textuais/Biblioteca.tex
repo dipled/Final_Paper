@@ -9,7 +9,7 @@ Neste capítulo será descrita a implementação da biblioteca da lógica de inc
     
     \begin{itemize}
         \item A linguagem de programação e especificação \textit{Gallina}, que goza da propriedade da normalização forte\footnote{Um termo-$\lambda$ é fortemente normalizável caso toda sequência de reescrita acabe numa forma normal (num termo irredutível). Um sistema no qual todos os termos-$\lambda$ são fortemente normalizáveis possui a propriedade da normalização forte~\cite{nipkow2006rewriting}.}, a qual garante que todo programa termina.
-        \item A linguagem de comandos \textit{Vernacular}, que permite interagir com o assistente.
+        \item A linguagem de comandos \textit{Vernacular}, que permite interação com o assistente.
         \item O conjunto de táticas (\textit{tactics}) utilizadas para manipular elementos durante o desenvolvimento de uma prova.
         \item A linguagem $\pazocal{L}$tac, utilizada para implementar novas táticas e automatizar provas.
     \end{itemize}
@@ -34,7 +34,7 @@ Notation " A $\subseteq$ B " := (Included A B) (at level 71).
 Notation " $\varnothing$ "     := (Empty_set).
       \end{lstlisting}
 
-      As bibliotecas \texttt{Arith} e \texttt{Constructive\_sets} fornecem alguns teoremas e definições fundamentais para trabalhar com conjuntos em Rocq, na forma de estruturas chamadas de \texttt{Ensembles}, que são mapeamentos de um tipo qualquer \texttt{U} para \texttt{Prop}. A fim de facilitar a leitura do código, foram estabelecidas notações para conceitos de pertinência, união e contingência de conjuntos e conjuntos vazio e \textit{singleton}.
+      As bibliotecas \texttt{Arith} e \texttt{Constructive\_sets} fornecem alguns teoremas e definições fundamentais para trabalhar com conjuntos em Rocq, na forma de estruturas chamadas de \texttt{Ensembles}, que são mapeamentos de um tipo qualquer \texttt{U} para \texttt{Prop}. A fim de facilitar a leitura do código, foram estabelecidas notações para conceitos de pertinência, união e contingência de conjuntos e conjuntos vazio e conjunto unitário.
 
       \begin{lstlisting}[name=Utils, frame=single, language=coq]
 Theorem iff_neg : forall A B : Prop, (A <-> B) -> (~A <-> ~B).
@@ -51,7 +51,7 @@ match type of H with
 end.
       \end{lstlisting}
 
-      O $\pazocal{L}$tac  \texttt{destruct\_conjunction} é uma tática que recebe como argumento uma hipótese \texttt{H} e caso esta hipótese seja uma conjunção, ela é destruída em duas novas hipóteses \texttt{L} e \texttt{R} e a tática é repetida recursivamente para cada uma destas hipóteses.
+      A tática \texttt{destruct\_conjunction}, implementada em $\pazocal{L}$tac, é uma tática que recebe como argumento uma hipótese \texttt{H} e caso esta hipótese seja uma conjunção, ela é destruída em duas novas hipóteses \texttt{L} e \texttt{R} e a tática é repetida recursivamente para cada uma destas hipóteses.
 
       \subsection{Language.v}\label{sec:language}
 
@@ -104,7 +104,7 @@ $\qquad\vdots$
   end.
       \end{lstlisting}
 
-      Primeiro, o tipo \texttt{Ax} foi definido como um tipo indutivo (também chamado de tipo algébrico), com construtores que recebem como argumentos fórmulas correspondentes ao número de fórmulas dos axiomas definidos na Definição~\ref{def:hilbert_lfi1}. 
+      Primeiro, o tipo \texttt{Ax} foi definido como um tipo indutivo (também chamado de tipo algébrico), com construtores que recebem como argumentos fórmulas correspondentes ao número de fórmulas dos axiomas apresentados na Definição~\ref{def:hilbert_lfi1}. 
       
       Depois, a função \texttt{instantiate} é definida. Ela recebe como argumento um axioma (que por sua vez foi construído a partir de fórmulas) e retorna uma fórmula correspondente àquela representada pelo axioma, por exemplo, o axioma~\ref{ax:axcf} representa a eliminação da dupla negação, portanto, a função \texttt{instantiate} receberia um dado \texttt{cf $\alpha$} do tipo \texttt{Ax}, onde $\alpha$ é uma fórmula qualquer da linguagem, e retornaria um dado $\neg\neg\alpha \to \alpha$ do tipo \texttt{Formula}.
 
@@ -118,13 +118,11 @@ Inductive deduction : Ensemble Formula -> Formula -> Prop :=
 Notation " $\Gamma$ $\vdash$ $\phi$ " := (deduction $\Gamma$ $\phi$) (at level 50, no associativity).
       \end{lstlisting}
 
-      O tipo \texttt{deduction} é definido indutivamente a partir de um conjunto de fórmulas (conjunto de premissas) e uma fórmula (conclusão) e retornando um dado do tipo \texttt{Prop} referente a possibilidade de construir uma derivação da conclusão a partir do conjunto de premissas, aplicando uma sequência de construtores, que representam os três casos de derivação descritos na Definição~\ref{def:derivacao}. O construtor \texttt{Premisse} diz que se uma fórmula qualquer pertence ao conjunto de premissas, então ela é derivável a partir deste conjunto. O construtor \texttt{AxiomInstance} diz que um axioma é sempre derivável a partir de qualquer conjunto de premissas. O construtor \texttt{MP} diz que, dadas duas fórmulas $\phi$ e $\psi$ quaisquer, se for possível derivar $\phi \to \psi$ e $\phi$ a partir de um conjunto de fórmulas, então podemos derivar $\psi$ a partir deste mesmo conjunto. Por último, uma notação com o operador infixo $\vdash$ é estabelecida para facilitar a leitura de derivações.
+      O tipo \texttt{deduction} é definido indutivamente a partir de um conjunto de fórmulas (premissas) e uma fórmula (conclusão) e retornando um dado do tipo \texttt{Prop} referente a possibilidade de construir uma derivação da conclusão a partir do conjunto de premissas, aplicando uma sequência de construtores, que representam os três casos de derivação descritos na Definição~\ref{def:derivacao}. O construtor \texttt{Premisse} afirma que se uma fórmula qualquer pertence ao conjunto de premissas, então ela é derivável a partir deste conjunto. O construtor \texttt{AxiomInstance} afirma que um axioma é sempre derivável a partir de qualquer conjunto de premissas. O construtor \texttt{MP} afirma que, dadas duas fórmulas $\phi$ e $\psi$ quaisquer, se for possível derivar $\phi \to \psi$ e $\phi$ a partir de um conjunto de fórmulas, então podemos derivar $\psi$ a partir deste mesmo conjunto. Por último, uma notação com o operador infixo $\vdash$ é estabelecida para facilitar a leitura de derivações.
     
     \subsection{Semantics.v}
 
-      Este arquivo contém a definição dos dois sistemas semânticos apresentados na Seção~\ref{sec:semantica}.
-
-      O primeiro sistema definido foi a semântica matricial, conforme as Definições~\ref{def:mat} e~\ref{def:conmat}.
+      Este arquivo contém a definição dos dois sistemas semânticos apresentados na Seção~\ref{sec:semantica}. O primeiro sistema definido foi a semântica matricial, conforme as Definições~\ref{def:mat} e~\ref{def:conmat}.
       \begin{lstlisting}[name=Semantics, frame=single, language=coq]
 Inductive MatrixDomain : Set :=
   | One
@@ -171,7 +169,7 @@ valuation v ->
 Notation " $\Gamma$ $\vDash$m $\phi$ " := (matrixEntails $\Gamma$ $\phi$) (at level 50, no associativity).
       \end{lstlisting}
 
-      A definição \texttt{valuation} representa um predicado sobre qualquer mapeamento de \texttt{Formula} para \texttt{MatrixDomain}, que retorna \texttt{True} caso este mapeamento seja um homomorfismo sobre a linguagem e o domínio da matriz e retorna \texttt{False} caso contrário. A relação de consequência semântica é definida em \texttt{matrixEntails} (conforme a Definição~\ref{def:conmat}), que diz que, dado um conjunto de fórmulas (conjunto de premissas) e uma fórmula (conclusão), esta fórmula será uma consequência semântica do conjunto de premissas caso toda valoração que satisfaz todas as fórmulas deste conjunto também satisfizer a conclusão.
+      A definição \texttt{valuation} representa um predicado sobre qualquer mapeamento de \texttt{Formula} para \texttt{MatrixDomain}, que retorna \texttt{True} caso este mapeamento seja um homomorfismo sobre a linguagem e o domínio da matriz e retorna \texttt{False} caso contrário. A relação de consequência semântica é definida em \texttt{matrixEntails} (conforme a Definição~\ref{def:conmat}), que diz que, dado um conjunto de fórmulas (premissas) e uma fórmula (conclusão), esta fórmula será uma consequência semântica do conjunto de premissas caso toda valoração que satisfaz todas as fórmulas deste conjunto também satisfizer a conclusão.
 
       Depois disso, a semântica de bivalorações foi implementada, com base nas Definições~\ref{def:valoracoes} e~\ref{def:conval}.
 
@@ -195,6 +193,8 @@ Definition vCon (v : Formula -> BivaluationDomain) : Prop :=
 Definition vCi (v : Formula -> BivaluationDomain) : Prop :=
   forall $\phi$ : Formula, (v $\neg$$\circ$$\phi$) = $\top$ -> (v $\phi$ = $\top$) /\ (v $\neg$$\phi$ = $\top$).
 $\qquad\vdots$
+Definition vCip (v : Formula -> BivaluationDomain) : Prop :=
+  forall $\phi$ $\psi$ : Formula, (v $\neg$($\phi$ → $\psi$)) = $\top$ <-> (v $\phi$ = $\top$) /\ (v $\neg$$\psi$ = $\top$).
 Definition bivaluation (v : Formula -> BivaluationDomain) : Prop :=
   vAnd v /\ vOr v /\ vImp v /\ vNeg v /\ vCon v /\ vCi v /\
   vDne v /\ vDmAND v /\ vDmOR v /\ vCip v.
@@ -390,10 +390,10 @@ Proof.$\;\ldots\;$Qed.
     
     \subsection{Cardinality.v}\label{sec:cardinality}
 
-        Este arquivo implementa alguns conceitos relacionados à cardinalidade de tipos indutivos, utilizados para provar que um dado tipo possui o mesmo número de elementos que outro. O módulo \texttt{IndefiniteDescription} contém um axioma chamado \texttt{constructive\_indefinite\\\_description}, que torna possível a definição de funções de escolha, necessárias para a prova do lema de Lindenbaum (Lema~\ref{lem:lindenbaum}). Este módulo também importa arquivos que implementam o axioma da escolha. Já o módulo \texttt{Classical\_sets} contém o princípio do terceiro excluído como axioma.
+        Este arquivo implementa alguns conceitos relacionados à cardinalidade de tipos indutivos, utilizados para provar que um dado tipo possui o mesmo número de elementos que outro. O módulo \texttt{IndefiniteDescription} contém um axioma chamado \texttt{constructive\_indefinite\\\_description}, que torna possível a definição de funções de escolha, necessárias para a prova do lema de  (Lema~\ref{lem:}). Este módulo também importa arquivos que implementam o axioma da escolha. Já o módulo \texttt{Classical\_sets} contém o princípio do terceiro excluído como axioma.
 
         \begin{lstlisting}[name=LFI, frame=single, language=coq]
-          From Stdlib Require Import Classical_sets IndefiniteDescription.
+From Stdlib Require Import Classical_sets IndefiniteDescription.
 
 Theorem strong_lem : forall P : Prop, {P} + {~P}.
 Proof.$\;\ldots\;$Qed. 
@@ -406,7 +406,6 @@ Definition function_injective {A B : Type} (f: A -> B): Prop :=
 
 Definition function_surjective {A B : Type} (f: A -> B): Prop :=
   forall b, exists a, f a = b.
-
   
 Definition inverse_function {A B : Type} (f : A -> B) (g : B -> A) : Prop :=
   forall x : A, g (f x) = x.
@@ -422,7 +421,7 @@ Record surjection (A B: Type): Type := Build_surjection {
 }.
           \end{lstlisting}
 
-          O teorema \texttt{strong\_lem} representa uma versão forte do princípio do terceiro excluído, provado utilizando a versão normal do terceiro excluído juntamente com o axioma \texttt{constructive\\\_indefinite\_description}, que possibilita a definição do conjunto de Lindenbaum. 
+          O teorema \texttt{strong\_lem} representa uma versão forte do princípio do terceiro excluído, provado utilizando a versão normal do terceiro excluído juntamente com o axioma \texttt{constructive\\\_indefinite\_description}, que possibilita a definição do conjunto de . 
           
           Os \texttt{Records} \texttt{injection} e \texttt{surjection} facilitam o uso de funções injetoras e sobrejetoras, pois elementos destes tipos carregam consigo predicados sobre suas funções, que caracterizam-nas de acordo com sua injetividade e sobrejetividade.
 
@@ -465,5 +464,81 @@ Lemma completeness_valuation_is_bivaluation : forall ($\Gamma$ : Ensemble Formul
 Proof.$\;\ldots\;$Qed.
         \end{lstlisting}
 
-        A função \texttt{completeness\_valuation} é provada uma bivaloração pelo lema \texttt{complete-\\ness\_valuation\_is\_bivaluation}, por análise de caso, como feito no Lema~\ref{lem:valoracao}.
+        A função \texttt{completeness\_valuation} é provada uma bivaloração pelo lema \texttt{complete-\\ness\_valuation\_is\_bivaluation}, por análise de caso, mostrando que a função respeita todas as cláusulas necessárias (Definição~\ref{def:valoracoes}), como feito no Lema~\ref{lem:valoracao}.
     
+        Depois disso, uma seção para a prova do lema do  é criada. Esta seção contém duas variáveis genéricas $\Gamma$ e $\phi$ e uma hipótese de que $\Gamma \nvdash \phi$.
+
+        \begin{lstlisting}[name=Completeness, frame=single, language=coq]
+Section .
+
+Variable ($\Gamma$ : Ensemble Formula)
+          ($\phi$ : Formula).
+Hypothesis Gamma_does_not_derive_phi : ~$\Gamma$ $\vdash$ $\phi$.
+Fixpoint Gamma_i 
+  (i : nat) (f: nat -> Formula) : Ensemble Formula :=
+  match i with
+  | O   => $\Gamma$
+  | S n => match (strong_lem (((Gamma_i n f) $\cup$ [f n]) $\vdash$ $\phi$)) with
+            | left _  => (Gamma_i n f)
+            | right _ => (Gamma_i n f) $\cup$ [f n]
+            end
+  end.
+Definition Delta
+  (f: nat -> Formula) : Ensemble Formula :=
+fun ($\psi$ : Formula) => exists n : nat, $\psi$ $\in$ (Gamma_i n f).
+
+        \end{lstlisting}
+
+        A função recursiva \texttt{Gamma\_i} representa a função de escolha $\Gamma_i$ definida no início do Lema~\ref{lem:lindenbaum} e define um conjunto (\texttt{Ensemble}) de fórmulas. A função \texttt{f} recebida como argumento representa a organização das fórmulas da linguagem numa sequência. Já a função \texttt{Delta} representa a união generalizada $\Delta = \bigcup_{i=0}^{\infty}\Gamma_i$ de todos os conjuntos definidos por \texttt{Gamma\_i}. 
+
+        \begin{lstlisting}[name=Completeness, frame=single, language=coq]
+(** $\Gamma_{i}$ $\subseteq$ $\Delta$ *)
+Fact Gamma_i_included_Delta : 
+forall (i : nat) (f : nat -> Formula),
+  (Gamma_i i f) $\subseteq$ (Delta f).
+Proof.$\;\ldots\;$Qed.
+
+(** $\Gamma_{m}$ $\subseteq$ $\Gamma_{n}$ , where m $\leq$ n *)
+Fact Gamma_i_m_included_Gamma_i_n : 
+forall (f : nat -> Formula) (m : nat) (n : nat), 
+m <= n -> (Gamma_i m f) $\subseteq$ (Gamma_i n f).
+Proof.
+
+Qed.
+
+(** ~($\Gamma_{i}$ $\vdash$ $\phi$) for all i *)
+Fact Gamma_i_non_trivial :
+forall (i : nat) (f : nat -> Formula),
+  ~((Gamma_i i f) $\vdash$ $\phi$).
+Proof.$\;\ldots\;$Qed.
+
+(** $\Delta$ $\vdash$ $\phi$0 -> $\exists$n : nat, $\Gamma_{n}$ $\vdash$ $\phi$0 *)
+Fact Delta_f_i_Gamma_i_con :
+  forall (f : nat -> Formula) ($\phi$0 : Formula), 
+(Delta f) $\vdash$ $\phi$0 -> (exists n : nat, (Gamma_i n f) $\vdash$ $\phi$0).
+Proof.$\;\ldots\;$Qed.
+
+(** ~($\Delta$ $\vdash$ $\phi$) *)
+Fact Delta_nvdash_phi : 
+  forall (f : nat -> Formula), 
+  ~ (Delta f) $\vdash$ $\phi$.
+Proof.$\;\ldots\;$Qed.
+
+(** $\psi$ $\not \in$ $\Delta$ -> $\forall$n : nat, $\psi$ $\not \in$ $\Gamma_{n}$ *)
+Fact not_in_Delta_Gamma_i : forall ($\psi$ : Formula) (f : nat -> Formula),
+  $\psi$ $\not \in$ (Delta f) -> forall n : nat, $\psi$ $\not \in$ (Gamma_i n f).
+Proof.$\;\ldots\;$Qed.
+
+(** $\phi_{i}$ $\not \in$ $\Gamma_{i + 1}$ -> $\Gamma_{i}$ $\cup$ {$\phi_{i}$} $\vdash$ $\phi$ *)
+Fact not_in_Gamma_i_trivial : forall (f : nat -> Formula) (i : nat),
+  (f i) $\not \in$ (Gamma_i (S i) f) -> (Gamma_i i f) $\cup$ [f i] $\vdash$ $\phi$.
+Proof.$\;\ldots\;$Qed.
+
+(** Delta is maximal nontrivial given a surjection from nat to Formula*)
+Fact Delta_maximal_nontrivial : forall (f : surjection nat Formula),
+  maximal_nontrivial (Delta f) $\phi$.
+Proof.$\;\ldots\;$Qed.
+
+End .
+
+        \end{lstlisting}
