@@ -398,6 +398,9 @@ From Stdlib Require Import Classical_sets IndefiniteDescription.
 Theorem strong_lem : forall P : Prop, {P} + {~P}.
 Proof.$\;\ldots\;$Qed. 
 
+Theorem contraposition : forall A B : Prop, (A -> B) <-> (~B -> ~A).
+Proof.$\;\ldots\;$Qed.
+
 Inductive image_set {A B : Type} (f : A -> B) (M: Ensemble A) : Ensemble B :=
 image_intro : forall a, a $\in$ M -> (f a) $\in$ (image_set f M).
 
@@ -421,7 +424,9 @@ Record surjection (A B: Type): Type := Build_surjection {
 }.
           \end{lstlisting}
 
-          O teorema \texttt{strong\_lem} representa uma versão forte do princípio do terceiro excluído, provado utilizando a versão normal do terceiro excluído juntamente com o axioma \texttt{constructive\\\_indefinite\_description}, que possibilita a definição do conjunto de . 
+          O teorema \texttt{strong\_lem} representa uma versão forte do princípio do terceiro excluído, provado utilizando a versão normal do terceiro excluído juntamente com o axioma \texttt{constructive\\\_indefinite\_description}, que possibilita a definição do conjunto de Lindenbaum.
+          
+          O teorema \texttt{contraposition} define a versão forte da prova por contraposição, permitindo provas de $A \to B$ a partir de provas do tipo $\sim B \to \sim A$.
           
           Os \texttt{Records} \texttt{injection} e \texttt{surjection} facilitam o uso de funções injetoras e sobrejetoras, pois elementos destes tipos carregam consigo predicados sobre suas funções, que caracterizam-nas de acordo com sua injetividade e sobrejetividade.
 
@@ -508,7 +513,6 @@ Fact $\Gamma_i$_m_included_$\Gamma_i$_n :
 forall (f : nat -> Formula) (m : nat) (n : nat), 
 m <= n -> ($\Gamma_i$ m f) $\subseteq$ ($\Gamma_i$ n f).
 Proof.$\;\ldots\;$Qed.
-
         \end{lstlisting}
 
         Os fatos \texttt{$\Gamma_i$\_included\_$\Delta$} e \texttt{$\Gamma_i$\_does\_not\_derive\_$\phi$} são provados por indução em \texttt{i}. 
@@ -542,15 +546,35 @@ Fact not_in_$\Gamma_i$_derives_$\phi$ : forall (f : nat -> Formula) (i : nat),
   (f i) $\not \in$ ($\Gamma_i$ (S i) f) -> ($\Gamma_i$ i f) $\cup$ [f i] $\vdash$ $\phi$.
 Proof.$\;\ldots\;$Qed.
 
-Fact $\Delta$_maximal_nontrivial : forall (f : surjection nat Formula),
+Lemma $\Delta$_maximal_nontrivial : forall (f : surjection nat Formula),
   maximal_nontrivial ($\Delta$ f) $\phi$.
 Proof.$\;\ldots\;$Qed.
 
 End .
-
         \end{lstlisting}
 
         O fato \texttt{not\_in\_$\Gamma_i$\_derives\_$\phi$} segue por análise de caso em \texttt{$\Gamma_i$\ i\ f $\cup$ [f (i)] $\vdash$ $\varphi$}, utilizando o princípio do terceiro excluído.
         
-        O fato \texttt{$\Delta$\_maximal\_nontrivial} segue utilizando a definição de sobrejeção (visto que, neste caso, considera-se a função que representa organização das fórmulas numa sequência como sendo uma sobrejeção), a definição \texttt{maximal\_nontrivial} e os fatos \texttt{$\Delta$\_does\_not\_derive\_$\varphi$}, \texttt{not\_in\_$\Gamma_i$\_derives\_$\varphi$} e \texttt{lfi1\_monotonicity}.
+        O lema \texttt{$\Delta$\_maximal\_nontrivial} segue utilizando a definição de sobrejeção (visto que, neste caso, considera-se a função que representa organização das fórmulas numa sequência como sendo uma sobrejeção), a definição \texttt{maximal\_nontrivial} e os fatos \texttt{$\Delta$\_does\_not\_derive\_$\varphi$}, \texttt{not\_in\_$\Gamma_i$\_derives\_$\varphi$} e \texttt{lfi1\_monotonicity}.
 
+        Com isto, o lema de Lindenbaum está provado e a completude da lógica \lfium{} pode enfim ser provada.
+
+        \begin{lstlisting}[name=Completeness, frame=single, language=coq]
+Axiom surjection_nat_formula : surjection nat Formula.
+
+Theorem completeness_bivaluations : forall ($\Gamma$ : Ensemble Formula) ($\alpha$ : Formula), 
+($\Gamma$ $\vDash$ $\alpha$) -> ($\Gamma$ $\vdash$ $\alpha$).
+Proof.$\;\ldots\;$Qed.
+  
+Corollary completeness_matrix : forall ($\Gamma$ : Ensemble Formula) ($\alpha$ : Formula), 
+($\Gamma$ $\vDash$m $\alpha$) -> ($\Gamma$ $\vdash$ $\alpha$).
+Proof.$\;\ldots\;$Qed.
+
+Corollary matrix_bivaluations_eq : forall ($\Gamma$ : Ensemble Formula) ($\alpha$ : Formula),
+($\Gamma$ $\vDash$m $\alpha$) <-> ($\Gamma$ $\vDash$ $\alpha$).
+Proof.$\;\ldots\;$Qed.
+        \end{lstlisting}
+
+        O axioma \texttt{surjection\_nat\_formula} estabelece a existência de uma sobrejeção entre \texttt{nat} e \texttt{Formula}.
+
+        O teorema \texttt{completeness\_bivaluations} (relativo ao Teorema~\ref{teo:completude_val}) segue pela contrapositiva\footnote{Utilizando o teorema \texttt{contraposition}, que só pode ser demonstrado visto que estamos assumindo o princípio do terceiro excluído como válido neste módulo.} ($\Gamma \nvdash \alpha \Longrightarrow \Gamma \nvDash \alpha$) e utiliza os fatos provados no lema do Lindenbaum juntamente com a definição da bivaloração \texttt{completeness\_valuation}.
