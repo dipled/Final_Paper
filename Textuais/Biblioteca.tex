@@ -474,71 +474,83 @@ Section .
 Variable ($\Gamma$ : Ensemble Formula)
           ($\phi$ : Formula).
 Hypothesis Gamma_does_not_derive_phi : ~$\Gamma$ $\vdash$ $\phi$.
-Fixpoint Gamma_i 
+Fixpoint $\Gamma_i$ 
   (i : nat) (f: nat -> Formula) : Ensemble Formula :=
   match i with
   | O   => $\Gamma$
-  | S n => match (strong_lem (((Gamma_i n f) $\cup$ [f n]) $\vdash$ $\phi$)) with
-            | left _  => (Gamma_i n f)
-            | right _ => (Gamma_i n f) $\cup$ [f n]
+  | S n => match (strong_lem ((($\Gamma_i$ n f) $\cup$ [f n]) $\vdash$ $\phi$)) with
+            | left _  => ($\Gamma_i$ n f)
+            | right _ => ($\Gamma_i$ n f) $\cup$ [f n]
             end
   end.
-Definition Delta
+Definition $\Delta$
   (f: nat -> Formula) : Ensemble Formula :=
-fun ($\psi$ : Formula) => exists n : nat, $\psi$ $\in$ (Gamma_i n f).
+fun ($\psi$ : Formula) => exists n : nat, $\psi$ $\in$ ($\Gamma_i$ n f).
 
         \end{lstlisting}
 
-        A função recursiva \texttt{Gamma\_i} representa a função de escolha $\Gamma_i$ definida no início do Lema~\ref{lem:lindenbaum} e define um conjunto (\texttt{Ensemble}) de fórmulas. A função \texttt{f} recebida como argumento representa a organização das fórmulas da linguagem numa sequência. Já a função \texttt{Delta} representa a união generalizada $\Delta = \bigcup_{i=0}^{\infty}\Gamma_i$ de todos os conjuntos definidos por \texttt{Gamma\_i}. 
+        A função recursiva \texttt{$\Gamma_i$} representa a função de escolha $\Gamma_i$ definida no início do Lema~\ref{lem:lindenbaum} e define um conjunto (\texttt{Ensemble}) de fórmulas. A função \texttt{f} recebida como argumento representa a organização das fórmulas da linguagem numa sequência. Já a função \texttt{$\Delta$} representa a união generalizada de todos os conjuntos definidos por \texttt{$\Gamma_i$} ($\Delta = \bigcup_{i=0}^{\infty}\Gamma_i$). 
+
+        Então, alguns fatos sobre estes conjuntos são provados.
 
         \begin{lstlisting}[name=Completeness, frame=single, language=coq]
-(** $\Gamma_{i}$ $\subseteq$ $\Delta$ *)
-Fact Gamma_i_included_Delta : 
+Fact $\Gamma_i$_included_$\Delta$ : 
 forall (i : nat) (f : nat -> Formula),
-  (Gamma_i i f) $\subseteq$ (Delta f).
+  ($\Gamma_i$ i f) $\subseteq$ ($\Delta$ f).
 Proof.$\;\ldots\;$Qed.
 
-(** $\Gamma_{m}$ $\subseteq$ $\Gamma_{n}$ , where m $\leq$ n *)
-Fact Gamma_i_m_included_Gamma_i_n : 
+Fact $\Gamma_i$_does_not_derive_$\phi$ :
+forall (i : nat) (f : nat -> Formula),
+  ~(($\Gamma_i$ i f) $\vdash$ $\phi$).
+Proof.$\;\ldots\;$Qed.
+
+Fact $\Gamma_i$_m_included_$\Gamma_i$_n : 
 forall (f : nat -> Formula) (m : nat) (n : nat), 
-m <= n -> (Gamma_i m f) $\subseteq$ (Gamma_i n f).
-Proof.
-
-Qed.
-
-(** ~($\Gamma_{i}$ $\vdash$ $\phi$) for all i *)
-Fact Gamma_i_non_trivial :
-forall (i : nat) (f : nat -> Formula),
-  ~((Gamma_i i f) $\vdash$ $\phi$).
+m <= n -> ($\Gamma_i$ m f) $\subseteq$ ($\Gamma_i$ n f).
 Proof.$\;\ldots\;$Qed.
 
-(** $\Delta$ $\vdash$ $\phi$0 -> $\exists$n : nat, $\Gamma_{n}$ $\vdash$ $\phi$0 *)
-Fact Delta_f_i_Gamma_i_con :
+        \end{lstlisting}
+
+        Os fatos \texttt{$\Gamma_i$\_included\_$\Delta$} e \texttt{$\Gamma_i$\_does\_not\_derive\_$\phi$} são provados por indução em \texttt{i}. 
+        
+        O fato \texttt{$\Gamma_i$\_m\_included\_$\Gamma_i$\_n} é provado utilizando a definição da função \texttt{$\Gamma_i$}.
+
+        \begin{lstlisting}[name=Completeness, frame=single, language=coq]
+Fact $\Delta$_$\Gamma_i$_con :
   forall (f : nat -> Formula) ($\phi$0 : Formula), 
-(Delta f) $\vdash$ $\phi$0 -> (exists n : nat, (Gamma_i n f) $\vdash$ $\phi$0).
+($\Delta$ f) $\vdash$ $\phi$0 -> (exists n : nat, ($\Gamma_i$ n f) $\vdash$ $\phi$0).
 Proof.$\;\ldots\;$Qed.
 
-(** ~($\Delta$ $\vdash$ $\phi$) *)
-Fact Delta_nvdash_phi : 
+Fact $\Delta$_does_not_derive_$\phi$ : 
   forall (f : nat -> Formula), 
-  ~ (Delta f) $\vdash$ $\phi$.
+  ~ ($\Delta$ f) $\vdash$ $\phi$.
 Proof.$\;\ldots\;$Qed.
 
-(** $\psi$ $\not \in$ $\Delta$ -> $\forall$n : nat, $\psi$ $\not \in$ $\Gamma_{n}$ *)
-Fact not_in_Delta_Gamma_i : forall ($\psi$ : Formula) (f : nat -> Formula),
-  $\psi$ $\not \in$ (Delta f) -> forall n : nat, $\psi$ $\not \in$ (Gamma_i n f).
+Fact not_in_$\Delta$_$\Gamma_i$ : forall ($\psi$ : Formula) (f : nat -> Formula),
+  $\psi$ $\not \in$ ($\Delta$ f) -> forall n : nat, $\psi$ $\not \in$ ($\Gamma_i$ n f).
+Proof.$\;\ldots\;$Qed.
+        \end{lstlisting}
+        
+        O fato \texttt{$\Delta$\_$\Gamma_i$\_con} segue por indução na hipótese \texttt{$\Delta$ f $\vdash$ $\phi$0}. 
+        
+        O fato \texttt{$\Delta$\_does\_not\_derive\_$\phi$} segue utilizando as provas de \texttt{$\Gamma_i$\_does\_not\_derive\_$\phi$} e \texttt{$\Delta$\_$\Gamma_i$\_con} para mostrar que, supondo \texttt{$\Delta$ f $\vdash$ $\phi$} chega-se numa contradição. 
+        
+        O fato \texttt{not\_in\_$\Delta$\_$\Gamma_i$} segue pela definição de $\Delta$.
+        
+        \begin{lstlisting}[name=Completeness, frame=single, language=coq]
+Fact not_in_$\Gamma_i$_derives_$\phi$ : forall (f : nat -> Formula) (i : nat),
+  (f i) $\not \in$ ($\Gamma_i$ (S i) f) -> ($\Gamma_i$ i f) $\cup$ [f i] $\vdash$ $\phi$.
 Proof.$\;\ldots\;$Qed.
 
-(** $\phi_{i}$ $\not \in$ $\Gamma_{i + 1}$ -> $\Gamma_{i}$ $\cup$ {$\phi_{i}$} $\vdash$ $\phi$ *)
-Fact not_in_Gamma_i_trivial : forall (f : nat -> Formula) (i : nat),
-  (f i) $\not \in$ (Gamma_i (S i) f) -> (Gamma_i i f) $\cup$ [f i] $\vdash$ $\phi$.
-Proof.$\;\ldots\;$Qed.
-
-(** Delta is maximal nontrivial given a surjection from nat to Formula*)
-Fact Delta_maximal_nontrivial : forall (f : surjection nat Formula),
-  maximal_nontrivial (Delta f) $\phi$.
+Fact $\Delta$_maximal_nontrivial : forall (f : surjection nat Formula),
+  maximal_nontrivial ($\Delta$ f) $\phi$.
 Proof.$\;\ldots\;$Qed.
 
 End .
 
         \end{lstlisting}
+
+        O fato \texttt{not\_in\_$\Gamma_i$\_derives\_$\phi$} segue por análise de caso em \texttt{$\Gamma_i$\ i\ f $\cup$ [f (i)] $\vdash$ $\varphi$}, utilizando o princípio do terceiro excluído.
+        
+        O fato \texttt{$\Delta$\_maximal\_nontrivial} segue utilizando a definição de sobrejeção (visto que, neste caso, considera-se a função que representa organização das fórmulas numa sequência como sendo uma sobrejeção), a definição \texttt{maximal\_nontrivial} e os fatos \texttt{$\Delta$\_does\_not\_derive\_$\varphi$}, \texttt{not\_in\_$\Gamma_i$\_derives\_$\varphi$} e \texttt{lfi1\_monotonicity}.
+
