@@ -34,7 +34,7 @@ Notation " A $\subseteq$ B " := (Included A B) (at level 71).
 Notation " $\varnothing$ "     := (Empty_set).
       \end{lstlisting}
 
-      As bibliotecas \texttt{Arith} e \texttt{Constructive\_sets} fornecem alguns teoremas e definições fundamentais para trabalhar com conjuntos em Rocq, na forma de estruturas chamadas de \texttt{Ensembles}, que são mapeamentos de um tipo qualquer \texttt{U} para \texttt{Prop}. A fim de facilitar a leitura do código, foram estabelecidas notações para conceitos de pertinência, união e contingência de conjuntos e conjuntos vazio e conjunto unitário.
+      As bibliotecas \texttt{Arith} e \texttt{Constructive\_sets} fornecem alguns teoremas e definições fundamentais para trabalhar com conjuntos em Rocq, na forma de estruturas chamadas de \texttt{Ensembles}, que são mapeamentos de um tipo qualquer \texttt{U} para \texttt{Prop}. A fim de facilitar a leitura do código, foram estabelecidas notações para conceitos de pertinência, união e contingência de conjuntos e conjuntos vazio e unitário.
 
       \begin{lstlisting}[name=Utils, frame=single, language=coq]
 Theorem iff_neg : forall A B : Prop, (A <-> B) -> (~A <-> ~B).
@@ -386,11 +386,11 @@ Proposition lfi1_is_lfi :
 Proof.$\;\ldots\;$Qed.
         \end{lstlisting}
 
-        A prova das condições 1 e 2 dependem da definição de valorações específicas que servem de contraexemplo para a validade da derivação, utilizando a contrapositiva da recém-provada correção (\texttt{soundness\_matrix}). Estas valorações são definidas recursivamente em \texttt{valuation\_condition\_1}, \texttt{valuation\_condition\_2\_l} e \texttt{valuation\_condition\_2\_r}. A prova da condição 3 é feita por derivação no cálculo de Hilbert, utilizando do teorema da dedução (\texttt{deduction\_metatheorem}) para facilitar o desenvolvimento.
+        A prova das condições 1 e 2 dependem da definição de valorações específicas que servem de contraexemplo para a validade da derivação, utilizando a contrapositiva da recém-provada correção (\texttt{soundness\_matrix}). Estas valorações são definidas recursivamente em \texttt{valuation\_condition\_1}, \texttt{valuation\_condition\_2\_l} e \texttt{valuation\_condition\_2\_r}. A\\prova da condição 3 é feita por derivação no cálculo de Hilbert, utilizando do teorema da dedução (\texttt{deduction\_metatheorem}) para facilitar o desenvolvimento.
     
     \subsection{Cardinality.v}\label{sec:cardinality}
 
-        Este arquivo implementa alguns conceitos relacionados à cardinalidade de tipos indutivos, utilizados para provar que um dado tipo possui o mesmo número de elementos que outro. O módulo \texttt{IndefiniteDescription} contém um axioma chamado \texttt{constructive\_indefinite\\\_description}, que torna possível a definição de funções de escolha, necessárias para a prova do lema de  (Lema~\ref{lem:lindenbaum}). Este módulo também importa arquivos que implementam o axioma da escolha. Já o módulo \texttt{Classical\_sets} contém o princípio do terceiro excluído como axioma.
+        Este arquivo implementa alguns conceitos relacionados à cardinalidade de tipos indutivos, utilizados para provar que um dado tipo possui o mesmo número de elementos que outro. O módulo \texttt{IndefiniteDescription} contém um axioma chamado \texttt{constructive\_indefinite\\\_description}, que torna possível a definição de funções de escolha, necessárias para a prova do lema de Lindenbaum (Lema~\ref{lem:lindenbaum}). Este módulo também importa arquivos que implementam o axioma da escolha. Já o módulo \texttt{Classical\_sets} contém o princípio do terceiro excluído como axioma.
 
         \begin{lstlisting}[name=LFI, frame=single, language=coq]
 From Stdlib Require Import Classical_sets IndefiniteDescription.
@@ -443,8 +443,8 @@ Proof. intros. apply classic. Qed.
 Definition maximal_nontrivial ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula) : Prop :=
   ~ $\Gamma$ $\vdash$ $\phi$ /\ (forall ($\psi$ : Formula), $\psi$ $\not \in$ $\Gamma$ -> ($\Gamma$ $\cup$ [$\psi$] $\vdash$ $\phi$)).
 
-Definition closed_theory ($\Gamma$ : Ensemble Formula) : Prop := forall $\phi$ : Formula, 
-  $\Gamma$ $\vdash$ $\phi$ <-> $\phi$ $\in$ $\Gamma$.
+Definition closed_theory ($\Gamma$ : Ensemble Formula) : Prop := 
+forall $\phi$ : Formula, $\Gamma$ $\vdash$ $\phi$ <-> $\phi$ $\in$ $\Gamma$.
 
 Lemma maximal_nontrivial_is_closed : forall ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula),
   maximal_nontrivial $\Gamma$ $\phi$ -> closed_theory $\Gamma$.
@@ -464,17 +464,18 @@ fun x =>
   | right _ => $\bot$
   end.
 
-Lemma completeness_valuation_is_bivaluation : forall ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula),
-(maximal_nontrivial $\Gamma$ $\phi$) -> bivaluation (completeness_valuation $\Gamma$).
+Lemma completeness_valuation_is_bivaluation : 
+forall ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula), 
+  (maximal_nontrivial $\Gamma$ $\phi$) -> bivaluation (completeness_valuation $\Gamma$).
 Proof.$\;\ldots\;$Qed.
         \end{lstlisting}
 
-        A função \texttt{completeness\_valuation} é provada uma bivaloração pelo lema \texttt{complete-\\ness\_valuation\_is\_bivaluation}, por análise de caso, mostrando que a função respeita todas as cláusulas necessárias (Definição~\ref{def:valoracoes}), como feito no Lema~\ref{lem:valoracao}.
+        A função \texttt{completeness\_valuation} é provada como sendo uma bivaloração pelo lema \texttt{complete-\\ness\_valuation\_is\_bivaluation}, por análise de caso, mostrando que a função respeita todas as cláusulas necessárias (Definição~\ref{def:valoracoes}), como feito no Lema~\ref{lem:valoracao}.
     
-        Depois disso, uma seção para a prova do lema do  é criada. Esta seção contém duas variáveis genéricas $\Gamma$ e $\phi$ e uma hipótese de que $\Gamma \nvdash \phi$.
+        Depois disso, uma seção para a prova do lema de Lindenbaum é criada. Esta seção contém duas variáveis genéricas $\Gamma$ e $\phi$ e uma hipótese de que $\Gamma \nvdash \phi$.
 
         \begin{lstlisting}[name=Completeness, frame=single, language=coq]
-Section .
+Section Lindenbaum.
 
 Variable ($\Gamma$ : Ensemble Formula)
           ($\phi$ : Formula).
@@ -521,8 +522,8 @@ Proof.$\;\ldots\;$Qed.
 
         \begin{lstlisting}[name=Completeness, frame=single, language=coq]
 Fact $\Delta$_$\Gamma_i$_con :
-  forall (f : nat -> Formula) ($\phi$0 : Formula), 
-($\Delta$ f) $\vdash$ $\phi$0 -> (exists n : nat, ($\Gamma_i$ n f) $\vdash$ $\phi$0).
+  forall (f : nat -> Formula) ($\delta$ : Formula), 
+($\Delta$ f) $\vdash$ $\delta$ -> (exists n : nat, ($\Gamma_i$ n f) $\vdash$ $\delta$).
 Proof.$\;\ldots\;$Qed.
 
 Fact $\Delta$_does_not_derive_$\phi$ : 
@@ -535,7 +536,7 @@ Fact not_in_$\Delta$_$\Gamma_i$ : forall ($\psi$ : Formula) (f : nat -> Formula)
 Proof.$\;\ldots\;$Qed.
         \end{lstlisting}
         
-        O fato \texttt{$\Delta$\_$\Gamma_i$\_con} segue por indução na hipótese \texttt{$\Delta$ f $\vdash$ $\phi$0}. 
+        O fato \texttt{$\Delta$\_$\Gamma_i$\_con} segue por indução na hipótese \texttt{$\Delta$ f $\vdash$ $\delta$}. 
         
         O fato \texttt{$\Delta$\_does\_not\_derive\_$\phi$} segue utilizando as provas de \texttt{$\Gamma_i$\_does\_not\_derive\_$\phi$} e \texttt{$\Delta$\_$\Gamma_i$\_con} para mostrar que, supondo \texttt{$\Delta$ f $\vdash$ $\phi$} chega-se numa contradição. 
         
@@ -577,4 +578,4 @@ Proof.$\;\ldots\;$Qed.
 
         O axioma \texttt{surjection\_nat\_formula} estabelece a existência de uma sobrejeção entre \texttt{nat} e \texttt{Formula}, um fato que pode ser provado utilizando uma numeração de G{\"o}del~\cite{sep-goedel-incompleteness}, mas que para os propósitos do presente trabalho foi tomado como um axioma.
 
-        O teorema \texttt{completeness\_bivaluations} (relativo ao Teorema~\ref{teo:completude_val}) segue pela contrapositiva\footnote{Utilizando o teorema \texttt{contraposition} (implementado na Seção~\ref{sec:utils}), que só pôde ser demonstrado visto que estamos assumindo o princípio do terceiro excluído como válido neste módulo.} ($\Gamma \nvdash \alpha \Longrightarrow \Gamma \nvDash \alpha$) e utiliza os fatos provados no lema do Lindenbaum juntamente com a definição da bivaloração \texttt{completeness\_valuation}. Este teorema nos cede dois corolários \texttt{completeness\_matrix} e \texttt{matrix\_bivaluations\_eq}, que representam, respectivamente, a completude da \lfium{} em relação à semântica matricial (Corolário~\ref{cor:completude_mat}) e a equivalência entre os sistemas semânticos (Corolário~\ref{cor:matvaleq}). Estes corolários seguem aplicando os resultados obtidos em \texttt{completeness\_bivaluations}, \texttt{soundness\_matrix} e \texttt{matrix\_bivaluation\_imp}.
+        O teorema \texttt{completeness\_bivaluations} (relativo ao Teorema~\ref{teo:completude_val}) segue pela contrapositiva\footnote{Utilizando o teorema \texttt{contraposition} (implementado na Seção~\ref{sec:utils}), que só pôde ser demonstrado visto que estamos assumindo o princípio do terceiro excluído como válido neste módulo.} ($\Gamma \nvdash \alpha \Longrightarrow \Gamma \nvDash \alpha$) e utiliza os fatos provados no lema de Lindenbaum juntamente com a definição da bivaloração \texttt{completeness\_valuation}. Este teorema nos cede dois corolários \texttt{completeness\_matrix} e \texttt{matrix\_bivaluations\_eq}, que representam, respectivamente, a completude da \lfium{} em relação à semântica matricial (Corolário~\ref{cor:completude_mat}) e a equivalência entre os sistemas semânticos (Corolário~\ref{cor:matvaleq}). Estes corolários seguem aplicando os resultados obtidos em \texttt{completeness\_bivaluations}, \texttt{soundness\_matrix} e \texttt{matrix\_bivaluation\_imp}.
