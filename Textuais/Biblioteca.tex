@@ -390,7 +390,7 @@ Proof.$\;\ldots\;$Qed.
     
     \subsection{Cardinality.v}\label{sec:cardinality}
 
-        Este arquivo implementa alguns conceitos relacionados à cardinalidade de tipos indutivos, utilizados para provar que um dado tipo possui o mesmo número de elementos que outro. O módulo \texttt{IndefiniteDescription} contém um axioma chamado \texttt{constructive\_indefinite\\\_description}, que torna possível a definição de funções de escolha, necessárias para a prova do lema de  (Lema~\ref{lem:}). Este módulo também importa arquivos que implementam o axioma da escolha. Já o módulo \texttt{Classical\_sets} contém o princípio do terceiro excluído como axioma.
+        Este arquivo implementa alguns conceitos relacionados à cardinalidade de tipos indutivos, utilizados para provar que um dado tipo possui o mesmo número de elementos que outro. O módulo \texttt{IndefiniteDescription} contém um axioma chamado \texttt{constructive\_indefinite\\\_description}, que torna possível a definição de funções de escolha, necessárias para a prova do lema de  (Lema~\ref{lem:lindenbaum}). Este módulo também importa arquivos que implementam o axioma da escolha. Já o módulo \texttt{Classical\_sets} contém o princípio do terceiro excluído como axioma.
 
         \begin{lstlisting}[name=LFI, frame=single, language=coq]
 From Stdlib Require Import Classical_sets IndefiniteDescription.
@@ -575,6 +575,6 @@ Corollary matrix_bivaluations_eq : forall ($\Gamma$ : Ensemble Formula) ($\alpha
 Proof.$\;\ldots\;$Qed.
         \end{lstlisting}
 
-        O axioma \texttt{surjection\_nat\_formula} estabelece a existência de uma sobrejeção entre \texttt{nat} e \texttt{Formula}.
+        O axioma \texttt{surjection\_nat\_formula} estabelece a existência de uma sobrejeção entre \texttt{nat} e \texttt{Formula}, um fato que pode ser provado utilizando uma numeração de G{\"o}del~\cite{sep-goedel-incompleteness}, mas que para os propósitos do presente trabalho foi tomado como um axioma.
 
         O teorema \texttt{completeness\_bivaluations} (relativo ao Teorema~\ref{teo:completude_val}) segue pela contrapositiva\footnote{Utilizando o teorema \texttt{contraposition} (implementado na Seção~\ref{sec:utils}), que só pôde ser demonstrado visto que estamos assumindo o princípio do terceiro excluído como válido neste módulo.} ($\Gamma \nvdash \alpha \Longrightarrow \Gamma \nvDash \alpha$) e utiliza os fatos provados no lema do Lindenbaum juntamente com a definição da bivaloração \texttt{completeness\_valuation}. Este teorema nos cede dois corolários \texttt{completeness\_matrix} e \texttt{matrix\_bivaluations\_eq}, que representam, respectivamente, a completude da \lfium{} em relação à semântica matricial (Corolário~\ref{cor:completude_mat}) e a equivalência entre os sistemas semânticos (Corolário~\ref{cor:matvaleq}). Estes corolários seguem aplicando os resultados obtidos em \texttt{completeness\_bivaluations}, \texttt{soundness\_matrix} e \texttt{matrix\_bivaluation\_imp}.
