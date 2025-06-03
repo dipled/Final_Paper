@@ -516,7 +516,7 @@ m <= n -> ($\Gamma_i$ m f) $\subseteq$ ($\Gamma_i$ n f).
 Proof.$\;\ldots\;$Qed.
         \end{lstlisting}
 
-        Os fatos \texttt{$\Gamma_i$\_included\_$\Delta$} e \texttt{$\Gamma_i$\_does\_not\_derive\_$\phi$} são provados por indução em \texttt{i}. 
+        Os fatos \texttt{$\Gamma_i$\_included\_$\Delta$} e \texttt{$\Gamma_i$\_does\_not\_derive\_$\phi$} dizem, respectivamente, que todo $\Gamma_i$ está contido em $\Delta$ e que nenhum $\Gamma_i$ deriva $\phi$. Ambos são provados por indução em \texttt{i}. 
         
         O fato \texttt{$\Gamma_i$\_m\_included\_$\Gamma_i$\_n} é provado utilizando a definição da função \texttt{$\Gamma_i$}.
 
@@ -536,11 +536,11 @@ Fact not_in_$\Delta$_$\Gamma_i$ : forall ($\psi$ : Formula) (f : nat -> Formula)
 Proof.$\;\ldots\;$Qed.
         \end{lstlisting}
         
-        O fato \texttt{$\Delta$\_$\Gamma_i$\_con} segue por indução na hipótese \texttt{$\Delta$ f $\vdash$ $\delta$}. 
+        O fato \texttt{$\Delta$\_$\Gamma_i$\_con} diz que se uma dada fórmula é derivável a partir de $\Delta$, então ela é derivável a partir de algum $\Gamma_i$. Ele segue por indução na hipótese \texttt{$\Delta$ f $\vdash$ $\delta$}. 
         
-        O fato \texttt{$\Delta$\_does\_not\_derive\_$\phi$} segue utilizando as provas de \texttt{$\Gamma_i$\_does\_not\_derive\_$\phi$} e \texttt{$\Delta$\_$\Gamma_i$\_con} para mostrar que, supondo \texttt{$\Delta$ f $\vdash$ $\phi$} chega-se numa contradição. 
+        O fato \texttt{$\Delta$\_does\_not\_derive\_$\phi$} demonstra a primeira condição para que $\Delta$ seja um conjunto maximal não trivial em relação a $\phi$ (Definição~\ref{def:nao-trivial_maximal}). Ele é provado utilizando as provas de \texttt{$\Gamma_i$\_does\_not\_derive\_$\phi$} e \texttt{$\Delta$\_$\Gamma_i$\_con} para mostrar que, supondo \texttt{$\Delta$ f $\vdash$ $\phi$} chega-se numa contradição. 
         
-        O fato \texttt{not\_in\_$\Delta$\_$\Gamma_i$} segue pela definição de $\Delta$.
+        O fato \texttt{not\_in\_$\Delta$\_$\Gamma_i$} diz que se uma dada fórmula não está em $\Delta$, então ela não está em nenhum $\Gamma_i$. Ele é demonstrado através da definição de $\Delta$.
         
         \begin{lstlisting}[name=Completeness, frame=single, language=coq]
 Fact not_in_$\Gamma_i$_derives_$\phi$ : forall (f : nat -> Formula) (i : nat),
