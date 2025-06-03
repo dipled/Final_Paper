@@ -52,7 +52,6 @@ CoqMakefile.conf
 **/makefile.conf
 *.autosave.xopp
 *.xopp~
-**/Main.pdf
 **/KRoggia-Thesis/
 *.swp
 *.lof
