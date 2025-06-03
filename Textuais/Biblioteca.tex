@@ -518,7 +518,7 @@ Proof.$\;\ldots\;$Qed.
 
         Os fatos \texttt{$\Gamma_i$\_included\_$\Delta$} e \texttt{$\Gamma_i$\_does\_not\_derive\_$\phi$} dizem, respectivamente, que todo $\Gamma_i$ está contido em $\Delta$ e que nenhum $\Gamma_i$ deriva $\phi$. Ambos são provados por indução em \texttt{i}. 
         
-        O fato \texttt{$\Gamma_i$\_m\_included\_$\Gamma_i$\_n} é provado utilizando a definição da função \texttt{$\Gamma_i$}.
+        O fato \texttt{$\Gamma_i$\_m\_included\_$\Gamma_i$\_n}, que diz que $\Gamma_m \subseteq \Gamma_n$, sempre que $m \leq n$, é provado utilizando a definição da função \texttt{$\Gamma_i$}.
 
         \begin{lstlisting}[name=Completeness, frame=single, language=coq]
 Fact $\Delta$_$\Gamma_i$_con :
@@ -554,9 +554,9 @@ Proof.$\;\ldots\;$Qed.
 End Lindenbaum.
         \end{lstlisting}
 
-        O fato \texttt{not\_in\_$\Gamma_i$\_derives\_$\phi$} segue por análise de caso em \texttt{$\Gamma_i$\ i\ f $\cup$ [f (i)] $\vdash$ $\varphi$}, utilizando o princípio do terceiro excluído.
+        O fato \texttt{not\_in\_$\Gamma_i$\_derives\_$\phi$} diz que, se uma fórmula $\phi_i$ não está em $\Gamma_i$, entao $\Gamma_i, \phi_i \vdash \phi$. Ele segue por análise de caso em \texttt{$\Gamma_i$\ i\ f $\cup$ [f (i)] $\vdash$ $\varphi$}, utilizando o princípio do terceiro excluído.
         
-        O lema \texttt{$\Delta$\_maximal\_nontrivial} segue utilizando a definição de sobrejeção (visto que, neste caso, considera-se a função que representa organização das fórmulas numa sequência como sendo uma sobrejeção), a definição \texttt{maximal\_nontrivial} e os fatos \texttt{$\Delta$\_does\_not\_derive\_$\varphi$}, \texttt{not\_in\_$\Gamma_i$\_derives\_$\varphi$} e \texttt{lfi1\_monotonicity}.
+        O lema \texttt{$\Delta$\_maximal\_nontrivial} segue utilizando a definição de sobrejeção (visto que, neste caso, considera-se a função que representa a organização das fórmulas numa sequência como sendo uma sobrejeção), a definição \texttt{maximal\_nontrivial} e os fatos \texttt{$\Delta$\_does\_not\_derive\_$\varphi$}, \texttt{not\_in\_$\Gamma_i$\_derives\_$\varphi$} e \texttt{lfi1\_monotonicity}.
 
         Com isto, a completude da lógica \lfium{} pode enfim ser provada.
 
