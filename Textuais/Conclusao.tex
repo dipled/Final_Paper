@@ -1,0 +1,20 @@
+\chapter{Conclusão}\label{chap:conclusao}
+
+O estudo de lógicas paraconsistentes mostra-se relevante para o desenvolvimento de
+softwares capazes de lidar com informações contraditórias. Dentro desta família de lógicas,
+os sistemas de inconsistência formal destacam-se no contexto de bases de dados {---} sobretudo
+bases evolucionárias {---} já que internalizam o conceito de consistência dentro da sua
+linguagem. A LFI1 é uma lógica de inconsistência formal com propriedades que facilitam o
+desenvolvimento de sistemas de gerenciamento de bancos de dados, por exemplo, mesmo na
+presença de contradições na base~\cite{carnielli2000formal}.
+
+Assistentes de provas são ferramentas de software que permitem ao usuário provar
+teoremas sobre objetos matemáticos expressos dentro de si, sem que a verificação destas provas dependa
+de um julgamento humano para garantir sua validade. O Rocq é um assistente de provas (bem
+como uma linguagem de programação) robusto e com um núcleo axiomático enxuto, que possui
+aplicações em diferentes áreas da matemática, como lógica, linguagens formais, linguística
+computacional e desenvolvimento de programas seguros~\cite{coqart}.
+
+O presente trabalho iniciou-se apresentando a linguagem, a axiomatização e a semântica para a \lfium{} e desenvolvendo metateoremas que evidenciam características deste sistema. Depois disso, uma biblioteca para a lógica apresentada foi implementada em Rocq , com todos os artefatos sintáticos e semânticos definidos utilizando tipos indutivos. Finalmente, os metateoremas desenvolvidos anteriormente foram provados e verificados formalmente dentro da biblioteca, satisfazendo os objetivos propostos na Seção~\ref{sec:objetivos_especificos}.
+
+Para trabalhos futuros, propõe-se o desenvolvimento de táticas $\pazocal{L}$tac, para automatizar a prova de teoremas utilizando a semântica matricial (visto que este é um processo algorítmico), a implementação de um sistema de \textit{tableau} (análogo ao sistema descrito em~\cite{tableaulfi}) e, por fim, desenvolver a prova da existência de uma sobrejeção de \texttt{nat} para \texttt{Formula} (apresentada na Seção~\ref{sec:completeness}), que até o presente foi tomada como axioma dentro da biblioteca.
