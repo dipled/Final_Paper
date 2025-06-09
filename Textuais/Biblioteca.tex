@@ -411,7 +411,7 @@ Definition function_surjective {A B : Type} (f: A -> B): Prop :=
   forall b, exists a, f a = b.
   
 Definition inverse_function {A B : Type} (f : A -> B) (g : B -> A) : Prop :=
-  forall x : A, g (f x) = x.
+  (forall x : A, g (f x) = x) /\ (forall y : B, f (g y) = y).
 
 Record injection (A B: Type): Type := Build_injection {
   inj_f :> A -> B;
@@ -441,7 +441,7 @@ Proposition In_lem {U : Type} : forall (A : Ensemble U) (x : U),
 Proof. intros. apply classic. Qed.
 
 Definition maximal_nontrivial ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula) : Prop :=
-  ~ $\Gamma$ $\vdash$ $\phi$ /\ (forall ($\psi$ : Formula), $\psi$ $\not \in$ $\Gamma$ -> ($\Gamma$ $\cup$ [$\psi$] $\vdash$ $\phi$)).
+  ~ ($\Gamma$ $\vdash$ $\phi$) /\ (forall ($\psi$ : Formula), $\psi$ $\not \in$ $\Gamma$ -> ($\Gamma$ $\cup$ [$\psi$] $\vdash$ $\phi$)).
 
 Definition closed_theory ($\Gamma$ : Ensemble Formula) : Prop := 
 forall $\phi$ : Formula, $\Gamma$ $\vdash$ $\phi$ <-> $\phi$ $\in$ $\Gamma$.
@@ -556,7 +556,7 @@ End Lindenbaum.
 
         O fato \texttt{not\_in\_$\Gamma_i$\_derives\_$\phi$} diz que, se uma fórmula $\phi_i$ não está em $\Gamma_i$, entao $\Gamma_i, \phi_i \vdash \phi$. Ele segue por análise de caso em \texttt{$\Gamma_i$\ i\ f $\cup$ [f (i)] $\vdash$ $\varphi$}, utilizando o princípio do terceiro excluído.
         
-        O lema \texttt{$\Delta$\_maximal\_nontrivial} segue utilizando a definição de sobrejeção (visto que, neste caso, considera-se a função que representa a organização das fórmulas numa sequência como sendo uma sobrejeção), a definição \texttt{maximal\_nontrivial} e os fatos \texttt{$\Delta$\_does\_not\_derive\_$\varphi$}, \texttt{not\_in\_$\Gamma_i$\_derives\_$\varphi$} e \texttt{lfi1\_monotonicity}.
+        O lema \texttt{$\Delta$\_maximal\_nontrivial} segue utilizando a definição de sobrejeção\footnote{visto que, neste caso, considera-se a função que representa a organização das fórmulas numa sequência como sendo uma sobrejeção}, a definição \texttt{maximal\_nontrivial} e os fatos \texttt{$\Delta$\_does\_not\_derive\_$\varphi$}, \texttt{not\_in\_$\Gamma_i$\_derives\_$\varphi$} e \texttt{lfi1\_monotonicity}.
 
         Com isto, a completude da lógica \lfium{} pode enfim ser provada.
 
@@ -576,6 +576,6 @@ Corollary matrix_bivaluations_eq : forall ($\Gamma$ : Ensemble Formula) ($\alpha
 Proof.$\;\ldots\;$Qed.
         \end{lstlisting}
 
-        O axioma \texttt{surjection\_nat\_formula} estabelece a existência de uma sobrejeção entre \texttt{nat} e \texttt{Formula}, um fato que pode ser provado utilizando uma numeração de G{\"o}del~\cite{sep-goedel-incompleteness}, mas que para os propósitos do presente trabalho foi tomado como um axioma.
+        A proposição \texttt{surjection\_nat\_formula} estabelece a existência de uma sobrejeção entre \texttt{nat} e \texttt{Formula}, um fato que pode ser provado utilizando uma numeração de G{\"o}del~\cite{sep-goedel-incompleteness}, mas que para os propósitos do presente trabalho foi tomado como um axioma.
 
         O teorema \texttt{completeness\_bivaluations} (relativo ao Teorema~\ref{teo:completude_val}) segue pela contrapositiva\footnote{Utilizando o teorema \texttt{contraposition} (implementado na Seção~\ref{sec:utils}), que só pôde ser demonstrado visto que estamos assumindo o princípio do terceiro excluído como válido neste módulo.} ($\Gamma \nvdash \alpha \Longrightarrow \Gamma \nvDash \alpha$) e utiliza os fatos provados no lema de Lindenbaum juntamente com a definição da bivaloração \texttt{completeness\_valuation}. Este teorema nos cede dois corolários \texttt{completeness\_matrix} e \texttt{matrix\_bivaluations\_eq}, que representam, respectivamente, a completude da \lfium{} em relação à semântica matricial (Corolário~\ref{cor:completude_mat}) e a equivalência entre os sistemas semânticos (Corolário~\ref{cor:matvaleq}). Estes corolários seguem aplicando os resultados obtidos em \texttt{completeness\_bivaluations}, \texttt{soundness\_matrix} e \texttt{matrix\_bivaluation\_imp}.
