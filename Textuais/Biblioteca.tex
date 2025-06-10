@@ -77,9 +77,9 @@ Notation " $\#$ x " :=
       
       Note que \texttt{Lit} é construído a partir de um \texttt{Atom}, que por sua vez é só um \textit{alias} para o tipo \texttt{nat} (um número natural), portanto o tipo indutivo \texttt{Formula} é enumerável.
 
-    \subsection{Syntax.v}\label{sec:syntax}
+    \subsection{Deduction.v}\label{sec:syntax}
 
-      Este arquivo contém a definição da sintaxe da \lfium{}, através do cáclulo de Hilbert definido na Seção~\ref{sec:axiomatizacao}.
+      Este arquivo contém a definição da relação de consequência sintática da \lfium{}, através do cáclulo de Hilbert definido na Seção~\ref{sec:axiomatizacao}.
 
       \begin{lstlisting}[name=Syntax, frame=single, language=coq]
 Inductive Ax : Set :=
