@@ -390,7 +390,7 @@ Proof.$\;\ldots\;$Qed.
     
     \subsection{Cardinality.v}\label{sec:cardinality}
 
-        Este arquivo implementa alguns conceitos relacionados à cardinalidade de tipos indutivos, utilizados para provar que um dado tipo possui o mesmo número de elementos que outro. O módulo \texttt{IndefiniteDescription} contém um axioma chamado \texttt{constructive\_indefinite\\\_description}, que torna possível a definição de funções de escolha, necessárias para a prova do lema de Lindenbaum (Lema~\ref{lem:lindenbaum}). Este módulo também importa arquivos que implementam o axioma da escolha. Já o módulo \texttt{Classical\_sets} contém o princípio do terceiro excluído como axioma.
+        Este arquivo implementa alguns conceitos relacionados à cardinalidade de tipos indutivos, utilizados para provar que um dado tipo possui o mesmo número de elementos que outro. O módulo \texttt{IndefiniteDescription} contém um axioma chamado \texttt{constructive\_indefinite\\\_description}, que torna possível a definição de funções de escolha, necessárias para a prova do lema de Lindenbaum (Lema~\ref{lem:lindenbaum}). Este módulo também importa arquivos que implementam o axioma da escolha. Já o módulo \texttt{Classical\_sets} contém o princípio do terceiro excluído como axioma. Estes módulos resultam em irrelevância de prova\footnote{Que diz que duas provas da mesma propriedade podem ser consideradas como iguais.~\cite{paulinmohring:hal-01094195}.}.
 
         \begin{lstlisting}[name=LFI, frame=single, language=coq]
 From Stdlib Require Import Classical_sets IndefiniteDescription.
@@ -556,7 +556,7 @@ End Lindenbaum.
 
         O fato \texttt{not\_in\_$\Gamma_i$\_derives\_$\phi$} diz que, se uma fórmula $\phi_i$ não está em $\Gamma_i$, entao $\Gamma_i, \phi_i \vdash \phi$. Ele segue por análise de caso em \texttt{$\Gamma_i$\ i\ f $\cup$ [f (i)] $\vdash$ $\varphi$}, utilizando o princípio do terceiro excluído.
         
-        O lema \texttt{$\Delta$\_maximal\_nontrivial} segue utilizando a definição de sobrejeção\footnote{visto que, neste caso, considera-se a função que representa a organização das fórmulas numa sequência como sendo uma sobrejeção}, a definição \texttt{maximal\_nontrivial} e os fatos \texttt{$\Delta$\_does\_not\_derive\_$\varphi$}, \texttt{not\_in\_$\Gamma_i$\_derives\_$\varphi$} e \texttt{lfi1\_monotonicity}.
+        O lema \texttt{$\Delta$\_maximal\_nontrivial} segue utilizando a definição de sobrejeção\footnote{Visto que, neste caso, considera-se a função que representa a organização das fórmulas numa sequência como sendo uma sobrejeção.}, a definição \texttt{maximal\_nontrivial} e os fatos \texttt{$\Delta$\_does\_not\_derive\_$\varphi$}, \texttt{not\_in\_$\Gamma_i$\_derives\_$\varphi$} e \texttt{lfi1\_monotonicity}.
 
         Com isto, a completude da lógica \lfium{} pode enfim ser provada.
 
