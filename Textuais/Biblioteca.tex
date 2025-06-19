@@ -77,11 +77,11 @@ Notation " $\#$ x " :=
       
       Note que \texttt{Lit} é construído a partir de um \texttt{Atom}, que por sua vez é só um \textit{alias} para o tipo \texttt{nat} (um número natural), portanto o tipo indutivo \texttt{Formula} é enumerável.
 
-    \subsection{Deduction.v}\label{sec:syntax}
+    \subsection{Deduction.v}\label{sec:deduction}
 
-      Este arquivo contém a definição da relação de consequência sintática da \lfium{}, através do cáclulo de Hilbert definido na Seção~\ref{sec:axiomatizacao}.
+      Este arquivo contém a definição da relação de derivabilidade da \lfium{}, através do cáclulo de Hilbert definido na Seção~\ref{sec:axiomatizacao}.
 
-      \begin{lstlisting}[name=Syntax, frame=single, language=coq]
+      \begin{lstlisting}[name=deduction, frame=single, language=coq]
 Inductive Ax : Set :=
   | Ax1      : Formula -> Formula -> Ax
   | Ax2      : Formula -> Formula -> Formula -> Ax
@@ -108,7 +108,7 @@ $\qquad\vdots$
       
       Depois, a função \texttt{instantiate} é definida. Ela recebe como argumento um axioma (que por sua vez foi construído a partir de fórmulas) e retorna uma fórmula correspondente àquela representada pelo axioma, por exemplo, o axioma~\ref{ax:axcf} representa a eliminação da dupla negação, portanto, a função \texttt{instantiate} receberia um dado \texttt{cf $\alpha$} do tipo \texttt{Ax}, onde $\alpha$ é uma fórmula qualquer da linguagem, e retornaria um dado $\neg\neg\alpha \to \alpha$ do tipo \texttt{Formula}.
 
-      \begin{lstlisting}[name=Syntax, frame=single, language=coq]
+      \begin{lstlisting}[name=deduction, frame=single, language=coq]
 Inductive deduction : Ensemble Formula -> Formula -> Prop :=
   | Premisse : forall ($\Gamma$ : Ensemble Formula) ($\phi$ : Formula), $\phi$ $\in$ $\Gamma$ -> deduction $\Gamma$ $\phi$
   | AxiomInstance : forall ($\Gamma$ : Ensemble Formula) (a : Ax), deduction $\Gamma$ (instantiate a)
