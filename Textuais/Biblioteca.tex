@@ -177,12 +177,11 @@ Notation " $\Gamma$ $\vDash$m $\phi$ " := (matrixEntails $\Gamma$ $\phi$) (at le
 Inductive BivaluationDomain : Set :=
   | Bot
   | Top.
-
 Notation " $\bot$ " := Bot.
 Notation " $\top$ " := Top.
-
 Definition vAnd (v : Formula -> BivaluationDomain) : Prop :=
-  forall $\phi$ $\psi$ : Formula, (v ($\phi$ $\land$ $\psi$)) = $\top$ <-> (v $\phi$ = $\top$) /\ (v $\psi$ = $\top$).
+  forall $\phi$ $\psi$ : Formula, 
+    (v ($\phi$ $\land$ $\psi$)) = $\top$ <-> (v $\phi$ = $\top$) /\ (v $\psi$ = $\top$).
 $\qquad\vdots$
 Definition vNeg (v : Formula -> BivaluationDomain) : Prop :=
   forall $\phi$ : Formula, (v $\neg$$\phi$) = $\bot$ -> v $\phi$ = $\top$.
@@ -198,6 +197,14 @@ Definition vCip (v : Formula -> BivaluationDomain) : Prop :=
 Definition bivaluation (v : Formula -> BivaluationDomain) : Prop :=
   vAnd v /\ vOr v /\ vImp v /\ vNeg v /\ vCon v /\ vCi v /\
   vDne v /\ vDmAND v /\ vDmOR v /\ vCip v.
+
+Definition bivaluationEntails ($\Gamma$:Ensemble Formula) ($\phi$ : Formula) : Prop:= 
+forall v : (Formula -> BivaluationDomain),
+bivaluation v -> 
+  (forall ($\psi$: Formula), 
+    $\psi$ $\in$ $\Gamma$ -> (v $\psi$) = $\top$) -> (v $\phi$) = $\top$.
+
+Notation " $\Gamma$ $\vDash$ $\phi$ " := (bivaluationEntails $\Gamma$ $\phi$) (at level 50, no associativity).
               \end{lstlisting}
 
               A bivaloração é definida sobre um tipo indutivo com construtores $\top$ e $\bot$, representando respectivamente os valores para verdade e falsidade do domínio. As cláusulas \texttt{vAnd} até \texttt{vCip} definem as condições que um mapeamento entre \texttt{Formula} e \texttt{BivaluationDomain} precisam respeitar para serem consideradas bivalorações, caracterizadas pelo predicado \texttt{bivaluation}. Estes mapeamentos apresentam um comportamento não-determinístico em algumas cláusulas, como na cláusula \texttt{vNeg}.
